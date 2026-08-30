@@ -1,0 +1,224 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>Orchestrator、Worker、Reviewer 与 Peer | Agent Engineering Playbook</title><meta name="description" content="比较集中编排、阶段流水线、独立审查和对等协作拓扑，并明确角色、控制权与最终责任。"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="Orchestrator、Worker、Reviewer 与 Peer | Agent Engineering Playbook"><meta property="og:description" content="比较集中编排、阶段流水线、独立审查和对等协作拓扑，并明确角色、控制权与最终责任。"><meta property="og:url" content="https://imcoders.cn/playbook/agent/27-multi-agent-topology/"><meta property="og:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta property="og:image:width" content="1774"><meta property="og:image:height" content="887"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Orchestrator、Worker、Reviewer 与 Peer | Agent Engineering Playbook"><meta name="twitter:description" content="比较集中编排、阶段流水线、独立审查和对等协作拓扑，并明确角色、控制权与最终责任。"><meta name="twitter:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta itemprop="name" content="Orchestrator、Worker、Reviewer 与 Peer | Agent Engineering Playbook"><meta itemprop="description" content="比较集中编排、阶段流水线、独立审查和对等协作拓扑，并明确角色、控制权与最终责任。"><meta itemprop="image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "Orchestrator、Worker、Reviewer 与 Peer | Agent Engineering Playbook";
+const shareDesc = "比较集中编排、阶段流水线、独立审查和对等协作拓扑，并明确角色、控制权与最终责任。";
+const shareLink = "https://imcoders.cn/playbook/agent/27-multi-agent-topology/";
+const shareImg = "https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.C-FedgiN.css"><script type="module" src="/_astro/hoisted.BfDpThc8.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook" aria-current="page">Playbook</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main>  <div class="reading-progress" aria-hidden="true" data-astro-cid-jojupagh></div> <div class="reader" data-astro-cid-jojupagh> <header class="reader-bar" data-astro-cid-jojupagh> <a class="reader-home" href="/playbook/agent" data-astro-cid-jojupagh>AGENT ENGINEERING <span data-astro-cid-jojupagh>PLAYBOOK</span></a> <span class="reader-meta" data-astro-cid-jojupagh>27 / 30</span> </header> <div class="mobile-index" data-astro-cid-jojupagh> <details data-astro-cid-jojupagh> <summary data-astro-cid-jojupagh>打开全书目录</summary> <div class="mobile-index-body" data-astro-cid-jojupagh> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" class="is-current" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </div> </details> </div> <div class="reader-grid" data-astro-cid-jojupagh> <aside class="book-index" aria-label="全书目录" data-astro-cid-jojupagh> <h2 class="index-title" data-astro-cid-jojupagh>全书目录</h2> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" class="is-current" aria-current="page" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </aside> <section class="chapter-main" data-astro-cid-jojupagh> <header class="chapter-header" data-astro-cid-jojupagh> <div class="chapter-label" data-astro-cid-jojupagh>第二十七章 / 第六部分：Multi-Agent</div> <h1 data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</h1> <p class="chapter-description" data-astro-cid-jojupagh>比较集中编排、阶段流水线、独立审查和对等协作拓扑，并明确角色、控制权与最终责任。</p> <p class="chapter-updated" data-astro-cid-jojupagh>更新于 2026/8/12</p>  </header> <article class="chapter-content" data-astro-cid-jojupagh> <p>决定使用多个 Agent 后，下一步不是给它们起不同名字，而是决定控制权、信息和责任怎样流动。相同的四个 Agent，可以组成一个中心化 Orchestrator，也可以形成 Planner 与 Executor 的阶段流水线，或以 Handoff 方式让控制权在 Peer 之间移动。</p>
+<blockquote>
+<p>Topology 描述控制权和消息怎样流动，Role 描述一个 Agent 对什么负责。二者必须分开设计。</p>
+</blockquote>
+<h2 id="术语来源与适用范围">术语来源与适用范围</h2>
+<p>Orchestrator、Worker、Planner、Executor 和 Reviewer 借用了分布式系统、工作流与软件工程中的通用角色语言。<a href="https://www.anthropic.com/engineering/multi-agent-research-system">Anthropic 的多 Agent Research 系统</a>公开描述了 Lead Agent 协调并行 Subagent 的 Orchestrator-Worker 实现。<a href="https://openai.github.io/openai-agents-python/multi_agent/">OpenAI Agents SDK</a>区分 Manager 调用 Agents-as-Tools 与 Handoff；<a href="https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/teams.html">AutoGen Teams</a>还提供 SelectorGroupChat 与 Swarm 等框架对象。</p>
+<p>这些名称不是跨产品一致的协议术语。例如某个框架的 Supervisor 可能只负责选择下一位发言者，另一个系统的 Supervisor 还负责计划、预算和最终答案。本章使用的四类拓扑与角色模板是 Playbook 参考模型，实施时必须映射到具体 Runtime 的控制语义。</p>
+<h2 id="四类常用拓扑">四类常用拓扑</h2>
+<p><img src="/playbook-images/agent/multi-agent-topology.svg" alt="Multi-Agent Topology 对比"></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>拓扑</th><th>谁选择下一步</th><th>Context 流动</th><th>适用场景</th><th>主要风险</th></tr></thead><tbody><tr><td>Orchestrator-Worker</td><td>Orchestrator</td><td>中心按任务裁剪后下发</td><td>多个可并行、可合并的子任务</td><td>中心瓶颈、摘要失真</td></tr><tr><td>Planner-Executor</td><td>Planner 或确定性 Scheduler</td><td>Plan 与 Step Contract 逐阶段传递</td><td>计划与执行能力需要分离</td><td>计划过期、反馈链过长</td></tr><tr><td>Executor-Reviewer</td><td>Executor 产出，Reviewer 判定</td><td>Artifact 加证据，不共享草稿推理</td><td>高风险产物、独立质量门禁</td><td>Reviewer 被执行者叙述锚定</td></tr><tr><td>Peer / Handoff</td><td>当前 Agent 或 Router</td><td>控制权与精选 Context 转移</td><td>专业接力、对话路由</td><td>责任漂移、循环转交</td></tr></tbody></table>
+<p>真实系统可以组合拓扑。一个 Orchestrator 可以并行调用三个 Worker，再把组合 Artifact 交给独立 Reviewer；一个接待 Agent 可以 Handoff 给领域 Owner，领域 Owner 再把局部任务作为 Agent-as-Tool 调用。</p>
+<h2 id="orchestrator-worker中心拥有全局责任">Orchestrator-Worker：中心拥有全局责任</h2>
+<p>Orchestrator 负责：</p>
+<ul>
+<li>把 Goal 分解为可委派 Task。</li>
+<li>为每个 Worker 选择最小必要 Context、Tool 和权限。</li>
+<li>管理依赖、并发、预算、超时与取消。</li>
+<li>收集 Artifact，处理缺失和冲突。</li>
+<li>验证组合结果并决定 Root Run 是否完成。</li>
+</ul>
+<p>Worker 不应该默认承担总目标。它只对 Delegation Contract 中的局部目标和验收标准负责。否则每个 Worker 都会重复规划全局任务，产生范围重叠。</p>
+<p>Orchestrator 的瓶颈通常不是模型调用次数，而是它必须读完所有 Worker 输出。控制方法包括：</p>
+<ol>
+<li>Worker 输出结构化 Artifact，而不是完整对话转储。</li>
+<li>结果使用摘要加证据引用，Root 可以按需读取原始材料。</li>
+<li>采用分层聚合，但限制树深，避免每层摘要继续丢失信息。</li>
+<li>Scheduler、超时和状态归并尽量由确定性 Runtime 承担。</li>
+</ol>
+<h2 id="planner-executor把假设与执行证据分开">Planner-Executor：把假设与执行证据分开</h2>
+<p>Planner 产出的是可修订 Plan，不是不可改变的命令。Executor 执行当前 Ready Step，并返回观察、Artifact 和阻塞原因。Runtime 根据证据推进或触发 Replan。</p>
+<p><strong>代码块说明｜层级示意：</strong> 这段文本图按缩进和树枝符号阅读，用来展开“Planner-Executor：把假设与执行证据分开”中的父子关系与归属边界。它描述的是逻辑结构，不要求数据库或服务按同样层级拆分。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Planner → Plan v1 → Executor → Observation</span></span>
+<span class="line"><span>   ↑                                |</span></span>
+<span class="line"><span>   └──────── Replan Trigger ────────┘</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>适合拆分 Planner 与 Executor 的情况包括：规划需要大范围 Context，而执行只需要局部材料；执行身份拥有更高风险权限；或 Planner 使用高推理成本模型，Executor 使用便宜模型与确定性 Tool。</p>
+<p>如果每个 Step 都必须回到 Planner 才能继续，Planner 会成为串行瓶颈。可把无争议的 Step 选择交给 Scheduler，只在依赖变化、验收失败或预算越界时触发 Replan。</p>
+<h2 id="executor-reviewer独立性来自信息和权限边界">Executor-Reviewer：独立性来自信息和权限边界</h2>
+<p>Reviewer 不是让 Executor 再问自己一次。有效独立审查至少满足一项：</p>
+<ul>
+<li>使用不同验证方法，例如测试而不是自然语言判断。</li>
+<li>读取原始需求与 Artifact，而不是只读取执行者总结。</li>
+<li>使用不同模型、Skill 或数据切片，降低共同失效。</li>
+<li>没有修改生产对象的权限，只能给出 verdict 和 evidence。</li>
+</ul>
+<p>Reviewer 的输出应至少包含 <code>verdict</code>、<code>failed_criteria</code>、<code>evidence_refs</code> 和 <code>confidence</code>。它不应直接把模糊建议改写成“通过”。高风险场景下，Reviewer 只能提出完成申请，最终门禁由确定性策略或人类批准。</p>
+<h2 id="peer-与-handoff控制权会移动">Peer 与 Handoff：控制权会移动</h2>
+<p>Peer 拓扑没有永久中心，但仍需要协议规则。当前 Owner 必须知道可以把控制权交给谁、交付什么 Context、何时取回或结束。</p>
+<p>OpenAI Agents SDK 中，Handoff 让目标 Agent 接管后续对话；Agent-as-Tool 则让 Manager 保持控制。这一区分很好地说明：调用形式都可能表现为 Tool，但所有权语义不同。</p>
+<p>Peer 模式适合领域接力，例如接待 Agent 识别退款问题后转给 Refund Agent。它不适合需要多个并行结果统一合并的任务，因为没有明确 Aggregator 时，最终责任容易随最后一次 Handoff 漂移。</p>
+<p>必须设置：</p>
+<ul>
+<li><code>current_owner</code>：当前对用户与 Run 状态负责的 Agent。</li>
+<li><code>allowed_handoffs</code>：允许转移的目标集合与原因。</li>
+<li><code>max_handoff_depth</code>：防止循环转交。</li>
+<li><code>return_policy</code>：完成后返回上级、直接结束或继续转交。</li>
+<li><code>final_owner</code>：谁可以提交最终完成申请。</li>
+</ul>
+<h2 id="角色应该按什么拆分">角色应该按什么拆分</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>拆分依据</th><th>适用情况</th><th>示例</th></tr></thead><tbody><tr><td>专业领域</td><td>Context 和方法显著不同</td><td>法务、数据、前端</td></tr><tr><td>权限边界</td><td>风险与身份必须隔离</td><td>只读审计、部署执行</td></tr><tr><td>执行阶段</td><td>输入输出契约稳定</td><td>Planner、Executor、Reviewer</td></tr><tr><td>环境边界</td><td>Workspace 或外部系统独立</td><td>Repo Worker、Browser Worker</td></tr></tbody></table>
+<p>不要只按人格拆分，例如“严谨 Agent”“创意 Agent”。如果它们没有不同证据、能力、权限或责任，角色只是 Prompt 风格，而不是架构边界。</p>
+<h2 id="角色责任模板">角色责任模板</h2>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“角色责任模板”落成可检查的结构化记录，主要字段包括 <code>role_id</code>、<code>purpose</code>、<code>receives</code>、<code>may_read</code>、<code>may_write</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">role_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">migration_reviewer</span></span>
+<span class="line"><span style="color:#85E89D">purpose</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">验证数据库迁移的可回滚性与兼容性</span></span>
+<span class="line"><span style="color:#85E89D">receives</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#9ECBFF">migration_diff</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#9ECBFF">schema_snapshot</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#9ECBFF">acceptance_criteria</span></span>
+<span class="line"><span style="color:#85E89D">may_read</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#9ECBFF">migration_test_results</span></span>
+<span class="line"><span style="color:#85E89D">may_write</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#9ECBFF">artifact:migration_review</span></span>
+<span class="line"><span style="color:#85E89D">must_not</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#9ECBFF">apply_production_migration</span></span>
+<span class="line"><span style="color:#85E89D">completion</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  schema</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">migration_review_v2</span></span>
+<span class="line"><span style="color:#85E89D">  required_evidence</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#9ECBFF">backward_compatibility_result</span></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#9ECBFF">rollback_test_result</span></span>
+<span class="line"><span style="color:#85E89D">escalates_when</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#9ECBFF">production_schema_unavailable</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#9ECBFF">destructive_change_detected</span></span>
+<span class="line"></span></code></pre>
+<p>角色说明必须能被 Runtime 检查。只写“你是一名资深 Reviewer”无法约束输入、输出、权限和完成条件。</p>
+<h2 id="选择拓扑的顺序">选择拓扑的顺序</h2>
+<ol>
+<li>先确定最终 Owner 和 Artifact。</li>
+<li>再根据 Task Graph 判断并行还是接力。</li>
+<li>按 Context、权限与验证方法划分角色。</li>
+<li>决定控制权保留在中心，还是通过 Handoff 转移。</li>
+<li>最后选择框架对象与 API。</li>
+</ol>
+<p>倒过来从“框架支持 Swarm”开始设计，容易让系统迁就库的抽象，而不是任务本身。</p>
+<h2 id="本章检查">本章检查</h2>
+<ul>
+<li>Topology 是否明确谁选择下一步、谁拥有当前 Run、谁判断最终完成。</li>
+<li>Orchestrator 是否只接收结构化结果和证据引用，而不是所有完整对话。</li>
+<li>Planner 的计划是否允许基于执行证据修订。</li>
+<li>Reviewer 是否具有真实的信息、方法或权限独立性。</li>
+<li>Handoff 是否更新 <code>current_owner</code> 并限制深度与回转规则。</li>
+<li>Role 是否声明输入、输出、权限、禁区、完成标准和升级条件。</li>
+</ul> </article> <nav class="chapter-nav" aria-label="章节导航" data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>← 上一章</span> <strong data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</strong> </a> <a class="next" href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>下一章 →</span> <strong data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</strong> </a> </nav> </section> <aside class="page-index" aria-label="本章目录" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>本章目录</h2> <nav data-astro-cid-jojupagh> <a href="#术语来源与适用范围" data-heading="术语来源与适用范围" data-depth="2" data-astro-cid-jojupagh>术语来源与适用范围</a><a href="#四类常用拓扑" data-heading="四类常用拓扑" data-depth="2" data-astro-cid-jojupagh>四类常用拓扑</a><a href="#orchestrator-worker中心拥有全局责任" data-heading="orchestrator-worker中心拥有全局责任" data-depth="2" data-astro-cid-jojupagh>Orchestrator-Worker：中心拥有全局责任</a><a href="#planner-executor把假设与执行证据分开" data-heading="planner-executor把假设与执行证据分开" data-depth="2" data-astro-cid-jojupagh>Planner-Executor：把假设与执行证据分开</a><a href="#executor-reviewer独立性来自信息和权限边界" data-heading="executor-reviewer独立性来自信息和权限边界" data-depth="2" data-astro-cid-jojupagh>Executor-Reviewer：独立性来自信息和权限边界</a><a href="#peer-与-handoff控制权会移动" data-heading="peer-与-handoff控制权会移动" data-depth="2" data-astro-cid-jojupagh>Peer 与 Handoff：控制权会移动</a><a href="#角色应该按什么拆分" data-heading="角色应该按什么拆分" data-depth="2" data-astro-cid-jojupagh>角色应该按什么拆分</a><a href="#角色责任模板" data-heading="角色责任模板" data-depth="2" data-astro-cid-jojupagh>角色责任模板</a><a href="#选择拓扑的顺序" data-heading="选择拓扑的顺序" data-depth="2" data-astro-cid-jojupagh>选择拓扑的顺序</a><a href="#本章检查" data-heading="本章检查" data-depth="2" data-astro-cid-jojupagh>本章检查</a> </nav> </aside> </div> </div> <div class="selection-share" data-selection-share data-content-selector=".chapter-content" data-title="Orchestrator、Worker、Reviewer 与 Peer" data-author="Agent Engineering / IMCODERS" data-section="AGENT ENGINEERING PLAYBOOK" data-url="https://imcoders.cn/playbook/agent/27-multi-agent-topology/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>    </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

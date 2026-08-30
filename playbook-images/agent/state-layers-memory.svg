@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" width="1200" height="820" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 状态分层与长期记忆读写</title>
+  <desc id="desc">Context 是模型当前可见的投影，Run State 保存任务语义，Checkpoint 引用 Workspace 和副作用账本用于恢复，External State 保持真实环境，Long-term Memory 通过独立的读取和写入治理跨 Run 复用。</desc>
+  <style>
+    text { font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif; }
+    .title { font-size: 25px; font-weight: 700; fill: #111827; }
+    .sub { font-size: 13px; fill: #6b7280; }
+    .head { font-size: 17px; font-weight: 700; fill: #111827; }
+    .body { font-size: 12px; fill: #6b7280; }
+    .tag { font-size: 11px; font-weight: 700; text-anchor: middle; }
+    .edge { font-size: 11px; font-weight: 600; }
+  </style>
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#2563eb"/></marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#059669"/></marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#7c3aed"/></marker>
+  </defs>
+  <rect width="1200" height="820" fill="#ffffff"/>
+  <text class="title" x="48" y="50">状态分层：恢复当前任务与复用过去经验是两条路径</text>
+  <text class="sub" x="48" y="76">本 Playbook 的参考分层：Run State 和 Checkpoint 负责“继续这次执行”；Long-term Memory 负责“影响未来执行”</text>
+
+  <rect x="48" y="118" width="760" height="592" rx="18" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text class="head" x="78" y="152">当前 Run 的连续状态</text>
+
+  <rect x="96" y="190" width="664" height="82" rx="12" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+  <text class="head" x="124" y="222">Context</text><text class="body" x="124" y="246">当前模型调用的有限投影：目标、State、观察、能力、检索材料</text>
+  <rect x="644" y="209" width="86" height="34" rx="17" fill="#ffedd5"/><text class="tag" x="687" y="230" fill="#c2410c">临时可见</text>
+
+  <rect x="96" y="310" width="664" height="92" rx="12" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+  <text class="head" x="124" y="343">Run State</text><text class="body" x="124" y="367">目标 · Fact / Hypothesis · Task · 等待条件 · 预算 · 外部引用</text>
+  <rect x="632" y="331" width="98" height="34" rx="17" fill="#dbeafe"/><text class="tag" x="681" y="352" fill="#1d4ed8">当前语义</text>
+
+  <rect x="96" y="440" width="310" height="108" rx="12" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+  <text class="head" x="124" y="473">Checkpoint</text><text class="body" x="124" y="498">State revision · Workspace ref</text><text class="body" x="124" y="520">Effect ledger · 版本与恢复边界</text>
+  <rect x="450" y="440" width="310" height="108" rx="12" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1.5"/>
+  <text class="head" x="478" y="473">Workspace</text><text class="body" x="478" y="498">文件 · 代码 · 浏览器 · 进程</text><text class="body" x="478" y="520">拥有独立版本、权限与生命周期</text>
+
+  <rect x="96" y="590" width="664" height="82" rx="12" fill="#ffffff" stroke="#9ca3af" stroke-width="1.5"/>
+  <text class="head" x="124" y="622">External State</text><text class="body" x="124" y="646">数据库、订单、生产环境和第三方系统保持真实；Agent 只能通过 Tool 重新观察与改变</text>
+
+  <path d="M428 272V298" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text class="edge" x="444" y="291" fill="#2563eb">投影 / 更新</text>
+  <path d="M320 402V428" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text class="edge" x="336" y="421" fill="#2563eb">安全点</text>
+  <path d="M536 402V428" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text class="edge" x="552" y="421" fill="#2563eb">引用版本</text>
+  <path d="M605 548V578" fill="none" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#arrow-purple)"/>
+  <text class="edge" x="620" y="572" fill="#7c3aed">Tool 副作用</text>
+
+  <path d="M874 568V222C874 197 894 177 919 177H1082V568Z" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+  <ellipse cx="978" cy="177" rx="104" ry="26" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1.5"/>
+  <ellipse cx="978" cy="568" rx="104" ry="26" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+  <text class="head" x="978" y="250" text-anchor="middle">Long-term Memory</text>
+  <text class="body" x="978" y="281" text-anchor="middle">Fact · Preference</text>
+  <text class="body" x="978" y="305" text-anchor="middle">Episodic · Summary</text>
+  <text class="body" x="978" y="329" text-anchor="middle">Procedural</text>
+  <text class="body" x="978" y="349" text-anchor="middle">Playbook 参考分类 · 非标准类型集</text>
+  <rect x="908" y="366" width="140" height="30" rx="15" fill="#ffffff" stroke="#99f6e4"/><text class="tag" x="978" y="385" fill="#0f766e">来源与作用域</text>
+  <rect x="908" y="410" width="140" height="30" rx="15" fill="#ffffff" stroke="#99f6e4"/><text class="tag" x="978" y="429" fill="#0f766e">置信度与时效</text>
+  <rect x="908" y="454" width="140" height="30" rx="15" fill="#ffffff" stroke="#99f6e4"/><text class="tag" x="978" y="473" fill="#0f766e">权限与修正关系</text>
+
+  <path d="M874 230H772V220" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text class="edge" x="822" y="215" fill="#059669">读取：过滤后进入 Context</text>
+  <path d="M760 644H838V690H978V606" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow-green)"/>
+  <text class="edge" x="908" y="680" fill="#059669" text-anchor="middle">写入：Run / Artifact 产生候选并治理</text>
+
+  <g transform="translate(48 762)">
+    <line x1="0" y1="8" x2="30" y2="8" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue)"/><text class="sub" x="40" y="12">当前 Run 状态流</text>
+    <line x1="188" y1="8" x2="218" y2="8" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green)"/><text class="sub" x="228" y="12">Memory 读取</text>
+    <line x1="358" y1="8" x2="388" y2="8" stroke="#059669" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow-green)"/><text class="sub" x="398" y="12">Memory 候选写入</text>
+    <line x1="584" y1="8" x2="614" y2="8" stroke="#7c3aed" stroke-width="1.8" marker-end="url(#arrow-purple)"/><text class="sub" x="624" y="12">真实外部副作用</text>
+  </g>
+</svg>

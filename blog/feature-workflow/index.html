@@ -1,0 +1,431 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>Feature Workflow：基于 Worktree 的多特性并行开发范式 - 杨正武</title><meta name="description" content="融合 Bmad 与 OpenSpec 的 AI 工作流，实现真正的多特性并行开发"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="Feature Workflow：基于 Worktree 的多特性并行开发范式 - 杨正武"><meta property="og:description" content="融合 Bmad 与 OpenSpec 的 AI 工作流，实现真正的多特性并行开发"><meta property="og:url" content="https://imcoders.cn/blog/feature-workflow/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Feature Workflow：基于 Worktree 的多特性并行开发范式 - 杨正武"><meta name="twitter:description" content="融合 Bmad 与 OpenSpec 的 AI 工作流，实现真正的多特性并行开发"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="Feature Workflow：基于 Worktree 的多特性并行开发范式 - 杨正武"><meta itemprop="description" content="融合 Bmad 与 OpenSpec 的 AI 工作流，实现真正的多特性并行开发"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "Feature Workflow：基于 Worktree 的多特性并行开发范式 - 杨正武";
+const shareDesc = "融合 Bmad 与 OpenSpec 的 AI 工作流，实现真正的多特性并行开发";
+const shareLink = "https://imcoders.cn/blog/feature-workflow/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.DUPo9LDV.css"><script type="module" src="/_astro/hoisted.D20CsQCG.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/blog" aria-current="page">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <script>(function(){const shareText = "融合 Bmad 与 OpenSpec 的 AI 工作流，实现真正的多特性并行开发\n\nhttps://imcoders.cn/blog/feature-workflow/";
+const shareUrl = "https://imcoders.cn/blog/feature-workflow/";
+const wechatTitle = "Feature Workflow：基于 Worktree 的多特性并行开发范式";
+const wechatDescription = "融合 Bmad 与 OpenSpec 的 AI 工作流，实现真正的多特性并行开发";
+const wechatAuthor = "杨正武";
+const wechatDate = "2026年3月13日";
+
+    window.shareArticle = async function () {
+      const button = document.querySelector('.share-button');
+      try {
+        await navigator.clipboard.writeText(shareText);
+        if (!button) return;
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> 已复制';
+        button.classList.add('copied');
+        window.setTimeout(() => {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+      } catch (error) {
+        console.error('复制失败', error);
+        window.prompt('请复制下面的分享内容', shareText);
+      }
+    };
+
+    const wechatCopiedProperties = [
+      'color', 'background-color', 'font-family', 'font-size', 'font-weight', 'font-style',
+      'line-height', 'letter-spacing', 'text-align', 'text-decoration', 'text-indent',
+      'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
+      'padding-top', 'padding-right', 'padding-bottom', 'padding-left',
+      'border-top', 'border-right', 'border-bottom', 'border-left', 'border-radius',
+      'display', 'vertical-align',
+      'white-space', 'list-style-type', 'border-collapse', 'overflow-wrap', 'word-break'
+    ];
+
+    const canonicalizeWechatUrl = function (value) {
+      if (!value) return value;
+      try {
+        return new URL(value, shareUrl).href;
+      } catch {
+        return value;
+      }
+    };
+
+    window.buildWechatRichText = function () {
+      const article = document.querySelector('.article-content');
+      if (!article) throw new Error('article content not found');
+
+      const clone = article.cloneNode(true);
+      const sourceNodes = [article, ...article.querySelectorAll('*')];
+      const cloneNodes = [clone, ...clone.querySelectorAll('*')];
+
+      sourceNodes.forEach((sourceNode, index) => {
+        const targetNode = cloneNodes[index];
+        if (!(sourceNode instanceof Element) || !(targetNode instanceof Element)) return;
+
+        const computed = getComputedStyle(sourceNode);
+        const inlineStyles = wechatCopiedProperties
+          .map((property) => `${property}:${computed.getPropertyValue(property)};`)
+          .join('');
+
+        targetNode.setAttribute('style', inlineStyles);
+        targetNode.removeAttribute('id');
+        targetNode.removeAttribute('class');
+        [...targetNode.attributes].forEach((attribute) => {
+          if (attribute.name.startsWith('data-') || attribute.name.startsWith('aria-')) {
+            targetNode.removeAttribute(attribute.name);
+          }
+        });
+
+        if (sourceNode instanceof HTMLImageElement && targetNode instanceof HTMLImageElement) {
+          const rawSource = sourceNode.getAttribute('src') || sourceNode.currentSrc || sourceNode.src;
+          targetNode.setAttribute('src', canonicalizeWechatUrl(rawSource));
+          targetNode.removeAttribute('srcset');
+          targetNode.removeAttribute('sizes');
+          targetNode.removeAttribute('loading');
+          targetNode.removeAttribute('decoding');
+          targetNode.setAttribute('style', `${inlineStyles}display:block;width:100%;max-width:100%;height:auto;margin-left:auto;margin-right:auto;`);
+        }
+
+        if (sourceNode instanceof HTMLAnchorElement && targetNode instanceof HTMLAnchorElement) {
+          targetNode.setAttribute('href', canonicalizeWechatUrl(sourceNode.getAttribute('href') || sourceNode.href));
+          targetNode.removeAttribute('target');
+          targetNode.removeAttribute('rel');
+        }
+      });
+
+      clone.querySelectorAll('script, style, iframe, button, form, input, textarea, select').forEach((node) => node.remove());
+
+      // 微信编辑器的内容栏比桌面文章窄。不要保留桌面布局计算出的固定宽高，
+      // 否则图片缩小后父元素仍会占据原高度，文字换行后也可能互相覆盖。
+      clone.querySelectorAll('p').forEach((paragraph) => {
+        const onlyChild = paragraph.children.length === 1 ? paragraph.firstElementChild : null;
+        if (onlyChild instanceof HTMLImageElement && !paragraph.textContent?.trim()) {
+          paragraph.setAttribute('style', 'margin:24px 0 12px;padding:0;line-height:0;');
+        }
+      });
+
+      clone.querySelectorAll('img').forEach((image) => {
+        image.style.display = 'block';
+        image.style.width = '100%';
+        image.style.maxWidth = '100%';
+        image.style.height = 'auto';
+        image.style.marginLeft = 'auto';
+        image.style.marginRight = 'auto';
+      });
+
+      clone.querySelectorAll('pre').forEach((pre) => {
+        pre.style.display = 'block';
+        pre.style.width = 'auto';
+        pre.style.maxWidth = '100%';
+        pre.style.whiteSpace = 'pre-wrap';
+        pre.style.wordBreak = 'break-word';
+        pre.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('pre code').forEach((code) => {
+        code.style.whiteSpace = 'pre-wrap';
+        code.style.wordBreak = 'break-word';
+        code.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('table').forEach((table) => {
+        table.style.display = 'table';
+        table.style.width = '100%';
+        table.style.maxWidth = '100%';
+        table.style.tableLayout = 'fixed';
+        table.style.borderCollapse = 'collapse';
+      });
+
+      clone.querySelectorAll('th, td').forEach((cell) => {
+        cell.style.minWidth = '0';
+        cell.style.wordBreak = 'break-word';
+        cell.style.overflowWrap = 'anywhere';
+        cell.style.verticalAlign = 'top';
+      });
+
+      const wrapper = document.createElement('section');
+      wrapper.setAttribute('style', 'box-sizing:border-box;width:100%;max-width:100%;margin:0;padding:32px 26px;background-color:#111016;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+
+      const header = document.createElement('header');
+      header.setAttribute('style', 'margin:0 0 34px;padding:0 0 24px;border-bottom:2px solid #e23c3e;');
+
+      const title = document.createElement('h1');
+      title.textContent = wechatTitle;
+      title.setAttribute('style', 'margin:0 0 18px;color:#f1ece2;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:30px;font-weight:800;line-height:1.25;letter-spacing:-0.5px;');
+
+      const description = document.createElement('p');
+      description.textContent = wechatDescription;
+      description.setAttribute('style', 'margin:0 0 16px;color:#a9a3a8;font-size:16px;line-height:1.75;');
+
+      const meta = document.createElement('p');
+      meta.textContent = `${wechatAuthor} · ${wechatDate}`;
+      meta.setAttribute('style', 'margin:0;color:#e23c3e;font-size:13px;font-weight:700;line-height:1.6;letter-spacing:0.5px;');
+
+      header.append(title, description, meta);
+      clone.setAttribute('style', 'width:auto;max-width:100%;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+      wrapper.append(header, clone);
+
+      return {
+        html: wrapper.outerHTML,
+        text: `${wechatTitle}\n\n${wechatDescription}\n\n${wechatAuthor} · ${wechatDate}\n\n${article.innerText}`
+      };
+    };
+
+    const setWechatCopyFeedback = function (button, message, isError = false) {
+      if (!button) return;
+      const original = button.dataset.originalHtml || button.innerHTML;
+      button.dataset.originalHtml = original;
+      button.innerHTML = isError
+        ? `<i class="fas fa-exclamation-circle" aria-hidden="true"></i> ${message}`
+        : `<i class="fas fa-check" aria-hidden="true"></i> ${message}`;
+      button.classList.toggle('copy-error', isError);
+      button.classList.toggle('copied', !isError);
+      window.setTimeout(() => {
+        button.innerHTML = original;
+        button.classList.remove('copied', 'copy-error');
+      }, 2600);
+    };
+
+    window.copyArticleToWechat = async function () {
+      const button = document.querySelector('.wechat-copy-button');
+      try {
+        const payload = window.buildWechatRichText();
+        if (navigator.clipboard?.write && window.ClipboardItem && window.isSecureContext) {
+          await navigator.clipboard.write([new ClipboardItem({
+            'text/html': new Blob([payload.html], { type: 'text/html' }),
+            'text/plain': new Blob([payload.text], { type: 'text/plain' })
+          })]);
+        } else {
+          const holder = document.createElement('div');
+          holder.contentEditable = 'true';
+          holder.style.position = 'fixed';
+          holder.style.left = '-99999px';
+          holder.style.top = '0';
+          holder.innerHTML = payload.html;
+          document.body.appendChild(holder);
+
+          const range = document.createRange();
+          range.selectNodeContents(holder);
+          const selection = window.getSelection();
+          selection?.removeAllRanges();
+          selection?.addRange(range);
+          const copied = document.execCommand('copy');
+          selection?.removeAllRanges();
+          holder.remove();
+          if (!copied) throw new Error('copy command failed');
+        }
+        setWechatCopyFeedback(button, '已复制到公众号');
+      } catch (error) {
+        console.error('复制公众号富文本失败', error);
+        setWechatCopyFeedback(button, '复制失败', true);
+      }
+    };
+  })();</script>  <article class="article-page" data-astro-cid-4sn4zg3r> <header class="article-hero" data-astro-cid-4sn4zg3r> <div class="article-hero-grid" data-astro-cid-4sn4zg3r> <div class="article-kind" data-astro-cid-4sn4zg3r>TECHNICAL ARTICLE</div> <div class="article-heading" data-astro-cid-4sn4zg3r> <h1 class="article-title" data-astro-cid-4sn4zg3r>Feature Workflow：基于 Worktree 的多特性并行开发范式</h1> <p class="article-description" data-astro-cid-4sn4zg3r>融合 Bmad 与 OpenSpec 的 AI 工作流，实现真正的多特性并行开发</p> </div> </div> </header> <div class="reader-grid" data-astro-cid-4sn4zg3r> <aside class="article-meta" aria-label="文章信息" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>文章信息</h2> <dl class="meta-list" data-astro-cid-4sn4zg3r> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>发布日期</dt> <dd data-astro-cid-4sn4zg3r><time datetime="2026-03-13T00:00:00.000Z" data-astro-cid-4sn4zg3r>2026年3月13日</time></dd> </div> <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>作者</dt><dd data-astro-cid-4sn4zg3r>杨正武</dd></div> <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>预计阅读</dt><dd data-astro-cid-4sn4zg3r>8 分钟</dd></div> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>标签</dt> <dd class="article-tags" data-astro-cid-4sn4zg3r><span class="article-tag" data-astro-cid-4sn4zg3r>工作流</span><span class="article-tag" data-astro-cid-4sn4zg3r>Git Worktree</span><span class="article-tag" data-astro-cid-4sn4zg3r>并行开发</span><span class="article-tag" data-astro-cid-4sn4zg3r>多Agent</span><span class="article-tag" data-astro-cid-4sn4zg3r>AILock-Step</span></dd> </div> </dl> <div class="article-actions" data-astro-cid-4sn4zg3r> <button class="wechat-copy-button" type="button" onclick="copyArticleToWechat()" data-astro-cid-4sn4zg3r> <i class="fab fa-weixin" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 复制到公众号
+</button> <button class="share-button" type="button" onclick="shareArticle()" data-astro-cid-4sn4zg3r> <i class="fas fa-share-alt" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 分享文章
+</button> </div> </aside> <main class="article-content" data-astro-cid-4sn4zg3r> <h2 id="引言">引言</h2>
+<p>在 AI 辅助开发的实际应用中，多特性并行开发面临几个核心问题。不同需求的代码会相互干扰，AI 容易产生上下文混淆。传统分支切换方式会导致工作进度丢失。多个 AI Agent 同时工作时，代码冲突难以避免。需求状态管理混乱，无法追溯开发历史。</p>
+<p>为了解决这些问题，我设计了 Feature Workflow。这是一个融合了 Bmad 和 OpenSpec 优秀理念的工作流范式，基于 Git Worktree 实现真正的物理隔离，支持多 Agent 并行开发，从根本上避免了代码冲突问题。</p>
+<p>这里需要明确名称之间的关系：<strong>AILock-Step 是项目与方法体系的名称，Feature Workflow 是其中面向 AI Agent 软件交付的核心工作流。</strong> Harness Engineering Playbook 中提到的 “AILock-Step 框架” 和 “AILock-Step Feature Workflow”，指的都是这套由我设计并持续演进的工作流体系。Playbook 中的完整案例见 <a href="/playbook/harness/02d-case-study">实践：AILock-Step Feature Workflow</a>。</p>
+<h2 id="worktree-物理隔离">Worktree 物理隔离</h2>
+<h3 id="传统开发方式的问题">传统开发方式的问题</h3>
+<p>传统 Git 工作流使用分支隔离代码，但开发环境共享同一个工作目录。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>OA_Tool/                    # 唯一的工作目录</span></span>
+<span class="line"><span>├── src/</span></span>
+<span class="line"><span>├── package.json</span></span>
+<span class="line"><span>└── .git/</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 切换分支时的困境</span></span>
+<span class="line"><span>git checkout feature/auth</span></span>
+<span class="line"><span># 当前未提交的代码被覆盖，需要 stash 或 commit</span></span>
+<span class="line"><span># 开发一半的 dashboard 功能无法保留</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>这种方式导致三个问题。切换分支会丢失未完成的工作进度。无法同时开发多个需求。AI 上下文在分支切换时容易混淆。</p>
+<h3 id="worktree-的物理隔离方案">Worktree 的物理隔离方案</h3>
+<p>Git Worktree 允许在同一个仓库下同时检出多个分支到不同目录。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>OA_Tool/                        # 主仓库 (main 分支)</span></span>
+<span class="line"><span>├── src/</span></span>
+<span class="line"><span>├── package.json</span></span>
+<span class="line"><span>└── feature-workflow/</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>OA_Tool-feat-auth/              # Worktree 1 (feature/auth 分支)</span></span>
+<span class="line"><span>├── src/auth/                   # 独立的代码副本</span></span>
+<span class="line"><span>├── .git/                       # 共享 Git 数据库</span></span>
+<span class="line"><span>└── features/</span></span>
+<span class="line"><span>    └── active-feat-auth/</span></span>
+<span class="line"><span>        ├── spec.md</span></span>
+<span class="line"><span>        ├── task.md</span></span>
+<span class="line"><span>        └── checklist.md</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>OA_Tool-feat-dashboard/         # Worktree 2 (feature/dashboard 分支)</span></span>
+<span class="line"><span>├── src/dashboard/              # 独立的代码副本</span></span>
+<span class="line"><span>└── features/</span></span>
+<span class="line"><span>    └── active-feat-dashboard/</span></span>
+<span class="line"><span>        ├── spec.md</span></span>
+<span class="line"><span>        ├── task.md</span></span>
+<span class="line"><span>        └── checklist.md</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>每个 worktree 有独立的文件副本和 HEAD，但共享同一个 Git 数据库。这带来了几个关键优势。</p>
+<h3 id="开发环境完全隔离">开发环境完全隔离</h3>
+<p>不同需求的代码互不干扰，可以真正并行开发。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span># 终端 1：开发认证功能</span></span>
+<span class="line"><span>cd OA_Tool-feat-auth</span></span>
+<span class="line"><span>npm run dev</span></span>
+<span class="line"><span># 运行在 3000 端口</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 终端 2：开发仪表盘功能</span></span>
+<span class="line"><span>cd OA_Tool-feat-dashboard</span></span>
+<span class="line"><span>npm run dev</span></span>
+<span class="line"><span># 运行在 3001 端口</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>无需频繁切换分支，每个需求有独立的开发服务器。AI Agent 可以在不同的 worktree 中并行工作，上下文完全隔离。</p>
+<h3 id="独立的测试验证">独立的测试验证</h3>
+<p>每个 worktree 有独立的测试环境，证据收集互不干扰。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>OA_Tool-feat-auth/</span></span>
+<span class="line"><span>├── e2e/</span></span>
+<span class="line"><span>│   └── auth.spec.ts           # 只测试认证功能</span></span>
+<span class="line"><span>└── evidence/</span></span>
+<span class="line"><span>    ├── screenshots/</span></span>
+<span class="line"><span>    └── traces/</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>OA_Tool-feat-dashboard/</span></span>
+<span class="line"><span>├── e2e/</span></span>
+<span class="line"><span>│   └── dashboard.spec.ts      # 只测试仪表盘功能</span></span>
+<span class="line"><span>└── evidence/</span></span>
+<span class="line"><span>    ├── screenshots/</span></span>
+<span class="line"><span>    └── traces/</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Playwright 测试可以并行执行，截图和 trace 文件隔离存储，不会相互覆盖。</p>
+<h3 id="安全的合并策略">安全的合并策略</h3>
+<p>传统方式直接合并到 main 分支，冲突在 main 分支解决，容易污染主干代码。</p>
+<p>Worktree 方式采用 rebase 策略，冲突在 feature 分支内解决。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>feature/auth 分支</span></span>
+<span class="line"><span>    ↓ git rebase main</span></span>
+<span class="line"><span>feature/auth 分支 (包含所有 main 的最新变更)</span></span>
+<span class="line"><span>    ↓ 解决冲突 (在 feature 分支内)</span></span>
+<span class="line"><span>feature/auth 分支 (冲突已解决)</span></span>
+<span class="line"><span>    ↓ git merge --ff-only</span></span>
+<span class="line"><span>main 分支 (快速前进，干净合并)</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>main 分支始终保持干净状态，冲突解决在 feature 分支完成，解决后可重新验证。</p>
+<h2 id="多特性并行开发">多特性并行开发</h2>
+<h3 id="并行控制机制">并行控制机制</h3>
+<p>Feature Workflow 通过 <code>queue.yaml</code> 管理需求队列，<code>config.yaml</code> 控制并行数量。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#6A737D"># config.yaml</span></span>
+<span class="line"><span style="color:#85E89D">parallelism</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  max_concurrent</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2</span><span style="color:#6A737D">              # 最多同时开发 2 个需求</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># queue.yaml</span></span>
+<span class="line"><span style="color:#85E89D">active</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">feat-auth</span></span>
+<span class="line"><span style="color:#85E89D">    name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">用户认证</span></span>
+<span class="line"><span style="color:#85E89D">    priority</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">90</span></span>
+<span class="line"><span style="color:#85E89D">    worktree</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">../OA_Tool-feat-auth</span></span>
+<span class="line"><span style="color:#85E89D">    branch</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">feature/auth</span></span>
+<span class="line"><span style="color:#85E89D">    status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">implementing</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">feat-dashboard</span></span>
+<span class="line"><span style="color:#85E89D">    name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">仪表盘</span></span>
+<span class="line"><span style="color:#85E89D">    priority</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">80</span></span>
+<span class="line"><span style="color:#85E89D">    worktree</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">../OA_Tool-feat-dashboard</span></span>
+<span class="line"><span style="color:#85E89D">    branch</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">feature/dashboard</span></span>
+<span class="line"><span style="color:#85E89D">    status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">implementing</span></span>
+<span class="line"></span></code></pre>
+<p>只有 active 数量小于 max_concurrent 时，才能从 pending 启动新需求。依赖关系确保前置需求完成后才能启动后续需求。</p>
+<h2 id="多-agent-并行架构">多 Agent 并行架构</h2>
+<h3 id="主从式-agent-设计">主从式 Agent 设计</h3>
+<p>Feature Workflow 采用主从式 Agent 架构实现多特性并行开发。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>┌─────────────────────────────────────────────────────────────┐</span></span>
+<span class="line"><span>│ 主 Agent (无状态，可恢复)                                    │</span></span>
+<span class="line"><span>│                                                              │</span></span>
+<span class="line"><span>│ 职责：                                                        │</span></span>
+<span class="line"><span>│ 1. 读取 queue.yaml 获取 active features                     │</span></span>
+<span class="line"><span>│ 2. 检查每个 .status 文件判断当前状态                         │</span></span>
+<span class="line"><span>│ 3. 启动独立的 Feature Agent 进程                             │</span></span>
+<span class="line"><span>│ 4. 监控进度，处理阻塞和错误                                   │</span></span>
+<span class="line"><span>└─────────────────────────────────────────────────────────────┘</span></span>
+<span class="line"><span>         │ 启动独立进程</span></span>
+<span class="line"><span>         ▼</span></span>
+<span class="line"><span>┌─────────────────────────────────────────────────────────────┐</span></span>
+<span class="line"><span>│ Feature Agent (独立进程，自治)                               │</span></span>
+<span class="line"><span>│                                                              │</span></span>
+<span class="line"><span>│ 生命周期：implement → verify → complete → 退出              │</span></span>
+<span class="line"><span>│ 输出：.status 文件 + .log 文件                              │</span></span>
+<span class="line"><span>└─────────────────────────────────────────────────────────────┘</span></span>
+<span class="line"><span></span></span></code></pre>
+<h3 id="代码冲突解决方案">代码冲突解决方案</h3>
+<h3 id="物理隔离避免冲突">物理隔离避免冲突</h3>
+<p>Worktree 机制从根本上避免了开发时的冲突。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>传统方式 (同一工作目录):</span></span>
+<span class="line"><span>┌─────────────────────────────────────┐</span></span>
+<span class="line"><span>│ OA_Tool/                            │</span></span>
+<span class="line"><span>│  └── src/                           │</span></span>
+<span class="line"><span>│      ├── auth.ts    ← Agent A 修改  │</span></span>
+<span class="line"><span>│      └── dash.ts    ← Agent B 修改  │</span></span>
+<span class="line"><span>└─────────────────────────────────────┘</span></span>
+<span class="line"><span>问题：两个 Agent 同时修改 src/utils.ts</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Worktree 方式 (独立工作目录):</span></span>
+<span class="line"><span>┌─────────────────────────────────────┐</span></span>
+<span class="line"><span>│ OA_Tool-feat-auth/                  │</span></span>
+<span class="line"><span>│  └── src/auth.ts    ← Agent A       │</span></span>
+<span class="line"><span>└─────────────────────────────────────┘</span></span>
+<span class="line"><span>┌─────────────────────────────────────┐</span></span>
+<span class="line"><span>│ OA_Tool-feat-dashboard/             │</span></span>
+<span class="line"><span>│  └── src/dash.ts    ← Agent B       │</span></span>
+<span class="line"><span>└─────────────────────────────────────┘</span></span>
+<span class="line"><span>优势：两个 Agent 操作不同文件副本</span></span>
+<span class="line"><span></span></span></code></pre>
+<h3 id="依赖关系管理">依赖关系管理</h3>
+<p>通过 dependencies 字段管理需求间的依赖关系，只有所有依赖都已完成才能启动。</p>
+<h3 id="合并前冲突检测">合并前冲突检测</h3>
+<p>在 <code>complete-feature</code> 流程中加入合并前冲突检测。冲突在 feature 分支内解决，解决后可以重新运行测试验证。main 分支始终保持干净状态。</p>
+<h2 id="相关资源">相关资源</h2>
+<ul>
+<li><a href="https://github.com/auenger/AILock-Step/tree/main/feature-workflow-LockStep">Feature Workflow 源码</a></li>
+<li><a href="https://github.com/auenger/AILock-Step">AILock-Step 协议文档</a></li>
+<li><a href="/playbook/harness/02d-case-study">Harness Playbook 实践章节</a></li>
+<li><a href="https://github.com/auenger/OA_Tool">OA_Tool 项目实践</a></li>
+</ul> </main> <aside class="page-toc" aria-label="页面目录" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>页面目录</h2> <ol class="toc-list" data-astro-cid-4sn4zg3r> <li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#引言" data-astro-cid-4sn4zg3r>引言</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#worktree-物理隔离" data-astro-cid-4sn4zg3r>Worktree 物理隔离</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#传统开发方式的问题" data-astro-cid-4sn4zg3r>传统开发方式的问题</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#worktree-的物理隔离方案" data-astro-cid-4sn4zg3r>Worktree 的物理隔离方案</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#开发环境完全隔离" data-astro-cid-4sn4zg3r>开发环境完全隔离</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#独立的测试验证" data-astro-cid-4sn4zg3r>独立的测试验证</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#安全的合并策略" data-astro-cid-4sn4zg3r>安全的合并策略</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#多特性并行开发" data-astro-cid-4sn4zg3r>多特性并行开发</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#并行控制机制" data-astro-cid-4sn4zg3r>并行控制机制</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#多-agent-并行架构" data-astro-cid-4sn4zg3r>多 Agent 并行架构</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#主从式-agent-设计" data-astro-cid-4sn4zg3r>主从式 Agent 设计</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#代码冲突解决方案" data-astro-cid-4sn4zg3r>代码冲突解决方案</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#物理隔离避免冲突" data-astro-cid-4sn4zg3r>物理隔离避免冲突</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#依赖关系管理" data-astro-cid-4sn4zg3r>依赖关系管理</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#合并前冲突检测" data-astro-cid-4sn4zg3r>合并前冲突检测</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#相关资源" data-astro-cid-4sn4zg3r>相关资源</a></li> </ol> <a class="toc-back" href="/blog" data-astro-cid-4sn4zg3r><i class="fas fa-arrow-left" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 返回博客</a> </aside> <nav class="article-navigation" aria-label="相邻文章" data-astro-cid-4sn4zg3r> <a class="article-nav-link" href="/blog/ai-agent-future" data-astro-cid-4sn4zg3r> <span class="nav-direction" data-astro-cid-4sn4zg3r>较新文章</span> <span class="nav-title" data-astro-cid-4sn4zg3r>AI Agent 的未来：从工具到协作伙伴</span> </a> <a class="article-nav-link" href="/blog/mate-agent-context-optimization" data-astro-cid-4sn4zg3r> <span class="nav-direction" data-astro-cid-4sn4zg3r>较早文章</span> <span class="nav-title" data-astro-cid-4sn4zg3r>MateAgent: 如何用 ES 中间层解决多 Agent 上下文爆炸问题</span> </a> </nav> </div> </article> <div class="selection-share" data-selection-share data-content-selector=".article-content" data-title="Feature Workflow：基于 Worktree 的多特性并行开发范式" data-author="杨正武" data-section="IMCODERS BLOG" data-url="https://imcoders.cn/blog/feature-workflow/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>   </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

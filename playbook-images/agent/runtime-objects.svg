@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760" role="img" aria-labelledby="title desc">
+  <title id="title">Agent Runtime 核心对象关系</title>
+  <desc id="desc">版本化 Agent Definition 被多个 Thread 和 Run 引用。Thread 包含多个 Run，每个 Run 可以经历多个 Attempt，每个 Attempt 包含多个 Step。</desc>
+  <style>
+    text { font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif; }
+    .title { font-size: 25px; font-weight: 700; fill: #111827; }
+    .sub { font-size: 13px; fill: #6b7280; }
+    .head { font-size: 17px; font-weight: 700; fill: #111827; }
+    .body { font-size: 12px; fill: #6b7280; }
+    .edge { font-size: 12px; font-weight: 600; fill: #2563eb; }
+  </style>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#2563eb"/></marker></defs>
+  <rect width="1200" height="760" fill="#ffffff"/>
+  <text class="title" x="52" y="52">Runtime 核心对象：不同身份，不同生命周期</text>
+  <text class="sub" x="52" y="78">产品按 Thread 展示连续交互，任务平台按 Run 管理目标，基础设施按 Attempt 调度，工程师按 Step 定位问题</text>
+
+  <rect x="392" y="112" width="416" height="96" rx="14" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1.5"/>
+  <text class="head" x="420" y="148">Agent Definition / Version</text>
+  <text class="body" x="420" y="174">Prompt 摘要 · Model Policy · Skill / Tool · 权限 · 验证器</text>
+
+  <rect x="92" y="278" width="1016" height="390" rx="18" fill="#f9fafb" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text class="head" x="120" y="312">Thread · 长期交互容器</text>
+  <text class="body" x="120" y="336">消息与 Artifact 可以跨多个 Run 共享，但 Thread 自身不承担 running / completed 状态</text>
+
+  <rect x="136" y="374" width="424" height="246" rx="14" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+  <text class="head" x="160" y="410">Run run_128</text>
+  <text class="body" x="160" y="434">目标：修复登录失败 · 状态：COMPLETED</text>
+  <rect x="166" y="466" width="168" height="116" rx="10" fill="#fff7ed" stroke="#fdba74"/>
+  <text class="head" x="184" y="496">Attempt 1</text>
+  <text class="body" x="184" y="520">worker_lost</text>
+  <rect x="186" y="542" width="128" height="24" rx="6" fill="#ffffff" stroke="#d1d5db"/>
+  <text class="body" x="199" y="559">Step 1 … 18</text>
+  <rect x="354" y="466" width="168" height="116" rx="10" fill="#f0fdf4" stroke="#86efac"/>
+  <text class="head" x="372" y="496">Attempt 2</text>
+  <text class="body" x="372" y="520">from checkpoint</text>
+  <rect x="374" y="542" width="128" height="24" rx="6" fill="#ffffff" stroke="#d1d5db"/>
+  <text class="body" x="387" y="559">Step 19 … 44</text>
+
+  <rect x="640" y="374" width="424" height="246" rx="14" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+  <text class="head" x="664" y="410">Run run_131</text>
+  <text class="body" x="664" y="434">目标：补充兼容性测试 · 状态：RUNNING</text>
+  <rect x="670" y="466" width="168" height="116" rx="10" fill="#f0fdf4" stroke="#86efac"/>
+  <text class="head" x="688" y="496">Attempt 1</text>
+  <text class="body" x="688" y="520">active lease</text>
+  <rect x="690" y="542" width="128" height="24" rx="6" fill="#ffffff" stroke="#d1d5db"/>
+  <text class="body" x="703" y="559">Step 1 … 7</text>
+  <rect x="864" y="466" width="168" height="116" rx="10" fill="#ffffff" stroke="#d1d5db" stroke-dasharray="5 4"/>
+  <text class="head" x="882" y="496">Attempt 2</text>
+  <text class="body" x="882" y="520">仅在重试时创建</text>
+
+  <path d="M600 208V266" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)"/>
+  <text class="edge" x="616" y="244">版本绑定</text>
+  <text class="sub" x="52" y="720">关系原则：重试新增 Attempt，不覆盖历史；用户改变目标通常新增 Run；每个 Step 记录实际解析后的模型与能力版本。</text>
+</svg>

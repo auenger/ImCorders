@@ -1,0 +1,271 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>Workspace 与 Sandbox：执行环境也是状态 | Agent Engineering Playbook</title><meta name="description" content="管理 Agent 跨工具调用使用的文件、代码、浏览器和中间产物，并控制隔离与生命周期。"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="Workspace 与 Sandbox：执行环境也是状态 | Agent Engineering Playbook"><meta property="og:description" content="管理 Agent 跨工具调用使用的文件、代码、浏览器和中间产物，并控制隔离与生命周期。"><meta property="og:url" content="https://imcoders.cn/playbook/agent/13-workspace-sandbox/"><meta property="og:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta property="og:image:width" content="1774"><meta property="og:image:height" content="887"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Workspace 与 Sandbox：执行环境也是状态 | Agent Engineering Playbook"><meta name="twitter:description" content="管理 Agent 跨工具调用使用的文件、代码、浏览器和中间产物，并控制隔离与生命周期。"><meta name="twitter:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta itemprop="name" content="Workspace 与 Sandbox：执行环境也是状态 | Agent Engineering Playbook"><meta itemprop="description" content="管理 Agent 跨工具调用使用的文件、代码、浏览器和中间产物，并控制隔离与生命周期。"><meta itemprop="image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "Workspace 与 Sandbox：执行环境也是状态 | Agent Engineering Playbook";
+const shareDesc = "管理 Agent 跨工具调用使用的文件、代码、浏览器和中间产物，并控制隔离与生命周期。";
+const shareLink = "https://imcoders.cn/playbook/agent/13-workspace-sandbox/";
+const shareImg = "https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.C-FedgiN.css"><script type="module" src="/_astro/hoisted.BfDpThc8.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook" aria-current="page">Playbook</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main>  <div class="reading-progress" aria-hidden="true" data-astro-cid-jojupagh></div> <div class="reader" data-astro-cid-jojupagh> <header class="reader-bar" data-astro-cid-jojupagh> <a class="reader-home" href="/playbook/agent" data-astro-cid-jojupagh>AGENT ENGINEERING <span data-astro-cid-jojupagh>PLAYBOOK</span></a> <span class="reader-meta" data-astro-cid-jojupagh>8 / 30</span> </header> <div class="mobile-index" data-astro-cid-jojupagh> <details data-astro-cid-jojupagh> <summary data-astro-cid-jojupagh>打开全书目录</summary> <div class="mobile-index-body" data-astro-cid-jojupagh> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" class="is-current" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </div> </details> </div> <div class="reader-grid" data-astro-cid-jojupagh> <aside class="book-index" aria-label="全书目录" data-astro-cid-jojupagh> <h2 class="index-title" data-astro-cid-jojupagh>全书目录</h2> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" class="is-current" aria-current="page" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </aside> <section class="chapter-main" data-astro-cid-jojupagh> <header class="chapter-header" data-astro-cid-jojupagh> <div class="chapter-label" data-astro-cid-jojupagh>第八章 / 第二部分：Context、State 与 Memory</div> <h1 data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</h1> <p class="chapter-description" data-astro-cid-jojupagh>管理 Agent 跨工具调用使用的文件、代码、浏览器和中间产物，并控制隔离与生命周期。</p> <p class="chapter-updated" data-astro-cid-jojupagh>更新于 2026/8/12</p>  </header> <article class="chapter-content" data-astro-cid-jojupagh> <p>Agent 不只在消息和 JSON State 中工作。它会下载文件、修改代码、打开浏览器、启动进程、生成图片、写入临时数据库，并在多个 Tool 调用之间继续使用这些结果。</p>
+<p>这些持续存在的执行现场构成 Workspace。它既是 Agent 操作的环境，也是任务状态的一部分。如果 Runtime 只保存对话和 Run State，却在恢复时给 Agent 一个全新的目录或浏览器会话，Agent 看似回到了同一个 Step，实际已经失去了工作现场。</p>
+<p>Sandbox 则回答另一个问题：这个 Workspace 能访问什么、能影响什么，以及如何与其他 Run 隔离。</p>
+<h2 id="术语来源与适用范围">术语来源与适用范围</h2>
+<p>Workspace 和 Sandbox 都是软件开发、IDE、容器与安全执行环境中的通用术语，但不同 Agent 产品对它们的范围定义差异很大：Workspace 可能只是一个目录，也可能包含代码仓库、浏览器会话、临时数据库和运行中的进程；Sandbox 可能指进程隔离，也可能同时覆盖文件、网络、身份和 Secret Policy。</p>
+<p>本章沿用 <code>Run</code> 表示一次目标明确的 Agent 执行实例。讨论“Run 独占 Workspace”或“多个 Run 共享 Workspace”时，关注的是不同逻辑执行实例之间的资源隔离，不是不同操作系统进程之间的关系。外部系统即使把这种执行实例称为 Task、Job 或 Workflow Execution，本章的隔离问题仍然成立。</p>
+<p>本章把 Workspace 提升为“一等 Runtime 对象”，是本 Playbook 的架构建议，不是现有协议要求。后文给出的 Workspace Schema、<code>ALLOCATED → PREPARED → ACTIVE</code> 生命周期和 Artifact Promotion 结构都属于参考设计；具体系统可以映射到容器、虚拟机、Git Worktree、浏览器 Profile 或远程开发环境。</p>
+<p>本章所说的 Sandbox 也不是某个特定产品或容器技术，而是对执行隔离和权限边界的统称。安全保证最终取决于实际操作系统、容器、网络和身份控制，不能由这些概念名称本身提供。</p>
+<h2 id="workspacecontext-与-run-state-不同">Workspace、Context 与 Run State 不同</h2>
+<p>三者可以用“看见、知道、拥有”来区分：</p>
+<p><strong>代码块说明｜结构示意：</strong> 这段文本把“Workspace、Context 与 Run State 不同”中的关键对象并列出来，帮助读者识别各自责任与边界。它用于概念建模，不代表唯一的产品命名或实现结构。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Context：模型这一轮看见什么</span></span>
+<span class="line"><span>Run State：Runtime 知道任务现在在哪里</span></span>
+<span class="line"><span>Workspace：执行过程实际拥有哪些可操作资源</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>例如 Agent 修改 <code>src/auth.ts</code>：</p>
+<ul>
+<li>文件内容存放在 Workspace。</li>
+<li><code>workspace_ref</code>、当前 commit 和“补丁尚未验证”写入 Run State。</li>
+<li>当前 Task 需要的代码片段才进入 Context。</li>
+</ul>
+<p>把完整文件塞进 State 会造成复制与版本漂移；把文件只塞进 Context 会在下一轮裁剪后丢失；只保留路径而不记录版本，则无法判断恢复时是否仍是同一份文件。</p>
+<h2 id="将-workspace-设计为一等-runtime-对象">将 Workspace 设计为一等 Runtime 对象</h2>
+<p>如果采用本章建议，一份 Workspace 记录可以包含：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“将 Workspace 设计为一等 Runtime 对象”落成可检查的结构化记录，主要字段包括 <code>workspace</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">workspace</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  workspace_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">ws_71</span></span>
+<span class="line"><span style="color:#85E89D">  run_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">run_128</span></span>
+<span class="line"><span style="color:#85E89D">  type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">git_worktree</span></span>
+<span class="line"><span style="color:#85E89D">  root</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">/workspaces/ws_71</span></span>
+<span class="line"><span style="color:#85E89D">  base</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    repository</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">git://example/auth-service</span></span>
+<span class="line"><span style="color:#85E89D">    revision</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">81a23f0</span></span>
+<span class="line"><span style="color:#85E89D">  current_revision</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">3bc92e1</span></span>
+<span class="line"><span style="color:#85E89D">  isolation_policy</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">code_sandbox_v3</span></span>
+<span class="line"><span style="color:#85E89D">  mounts</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#85E89D">source</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">artifact://requirements/18</span></span>
+<span class="line"><span style="color:#85E89D">      target</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">/inputs/requirements.md</span></span>
+<span class="line"><span style="color:#85E89D">      mode</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">read_only</span></span>
+<span class="line"><span style="color:#85E89D">  active_resources</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    browser_session</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">browser_14</span></span>
+<span class="line"><span style="color:#85E89D">    processes</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">proc_22</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#85E89D">  quota</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    disk_mb</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2048</span></span>
+<span class="line"><span style="color:#85E89D">    process_count</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">16</span></span>
+<span class="line"><span style="color:#85E89D">  expires_at</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2026-08-12T16:00:00+08:00</span></span>
+<span class="line"></span></code></pre>
+<p>它不要求所有 Workspace 都是目录。数据分析 Agent 可能使用临时数据库和 Notebook，浏览器 Agent 可能主要依赖浏览器 Profile，设计 Agent 则可能围绕画布和素材库工作。关键在于 Runtime 能给现场一个稳定身份、生命周期和权限策略。</p>
+<h2 id="文件系统也是状态">文件系统也是状态</h2>
+<p>Tool 调用经常把文件系统当成纯输入输出接口，但对于长任务，文件变化本身就是连续状态：</p>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“文件系统也是状态”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>base revision</span></span>
+<span class="line"><span>   ↓ 生成诊断记录</span></span>
+<span class="line"><span>workspace revision 1</span></span>
+<span class="line"><span>   ↓ 修改配置</span></span>
+<span class="line"><span>workspace revision 2</span></span>
+<span class="line"><span>   ↓ 格式化与测试修正</span></span>
+<span class="line"><span>workspace revision 3</span></span>
+<span class="line"><span>   ↓ 验证通过</span></span>
+<span class="line"><span>promoted artifact / commit</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>每个重要边界都应有可识别版本。Git Workspace 可以使用 commit 或 tree hash；普通目录可以使用文件清单和内容 hash；浏览器状态可以使用受控 session snapshot。这里的文件清单只是某个 Workspace 的版本记录，不是前文定义的 Context Assembly Manifest。恢复时先验证版本，再继续执行。</p>
+<h2 id="sandbox-控制影响范围">Sandbox 控制影响范围</h2>
+<p>Workspace 说明资源在哪里，Sandbox Policy 说明 Agent 可以对它做什么。隔离至少包括：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>维度</th><th>需要控制的内容</th></tr></thead><tbody><tr><td>文件</td><td>可读写路径、只读挂载、文件大小、符号链接</td></tr><tr><td>进程</td><td>可执行命令、进程数、CPU、内存和超时</td></tr><tr><td>网络</td><td>允许访问的域名、端口、私网和出站策略</td></tr><tr><td>身份</td><td>使用用户、Agent 还是服务身份</td></tr><tr><td>Secret</td><td>哪个 Tool 在执行时可获得哪个 Secret</td></tr><tr><td>设备</td><td>浏览器、GPU、摄像头或其他外设</td></tr></tbody></table>
+<p>安全边界不能只写在 Prompt 中。即使模型承诺“不访问 <code>/etc</code>”，执行器也必须用实际文件权限阻止它。</p>
+<p>Sandbox 还应区分“可读取”和“可外发”。Agent 可能被允许读取私有仓库，却不应把代码发送给任意外部模型或网站。数据流向是权限模型的一部分。</p>
+<h2 id="多个-run-是否共享-workspace">多个 Run 是否共享 Workspace</h2>
+<p>默认策略应是隔离，因为共享带来隐式状态和写冲突。但不同场景可以采用不同模型：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>模型</th><th>优点</th><th>风险</th><th>适用场景</th></tr></thead><tbody><tr><td>Run 独占</td><td>可复现、冲突少、清理简单</td><td>占用更多资源</td><td>代码修改、敏感任务</td></tr><tr><td>Thread 共享</td><td>连续交互方便</td><td>多个 Run 相互污染</td><td>单用户探索性工作</td></tr><tr><td>只读共享 + 写时复制</td><td>复用大体积基础数据</td><td>实现复杂</td><td>大仓库、模型与数据集</td></tr><tr><td>显式共享区</td><td>协作 Agent 可交换 Artifact</td><td>需要所有权和版本控制</td><td>Multi-Agent 协作</td></tr></tbody></table>
+<p>不要因为两个 Run 属于同一 Thread 就自动共享可写目录。Thread 表示交互连续性，不代表执行可以无冲突地复用同一现场。</p>
+<p>如果必须共享，至少需要：</p>
+<ul>
+<li>资源所有权或文件租约。</li>
+<li>基于版本的写入检查。</li>
+<li>冲突检测和合并策略。</li>
+<li>每次变化的作者、Run 和来源记录。</li>
+</ul>
+<h2 id="浏览器和进程也属于-workspace">浏览器和进程也属于 Workspace</h2>
+<p>浏览器 Agent 的状态不只是 URL。登录 Cookie、页面历史、打开的 Tab、下载文件和页面内临时状态都可能影响下一步。恢复策略要明确：</p>
+<ul>
+<li>能否恢复同一登录身份。</li>
+<li>页面是否需要重新加载并再次观察。</li>
+<li>DOM 引用或元素坐标是否已经失效。</li>
+<li>下载中的文件和未提交表单怎样处理。</li>
+</ul>
+<p>长时间运行的进程也不能只存 PID。PID 在重启后没有意义，应记录启动命令摘要、工作目录、输入输出 Artifact、健康状态和可重建方式。能重建的资源优先重建，不能安全重建的资源应让 Run 进入等待或失败。</p>
+<h2 id="workspace-的参考生命周期">Workspace 的参考生命周期</h2>
+<p>下面是一套用于说明资源分配、冻结和清理边界的参考生命周期，不是行业统一状态机：</p>
+<p><strong>代码块说明｜层级示意：</strong> 这段文本图按缩进和树枝符号阅读，用来展开“Workspace 的参考生命周期”中的父子关系与归属边界。它描述的是逻辑结构，不要求数据库或服务按同样层级拆分。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>ALLOCATED → PREPARED → ACTIVE → FROZEN → ARCHIVED</span></span>
+<span class="line"><span>                           │          └──► DESTROYED</span></span>
+<span class="line"><span>                           └─────────────► DESTROYED</span></span>
+<span class="line"><span></span></span></code></pre>
+<ul>
+<li><code>ALLOCATED</code>：资源已经分配，但输入尚未装载。</li>
+<li><code>PREPARED</code>：基础版本、只读输入和权限已经确认。</li>
+<li><code>ACTIVE</code>：Run 可以读写和启动受控资源。</li>
+<li><code>FROZEN</code>：暂停写入，用于验收、交接或生成 Checkpoint。</li>
+<li><code>ARCHIVED</code>：保留 Workspace 文件清单、差异和必要 Artifact，工作现场不再运行。</li>
+<li><code>DESTROYED</code>：临时资源已经删除，仅保留审计记录。</li>
+</ul>
+<p>进入 <code>COMPLETED</code> 不应该立即删除 Workspace。正式 Artifact 可能尚未提升，用户也可能需要短期检查。保留时间应由数据敏感性、成本和恢复需求共同决定。</p>
+<h2 id="从中间文件提升为-artifact-的参考流程">从中间文件提升为 Artifact 的参考流程</h2>
+<p>Workspace 中的文件默认只是中间状态。只有经过显式提升，才成为可以被其他 Run、用户或系统稳定引用的 Artifact。</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“从中间文件提升为 Artifact 的参考流程”落成可检查的结构化记录，主要字段包括 <code>artifact_promotion</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">artifact_promotion</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  source</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    workspace_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">ws_71</span></span>
+<span class="line"><span style="color:#85E89D">    path</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">reports/login-regression.md</span></span>
+<span class="line"><span style="color:#85E89D">    content_hash</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">sha256:8be...</span></span>
+<span class="line"><span style="color:#85E89D">  artifact</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    artifact_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">artifact_93</span></span>
+<span class="line"><span style="color:#85E89D">    type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">report</span></span>
+<span class="line"><span style="color:#85E89D">    media_type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">text/markdown</span></span>
+<span class="line"><span style="color:#85E89D">    title</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">登录回归诊断报告</span></span>
+<span class="line"><span style="color:#85E89D">  provenance</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    run_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">run_128</span></span>
+<span class="line"><span style="color:#85E89D">    task_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">task_6</span></span>
+<span class="line"><span style="color:#85E89D">    agent_version</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">agent_v7</span></span>
+<span class="line"><span style="color:#85E89D">  validation</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">passed</span></span>
+<span class="line"><span style="color:#85E89D">    evidence</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">artifact://test-output/52</span></span>
+<span class="line"></span></code></pre>
+<p>提升过程通常要完成：</p>
+<ol>
+<li>冻结或读取确定版本的源文件。</li>
+<li>计算 hash 并扫描敏感信息。</li>
+<li>记录来源、作者、生成方式和验证证据。</li>
+<li>复制到受管理的 Artifact Store。</li>
+<li>在 Run State 中登记正式引用。</li>
+</ol>
+<p>仅在最终 Response 中说“报告已生成”不够。Response 会变化，也可能被截断；Artifact 必须有独立身份和生命周期。</p>
+<h2 id="恢复时先校验现场">恢复时先校验现场</h2>
+<p>从 Checkpoint 恢复时，Runtime 应比较：</p>
+<ul>
+<li>Workspace 是否仍存在。</li>
+<li>基础版本和当前版本是否与 Checkpoint 一致。</li>
+<li>外部挂载和权限是否仍有效。</li>
+<li>未完成进程是否可安全重建。</li>
+<li>已发生的副作用是否已登记。</li>
+</ul>
+<p>如果 Workspace 被用户手动修改，不应直接覆盖。可以创建新分支、重新应用补丁或要求人工选择。恢复的目标是继续同一份工作，不是把现场强行还原成 Runtime 记忆中的样子。</p>
+<h2 id="本章检查">本章检查</h2>
+<ul>
+<li>Workspace 是否拥有稳定 ID、基础版本、当前版本和生命周期。</li>
+<li>Run State 是否只引用 Workspace，而不是复制全部文件内容。</li>
+<li>Sandbox 是否用实际执行边界控制文件、网络、身份和 Secret。</li>
+<li>多个 Run 的可写资源是否默认隔离，显式共享时是否有并发控制。</li>
+<li>浏览器和进程状态是否有可恢复或可重建策略。</li>
+<li>中间文件是否经过 hash、来源和验证登记后才成为正式 Artifact。</li>
+</ul> </article> <nav class="chapter-nav" aria-label="章节导航" data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>← 上一章</span> <strong data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</strong> </a> <a class="next" href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>下一章 →</span> <strong data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</strong> </a> </nav> </section> <aside class="page-index" aria-label="本章目录" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>本章目录</h2> <nav data-astro-cid-jojupagh> <a href="#术语来源与适用范围" data-heading="术语来源与适用范围" data-depth="2" data-astro-cid-jojupagh>术语来源与适用范围</a><a href="#workspacecontext-与-run-state-不同" data-heading="workspacecontext-与-run-state-不同" data-depth="2" data-astro-cid-jojupagh>Workspace、Context 与 Run State 不同</a><a href="#将-workspace-设计为一等-runtime-对象" data-heading="将-workspace-设计为一等-runtime-对象" data-depth="2" data-astro-cid-jojupagh>将 Workspace 设计为一等 Runtime 对象</a><a href="#文件系统也是状态" data-heading="文件系统也是状态" data-depth="2" data-astro-cid-jojupagh>文件系统也是状态</a><a href="#sandbox-控制影响范围" data-heading="sandbox-控制影响范围" data-depth="2" data-astro-cid-jojupagh>Sandbox 控制影响范围</a><a href="#多个-run-是否共享-workspace" data-heading="多个-run-是否共享-workspace" data-depth="2" data-astro-cid-jojupagh>多个 Run 是否共享 Workspace</a><a href="#浏览器和进程也属于-workspace" data-heading="浏览器和进程也属于-workspace" data-depth="2" data-astro-cid-jojupagh>浏览器和进程也属于 Workspace</a><a href="#workspace-的参考生命周期" data-heading="workspace-的参考生命周期" data-depth="2" data-astro-cid-jojupagh>Workspace 的参考生命周期</a><a href="#从中间文件提升为-artifact-的参考流程" data-heading="从中间文件提升为-artifact-的参考流程" data-depth="2" data-astro-cid-jojupagh>从中间文件提升为 Artifact 的参考流程</a><a href="#恢复时先校验现场" data-heading="恢复时先校验现场" data-depth="2" data-astro-cid-jojupagh>恢复时先校验现场</a><a href="#本章检查" data-heading="本章检查" data-depth="2" data-astro-cid-jojupagh>本章检查</a> </nav> </aside> </div> </div> <div class="selection-share" data-selection-share data-content-selector=".chapter-content" data-title="Workspace 与 Sandbox：执行环境也是状态" data-author="Agent Engineering / IMCODERS" data-section="AGENT ENGINEERING PLAYBOOK" data-url="https://imcoders.cn/playbook/agent/13-workspace-sandbox/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>    </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

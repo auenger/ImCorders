@@ -1,0 +1,544 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>Memory Architecture：Session、User、Agent 与 Long-term Memory | Agent Engineering Playbook</title><meta name="description" content="从时间跨度、归属范围和内容类型拆解 Agent Memory，并建立读取、写入、遗忘与修正机制。"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="Memory Architecture：Session、User、Agent 与 Long-term Memory | Agent Engineering Playbook"><meta property="og:description" content="从时间跨度、归属范围和内容类型拆解 Agent Memory，并建立读取、写入、遗忘与修正机制。"><meta property="og:url" content="https://imcoders.cn/playbook/agent/14-long-term-memory/"><meta property="og:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta property="og:image:width" content="1774"><meta property="og:image:height" content="887"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Memory Architecture：Session、User、Agent 与 Long-term Memory | Agent Engineering Playbook"><meta name="twitter:description" content="从时间跨度、归属范围和内容类型拆解 Agent Memory，并建立读取、写入、遗忘与修正机制。"><meta name="twitter:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta itemprop="name" content="Memory Architecture：Session、User、Agent 与 Long-term Memory | Agent Engineering Playbook"><meta itemprop="description" content="从时间跨度、归属范围和内容类型拆解 Agent Memory，并建立读取、写入、遗忘与修正机制。"><meta itemprop="image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "Memory Architecture：Session、User、Agent 与 Long-term Memory | Agent Engineering Playbook";
+const shareDesc = "从时间跨度、归属范围和内容类型拆解 Agent Memory，并建立读取、写入、遗忘与修正机制。";
+const shareLink = "https://imcoders.cn/playbook/agent/14-long-term-memory/";
+const shareImg = "https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.C-FedgiN.css"><script type="module" src="/_astro/hoisted.BfDpThc8.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook" aria-current="page">Playbook</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main>  <div class="reading-progress" aria-hidden="true" data-astro-cid-jojupagh></div> <div class="reader" data-astro-cid-jojupagh> <header class="reader-bar" data-astro-cid-jojupagh> <a class="reader-home" href="/playbook/agent" data-astro-cid-jojupagh>AGENT ENGINEERING <span data-astro-cid-jojupagh>PLAYBOOK</span></a> <span class="reader-meta" data-astro-cid-jojupagh>9 / 30</span> </header> <div class="mobile-index" data-astro-cid-jojupagh> <details data-astro-cid-jojupagh> <summary data-astro-cid-jojupagh>打开全书目录</summary> <div class="mobile-index-body" data-astro-cid-jojupagh> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" class="is-current" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </div> </details> </div> <div class="reader-grid" data-astro-cid-jojupagh> <aside class="book-index" aria-label="全书目录" data-astro-cid-jojupagh> <h2 class="index-title" data-astro-cid-jojupagh>全书目录</h2> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" class="is-current" aria-current="page" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </aside> <section class="chapter-main" data-astro-cid-jojupagh> <header class="chapter-header" data-astro-cid-jojupagh> <div class="chapter-label" data-astro-cid-jojupagh>第九章 / 第二部分：Context、State 与 Memory</div> <h1 data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</h1> <p class="chapter-description" data-astro-cid-jojupagh>从时间跨度、归属范围和内容类型拆解 Agent Memory，并建立读取、写入、遗忘与修正机制。</p> <p class="chapter-updated" data-astro-cid-jojupagh>更新于 2026/8/12</p>  </header> <article class="chapter-content" data-astro-cid-jojupagh> <p>“让 Agent 记住一切”听起来很有吸引力，工程上却通常意味着把对话历史、任务进度、用户资料、领域知识、临时观察和模型猜测全部塞进同一个 Memory Store。</p>
+<p>问题不只是信息太多，而是这些信息的归属和生命周期完全不同：本次对话里刚刚确定的称呼，应该留在 Session；用户长期声明的语言偏好，可以进入 User Memory；多个用户都适用的工具经验，可能进入 Agent Memory；当前任务做到哪一步，则根本不应该由 Memory 承担。</p>
+<p>因此，设计 Memory 的第一步不是选择向量数据库，而是先回答三个问题：</p>
+<p><strong>代码块说明｜结构示意：</strong> 这段文本把“Memory Architecture：Session、User、Agent 与 Long-term Memory”中的关键对象并列出来，帮助读者识别各自责任与边界。它用于概念建模，不代表唯一的产品命名或实现结构。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>它要保留多久？    Working / Run / Session / Long-term</span></span>
+<span class="line"><span>它属于谁？        Session / User / Agent / Project / Organization</span></span>
+<span class="line"><span>它保存什么？      Fact / Preference / Episodic / Summary / Procedural</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>这三个维度不能压成一条分类。<code>User Memory</code> 回答“属于谁”，<code>Long-term Memory</code> 回答“能否跨当前交互继续存在”，二者不是互斥类型。一条用户偏好可以同时是 User-scoped、Long-term、Preference Memory。</p>
+<p>本书采用下面这条记忆治理原则：</p>
+<blockquote>
+<p>Long-term Memory 只保存跨 Run 仍可能改变未来决策的信息，并且必须知道它来自哪里、适用于哪里、可信到什么程度、什么时候需要重新验证。</p>
+</blockquote>
+<p>长期记忆不能承担当前任务恢复。Agent 中断后从哪里继续，属于 Run State 和 Checkpoint；本次任务生成的正式结果，属于 Artifact；完整交互发生了什么，属于 Conversation 和 Event。</p>
+<h2 id="术语来源与适用范围">术语来源与适用范围</h2>
+<p>Memory 是认知科学和 Agent 系统都会使用的上位概念，但当前 Agent 工程并不存在统一的 Memory 对象模型、类型集合或读写协议。不同实现可能把对话摘要、用户偏好、向量检索库、知识图谱、跨 Thread Store，甚至项目说明文件都称为 Memory。</p>
+<p>一些主流 Runtime 已经明确区分了其中的部分边界：<a href="https://openai.github.io/openai-agents-python/sessions/">OpenAI Agents SDK Session</a> 保存特定 Session 的对话历史，并在多次 Run 之间自动加载；其 <a href="https://openai.github.io/openai-agents-python/sandbox/memory/">Sandbox Agent Memory</a> 则明确与 Session Memory 分离，用于让未来 Run 复用提炼出的经验。<a href="https://langchain-ai.github.io/langgraph/concepts/time-travel/">LangGraph Persistence</a> 用 Checkpointer 保存 Thread 范围的短期状态，用 Store 保存跨 Thread 的长期信息。<a href="https://learn.microsoft.com/en-us/agent-framework/agents/conversations/session">Microsoft Agent Framework</a> 也把 AgentSession 定义为跨多次 Agent Run 使用的 Conversation State Container。</p>
+<p>这些实现证明 Session Continuity 与 Cross-session Memory 是不同问题，但它们没有形成统一命名。本章的分层是对这些工程边界的归纳，不是某个框架 API 的复制。</p>
+<p>本章所说的“跨 Run”是指信息可以越过一次目标明确的 Agent 执行实例，在后续独立执行中再次被检索。<code>Run</code> 是本 Playbook 的统一设计术语；其他系统可能将同一层级称为 Task、Workflow Execution、Invocation 或 Job。长期记忆是否跨 Run，与底层采用哪个对象名称无关。</p>
+<p>本章使用 Session、User、Agent 等名称描述<strong>归属范围</strong>，使用 Working、Session、Long-term 描述<strong>时间跨度</strong>，再使用 Fact、Preference、Episodic、Summary 和 Procedural 描述<strong>内容类型</strong>。这是结合常见记忆分类与工程存储需求形成的 Playbook 分析框架，不是公认且排他的标准分类。</p>
+<p>本章提出的写入门槛、Memory Candidate、Memory Record Schema、读取排序公式以及 <code>supersedes</code>、<code>contradicts</code> 等关系，都是用于说明治理要求的参考设计。实现者可以使用数据库记录、向量索引、图结构或文件，但需要保留来源、作用域、时效和权限这些工程语义。</p>
+<h2 id="先把四个维度分开">先把四个维度分开</h2>
+<p>Memory 设计至少包含四个正交维度：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>维度</th><th>核心问题</th><th>常见取值</th></tr></thead><tbody><tr><td>时间跨度</td><td>信息什么时候失效</td><td>Working、Run、Session、Long-term</td></tr><tr><td>归属范围</td><td>信息属于谁，对谁可见</td><td>Session、User、Agent、Project、Organization</td></tr><tr><td>内容类型</td><td>保存的究竟是什么</td><td>Fact、Preference、Episodic、Summary、Procedural</td></tr><tr><td>存储与读取</td><td>怎样保存并重新进入 Context</td><td>Message Store、KV、Document、Vector、Graph、File</td></tr></tbody></table>
+<p>向量数据库只回答第四个维度中的部分问题。它不能自动决定一条信息属于用户还是组织、应该保留一天还是一年，也不能判断模型推测是否有资格成为事实。</p>
+<p>一条完整 Memory 应当能同时回答四个维度。例如：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“先把四个维度分开”落成可检查的结构化记录，主要字段包括 <code>statement</code>、<code>temporal_scope</code>、<code>owner_scope</code>、<code>owner_id</code>、<code>content_type</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">statement</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">用户希望技术报告先给结论</span></span>
+<span class="line"><span style="color:#85E89D">temporal_scope</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">long_term</span></span>
+<span class="line"><span style="color:#85E89D">owner_scope</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">user</span></span>
+<span class="line"><span style="color:#85E89D">owner_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">user_42</span></span>
+<span class="line"><span style="color:#85E89D">content_type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">preference</span></span>
+<span class="line"><span style="color:#85E89D">storage</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">document_with_embedding_index</span></span>
+<span class="line"></span></code></pre>
+<p>如果只保存最后一行的 embedding，就丢失了决定安全读取和正确使用所需的大部分语义。</p>
+<h2 id="按时间跨度拆解-memory">按时间跨度拆解 Memory</h2>
+<h3 id="working-memory当前模型调用的临时工作集">Working Memory：当前模型调用的临时工作集</h3>
+<p>Working Memory 通常对应当前 Context 中真正被模型看见的材料。它可能来自 Run State、当前 Observation、Session History 和长期检索结果，但只在当前一次或相邻几次决策中保持活跃。</p>
+<p>它的核心操作是选择、排序、裁剪和压缩，前面的 Context Assembly 章节已经讨论。Working Memory 不等于持久化存储；内容离开 Context 后，模型就不再直接拥有它。</p>
+<h3 id="run-memory当前任务的执行连续性">Run Memory：当前任务的执行连续性</h3>
+<p>“Run Memory”有时被框架当作宽泛说法，但本 Playbook 不把它作为独立 Memory Store。当前目标、已确认事实、活动 Task、等待条件和恢复位置由 Run State 与 Checkpoint 承担。</p>
+<p>这样划分是为了避免把“完成当前任务所必需的状态”和“未来可能复用的经验”混在一起。Run 完成后，Run State 不应整体晋升为长期记忆，只能从已验证结果中提取少量 Memory Candidate。</p>
+<h3 id="session-memory保持一段连续交互">Session Memory：保持一段连续交互</h3>
+<p>Session Memory 服务于同一个 Conversation 或交互会话的连续性。典型内容包括：</p>
+<ul>
+<li>当前 Session 的消息历史和工具交互。</li>
+<li>对较早消息生成的 Session Summary。</li>
+<li>只在这次对话中有效的称呼、指代和临时约定。</li>
+<li>多次 Run 之间需要延续、但不应带到其他 Session 的上下文。</li>
+</ul>
+<p>例如用户在本次对话中说“后面把这个迁移项目简称为 Phoenix”，这是一条 Session Memory。除非用户明确希望长期保留，否则新 Session 不应自动知道这个简称。</p>
+<p>Session Memory 可以存储在持久数据库中，以支持断线重连或跨设备继续；但“物理上长期保存”不代表“语义上可以跨 Session 使用”。它仍然受 <code>session_id</code> 限制。保留期限与可见范围必须分开建模。</p>
+<h3 id="long-term-memory允许跨-session-或-thread-复用">Long-term Memory：允许跨 Session 或 Thread 复用</h3>
+<p>Long-term Memory 指经过选择、可以跨当前 Session 或 Thread 在未来独立执行中重新检索的信息。它可能属于用户、Agent、项目或组织，并不天然属于某一种主体。</p>
+<p>进入 Long-term Memory 的门槛应该明显高于 Session History：需要来源、作用域、写入理由、时效和治理策略。持久化一份完整聊天记录不等于已经形成长期记忆；只有当系统能选择性提取、在正确范围检索并允许修正时，它才具备长期记忆的工程语义。</p>
+<h2 id="按归属范围拆解-memory">按归属范围拆解 Memory</h2>
+<h3 id="session-memory只属于一次连续交互">Session Memory：只属于一次连续交互</h3>
+<p>Session Scope 是最窄、最容易解释的范围。读取时必须绑定 <code>session_id</code> 或等价的 Conversation / Thread 标识。Session A 的内容不应因为语义相似而被 Session B 召回。</p>
+<p>适合保存：消息、Session Summary、临时称呼、当前对话的局部选择。通常不适合保存：跨用户规则、长期个人画像和全局工具经验。</p>
+<h3 id="user-memory围绕一个用户保持跨-session-连续">User Memory：围绕一个用户保持跨 Session 连续</h3>
+<p>User Memory 保存只对特定用户成立、并且未来交互仍可能有用的信息：</p>
+<ul>
+<li>用户明确声明的语言、格式或无障碍偏好。</li>
+<li>经授权保存的稳定个人事实。</li>
+<li>跨 Session 延续的目标、项目关系或工作习惯。</li>
+<li>用户对 Agent 结果做出的可复用纠正。</li>
+</ul>
+<p>User Memory 必须绑定稳定的 <code>user_id</code>，不能用设备、Cookie 或相似姓名猜测身份。它还需要支持查看、纠正、导出和删除。涉及健康、财务、身份和位置等敏感事实时，应有更高写入门槛和更短保留策略。</p>
+<p>“用户曾经这样选择”不等于“用户永远授权这样做”。User Memory 可以影响表达与建议，不能替代发送、购买、删除、发布等动作的本次权限检查。</p>
+<h3 id="agent-memory围绕一个-agent-配置复用经验">Agent Memory：围绕一个 Agent 配置复用经验</h3>
+<p><code>Agent Memory</code> 是一个高度歧义的术语。有些资料用它泛指 Agent 的全部 Memory；本章在讨论 Scope 时，专指绑定到某个版本化 Agent Definition 或 Agent Family、可被它的多个 Run 使用的记忆。</p>
+<p>适合进入 Agent Memory 的内容包括：</p>
+<ul>
+<li>多次任务验证过的领域启发式规则。</li>
+<li>某个 Tool 的稳定行为、限制和常见失败模式。</li>
+<li>经过审核、尚未成熟到升级为 Skill 的程序性经验。</li>
+<li>Agent 自身评估得到的、对后续执行有用的非用户专属经验。</li>
+</ul>
+<p>Agent Memory 默认不应该保存某个用户的私有事实。否则当同一个 Agent 服务多个用户时，就可能发生跨用户泄漏。需要用户信息时，应从 User Scope 显式读取，并继续受该用户权限约束。</p>
+<p>Agent Memory 还必须绑定 Agent Version 或兼容范围。一条针对旧 Tool Schema 的经验，不能在 Tool 已升级后无条件继续生效。</p>
+<h3 id="projectteam-与-organization-memory共享知识需要治理">Project、Team 与 Organization Memory：共享知识需要治理</h3>
+<p>项目规范、团队约定和组织政策也常被称为 Memory。它们的共同点是作用域大于单个用户或 Agent：</p>
+<ul>
+<li>Project Memory：架构决策、仓库约束、部署兼容性。</li>
+<li>Team Memory：共同流程、术语和协作经验。</li>
+<li>Organization Memory：政策、合规要求和内部知识。</li>
+</ul>
+<p>范围越大，写入权越不应该由单次 Agent Run 自动获得。组织政策通常应来自正式 Artifact 或权威系统，并经过审批，而不是由模型从几次对话中归纳后直接写入。</p>
+<h2 id="useragent-与-long-term-不是并列类型">User、Agent 与 Long-term 不是并列类型</h2>
+<p>下面这张矩阵展示了“归属范围”和“时间跨度”的组合关系：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>归属范围</th><th>Session 内使用</th><th>跨 Session 的 Long-term 使用</th></tr></thead><tbody><tr><td>Session</td><td>消息历史、临时称呼、Session Summary</td><td>通常不允许；跨 Session 后应重新定范围</td></tr><tr><td>User</td><td>本 Session 中的用户选择</td><td>用户偏好、授权保存的稳定事实、长期目标</td></tr><tr><td>Agent</td><td>当前 Run 产生的候选经验</td><td>Agent 专属启发式、Tool 经验、程序性知识</td></tr><tr><td>Project / Organization</td><td>当前任务加载的规则</td><td>架构决策、团队知识、正式政策</td></tr></tbody></table>
+<p>因此下面这些说法都可以成立：</p>
+<p><strong>代码块说明｜结构示意：</strong> 这段文本把“User、Agent 与 Long-term 不是并列类型”中的关键对象并列出来，帮助读者识别各自责任与边界。它用于概念建模，不代表唯一的产品命名或实现结构。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>User Long-term Preference Memory</span></span>
+<span class="line"><span>Agent Long-term Procedural Memory</span></span>
+<span class="line"><span>Project Long-term Fact Memory</span></span>
+<span class="line"><span>Session-scoped Episodic Summary</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>设计数据库表或 API 时，不要用一个 <code>memory_type</code> 字段在 <code>session</code>、<code>user</code>、<code>episodic</code>、<code>long_term</code> 之间四选一。它们属于不同维度，应该分别建模。</p>
+<h2 id="作用域决定读取顺序但不自动决定权威性">作用域决定读取顺序，但不自动决定权威性</h2>
+<p>同一主题可能在不同 Scope 中出现。例如：</p>
+<p><strong>代码块说明｜结构示意：</strong> 这段文本把“作用域决定读取顺序，但不自动决定权威性”中的关键对象并列出来，帮助读者识别各自责任与边界。它用于概念建模，不代表唯一的产品命名或实现结构。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Organization Policy：外部报告不得包含客户标识</span></span>
+<span class="line"><span>Project Memory：本项目报告使用内部模板</span></span>
+<span class="line"><span>User Memory：用户偏好先给结论</span></span>
+<span class="line"><span>Session Memory：用户本轮要求输出详细附录</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Context Assembly 需要同时加载相关内容，并按照约束强度、当前明确指令、作用域和新鲜度解决冲突。一个可用的参考优先级是：</p>
+<p><strong>代码块说明｜结构示意：</strong> 这段文本把“作用域决定读取顺序，但不自动决定权威性”中的关键对象并列出来，帮助读者识别各自责任与边界。它用于概念建模，不代表唯一的产品命名或实现结构。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>System / Organization Policy</span></span>
+<span class="line"><span>    > 当前明确指令与本次授权</span></span>
+<span class="line"><span>    > 当前环境中的权威事实</span></span>
+<span class="line"><span>    > Session 内已经确认的约定</span></span>
+<span class="line"><span>    > User Preference</span></span>
+<span class="line"><span>    > Agent / Project 经验性 Memory</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>这只是参考决策顺序，不是通用协议。User Memory 不能覆盖组织安全政策，Agent Memory 不能覆盖用户本轮明确要求，历史偏好也不能覆盖当前环境事实。</p>
+<h2 id="memory-与其他对象的边界">Memory 与其他对象的边界</h2>
+<p><img src="/playbook-images/agent/state-layers-memory.svg" alt="Agent 状态分层与长期记忆读写路径"></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>对象</th><th>回答的问题</th><th>典型生命周期</th></tr></thead><tbody><tr><td>Run State</td><td>当前任务做到哪里</td><td>单个 Run</td></tr><tr><td>Checkpoint</td><td>从哪个安全点恢复</td><td>单个 Run / Attempt</td></tr><tr><td>Artifact</td><td>产生了什么可引用结果</td><td>可跨 Run 长期保存</td></tr><tr><td>Conversation</td><td>交互中说过和返回过什么</td><td>Thread</td></tr><tr><td>Long-term Memory</td><td>哪些过去信息值得影响未来决策</td><td>跨 Run，允许修正和遗忘</td></tr></tbody></table>
+<p>Artifact 可以成为 Memory 的来源，但两者不是同一个对象。例如一份架构决策记录是 Artifact；“这个项目禁止引入第二个消息队列”可以从中抽取为项目作用域的 Memory。Memory 应引用原 Artifact，而不是复制后失去来源。</p>
+<h2 id="按内容拆解本-playbook-使用的五类-memory">按内容拆解：本 Playbook 使用的五类 Memory</h2>
+<p>下面切换到第三个维度：Memory 保存的内容是什么。这套分类的目的不是声明一套心理学或行业标准模型，而是为写入、检索和更新选择不同策略。同一种内容可以出现在不同 Scope，例如 Preference 既可以是本 Session 的临时选择，也可以是 User Long-term Memory。</p>
+<h3 id="fact可验证事实">Fact：可验证事实</h3>
+<p>例如“生产环境使用 PostgreSQL 15”。Fact 需要来源、作用域和有效期。实时系统状态通常不适合长期缓存，除非明确规定重新验证策略。</p>
+<h3 id="preference用户或组织偏好">Preference：用户或组织偏好</h3>
+<p>例如“代码示例默认使用 TypeScript”“报告先给结论”。偏好不等于权限，也不能覆盖本次显式指令。</p>
+<h3 id="episodic过去发生过的有用情节">Episodic：过去发生过的有用情节</h3>
+<p>例如“上次升级 auth-sdk 时，测试 fixture 的算法硬编码导致回归”。情节记忆保存的是可供类比的事件摘要，不应让一次偶然失败变成永远适用的规则。</p>
+<h3 id="summary对一组历史内容的压缩">Summary：对一组历史内容的压缩</h3>
+<p>例如项目背景、长期协作上下文。Summary 是有损信息，需要记录覆盖范围和生成版本，不能当作原始证据。</p>
+<h3 id="procedural经过验证的方法经验">Procedural：经过验证的方法经验</h3>
+<p>例如“依赖升级后先运行配置差异检查，再执行定向回归”。如果方法足够稳定、完整并带工具和验收标准，它更适合升级为 Skill；Memory 可以保存轻量经验或 Skill 的选择信号。</p>
+<h2 id="session-history-写入与长期记忆写入是两条路径">Session History 写入与长期记忆写入是两条路径</h2>
+<p>Session Memory 的主要写入通常是保存消息、Tool Result 和 Session Summary，以保证同一交互可以继续。它可以自动发生，但仍需要消息保留期限、敏感内容处理和压缩策略：</p>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“Session History 写入与长期记忆写入是两条路径”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Current Turn</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>Append Conversation Items</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>Session Store</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>Limit / Compact / Summarize</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>Next Run in the same Session</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>User、Agent、Project 等跨 Session Memory 则需要“从一次经历中提取可复用信息”，写入风险更高：</p>
+<p><strong>代码块说明｜层级示意：</strong> 这段文本图按缩进和树枝符号阅读，用来展开“Session History 写入与长期记忆写入是两条路径”中的父子关系与归属边界。它描述的是逻辑结构，不要求数据库或服务按同样层级拆分。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Run / Session / Artifact</span></span>
+<span class="line"><span>          ↓</span></span>
+<span class="line"><span>    Memory Candidate</span></span>
+<span class="line"><span>          ↓</span></span>
+<span class="line"><span>Evidence + Owner Scope + Consent + Risk Check</span></span>
+<span class="line"><span>    ├── reject</span></span>
+<span class="line"><span>    ├── human review</span></span>
+<span class="line"><span>    └── merge / supersede / create</span></span>
+<span class="line"><span>                  ↓</span></span>
+<span class="line"><span>       Cross-session Memory Store</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>不要把每条 Session 消息都自动向量化后称为 User Memory。那只是一个可以跨 Session 搜索的聊天档案，尚未解决归属、准确性、写入意图和删除边界。</p>
+<h2 id="写入路径先产生候选再决定是否记住">写入路径：先产生候选，再决定是否记住</h2>
+<p>下面进一步讨论跨 Session Memory 的治理路径。长期记忆不应该由模型在任意 Step 中直接写入正式存储。更安全的写入路径是：</p>
+<p><strong>代码块说明｜层级示意：</strong> 这段文本图按缩进和树枝符号阅读，用来展开“写入路径：先产生候选，再决定是否记住”中的父子关系与归属边界。它描述的是逻辑结构，不要求数据库或服务按同样层级拆分。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Run / Conversation / Artifact</span></span>
+<span class="line"><span>            ↓</span></span>
+<span class="line"><span>      Memory Candidate</span></span>
+<span class="line"><span>            ↓</span></span>
+<span class="line"><span>  Extract + Normalize + Redact</span></span>
+<span class="line"><span>            ↓</span></span>
+<span class="line"><span>  Evidence / Scope / Risk Check</span></span>
+<span class="line"><span>       ├── reject</span></span>
+<span class="line"><span>       ├── human review</span></span>
+<span class="line"><span>       └── merge / supersede / create</span></span>
+<span class="line"><span>                    ↓</span></span>
+<span class="line"><span>              Memory Store</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>写入通常包含六步：</p>
+<ol>
+<li><strong>触发</strong>：Run 完成、用户明确要求记住，或稳定模式重复出现。</li>
+<li><strong>抽取</strong>：从有来源的内容中提取一个最小、可独立判断的候选。</li>
+<li><strong>定范围</strong>：明确它属于 User、Agent、Project 还是 Organization，不能只靠内容相似度推断。</li>
+<li><strong>规范化与风险检查</strong>：统一实体、时间和类别，并处理 Secret、个人敏感信息、授权和保留期限。</li>
+<li><strong>一致性检查</strong>：搜索现有 Memory，决定新增、合并、冲突或替代。</li>
+<li><strong>提交</strong>：写入版本化记录，并保留证据引用。</li>
+</ol>
+<h3 id="同一事实应该写到哪个-scope">同一事实应该写到哪个 Scope</h3>
+<p>可以用下面的参考路由判断：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>候选信息</th><th>建议 Scope</th><th>原因</th></tr></thead><tbody><tr><td>“本轮把项目简称为 Phoenix”</td><td>Session</td><td>临时约定，不应建立长期画像</td></tr><tr><td>“用户明确要求以后默认中文回答”</td><td>User</td><td>跨 Session 的个人表达偏好</td></tr><tr><td>“这个 Tool 在 429 后必须读取 Retry-After”</td><td>Agent</td><td>非用户专属的稳定执行经验</td></tr><tr><td>“auth-service 生产环境兼容 PostgreSQL 15”</td><td>Project</td><td>只对特定项目成立</td></tr><tr><td>“客户数据不得进入公共模型”</td><td>Organization Policy / Artifact</td><td>高权威规则，不应由普通 Memory 自动生成</td></tr></tbody></table>
+<p>如果无法判断 Owner Scope，默认留在较窄范围或进入人工审核，不要为了提高召回率写到更广范围。</p>
+<h2 id="什么信息达到写入门槛">什么信息达到写入门槛</h2>
+<p>可以用五个问题判断：</p>
+<ol>
+<li>它是否会在当前 Run 之外再次有用？</li>
+<li>它是否可能实际改变未来的选择、参数或输出？</li>
+<li>它是否有可信来源，而不是模型自己的未验证推测？</li>
+<li>它是否拥有明确作用域和生命周期？</li>
+<li>保存它是否符合隐私、安全和用户预期？</li>
+</ol>
+<p>下面通常不应写入：</p>
+<ul>
+<li>一次性的 Tool 输出和临时文件路径。</li>
+<li>未验证的假设。</li>
+<li>已经由权威系统实时提供、且变化频繁的数据。</li>
+<li>可以从正式 Artifact 轻易重新推导的冗余长文本。</li>
+<li>Secret、访问令牌和不必要的个人敏感信息。</li>
+<li>“用户喜欢这个回答”之类无法稳定推断的偏好。</li>
+</ul>
+<p>用户明确说“记住”会提高写入意图，但仍不能绕过安全和作用域检查。</p>
+<h2 id="memory-record-的参考-schema">Memory Record 的参考 Schema</h2>
+<p>下面的 Schema 用于展示一条可治理 Memory 所需的语义，不是外部协议定义；实际字段名和存储方式可以不同，但不应只剩下 <code>text + embedding</code>：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“Memory Record 的参考 Schema”落成可检查的结构化记录，主要字段包括 <code>memory</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">memory</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  memory_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">mem_77</span></span>
+<span class="line"><span style="color:#85E89D">  revision</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2</span></span>
+<span class="line"><span style="color:#85E89D">  content_type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">fact</span></span>
+<span class="line"><span style="color:#85E89D">  statement</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">生产部署必须兼容 PostgreSQL 15</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  scope</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    owner_type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">project</span></span>
+<span class="line"><span style="color:#85E89D">    owner_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">auth-service</span></span>
+<span class="line"><span style="color:#85E89D">    tenant_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">org_9</span></span>
+<span class="line"><span style="color:#85E89D">    environment</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">production</span></span>
+<span class="line"><span style="color:#85E89D">    session_id</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">null</span></span>
+<span class="line"><span style="color:#85E89D">    user_id</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">null</span></span>
+<span class="line"><span style="color:#85E89D">    agent_family</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">deployment-agent</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  lifetime</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    temporal_scope</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">long_term</span></span>
+<span class="line"><span style="color:#85E89D">    valid_from</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2026-07-01</span></span>
+<span class="line"><span style="color:#85E89D">    expires_at</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2026-10-01</span></span>
+<span class="line"><span style="color:#85E89D">    verify_before_use</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  provenance</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    source_type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">artifact</span></span>
+<span class="line"><span style="color:#85E89D">    source_ref</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">artifact://deployment-guide/12</span></span>
+<span class="line"><span style="color:#85E89D">    source_revision</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">6</span></span>
+<span class="line"><span style="color:#85E89D">    extracted_by</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">agent_v7</span></span>
+<span class="line"><span style="color:#85E89D">    observed_at</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2026-08-11T10:00:00+08:00</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  confidence</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.96</span></span>
+<span class="line"><span style="color:#85E89D">  status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">active</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  retrieval</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    keywords</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">PostgreSQL</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">production</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">compatibility</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#85E89D">    embedding_ref</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">embedding://mem_77@v3</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  governance</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    sensitivity</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">internal</span></span>
+<span class="line"><span style="color:#85E89D">    readable_by</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">project_member</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">deployment_agent</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#85E89D">    writable_by</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">project_owner</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">deployment_agent</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#85E89D">    retention_policy</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">project_lifetime</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  supersedes</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">mem_61</span></span>
+<span class="line"></span></code></pre>
+<p><code>statement</code> 用于决策，<code>provenance</code> 用于追溯，<code>scope</code> 明确归属和可见范围，<code>lifetime</code> 控制时间跨度，<code>governance</code> 约束谁能读写。<code>agent_family</code> 表示哪些 Agent 可以消费这条 Project Memory，但不会把它变成 Agent 所有。Embedding 只是检索索引，不是 Memory 的事实主体。</p>
+<h2 id="读取路径相关不等于可直接使用">读取路径：相关不等于可直接使用</h2>
+<p>Memory Read 路径也需要多阶段过滤：</p>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“读取路径：相关不等于可直接使用”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Goal + Current Task + Entities</span></span>
+<span class="line"><span>              ↓</span></span>
+<span class="line"><span> Resolve Session / User / Agent / Project Identity</span></span>
+<span class="line"><span>              ↓</span></span>
+<span class="line"><span>   Scope Filter + Permission Filter</span></span>
+<span class="line"><span>              ↓</span></span>
+<span class="line"><span> Hybrid Retrieve（关键词 / 向量 / 图关系）</span></span>
+<span class="line"><span>              ↓</span></span>
+<span class="line"><span>  Rerank by relevance + authority + recency</span></span>
+<span class="line"><span>              ↓</span></span>
+<span class="line"><span> Conflict / Expiry / Verification Check</span></span>
+<span class="line"><span>              ↓</span></span>
+<span class="line"><span>      Context Candidate</span></span>
+<span class="line"><span>              ↓</span></span>
+<span class="line"><span>     Context Assembly Budget</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>先解析当前 Session、User、Agent、Project 和 Organization 身份，再按作用域与权限过滤，最后做语义检索。否则一个与查询高度相似、但属于另一个用户、客户或项目的 Memory 可能排在最前面。</p>
+<p>最终排序不应只看向量相似度。下面的公式只是表达需要综合考虑的因素，不是标准评分公式：</p>
+<p><strong>代码块说明｜关系式：</strong> 这段表达式把“读取路径：相关不等于可直接使用”压缩成便于比较的组成关系。它是分析模型，不是可执行代码，也不是要求实现者采用的行业标准公式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>score = semantic_relevance</span></span>
+<span class="line"><span>      × scope_match</span></span>
+<span class="line"><span>      × authority_weight</span></span>
+<span class="line"><span>      × freshness_weight</span></span>
+<span class="line"><span>      × confidence</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>实际系统不一定使用乘法，但必须体现这些因素。一个 0.95 相似度的过期猜测，不应压过 0.78 相似度的最新权威记录。</p>
+<h2 id="检索结果以候选身份进入-context">检索结果以候选身份进入 Context</h2>
+<p>Memory 进入 Context 时要携带元数据和语气：</p>
+<p><strong>代码块说明｜结构示意：</strong> 这段文本把“检索结果以候选身份进入 Context”中的关键对象并列出来，帮助读者识别各自责任与边界。它用于概念建模，不代表唯一的产品命名或实现结构。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>[Project Memory | fact | verified 2026-08-11 | verify-before-use]</span></span>
+<span class="line"><span>生产部署必须兼容 PostgreSQL 15。</span></span>
+<span class="line"><span>Source: artifact://deployment-guide/12@rev6</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>不要把所有 Memory 包装成系统指令。Fact、Preference、Episodic 和 Summary 的权威性不同。特别是模型生成的情节摘要，应写成“过去曾出现……”而不是“必须……”。</p>
+<p>需要重新验证的 Memory 可以先触发 Observation：读取部署配置，确认数据库版本，再把新事实写入 Run State。如果无法验证，则保留不确定性。</p>
+<h2 id="冲突修正与遗忘">冲突、修正与遗忘</h2>
+<p>长期记忆系统必须允许过去的内容失效。常见关系包括：</p>
+<ul>
+<li><code>supersedes</code>：新记录明确替代旧记录。</li>
+<li><code>contradicts</code>：两个来源冲突，尚未完成仲裁。</li>
+<li><code>narrows</code>：新记录把适用范围缩小。</li>
+<li><code>confirms</code>：独立来源加强同一事实。</li>
+</ul>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“冲突、修正与遗忘”落成可检查的结构化记录，主要字段包括 <code>memory_change</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">memory_change</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  new_memory</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">mem_91</span></span>
+<span class="line"><span style="color:#85E89D">  relation</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">supersedes</span></span>
+<span class="line"><span style="color:#85E89D">  target</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">mem_77</span></span>
+<span class="line"><span style="color:#85E89D">  reason</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">生产环境已完成 PostgreSQL 16 升级</span></span>
+<span class="line"><span style="color:#85E89D">  evidence</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">artifact://change-record/2026-09-14</span></span>
+<span class="line"></span></code></pre>
+<p>不建议直接覆盖原记录。保留 revision 和关系，才能解释旧 Run 为什么做出了当时合理、现在过时的选择。</p>
+<p>“遗忘”也不一定等于物理删除：</p>
+<ul>
+<li><strong>到期</strong>：默认不参与检索，必要时可重新验证。</li>
+<li><strong>降权</strong>：情节随着时间降低召回概率。</li>
+<li><strong>归档</strong>：保留审计但不进入在线索引。</li>
+<li><strong>删除</strong>：根据用户请求、隐私政策或保留期限彻底清除。</li>
+</ul>
+<p>对于法律或隐私要求的删除，向量索引、缓存、备份和派生 Summary 都要纳入范围。</p>
+<h2 id="user-preference-不能变成静默控制">User Preference 不能变成静默控制</h2>
+<p>偏好记忆经常被过度使用。Agent 从两次交互中推断“用户永远喜欢简短回答”，可能在需要完整报告时错误裁剪内容。</p>
+<p>偏好至少区分：</p>
+<ul>
+<li>用户明确声明，还是系统推断。</li>
+<li>全局偏好，还是项目或任务偏好。</li>
+<li>表达偏好，还是会改变外部动作的决策偏好。</li>
+</ul>
+<p>涉及发送、购买、删除、发布等副作用的选择，不能仅凭长期偏好跳过本次授权。</p>
+<h2 id="agent-procedural-memory-何时升级为-skill">Agent Procedural Memory 何时升级为 Skill</h2>
+<p>当一条方法经验具备以下特征时，应从 Memory 升级为版本化 Skill：</p>
+<ul>
+<li>被多个 Run 重复验证。</li>
+<li>有明确触发条件和不适用条件。</li>
+<li>依赖固定 Tool、资源或脚本。</li>
+<li>有可以自动检查的完成标准。</li>
+<li>变化需要评估和发布治理。</li>
+</ul>
+<p>Memory 可以说“这个项目升级依赖后要重点检查配置覆盖”；Skill 则应包含检查步骤、脚本、所需 Tool 和验收方式。二者的工程强度不同。</p>
+<h2 id="贯穿案例一次写入与下一次读取">贯穿案例：一次写入与下一次读取</h2>
+<p>登录问题修复后，系统可以把完整交互留在原 Session 的 History 中，但不会把全部 200 条消息直接提升为长期记忆。它从已验证 Artifact 中产生候选，并将 Owner Scope 明确为 Project：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“贯穿案例：一次写入与下一次读取”落成可检查的结构化记录，主要字段包括 <code>content_type</code>、<code>statement</code>、<code>owner_scope</code>、<code>temporal_scope</code>、<code>source_ref</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">content_type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">episodic</span></span>
+<span class="line"><span style="color:#85E89D">statement</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">auth-sdk 升级后，测试 fixture 的签名算法硬编码曾导致登录回归</span></span>
+<span class="line"><span style="color:#85E89D">owner_scope</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">project/auth-service</span></span>
+<span class="line"><span style="color:#85E89D">temporal_scope</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">long_term</span></span>
+<span class="line"><span style="color:#85E89D">source_ref</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">artifact://incident-report/93</span></span>
+<span class="line"><span style="color:#85E89D">confidence</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.94</span></span>
+<span class="line"><span style="color:#85E89D">expires_at</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2027-02-11</span></span>
+<span class="line"></span></code></pre>
+<p>三个月后另一次依赖升级开始。Router 在“认证依赖回归”任务中检索到它，但只把它作为候选线索。Agent 先检查当前 fixture；如果已经没有硬编码，就把该假设标记为不适用，而不是机械重复上次修复。</p>
+<p>好的 Memory 缩短探索路径，但不会替代本轮证据。</p>
+<h2 id="本章检查">本章检查</h2>
+<ul>
+<li>是否把时间跨度、归属范围和内容类型作为不同维度建模。</li>
+<li>Session Memory 是否只服务于同一连续交互，跨 Session 读取是否需要重新定范围。</li>
+<li>User Memory 是否绑定稳定身份，并允许用户查看、纠正和删除。</li>
+<li>Agent Memory 是否排除用户私有事实，并绑定 Agent Version 或兼容范围。</li>
+<li>Long-term Memory 是否只保存跨 Run 可能改变决策的信息。</li>
+<li>每条记录是否有来源、Owner Scope、置信度、时效和治理属性。</li>
+<li>未验证推测、临时输出和 Secret 是否被排除在长期写入之外。</li>
+<li>检索是否先做权限与作用域过滤，再进行相似度排序。</li>
+<li>Memory 是否作为带来源的候选进入 Context，而不是伪装成系统规则。</li>
+<li>冲突、替代、到期、归档和删除是否都有明确机制。</li>
+</ul> </article> <nav class="chapter-nav" aria-label="章节导航" data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>← 上一章</span> <strong data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</strong> </a> <a class="next" href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>下一章 →</span> <strong data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</strong> </a> </nav> </section> <aside class="page-index" aria-label="本章目录" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>本章目录</h2> <nav data-astro-cid-jojupagh> <a href="#术语来源与适用范围" data-heading="术语来源与适用范围" data-depth="2" data-astro-cid-jojupagh>术语来源与适用范围</a><a href="#先把四个维度分开" data-heading="先把四个维度分开" data-depth="2" data-astro-cid-jojupagh>先把四个维度分开</a><a href="#按时间跨度拆解-memory" data-heading="按时间跨度拆解-memory" data-depth="2" data-astro-cid-jojupagh>按时间跨度拆解 Memory</a><a href="#working-memory当前模型调用的临时工作集" data-heading="working-memory当前模型调用的临时工作集" data-depth="3" data-astro-cid-jojupagh>Working Memory：当前模型调用的临时工作集</a><a href="#run-memory当前任务的执行连续性" data-heading="run-memory当前任务的执行连续性" data-depth="3" data-astro-cid-jojupagh>Run Memory：当前任务的执行连续性</a><a href="#session-memory保持一段连续交互" data-heading="session-memory保持一段连续交互" data-depth="3" data-astro-cid-jojupagh>Session Memory：保持一段连续交互</a><a href="#long-term-memory允许跨-session-或-thread-复用" data-heading="long-term-memory允许跨-session-或-thread-复用" data-depth="3" data-astro-cid-jojupagh>Long-term Memory：允许跨 Session 或 Thread 复用</a><a href="#按归属范围拆解-memory" data-heading="按归属范围拆解-memory" data-depth="2" data-astro-cid-jojupagh>按归属范围拆解 Memory</a><a href="#session-memory只属于一次连续交互" data-heading="session-memory只属于一次连续交互" data-depth="3" data-astro-cid-jojupagh>Session Memory：只属于一次连续交互</a><a href="#user-memory围绕一个用户保持跨-session-连续" data-heading="user-memory围绕一个用户保持跨-session-连续" data-depth="3" data-astro-cid-jojupagh>User Memory：围绕一个用户保持跨 Session 连续</a><a href="#agent-memory围绕一个-agent-配置复用经验" data-heading="agent-memory围绕一个-agent-配置复用经验" data-depth="3" data-astro-cid-jojupagh>Agent Memory：围绕一个 Agent 配置复用经验</a><a href="#projectteam-与-organization-memory共享知识需要治理" data-heading="projectteam-与-organization-memory共享知识需要治理" data-depth="3" data-astro-cid-jojupagh>Project、Team 与 Organization Memory：共享知识需要治理</a><a href="#useragent-与-long-term-不是并列类型" data-heading="useragent-与-long-term-不是并列类型" data-depth="2" data-astro-cid-jojupagh>User、Agent 与 Long-term 不是并列类型</a><a href="#作用域决定读取顺序但不自动决定权威性" data-heading="作用域决定读取顺序但不自动决定权威性" data-depth="2" data-astro-cid-jojupagh>作用域决定读取顺序，但不自动决定权威性</a><a href="#memory-与其他对象的边界" data-heading="memory-与其他对象的边界" data-depth="2" data-astro-cid-jojupagh>Memory 与其他对象的边界</a><a href="#按内容拆解本-playbook-使用的五类-memory" data-heading="按内容拆解本-playbook-使用的五类-memory" data-depth="2" data-astro-cid-jojupagh>按内容拆解：本 Playbook 使用的五类 Memory</a><a href="#fact可验证事实" data-heading="fact可验证事实" data-depth="3" data-astro-cid-jojupagh>Fact：可验证事实</a><a href="#preference用户或组织偏好" data-heading="preference用户或组织偏好" data-depth="3" data-astro-cid-jojupagh>Preference：用户或组织偏好</a><a href="#episodic过去发生过的有用情节" data-heading="episodic过去发生过的有用情节" data-depth="3" data-astro-cid-jojupagh>Episodic：过去发生过的有用情节</a><a href="#summary对一组历史内容的压缩" data-heading="summary对一组历史内容的压缩" data-depth="3" data-astro-cid-jojupagh>Summary：对一组历史内容的压缩</a><a href="#procedural经过验证的方法经验" data-heading="procedural经过验证的方法经验" data-depth="3" data-astro-cid-jojupagh>Procedural：经过验证的方法经验</a><a href="#session-history-写入与长期记忆写入是两条路径" data-heading="session-history-写入与长期记忆写入是两条路径" data-depth="2" data-astro-cid-jojupagh>Session History 写入与长期记忆写入是两条路径</a><a href="#写入路径先产生候选再决定是否记住" data-heading="写入路径先产生候选再决定是否记住" data-depth="2" data-astro-cid-jojupagh>写入路径：先产生候选，再决定是否记住</a><a href="#同一事实应该写到哪个-scope" data-heading="同一事实应该写到哪个-scope" data-depth="3" data-astro-cid-jojupagh>同一事实应该写到哪个 Scope</a><a href="#什么信息达到写入门槛" data-heading="什么信息达到写入门槛" data-depth="2" data-astro-cid-jojupagh>什么信息达到写入门槛</a><a href="#memory-record-的参考-schema" data-heading="memory-record-的参考-schema" data-depth="2" data-astro-cid-jojupagh>Memory Record 的参考 Schema</a><a href="#读取路径相关不等于可直接使用" data-heading="读取路径相关不等于可直接使用" data-depth="2" data-astro-cid-jojupagh>读取路径：相关不等于可直接使用</a><a href="#检索结果以候选身份进入-context" data-heading="检索结果以候选身份进入-context" data-depth="2" data-astro-cid-jojupagh>检索结果以候选身份进入 Context</a><a href="#冲突修正与遗忘" data-heading="冲突修正与遗忘" data-depth="2" data-astro-cid-jojupagh>冲突、修正与遗忘</a><a href="#user-preference-不能变成静默控制" data-heading="user-preference-不能变成静默控制" data-depth="2" data-astro-cid-jojupagh>User Preference 不能变成静默控制</a><a href="#agent-procedural-memory-何时升级为-skill" data-heading="agent-procedural-memory-何时升级为-skill" data-depth="2" data-astro-cid-jojupagh>Agent Procedural Memory 何时升级为 Skill</a><a href="#贯穿案例一次写入与下一次读取" data-heading="贯穿案例一次写入与下一次读取" data-depth="2" data-astro-cid-jojupagh>贯穿案例：一次写入与下一次读取</a><a href="#本章检查" data-heading="本章检查" data-depth="2" data-astro-cid-jojupagh>本章检查</a> </nav> </aside> </div> </div> <div class="selection-share" data-selection-share data-content-selector=".chapter-content" data-title="Memory Architecture：Session、User、Agent 与 Long-term Memory" data-author="Agent Engineering / IMCODERS" data-section="AGENT ENGINEERING PLAYBOOK" data-url="https://imcoders.cn/playbook/agent/14-long-term-memory/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>    </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

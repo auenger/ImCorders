@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+  <title id="title">Agent Evaluation Matrix</title><desc id="desc">从 Goal Completion、Artifact、Trajectory、Tool、Safety、Cost 到 Recovery 的七层评估矩阵，并区分确定性验证、模型评估和人工评审。</desc>
+  <style>.bg{fill:#f4f1eb}.ink{fill:#181a1d}.muted{fill:#686d76}.hot{fill:#e84c37}.panel{fill:#fff;stroke:#d8d4cc;stroke-width:2}.line{stroke:#d8d4cc;stroke-width:2}.title{font:700 30px ui-sans-serif,system-ui}.head{font:700 18px ui-sans-serif,system-ui}.body{font:15px ui-sans-serif,system-ui}.tag{font:700 13px ui-sans-serif,system-ui}</style>
+  <rect class="bg" width="1400" height="760" rx="26"/><text class="title ink" x="54" y="62">Agent Evaluation Matrix</text><text class="body muted" x="54" y="92">结果正确、过程合理、行动安全，需要分层判定</text>
+  <rect class="panel" x="54" y="128" width="940" height="562" rx="18"/>
+  <text class="tag muted" x="84" y="166">DIMENSION</text><text class="tag muted" x="520" y="166">EVIDENCE</text><text class="tag muted" x="820" y="166">GATE</text>
+  <path class="line" d="M82 186H964"/>
+  <g class="body ink">
+    <text x="86" y="230">01  Goal Completion</text><text x="520" y="230">业务状态 · 验收断言</text><text class="hot" x="820" y="230">HARD</text>
+    <text x="86" y="294">02  Artifact Quality</text><text x="520" y="294">测试 · Schema · 人工</text><text class="hot" x="820" y="294">HARD</text>
+    <text x="86" y="358">03  Trajectory Quality</text><text x="520" y="358">Trace Grader · 规则</text><text x="820" y="358">TASK</text>
+    <text x="86" y="422">04  Tool &amp; Arguments</text><text x="520" y="422">契约 · 对照标签</text><text class="hot" x="820" y="422">HARD</text>
+    <text x="86" y="486">05  Permission &amp; Safety</text><text x="520" y="486">Policy Replay</text><text class="hot" x="820" y="486">HARD</text>
+    <text x="86" y="550">06  Cost &amp; Latency</text><text x="520" y="550">Metric · Budget</text><text class="hot" x="820" y="550">HARD</text>
+    <text x="86" y="614">07  Recovery Behavior</text><text x="520" y="614">故障注入 · Event</text><text class="hot" x="820" y="614">HARD</text>
+  </g>
+  <g class="line"><path d="M82 250H964M82 314H964M82 378H964M82 442H964M82 506H964M82 570H964"/></g>
+  <rect x="1026" y="128" width="320" height="174" rx="18" fill="#181a1d"/><text class="head" fill="#fff" x="1054" y="170">Evaluator Stack</text><text class="body" fill="#c2c6cc" x="1054" y="208">1  确定性验证器</text><text class="body" fill="#c2c6cc" x="1054" y="238">2  LLM / Agent Judge</text><text class="body" fill="#c2c6cc" x="1054" y="268">3  人工校准与仲裁</text>
+  <rect class="panel" x="1026" y="330" width="320" height="360" rx="18"/><text class="head ink" x="1054" y="372">Calibration Loop</text>
+  <g class="body ink"><text x="1054" y="420">Rubric</text><text x="1054" y="470">双人标注</text><text x="1054" y="520">Ground Truth</text><text x="1054" y="570">切片误差</text><text x="1054" y="620">冻结版本</text></g>
+  <g class="hot"><circle cx="1278" cy="415" r="7"/><circle cx="1278" cy="465" r="7"/><circle cx="1278" cy="515" r="7"/><circle cx="1278" cy="565" r="7"/><circle cx="1278" cy="615" r="7"/></g><path d="M1278 422V608" stroke="#e84c37" stroke-width="3"/>
+</svg>

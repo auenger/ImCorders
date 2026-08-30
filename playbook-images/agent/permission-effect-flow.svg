@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760">
+  <style>
+    text { font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+    .title { font-size: 25px; font-weight: 700; fill: #111827; }
+    .subtitle { font-size: 13px; fill: #6b7280; }
+    .label { font-size: 15px; font-weight: 600; fill: #111827; }
+    .small { font-size: 12px; fill: #6b7280; }
+    .tiny { font-size: 11px; fill: #6b7280; }
+  </style>
+  <defs>
+    <marker id="arrow-blue-pef" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#2563eb"/></marker>
+    <marker id="arrow-orange-pef" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#ea580c"/></marker>
+    <marker id="arrow-green-pef" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#059669"/></marker>
+    <marker id="arrow-gray-pef" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#6b7280"/></marker>
+  </defs>
+  <rect width="1200" height="760" fill="#ffffff"/>
+  <text x="60" y="55" class="title">从 Tool Call 到可确认的外部副作用</text>
+  <text x="60" y="80" class="subtitle">审批绑定参数，执行绑定逻辑操作，超时先确认外部状态</text>
+
+  <rect x="70" y="130" width="190" height="90" rx="11" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="165" y="165" text-anchor="middle" class="label">Proposed Tool Call</text>
+  <text x="165" y="191" text-anchor="middle" class="small">动作 + 目标 + 参数</text>
+
+  <polygon points="390,125 485,175 390,225 295,175" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5"/>
+  <text x="390" y="167" text-anchor="middle" class="label">Policy</text>
+  <text x="390" y="189" text-anchor="middle" class="small">风险与权限</text>
+
+  <rect x="555" y="115" width="220" height="120" rx="11" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5"/>
+  <text x="665" y="149" text-anchor="middle" class="label">WAITING_APPROVAL</text>
+  <text x="665" y="175" text-anchor="middle" class="small">审批人 · 参数摘要 · 有效期</text>
+  <text x="665" y="198" text-anchor="middle" class="small">Approve / Reject / Expire</text>
+  <text x="665" y="219" text-anchor="middle" class="tiny">Playbook 参考状态名</text>
+
+  <rect x="850" y="130" width="260" height="90" rx="11" fill="#f0fdfa" stroke="#99f6e4" stroke-width="1.5"/>
+  <text x="980" y="163" text-anchor="middle" class="label">Revalidate Before Execute</text>
+  <text x="980" y="189" text-anchor="middle" class="small">身份 · 参数摘要 · 前置条件</text>
+
+  <rect x="850" y="315" width="260" height="100" rx="11" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="980" y="350" text-anchor="middle" class="label">Executor</text>
+  <text x="980" y="376" text-anchor="middle" class="small">注入短期凭证与 Idempotency Key</text>
+  <text x="980" y="397" text-anchor="middle" class="tiny">模型不接触 Secret</text>
+
+  <rect x="850" y="510" width="260" height="105" rx="11" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="980" y="545" text-anchor="middle" class="label">External System</text>
+  <text x="980" y="571" text-anchor="middle" class="small">真实提交点与外部状态</text>
+  <text x="980" y="593" text-anchor="middle" class="tiny">返回 External Effect ID</text>
+
+  <rect x="455" y="505" width="270" height="115" rx="11" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="590" y="540" text-anchor="middle" class="label">External Effect Record</text>
+  <text x="590" y="566" text-anchor="middle" class="small">logical_operation_id</text>
+  <text x="590" y="588" text-anchor="middle" class="small">request_digest · effect_id · status</text>
+  <text x="590" y="608" text-anchor="middle" class="tiny">独立于模型 Summary 的审计事实</text>
+
+  <polygon points="255,500 350,560 255,620 160,560" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5"/>
+  <text x="255" y="550" text-anchor="middle" class="label">Result Known?</text>
+  <text x="255" y="574" text-anchor="middle" class="small">成功 / 失败 / 未知</text>
+
+  <rect x="80" y="655" width="350" height="62" rx="10" fill="#f9fafb" stroke="#d1d5db"/>
+  <text x="255" y="680" text-anchor="middle" class="label">Reconcile Before Retry</text>
+  <text x="255" y="701" text-anchor="middle" class="small">用原 Key 或 External ID 查询；仍未知则暂停</text>
+
+  <path d="M260 175 H280" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue-pef)"/>
+  <path d="M485 175 H540" fill="none" stroke="#ea580c" stroke-width="2" marker-end="url(#arrow-orange-pef)"/>
+  <text x="512" y="164" text-anchor="middle" class="tiny">需审批</text>
+  <path d="M775 175 H835" fill="none" stroke="#ea580c" stroke-width="2" marker-end="url(#arrow-orange-pef)"/>
+  <text x="805" y="164" text-anchor="middle" class="tiny">批准</text>
+  <path d="M390 225 V270 H980 V300" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green-pef)"/>
+  <text x="510" y="260" class="tiny">Policy 自动允许</text>
+  <path d="M980 220 V300" fill="none" stroke="#ea580c" stroke-width="2" marker-end="url(#arrow-orange-pef)"/>
+  <path d="M980 415 V495" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green-pef)"/>
+  <text x="994" y="458" class="tiny">提交</text>
+  <path d="M850 563 H740" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green-pef)"/>
+  <text x="792" y="552" text-anchor="middle" class="tiny">记录效果</text>
+  <path d="M455 563 H365" fill="none" stroke="#6b7280" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#arrow-gray-pef)"/>
+  <text x="410" y="552" text-anchor="middle" class="tiny">判断</text>
+  <path d="M255 620 V640" fill="none" stroke="#ea580c" stroke-width="2" marker-end="url(#arrow-orange-pef)"/>
+  <text x="271" y="637" class="tiny">未知</text>
+
+  <rect x="70" y="285" width="570" height="130" rx="12" fill="#f9fafb" stroke="#d1d5db" stroke-dasharray="7 5"/>
+  <text x="95" y="318" class="label">强制绑定关系</text>
+  <text x="100" y="348" class="small">Approval → tool_call_id + parameter_digest + policy_version</text>
+  <text x="100" y="374" class="small">Idempotency Key → logical_operation_id + normalized payload</text>
+  <text x="100" y="400" class="small">Effect Record → request digest + external_effect_id + final status</text>
+
+  <g transform="translate(720,690)">
+    <line x1="0" y1="0" x2="32" y2="0" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue-pef)"/><text x="42" y="4" class="tiny">动作请求</text>
+    <line x1="130" y1="0" x2="162" y2="0" stroke="#ea580c" stroke-width="2" marker-end="url(#arrow-orange-pef)"/><text x="172" y="4" class="tiny">控制与异常路径</text>
+    <line x1="315" y1="0" x2="347" y2="0" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green-pef)"/><text x="357" y="4" class="tiny">提交与确认</text>
+  </g>
+</svg>

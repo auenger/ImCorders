@@ -1,0 +1,302 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>实践：AILock-Step Feature Workflow | Harness Engineering 手册 Playbook</title><meta name="description" content="前面几节建立了规约的方法论框架：信息分层、三个维度、交叉验证、迭代循环。这些概念回答了&#34;为什么&#34;和&#34;是什么&#34;。这一节回答&#34;在真实项目里长什么样&#34;。"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="实践：AILock-Step Feature Workflow | Harness Engineering 手册 Playbook"><meta property="og:description" content="前面几节建立了规约的方法论框架：信息分层、三个维度、交叉验证、迭代循环。这些概念回答了&#34;为什么&#34;和&#34;是什么&#34;。这一节回答&#34;在真实项目里长什么样&#34;。"><meta property="og:url" content="https://imcoders.cn/playbook/harness/02d-case-study/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="实践：AILock-Step Feature Workflow | Harness Engineering 手册 Playbook"><meta name="twitter:description" content="前面几节建立了规约的方法论框架：信息分层、三个维度、交叉验证、迭代循环。这些概念回答了&#34;为什么&#34;和&#34;是什么&#34;。这一节回答&#34;在真实项目里长什么样&#34;。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="实践：AILock-Step Feature Workflow | Harness Engineering 手册 Playbook"><meta itemprop="description" content="前面几节建立了规约的方法论框架：信息分层、三个维度、交叉验证、迭代循环。这些概念回答了&#34;为什么&#34;和&#34;是什么&#34;。这一节回答&#34;在真实项目里长什么样&#34;。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "实践：AILock-Step Feature Workflow | Harness Engineering 手册 Playbook";
+const shareDesc = "前面几节建立了规约的方法论框架：信息分层、三个维度、交叉验证、迭代循环。这些概念回答了\"为什么\"和\"是什么\"。这一节回答\"在真实项目里长什么样\"。";
+const shareLink = "https://imcoders.cn/playbook/harness/02d-case-study/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.C-FedgiN.css"><script type="module" src="/_astro/hoisted.BfDpThc8.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook" aria-current="page">Playbook</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main>  <div class="reading-progress" aria-hidden="true" data-astro-cid-jojupagh></div> <div class="reader" data-astro-cid-jojupagh> <header class="reader-bar" data-astro-cid-jojupagh> <a class="reader-home" href="/playbook/harness" data-astro-cid-jojupagh>HARNESS ENGINEERING <span data-astro-cid-jojupagh>PLAYBOOK</span></a> <span class="reader-meta" data-astro-cid-jojupagh>6 / 33</span> </header> <div class="mobile-index" data-astro-cid-jojupagh> <details data-astro-cid-jojupagh> <summary data-astro-cid-jojupagh>打开全书目录</summary> <div class="mobile-index-body" data-astro-cid-jojupagh> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>导读</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/about" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>Harness Engineering 手册：百倍生产力的可靠软件交付</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/00-introduction" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>引言：为什么需要 Harness Engineering</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>卷一：可靠的 Agent 编程（1→10x）</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/02a-intent-alignment" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>意图对齐：Vibe Coding 为什么失败</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/02b-structured-intent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>用结构传达意图：分层与维度</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/02c-iterative-spec" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>迭代出一份可执行的规约</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/02d-case-study" class="is-current" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>实践：AILock-Step Feature Workflow</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/03-verification" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>验证：确保代码忠实于规约</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/03a-test-first" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>测试基建前置：把规约变成可执行约束</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/03b-code-review" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Code Review：补位测试覆盖不到的意图漂移</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/03c-practice" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>实践：AILock-Step 的验证链路</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/evolution-v1" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>演进：规约与验证的持续迭代</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/v1-conclusion" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>卷一回顾：从闭环到演进</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>卷二：规模化 Agent 开发（10→100x）</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/04-spec-distributed" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>规约：让意图能被并行分发</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/04a-artifact-role" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>规约规模转变：人类脱离循环</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/04b-artifact-principle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>设计原则：自包含</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/04c-cocreation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>产出方式：可判定决策驱动</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/04d-case-study" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>实践：博客系统审核队列</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05-verification-defense" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>验证：当人不再能兜底</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05a-verification-to-mechanism" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>验证责任转移</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05b-drift-locations" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>大规模验证的锚点</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05c-three-layers" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>三层机制：硬门禁、软门禁、集成验证</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05d-case-study" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>实践：博客审核队列的验证链路</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/evolution-v2" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>演进：harness 必然演化</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/v2-conclusion" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>卷二回顾：迭代的harness系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>卷三：治理百倍速的组织</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/06-hybrid-team" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>组织重构：当 Agent 改变了协作的前提</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/06a-why-old-structure-fails" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>为什么旧结构失效了</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/06b-bottleneck-shift" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>瓶颈转移：从代码到组织</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/06c-process-speed" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>让流程匹配 Agent 速度</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/07-role-redefinition" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>角色重定义：从执行者到治理者</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/07a-new-roles" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>围绕治理重新设计角色</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/07b-coordination" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>30</span> <span data-astro-cid-jojupagh>用机制替代人际协调</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/evolution-v3" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>31</span> <span data-astro-cid-jojupagh>演进：组织资产与新护城河</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>附录</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/contributors" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>32</span> <span data-astro-cid-jojupagh>贡献者</span> </a> </li> </ol> </section> </div> </details> </div> <div class="reader-grid" data-astro-cid-jojupagh> <aside class="book-index" aria-label="全书目录" data-astro-cid-jojupagh> <h2 class="index-title" data-astro-cid-jojupagh>全书目录</h2> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>导读</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/about" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>Harness Engineering 手册：百倍生产力的可靠软件交付</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/00-introduction" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>引言：为什么需要 Harness Engineering</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>卷一：可靠的 Agent 编程（1→10x）</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/02a-intent-alignment" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>意图对齐：Vibe Coding 为什么失败</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/02b-structured-intent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>用结构传达意图：分层与维度</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/02c-iterative-spec" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>迭代出一份可执行的规约</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/02d-case-study" class="is-current" aria-current="page" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>实践：AILock-Step Feature Workflow</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/03-verification" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>验证：确保代码忠实于规约</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/03a-test-first" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>测试基建前置：把规约变成可执行约束</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/03b-code-review" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Code Review：补位测试覆盖不到的意图漂移</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/03c-practice" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>实践：AILock-Step 的验证链路</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/evolution-v1" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>演进：规约与验证的持续迭代</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/v1-conclusion" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>卷一回顾：从闭环到演进</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>卷二：规模化 Agent 开发（10→100x）</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/04-spec-distributed" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>规约：让意图能被并行分发</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/04a-artifact-role" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>规约规模转变：人类脱离循环</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/04b-artifact-principle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>设计原则：自包含</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/04c-cocreation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>产出方式：可判定决策驱动</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/04d-case-study" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>实践：博客系统审核队列</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05-verification-defense" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>验证：当人不再能兜底</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05a-verification-to-mechanism" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>验证责任转移</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05b-drift-locations" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>大规模验证的锚点</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05c-three-layers" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>三层机制：硬门禁、软门禁、集成验证</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05d-case-study" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>实践：博客审核队列的验证链路</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/evolution-v2" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>演进：harness 必然演化</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/v2-conclusion" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>卷二回顾：迭代的harness系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>卷三：治理百倍速的组织</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/06-hybrid-team" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>组织重构：当 Agent 改变了协作的前提</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/06a-why-old-structure-fails" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>为什么旧结构失效了</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/06b-bottleneck-shift" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>瓶颈转移：从代码到组织</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/06c-process-speed" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>让流程匹配 Agent 速度</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/07-role-redefinition" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>角色重定义：从执行者到治理者</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/07a-new-roles" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>围绕治理重新设计角色</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/07b-coordination" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>30</span> <span data-astro-cid-jojupagh>用机制替代人际协调</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/evolution-v3" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>31</span> <span data-astro-cid-jojupagh>演进：组织资产与新护城河</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>附录</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/contributors" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>32</span> <span data-astro-cid-jojupagh>贡献者</span> </a> </li> </ol> </section> </aside> <section class="chapter-main" data-astro-cid-jojupagh> <header class="chapter-header" data-astro-cid-jojupagh> <div class="chapter-label" data-astro-cid-jojupagh>02D / 卷一：可靠的 Agent 编程（1→10x）</div> <h1 data-astro-cid-jojupagh>实践：AILock-Step Feature Workflow</h1> <p class="chapter-description" data-astro-cid-jojupagh>前面几节建立了规约的方法论框架：信息分层、三个维度、交叉验证、迭代循环。这些概念回答了&quot;为什么&quot;和&quot;是什么&quot;。这一节回答&quot;在真实项目里长什么样&quot;。</p> <p class="chapter-updated" data-astro-cid-jojupagh>更新于 2026/7/10</p> <p class="chapter-source" data-astro-cid-jojupagh>内容来源：<a href="https://github.com/Agents-Zone/harness-engineering-playbook/blob/46a94234f8840f148e3c0ce9465be6ad10ca6065/zh/chapters/02d-case-study.md" target="_blank" rel="noopener noreferrer" data-astro-cid-jojupagh>Agents-Zone/harness-engineering-playbook ↗</a></p> </header> <article class="chapter-content" data-astro-cid-jojupagh> <p>前面几节建立了规约的方法论框架：信息分层、三个维度、交叉验证、迭代循环。这些概念回答了”为什么”和”是什么”。这一节回答”在真实项目里长什么样”。</p>
+<p>先看一个社区成员开发的工作流框架 <a href="/blog/feature-workflow">AILock-Step Feature Workflow</a>，展示 principle 怎么变成具体的文档结构和流程。然后用一个在 RuoYi-Vue 项目上跑通的 OKR 系统需求，展示这些结构和流程在实际运行时产出了什么。前者是空壳，后者是填充。</p>
+<h2 id="框架设计principle-怎么变成工具">框架设计：Principle 怎么变成工具</h2>
+<p>AILock-Step Feature Workflow 是一个基于 Claude Code 的文档驱动开发框架，用 skill（slash command）编排 feature 的完整生命周期。它在一个 AI agent 平台项目上跑过 40 多个 feature，完整源码在 GitHub 上公开。</p>
+<p>这里展示的是一个实现方案。值得关注的是 principle 在具体系统中怎么变成可操作的设计决策，而具体的目录结构和配置格式可以根据项目需要调整。</p>
+<h3 id="分层原则的落地">分层原则的落地</h3>
+<p>前面讲了信息有四个层级（vision、架构、feature、task），应该用不同的文档承载、按不同的策略加载。AILock-Step 用三类文档实现了这个分层。</p>
+<p>CLAUDE.md 承载跨层的强制约束。这是 Claude Code 每次启动时自动加载的文件。内容是整个项目生命周期内都不太变的硬性规则。在 RuoYi-Vue 项目中，这份文件包含了项目架构概述（模块依赖关系、启动入口、默认端口）、后端关键约定（Controller 标准写法、权限注解模式、操作日志注解）、前端约定（API 请求封装、路由加载方式、权限指令）和数据库规范（逻辑删除字段、树形结构字段）。这些约束不属于某一个 feature，它们横跨所有任务，每次都需要加载。</p>
+<p>project-context.md 承载高层信息，对应 vision 层和架构层。同样以 RuoYi-Vue 项目为例，这份文件的实际内容是：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Technology Stack</span></span>
+<span class="line"><span>  | Layer      | Technology    | Version |</span></span>
+<span class="line"><span>  | Runtime    | JDK           | 17      |</span></span>
+<span class="line"><span>  | Backend    | Spring Boot   | 4.0.3   |</span></span>
+<span class="line"><span>  | ORM        | MyBatis       | 4.0.1   |</span></span>
+<span class="line"><span>  | Auth       | Spring Security + JWT | - |</span></span>
+<span class="line"><span>  | Cache      | Redis         | -       |</span></span>
+<span class="line"><span>  | DB         | MySQL         | -       |</span></span>
+<span class="line"><span>  | Frontend   | Vue 2         | 2.6.12  |</span></span>
+<span class="line"><span>  | UI Library | Element UI    | 2.15.14 |</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Directory Structure</span></span>
+<span class="line"><span>  ruoyi-admin/          # 启动模块 (Controller 层)</span></span>
+<span class="line"><span>  ruoyi-framework/      # 框架核心 (Security, JWT, 全局配置)</span></span>
+<span class="line"><span>  ruoyi-system/         # 系统业务 (Service + Mapper)</span></span>
+<span class="line"><span>  ruoyi-common/         # 公共模块 (工具类, 基类, 注解)</span></span>
+<span class="line"><span>  ruoyi-ui/             # 前端 Vue 2 项目</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Code Patterns</span></span>
+<span class="line"><span>  Controller: XxxController extends BaseController, @RestController</span></span>
+<span class="line"><span>  Service: IXxxService (接口) → XxxServiceImpl (实现)</span></span>
+<span class="line"><span>  Permission: @PreAuthorize("@ss.hasPermi('module:entity:action')")</span></span>
+<span class="line"><span>  Response: AjaxResult {code, msg, data} / TableDataInfo {total, rows}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Critical Rules</span></span>
+<span class="line"><span>  - 新增业务在 ruoyi-system 添加 Service/Mapper，Controller 放 ruoyi-admin</span></span>
+<span class="line"><span>  - 实体类继承 BaseEntity 获得审计字段</span></span>
+<span class="line"><span>  - 所有 Controller 接口需配置权限注解</span></span>
+<span class="line"><span>  - 分页使用 startPage() + getDataTable()</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>这份文档限制在 200 行以内。项目上下文每次都被加载到 Agent 的 context 里，太长会挤压留给 spec 和代码的空间。200 行足够放索引级别的内容：技术栈、目录结构、关键规则、代码模式。实现细节留给具体的 feature 文档。</p>
+<p>每次完成一个 feature，如果引入了新的技术栈组件、新的代码模式或新的目录结构，project-context.md 会增量更新。</p>
+<p>每个 feature 有自己独立的三份文档：spec.md、task.md、checklist.md。这对应 feature 层和 task 层，只在 Agent 执行该 feature 时才被加载，完成后归档。</p>
+<p>加载策略：CLAUDE.md 和 project-context.md 每次都加载，feature 文档只在执行对应 feature 时加载。加载不相关 feature 的文档只会制造噪声。</p>
+<h3 id="spec-模板交叉验证和拆分">Spec 模板、交叉验证和拆分</h3>
+<p>每个 feature 的 spec.md 模板把三个维度转化成具体字段：意图维度对应”需求描述""用户价值点""用户故事”三个字段，验收维度对应 Gherkin 场景（每个价值点至少一个正常路径和一个异常路径），约束维度对应”上下文分析”字段（参考代码、相关文档、历史需求）。后面的 OKR 案例会展示这些字段被填入什么内容。</p>
+<p>三份文档（spec、task list、checklist）构成交叉验证体系。Spec 是第一次理解（需求到方案），task list 是第二次（方案到步骤），checklist 是第三次（步骤反推验收标准）。当需求的用户价值点超过三个，系统建议按用户价值拆分，每个子 feature 有自己的三份文档，进入同样的迭代循环。</p>
+<p>这些是空壳。下面看一个真实需求跑过这套体系后产出了什么。</p>
+<h2 id="一个需求的完整-walkthroughokr-系统">一个需求的完整 Walkthrough：OKR 系统</h2>
+<p>这个案例来自社区成员在 RuoYi-Vue 项目上的实践。输入是一句话的需求，产出是一份经过两轮迭代修正的产品规格书，最终驱动生成了 12 个后端文件、4 个前端文件，通过了 26/28 项合规检查和 7 个 E2E 测试。</p>
+<p>一个重要的说明：这个案例用一句话作为输入，是因为它是一个边界清晰、规模可控的 demo 级需求。在正式的产品开发中，输入应该是经过产品流程（vision → user journey → 需求拆分）之后的结构化需求。一句话能跑通，是因为 OKR 系统的业务逻辑足够简单，Agent 能从一句话中推导出大部分决策。复杂的业务需求不具备这个条件，缺少上游的产品工作直接给 Agent 一句话，结果大概率会偏。</p>
+<h3 id="输入">输入</h3>
+<p>需求：“实现一个OKR系统，支持按季度配置每个员工的O和KR。“</p>
+<h3 id="agent-展开">Agent 展开</h3>
+<p>Agent 从这句话中识别出三个核心 feature：目标管理（Objective Management）、关键结果管理（Key Result Management）、OKR 季度总览（Quarter Overview）。每个 feature 有独立的 user story 和 acceptance criteria。以下是 Agent 生成的 spec 中”目标管理”这个 feature 的实际内容：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#79B8FF;font-weight:bold">### Feature: 目标管理 (Objective Management)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">**User Story**</span><span style="color:#E1E4E8">: As a 管理员, I want to 为员工创建季度目标</span></span>
+<span class="line"><span style="color:#E1E4E8">  so that 团队可以明确每个人的工作方向。</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">**Acceptance Criteria**</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> [ ] 新增目标时，必须选择员工、季度和填写目标标题</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> [ ] 目标列表支持按季度和员工姓名筛选</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> [ ] 可以编辑目标的标题、状态</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> [ ] 删除目标时，同时删除该目标下所有关键结果</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> [ ] 目标列表中展示每个目标关联的KR数量</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">**Key Rules**</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 同一员工在同一季度下可以创建多个目标，无数量上限</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 目标标题最大长度200字符</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 季度下拉选项范围：从上一年Q1到下一年Q4，默认选中当前季度</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> 新建目标的默认状态为"未开始(0)"</span></span>
+<span class="line"></span></code></pre>
+<p>注意这份 spec 的几个特征。User story 用标准的”As a / I want to / so that”格式，锁定了谁、要什么、为什么。Acceptance criteria 的每一条都是一个可检查的条件，有明确的 pass/fail 判断标准。Key rules 定义了具体的业务约束（数量限制、字符限制、默认值）。这三个部分分别对应前面讲的意图、验收、约束三个维度。</p>
+<p>Agent 生成 spec 时做的第一步是锁定术语。它在 spec 开头放了一张术语表：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#E1E4E8">| Term | Definition |</span></span>
+<span class="line"><span style="color:#E1E4E8">|------|-----------|</span></span>
+<span class="line"><span style="color:#E1E4E8">| Objective (O/目标) | 一个季度内某员工需要达成的定性目标 |</span></span>
+<span class="line"><span style="color:#E1E4E8">| Key Result (KR/关键结果) | 衡量目标达成程度的量化指标 |</span></span>
+<span class="line"><span style="color:#E1E4E8">| 季度 (Quarter) | 格式为 YYYY-QN，例如 2026-Q2 |</span></span>
+<span class="line"><span style="color:#E1E4E8">| 完成率 | 单个KR的完成百分比，取值范围0~100，手动填写的整数值 |</span></span>
+<span class="line"><span style="color:#E1E4E8">| 目标状态 | 生命周期状态：未开始(0)、进行中(1)、已完成(2) |</span></span>
+<span class="line"></span></code></pre>
+<p>“完成率”被定义为”手动填写的整数值”。如果不锁定这个定义，后续实现中 Agent 可能在不同地方做不同的假设：完成率是自动计算的还是手动填的？是百分比还是小数？是实时更新的还是定期快照？术语表在 spec 最前面出现，确保后面所有字段和场景用的是同一套语言。</p>
+<p>Agent 还为核心操作生成了用户流程（User Flow），把验收维度从”条件列表”扩展为”操作序列”：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#79B8FF;font-weight:bold">### 创建OKR流程</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">**Trigger**</span><span style="color:#E1E4E8">: 管理员进入目标管理页面，点击"新增"按钮</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">**Steps**</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#FFAB70">1.</span><span style="color:#E1E4E8"> 系统弹出新增目标对话框（员工下拉、季度下拉、目标标题输入）</span></span>
+<span class="line"><span style="color:#FFAB70">2.</span><span style="color:#E1E4E8"> 管理员填写信息，点击"确定"</span></span>
+<span class="line"><span style="color:#FFAB70">3.</span><span style="color:#E1E4E8"> 系统创建目标记录，提示"新增成功"</span></span>
+<span class="line"><span style="color:#FFAB70">4.</span><span style="color:#E1E4E8"> 管理员在目标列表中点击操作列的"新增KR"按钮</span></span>
+<span class="line"><span style="color:#FFAB70">5.</span><span style="color:#E1E4E8"> 系统弹出新增KR对话框（KR标题、目标值）</span></span>
+<span class="line"><span style="color:#FFAB70">6.</span><span style="color:#E1E4E8"> 管理员填写KR信息，点击"确定"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">**End State**</span><span style="color:#E1E4E8">: 目标列表中显示新目标，该目标下有一条KR记录</span></span>
+<span class="line"></span></code></pre>
+<p>约束维度方面，Agent 生成了 API Contract 表，界定前后端的通信边界：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#E1E4E8">| Endpoint | Method | URL | Parameters |</span></span>
+<span class="line"><span style="color:#E1E4E8">|----------|--------|-----|-----------|</span></span>
+<span class="line"><span style="color:#E1E4E8">| 目标列表 | GET | /system/okrObjective/list | quarter, employeeName |</span></span>
+<span class="line"><span style="color:#E1E4E8">| 新增目标 | POST | /system/okrObjective | Body: domain object |</span></span>
+<span class="line"><span style="color:#E1E4E8">| 修改目标 | PUT | /system/okrObjective | Body: domain object |</span></span>
+<span class="line"><span style="color:#E1E4E8">| 删除目标 | DELETE | /system/okrObjective/{ids} | — |</span></span>
+<span class="line"><span style="color:#E1E4E8">| KR列表 | GET | /system/okrKeyresult/list | objectiveId (required) |</span></span>
+<span class="line"><span style="color:#E1E4E8">| 季度总览 | GET | /system/okrObjective/overview | quarter (required) |</span></span>
+<span class="line"></span></code></pre>
+<p>Agent 还生成了 Out of Scope 列表，明确排除了 8 项功能（员工自助录入、OKR 评分考核、目标对齐、历史追踪、导出、通知、多部门视图、权限细分），每项标注了排除理由。以及 5 条编号的业务规则：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>#</th><th>Rule</th><th>Condition</th><th>Outcome</th></tr></thead><tbody><tr><td>BR-001</td><td>级联删除</td><td>删除一个目标时</td><td>该目标下所有KR同步删除</td></tr><tr><td>BR-002</td><td>KR数量限制</td><td>目标下已有5个KR时</td><td>新增KR按钮禁用</td></tr><tr><td>BR-003</td><td>完成率范围</td><td>填写完成率时</td><td>只接受0~100的整数</td></tr><tr><td>BR-004</td><td>默认季度</td><td>打开新增目标或总览页面时</td><td>默认选中当前季度</td></tr><tr><td>BR-005</td><td>总览只读</td><td>在OKR季度总览页面</td><td>所有数据仅展示</td></tr></tbody></table>
+<p>从一句话到这份 spec，信息量增加了大约 50 倍。但新增的信息是从那一句话中推导出来的决策，每个字段都在回答一个如果不回答就会在实现阶段产生歧义的问题。这些问题在一句话的需求里全部是隐含的。Agent 的工作是把它们显式化。</p>
+<h3 id="迭代两轮-review">迭代：两轮 Review</h3>
+<p>第一版 spec 有 5 个问题：1 个 Critical、2 个 Major、2 个 Minor。</p>
+<p>以下是第一轮 review 发现的 Critical 问题和决策记录的实际内容：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#79B8FF;font-weight:bold">#### Decision 1: CRUD API endpoints completely unspecified</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8;font-weight:bold"> **严重度**</span><span style="color:#E1E4E8">: Critical</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8;font-weight:bold"> **问题**</span><span style="color:#E1E4E8">: Spec 描述了三个 feature 的行为，但没有给出任何 API 契约</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8;font-weight:bold"> **选项**</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> A) 添加完整的 API 定义（含 request/response schema）</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> B) 只列端点 URL 和 HTTP 方法，实现遵循 RuoYi BaseController 标准</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8;font-weight:bold"> **决策**</span><span style="color:#E1E4E8">: B</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8;font-weight:bold"> **理由**</span><span style="color:#E1E4E8">: 基于最小复杂度原则，RuoYi 的 CRUD 模式高度标准化</span></span>
+<span class="line"></span></code></pre>
+<p>如果直接交给编码 Agent 而不定义 API 契约，它会自己编造路径和参数格式，前端调用后端的时候对不上。这个项目的决策原则按优先级排列为：最小复杂度 > Demo 可演示性 > 原始意图 > 一致性。大部分决策都落在”最小复杂度”上。</p>
+<p>第一轮另外两个 Major 问题的决策记录：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#79B8FF;font-weight:bold">#### Decision 2: KR management UI location is ambiguous</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8;font-weight:bold"> **严重度**</span><span style="color:#E1E4E8">: Major</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8;font-weight:bold"> **选项**</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> A) 展开行：每个目标行有可展开的子表格显示 KR</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> B) 详情页：点击目标行跳转到独立页面</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8;font-weight:bold"> **决策**</span><span style="color:#E1E4E8">: A（展开行）</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8;font-weight:bold"> **理由**</span><span style="color:#E1E4E8">: 基于最小复杂度，展开行不需要新增路由页面；</span></span>
+<span class="line"><span style="color:#E1E4E8">          基于 Demo 可演示性，同一页面内完成操作更紧凑直观</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">#### Decision 3: Objective status has no transition rules</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8;font-weight:bold"> **严重度**</span><span style="color:#E1E4E8">: Major</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8;font-weight:bold"> **选项**</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> A) 自由编辑：状态是简单的下拉选择</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> B) 自动派生：状态根据 KR 完成率自动计算</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8;font-weight:bold"> **决策**</span><span style="color:#E1E4E8">: A（自由编辑）</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8;font-weight:bold"> **理由**</span><span style="color:#E1E4E8">: 基于最小复杂度，自由下拉不需要实现状态机逻辑</span></span>
+<span class="line"></span></code></pre>
+<p>第二轮 review 发现了 4 个问题（0 个 Critical、2 个 Major、2 个 Minor）。问题的严重度在下降，说明 spec 在收敛。第二轮的 Major 问题是：“员工”跟 RuoYi 系统里的 sys_user 是什么关系（决策：直接复用 sys_user，存 user_id 做 FK，join 查询 nick_name），以及”新增KR”按钮应该放在目标行的操作列里始终可见还是放在展开行内部（决策：操作列，始终可见，操作路径更短）。</p>
+<p>这 9 个决策中的每一个，如果不在 spec 阶段做出，就会在编码阶段由 Agent 自己做。Agent 的决策可能是合理的，也可能不是。关键问题是：你不知道它做了什么决策，直到你看到代码。在 spec 阶段做一个决策的成本是改一行文字。在代码阶段发现决策不对的成本是改几十行代码加重新测试。</p>
+<p>回顾整个链路，人在两轮 review 中对 9 个问题做产品决策，每个决策花几分钟看选项、选一个、确认，总共大概半小时。后面的代码生成、合规检查、E2E 测试，人没有介入。这就是前面讲的分工在实践中的样子：人做意图对齐的判断，Agent 做一致性检查和执行。</p>
+<h3 id="从-spec-到实现">从 Spec 到实现</h3>
+<p>Spec 收敛后进入实现。Agent 根据 spec 创建了 2 张数据库表（biz_okr_objective 和 biz_okr_key_result）、12 个后端文件（domain、mapper、service、controller 各两套，加上 XML 映射文件）、4 个前端文件（API 封装和页面组件）和 1 个 SQL 迁移脚本。</p>
+<p>实现完成后，合规检查逐项对照 spec 验证。以下是合规报告的摘要：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#79B8FF;font-weight:bold">## Acceptance Criteria (13/13 PASS)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">| # | Criterion | Status |</span></span>
+<span class="line"><span style="color:#E1E4E8">|---|-----------|--------|</span></span>
+<span class="line"><span style="color:#E1E4E8">| AC-1 | 新增目标时，必须选择员工、季度和填写目标标题 | PASS |</span></span>
+<span class="line"><span style="color:#E1E4E8">| AC-2 | 目标列表支持按季度和员工姓名筛选 | PASS |</span></span>
+<span class="line"><span style="color:#E1E4E8">| AC-3 | 可以编辑目标的标题、状态 | PASS |</span></span>
+<span class="line"><span style="color:#E1E4E8">| AC-4 | 删除目标时，同时删除该目标下所有关键结果 | PASS |</span></span>
+<span class="line"><span style="color:#E1E4E8">| AC-5 | 目标列表中展示每个目标关联的KR数量 | PASS |</span></span>
+<span class="line"><span style="color:#E1E4E8">| ... | （其余 8 条 AC 全部 PASS） | PASS |</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF;font-weight:bold">## Business Rules (5/5 PASS)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">| # | Rule | Status | Notes |</span></span>
+<span class="line"><span style="color:#E1E4E8">|---|------|--------|-------|</span></span>
+<span class="line"><span style="color:#E1E4E8">| BR-001 | 级联删除 | PASS | @Transactional cascade delete |</span></span>
+<span class="line"><span style="color:#E1E4E8">| BR-002 | KR数量限制(max 5) | PASS | Fixed: backend ServiceException + frontend warning |</span></span>
+<span class="line"><span style="color:#E1E4E8">| BR-003 | 完成率范围0~100 | PASS | el-input-number enforces |</span></span>
+<span class="line"><span style="color:#E1E4E8">| BR-004 | 默认季度 | PASS | Fixed: handleAdd() sets form.quarter=currentQuarter |</span></span>
+<span class="line"><span style="color:#E1E4E8">| BR-005 | 总览只读 | PASS | No edit buttons on overview |</span></span>
+<span class="line"></span></code></pre>
+<p>注意 BR-002 和 BR-004 的 Notes 列有”Fixed”标记。这意味着第一次合规检查时这两条没有通过，修复后才变成 PASS。BR-002 的问题是 KR 数量限制只有前端的 Element UI 提示，缺少后端的 ServiceException 校验。如果绕过前端直接调 API，就能突破 5 个的限制。BR-004 的问题是新增目标时季度下拉框没有自动选中当前季度。</p>
+<p>这类问题的模式很有代表性：spec 写对了，但代码没跟上。Agent 在实现时遗漏了 spec 中某条规则的全部含义。合规检查的价值在于它用 spec 作为标准，逐条比对实现，把这类遗漏在交付前暴露出来。</p>
+<p>7 个 E2E 测试全部通过，覆盖了从新增目标到删除目标的完整用户流程。以下是其中两个测试的代码片段：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#B392F0">test</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'01: 新增目标'</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">async</span><span style="color:#E1E4E8"> ({ </span><span style="color:#FFAB70">page</span><span style="color:#E1E4E8"> }) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  await</span><span style="color:#B392F0"> navigateTo</span><span style="color:#E1E4E8">(page, </span><span style="color:#9ECBFF">'OKR管理'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'目标管理'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">  await</span><span style="color:#E1E4E8"> page.</span><span style="color:#B392F0">locator</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'button:has-text("新增")'</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">click</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">  await</span><span style="color:#B392F0"> waitForDialog</span><span style="color:#E1E4E8">(page);</span></span>
+<span class="line"><span style="color:#6A737D">  // 选择员工</span></span>
+<span class="line"><span style="color:#F97583">  await</span><span style="color:#E1E4E8"> page.</span><span style="color:#B392F0">locator</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'.el-dialog__body input[placeholder="请选择员工"]'</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">click</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">  await</span><span style="color:#E1E4E8"> page.</span><span style="color:#B392F0">locator</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'.el-select-dropdown:visible .el-select-dropdown__item'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">first</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">click</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#6A737D">  // 验证季度默认值（对应 BR-004）</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> quarterInput</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> page.</span><span style="color:#B392F0">locator</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'.el-dialog__body input[placeholder="请选择季度"]'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">  await</span><span style="color:#B392F0"> expect</span><span style="color:#E1E4E8">(quarterInput).</span><span style="color:#B392F0">toHaveValue</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">getCurrentQuarter</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#6A737D">  // 填写标题并提交</span></span>
+<span class="line"><span style="color:#F97583">  await</span><span style="color:#E1E4E8"> page.</span><span style="color:#B392F0">locator</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'.el-dialog__body input[placeholder="请输入目标标题"]'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">fill</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'提升客户满意度'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">  await</span><span style="color:#E1E4E8"> page.</span><span style="color:#B392F0">locator</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'.el-dialog__footer:visible button:has-text("确 定")'</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">click</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">  await</span><span style="color:#B392F0"> expect</span><span style="color:#E1E4E8">(page.</span><span style="color:#B392F0">locator</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'.el-message--success'</span><span style="color:#E1E4E8">)).</span><span style="color:#B392F0">toBeVisible</span><span style="color:#E1E4E8">({ timeout: </span><span style="color:#79B8FF">5000</span><span style="color:#E1E4E8"> });</span></span>
+<span class="line"><span style="color:#F97583">  await</span><span style="color:#B392F0"> expect</span><span style="color:#E1E4E8">(page.</span><span style="color:#B392F0">locator</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'.el-table__body-wrapper'</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">toContainText</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'提升客户满意度'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">test</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'07: 删除目标(级联删除)'</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">async</span><span style="color:#E1E4E8"> ({ </span><span style="color:#FFAB70">page</span><span style="color:#E1E4E8"> }) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">  // 对应 BR-001：删除目标时同步删除所有 KR</span></span>
+<span class="line"><span style="color:#F97583">  await</span><span style="color:#B392F0"> navigateTo</span><span style="color:#E1E4E8">(page, </span><span style="color:#9ECBFF">'OKR管理'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'目标管理'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">  await</span><span style="color:#E1E4E8"> page.</span><span style="color:#B392F0">locator</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'.el-table__body-wrapper tbody tr'</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">first</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    .</span><span style="color:#B392F0">locator</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'button:has-text("删除")'</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">click</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">  await</span><span style="color:#E1E4E8"> page.</span><span style="color:#B392F0">locator</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'.el-message-box__btns button:has-text("确定")'</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">click</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">  await</span><span style="color:#B392F0"> expect</span><span style="color:#E1E4E8">(page.</span><span style="color:#B392F0">locator</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'.el-message--success'</span><span style="color:#E1E4E8">)).</span><span style="color:#B392F0">toBeVisible</span><span style="color:#E1E4E8">({ timeout: </span><span style="color:#79B8FF">5000</span><span style="color:#E1E4E8"> });</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> rows</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> page.</span><span style="color:#B392F0">locator</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'.el-table__body-wrapper tbody tr'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">  await</span><span style="color:#B392F0"> expect</span><span style="color:#E1E4E8">(rows).</span><span style="color:#B392F0">toHaveCount</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span></code></pre>
+<p>这些测试直接对应 spec 的 acceptance criteria 和 business rules。测试 01 验证了 AC-1（新增目标的必填字段）和 BR-004（默认季度）。测试 07 验证了 BR-001（级联删除）。测试怎么设计、怎么防止 Agent 自己出题自己答，这些属于验证的话题，下一章展开。</p>
+<h2 id="本章小结">本章小结</h2>
+<p>规约的本质是意图对齐。Vibe coding 的失败源于意图活在对话里，而对话是一个会膨胀、会矛盾、会丢失内容的载体。Agent 有限的 context 和不均匀的注意力，让意图对齐从一个沟通问题变成了一个工程问题。</p>
+<p>这个工程问题的解法建立在两个基础上。信息天然有层级，不同层级的演进速度和适用范围不同，你需要用结构化的方式把它们拆分到不同的文档里，高层持久加载，任务层按需加载。在每一层，你用三个维度（意图、验收、约束）表达清楚，其中验收维度的核心作用是检测当前层跟上层的对齐有没有丢失。</p>
+<p>Spec 是迭代出来的。你写意图，Agent 展开，交叉验证暴露问题，你修正或拆分，再验证，直到收敛。在这个循环里，只有人能判断意图是否对齐，因为意图只存在于人脑子里。循环该跑多重取决于做错了返工的代价有多大。</p>
+<p>OKR 系统的案例展示了这条链路的实际运行：一句话需求经过结构化展开和两轮迭代修正，变成了一份覆盖三个维度的可执行 spec。在这个过程中，人的投入集中在 spec review 阶段的产品决策，后面的实现和验证由 Agent 完成。</p>
+<p>规约解决的是”做什么”的问题。但这个案例里的合规检查暴露了一个事实：做对了 spec 不等于做对了代码。Spec 写了”默认选中当前季度”，代码里没实现。Spec 写了”最多 5 个 KR”，后端校验漏掉了。怎么系统化地验证 Agent 的产出跟 spec 一致，下一章展开。</p> </article> <nav class="chapter-nav" aria-label="章节导航" data-astro-cid-jojupagh> <a href="/playbook/harness/02c-iterative-spec" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>← 上一章</span> <strong data-astro-cid-jojupagh>迭代出一份可执行的规约</strong> </a> <a class="next" href="/playbook/harness/03-verification" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>下一章 →</span> <strong data-astro-cid-jojupagh>验证：确保代码忠实于规约</strong> </a> </nav> </section> <aside class="page-index" aria-label="本章目录" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>本章目录</h2> <nav data-astro-cid-jojupagh> <a href="#框架设计principle-怎么变成工具" data-heading="框架设计principle-怎么变成工具" data-depth="2" data-astro-cid-jojupagh>框架设计：Principle 怎么变成工具</a><a href="#分层原则的落地" data-heading="分层原则的落地" data-depth="3" data-astro-cid-jojupagh>分层原则的落地</a><a href="#spec-模板交叉验证和拆分" data-heading="spec-模板交叉验证和拆分" data-depth="3" data-astro-cid-jojupagh>Spec 模板、交叉验证和拆分</a><a href="#一个需求的完整-walkthroughokr-系统" data-heading="一个需求的完整-walkthroughokr-系统" data-depth="2" data-astro-cid-jojupagh>一个需求的完整 Walkthrough：OKR 系统</a><a href="#输入" data-heading="输入" data-depth="3" data-astro-cid-jojupagh>输入</a><a href="#agent-展开" data-heading="agent-展开" data-depth="3" data-astro-cid-jojupagh>Agent 展开</a><a href="#迭代两轮-review" data-heading="迭代两轮-review" data-depth="3" data-astro-cid-jojupagh>迭代：两轮 Review</a><a href="#从-spec-到实现" data-heading="从-spec-到实现" data-depth="3" data-astro-cid-jojupagh>从 Spec 到实现</a><a href="#本章小结" data-heading="本章小结" data-depth="2" data-astro-cid-jojupagh>本章小结</a> </nav> </aside> </div> </div> <div class="selection-share" data-selection-share data-content-selector=".chapter-content" data-title="实践：AILock-Step Feature Workflow" data-author="Harness Engineering 手册 / IMCODERS" data-section="HARNESS ENGINEERING PLAYBOOK" data-url="https://imcoders.cn/playbook/harness/02d-case-study/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>    </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

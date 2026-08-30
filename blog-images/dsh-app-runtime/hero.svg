@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-labelledby="title desc">
+  <title id="title">不重写 App，外挂 Agent Runtime</title>
+  <desc id="desc">DeepSeek Harness 通过 Plugin 获得 Chat2DB 授权能力，Chat2DB 保留业务权限与治理。</desc>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#27303a" stroke-width="1"/></pattern>
+    <linearGradient id="bridge" x1="0" x2="1"><stop stop-color="#4d6bfe"/><stop offset=".5" stop-color="#e9edf2"/><stop offset="1" stop-color="#6a3cff"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000" flood-opacity=".34"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0l10 5-10 5z" fill="#d7dde5"/></marker>
+  </defs>
+  <rect width="1600" height="900" fill="#0b0f14"/>
+  <rect width="1600" height="900" fill="url(#grid)" opacity=".42"/>
+  <text x="92" y="90" fill="#8b98a8" font-family="Inter,Arial,'PingFang SC',sans-serif" font-size="18" font-weight="700" letter-spacing="4">APP → AGENT TRANSFORMATION</text>
+  <text x="92" y="160" fill="#f4f6f8" font-family="Inter,Arial,'PingFang SC',sans-serif" font-size="54" font-weight="750">不重写 App，外挂 Agent Runtime</text>
+  <text x="94" y="205" fill="#9aa6b5" font-family="Inter,Arial,'PingFang SC',sans-serif" font-size="22">Plugin 将已有业务能力变成可授权、可编排、可治理的 Agent Tool</text>
+
+  <g filter="url(#shadow)">
+    <rect x="88" y="292" width="430" height="410" rx="18" fill="#111820" stroke="#2b3c60" stroke-width="2"/>
+    <rect x="1082" y="292" width="430" height="410" rx="18" fill="#15131c" stroke="#4d347e" stroke-width="2"/>
+    <rect x="615" y="355" width="370" height="284" rx="16" fill="#161c23" stroke="url(#bridge)" stroke-width="3"/>
+  </g>
+
+  <circle cx="303" cy="408" r="72" fill="#e8edff"/>
+  <image href="dsh-whale.svg" x="253" y="358" width="100" height="100"/>
+  <text x="303" y="526" text-anchor="middle" fill="#f4f6f8" font-family="Inter,Arial,'PingFang SC',sans-serif" font-size="28" font-weight="750">DeepSeek Harness</text>
+  <text x="303" y="562" text-anchor="middle" fill="#89a0ff" font-family="Inter,Arial,'PingFang SC',sans-serif" font-size="18">外部 Agent Runtime</text>
+  <text x="303" y="616" text-anchor="middle" fill="#9aa6b5" font-family="Inter,Arial,'PingFang SC',sans-serif" font-size="17">推理 · 规划 · 会话 · 工具编排</text>
+
+  <circle cx="1297" cy="408" r="72" fill="#f0ebff"/>
+  <image href="chat2db-mark.svg" x="1243" y="354" width="108" height="108"/>
+  <text x="1297" y="526" text-anchor="middle" fill="#f4f6f8" font-family="Inter,Arial,'PingFang SC',sans-serif" font-size="30" font-weight="750">Chat2DB</text>
+  <text x="1297" y="562" text-anchor="middle" fill="#b491ff" font-family="Inter,Arial,'PingFang SC',sans-serif" font-size="18">业务控制面</text>
+  <text x="1297" y="616" text-anchor="middle" fill="#9aa6b5" font-family="Inter,Arial,'PingFang SC',sans-serif" font-size="17">权限 · 数据范围 · 审批 · 审计</text>
+
+  <rect x="694" y="397" width="212" height="54" rx="8" fill="#232c36"/>
+  <text x="800" y="432" text-anchor="middle" fill="#f4f6f8" font-family="Inter,Arial,'PingFang SC',sans-serif" font-size="24" font-weight="750">DSH Plugin</text>
+  <text x="800" y="500" text-anchor="middle" fill="#b9c2cc" font-family="Inter,Arial,'PingFang SC',sans-serif" font-size="18">App 授权</text>
+  <text x="800" y="535" text-anchor="middle" fill="#b9c2cc" font-family="Inter,Arial,'PingFang SC',sans-serif" font-size="18">能力映射</text>
+  <text x="800" y="570" text-anchor="middle" fill="#b9c2cc" font-family="Inter,Arial,'PingFang SC',sans-serif" font-size="18">状态桥接</text>
+
+  <path d="M520 464H604" fill="none" stroke="#d7dde5" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M996 464h75" fill="none" stroke="#d7dde5" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M1071 558h-75" fill="none" stroke="#7f8b98" stroke-width="2" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+  <path d="M604 558h-84" fill="none" stroke="#7f8b98" stroke-width="2" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+  <text x="800" y="760" text-anchor="middle" fill="#8cff5a" font-family="Inter,Arial,'PingFang SC',sans-serif" font-size="21" font-weight="700">Runtime 获得驱动力，App 保留业务裁决权</text>
+  <line x1="590" y1="788" x2="1010" y2="788" stroke="#33404d"/>
+</svg>

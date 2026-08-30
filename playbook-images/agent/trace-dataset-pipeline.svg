@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+  <title id="title">Trace-to-Dataset Pipeline</title><desc id="desc">生产 Trace 经过候选选择、用途与脱敏、去重与泄漏检查、切片标注、证据与审核后，形成版本化回归数据集。</desc>
+  <style>.bg{fill:#0e1115}.panel{fill:#171b21;stroke:#333a44;stroke-width:2}.white{fill:#f5f6f8}.muted{fill:#8e98a8}.hot{fill:#ff5a45}.line{stroke:#687282;stroke-width:3;fill:none}.title{font:700 30px ui-sans-serif,system-ui}.head{font:700 17px ui-sans-serif,system-ui}.body{font:14px ui-sans-serif,system-ui}.mono{font:13px ui-monospace,SFMono-Regular,monospace}</style>
+  <rect class="bg" width="1400" height="720" rx="26"/><text class="title white" x="54" y="62">Trace → Dataset Pipeline</text><text class="body muted" x="54" y="92">运行记录只有通过治理门禁后，才成为可复用评估资产</text>
+  <g transform="translate(54 148)">
+    <rect class="panel" width="174" height="156" rx="16"/><text class="head white" x="22" y="42">Production</text><text class="head white" x="22" y="66">Trace</text><text class="body muted" x="22" y="104">失败 · 成功抽样</text><text class="body muted" x="22" y="128">投诉 · Canary</text>
+    <path class="line" d="M174 78H210"/>
+    <rect class="panel" x="210" width="174" height="156" rx="16"/><text class="head white" x="232" y="42">Select</text><text class="body muted" x="232" y="80">采样权重</text><text class="body muted" x="232" y="104">任务切片</text><text class="body muted" x="232" y="128">失败类型</text>
+    <path class="line" d="M384 78H420"/>
+    <rect class="panel" x="420" width="174" height="156" rx="16"/><text class="head white" x="442" y="42">Govern</text><text class="body muted" x="442" y="80">用途授权</text><text class="body muted" x="442" y="104">保留期限</text><text class="body muted" x="442" y="128">一致脱敏</text>
+    <path class="line" d="M594 78H630"/>
+    <rect class="panel" x="630" width="174" height="156" rx="16"/><text class="head white" x="652" y="42">Clean</text><text class="body muted" x="652" y="80">业务键去重</text><text class="body muted" x="652" y="104">语义近邻</text><text class="body muted" x="652" y="128">泄漏检查</text>
+    <path class="line" d="M804 78H840"/>
+    <rect class="panel" x="840" width="174" height="156" rx="16"/><text class="head white" x="862" y="42">Label</text><text class="body muted" x="862" y="80">切片 · 难度</text><text class="body muted" x="862" y="104">验收证据</text><text class="body muted" x="862" y="128">Reviewer</text>
+    <path class="line" d="M1014 78H1050"/>
+    <rect x="1050" width="242" height="156" rx="16" fill="#ff5a45"/><text class="head white" x="1074" y="42">Versioned Dataset</text><text class="body white" x="1074" y="82">Immutable Case ID</text><text class="body white" x="1074" y="106">Fixture Digest</text><text class="body white" x="1074" y="130">Evaluator Contract</text>
+  </g>
+  <rect class="panel" x="54" y="352" width="1292" height="284" rx="18"/><text class="head white" x="82" y="394">Replay Fidelity</text>
+  <g class="body"><rect x="82" y="430" width="276" height="148" rx="14" fill="#222832"/><text class="head white" x="104" y="466">Input Replay</text><text class="muted" x="104" y="498">重新执行完整 Run</text><text class="mono hot" x="104" y="536">external drift ↑</text>
+  <rect x="378" y="430" width="276" height="148" rx="14" fill="#222832"/><text class="head white" x="400" y="466">Decision Replay</text><text class="muted" x="400" y="498">固定 Context 比较决策</text><text class="mono hot" x="400" y="536">model / prompt</text>
+  <rect x="674" y="430" width="276" height="148" rx="14" fill="#222832"/><text class="head white" x="696" y="466">State Replay</text><text class="muted" x="696" y="498">从 Checkpoint 继续</text><text class="mono hot" x="696" y="536">recovery</text>
+  <rect x="970" y="430" width="348" height="148" rx="14" fill="#222832"/><text class="head white" x="992" y="466">Effect Simulation</text><text class="muted" x="992" y="498">Sandbox / Stub / Recorded</text><text class="mono hot" x="992" y="536">production writes = OFF</text></g>
+</svg>

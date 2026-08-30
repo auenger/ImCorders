@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>Tool Protocol：动作空间的稳定接口 | Agent Engineering Playbook</title><meta name="description" content="通过明确的语义、参数、结果和错误契约，让 Agent 能够可靠地读取和改变外部环境。"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="Tool Protocol：动作空间的稳定接口 | Agent Engineering Playbook"><meta property="og:description" content="通过明确的语义、参数、结果和错误契约，让 Agent 能够可靠地读取和改变外部环境。"><meta property="og:url" content="https://imcoders.cn/playbook/agent/15-tool-protocol/"><meta property="og:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta property="og:image:width" content="1774"><meta property="og:image:height" content="887"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Tool Protocol：动作空间的稳定接口 | Agent Engineering Playbook"><meta name="twitter:description" content="通过明确的语义、参数、结果和错误契约，让 Agent 能够可靠地读取和改变外部环境。"><meta name="twitter:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta itemprop="name" content="Tool Protocol：动作空间的稳定接口 | Agent Engineering Playbook"><meta itemprop="description" content="通过明确的语义、参数、结果和错误契约，让 Agent 能够可靠地读取和改变外部环境。"><meta itemprop="image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "Tool Protocol：动作空间的稳定接口 | Agent Engineering Playbook";
+const shareDesc = "通过明确的语义、参数、结果和错误契约，让 Agent 能够可靠地读取和改变外部环境。";
+const shareLink = "https://imcoders.cn/playbook/agent/15-tool-protocol/";
+const shareImg = "https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.C-FedgiN.css"><script type="module" src="/_astro/hoisted.BfDpThc8.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook" aria-current="page">Playbook</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main>  <div class="reading-progress" aria-hidden="true" data-astro-cid-jojupagh></div> <div class="reader" data-astro-cid-jojupagh> <header class="reader-bar" data-astro-cid-jojupagh> <a class="reader-home" href="/playbook/agent" data-astro-cid-jojupagh>AGENT ENGINEERING <span data-astro-cid-jojupagh>PLAYBOOK</span></a> <span class="reader-meta" data-astro-cid-jojupagh>10 / 30</span> </header> <div class="mobile-index" data-astro-cid-jojupagh> <details data-astro-cid-jojupagh> <summary data-astro-cid-jojupagh>打开全书目录</summary> <div class="mobile-index-body" data-astro-cid-jojupagh> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" class="is-current" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </div> </details> </div> <div class="reader-grid" data-astro-cid-jojupagh> <aside class="book-index" aria-label="全书目录" data-astro-cid-jojupagh> <h2 class="index-title" data-astro-cid-jojupagh>全书目录</h2> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" class="is-current" aria-current="page" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </aside> <section class="chapter-main" data-astro-cid-jojupagh> <header class="chapter-header" data-astro-cid-jojupagh> <div class="chapter-label" data-astro-cid-jojupagh>第十章 / 第三部分：Tool、Skill 与控制面</div> <h1 data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</h1> <p class="chapter-description" data-astro-cid-jojupagh>通过明确的语义、参数、结果和错误契约，让 Agent 能够可靠地读取和改变外部环境。</p> <p class="chapter-updated" data-astro-cid-jojupagh>更新于 2026/8/12</p>  </header> <article class="chapter-content" data-astro-cid-jojupagh> <p>模型只能生成候选动作，Tool 才把动作连接到真实环境。Tool 的名称、描述、参数、返回值和错误语义共同定义了 Agent 的动作空间；其中任何一项含糊，都会让模型更容易选错动作、填错参数或误判执行结果。</p>
+<p>本章把 Tool 看作 Runtime 暴露给 Agent 的稳定动作契约，而不是某段函数代码：</p>
+<blockquote>
+<p>Tool Definition 描述“可以请求什么”，Tool Call 表示“一次动作请求”，Tool Result 则说明“这次请求实际发生了什么”。</p>
+</blockquote>
+<h2 id="术语来源与适用范围">术语来源与适用范围</h2>
+<p>Tool Calling、Function Calling 和 Structured Output 已被多种模型 API 与 Agent Framework 使用，但行业没有一份覆盖所有 Runtime 的统一 Tool 对象模型。JSON Schema 常被用来表达参数约束；<a href="https://modelcontextprotocol.io/specification/2025-06-18/server/tools">Model Context Protocol 的 Tool 规范</a> 定义了 Tool 发现、调用和结果传输；<a href="https://openai.github.io/openai-agents-python/tools/">OpenAI Agents SDK Tools</a> 则展示了 Hosted Tool、Function Tool、Runtime Tool、MCP Tool 和 Agent-as-Tool 等实现形态。</p>
+<p>这些资料说明“结构化描述能力、让模型请求调用、由 Runtime 执行”是常见工程模式，但本章的 <code>Tool Definition</code>、<code>Tool Result</code>、错误分类和副作用字段是本 Playbook 的参考契约，不是对 MCP 或某个 SDK Schema 的复刻。接入 MCP 时应遵守 MCP 自身规范；在内部 Registry 中可以扩展风险、权限、幂等和审计元数据。</p>
+<h2 id="tool-的四个层次">Tool 的四个层次</h2>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“Tool 的四个层次”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Logical Tool       send_email(to, subject, body)</span></span>
+<span class="line"><span>      ↓</span></span>
+<span class="line"><span>Protocol Adapter   MCP / HTTP / SDK / CLI Adapter</span></span>
+<span class="line"><span>      ↓</span></span>
+<span class="line"><span>Executor           认证、超时、重试、结果规范化</span></span>
+<span class="line"><span>      ↓</span></span>
+<span class="line"><span>Environment        邮件服务中的真实消息与状态</span></span>
+<span class="line"><span></span></span></code></pre>
+<ul>
+<li><strong>Logical Tool</strong> 是模型看到的领域动作。</li>
+<li><strong>Adapter</strong> 把逻辑动作映射到外部协议。</li>
+<li><strong>Executor</strong> 承担真实执行、凭证注入、超时和观测。</li>
+<li><strong>Environment</strong> 保存动作读取或改变的真实状态。</li>
+</ul>
+<p>不要让模型直接拼接鉴权 Header、Shell 转义和分页 Token。这些属于 Adapter 与 Executor，而不是推理任务。</p>
+<h2 id="tool-粒度围绕决策而不是围绕底层接口">Tool 粒度：围绕决策，而不是围绕底层接口</h2>
+<p>过细的 Tool 会迫使模型自己重建业务协议：</p>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“Tool 粒度：围绕决策，而不是围绕底层接口”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>set_header() → post_json() → parse_response() → poll_job()</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>过粗的 Tool 又会隐藏关键选择：</p>
+<p><strong>代码块说明｜结构示意：</strong> 这段文本把“Tool 粒度：围绕决策，而不是围绕底层接口”中的关键对象并列出来，帮助读者识别各自责任与边界。它用于概念建模，不代表唯一的产品命名或实现结构。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>manage_customer_everything(request)</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>更稳定的粒度通常是一个可描述、可授权、可验收的领域动作，例如：</p>
+<p><strong>代码块说明｜结构示意：</strong> 这段文本把“Tool 粒度：围绕决策，而不是围绕底层接口”中的关键对象并列出来，帮助读者识别各自责任与边界。它用于概念建模，不代表唯一的产品命名或实现结构。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>get_customer(customer_id)</span></span>
+<span class="line"><span>create_refund(payment_id, amount, reason)</span></span>
+<span class="line"><span>get_refund_status(refund_id)</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>判断粒度时可以问：它是否具有单一业务意图；参数是否能在调用前确定；权限和副作用是否一致；结果是否能独立验证。如果一个 Tool 内部同时包含“读取订单”和“退款”，两个动作的风险不同，就应该拆开。</p>
+<h2 id="名称与描述是路由界面">名称与描述是路由界面</h2>
+<p>Tool 描述不是普通 API 注释，它是模型选择动作时看到的路由信息。至少应说明：</p>
+<ul>
+<li>Tool 完成什么动作，以及明确不做什么。</li>
+<li>什么时候使用，哪些相邻 Tool 更合适。</li>
+<li>关键参数的业务含义、单位和边界。</li>
+<li>是否产生外部副作用，是否需要审批。</li>
+<li>结果中的权威字段和新鲜度。</li>
+</ul>
+<p>假设一个客服 Agent 收到任务：“把客户 <code>customer_42</code> 的收货地址改成上海新地址，不要修改账单地址。”当前 Registry 同时存在客户、订单和支付记录的更新能力。如果其中只暴露下面这个 Tool：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“名称与描述是路由界面”落成可检查的结构化记录，主要字段包括 <code>name</code>、<code>description</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">update_record</span></span>
+<span class="line"><span style="color:#85E89D">description</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">更新一条记录</span></span>
+<span class="line"></span></code></pre>
+<p>Agent 无法从名称和描述判断它更新哪类记录，也不知道 <code>record_id</code> 指客户、订单还是支付记录，更无法确认它会不会把收货地址和账单地址一起覆盖。模型只能结合参数名称猜测，选错 Tool 后也很难在执行前发现问题。</p>
+<p>更清晰的定义是：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“名称与描述是路由界面”落成可检查的结构化记录，主要字段包括 <code>name</code>、<code>description</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">update_customer_shipping_address</span></span>
+<span class="line"><span style="color:#85E89D">description</span><span style="color:#E1E4E8">: </span><span style="color:#F97583">></span></span>
+<span class="line"><span style="color:#9ECBFF">  更新指定客户的默认收货地址。只修改 shipping address，</span></span>
+<span class="line"><span style="color:#9ECBFF">  不修改 billing address，也不修改已经创建订单中的地址快照。</span></span>
+<span class="line"></span></code></pre>
+<p>这里的名称明确了对象是 <code>customer</code>、动作是 <code>update</code>、修改范围是 <code>shipping_address</code>；描述进一步交代不会发生的相邻动作。当任务要求修改“已经创建的订单地址”时，Agent 就应该寻找 <code>update_order_shipping_address</code>，而不是误用这个 Tool。</p>
+<p>结果描述也必须符合 Executor 真正能观察到的提交阶段。假设 <code>request_production_deployment</code> 只负责向部署平台提交异步任务，返回：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“名称与描述是路由界面”落成可检查的结构化记录，主要字段包括 <code>deployment_id</code>、<code>status</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">deployment_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">deploy_91</span></span>
+<span class="line"><span style="color:#85E89D">status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">accepted</span></span>
+<span class="line"></span></code></pre>
+<p>这只证明部署平台已经接受请求，不证明新版本已经在生产环境运行。因此 Tool 描述应该写“提交生产部署请求并返回任务 ID”，不能写成“完成生产部署”。Agent 需要继续调用 <code>get_deployment_status(deployment_id)</code>，观察到 <code>status: succeeded</code> 并完成必要验证后，才能报告部署完成。</p>
+<h2 id="tool-definition-参考-schema">Tool Definition 参考 Schema</h2>
+<p>下面是本 Playbook 的扩展设计，用于表达标准参数 Schema 之外的运行时治理信息：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“Tool Definition 参考 Schema”落成可检查的结构化记录，主要字段包括 <code>tool</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">tool</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">create_refund</span></span>
+<span class="line"><span style="color:#85E89D">  version</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">3.1.0</span></span>
+<span class="line"><span style="color:#85E89D">  description</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">为已完成支付创建退款；不负责取消未支付订单</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  input_schema</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">object</span></span>
+<span class="line"><span style="color:#85E89D">    required</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">payment_id</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">amount</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">currency</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">reason</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#85E89D">    properties</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      payment_id</span><span style="color:#E1E4E8">: { </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">string</span><span style="color:#E1E4E8"> }</span></span>
+<span class="line"><span style="color:#85E89D">      amount</span><span style="color:#E1E4E8">: { </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">integer</span><span style="color:#E1E4E8">, </span><span style="color:#85E89D">minimum</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#85E89D">description</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">最小货币单位</span><span style="color:#E1E4E8"> }</span></span>
+<span class="line"><span style="color:#85E89D">      currency</span><span style="color:#E1E4E8">: { </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">string</span><span style="color:#E1E4E8">, </span><span style="color:#85E89D">enum</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">CNY</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">USD</span><span style="color:#E1E4E8">] }</span></span>
+<span class="line"><span style="color:#85E89D">      reason</span><span style="color:#E1E4E8">: { </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">string</span><span style="color:#E1E4E8">, </span><span style="color:#85E89D">maxLength</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">500</span><span style="color:#E1E4E8"> }</span></span>
+<span class="line"><span style="color:#85E89D">    additionalProperties</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">false</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  output_schema</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">object</span></span>
+<span class="line"><span style="color:#85E89D">    required</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">refund_id</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">status</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  execution</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    timeout_ms</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">10000</span></span>
+<span class="line"><span style="color:#85E89D">    side_effect</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">write</span></span>
+<span class="line"><span style="color:#85E89D">    idempotency</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">supported</span></span>
+<span class="line"><span style="color:#85E89D">    approval_policy</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">conditional</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  governance</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    required_scopes</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">payments.refund</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#85E89D">    sensitivity</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">financial</span></span>
+<span class="line"><span style="color:#85E89D">    audit</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">required</span></span>
+<span class="line"></span></code></pre>
+<p><code>execution</code> 与 <code>governance</code> 不是 JSON Schema 或 MCP 的通用必选字段，而是 Registry 可以维护的控制面元数据。它们不必全部暴露给模型，但 Runtime 执行前必须能够读取。</p>
+<h2 id="参数-schema-要限制错误空间">参数 Schema 要限制错误空间</h2>
+<p>好的 Schema 不只检查类型，还尽量把业务不变量前移：</p>
+<ul>
+<li>使用 <code>enum</code>，不要让模型自由生成状态值。</li>
+<li>明确金额单位、时区、路径根目录和 ID 类型。</li>
+<li>对互斥参数使用 <code>oneOf</code> 或在 Executor 中显式验证。</li>
+<li>默认拒绝未声明字段，防止模型“顺手”添加危险选项。</li>
+<li>不把 Secret 放进模型生成的参数；由 Runtime 根据身份注入。</li>
+</ul>
+<p>Schema 验证成功只代表输入形状合法，不代表调用已获授权，也不代表外部对象仍处于允许操作的状态。</p>
+<h2 id="tool-result-应是-observation不只是文本">Tool Result 应是 Observation，不只是文本</h2>
+<p>一次成功调用至少要区分业务结果、外部对象标识和证据时间：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“Tool Result 应是 Observation，不只是文本”落成可检查的结构化记录，主要字段包括 <code>tool_result</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">tool_result</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  tool_call_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">call_81</span></span>
+<span class="line"><span style="color:#85E89D">  outcome</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">succeeded</span></span>
+<span class="line"><span style="color:#85E89D">  data</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    refund_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">rf_902</span></span>
+<span class="line"><span style="color:#85E89D">    status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">pending</span></span>
+<span class="line"><span style="color:#85E89D">    amount</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">6800</span></span>
+<span class="line"><span style="color:#85E89D">    currency</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">CNY</span></span>
+<span class="line"><span style="color:#85E89D">  observed_at</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2026-08-12T13:20:00+08:00</span></span>
+<span class="line"><span style="color:#85E89D">  external_effect_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">rf_902</span></span>
+<span class="line"><span style="color:#85E89D">  retryable</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">false</span></span>
+<span class="line"></span></code></pre>
+<p>自然语言摘要可以作为 <code>message</code> 辅助模型理解，但不能替代结构化字段。<code>status: pending</code> 与“退款成功”不同；Agent 必须据此决定等待、轮询还是结束。</p>
+<h2 id="error-as-data-与-error-as-exception">Error-as-Data 与 Error-as-Exception</h2>
+<p><a href="https://modelcontextprotocol.io/specification/2025-06-18/schema">MCP Schema</a> 明确区分 Tool 自身执行错误和协议级异常：Tool 执行错误应放在 <code>CallToolResult</code> 中并标记 <code>isError</code>，而找不到 Tool、协议方法不支持等异常由协议错误表达。这个边界可以推广到内部 Tool 层：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>情况</th><th>建议表达</th><th>Agent 是否可据此调整</th></tr></thead><tbody><tr><td>参数业务校验失败</td><td>Tool Result Error</td><td>可以修正参数</td></tr><tr><td>权限不足</td><td>Tool Result Error / Approval Required</td><td>可以请求授权</td></tr><tr><td>资源不存在</td><td>Tool Result Error</td><td>可以重新查询</td></tr><tr><td>上游限流或超时</td><td>Tool Result Error，标记可重试</td><td>可以按策略重试</td></tr><tr><td>Tool 名称不存在</td><td>Protocol / Runtime Exception</td><td>通常是注册或版本错误</td></tr><tr><td>Result 无法反序列化</td><td>Protocol / Adapter Exception</td><td>不应让模型猜测成功与否</td></tr></tbody></table>
+<p>参考错误对象：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“Error-as-Data 与 Error-as-Exception”落成可检查的结构化记录，主要字段包括 <code>error</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">error</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  code</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">rate_limited</span></span>
+<span class="line"><span style="color:#85E89D">  category</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">transient</span></span>
+<span class="line"><span style="color:#85E89D">  message</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">上游服务限制请求频率</span></span>
+<span class="line"><span style="color:#85E89D">  retryable</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#85E89D">  retry_after_ms</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">3000</span></span>
+<span class="line"><span style="color:#85E89D">  details_ref</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">trace://run_42/call_81</span></span>
+<span class="line"></span></code></pre>
+<p><code>retryable</code> 只表示技术上允许再次尝试，不代表重试一定安全。写操作还必须检查幂等与副作用契约。</p>
+<h2 id="外部协议怎样映射进-registry">外部协议怎样映射进 Registry</h2>
+<p><strong>代码块说明｜层级示意：</strong> 这段文本图按缩进和树枝符号阅读，用来展开“外部协议怎样映射进 Registry”中的父子关系与归属边界。它描述的是逻辑结构，不要求数据库或服务按同样层级拆分。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>MCP tools/list ─┐</span></span>
+<span class="line"><span>OpenAPI Spec ───┼→ Adapter → Normalize → Internal Tool Registry</span></span>
+<span class="line"><span>SDK Function ───┤                         ├─ model-visible fields</span></span>
+<span class="line"><span>CLI Wrapper ────┘                         └─ control-plane metadata</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>映射时需要保留来源和版本，不能只复制名称：</p>
+<ul>
+<li><code>provider_ref</code>：Tool 来自哪个 Server、API 或 Package。</li>
+<li><code>provider_version</code>：外部 Schema 的版本或摘要。</li>
+<li><code>adapter_version</code>：规范化逻辑版本。</li>
+<li><code>availability</code>：当前环境是否可达。</li>
+<li><code>trust_level</code>：来源是否经过审核。</li>
+</ul>
+<p>外部 Server 宣称一个 Tool 是只读，不足以成为安全事实。Runtime 应根据实际实现、凭证范围和审计结果设置内部风险等级。</p>
+<h2 id="本章检查">本章检查</h2>
+<ul>
+<li>Tool 是否围绕单一领域动作，而不是泄漏底层协议步骤。</li>
+<li>名称和描述是否能帮助模型区分相邻能力。</li>
+<li>参数是否包含单位、枚举、范围和互斥约束。</li>
+<li>Secret 是否由 Runtime 注入，而非进入模型参数。</li>
+<li>Result 是否区分接受、进行中、成功和失败。</li>
+<li>Tool Error 与 Protocol Exception 是否分开。</li>
+<li>Retryable 是否与幂等安全分别判断。</li>
+<li>外部 Tool 是否经过来源、版本、风险和权限规范化。</li>
+</ul> </article> <nav class="chapter-nav" aria-label="章节导航" data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>← 上一章</span> <strong data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</strong> </a> <a class="next" href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>下一章 →</span> <strong data-astro-cid-jojupagh>Skill：可执行知识的工程结构</strong> </a> </nav> </section> <aside class="page-index" aria-label="本章目录" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>本章目录</h2> <nav data-astro-cid-jojupagh> <a href="#术语来源与适用范围" data-heading="术语来源与适用范围" data-depth="2" data-astro-cid-jojupagh>术语来源与适用范围</a><a href="#tool-的四个层次" data-heading="tool-的四个层次" data-depth="2" data-astro-cid-jojupagh>Tool 的四个层次</a><a href="#tool-粒度围绕决策而不是围绕底层接口" data-heading="tool-粒度围绕决策而不是围绕底层接口" data-depth="2" data-astro-cid-jojupagh>Tool 粒度：围绕决策，而不是围绕底层接口</a><a href="#名称与描述是路由界面" data-heading="名称与描述是路由界面" data-depth="2" data-astro-cid-jojupagh>名称与描述是路由界面</a><a href="#tool-definition-参考-schema" data-heading="tool-definition-参考-schema" data-depth="2" data-astro-cid-jojupagh>Tool Definition 参考 Schema</a><a href="#参数-schema-要限制错误空间" data-heading="参数-schema-要限制错误空间" data-depth="2" data-astro-cid-jojupagh>参数 Schema 要限制错误空间</a><a href="#tool-result-应是-observation不只是文本" data-heading="tool-result-应是-observation不只是文本" data-depth="2" data-astro-cid-jojupagh>Tool Result 应是 Observation，不只是文本</a><a href="#error-as-data-与-error-as-exception" data-heading="error-as-data-与-error-as-exception" data-depth="2" data-astro-cid-jojupagh>Error-as-Data 与 Error-as-Exception</a><a href="#外部协议怎样映射进-registry" data-heading="外部协议怎样映射进-registry" data-depth="2" data-astro-cid-jojupagh>外部协议怎样映射进 Registry</a><a href="#本章检查" data-heading="本章检查" data-depth="2" data-astro-cid-jojupagh>本章检查</a> </nav> </aside> </div> </div> <div class="selection-share" data-selection-share data-content-selector=".chapter-content" data-title="Tool Protocol：动作空间的稳定接口" data-author="Agent Engineering / IMCODERS" data-section="AGENT ENGINEERING PLAYBOOK" data-url="https://imcoders.cn/playbook/agent/15-tool-protocol/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>    </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

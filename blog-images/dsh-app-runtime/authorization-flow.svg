@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 960" width="1600" height="960" role="img" aria-labelledby="title desc">
+  <title id="title">DSH Plugin 的 App 授权与调用流程</title>
+  <desc id="desc">从 DSH 配对请求、用户选择 Agent、短期令牌交换到动态工具注册与审批调用。</desc>
+  <defs>
+    <pattern id="grid3" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#24303a"/></pattern>
+    <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0l10 5-10 5z" fill="#9da9b6"/></marker>
+  </defs>
+  <rect width="1600" height="960" fill="#0b0f14"/><rect width="1600" height="960" fill="url(#grid3)" opacity=".32"/>
+  <g font-family="Inter,Arial,'PingFang SC',sans-serif">
+    <text x="76" y="75" fill="#8996a5" font-size="17" font-weight="700" letter-spacing="3">APP AUTHORIZATION, NOT API WRAPPING</text>
+    <text x="76" y="132" fill="#f5f7f9" font-size="42" font-weight="750">Plugin 持有的是可撤销委托，不是 App 密钥</text>
+    <text x="76" y="170" fill="#9da8b5" font-size="20">先授权一个有边界的 Chat2DB Agent，再把它的实时能力映射给 DSH</text>
+
+    <g text-anchor="middle">
+      <circle cx="190" cy="270" r="44" fill="#e9eeff"/><image href="dsh-whale.svg" x="160" y="240" width="60" height="60"/>
+      <text x="190" y="342" fill="#f4f6f8" font-size="21" font-weight="750">DSH Runtime</text>
+      <circle cx="590" cy="270" r="44" fill="#1e2630" stroke="#8b98a8"/><text x="590" y="280" fill="#f4f6f8" font-size="24" font-weight="750">P</text>
+      <text x="590" y="342" fill="#f4f6f8" font-size="21" font-weight="750">Plugin</text>
+      <circle cx="1010" cy="270" r="44" fill="#f0ebff"/><image href="chat2db-mark.svg" x="979" y="239" width="62" height="62"/>
+      <text x="1010" y="342" fill="#f4f6f8" font-size="21" font-weight="750">Chat2DB App</text>
+      <circle cx="1410" cy="270" r="44" fill="#17231d" stroke="#59c986"/><path d="M1410 249a12 12 0 110 24 12 12 0 010-24zm-22 47c0-14 10-22 22-22s22 8 22 22" fill="none" stroke="#8cffb5" stroke-width="3"/>
+      <text x="1410" y="342" fill="#f4f6f8" font-size="21" font-weight="750">用户 / 管理员</text>
+    </g>
+    <g stroke="#34414e" stroke-width="2" stroke-dasharray="6 7"><line x1="190" y1="370" x2="190" y2="846"/><line x1="590" y1="370" x2="590" y2="846"/><line x1="1010" y1="370" x2="1010" y2="846"/><line x1="1410" y1="370" x2="1410" y2="846"/></g>
+
+    <g font-size="16">
+      <path d="M190 414h388" stroke="#9da9b6" stroke-width="2" marker-end="url(#a3)"/><text x="384" y="402" text-anchor="middle" fill="#bec7d0">1. 发起连接</text>
+      <path d="M590 466h408" stroke="#9da9b6" stroke-width="2" marker-end="url(#a3)"/><text x="794" y="454" text-anchor="middle" fill="#bec7d0">2. 创建本机配对请求</text>
+      <path d="M1010 518h388" stroke="#b491ff" stroke-width="2" marker-end="url(#a3)"/><text x="1204" y="506" text-anchor="middle" fill="#cbb8f7">3. 展示授权窗口</text>
+      <path d="M1410 570h-388" stroke="#70d69b" stroke-width="2" marker-end="url(#a3)"/><text x="1216" y="558" text-anchor="middle" fill="#9ae9bb">4. 选择一个具体 Agent</text>
+      <rect x="860" y="598" width="300" height="70" rx="9" fill="#211a2d" stroke="#60458b"/>
+      <text x="1010" y="626" text-anchor="middle" fill="#b491ff" font-size="14">实时校验</text><text x="1010" y="651" text-anchor="middle" fill="#f2f4f7" font-size="16" font-weight="700">Owner · DataScope · DataWiki</text>
+      <path d="M1010 698H602" stroke="#9da9b6" stroke-width="2" marker-end="url(#a3)"/><text x="806" y="686" text-anchor="middle" fill="#bec7d0">5. 一次性交换码 + 短期 Token</text>
+      <path d="M590 750H202" stroke="#89a0ff" stroke-width="2" marker-end="url(#a3)"/><text x="396" y="738" text-anchor="middle" fill="#aab8ff">6. 动态注册 chat2db_* 工具</text>
+    </g>
+    <rect x="90" y="798" width="1420" height="84" rx="12" fill="#131a21" stroke="#2f3b47"/>
+    <text x="800" y="832" text-anchor="middle" fill="#f3f5f7" font-size="18" font-weight="700">每次调用继续重新校验：Agent 能力 · 有效数据范围 · SQL 风险 · 审批状态</text>
+    <text x="800" y="858" text-anchor="middle" fill="#8cff5a" font-size="16">Access Token 只在内存中，Refresh Token 可轮换，Connector Session 可随时撤销</text>
+  </g>
+</svg>

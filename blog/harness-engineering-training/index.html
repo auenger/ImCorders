@@ -1,0 +1,372 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>半天训练营：AI 研发转型的五堂课 - 杨正武</title><meta name="description" content="基于 Harness Engineering Playbook 的半天课程，覆盖规约驱动开发、饱和式测试、模型选型、流程精简和组织重构"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="半天训练营：AI 研发转型的五堂课 - 杨正武"><meta property="og:description" content="基于 Harness Engineering Playbook 的半天课程，覆盖规约驱动开发、饱和式测试、模型选型、流程精简和组织重构"><meta property="og:url" content="https://imcoders.cn/blog/harness-engineering-training/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="半天训练营：AI 研发转型的五堂课 - 杨正武"><meta name="twitter:description" content="基于 Harness Engineering Playbook 的半天课程，覆盖规约驱动开发、饱和式测试、模型选型、流程精简和组织重构"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="半天训练营：AI 研发转型的五堂课 - 杨正武"><meta itemprop="description" content="基于 Harness Engineering Playbook 的半天课程，覆盖规约驱动开发、饱和式测试、模型选型、流程精简和组织重构"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "半天训练营：AI 研发转型的五堂课 - 杨正武";
+const shareDesc = "基于 Harness Engineering Playbook 的半天课程，覆盖规约驱动开发、饱和式测试、模型选型、流程精简和组织重构";
+const shareLink = "https://imcoders.cn/blog/harness-engineering-training/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.DUPo9LDV.css"><script type="module" src="/_astro/hoisted.D20CsQCG.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/blog" aria-current="page">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <script>(function(){const shareText = "基于 Harness Engineering Playbook 的半天课程，覆盖规约驱动开发、饱和式...\n\nhttps://imcoders.cn/blog/harness-engineering-training/";
+const shareUrl = "https://imcoders.cn/blog/harness-engineering-training/";
+const wechatTitle = "半天训练营：AI 研发转型的五堂课";
+const wechatDescription = "基于 Harness Engineering Playbook 的半天课程，覆盖规约驱动开发、饱和式测试、模型选型、流程精简和组织重构";
+const wechatAuthor = "杨正武";
+const wechatDate = "2026年4月14日";
+
+    window.shareArticle = async function () {
+      const button = document.querySelector('.share-button');
+      try {
+        await navigator.clipboard.writeText(shareText);
+        if (!button) return;
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> 已复制';
+        button.classList.add('copied');
+        window.setTimeout(() => {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+      } catch (error) {
+        console.error('复制失败', error);
+        window.prompt('请复制下面的分享内容', shareText);
+      }
+    };
+
+    const wechatCopiedProperties = [
+      'color', 'background-color', 'font-family', 'font-size', 'font-weight', 'font-style',
+      'line-height', 'letter-spacing', 'text-align', 'text-decoration', 'text-indent',
+      'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
+      'padding-top', 'padding-right', 'padding-bottom', 'padding-left',
+      'border-top', 'border-right', 'border-bottom', 'border-left', 'border-radius',
+      'display', 'vertical-align',
+      'white-space', 'list-style-type', 'border-collapse', 'overflow-wrap', 'word-break'
+    ];
+
+    const canonicalizeWechatUrl = function (value) {
+      if (!value) return value;
+      try {
+        return new URL(value, shareUrl).href;
+      } catch {
+        return value;
+      }
+    };
+
+    window.buildWechatRichText = function () {
+      const article = document.querySelector('.article-content');
+      if (!article) throw new Error('article content not found');
+
+      const clone = article.cloneNode(true);
+      const sourceNodes = [article, ...article.querySelectorAll('*')];
+      const cloneNodes = [clone, ...clone.querySelectorAll('*')];
+
+      sourceNodes.forEach((sourceNode, index) => {
+        const targetNode = cloneNodes[index];
+        if (!(sourceNode instanceof Element) || !(targetNode instanceof Element)) return;
+
+        const computed = getComputedStyle(sourceNode);
+        const inlineStyles = wechatCopiedProperties
+          .map((property) => `${property}:${computed.getPropertyValue(property)};`)
+          .join('');
+
+        targetNode.setAttribute('style', inlineStyles);
+        targetNode.removeAttribute('id');
+        targetNode.removeAttribute('class');
+        [...targetNode.attributes].forEach((attribute) => {
+          if (attribute.name.startsWith('data-') || attribute.name.startsWith('aria-')) {
+            targetNode.removeAttribute(attribute.name);
+          }
+        });
+
+        if (sourceNode instanceof HTMLImageElement && targetNode instanceof HTMLImageElement) {
+          const rawSource = sourceNode.getAttribute('src') || sourceNode.currentSrc || sourceNode.src;
+          targetNode.setAttribute('src', canonicalizeWechatUrl(rawSource));
+          targetNode.removeAttribute('srcset');
+          targetNode.removeAttribute('sizes');
+          targetNode.removeAttribute('loading');
+          targetNode.removeAttribute('decoding');
+          targetNode.setAttribute('style', `${inlineStyles}display:block;width:100%;max-width:100%;height:auto;margin-left:auto;margin-right:auto;`);
+        }
+
+        if (sourceNode instanceof HTMLAnchorElement && targetNode instanceof HTMLAnchorElement) {
+          targetNode.setAttribute('href', canonicalizeWechatUrl(sourceNode.getAttribute('href') || sourceNode.href));
+          targetNode.removeAttribute('target');
+          targetNode.removeAttribute('rel');
+        }
+      });
+
+      clone.querySelectorAll('script, style, iframe, button, form, input, textarea, select').forEach((node) => node.remove());
+
+      // 微信编辑器的内容栏比桌面文章窄。不要保留桌面布局计算出的固定宽高，
+      // 否则图片缩小后父元素仍会占据原高度，文字换行后也可能互相覆盖。
+      clone.querySelectorAll('p').forEach((paragraph) => {
+        const onlyChild = paragraph.children.length === 1 ? paragraph.firstElementChild : null;
+        if (onlyChild instanceof HTMLImageElement && !paragraph.textContent?.trim()) {
+          paragraph.setAttribute('style', 'margin:24px 0 12px;padding:0;line-height:0;');
+        }
+      });
+
+      clone.querySelectorAll('img').forEach((image) => {
+        image.style.display = 'block';
+        image.style.width = '100%';
+        image.style.maxWidth = '100%';
+        image.style.height = 'auto';
+        image.style.marginLeft = 'auto';
+        image.style.marginRight = 'auto';
+      });
+
+      clone.querySelectorAll('pre').forEach((pre) => {
+        pre.style.display = 'block';
+        pre.style.width = 'auto';
+        pre.style.maxWidth = '100%';
+        pre.style.whiteSpace = 'pre-wrap';
+        pre.style.wordBreak = 'break-word';
+        pre.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('pre code').forEach((code) => {
+        code.style.whiteSpace = 'pre-wrap';
+        code.style.wordBreak = 'break-word';
+        code.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('table').forEach((table) => {
+        table.style.display = 'table';
+        table.style.width = '100%';
+        table.style.maxWidth = '100%';
+        table.style.tableLayout = 'fixed';
+        table.style.borderCollapse = 'collapse';
+      });
+
+      clone.querySelectorAll('th, td').forEach((cell) => {
+        cell.style.minWidth = '0';
+        cell.style.wordBreak = 'break-word';
+        cell.style.overflowWrap = 'anywhere';
+        cell.style.verticalAlign = 'top';
+      });
+
+      const wrapper = document.createElement('section');
+      wrapper.setAttribute('style', 'box-sizing:border-box;width:100%;max-width:100%;margin:0;padding:32px 26px;background-color:#111016;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+
+      const header = document.createElement('header');
+      header.setAttribute('style', 'margin:0 0 34px;padding:0 0 24px;border-bottom:2px solid #e23c3e;');
+
+      const title = document.createElement('h1');
+      title.textContent = wechatTitle;
+      title.setAttribute('style', 'margin:0 0 18px;color:#f1ece2;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:30px;font-weight:800;line-height:1.25;letter-spacing:-0.5px;');
+
+      const description = document.createElement('p');
+      description.textContent = wechatDescription;
+      description.setAttribute('style', 'margin:0 0 16px;color:#a9a3a8;font-size:16px;line-height:1.75;');
+
+      const meta = document.createElement('p');
+      meta.textContent = `${wechatAuthor} · ${wechatDate}`;
+      meta.setAttribute('style', 'margin:0;color:#e23c3e;font-size:13px;font-weight:700;line-height:1.6;letter-spacing:0.5px;');
+
+      header.append(title, description, meta);
+      clone.setAttribute('style', 'width:auto;max-width:100%;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+      wrapper.append(header, clone);
+
+      return {
+        html: wrapper.outerHTML,
+        text: `${wechatTitle}\n\n${wechatDescription}\n\n${wechatAuthor} · ${wechatDate}\n\n${article.innerText}`
+      };
+    };
+
+    const setWechatCopyFeedback = function (button, message, isError = false) {
+      if (!button) return;
+      const original = button.dataset.originalHtml || button.innerHTML;
+      button.dataset.originalHtml = original;
+      button.innerHTML = isError
+        ? `<i class="fas fa-exclamation-circle" aria-hidden="true"></i> ${message}`
+        : `<i class="fas fa-check" aria-hidden="true"></i> ${message}`;
+      button.classList.toggle('copy-error', isError);
+      button.classList.toggle('copied', !isError);
+      window.setTimeout(() => {
+        button.innerHTML = original;
+        button.classList.remove('copied', 'copy-error');
+      }, 2600);
+    };
+
+    window.copyArticleToWechat = async function () {
+      const button = document.querySelector('.wechat-copy-button');
+      try {
+        const payload = window.buildWechatRichText();
+        if (navigator.clipboard?.write && window.ClipboardItem && window.isSecureContext) {
+          await navigator.clipboard.write([new ClipboardItem({
+            'text/html': new Blob([payload.html], { type: 'text/html' }),
+            'text/plain': new Blob([payload.text], { type: 'text/plain' })
+          })]);
+        } else {
+          const holder = document.createElement('div');
+          holder.contentEditable = 'true';
+          holder.style.position = 'fixed';
+          holder.style.left = '-99999px';
+          holder.style.top = '0';
+          holder.innerHTML = payload.html;
+          document.body.appendChild(holder);
+
+          const range = document.createRange();
+          range.selectNodeContents(holder);
+          const selection = window.getSelection();
+          selection?.removeAllRanges();
+          selection?.addRange(range);
+          const copied = document.execCommand('copy');
+          selection?.removeAllRanges();
+          holder.remove();
+          if (!copied) throw new Error('copy command failed');
+        }
+        setWechatCopyFeedback(button, '已复制到公众号');
+      } catch (error) {
+        console.error('复制公众号富文本失败', error);
+        setWechatCopyFeedback(button, '复制失败', true);
+      }
+    };
+  })();</script>  <article class="article-page" data-astro-cid-4sn4zg3r> <header class="article-hero" data-astro-cid-4sn4zg3r> <div class="article-hero-grid" data-astro-cid-4sn4zg3r> <div class="article-kind" data-astro-cid-4sn4zg3r>TECHNICAL ARTICLE</div> <div class="article-heading" data-astro-cid-4sn4zg3r> <h1 class="article-title" data-astro-cid-4sn4zg3r>半天训练营：AI 研发转型的五堂课</h1> <p class="article-description" data-astro-cid-4sn4zg3r>基于 Harness Engineering Playbook 的半天课程，覆盖规约驱动开发、饱和式测试、模型选型、流程精简和组织重构</p> </div> </div> </header> <div class="reader-grid" data-astro-cid-4sn4zg3r> <aside class="article-meta" aria-label="文章信息" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>文章信息</h2> <dl class="meta-list" data-astro-cid-4sn4zg3r> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>发布日期</dt> <dd data-astro-cid-4sn4zg3r><time datetime="2026-04-14T00:00:00.000Z" data-astro-cid-4sn4zg3r>2026年4月14日</time></dd> </div> <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>作者</dt><dd data-astro-cid-4sn4zg3r>杨正武</dd></div> <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>预计阅读</dt><dd data-astro-cid-4sn4zg3r>9 分钟</dd></div> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>标签</dt> <dd class="article-tags" data-astro-cid-4sn4zg3r><span class="article-tag" data-astro-cid-4sn4zg3r>AI 研发</span><span class="article-tag" data-astro-cid-4sn4zg3r>Harness Engineering</span><span class="article-tag" data-astro-cid-4sn4zg3r>组织转型</span><span class="article-tag" data-astro-cid-4sn4zg3r>训练营</span><span class="article-tag" data-astro-cid-4sn4zg3r>测试自动化</span></dd> </div> </dl> <div class="article-actions" data-astro-cid-4sn4zg3r> <button class="wechat-copy-button" type="button" onclick="copyArticleToWechat()" data-astro-cid-4sn4zg3r> <i class="fab fa-weixin" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 复制到公众号
+</button> <button class="share-button" type="button" onclick="shareArticle()" data-astro-cid-4sn4zg3r> <i class="fas fa-share-alt" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 分享文章
+</button> </div> </aside> <main class="article-content" data-astro-cid-4sn4zg3r> <h2 id="起因">起因</h2>
+<p>很多团队买了 Cursor、上了 Copilot，发现程序员写代码确实快了。但一问交付数据，PR 堆积、review 排队、bug 率没降反升。1.5 倍工程师是普遍体感，离十倍百倍差得远。</p>
+<p>AgentsZone 社区跟上百位开发者交流后得出了结论：差距在制度。用人类时代的旧流程指挥 Agent，就像用马车交规管高速公路。Harness Engineering Playbook 把这件事系统化了：从单 Agent 可靠编程，到多 Agent 并行开发，到组织级治理，三卷搭出完整的阶梯。</p>
+<p>Playbook 内容密度很高，直接丢给团队看大概率没人看完。下面这份课程把最核心的东西压缩成半天能消化的节奏，五个模块，每个模块解决一个具体问题。</p>
+<h2 id="第一课用规约驱动-ai-改造功能和修-bug">第一课：用规约驱动 AI 改造功能和修 Bug</h2>
+<h3 id="vibe-coding-为什么走不通">Vibe Coding 为什么走不通</h3>
+<p>大多数人用 AI 写代码的方式，本质上是 Vibe Coding。凭感觉写 prompt，接受结果，觉得”看起来对”就过了。这是个开环系统：发出指令，接受产出，没有验证。</p>
+<p>开环在一次性脚本上勉强能用，放到持续迭代的项目里，随机性就不可接受了。衡石科技的刘诚忠分享过一个观察：“代码生成速度彻底击穿了人类审查带宽。“代码产得快，审得慢，审不过来就是债务堆积。</p>
+<p>Playbook 给出的解法是闭环。规约定义”对”是什么，自动化验证检查产出是否符合意图，偏差即时发现并纠正。两个原则贯穿全书：闭环保证每一步可靠，演进保证系统越来越好。</p>
+<h3 id="修-bug-的正确姿势">修 Bug 的正确姿势</h3>
+<p>遇到 bug，不要直接告诉 AI “修一下排序 bug”。Agent 忠实执行输入，模糊的地方会变成随机决策。你写”修一下排序”，Agent 可能改了排序、改了数据类型、还顺手重构了组件。</p>
+<p>正确做法是先花两分钟把 bug 结构化成规约：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#79B8FF;font-weight:bold">## Bug: 订单列表排序错误</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">**预期行为**</span><span style="color:#E1E4E8">: 金额字段按数值大小降序排列</span></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">**当前行为**</span><span style="color:#E1E4E8">: 按字符串字典序排列（"99" 排在 "100" 前面）</span></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">**影响范围**</span><span style="color:#E1E4E8">: src/components/OrderList.tsx 的 sortFunction</span></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">**验证标准**</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> [100, 20, 3] 应排序为 [100, 20, 3]</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> ["100", "20", "3"] 当前错误排序为 ["100", "20", "3"]</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 修复后排序结果应为 [100, 20, 3]</span></span>
+<span class="line"></span></code></pre>
+<p>然后让 Agent 按照规约执行修复，约束它只动涉及排序的部分。写好的验证标准直接变成测试用例，跑测试，过就过，不过就打回去。</p>
+<h3 id="给现有功能加新逻辑">给现有功能加新逻辑</h3>
+<p>加新功能和修 bug 的原则一样：先写 spec，再让 Agent 执行，最后用测试收口。区别在于新功能需要额外定义清楚跟现有代码的边界：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#79B8FF;font-weight:bold">## Feature: 订单列表日期筛选</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">**新增文件**</span><span style="color:#E1E4E8">: src/hooks/useDateFilter.ts</span></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">**修改文件**</span><span style="color:#E1E4E8">: src/components/OrderList.tsx（仅筛选相关 props 和回调）</span></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">**不动**</span><span style="color:#E1E4E8">: 排序逻辑、样式文件、API 调用层</span></span>
+<span class="line"><span style="color:#E1E4E8;font-weight:bold">**验收标准**</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 默认不筛选，显示全部订单</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 选择"最近 30 天"后只显示该范围内订单</span></span>
+<span class="line"><span style="color:#FFAB70">  -</span><span style="color:#E1E4E8"> 清除筛选恢复全部显示</span></span>
+<span class="line"></span></code></pre>
+<p>这几点缺一不可。“新增文件”告诉 Agent 在哪里写代码。“修改文件”限定改动范围。“不动”防止 Agent 过度修改。验收标准是最后的闸门。</p>
+<p>跟 AI 协作，人的核心工作从”写代码”变成了”写规约 + 验收产出”。代码生成是最便宜的环节，设计和验证才值钱。</p>
+<h2 id="第二课测试用例设计与自动化验证">第二课：测试用例设计与自动化验证</h2>
+<h3 id="为什么测试成了唯一的解法">为什么测试成了唯一的解法</h3>
+<p>AI 产出速度太快，人类 review 成为瓶颈。传统靠人肉 review 保质量的路走不通了。刘诚忠把这个做法叫”饱和式测试”，用 AI 补齐 100% 甚至冗余的测试用例来驾驭复杂度。</p>
+<p>Playbook 卷一的核心概念是”测试基建前置”：把 spec 变成可执行的约束，在代码还没写的时候就把验证标准定好。</p>
+<h3 id="让-ai-生成测试用例清单">让 AI 生成测试用例清单</h3>
+<p>拿”日期筛选”功能的 spec 做例子。先让 AI 读 spec，列出需要覆盖的测试场景。要求覆盖正常路径、边界值、异常输入，每个用例一句话描述输入和预期输出，只列场景不写代码。</p>
+<p>AI 会列出代码层面的边界值（空值、undefined、超长字符串）。但业务语境下的异常场景还得人来补：</p>
+<ul>
+<li>跨时区怎么处理？服务器时间和用户本地时间不一致怎么办？</li>
+<li>筛选状态下翻页，第二页要不要保持筛选？</li>
+<li>30 天内没有订单时，空状态怎么展示？</li>
+</ul>
+<p>AI 擅长技术边界，人擅长业务边界，两份清单合并才完整。</p>
+<h3 id="验证闭环">验证闭环</h3>
+<p>把确认后的测试清单交给 AI 写成测试代码，跑一遍，通过的提交到 CI 做回归保护。整个链路是这样的：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Spec → 测试用例清单 → 测试代码 → CI 自动执行 → 回归拦截</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>这条链路一断，Agent 就会积累错误。因为 Agent 会忠实复制代码库里已有的模式，包括坏模式。合并后的代码成为后续生成的参考集。没有持续验证，系统会自我强化地滑向退化。</p>
+<p>Playbook 反复强调一件事：验证链路必须有，而且要持续运转。这是整个方法论的地基。</p>
+<h2 id="第三课模型选型">第三课：模型选型</h2>
+<p>被问得最多的问题：做前端、做设计、做产品，用什么模型最好？</p>
+<p>2026 年上半年，没有哪个模型在所有场景都碾压。但有明确的选择逻辑。</p>
+<p><strong>代码生成和重构（含前端）</strong></p>
+<p>Claude Opus/Sonnet 在结构化代码生成上稳定性最好，尤其适合需要遵循现有代码风格的场景。GPT-4o 在创意性生成上有时更灵活。前端组件开发两个都能用，差别在 10-15% 左右。别纠结选型，先固定一个主力模型跑通流程。等流程跑顺了再对比，否则永远在换模型，永远在调 prompt。</p>
+<p><strong>产品设计和需求分析</strong></p>
+<p>把 PRD 结构化、把模糊需求拆成可执行 spec，Claude 更稳。它更擅长遵循结构化模板，输出也更一致。</p>
+<p><strong>体验设计和交互</strong></p>
+<p>这是多模型协作的场景。用大模型把用户旅程和交互逻辑结构化，用专门的视觉模型生成设计稿，再用代码模型把设计稿转成组件。目前没有单一模型能端到端做好这件事。</p>
+<p><strong>视觉设计</strong></p>
+<p>图像生成用 Midjourney 或 DALL-E 3，设计系统和组件规范用 Claude/GPT 来维护。别指望一个模型搞定所有视觉设计工作。</p>
+<h2 id="第四课ai-研发流程哪些能砍">第四课：AI 研发流程哪些能砍</h2>
+<p>传统流程里有一堆环节是为人类执行者设计的，Agent 不需要。</p>
+<p><strong>能砍的</strong></p>
+<p>站会。Agent 不需要每天同步进度，它的进度在 .status 文件里。</p>
+<p>迭代计划会议。Agent 不需要参与 Sprint Planning，给它 spec 和任务列表，它就按顺序执行。</p>
+<p>详细的任务分配会。不需要把大需求拆成前端、后端、测试任务再分别分配。给 Agent 一个完整的 spec，它自己能端到端走完。</p>
+<p>代码 review 中的格式和风格检查。交给 linter 和 CI。</p>
+<p><strong>砍不了的</strong></p>
+<p>需求定义。Agent 对模糊需求的处理方式是随机决策，比人类差得多。PRD 的质量直接决定产出质量。</p>
+<p>验收标准。每条 spec 都要附带可执行的验证条件。没有验收标准的 spec 就是给 Agent 发了一张空白支票。</p>
+<p>架构决策。Agent 能写代码，但不能替你决定系统的架构方向。模块边界、API 契约、数据模型，这些必须在 Agent 上手之前定好。</p>
+<p>嘉宾在分享中提到一个很真实的瓶颈：“现在的瓶颈已经不在代码生成，需求供给跟不上 Agent 的进度，变成 TO 每天追着 CPO 要需求。“Agent 干活太快，需求定义成了新的卡点。</p>
+<h2 id="第五课组织调整与一把手怎么跟上">第五课：组织调整与一把手怎么跟上</h2>
+<h3 id="团队结构正在瓦解">团队结构正在瓦解</h3>
+<p>刘诚忠在分享里说了一句很直白的话：“Leader 已经没办法 Leader 下属了，因为 Leader 可能还没下属会用 AI。”</p>
+<p>传统基于角色协作的模式正在瓦解。前端、后端、QA、产品，各自负责一块，通过站会和评审会同步进度。AI 帮助下，一个人就能打通全流程。衡石内部做了实验：设立 AI Pod，里面的人不受传统管理约束，以代码提交强度和结果为准，形成了一种小型精英组织。</p>
+<p>Playbook 卷三提出了三角色分工模型：</p>
+<ul>
+<li><strong>PO（产品负责人）</strong>：写高质量、自包含的 PRD，定义”做什么”</li>
+<li><strong>QO（质量负责人）</strong>：定义验收标准和 Benchmark，确保”什么是对的”，通过对抗性机制约束 AI</li>
+<li><strong>TO（技术负责人）</strong>：编排 Agent 工作流，负责”怎么做”</li>
+</ul>
+<p>这三个人都不写代码。写代码的事交给 Agent。他们的核心工作是定义问题、验收结果、编排流程。</p>
+<p>嘉宾分享里提到一个银行流水分类引擎的案例：4.5 个人替代了原来的 63 人。人员结构发生了剧变，送走了外包团队和无法驾驭 Agent 的初级分析师，转而聘请能定义问题的资深精英。形成了”少数精英指挥智能体军团”的终局形态。</p>
+<h3 id="最大的坑黑灯工厂">最大的坑：黑灯工厂</h3>
+<p>嘉宾专门讲了”怎么搞砸 AI Coding”。最大的坑是完全无人化的”黑灯工厂”思维。无人化会导致代码风格不一致、理解偏差产生垃圾产出。看起来每个人都在省事，实际上系统在失控。</p>
+<p>嘉宾的结论很清楚：“不要相信’挂机写代码’的鬼话，工程永远是一件难受且充满对抗的事情。“</p>
+<h3 id="一把手怎么办">一把手怎么办</h3>
+<p>对于不在一线写代码的管理者，跟上 AI 变化有几件实际的事可以做。</p>
+<p>自己用。不写代码没关系，用 AI 做日常的事：写方案、做分析、整理会议纪要。体感这个东西不用不会有。不需要成为程序员，但需要理解”跟 AI 协作”到底意味着什么。</p>
+<p>看交付物，不看过程。传统管理关注过程：每天站会、周报、Sprint Review。Agent 时代关注产出：spec 写清楚了没有，测试覆盖率多少，CI 绿不绿。管理重心从过程监控转向结果验收。</p>
+<p>投资测试基建。这是性价比最高的投入。测试基建好了，Agent 的产出质量有保障；测试基建差，Agent 产得越多，债务积累越快。衡石的做法是饱和式测试，用 AI 补齐测试用例到 100% 覆盖。</p>
+<p>找到你的 AI Pod。在组织里划出一个小团队，不受传统管理流程约束，按 Agent 时代的节奏工作。让他们跑通整个流程，再把经验扩散到其他团队。</p>
+<p>关注决策智能。衡石的 Jarvis 决策中枢解决了一个实际问题：AI 记忆碎片化。通过结构化记忆（文档、代码、历史问题合集）建立共识，让 AI 知道”病历本和历史”。这个思路也适用于组织内部的知识管理。</p>
+<h2 id="收尾">收尾</h2>
+<p>半天时间能做的有限。当场变成 100 倍工程师不现实，但可以建立正确的认知框架：跟 AI 协作的核心工作是定义问题；闭环比开环可靠，规约和验证必须配对；测试基建是地基，没有地基别盖楼；组织要适配新的工作方式。</p>
+<p>回去之后建议用 Playbook 卷一作为深入学习的材料。先把规约和验证两件事做到位，再考虑多 Agent 并行和组织级转型。</p>
+<p>刘诚忠在分享里说：“现在是最坏的 AI 创业时代，因为每个人手里拿的都是加农炮，只能互轰。“竞争确实在加剧。但加农炮也得有人会瞄准，光有火力不够。这套课程教的，就是瞄准。</p> </main> <aside class="page-toc" aria-label="页面目录" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>页面目录</h2> <ol class="toc-list" data-astro-cid-4sn4zg3r> <li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#起因" data-astro-cid-4sn4zg3r>起因</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#第一课用规约驱动-ai-改造功能和修-bug" data-astro-cid-4sn4zg3r>第一课：用规约驱动 AI 改造功能和修 Bug</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#vibe-coding-为什么走不通" data-astro-cid-4sn4zg3r>Vibe Coding 为什么走不通</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#修-bug-的正确姿势" data-astro-cid-4sn4zg3r>修 Bug 的正确姿势</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#给现有功能加新逻辑" data-astro-cid-4sn4zg3r>给现有功能加新逻辑</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#第二课测试用例设计与自动化验证" data-astro-cid-4sn4zg3r>第二课：测试用例设计与自动化验证</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#为什么测试成了唯一的解法" data-astro-cid-4sn4zg3r>为什么测试成了唯一的解法</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#让-ai-生成测试用例清单" data-astro-cid-4sn4zg3r>让 AI 生成测试用例清单</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#验证闭环" data-astro-cid-4sn4zg3r>验证闭环</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#第三课模型选型" data-astro-cid-4sn4zg3r>第三课：模型选型</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#第四课ai-研发流程哪些能砍" data-astro-cid-4sn4zg3r>第四课：AI 研发流程哪些能砍</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#第五课组织调整与一把手怎么跟上" data-astro-cid-4sn4zg3r>第五课：组织调整与一把手怎么跟上</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#团队结构正在瓦解" data-astro-cid-4sn4zg3r>团队结构正在瓦解</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#最大的坑黑灯工厂" data-astro-cid-4sn4zg3r>最大的坑：黑灯工厂</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#一把手怎么办" data-astro-cid-4sn4zg3r>一把手怎么办</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#收尾" data-astro-cid-4sn4zg3r>收尾</a></li> </ol> <a class="toc-back" href="/blog" data-astro-cid-4sn4zg3r><i class="fas fa-arrow-left" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 返回博客</a> </aside> <nav class="article-navigation" aria-label="相邻文章" data-astro-cid-4sn4zg3r> <a class="article-nav-link" href="/blog/thingjs-architecture-testing" data-astro-cid-4sn4zg3r> <span class="nav-direction" data-astro-cid-4sn4zg3r>较新文章</span> <span class="nav-title" data-astro-cid-4sn4zg3r>Thing.js 数字孪生平台技术架构分析与自动化测试方案</span> </a> <a class="article-nav-link" href="/blog/hermes-agent-memory-context" data-astro-cid-4sn4zg3r> <span class="nav-direction" data-astro-cid-4sn4zg3r>较早文章</span> <span class="nav-title" data-astro-cid-4sn4zg3r>Hermes 来了，OpenClaw 要凉了？但它们都绕开了同一个问题</span> </a> </nav> </div> </article> <div class="selection-share" data-selection-share data-content-selector=".article-content" data-title="半天训练营：AI 研发转型的五堂课" data-author="杨正武" data-section="IMCODERS BLOG" data-url="https://imcoders.cn/blog/harness-engineering-training/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>   </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

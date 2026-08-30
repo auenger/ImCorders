@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" width="1200" height="720" role="img" aria-labelledby="title desc">
+  <title id="title">Agent Loop 的运行与退出</title>
+  <desc id="desc">Agent 从目标和状态开始，依次观察、决策、行动、更新并判断是否终止。继续时返回观察阶段，结束时进入成功、等待、人工介入或失败状态。</desc>
+  <style>
+    text { font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif; }
+    .title { font-size: 25px; font-weight: 700; fill: #111827; }
+    .subtitle { font-size: 13px; fill: #6b7280; }
+    .label { font-size: 16px; font-weight: 700; fill: #111827; text-anchor: middle; }
+    .small { font-size: 12px; fill: #6b7280; text-anchor: middle; }
+    .arrow-label { font-size: 12px; font-weight: 600; }
+    .status { font-size: 14px; font-weight: 700; fill: #111827; text-anchor: middle; }
+  </style>
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0,10 3.5,0 7" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0,10 3.5,0 7" fill="#7c3aed"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0,10 3.5,0 7" fill="#ea580c"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="720" fill="#ffffff"/>
+  <text class="title" x="48" y="50">Agent Loop：从目标到可验证的终态</text>
+  <text class="subtitle" x="48" y="76">while 是计算内核；状态、动作校验、完成验证和退出语义让它成为执行系统</text>
+
+  <rect x="48" y="236" width="150" height="98" rx="12" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+  <text class="label" x="123" y="272">Goal + State</text>
+  <text class="small" x="123" y="298">目标、约束、进度</text>
+  <text class="small" x="123" y="317">或恢复检查点</text>
+
+  <rect x="246" y="236" width="150" height="98" rx="12" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+  <text class="label" x="321" y="272">Observe</text>
+  <text class="small" x="321" y="298">读取最新环境</text>
+  <text class="small" x="321" y="317">获得局部证据</text>
+
+  <rect x="444" y="236" width="150" height="98" rx="12" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1.5"/>
+  <text class="label" x="519" y="272">Decide</text>
+  <text class="small" x="519" y="298">模型选择动作</text>
+  <text class="small" x="519" y="317">Runtime 校验决策</text>
+
+  <rect x="642" y="236" width="150" height="98" rx="12" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.5"/>
+  <text class="label" x="717" y="272">Act</text>
+  <text class="small" x="717" y="298">调用 Tool</text>
+  <text class="small" x="717" y="317">影响外部环境</text>
+
+  <rect x="840" y="236" width="150" height="98" rx="12" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+  <text class="label" x="915" y="272">Update</text>
+  <text class="small" x="915" y="298">记录动作与证据</text>
+  <text class="small" x="915" y="317">更新可恢复状态</text>
+
+  <path d="M1074 229L1130 285L1074 341L1018 285Z" fill="#f9fafb" stroke="#9ca3af" stroke-width="1.5"/>
+  <text class="label" x="1074" y="280">终止？</text>
+  <text class="small" x="1074" y="302">验证目标与条件</text>
+
+  <path d="M198 285H234" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arrow-blue)"/>
+  <path d="M396 285H432" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arrow-blue)"/>
+  <path d="M594 285H630" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arrow-blue)"/>
+  <path d="M792 285H828" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arrow-blue)"/>
+  <path d="M990 285H1006" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arrow-blue)"/>
+
+  <path d="M1074 229V150H321V224" fill="none" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrow-purple)"/>
+  <text class="arrow-label" x="676" y="139" fill="#7c3aed">继续：下一轮从最新事实重新观察</text>
+
+  <path d="M1074 341V410" fill="none" stroke="#ea580c" stroke-width="2" marker-end="url(#arrow-orange)"/>
+  <text class="arrow-label" x="1086" y="382" fill="#ea580c">退出</text>
+  <path d="M228 456H1074" fill="none" stroke="#ea580c" stroke-width="1.8"/>
+  <path d="M1074 410V456" fill="none" stroke="#ea580c" stroke-width="1.8"/>
+  <path d="M228 456V500" fill="none" stroke="#ea580c" stroke-width="1.8" marker-end="url(#arrow-orange)"/>
+  <path d="M458 456V500" fill="none" stroke="#ea580c" stroke-width="1.8" marker-end="url(#arrow-orange)"/>
+  <path d="M688 456V500" fill="none" stroke="#ea580c" stroke-width="1.8" marker-end="url(#arrow-orange)"/>
+  <path d="M918 456V500" fill="none" stroke="#ea580c" stroke-width="1.8" marker-end="url(#arrow-orange)"/>
+
+  <rect x="138" y="512" width="180" height="86" rx="12" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+  <circle cx="173" cy="547" r="12" fill="#16a34a"/>
+  <path d="M167 547l4 4 8-9" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text class="status" x="239" y="546">SUCCESS</text>
+  <text class="small" x="228" y="574">完成证据已经通过</text>
+
+  <rect x="368" y="512" width="180" height="86" rx="12" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+  <circle cx="403" cy="547" r="12" fill="#2563eb"/>
+  <path d="M403 540v8l5 3" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  <text class="status" x="469" y="546">WAITING</text>
+  <text class="small" x="458" y="574">等待时间或外部事件</text>
+
+  <rect x="598" y="512" width="180" height="86" rx="12" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+  <circle cx="633" cy="547" r="12" fill="#ea580c"/>
+  <text x="633" y="552" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">?</text>
+  <text class="status" x="699" y="546">NEEDS HUMAN</text>
+  <text class="small" x="688" y="574">等待选择、确认或授权</text>
+
+  <rect x="828" y="512" width="180" height="86" rx="12" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.5"/>
+  <circle cx="863" cy="547" r="12" fill="#dc2626"/>
+  <path d="M858 542l10 10M868 542l-10 10" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  <text class="status" x="929" y="546">FAILED</text>
+  <text class="small" x="918" y="574">保留原因与外部状态</text>
+
+  <g transform="translate(48 666)">
+    <line x1="0" y1="8" x2="28" y2="8" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue)"/>
+    <text x="36" y="12" font-size="12" fill="#6b7280">单轮执行</text>
+    <line x1="122" y1="8" x2="150" y2="8" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrow-purple)"/>
+    <text x="158" y="12" font-size="12" fill="#6b7280">反馈循环</text>
+    <line x1="252" y1="8" x2="280" y2="8" stroke="#ea580c" stroke-width="2" marker-end="url(#arrow-orange)"/>
+    <text x="288" y="12" font-size="12" fill="#6b7280">终态分流</text>
+  </g>
+</svg>

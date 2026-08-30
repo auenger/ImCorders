@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" width="1200" height="720">
+  <style>
+    text { font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+    .title { font-size: 25px; font-weight: 700; fill: #111827; }
+    .subtitle { font-size: 13px; fill: #6b7280; }
+    .label { font-size: 15px; font-weight: 600; fill: #111827; }
+    .small { font-size: 12px; fill: #6b7280; }
+    .tiny { font-size: 11px; fill: #6b7280; }
+  </style>
+  <defs>
+    <marker id="arrow-blue-aic" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#2563eb"/></marker>
+    <marker id="arrow-orange-aic" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#ea580c"/></marker>
+    <marker id="arrow-green-aic" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#059669"/></marker>
+    <marker id="arrow-gray-aic" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#6b7280"/></marker>
+  </defs>
+  <rect width="1200" height="720" fill="#ffffff"/>
+  <text x="60" y="54" class="title">用户驱动 Agent 的多重身份与委托链</text>
+  <text x="60" y="79" class="subtitle">逻辑 Agent 用于决策归因，Runtime Workload 用于密码学认证，Delegation 说明谁代表谁行动</text>
+
+  <rect x="55" y="125" width="180" height="105" rx="12" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="145" y="158" text-anchor="middle" class="label">User Subject</text>
+  <text x="145" y="184" text-anchor="middle" class="small">user_42</text>
+  <text x="145" y="207" text-anchor="middle" class="tiny">IdP Session · MFA</text>
+
+  <rect x="300" y="125" width="205" height="105" rx="12" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="402" y="158" text-anchor="middle" class="label">Product / UI</text>
+  <text x="402" y="184" text-anchor="middle" class="small">Goal + User Session</text>
+  <text x="402" y="207" text-anchor="middle" class="tiny">创建 Run 与委托请求</text>
+
+  <rect x="570" y="105" width="270" height="145" rx="12" fill="#faf5ff" stroke="#ddd6fe" stroke-width="1.5"/>
+  <text x="705" y="139" text-anchor="middle" class="label">Agent Runtime</text>
+  <rect x="592" y="158" width="105" height="65" rx="8" fill="#ffffff" stroke="#c4b5fd"/>
+  <text x="644" y="184" text-anchor="middle" class="small">Agent Definition</text>
+  <text x="644" y="204" text-anchor="middle" class="tiny">support@7</text>
+  <rect x="712" y="158" width="105" height="65" rx="8" fill="#ffffff" stroke="#c4b5fd"/>
+  <text x="764" y="184" text-anchor="middle" class="small">Run Identity</text>
+  <text x="764" y="204" text-anchor="middle" class="tiny">run_128</text>
+
+  <rect x="905" y="125" width="235" height="105" rx="12" fill="#f0fdfa" stroke="#99f6e4" stroke-width="1.5"/>
+  <text x="1022" y="158" text-anchor="middle" class="label">Runtime Workload</text>
+  <text x="1022" y="184" text-anchor="middle" class="small">spiffe://…/agent-runtime</text>
+  <text x="1022" y="207" text-anchor="middle" class="tiny">mTLS / Workload Credential</text>
+
+  <rect x="905" y="360" width="235" height="115" rx="12" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="1022" y="394" text-anchor="middle" class="label">External Resource</text>
+  <text x="1022" y="420" text-anchor="middle" class="small">payments-prod / payment_9</text>
+  <text x="1022" y="443" text-anchor="middle" class="tiny">验证 Audience · Scope · Actor</text>
+
+  <rect x="570" y="360" width="270" height="115" rx="12" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5"/>
+  <text x="705" y="394" text-anchor="middle" class="label">Delegation Grant</text>
+  <text x="705" y="420" text-anchor="middle" class="small">user_42 → support-agent@7</text>
+  <text x="705" y="443" text-anchor="middle" class="tiny">Run · Scope · Resource · Expiry</text>
+
+  <rect x="300" y="360" width="205" height="115" rx="12" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5"/>
+  <text x="402" y="394" text-anchor="middle" class="label">Approver Identity</text>
+  <text x="402" y="420" text-anchor="middle" class="small">finance_operator_3</text>
+  <text x="402" y="443" text-anchor="middle" class="tiny">角色 · 参数摘要 · 有效期</text>
+
+  <rect x="55" y="535" width="1085" height="115" rx="14" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text x="82" y="570" class="label">有效权限不是任一主体权限的复制，而是多层约束的交集</text>
+  <text x="600" y="608" text-anchor="middle" class="small">User Entitlement ∩ Agent Capabilities ∩ Run Delegation ∩ Workload Permission ∩ Resource Policy ∩ Approval Scope</text>
+  <text x="600" y="632" text-anchor="middle" class="tiny">Approval 只能收窄或接受风险，不能凭空增加基础权限</text>
+
+  <path d="M235 177 H285" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue-aic)"/>
+  <text x="260" y="166" text-anchor="middle" class="tiny">认证</text>
+  <path d="M505 177 H555" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue-aic)"/>
+  <text x="530" y="166" text-anchor="middle" class="tiny">绑定 User</text>
+  <path d="M840 177 H890" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green-aic)"/>
+  <text x="865" y="166" text-anchor="middle" class="tiny">执行归因</text>
+  <path d="M1022 230 V345" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green-aic)"/>
+  <text x="1038" y="292" class="tiny">短期凭证</text>
+  <path d="M145 230 V500 H705 V475" fill="none" stroke="#ea580c" stroke-width="2" marker-end="url(#arrow-orange-aic)"/>
+  <text x="285" y="491" text-anchor="middle" class="tiny">用户委托</text>
+  <path d="M705 360 V265" fill="none" stroke="#ea580c" stroke-width="2" marker-end="url(#arrow-orange-aic)"/>
+  <text x="721" y="315" class="tiny">约束 Run</text>
+  <path d="M505 417 H555" fill="none" stroke="#ea580c" stroke-width="2" marker-end="url(#arrow-orange-aic)"/>
+  <text x="530" y="406" text-anchor="middle" class="tiny">审批范围</text>
+  <path d="M840 417 H890" fill="none" stroke="#6b7280" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#arrow-gray-aic)"/>
+  <text x="865" y="406" text-anchor="middle" class="tiny">授权上下文</text>
+
+  <g transform="translate(740,687)">
+    <line x1="0" y1="0" x2="32" y2="0" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue-aic)"/><text x="42" y="4" class="tiny">主体认证</text>
+    <line x1="130" y1="0" x2="162" y2="0" stroke="#ea580c" stroke-width="2" marker-end="url(#arrow-orange-aic)"/><text x="172" y="4" class="tiny">委托与审批</text>
+    <line x1="290" y1="0" x2="322" y2="0" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green-aic)"/><text x="332" y="4" class="tiny">执行身份</text>
+  </g>
+</svg>

@@ -1,0 +1,506 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>Codex 开源 App Server：当 Agent Runtime 不再绑定 UI - 杨正武</title><meta name="description" content="Codex 开放 App Server 后，认证、会话、审批、工具调用与流式事件都可以被新的客户端复用。本文结合 zcode-tui 的实践，讨论如何把官方 Agent 内核变成 TUI、IDE、移动端和自动化系统背后的通用 Runtime。"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="Codex 开源 App Server：当 Agent Runtime 不再绑定 UI - 杨正武"><meta property="og:description" content="Codex 开放 App Server 后，认证、会话、审批、工具调用与流式事件都可以被新的客户端复用。本文结合 zcode-tui 的实践，讨论如何把官方 Agent 内核变成 TUI、IDE、移动端和自动化系统背后的通用 Runtime。"><meta property="og:url" content="https://imcoders.cn/blog/2026-08-27-codex-app-server-runtime/"><meta property="og:image" content="https://imcoders.cn/blog-images/codex-app-server/hero-runtime-ui.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Codex 开源 App Server：当 Agent Runtime 不再绑定 UI - 杨正武"><meta name="twitter:description" content="Codex 开放 App Server 后，认证、会话、审批、工具调用与流式事件都可以被新的客户端复用。本文结合 zcode-tui 的实践，讨论如何把官方 Agent 内核变成 TUI、IDE、移动端和自动化系统背后的通用 Runtime。"><meta name="twitter:image" content="https://imcoders.cn/blog-images/codex-app-server/hero-runtime-ui.jpg"><meta itemprop="name" content="Codex 开源 App Server：当 Agent Runtime 不再绑定 UI - 杨正武"><meta itemprop="description" content="Codex 开放 App Server 后，认证、会话、审批、工具调用与流式事件都可以被新的客户端复用。本文结合 zcode-tui 的实践，讨论如何把官方 Agent 内核变成 TUI、IDE、移动端和自动化系统背后的通用 Runtime。"><meta itemprop="image" content="https://imcoders.cn/blog-images/codex-app-server/hero-runtime-ui.jpg"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "Codex 开源 App Server：当 Agent Runtime 不再绑定 UI - 杨正武";
+const shareDesc = "Codex 开放 App Server 后，认证、会话、审批、工具调用与流式事件都可以被新的客户端复用。本文结合 zcode-tui 的实践，讨论如何把官方 Agent 内核变成 TUI、IDE、移动端和自动化系统背后的通用 Runtime。";
+const shareLink = "https://imcoders.cn/blog/2026-08-27-codex-app-server-runtime/";
+const shareImg = "https://imcoders.cn/blog-images/codex-app-server/hero-runtime-ui.jpg";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.DUPo9LDV.css"><script type="module" src="/_astro/hoisted.D20CsQCG.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/blog" aria-current="page">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <script>(function(){const shareText = "Codex 开放 App Server 后，认证、会话、审批、工具调用与流式事件都可以被新的客户端复...\n\nhttps://imcoders.cn/blog/2026-08-27-codex-app-server-runtime/";
+const shareUrl = "https://imcoders.cn/blog/2026-08-27-codex-app-server-runtime/";
+const wechatTitle = "Codex 开源 App Server：当 Agent Runtime 不再绑定 UI";
+const wechatDescription = "Codex 开放 App Server 后，认证、会话、审批、工具调用与流式事件都可以被新的客户端复用。本文结合 zcode-tui 的实践，讨论如何把官方 Agent 内核变成 TUI、IDE、移动端和自动化系统背后的通用 Runtime。";
+const wechatAuthor = "杨正武";
+const wechatDate = "2026年8月27日";
+
+    window.shareArticle = async function () {
+      const button = document.querySelector('.share-button');
+      try {
+        await navigator.clipboard.writeText(shareText);
+        if (!button) return;
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> 已复制';
+        button.classList.add('copied');
+        window.setTimeout(() => {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+      } catch (error) {
+        console.error('复制失败', error);
+        window.prompt('请复制下面的分享内容', shareText);
+      }
+    };
+
+    const wechatCopiedProperties = [
+      'color', 'background-color', 'font-family', 'font-size', 'font-weight', 'font-style',
+      'line-height', 'letter-spacing', 'text-align', 'text-decoration', 'text-indent',
+      'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
+      'padding-top', 'padding-right', 'padding-bottom', 'padding-left',
+      'border-top', 'border-right', 'border-bottom', 'border-left', 'border-radius',
+      'display', 'vertical-align',
+      'white-space', 'list-style-type', 'border-collapse', 'overflow-wrap', 'word-break'
+    ];
+
+    const canonicalizeWechatUrl = function (value) {
+      if (!value) return value;
+      try {
+        return new URL(value, shareUrl).href;
+      } catch {
+        return value;
+      }
+    };
+
+    window.buildWechatRichText = function () {
+      const article = document.querySelector('.article-content');
+      if (!article) throw new Error('article content not found');
+
+      const clone = article.cloneNode(true);
+      const sourceNodes = [article, ...article.querySelectorAll('*')];
+      const cloneNodes = [clone, ...clone.querySelectorAll('*')];
+
+      sourceNodes.forEach((sourceNode, index) => {
+        const targetNode = cloneNodes[index];
+        if (!(sourceNode instanceof Element) || !(targetNode instanceof Element)) return;
+
+        const computed = getComputedStyle(sourceNode);
+        const inlineStyles = wechatCopiedProperties
+          .map((property) => `${property}:${computed.getPropertyValue(property)};`)
+          .join('');
+
+        targetNode.setAttribute('style', inlineStyles);
+        targetNode.removeAttribute('id');
+        targetNode.removeAttribute('class');
+        [...targetNode.attributes].forEach((attribute) => {
+          if (attribute.name.startsWith('data-') || attribute.name.startsWith('aria-')) {
+            targetNode.removeAttribute(attribute.name);
+          }
+        });
+
+        if (sourceNode instanceof HTMLImageElement && targetNode instanceof HTMLImageElement) {
+          const rawSource = sourceNode.getAttribute('src') || sourceNode.currentSrc || sourceNode.src;
+          targetNode.setAttribute('src', canonicalizeWechatUrl(rawSource));
+          targetNode.removeAttribute('srcset');
+          targetNode.removeAttribute('sizes');
+          targetNode.removeAttribute('loading');
+          targetNode.removeAttribute('decoding');
+          targetNode.setAttribute('style', `${inlineStyles}display:block;width:100%;max-width:100%;height:auto;margin-left:auto;margin-right:auto;`);
+        }
+
+        if (sourceNode instanceof HTMLAnchorElement && targetNode instanceof HTMLAnchorElement) {
+          targetNode.setAttribute('href', canonicalizeWechatUrl(sourceNode.getAttribute('href') || sourceNode.href));
+          targetNode.removeAttribute('target');
+          targetNode.removeAttribute('rel');
+        }
+      });
+
+      clone.querySelectorAll('script, style, iframe, button, form, input, textarea, select').forEach((node) => node.remove());
+
+      // 微信编辑器的内容栏比桌面文章窄。不要保留桌面布局计算出的固定宽高，
+      // 否则图片缩小后父元素仍会占据原高度，文字换行后也可能互相覆盖。
+      clone.querySelectorAll('p').forEach((paragraph) => {
+        const onlyChild = paragraph.children.length === 1 ? paragraph.firstElementChild : null;
+        if (onlyChild instanceof HTMLImageElement && !paragraph.textContent?.trim()) {
+          paragraph.setAttribute('style', 'margin:24px 0 12px;padding:0;line-height:0;');
+        }
+      });
+
+      clone.querySelectorAll('img').forEach((image) => {
+        image.style.display = 'block';
+        image.style.width = '100%';
+        image.style.maxWidth = '100%';
+        image.style.height = 'auto';
+        image.style.marginLeft = 'auto';
+        image.style.marginRight = 'auto';
+      });
+
+      clone.querySelectorAll('pre').forEach((pre) => {
+        pre.style.display = 'block';
+        pre.style.width = 'auto';
+        pre.style.maxWidth = '100%';
+        pre.style.whiteSpace = 'pre-wrap';
+        pre.style.wordBreak = 'break-word';
+        pre.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('pre code').forEach((code) => {
+        code.style.whiteSpace = 'pre-wrap';
+        code.style.wordBreak = 'break-word';
+        code.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('table').forEach((table) => {
+        table.style.display = 'table';
+        table.style.width = '100%';
+        table.style.maxWidth = '100%';
+        table.style.tableLayout = 'fixed';
+        table.style.borderCollapse = 'collapse';
+      });
+
+      clone.querySelectorAll('th, td').forEach((cell) => {
+        cell.style.minWidth = '0';
+        cell.style.wordBreak = 'break-word';
+        cell.style.overflowWrap = 'anywhere';
+        cell.style.verticalAlign = 'top';
+      });
+
+      const wrapper = document.createElement('section');
+      wrapper.setAttribute('style', 'box-sizing:border-box;width:100%;max-width:100%;margin:0;padding:32px 26px;background-color:#111016;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+
+      const header = document.createElement('header');
+      header.setAttribute('style', 'margin:0 0 34px;padding:0 0 24px;border-bottom:2px solid #e23c3e;');
+
+      const title = document.createElement('h1');
+      title.textContent = wechatTitle;
+      title.setAttribute('style', 'margin:0 0 18px;color:#f1ece2;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:30px;font-weight:800;line-height:1.25;letter-spacing:-0.5px;');
+
+      const description = document.createElement('p');
+      description.textContent = wechatDescription;
+      description.setAttribute('style', 'margin:0 0 16px;color:#a9a3a8;font-size:16px;line-height:1.75;');
+
+      const meta = document.createElement('p');
+      meta.textContent = `${wechatAuthor} · ${wechatDate}`;
+      meta.setAttribute('style', 'margin:0;color:#e23c3e;font-size:13px;font-weight:700;line-height:1.6;letter-spacing:0.5px;');
+
+      header.append(title, description, meta);
+      clone.setAttribute('style', 'width:auto;max-width:100%;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+      wrapper.append(header, clone);
+
+      return {
+        html: wrapper.outerHTML,
+        text: `${wechatTitle}\n\n${wechatDescription}\n\n${wechatAuthor} · ${wechatDate}\n\n${article.innerText}`
+      };
+    };
+
+    const setWechatCopyFeedback = function (button, message, isError = false) {
+      if (!button) return;
+      const original = button.dataset.originalHtml || button.innerHTML;
+      button.dataset.originalHtml = original;
+      button.innerHTML = isError
+        ? `<i class="fas fa-exclamation-circle" aria-hidden="true"></i> ${message}`
+        : `<i class="fas fa-check" aria-hidden="true"></i> ${message}`;
+      button.classList.toggle('copy-error', isError);
+      button.classList.toggle('copied', !isError);
+      window.setTimeout(() => {
+        button.innerHTML = original;
+        button.classList.remove('copied', 'copy-error');
+      }, 2600);
+    };
+
+    window.copyArticleToWechat = async function () {
+      const button = document.querySelector('.wechat-copy-button');
+      try {
+        const payload = window.buildWechatRichText();
+        if (navigator.clipboard?.write && window.ClipboardItem && window.isSecureContext) {
+          await navigator.clipboard.write([new ClipboardItem({
+            'text/html': new Blob([payload.html], { type: 'text/html' }),
+            'text/plain': new Blob([payload.text], { type: 'text/plain' })
+          })]);
+        } else {
+          const holder = document.createElement('div');
+          holder.contentEditable = 'true';
+          holder.style.position = 'fixed';
+          holder.style.left = '-99999px';
+          holder.style.top = '0';
+          holder.innerHTML = payload.html;
+          document.body.appendChild(holder);
+
+          const range = document.createRange();
+          range.selectNodeContents(holder);
+          const selection = window.getSelection();
+          selection?.removeAllRanges();
+          selection?.addRange(range);
+          const copied = document.execCommand('copy');
+          selection?.removeAllRanges();
+          holder.remove();
+          if (!copied) throw new Error('copy command failed');
+        }
+        setWechatCopyFeedback(button, '已复制到公众号');
+      } catch (error) {
+        console.error('复制公众号富文本失败', error);
+        setWechatCopyFeedback(button, '复制失败', true);
+      }
+    };
+  })();</script>  <article class="article-page" data-astro-cid-4sn4zg3r> <header class="article-hero" data-astro-cid-4sn4zg3r> <div class="article-hero-grid" data-astro-cid-4sn4zg3r> <div class="article-kind" data-astro-cid-4sn4zg3r>TECHNICAL ARTICLE</div> <div class="article-heading" data-astro-cid-4sn4zg3r> <h1 class="article-title" data-astro-cid-4sn4zg3r>Codex 开源 App Server：当 Agent Runtime 不再绑定 UI</h1> <p class="article-description" data-astro-cid-4sn4zg3r>Codex 开放 App Server 后，认证、会话、审批、工具调用与流式事件都可以被新的客户端复用。本文结合 zcode-tui 的实践，讨论如何把官方 Agent 内核变成 TUI、IDE、移动端和自动化系统背后的通用 Runtime。</p> </div> </div> </header> <div class="reader-grid" data-astro-cid-4sn4zg3r> <aside class="article-meta" aria-label="文章信息" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>文章信息</h2> <dl class="meta-list" data-astro-cid-4sn4zg3r> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>发布日期</dt> <dd data-astro-cid-4sn4zg3r><time datetime="2026-08-27T00:00:00.000Z" data-astro-cid-4sn4zg3r>2026年8月27日</time></dd> </div> <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>作者</dt><dd data-astro-cid-4sn4zg3r>杨正武</dd></div> <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>预计阅读</dt><dd data-astro-cid-4sn4zg3r>17 分钟</dd></div> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>标签</dt> <dd class="article-tags" data-astro-cid-4sn4zg3r><span class="article-tag" data-astro-cid-4sn4zg3r>Codex</span><span class="article-tag" data-astro-cid-4sn4zg3r>App Server</span><span class="article-tag" data-astro-cid-4sn4zg3r>Agent Runtime</span><span class="article-tag" data-astro-cid-4sn4zg3r>TUI</span><span class="article-tag" data-astro-cid-4sn4zg3r>开源</span></dd> </div> </dl> <div class="article-actions" data-astro-cid-4sn4zg3r> <button class="wechat-copy-button" type="button" onclick="copyArticleToWechat()" data-astro-cid-4sn4zg3r> <i class="fab fa-weixin" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 复制到公众号
+</button> <button class="share-button" type="button" onclick="shareArticle()" data-astro-cid-4sn4zg3r> <i class="fas fa-share-alt" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 分享文章
+</button> </div> </aside> <main class="article-content" data-astro-cid-4sn4zg3r> <p>最近我在看 <a href="https://github.com/openai/codex/tree/main/codex-rs/app-server">Codex App Server 的开源实现</a>，越看越觉得这不是一次普通的“开放接口”。</p>
+<p>它真正开放的，是 Codex 的运行时边界。</p>
+<p>过去我们使用一个 Coding Agent，通常只能在它提供的 CLI、IDE 插件或桌面 App 里工作。模型、Agent Loop、会话、工具调用、权限审批和 UI 被打包在一起。你可以调用模型 API，但如果想复用一整套成熟的 Coding Agent 能力，往往还得自己把 Runtime 重写一遍。</p>
+<p>App Server 改变了这件事。Codex 官方文档把它定义为驱动富客户端的接口：认证、会话历史、审批和流式 Agent 事件都可以通过协议交给外部客户端。换句话说，<strong>Codex 不再只是一个别人做好了界面的工具，它也可以成为我们自己产品背后的 Agent Runtime。</strong></p>
+<p>这让我想到自己刚做完的另一个项目：<a href="https://github.com/xhls008/zcode-tui">zcode-tui</a>。它解决的正是同一类问题：保留官方 ZCode 内核和官方账号通道，只把缺失的终端交互层补出来。</p>
+<p><img src="/blog-images/codex-app-server/hero-runtime-ui.jpg" alt="一个开放的 App Server 核心连接终端、IDE、移动端与桌面端，底层 Runtime 不再被单一 UI 绑定"></p>
+<p><em>UI 可以变化，Runtime 保持连续：App Server 把同一个 Agent 内核连接到不同的工作入口。</em></p>
+<h2 id="app-server-开放的不是模型而是完整工作循环">App Server 开放的不是模型，而是完整工作循环</h2>
+<p>如果只看第一眼，App Server 很容易被理解成“用 JSON 发 Prompt，再用 JSON 收答案”。如果只是这样，它和一次普通模型 API 调用没有本质区别。</p>
+<p>真正有价值的是，它开放了一个 Agent 完成工作的全过程。</p>
+<p>Codex App Server 使用双向消息协议。默认通过 <code>stdio</code> 传输 JSONL，也支持实验性的 WebSocket 和 Unix Socket。客户端连接后先完成 <code>initialize</code>，再创建或恢复 Thread，启动 Turn，并持续接收 Item 与状态事件。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>你的 UI / 产品 / 自动化系统</span></span>
+<span class="line"><span>          ↕</span></span>
+<span class="line"><span>      App Server</span></span>
+<span class="line"><span>          ↕</span></span>
+<span class="line"><span>认证 · Thread · Turn · Item · Approval · Tool · Sandbox</span></span>
+<span class="line"><span>          ↕</span></span>
+<span class="line"><span>      Codex Runtime</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>其中有三个很重要的运行对象：</p>
+<ul>
+<li><strong>Thread</strong>：一段可以持续、恢复或分叉的对话；</li>
+<li><strong>Turn</strong>：用户的一次请求，以及 Agent 为完成请求所做的工作；</li>
+<li><strong>Item</strong>：一次用户消息、Agent 消息、命令执行、文件修改或工具调用。</li>
+</ul>
+<p>客户端不再只能等一个最终字符串。它可以实时收到 <code>item/started</code>、<code>item/completed</code>、消息增量、工具进度和 <code>turn/completed</code>；可以中断当前 Turn，也可以在 Agent 正在运行时继续 <code>turn/steer</code>。</p>
+<p>更关键的是，审批不是 UI 自己猜出来的弹窗，而是协议中的双向请求。当 Agent 想执行命令、修改文件或申请额外权限时，客户端可以展示风险，收集人的决定，再把结果交还 Runtime。这样换掉 UI 之后，安全边界并没有一起被换掉。</p>
+<p>一个最小客户端的骨架其实很简单：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> proc</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> spawn</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"codex", ["app-server"]);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9ECBFF">send(</span><span style="color:#FDAEB7;font-style:italic">{</span></span>
+<span class="line"><span style="color:#E1E4E8">  method: </span><span style="color:#9ECBFF">"initialize"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  id: </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  params: {</span></span>
+<span class="line"><span style="color:#E1E4E8">    clientInfo: {</span></span>
+<span class="line"><span style="color:#E1E4E8">      name: </span><span style="color:#9ECBFF">"my_tui"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">      title: </span><span style="color:#9ECBFF">"My Codex TUI"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">      version: </span><span style="color:#9ECBFF">"0.1.0"</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">send</span><span style="color:#E1E4E8">({ method: </span><span style="color:#9ECBFF">"initialized"</span><span style="color:#E1E4E8">, params: {} });</span></span>
+<span class="line"><span style="color:#B392F0">send</span><span style="color:#E1E4E8">({ method: </span><span style="color:#9ECBFF">"thread/start"</span><span style="color:#E1E4E8">, id: </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, params: {} });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 获得 threadId 后启动一次工作</span></span>
+<span class="line"><span style="color:#B392F0">send</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">  method: </span><span style="color:#9ECBFF">"turn/start"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  id: </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  params: {</span></span>
+<span class="line"><span style="color:#E1E4E8">    threadId,</span></span>
+<span class="line"><span style="color:#E1E4E8">    input: [{ type: </span><span style="color:#9ECBFF">"text"</span><span style="color:#E1E4E8">, text: </span><span style="color:#9ECBFF">"检查这个仓库并修复测试"</span><span style="color:#E1E4E8"> }]</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span></code></pre>
+<p>难点从来不在于把这几条消息发出去，而在于正确消费一整条事件流：正文如何增量渲染，工具调用如何分组，审批如何阻塞与恢复，会话如何持久化，断线后如何处理，以及版本变化时如何兼容 Schema。</p>
+<p>但只要这层协议存在，这些都变成了<strong>客户端工程问题</strong>，不再要求我们重写 Agent 本身。</p>
+<h2 id="app-serversdk-和-mcp-不是同一件事">App Server、SDK 和 MCP 不是同一件事</h2>
+<p>这三种概念经常被放在一起，但它们解决的是三个方向的问题。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>能力</th><th>谁驱动谁</th><th>更适合什么场景</th></tr></thead><tbody><tr><td>App Server</td><td>你的产品驱动 Codex Runtime</td><td>自定义 TUI、IDE、桌面端、移动端和富交互产品</td></tr><tr><td>Codex SDK</td><td>你的程序发起 Agent 任务</td><td>CI、批处理、自动化任务和后端工作流</td></tr><tr><td>MCP Server</td><td>Codex 调用外部工具与数据</td><td>数据库、业务系统、搜索、企业软件能力接入</td></tr></tbody></table>
+<p>MCP 是让 Runtime 向外长出手脚，App Server 是让我们给 Runtime 换一张脸。SDK 则更像在程序里发起一项工作，而不是完整接管交互生命周期。</p>
+<p>理解这个边界之后，新玩法就出现了：<strong>一个 Runtime 可以连接很多 MCP 能力，也可以同时拥有很多种客户端。</strong> Agent 的大脑、工具生态和用户界面开始独立演进。</p>
+<h2 id="zcode-tui我为什么给官方-app-做了一层终端-ui">zcode-tui：我为什么给官方 App 做了一层终端 UI</h2>
+<p>智谱的 ZCode 在国内有一个很现实的使用矛盾。</p>
+<p>官方主要交付的是桌面 App，但很多程序员真正高频的工作环境是终端：SSH、tmux、无桌面 Linux 服务器，或者纯键盘工作流。想在这些环境里使用 ZCode，体验就会变得比较别扭。</p>
+<p>另一方面，在我开发这个项目时，官方 App 通道又有 150% 的额度加成。于是问题变成了：<strong>我想保留官方账号、官方内核和官方通道，但不想为了写代码一直开着桌面 UI，怎么办？</strong></p>
+<p>我的答案是 <code>zcode-tui</code>。</p>
+<p>它不是重新做一个 Coding Agent，也不是绕开官方服务直连模型。它是一个 Rust 编写的终端客户端：启动 ZCode 自带的 <code>app-server</code>，完成会话握手，把协议事件还原成终端里的流式对话、工具状态、权限确认、模型切换、上下文用量和 Agent Inspector。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>SSH / tmux / Terminal</span></span>
+<span class="line"><span>        ↓</span></span>
+<span class="line"><span>   zcode-tui</span></span>
+<span class="line"><span>输入 · Markdown · 工具状态 · 审批 · 会话 · Agent Inspector</span></span>
+<span class="line"><span>        ↓</span></span>
+<span class="line"><span>ZCode app-server</span></span>
+<span class="line"><span>        ↓</span></span>
+<span class="line"><span>官方内核 · 官方认证 · 官方模型目录 · 官方服务通道</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>用户看到的是 TUI，但真正执行任务的仍然是官方内核。</p>
+<p><img src="/blog-images/codex-app-server/zcode-tui-runtime.jpg" alt="终端工作台通过流式事件管道连接底层官方 Runtime，桌面界面可以保持关闭"></p>
+<p><em><code>zcode-tui</code> 负责终端交互，官方内核继续负责认证、会话、模型与工具执行。</em></p>
+<p>这层代理带来了几个直接收益：</p>
+<ul>
+<li>不打开桌面 App，也能在终端里进行多轮对话；</li>
+<li>正文、推理阶段和工具调用可以持续流式展示；</li>
+<li>写文件等有副作用的工具仍会触发权限确认；</li>
+<li>可以恢复会话、切换模型、压缩上下文、中断或转向当前回合；</li>
+<li>SSH 和 tmux 变成一等工作环境，而不是桌面端的降级版本；</li>
+<li>认证和服务请求仍由官方内核处理，TUI 不需要自己保存一套供应商凭据。</li>
+</ul>
+<p><img src="/blog-images/codex-app-server/zcode-tui-agent-inspector.png" alt="zcode-tui 实机界面展示流式对话、父 Agent、Subagent 与 Background Inspector"></p>
+<p><em>概念图之外的真实界面：终端里可以查看流式输出、会话状态以及只读的 Agent Inspector。</em></p>
+<p>需要特别说明：<code>zcode-tui</code> 借鉴的是 App Server 这种架构思想，并不是 Codex App Server 的兼容客户端。ZCode 有自己的协议、事件和版本差异，两者不能混用。但它证明了同一个结论：<strong>只要官方 Agent 把 Runtime 以 App Server 形式开放出来，社区就能在不复制内核的情况下补齐新的使用界面。</strong></p>
+<h2 id="有了-app-server我们还能怎么玩">有了 App Server，我们还能怎么玩</h2>
+<p>TUI 只是最直接的一种客户端。把 UI 和 Runtime 拆开以后，真正有想象力的是下面这些组合。</p>
+<h3 id="第一种做面向具体人群的客户端">第一种：做面向具体人群的客户端</h3>
+<p>同一个 Codex Runtime，可以拥有完全不同的交互外壳。</p>
+<p>运维工程师可以要一个只突出 Shell、日志和审批的终端界面；产品经理可以要一个隐藏命令细节、只展示计划和交付物的桌面端；代码评审者可以要一个以 Diff、证据和风险为中心的 Review Client；视障用户也可以拥有为读屏和语音优化的客户端。</p>
+<p>过去做这些产品，需要顺便养一套 Agent 内核。现在可以把精力集中在目标用户真正需要的交互上。</p>
+<h3 id="第二种让-agent-进入原有软件而不是让人迁移到-agent-app">第二种：让 Agent 进入原有软件，而不是让人迁移到 Agent App</h3>
+<p>很多企业不会因为 Agent 出现，就立刻放弃现有 IDE、研发平台、工单系统和内部工作台。</p>
+<p>App Server 允许我们反过来做：把 Codex 嵌入用户已经在使用的产品。原系统继续负责账号、项目和业务流程，Codex Runtime 负责理解目标、执行工具和产出修改，客户端负责把过程呈现在原工作空间里。</p>
+<p>这比“在每个页面右下角加一个聊天框”更进一步。聊天框只增加了入口，App Server 则允许产品接管会话、审批、状态和交付结果。</p>
+<h3 id="第三种一个-runtime多块屏幕">第三种：一个 Runtime，多块屏幕</h3>
+<p>开发者可以在终端启动任务，在手机上查看进度和处理审批，回到电脑后在 Diff 界面审查结果。监控大屏只展示正在运行的 Thread、耗时和失败状态，真正的输入仍来自个人客户端。</p>
+<p>App Server 已经把工作过程变成结构化事件，因此多端同步不必靠抓取终端文本来猜测状态。</p>
+<h3 id="第四种做-agent-control-plane">第四种：做 Agent Control Plane</h3>
+<p>当多个 Agent 同时工作时，单个聊天窗口很快就不够用了。团队需要看到谁在处理哪个仓库、哪些任务正在等待批准、哪些命令失败、产生了哪些文件修改，以及一次运行到底消耗了多少上下文。</p>
+<p>这时 App Server 可以成为控制面的底层 Runtime 接口，上层再构建任务队列、审计、通知、人工接管和交付看板。</p>
+<p>需要注意的是，控制面不能只做“更漂亮的多 Agent UI”。它还要把 Thread、Turn、Item、审批和最终 Artifact 对齐到团队自己的 Task、Run 和责任模型，否则只是同时打开了更多聊天窗口。</p>
+<h3 id="第五种让领域-app-复用成熟-agent-runtime">第五种：让领域 App 复用成熟 Agent Runtime</h3>
+<p>数据库工具、测试平台、低代码平台和运维系统，都可以把自己的领域能力通过 MCP 或 Tool 暴露出来，再用 App Server 把 Codex 深度嵌入产品。</p>
+<p>这里会形成一个很有意思的分工：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>领域 App：数据、权限、业务规则、审计</span></span>
+<span class="line"><span>Codex Runtime：推理、规划、上下文、工具编排</span></span>
+<span class="line"><span>App Server Client：交互、展示、审批、通知</span></span>
+<span class="line"><span>MCP / Tool：连接 Runtime 与领域能力</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>这条路径能避免每个 App 都从零重建模型适配、Agent Loop、会话存储和工具调度。产品真正要守住的，是领域权限和业务责任，而不是重复制造一个通用 Agent Runtime。</p>
+<h2 id="真正困难的地方是把协议当成产品契约">真正困难的地方，是把协议当成产品契约</h2>
+<p>App Server 给了入口，但一个可用客户端仍然要面对大量工程细节。</p>
+<p>第一，<strong>协议会演进</strong>。Codex 可以按当前安装版本生成 TypeScript 或 JSON Schema，客户端应该锁定兼容版本，使用生成的类型，并对未知事件保持前向兼容。<code>zcode-tui</code> 的实践也反复证明，不能看到 CLI 版本号没变，就假设 App Server Schema 一定没变。</p>
+<p>第二，<strong>流式 UI 不是拼字符串</strong>。一个 Turn 里可能交错出现正文、命令、文件变化、MCP 调用、审批和错误。客户端要维护明确的状态机，不能把所有事件都塞进一个聊天气泡。</p>
+<p>第三，<strong>审批权属于用户</strong>。自定义 UI 不能为了“更自动”而吞掉 Runtime 发出的审批请求。权限、沙箱和高风险操作必须被清楚展示，批准结果也要可追溯。</p>
+<p>第四，<strong>认证通道和协议能力要分开看</strong>。App Server 可以复用官方 Runtime 的认证流程，但具体套餐、额度、可用模型和客户端政策仍由服务提供方决定，而且可能变化。客户端不应该把某项阶段性权益写成永久协议承诺。</p>
+<p>第五，<strong>不要把实验能力直接当生产 SLA</strong>。Codex 官方目前明确标注 WebSocket Transport 为实验能力；跨机器使用时还必须处理 TLS、鉴权、连接中断、背压和重试。最稳妥的起点仍然是本机 <code>stdio</code> 客户端。</p>
+<h2 id="我对-app-server-的判断">我对 App Server 的判断</h2>
+<p>过去我们讨论 Coding Agent 生态，关注点通常是模型、Prompt、MCP 和 Skill。App Server 补上了另一块经常被忽略的拼图：<strong>谁可以接管一个成熟 Agent Runtime 的交互生命周期。</strong></p>
+<p>它让 Agent 产品第一次可以像数据库一样分层：内核负责稳定执行，协议负责暴露能力，上层可以长出很多不同的客户端和业务系统。</p>
+<p>对开发者来说，这意味着不必在“接受官方 UI”和“从零重写 Agent”之间二选一。我们可以保留官方 Runtime，把终端、IDE、桌面端、移动端、企业工作台甚至语音界面做成自己的客户端。</p>
+<p><code>zcode-tui</code> 是我对这个方向的一次具体实践：我需要终端，于是给官方内核补了一个终端外壳。它没有创造新的模型，也没有重写 Agent Loop，只是把已经存在但被桌面 UI 包住的能力重新组织出来。</p>
+<p>而 Codex 把 App Server 正式开源之后，这种玩法不再只是对某个产品协议的探索。它正在变成一条清晰的产品路径：</p>
+<blockquote>
+<p><strong>未来真正有生命力的 Agent，不会只拥有一个官方界面。它会成为 Runtime，被不同的人、不同的设备和不同的业务系统，以最适合自己的方式调用。</strong></p>
+</blockquote>
+<h2 id="再往前一步app-server-与-dsh-plugin-是一体两面">再往前一步：App Server 与 DSH Plugin 是一体两面</h2>
+<p>写到这里，我又想到最近一直在研究的 <a href="/blog/deepseek-harness">DeepSeek Harness（DSH）</a>。</p>
+<p>DSH 走的是一条看起来不同、底层思想却高度一致的路线。Codex App Server 选择保留一套完整、稳定的 Runtime，再把认证、Thread、Turn、Item、审批和事件流开放给外部客户端；DSH 则把 Runtime 本身拆成插件系统：模型适配器是 Plugin，工具注册表是 Plugin，会话、上下文压缩、UI 集成乃至 Agent Loop 都可以被替换和组合。</p>
+<p>两者开放的是 Runtime 的不同方向。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>开放方式</th><th>开放的边界</th><th>生态会长出什么</th></tr></thead><tbody><tr><td>Codex App Server</td><td>Runtime 的上行交互面</td><td>TUI、IDE、桌面端、移动端、企业工作台</td></tr><tr><td>DSH Plugin</td><td>Runtime 的下行能力面与内部组装点</td><td>模型适配器、工具、业务连接器、Agent 策略、UI 扩展</td></tr></tbody></table>
+<p>App Server 回答的是：<strong>谁可以驱动这个 Runtime，以及如何接住它完整的工作生命周期？</strong></p>
+<p>DSH Plugin 回答的是：<strong>这个 Runtime 由什么组成，以及第三方能力如何成为它的一等公民？</strong></p>
+<p>可以把两条路径放进同一张结构图：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>终端 · IDE · 桌面端 · 移动端 · 企业工作台</span></span>
+<span class="line"><span>                    ↕</span></span>
+<span class="line"><span>                App Server</span></span>
+<span class="line"><span>                    ↕</span></span>
+<span class="line"><span>              Agent Runtime</span></span>
+<span class="line"><span>                    ↕</span></span>
+<span class="line"><span>                 Plugin</span></span>
+<span class="line"><span>                    ↕</span></span>
+<span class="line"><span>模型 · Tool · MCP · Skill · 领域 App · 业务控制面</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>上半部分解决“入口不应该只有一个”，下半部分解决“能力不应该全部写死在内核”。一个方向让客户端可以自由创新，另一个方向让 Runtime 的能力和产品形态可以自由组合。</p>
+<p>这也是为什么我认为 App Server 和 Plugin 不是竞争关系，更不是二选一。</p>
+<p>只有 App Server，没有插件化能力，第三方虽然可以做很多新界面，却仍然只能消费一套固定 Runtime；只有 Plugin，没有稳定的 App Server，Runtime 虽然可以装入很多能力，却仍可能被锁在一个官方交互入口里。</p>
+<p>当两者同时存在时，Agent 才真正从“一个软件产品”变成“一层平台”：上面可以接不同的人、设备和工作流，下面可以接不同的模型、工具和领域系统，中间由 Runtime 统一处理会话、推理、权限和执行生命周期。</p>
+<h3 id="对传统-app-来说这意味着两条转型路径">对传统 App 来说，这意味着两条转型路径</h3>
+<p>在之前那篇 <a href="/blog/app-to-agent-runtime-dsh-plugin">不重写 App，如何用 DSH Plugin 完成 Agent 化转型</a>里，我讨论的是第一条路径：传统 App 保留自己的数据、权限、审批和审计，把领域能力通过 Plugin 交给外部 Agent Runtime。用户不必再逐页操作 App，Agent 可以在业务边界内直接调用它。</p>
+<p>App Server 又提供了第二条路径：传统 App 不只是把能力交给 Runtime，还可以直接成为 Runtime 的新客户端。它可以在自己的产品界面里接住 Agent 会话、工具进度、审批请求和交付结果，而不是把用户赶到另一个 Coding Agent 窗口。</p>
+<p>于是，一个成熟 App 可以同时扮演两种角色：</p>
+<ul>
+<li><strong>作为 Plugin，它向 Runtime 提供专业能力；</strong></li>
+<li><strong>作为 App Server Client，它为用户提供领域化交互。</strong></li>
+</ul>
+<p>例如 Chat2DB 可以通过 Plugin 向 Agent 提供元数据发现、SQL 执行、DataWiki、审批和审计能力；同时，它也可以在自己的数据库工作台里接入一个 App Server Client，把 Agent 的计划、工具调用和结果直接呈现在用户熟悉的上下文中。</p>
+<p>这时，App、Plugin 和 Runtime 不再是谁取代谁，而是形成一条完整链路：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>用户</span></span>
+<span class="line"><span>  ↕</span></span>
+<span class="line"><span>领域 App UI（App Server Client）</span></span>
+<span class="line"><span>  ↕</span></span>
+<span class="line"><span>Agent Runtime</span></span>
+<span class="line"><span>  ↕</span></span>
+<span class="line"><span>领域 Plugin / MCP</span></span>
+<span class="line"><span>  ↕</span></span>
+<span class="line"><span>App 的数据、权限、审批与审计</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>这里最有价值的变化是：<strong>UI 不再垄断能力，Runtime 不再吞掉业务，Plugin 也不再只是几个 API 的包装。</strong></p>
+<p>UI 负责让人理解和决策；Runtime 负责推理、规划与执行；Plugin 负责把领域能力、授权状态和业务语义带进工作循环；原 App 的控制面继续对最终业务结果负责。</p>
+<h3 id="开放-runtime可能比开放模型更重要">开放 Runtime，可能比开放模型更重要</h3>
+<p>模型开放解决的是“谁来推理”，Runtime 开放解决的是“推理如何进入真实工作”。</p>
+<p>真正可用的 Agent 不只有一个模型。它还有会话、上下文、工具、文件、权限、审批、事件、恢复和交付。App Server 把这条工作生命周期开放给客户端，DSH Plugin 把能力组装权开放给生态。它们共同指向一个判断：</p>
+<blockquote>
+<p><strong>下一阶段 Agent 生态的竞争，不只是模型能力的竞争，而是谁能提供一个上下都开放、又能守住生命周期和责任边界的 Runtime。</strong></p>
+</blockquote>
+<p>从这个角度看，<code>zcode-tui</code>、Codex App Server 和 DSH Plugin 并不是三个孤立的项目。它们分别验证了同一件事：终端可以替换，官方 UI 可以替换，模型和工具也可以替换，但一套可靠的 Agent 工作生命周期不需要被每个产品重新发明。</p>
+<hr>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li><a href="https://developers.openai.com/codex/app-server">Codex App Server 官方文档</a></li>
+<li><a href="https://github.com/openai/codex/tree/main/codex-rs/app-server">Codex App Server 开源实现</a></li>
+<li><a href="https://github.com/xhls008/zcode-tui">zcode-tui：ZCode 的终端 TUI fallback</a></li>
+<li><a href="/blog/deepseek-harness">DeepSeek Harness：Agent 内核全开源，套皮就是商业软件</a></li>
+<li><a href="/blog/app-to-agent-runtime-dsh-plugin">不重写 App，如何用 DSH Plugin 完成 Agent 化转型</a></li>
+</ul> </main> <aside class="page-toc" aria-label="页面目录" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>页面目录</h2> <ol class="toc-list" data-astro-cid-4sn4zg3r> <li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#app-server-开放的不是模型而是完整工作循环" data-astro-cid-4sn4zg3r>App Server 开放的不是模型，而是完整工作循环</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#app-serversdk-和-mcp-不是同一件事" data-astro-cid-4sn4zg3r>App Server、SDK 和 MCP 不是同一件事</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#zcode-tui我为什么给官方-app-做了一层终端-ui" data-astro-cid-4sn4zg3r>zcode-tui：我为什么给官方 App 做了一层终端 UI</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#有了-app-server我们还能怎么玩" data-astro-cid-4sn4zg3r>有了 App Server，我们还能怎么玩</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#第一种做面向具体人群的客户端" data-astro-cid-4sn4zg3r>第一种：做面向具体人群的客户端</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#第二种让-agent-进入原有软件而不是让人迁移到-agent-app" data-astro-cid-4sn4zg3r>第二种：让 Agent 进入原有软件，而不是让人迁移到 Agent App</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#第三种一个-runtime多块屏幕" data-astro-cid-4sn4zg3r>第三种：一个 Runtime，多块屏幕</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#第四种做-agent-control-plane" data-astro-cid-4sn4zg3r>第四种：做 Agent Control Plane</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#第五种让领域-app-复用成熟-agent-runtime" data-astro-cid-4sn4zg3r>第五种：让领域 App 复用成熟 Agent Runtime</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#真正困难的地方是把协议当成产品契约" data-astro-cid-4sn4zg3r>真正困难的地方，是把协议当成产品契约</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#我对-app-server-的判断" data-astro-cid-4sn4zg3r>我对 App Server 的判断</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#再往前一步app-server-与-dsh-plugin-是一体两面" data-astro-cid-4sn4zg3r>再往前一步：App Server 与 DSH Plugin 是一体两面</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#对传统-app-来说这意味着两条转型路径" data-astro-cid-4sn4zg3r>对传统 App 来说，这意味着两条转型路径</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#开放-runtime可能比开放模型更重要" data-astro-cid-4sn4zg3r>开放 Runtime，可能比开放模型更重要</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#参考资料" data-astro-cid-4sn4zg3r>参考资料</a></li> </ol> <a class="toc-back" href="/blog" data-astro-cid-4sn4zg3r><i class="fas fa-arrow-left" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 返回博客</a> </aside> <nav class="article-navigation" aria-label="相邻文章" data-astro-cid-4sn4zg3r> <a class="article-nav-link" href="/blog/agent-technical-reflux" data-astro-cid-4sn4zg3r> <span class="nav-direction" data-astro-cid-4sn4zg3r>较新文章</span> <span class="nav-title" data-astro-cid-4sn4zg3r>工程师拥抱 Agent，普通人却重新开始开发软件</span> </a> <a class="article-nav-link" href="/blog/folder-as-agent-workstation" data-astro-cid-4sn4zg3r> <span class="nav-direction" data-astro-cid-4sn4zg3r>较早文章</span> <span class="nav-title" data-astro-cid-4sn4zg3r>当文件夹成为 Agent 的个人工作站</span> </a> </nav> </div> </article> <div class="selection-share" data-selection-share data-content-selector=".article-content" data-title="Codex 开源 App Server：当 Agent Runtime 不再绑定 UI" data-author="杨正武" data-section="IMCODERS BLOG" data-url="https://imcoders.cn/blog/2026-08-27-codex-app-server-runtime/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>   </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

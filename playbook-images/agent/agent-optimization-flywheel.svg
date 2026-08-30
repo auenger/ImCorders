@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+  <title id="title">Agent Optimization Flywheel</title><desc id="desc">生产轨迹经过 Bad Case 检测、根因分类、回归数据、版本化变更、离线实验、质量门禁和 Canary 后回到生产，失败则回滚并产生新证据。</desc>
+  <style>.bg{fill:#f3f0ea}.ink{fill:#181a1d}.muted{fill:#70757e}.hot{fill:#e84c37}.panel{fill:#fff;stroke:#d8d4cc;stroke-width:2}.line{stroke:#a7a29a;stroke-width:3;fill:none;marker-end:url(#arrow)}.title{font:700 30px ui-sans-serif,system-ui}.head{font:700 17px ui-sans-serif,system-ui}.body{font:14px ui-sans-serif,system-ui}.mono{font:13px ui-monospace,SFMono-Regular,monospace}</style>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#a7a29a"/></marker></defs>
+  <rect class="bg" width="1400" height="760" rx="26"/><text class="title ink" x="54" y="62">Agent Optimization Flywheel</text><text class="body muted" x="54" y="92">每次改动都从证据开始，以门禁、灰度和可回滚版本结束</text>
+  <g transform="translate(0 10)">
+    <rect x="556" y="126" width="288" height="100" rx="18" fill="#181a1d"/><text class="head" fill="#fff" x="582" y="165">Production Trace</text><text class="mono" fill="#ff7a68" x="582" y="196">run_id · manifest_id</text>
+    <rect class="panel" x="976" y="186" width="288" height="100" rx="18"/><text class="head ink" x="1002" y="225">Bad Case Detection</text><text class="body muted" x="1002" y="256">告警 · 投诉 · Judge 分歧</text>
+    <rect class="panel" x="1032" y="392" width="288" height="100" rx="18"/><text class="head ink" x="1058" y="431">Root Cause</text><text class="body muted" x="1058" y="462">Context · Skill · Tool · Runtime</text>
+    <rect class="panel" x="774" y="566" width="288" height="100" rx="18"/><text class="head ink" x="800" y="605">Regression Case</text><text class="body muted" x="800" y="636">脱敏证据 · 不变量</text>
+    <rect class="panel" x="338" y="566" width="288" height="100" rx="18"/><text class="head ink" x="364" y="605">Versioned Change</text><text class="body muted" x="364" y="636">假设 · Manifest Diff</text>
+    <rect class="panel" x="80" y="392" width="288" height="100" rx="18"/><text class="head ink" x="106" y="431">Offline Experiment</text><text class="body muted" x="106" y="462">固定 Dataset 与 Evaluator</text>
+    <rect class="panel" x="136" y="186" width="288" height="100" rx="18"/><text class="head ink" x="162" y="225">Quality Gate</text><text class="body muted" x="162" y="256">Safety → Quality → Budget</text>
+    <rect x="556" y="286" width="288" height="166" rx="22" fill="#e84c37"/><text class="head" fill="#fff" x="590" y="332">Canary Release</text><text class="body" fill="#fff" x="590" y="370">稳定分组 · 有限爆炸半径</text><text class="mono" fill="#fff" x="590" y="405">stop / rollback ready</text>
+    <path class="line" d="M844 174C900 174 936 194 976 224"/><path class="line" d="M1220 286C1250 322 1250 354 1218 392"/><path class="line" d="M1086 492C1054 534 1020 552 990 566"/><path class="line" d="M774 616H626"/><path class="line" d="M338 616C276 596 240 542 232 492"/><path class="line" d="M184 392C168 352 184 314 220 286"/><path class="line" d="M424 222C476 194 514 178 556 174"/>
+    <path d="M700 286V226" stroke="#e84c37" stroke-width="4" marker-end="url(#arrow)"/><text class="mono hot" x="716" y="258">pass</text>
+    <path d="M844 370H944V126H844" stroke="#e84c37" stroke-width="3" fill="none" marker-end="url(#arrow)"/><text class="mono hot" x="872" y="352">fail → evidence</text>
+  </g>
+</svg>

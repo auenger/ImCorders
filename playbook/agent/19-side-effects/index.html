@@ -1,0 +1,521 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>副作用、幂等、事务与补偿 | Agent Engineering Playbook</title><meta name="description" content="控制重试、取消和故障恢复对真实外部系统产生的重复或不可逆影响。"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="副作用、幂等、事务与补偿 | Agent Engineering Playbook"><meta property="og:description" content="控制重试、取消和故障恢复对真实外部系统产生的重复或不可逆影响。"><meta property="og:url" content="https://imcoders.cn/playbook/agent/19-side-effects/"><meta property="og:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta property="og:image:width" content="1774"><meta property="og:image:height" content="887"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="副作用、幂等、事务与补偿 | Agent Engineering Playbook"><meta name="twitter:description" content="控制重试、取消和故障恢复对真实外部系统产生的重复或不可逆影响。"><meta name="twitter:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta itemprop="name" content="副作用、幂等、事务与补偿 | Agent Engineering Playbook"><meta itemprop="description" content="控制重试、取消和故障恢复对真实外部系统产生的重复或不可逆影响。"><meta itemprop="image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "副作用、幂等、事务与补偿 | Agent Engineering Playbook";
+const shareDesc = "控制重试、取消和故障恢复对真实外部系统产生的重复或不可逆影响。";
+const shareLink = "https://imcoders.cn/playbook/agent/19-side-effects/";
+const shareImg = "https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.C-FedgiN.css"><script type="module" src="/_astro/hoisted.BfDpThc8.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook" aria-current="page">Playbook</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main>  <div class="reading-progress" aria-hidden="true" data-astro-cid-jojupagh></div> <div class="reader" data-astro-cid-jojupagh> <header class="reader-bar" data-astro-cid-jojupagh> <a class="reader-home" href="/playbook/agent" data-astro-cid-jojupagh>AGENT ENGINEERING <span data-astro-cid-jojupagh>PLAYBOOK</span></a> <span class="reader-meta" data-astro-cid-jojupagh>14 / 30</span> </header> <div class="mobile-index" data-astro-cid-jojupagh> <details data-astro-cid-jojupagh> <summary data-astro-cid-jojupagh>打开全书目录</summary> <div class="mobile-index-body" data-astro-cid-jojupagh> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" class="is-current" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </div> </details> </div> <div class="reader-grid" data-astro-cid-jojupagh> <aside class="book-index" aria-label="全书目录" data-astro-cid-jojupagh> <h2 class="index-title" data-astro-cid-jojupagh>全书目录</h2> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" class="is-current" aria-current="page" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </aside> <section class="chapter-main" data-astro-cid-jojupagh> <header class="chapter-header" data-astro-cid-jojupagh> <div class="chapter-label" data-astro-cid-jojupagh>第十四章 / 第三部分：Tool、Skill 与控制面</div> <h1 data-astro-cid-jojupagh>副作用、幂等、事务与补偿</h1> <p class="chapter-description" data-astro-cid-jojupagh>控制重试、取消和故障恢复对真实外部系统产生的重复或不可逆影响。</p> <p class="chapter-updated" data-astro-cid-jojupagh>更新于 2026/8/12</p>  </header> <article class="chapter-content" data-astro-cid-jojupagh> <p>Checkpoint 可以恢复 Agent 的内部执行，却不能让外部世界倒转。邮件一旦发出、退款一旦受理、代码一旦推送，即使 Worker 随后崩溃，这些效果也可能已经真实存在。</p>
+<p>分布式执行最危险的窗口是：</p>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“副作用、幂等、事务与补偿”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Runtime 发出请求 → 外部系统已提交 → 响应在网络中丢失 → Runtime 不知道结果</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>此时盲目重试可能重复创建资源，直接宣布失败又可能掩盖已经发生的动作。副作用治理的目标不是“永不失败”，而是在不确定状态下仍能安全确认、重试或补偿。</p>
+<h2 id="术语来源与适用范围">术语来源与适用范围</h2>
+<p>Side Effect、Idempotency、Transaction、Rollback、Saga 与 Compensation 都来自编程语言、数据库和分布式系统，不是 Agent 专属概念。HTTP 方法的幂等语义由 <a href="https://www.rfc-editor.org/rfc/rfc9110.html#name-idempotent-methods">RFC 9110</a> 定义；业务 API 也常提供 Idempotency Key，但键格式、保留期和冲突行为由各 API 自行约定。Saga / Compensation 描述跨多个本地事务处理失败的一类模式，并不等于数据库 ACID Rollback。</p>
+<p>Durable Workflow 系统通常也把恢复定位到具体状态或 Task，而不是无条件从头执行。例如 <a href="https://docs.aws.amazon.com/step-functions/latest/dg/redrive-executions.html">AWS Step Functions Redrive</a> 会保留成功步骤的结果与执行历史，并从未成功步骤继续；其 <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-error-handling.html">Error Handling</a> 则允许每个 Task 分别声明 Retry 与 Catch。具体行为因 Runtime 而异，但共同说明“流程失败”不等于“所有已完成步骤都要重做或撤销”。</p>
+<p>本章提出的 <code>Side-effect Contract</code>、<code>Step Effect Record</code>、<code>External Effect Record</code> 与决策表是本 Playbook 的参考设计，用于把这些既有分布式系统原则接入 Agent Runtime。它们不是 RFC 或通用 Agent Protocol 的标准对象。</p>
+<h2 id="流程恢复与单次-tool-retry-是两个层级">流程恢复与单次 Tool Retry 是两个层级</h2>
+<p>一个包含多个关键动作的 Agent 流程，不能只声明“整个 Run 最多重试三次”。每个节点的副作用、完成条件和恢复策略可能完全不同：</p>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“流程恢复与单次 Tool Retry 是两个层级”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>生成邮件草稿 → 发送邮件 → 创建 CRM 跟进记录 → 通知负责人</span></span>
+<span class="line"><span>     pure          external write       idempotent write       external write</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>假设邮件已经发送成功，创建 CRM 记录时 Runtime 崩溃。正确恢复通常是：</p>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“流程恢复与单次 Tool Retry 是两个层级”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>确认“发送邮件”节点已经完成</span></span>
+<span class="line"><span>           ↓</span></span>
+<span class="line"><span>保留它的 Provider Message ID 与结果</span></span>
+<span class="line"><span>           ↓</span></span>
+<span class="line"><span>跳过邮件节点</span></span>
+<span class="line"><span>           ↓</span></span>
+<span class="line"><span>从“创建 CRM 跟进记录”继续</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>不是重新运行整条流程，也不是因为后续节点失败就撤销已经发送的邮件。流程级恢复首先回答“哪些节点已经形成可信事实”，然后才对第一个未完成或结果未知的节点选择确认、重试、替代或补偿。</p>
+<p><img src="/playbook-images/agent/workflow-effect-recovery.svg" alt="Agent 流程半程失败后的节点级恢复"></p>
+<h2 id="每个关键操作点都需要恢复契约">每个关键操作点都需要恢复契约</h2>
+<p>不必给纯推理中的每一个微小 Step 建立复杂事务，但所有可能改变外部状态、消耗稀缺资源或影响后续分支的关键操作点，都应该声明：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>字段</th><th>回答的问题</th></tr></thead><tbody><tr><td><code>completion_semantics</code></td><td>什么证据才算该节点完成</td></tr><tr><td><code>effect_class</code></td><td>是否产生外部副作用，是否可逆</td></tr><tr><td><code>idempotency</code></td><td>同一逻辑操作能否安全重复</td></tr><tr><td><code>confirmation</code></td><td>响应丢失后怎样查询真实状态</td></tr><tr><td><code>retry_policy</code></td><td>哪些错误允许重试，预算是多少</td></tr><tr><td><code>resume_policy</code></td><td>恢复时跳过、确认、重试还是人工处理</td></tr><tr><td><code>compensation</code></td><td>哪种业务条件下需要补偿，由谁授权</td></tr><tr><td><code>checkpoint_policy</code></td><td>节点前后保存哪些输入、结果和外部 ID</td></tr></tbody></table>
+<p>参考节点契约：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“每个关键操作点都需要恢复契约”落成可检查的结构化记录，主要字段包括 <code>workflow_step</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">workflow_step</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  step_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">send_case_email</span></span>
+<span class="line"><span style="color:#85E89D">  tool</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">send_email@4</span></span>
+<span class="line"><span style="color:#85E89D">  logical_operation_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">op_case_92_email</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  completion_semantics</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    required_state</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">provider_accepted</span></span>
+<span class="line"><span style="color:#85E89D">    evidence</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">provider_message_id</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  effect</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    class</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">external_write</span></span>
+<span class="line"><span style="color:#85E89D">    reversible</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">false</span></span>
+<span class="line"><span style="color:#85E89D">    idempotency</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">supported</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  confirmation</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    tool</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">get_email_status</span></span>
+<span class="line"><span style="color:#85E89D">    lookup_by</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">provider_message_id</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">idempotency_key</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  recovery</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    when_confirmed</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">skip_and_continue</span></span>
+<span class="line"><span style="color:#85E89D">    when_not_committed</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">retry_with_original_key</span></span>
+<span class="line"><span style="color:#85E89D">    when_unknown</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">reconcile_then_pause</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  compensation</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    automatic</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">false</span></span>
+<span class="line"><span style="color:#85E89D">    strategy</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">send_correction_if_business_required</span></span>
+<span class="line"></span></code></pre>
+<p>这些字段和枚举属于 Playbook 参考设计。重点不是统一字段名，而是恢复前能够回答上述问题。</p>
+<h2 id="节点状态必须表达未知与已确认">节点状态必须表达“未知”与“已确认”</h2>
+<p>只记录 <code>success / failed</code> 不足以恢复外部副作用。本章建议至少区分：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>节点状态</th><th>含义</th><th>恢复动作</th></tr></thead><tbody><tr><td><code>not_started</code></td><td>尚未发出外部请求</td><td>可以正常执行</td></tr><tr><td><code>in_flight</code></td><td>请求已发出，尚未得到确定结论</td><td>先确认外部状态</td></tr><tr><td><code>confirmed</code></td><td>达到节点定义的完成条件且已有证据</td><td>保留结果并跳过</td></tr><tr><td><code>not_committed</code></td><td>已确认外部系统没有提交</td><td>可按原 Key 重试</td></tr><tr><td><code>failed</code></td><td>确定失败，且没有产生目标效果</td><td>按节点 Retry / Catch 策略处理</td></tr><tr><td><code>unknown</code></td><td>无法判断是否提交</td><td>不盲目重试，进入 Reconcile 或人工处理</td></tr><tr><td><code>compensated</code></td><td>原效果仍存在历史，但已执行补偿动作</td><td>从补偿后的业务状态继续</td></tr></tbody></table>
+<p>这组名称不是通用 Workflow 状态标准。特别是 <code>compensated</code> 不等于原动作从未发生；审计中必须同时保留原 Effect 与 Compensation Effect。</p>
+<h2 id="恢复点应该落在关键效果边界">恢复点应该落在关键效果边界</h2>
+<p>对外部写操作，一个可靠的恢复序列通常是：</p>
+<p><strong>代码块说明｜结构示意：</strong> 这段文本把“恢复点应该落在关键效果边界”中的关键对象并列出来，帮助读者识别各自责任与边界。它用于概念建模，不代表唯一的产品命名或实现结构。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>1. 持久化 Tool Call Intent、规范化参数摘要和 Idempotency Key</span></span>
+<span class="line"><span>2. 调用外部系统</span></span>
+<span class="line"><span>3. 持久化 Result、External Effect ID 与确认状态</span></span>
+<span class="line"><span>4. 提交该节点 Checkpoint</span></span>
+<span class="line"><span>5. 调度后继节点</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>如果在第 2 步之后、第 3 步之前崩溃，节点是 <code>unknown</code>：外部效果可能已经发生，但本地尚未记录。恢复时通过原 Idempotency Key、Provider Message ID 或业务查询接口确认。无法把外部提交与本地状态写入放在同一个 ACID 事务时，这个不确定窗口不能被完全消除，只能通过稳定操作 ID、可查询接口和 Reconciliation 缩小风险。</p>
+<p>Checkpoint 不需要复制外部对象，只需保存可以重新确认它的稳定引用和证据。恢复完成节点时也不应重新让模型猜测“邮件大概发过了”，而应读取 Effect Record 与外部权威状态。</p>
+<h2 id="邮件场景发送完成后从后继节点继续">邮件场景：发送完成后从后继节点继续</h2>
+<p>假设客户投诉流程包含四个节点：</p>
+<p><strong>代码块说明｜结构示意：</strong> 这段文本把“邮件场景：发送完成后从后继节点继续”中的关键对象并列出来，帮助读者识别各自责任与边界。它用于概念建模，不代表唯一的产品命名或实现结构。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>S1 生成并审核邮件</span></span>
+<span class="line"><span>S2 发送客户邮件</span></span>
+<span class="line"><span>S3 创建 CRM 跟进任务</span></span>
+<span class="line"><span>S4 通知客户负责人</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>S2 调用邮件服务后返回：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“邮件场景：发送完成后从后继节点继续”落成可检查的结构化记录，主要字段包括 <code>provider_message_id</code>、<code>status</code>、<code>accepted_at</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">provider_message_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">msg_73</span></span>
+<span class="line"><span style="color:#85E89D">status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">accepted</span></span>
+<span class="line"><span style="color:#85E89D">accepted_at</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2026-08-12T15:20:04+08:00</span></span>
+<span class="line"></span></code></pre>
+<p>Runtime 将 <code>msg_73</code> 写入 Step Effect Record，并把 S2 标记为 <code>confirmed</code>。随后 S3 因 CRM 服务超时而中断。恢复时应按以下顺序处理：</p>
+<ol>
+<li>读取流程 Checkpoint，发现 S1、S2 已确认，S3 未完成。</li>
+<li>必要时调用 <code>get_email_status(msg_73)</code>，确认邮件服务仍记录该消息。</li>
+<li>保留 S2 的输出，不再次调用 <code>send_email</code>。</li>
+<li>检查 S3 的请求是否曾提交；未提交则用 S3 自己的 Idempotency Key 重试。</li>
+<li>S3 成功后继续 S4。</li>
+</ol>
+<p>这里还要定义“发送完成”的业务含义：</p>
+<ul>
+<li><code>accepted</code>：邮件服务已接受任务。</li>
+<li><code>sent</code>：邮件服务已尝试交给下游服务器。</li>
+<li><code>delivered</code>：存在送达回执，但也不必然代表用户已阅读。</li>
+<li><code>opened</code>：依赖追踪机制，可能缺失或受隐私设置影响。</li>
+</ul>
+<p>如果流程目标只是“提交客户通知”，S2 可以在 <code>accepted</code> 时完成；如果合规要求确认送达，则 S2 可能需要等待 <code>delivered</code> 或进入人工处理。完成语义必须预先写在节点契约里，不能在故障发生后临时改变。</p>
+<h2 id="流程失败不自动触发全局补偿">流程失败不自动触发全局补偿</h2>
+<p>是否补偿应根据业务不变量，而不是只看顶层 Run 状态：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>场景</th><th>已完成效果</th><th>后续失败后的建议</th></tr></thead><tbody><tr><td>邮件已正确发送，CRM 记录失败</td><td>客户通知仍然有效</td><td>保留邮件，从 CRM 节点恢复</td></tr><tr><td>库存已预留，支付最终失败</td><td>无支付时不应长期占用库存</td><td>释放库存</td></tr><tr><td>会议已创建，邀请发送失败</td><td>会议本身仍可能有效</td><td>重试邀请或人工确认，不必先删会议</td></tr><tr><td>错误内容邮件已发送</td><td>错误信息已经外部可见</td><td>不能撤销；按审批发送更正或说明</td></tr><tr><td>生产发布完成，验证失败</td><td>新版本已真实运行</td><td>根据发布 Policy 回滚版本或停止流量</td></tr></tbody></table>
+<p>因此 Compensation Policy 至少需要 <code>trigger_condition</code>，例如“业务目标终止且前置资源不应继续占用”，而不能简单配置成 <code>on_workflow_failure: undo_all</code>。</p>
+<h2 id="step-effect-record让恢复依据事实而不是对话">Step Effect Record：让恢复依据事实而不是对话</h2>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“Step Effect Record：让恢复依据事实而不是对话”落成可检查的结构化记录，主要字段包括 <code>step_effect</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">step_effect</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  workflow_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">customer-case-92</span></span>
+<span class="line"><span style="color:#85E89D">  run_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">run_128</span></span>
+<span class="line"><span style="color:#85E89D">  step_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">send_case_email</span></span>
+<span class="line"><span style="color:#85E89D">  step_revision</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">1</span></span>
+<span class="line"><span style="color:#85E89D">  logical_operation_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">op_case_92_email</span></span>
+<span class="line"><span style="color:#85E89D">  idempotency_key_ref</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">idem_email_92</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">confirmed</span></span>
+<span class="line"><span style="color:#85E89D">  completion_state</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">provider_accepted</span></span>
+<span class="line"><span style="color:#85E89D">  external_system</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">mail-provider</span></span>
+<span class="line"><span style="color:#85E89D">  external_effect_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">msg_73</span></span>
+<span class="line"><span style="color:#85E89D">  request_digest</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">sha256:mail...</span></span>
+<span class="line"><span style="color:#85E89D">  confirmed_at</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2026-08-12T15:20:04+08:00</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  next_step</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">create_crm_followup</span></span>
+<span class="line"><span style="color:#85E89D">  compensation_status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">not_required</span></span>
+<span class="line"></span></code></pre>
+<p><code>Step Effect Record</code> 是本 Playbook 在既有 Effect Record 基础上增加的流程关联视角，不是 Workflow 行业标准。它把副作用证据绑定到流程节点，使 Runtime 能跳过已确认节点，并定位第一个需要处理的节点。</p>
+<h2 id="先区分四种动作">先区分四种动作</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>类型</th><th>示例</th><th>失败后处理</th></tr></thead><tbody><tr><td>Pure / Read-only</td><td>计算哈希、读取公开配置</td><td>通常可直接重试，但注意数据新鲜度和成本</td></tr><tr><td>Idempotent Write</td><td>设置标签为固定值</td><td>同一意图重复执行结果不继续累积</td></tr><tr><td>Reversible Write</td><td>修改 Workspace 文件</td><td>可用明确逆操作恢复，但仍需处理并发</td></tr><tr><td>Irreversible / Compensatable</td><td>发邮件、支付、生产发布</td><td>不能真正回滚，只能补偿、对冲或人工处理</td></tr></tbody></table>
+<p>“HTTP PUT 是幂等的”不代表具体业务永远安全；如果服务端每次调用都会发送通知或更新时间戳，观察到的副作用仍可能不同。契约必须描述真实实现。</p>
+<h2 id="side-effect-contract-参考-schema">Side-effect Contract 参考 Schema</h2>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“Side-effect Contract 参考 Schema”落成可检查的结构化记录，主要字段包括 <code>side_effect_contract</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">side_effect_contract</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  tool</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">create_refund@3.1</span></span>
+<span class="line"><span style="color:#85E89D">  effect_class</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">financial_write</span></span>
+<span class="line"><span style="color:#85E89D">  commit_semantics</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">remote_atomic</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  idempotency</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    supported</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#85E89D">    key_scope</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">operation</span></span>
+<span class="line"><span style="color:#85E89D">    retention</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">PT24H</span></span>
+<span class="line"><span style="color:#85E89D">    same_key_different_payload</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">reject</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  confirmation</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    external_effect_id_field</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">refund_id</span></span>
+<span class="line"><span style="color:#85E89D">    lookup_tool</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">get_refund_by_idempotency_key</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  recovery</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    rollback</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">unsupported</span></span>
+<span class="line"><span style="color:#85E89D">    compensation_tool</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">cancel_refund</span></span>
+<span class="line"><span style="color:#85E89D">    compensation_deadline</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">PT10M</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  audit</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    record_request_digest</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#85E89D">    record_response_digest</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"></span></code></pre>
+<p><code>remote_atomic</code>、<code>operation</code> 等枚举是说明性字段，不是外部标准。它们表达 Runtime 在调用前必须知道的事实：提交点在哪里、怎样确认、能否重试、怎样补偿。</p>
+<h2 id="idempotency-key-应绑定逻辑动作">Idempotency Key 应绑定逻辑动作</h2>
+<p>同一次逻辑副作用在技术重试中必须复用同一个 Key；用户明确要求再执行一次，则必须使用新 Key：</p>
+<p><strong>代码块说明｜层级示意：</strong> 这段文本图按缩进和树枝符号阅读，用来展开“Idempotency Key 应绑定逻辑动作”中的父子关系与归属边界。它描述的是逻辑结构，不要求数据库或服务按同样层级拆分。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Run run_128</span></span>
+<span class="line"><span>└── Logical Operation op_refund_payment_9</span></span>
+<span class="line"><span>    ├── Attempt 1 → key idem_7 → timeout</span></span>
+<span class="line"><span>    ├── Confirm lookup → unknown</span></span>
+<span class="line"><span>    └── Attempt 2 → key idem_7 → returns original refund rf_902</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>New user request</span></span>
+<span class="line"><span>└── Logical Operation op_refund_payment_9_again</span></span>
+<span class="line"><span>    └── Attempt 1 → key idem_8</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>因此 Key 通常不应简单绑定整个 Run：一个 Run 可能合法地产生多个不同副作用；也不应绑定 Attempt：每次重试换 Key 会失去去重能力。更稳妥的范围是“Tool Call 所代表的逻辑业务操作”，并包含目标资源和规范化参数摘要。</p>
+<p><strong>代码块说明｜关系式：</strong> 这段表达式把“Idempotency Key 应绑定逻辑动作”压缩成便于比较的组成关系。它是分析模型，不是可执行代码，也不是要求实现者采用的行业标准公式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>idempotency_key = stable_hash(</span></span>
+<span class="line"><span>  tenant + operation_type + target + normalized_payload + logical_operation_id</span></span>
+<span class="line"><span>)</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>该公式是参考构造，不是标准算法。Key 不应泄露敏感参数，也不能只依赖模型自由生成的描述。</p>
+<h2 id="exactly-once-通常是端到端属性">Exactly-once 通常是端到端属性</h2>
+<p>Runtime 可以做到 Event 去重和 At-least-once 投递，但只有外部系统也支持同一幂等语义，才能避免重复业务效果。不要因为队列“只消费一次”就宣称邮件只会发送一次；Worker 可能在发送后、提交 Checkpoint 前崩溃。</p>
+<p>更实际的目标是：</p>
+<ul>
+<li>每个逻辑动作有稳定 ID。</li>
+<li>每次请求携带同一幂等键。</li>
+<li>外部效果返回稳定 <code>external_effect_id</code>。</li>
+<li>响应丢失时先确认，再决定是否重试。</li>
+<li>所有决定能够审计和恢复。</li>
+</ul>
+<h2 id="external-effect-record">External Effect Record</h2>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“External Effect Record”落成可检查的结构化记录，主要字段包括 <code>external_effect</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">external_effect</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  effect_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">effect_55</span></span>
+<span class="line"><span style="color:#85E89D">  run_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">run_128</span></span>
+<span class="line"><span style="color:#85E89D">  tool_call_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">call_81</span></span>
+<span class="line"><span style="color:#85E89D">  logical_operation_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">op_refund_payment_9</span></span>
+<span class="line"><span style="color:#85E89D">  idempotency_key_ref</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">idem_7</span></span>
+<span class="line"><span style="color:#85E89D">  request_digest</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">sha256:51a...</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">confirmed</span></span>
+<span class="line"><span style="color:#85E89D">  external_system</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">payments-prod</span></span>
+<span class="line"><span style="color:#85E89D">  external_effect_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">rf_902</span></span>
+<span class="line"><span style="color:#85E89D">  committed_at</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2026-08-12T13:20:04+08:00</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  approval_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">apr_39</span></span>
+<span class="line"><span style="color:#85E89D">  compensation_status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">not_required</span></span>
+<span class="line"></span></code></pre>
+<p>这是 Playbook 参考记录。真实系统可放在 Outbox、Workflow State 或审计库中，但不要把它只写进模型可编辑的自然语言 Summary。</p>
+<h2 id="响应未知时先确认再重试">响应未知时：先确认，再重试</h2>
+<p><strong>代码块说明｜层级示意：</strong> 这段文本图按缩进和树枝符号阅读，用来展开“响应未知时：先确认，再重试”中的父子关系与归属边界。它描述的是逻辑结构，不要求数据库或服务按同样层级拆分。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Tool Call timeout</span></span>
+<span class="line"><span>       ↓</span></span>
+<span class="line"><span>副作用是否可能已提交？</span></span>
+<span class="line"><span>  ├─ 否 → 按退避策略重试</span></span>
+<span class="line"><span>  └─ 是</span></span>
+<span class="line"><span>      ↓</span></span>
+<span class="line"><span>用 Idempotency Key / External ID 查询</span></span>
+<span class="line"><span>  ├─ 已提交 → 记录并继续</span></span>
+<span class="line"><span>  ├─ 未提交 → 使用原 Key 重试</span></span>
+<span class="line"><span>  └─ 仍未知 → 暂停、告警或人工确认</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>“timeout”描述的是调用方没有按时收到结果，不等于外部系统没有执行。Tool Result 应使用 <code>outcome: unknown</code>，而不是武断返回 <code>failed</code>。</p>
+<h2 id="rollback-与-compensation">Rollback 与 Compensation</h2>
+<p>Rollback 回到同一事务提交前的状态；Compensation 是一个新的业务动作，用来抵消或解释先前动作。两者不能混称：</p>
+<ul>
+<li>数据库事务尚未 Commit，可以 Rollback。</li>
+<li>Workspace 修改已 Commit 到临时分支，可以产生逆向 Commit。</li>
+<li>邮件已经送达，无法 Rollback；只能发更正邮件。</li>
+<li>退款已经入账，可能需要新建反向交易，且需要新的授权。</li>
+</ul>
+<p>补偿自身也是副作用，也可能失败、重复或需要审批，因此必须拥有新的 Tool Call、幂等键、状态和审计记录。</p>
+<h2 id="retryrollback-与-compensation-决策表">Retry、Rollback 与 Compensation 决策表</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>当前事实</th><th>自动 Retry</th><th>Rollback</th><th>Compensation</th></tr></thead><tbody><tr><td>请求确定未发出</td><td>可以</td><td>不需要</td><td>不需要</td></tr><tr><td>只读请求超时</td><td>通常可以</td><td>不需要</td><td>不需要</td></tr><tr><td>写请求支持幂等且复用原 Key</td><td>可以，受预算限制</td><td>视事务而定</td><td>失败后可能需要</td></tr><tr><td>写请求是否提交未知且可查询</td><td>先查询，不直接重试</td><td>视结果而定</td><td>视结果而定</td></tr><tr><td>写请求不支持幂等且结果未知</td><td>不应自动重试</td><td>通常不可用</td><td>暂停并人工处理</td></tr><tr><td>外部效果已确认且目标改变</td><td>不能把重试当撤销</td><td>仅未提交事务可用</td><td>发起新的补偿动作</td></tr></tbody></table>
+<h2 id="cancel-只阻止未来步骤">Cancel 只阻止未来步骤</h2>
+<p>当 Run 收到 Cancel：</p>
+<ol>
+<li>停止尚未开始的 Tool Call。</li>
+<li>尝试取消仍在进行且外部接口支持取消的调用。</li>
+<li>不把已经确认的效果标记为“已撤销”。</li>
+<li>将 <code>unknown</code> 效果加入确认队列。</li>
+<li>根据 Policy 决定是否自动补偿、请求审批或交给人工。</li>
+</ol>
+<p>Run 最终状态可以是 <code>cancelled_with_effects</code> 或 <code>cancelled_pending_reconciliation</code>。这些是本 Playbook 建议的表达，不是统一状态枚举；无论命名如何，都必须让调用者知道 Cancel 后外部世界是否仍有残留影响。</p>
+<h2 id="并发与前置条件">并发与前置条件</h2>
+<p>幂等只处理“同一动作重复”，不能防止两个不同动作并发覆盖。更新共享资源时还要使用版本号、ETag、余额校验或 Compare-and-Swap：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“并发与前置条件”落成可检查的结构化记录，主要字段包括 <code>update</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">update</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  target</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">deployment/prod</span></span>
+<span class="line"><span style="color:#85E89D">  expected_revision</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">42</span></span>
+<span class="line"><span style="color:#85E89D">  desired_image</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">app:2.8.0</span></span>
+<span class="line"></span></code></pre>
+<p>如果 revision 已变，应返回冲突并重新 Observation，而不是让 Agent用旧 Context 强行覆盖。</p>
+<h2 id="本章检查">本章检查</h2>
+<ul>
+<li>流程是否按关键操作点声明完成语义、幂等、确认、重试和补偿策略。</li>
+<li>恢复时是否读取节点级事实，并跳过已有可信证据的 <code>confirmed</code> 节点。</li>
+<li>邮件、支付或发布等节点是否区分 accepted、committed、delivered 等业务状态。</li>
+<li>顶层 Run 失败是否避免自动推导为“撤销全部已完成节点”。</li>
+<li>Compensation 是否由明确业务不变量触发，而不是由技术异常直接触发。</li>
+<li>Checkpoint 是否保存定位外部效果所需的稳定 ID，而不是复制或猜测外部状态。</li>
+<li>每个写 Tool 是否声明真实副作用、提交语义和确认方式。</li>
+<li>Idempotency Key 是否绑定逻辑业务操作，并在技术重试中复用。</li>
+<li>同 Key 不同 Payload 是否被明确拒绝。</li>
+<li>超时是否可能表示 <code>unknown</code>，而非自动等同失败。</li>
+<li>是否记录 External Effect ID、请求摘要和审批依据。</li>
+<li>Retry 前是否先判断幂等、提交状态和重试预算。</li>
+<li>是否区分 Rollback 与新的 Compensation 动作。</li>
+<li>Cancel 后是否盘点 confirmed、in-flight 和 unknown 效果。</li>
+<li>并发写是否使用版本或前置条件保护。</li>
+</ul> </article> <nav class="chapter-nav" aria-label="章节导航" data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>← 上一章</span> <strong data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</strong> </a> <a class="next" href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>下一章 →</span> <strong data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</strong> </a> </nav> </section> <aside class="page-index" aria-label="本章目录" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>本章目录</h2> <nav data-astro-cid-jojupagh> <a href="#术语来源与适用范围" data-heading="术语来源与适用范围" data-depth="2" data-astro-cid-jojupagh>术语来源与适用范围</a><a href="#流程恢复与单次-tool-retry-是两个层级" data-heading="流程恢复与单次-tool-retry-是两个层级" data-depth="2" data-astro-cid-jojupagh>流程恢复与单次 Tool Retry 是两个层级</a><a href="#每个关键操作点都需要恢复契约" data-heading="每个关键操作点都需要恢复契约" data-depth="2" data-astro-cid-jojupagh>每个关键操作点都需要恢复契约</a><a href="#节点状态必须表达未知与已确认" data-heading="节点状态必须表达未知与已确认" data-depth="2" data-astro-cid-jojupagh>节点状态必须表达“未知”与“已确认”</a><a href="#恢复点应该落在关键效果边界" data-heading="恢复点应该落在关键效果边界" data-depth="2" data-astro-cid-jojupagh>恢复点应该落在关键效果边界</a><a href="#邮件场景发送完成后从后继节点继续" data-heading="邮件场景发送完成后从后继节点继续" data-depth="2" data-astro-cid-jojupagh>邮件场景：发送完成后从后继节点继续</a><a href="#流程失败不自动触发全局补偿" data-heading="流程失败不自动触发全局补偿" data-depth="2" data-astro-cid-jojupagh>流程失败不自动触发全局补偿</a><a href="#step-effect-record让恢复依据事实而不是对话" data-heading="step-effect-record让恢复依据事实而不是对话" data-depth="2" data-astro-cid-jojupagh>Step Effect Record：让恢复依据事实而不是对话</a><a href="#先区分四种动作" data-heading="先区分四种动作" data-depth="2" data-astro-cid-jojupagh>先区分四种动作</a><a href="#side-effect-contract-参考-schema" data-heading="side-effect-contract-参考-schema" data-depth="2" data-astro-cid-jojupagh>Side-effect Contract 参考 Schema</a><a href="#idempotency-key-应绑定逻辑动作" data-heading="idempotency-key-应绑定逻辑动作" data-depth="2" data-astro-cid-jojupagh>Idempotency Key 应绑定逻辑动作</a><a href="#exactly-once-通常是端到端属性" data-heading="exactly-once-通常是端到端属性" data-depth="2" data-astro-cid-jojupagh>Exactly-once 通常是端到端属性</a><a href="#external-effect-record" data-heading="external-effect-record" data-depth="2" data-astro-cid-jojupagh>External Effect Record</a><a href="#响应未知时先确认再重试" data-heading="响应未知时先确认再重试" data-depth="2" data-astro-cid-jojupagh>响应未知时：先确认，再重试</a><a href="#rollback-与-compensation" data-heading="rollback-与-compensation" data-depth="2" data-astro-cid-jojupagh>Rollback 与 Compensation</a><a href="#retryrollback-与-compensation-决策表" data-heading="retryrollback-与-compensation-决策表" data-depth="2" data-astro-cid-jojupagh>Retry、Rollback 与 Compensation 决策表</a><a href="#cancel-只阻止未来步骤" data-heading="cancel-只阻止未来步骤" data-depth="2" data-astro-cid-jojupagh>Cancel 只阻止未来步骤</a><a href="#并发与前置条件" data-heading="并发与前置条件" data-depth="2" data-astro-cid-jojupagh>并发与前置条件</a><a href="#本章检查" data-heading="本章检查" data-depth="2" data-astro-cid-jojupagh>本章检查</a> </nav> </aside> </div> </div> <div class="selection-share" data-selection-share data-content-selector=".chapter-content" data-title="副作用、幂等、事务与补偿" data-author="Agent Engineering / IMCODERS" data-section="AGENT ENGINEERING PLAYBOOK" data-url="https://imcoders.cn/playbook/agent/19-side-effects/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>    </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" width="1200" height="780" role="img" aria-labelledby="title desc">
+  <title id="title">Runtime 五类事实对象的数据流</title>
+  <desc id="desc">执行动作原子更新 State 和 Event，Checkpoint 从 State 形成恢复点，Artifact 保存正式结果，Trace 从执行事件形成观测投影。</desc>
+  <style>
+    text { font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif; }
+    .title { font-size: 25px; font-weight: 700; fill: #111827; }
+    .sub { font-size: 13px; fill: #6b7280; }
+    .head { font-size: 17px; font-weight: 700; fill: #111827; text-anchor: middle; }
+    .body { font-size: 12px; fill: #6b7280; text-anchor: middle; }
+    .edge { font-size: 12px; font-weight: 600; }
+  </style>
+  <defs>
+    <marker id="blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#2563eb"/></marker>
+    <marker id="green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#059669"/></marker>
+    <marker id="gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#6b7280"/></marker>
+  </defs>
+  <rect width="1200" height="780" fill="#ffffff"/>
+  <text class="title" x="52" y="52">执行事实、恢复快照、正式产物与观测投影</text>
+  <text class="sub" x="52" y="78">对象可以引用同一底层内容，但各自回答不同问题，不能都塞进日志或 Memory</text>
+
+  <rect x="420" y="116" width="360" height="90" rx="14" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+  <text class="head" x="600" y="151">一次受控状态转换</text>
+  <text class="body" x="600" y="178">Model 决策 · Tool 结果 · 人工输入 · 控制操作</text>
+
+  <rect x="96" y="286" width="248" height="124" rx="14" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+  <text class="head" x="220" y="325">State</text>
+  <text class="body" x="220" y="352">当前有效状态</text>
+  <text class="body" x="220" y="376">带 revision，原子更新</text>
+
+  <rect x="476" y="286" width="248" height="124" rx="14" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+  <text class="head" x="600" y="325">Event</text>
+  <text class="body" x="600" y="352">发生了什么变化</text>
+  <text class="body" x="600" y="376">只追加、排序、补收</text>
+
+  <rect x="856" y="286" width="248" height="124" rx="14" fill="#f9fafb" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text class="head" x="980" y="325">Trace</text>
+  <text class="body" x="980" y="352">执行因果与性能投影</text>
+  <text class="body" x="980" y="376">允许采样、脱敏、丢弃</text>
+
+  <rect x="160" y="526" width="300" height="126" rx="14" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+  <text class="head" x="310" y="566">Checkpoint</text>
+  <text class="body" x="310" y="593">可恢复完整快照</text>
+  <text class="body" x="310" y="617">状态 + 版本 + 副作用账本</text>
+
+  <path d="M740 526H1020L1080 589L1020 652H740L680 589Z" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1.5"/>
+  <text class="head" x="880" y="566">Artifact</text>
+  <text class="body" x="880" y="593">可引用的正式结果</text>
+  <text class="body" x="880" y="617">类型 + 摘要 + 来源 + 验证</text>
+
+  <path d="M540 206L276 274" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#blue)"/>
+  <path d="M660 206L600 274" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#blue)"/>
+  <text class="edge" x="118" y="244" fill="#2563eb">同一事务：更新 + Outbox</text>
+  <path d="M724 348H844" fill="none" stroke="#6b7280" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#gray)"/>
+  <text class="edge" x="758" y="337" fill="#6b7280">观测投影</text>
+  <path d="M220 410V514" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#green)"/>
+  <text class="edge" x="234" y="467" fill="#059669">安全边界保存</text>
+  <path d="M600 410V456H880V514" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#green)"/>
+  <text class="edge" x="672" y="445" fill="#059669">注册正式产物</text>
+
+  <g transform="translate(52 718)">
+    <line x1="0" y1="8" x2="30" y2="8" stroke="#2563eb" stroke-width="2" marker-end="url(#blue)"/><text class="sub" x="40" y="12">执行事实</text>
+    <line x1="138" y1="8" x2="168" y2="8" stroke="#059669" stroke-width="2" marker-end="url(#green)"/><text class="sub" x="178" y="12">持久结果</text>
+    <line x1="276" y1="8" x2="306" y2="8" stroke="#6b7280" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#gray)"/><text class="sub" x="316" y="12">观测流</text>
+  </g>
+</svg>

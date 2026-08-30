@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>结果、过程与轨迹评估 | Agent Engineering Playbook</title><meta name="description" content="同时评估目标完成、产物质量、计划、工具选择、执行轨迹、安全和恢复行为。"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="结果、过程与轨迹评估 | Agent Engineering Playbook"><meta property="og:description" content="同时评估目标完成、产物质量、计划、工具选择、执行轨迹、安全和恢复行为。"><meta property="og:url" content="https://imcoders.cn/playbook/agent/21-agent-evaluation/"><meta property="og:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta property="og:image:width" content="1774"><meta property="og:image:height" content="887"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="结果、过程与轨迹评估 | Agent Engineering Playbook"><meta name="twitter:description" content="同时评估目标完成、产物质量、计划、工具选择、执行轨迹、安全和恢复行为。"><meta name="twitter:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta itemprop="name" content="结果、过程与轨迹评估 | Agent Engineering Playbook"><meta itemprop="description" content="同时评估目标完成、产物质量、计划、工具选择、执行轨迹、安全和恢复行为。"><meta itemprop="image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "结果、过程与轨迹评估 | Agent Engineering Playbook";
+const shareDesc = "同时评估目标完成、产物质量、计划、工具选择、执行轨迹、安全和恢复行为。";
+const shareLink = "https://imcoders.cn/playbook/agent/21-agent-evaluation/";
+const shareImg = "https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.C-FedgiN.css"><script type="module" src="/_astro/hoisted.BfDpThc8.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook" aria-current="page">Playbook</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main>  <div class="reading-progress" aria-hidden="true" data-astro-cid-jojupagh></div> <div class="reader" data-astro-cid-jojupagh> <header class="reader-bar" data-astro-cid-jojupagh> <a class="reader-home" href="/playbook/agent" data-astro-cid-jojupagh>AGENT ENGINEERING <span data-astro-cid-jojupagh>PLAYBOOK</span></a> <span class="reader-meta" data-astro-cid-jojupagh>21 / 30</span> </header> <div class="mobile-index" data-astro-cid-jojupagh> <details data-astro-cid-jojupagh> <summary data-astro-cid-jojupagh>打开全书目录</summary> <div class="mobile-index-body" data-astro-cid-jojupagh> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" class="is-current" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </div> </details> </div> <div class="reader-grid" data-astro-cid-jojupagh> <aside class="book-index" aria-label="全书目录" data-astro-cid-jojupagh> <h2 class="index-title" data-astro-cid-jojupagh>全书目录</h2> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" class="is-current" aria-current="page" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </aside> <section class="chapter-main" data-astro-cid-jojupagh> <header class="chapter-header" data-astro-cid-jojupagh> <div class="chapter-label" data-astro-cid-jojupagh>第二十一章 / 第五部分：Observability、Evaluation 与优化</div> <h1 data-astro-cid-jojupagh>结果、过程与轨迹评估</h1> <p class="chapter-description" data-astro-cid-jojupagh>同时评估目标完成、产物质量、计划、工具选择、执行轨迹、安全和恢复行为。</p> <p class="chapter-updated" data-astro-cid-jojupagh>更新于 2026/8/12</p>  </header> <article class="chapter-content" data-astro-cid-jojupagh> <p>最终答案正确，不代表执行合理：Agent 可能泄露敏感数据、调用了错误 Tool，或在十次无效重试后偶然得到结果。轨迹看起来专业也不代表目标完成：一份结构完整的报告，可能引用了错误数据。</p>
+<blockquote>
+<p>Outcome 判断“做成没有”，Trajectory 判断“怎样做成”，Safety 判断“这条路径是否允许”。三者不能被一个总分掩盖。</p>
+</blockquote>
+<h2 id="术语来源与适用范围">术语来源与适用范围</h2>
+<p>Evaluation、Ground Truth、Precision / Recall、Inter-rater Agreement 来自软件测试、统计学习和质量评估。模型厂商与 Agent 平台也普遍使用 Grader、LLM-as-a-Judge、Trace Grading 等术语，但各家的对象和分数不可直接互换。<a href="https://platform.openai.com/docs/guides/evaluation-best-practices">OpenAI Evaluation Best Practices</a>强调任务特定的评估、自动评分与人工判断组合；<a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI RMF</a>提供的是风险管理框架，而不是 Agent 轨迹评分协议。</p>
+<p>本章的七层 <code>Agent Evaluation Matrix</code>、硬门禁和校准流程是 Playbook 的分析框架，不是行业标准。它适用于具有 Goal、Run、Tool 与 Artifact 的执行系统；纯聊天应用可以采用其中的答案质量部分，不必虚构不存在的 Plan 或 Tool 指标。</p>
+<h2 id="七层评估矩阵">七层评估矩阵</h2>
+<p><img src="/playbook-images/agent/agent-evaluation-matrix.svg" alt="Agent Evaluation Matrix：结果、轨迹与运行约束"></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>层次</th><th>关键问题</th><th>优先评估器</th><th>是否可作硬门禁</th></tr></thead><tbody><tr><td>Goal Completion</td><td>用户目标是否真正完成</td><td>业务状态 + 验收断言</td><td>是</td></tr><tr><td>Artifact Quality</td><td>产物是否正确、完整、可用</td><td>Schema、测试、静态分析、人工</td><td>是</td></tr><tr><td>Trajectory Quality</td><td>路径是否有效、收敛、可解释</td><td>规则 + Trace Grader</td><td>视任务而定</td></tr><tr><td>Tool Selection &#x26; Arguments</td><td>Tool 与参数是否正确</td><td>契约验证 + 对照标签</td><td>是</td></tr><tr><td>Permission &#x26; Safety</td><td>是否越权、泄密或绕过审批</td><td>Policy Replay + 安全规则</td><td>是</td></tr><tr><td>Cost &#x26; Latency</td><td>是否落在预算与 SLO 内</td><td>Metric 计算</td><td>是</td></tr><tr><td>Recovery Behavior</td><td>中断、超时和未知副作用后是否安全继续</td><td>故障注入 + Event 断言</td><td>是</td></tr></tbody></table>
+<p>不要把“7.8 分”作为唯一结论。质量 9 分但发生越权，Run 仍然不合格；答案正确但重复扣款，仍然是严重失败。</p>
+<h2 id="先写验收证据再选择评估器">先写验收证据，再选择评估器</h2>
+<p>好的评估从 Acceptance Contract 开始：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“先写验收证据，再选择评估器”落成可检查的结构化记录，主要字段包括 <code>acceptance</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">acceptance</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  goal</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">将服务升级到 v3.4，并保持向后兼容</span></span>
+<span class="line"><span style="color:#85E89D">  evidence</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#9ECBFF">deployment.version == "3.4"</span></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#9ECBFF">smoke_tests.pass == true</span></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#9ECBFF">api_contract.breaking_changes == 0</span></span>
+<span class="line"><span style="color:#85E89D">  forbidden</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#9ECBFF">production_secret_in_trace</span></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#9ECBFF">unapproved_database_migration</span></span>
+<span class="line"><span style="color:#85E89D">  budgets</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    wall_time</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">PT20M</span></span>
+<span class="line"><span style="color:#85E89D">    cost_usd</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2.50</span></span>
+<span class="line"></span></code></pre>
+<p>如果没有可观察证据，“完成”就只能依赖模型自述。模型提交 <code>completion_requested</code> 只是申请，Evaluator 必须验证环境状态或 Artifact。</p>
+<h2 id="四类评估器怎样组合">四类评估器怎样组合</h2>
+<h3 id="确定性验证器">确定性验证器</h3>
+<p>单元测试、Schema、编译器、SQL 断言、业务状态查询和 Policy Engine 可重复、便宜、可解释。能确定性验证的内容，不应先交给 LLM 判断。</p>
+<h3 id="llm-as-a-judge">LLM-as-a-Judge</h3>
+<p>适合评估表达质量、语义覆盖、风格遵循和需要上下文理解的软标准。Judge 应看到明确 Rubric、候选结果和必要证据，不应看到会泄露实验分组的无关信息。优先做成对比较或分项判定，少用没有锚点的 1–10 总分。</p>
+<h3 id="agent-as-a-judge">Agent-as-a-Judge</h3>
+<p>当验证需要主动查询环境、运行测试或检查多个 Artifact 时，Judge 本身也可以是受限 Agent。它必须拥有独立权限、只读优先的 Tool 集和明确停止条件。Agent Judge 是更强的执行型评估器，不代表天然更客观。</p>
+<h3 id="人工评估">人工评估</h3>
+<p>用于高风险、安全边界、新任务定义、Judge 分歧与抽样校准。人工不是“永远正确的标签机器”，也需要 Rubric、证据界面和分歧处理流程。</p>
+<h2 id="轨迹评估关注关键决策不评分隐藏思维">轨迹评估关注关键决策，不评分隐藏思维</h2>
+<p>Trajectory Evaluation 应评价可观察动作：选了哪个 Tool、参数来自哪里、是否重复、是否验证、是否遵守审批。不要要求保存或评分模型隐藏推理。可用指标包括：</p>
+<ul>
+<li>必要 Step 覆盖率与禁止 Step 命中率。</li>
+<li>错误 Tool 选择率与参数修复次数。</li>
+<li>无进展 Step、重复 Tool Call 和 Replan 次数。</li>
+<li>首次失败后的恢复策略是否改变。</li>
+<li>完成前是否获得要求的验证证据。</li>
+</ul>
+<p>允许多条正确路径时，不要把 Golden Trajectory 当成唯一顺序。可以规定关键不变量与允许的部分顺序，而不是逐 Token 或逐 Step 比对。</p>
+<h2 id="evaluator-calibration">Evaluator Calibration</h2>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“Evaluator Calibration”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>定义 Rubric</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>双人标注一组代表性样本</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>解决分歧，形成 Adjudicated Ground Truth</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>运行自动 Evaluator</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>按任务切片计算一致率、误报和漏报</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>调整 Rubric / 阈值 / Judge Prompt</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>冻结 Evaluator Version</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Judge 与被评模型使用相同模型家族时可能共享偏差；缓解方式包括：混合确定性证据、使用独立 Judge、隐藏版本身份、保留人工盲测样本，并在难例和安全例上单独看误差。不要因为总体一致率高，就忽略高风险切片的漏报。</p>
+<h2 id="evaluation-result-参考结构">Evaluation Result 参考结构</h2>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“Evaluation Result 参考结构”落成可检查的结构化记录，主要字段包括 <code>evaluation_result</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">evaluation_result</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  run_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">run_128</span></span>
+<span class="line"><span style="color:#85E89D">  suite_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">support-agent-regression@12</span></span>
+<span class="line"><span style="color:#85E89D">  evaluator_versions</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    artifact_tests</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">git:1f23...</span></span>
+<span class="line"><span style="color:#85E89D">    trajectory_grader</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">traj-grader@4</span></span>
+<span class="line"><span style="color:#85E89D">  dimensions</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    goal_completion</span><span style="color:#E1E4E8">: {</span><span style="color:#85E89D">pass</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">, </span><span style="color:#85E89D">evidence</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">order://928</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#85E89D">    artifact_quality</span><span style="color:#E1E4E8">: {</span><span style="color:#85E89D">score</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.92</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#85E89D">    safety</span><span style="color:#E1E4E8">: {</span><span style="color:#85E89D">pass</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#85E89D">    budget</span><span style="color:#E1E4E8">: {</span><span style="color:#85E89D">pass</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">, </span><span style="color:#85E89D">actual_cost_usd</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">3.10</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#85E89D">  decision</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">fail</span></span>
+<span class="line"><span style="color:#85E89D">  failed_gates</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">budget</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span></code></pre>
+<p>该结构是 Playbook 参考设计。原始分项、证据引用和 Evaluator 版本必须保留，否则无法解释为什么一次实验被判定为回退。</p>
+<h2 id="实施检查表">实施检查表</h2>
+<ul>
+<li>是否先定义验收证据，而不是先选择 Judge。</li>
+<li>能确定性验证的规则是否由程序验证。</li>
+<li>Outcome、Trajectory、Safety、Cost 是否保留独立结论。</li>
+<li>Judge 是否按任务切片校准，并记录自身版本。</li>
+<li>是否避免保存或评分模型隐藏推理。</li>
+<li>安全、权限和副作用失败是否能覆盖质量总分并直接阻断。</li>
+</ul> </article> <nav class="chapter-nav" aria-label="章节导航" data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>← 上一章</span> <strong data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</strong> </a> <a class="next" href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>下一章 →</span> <strong data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</strong> </a> </nav> </section> <aside class="page-index" aria-label="本章目录" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>本章目录</h2> <nav data-astro-cid-jojupagh> <a href="#术语来源与适用范围" data-heading="术语来源与适用范围" data-depth="2" data-astro-cid-jojupagh>术语来源与适用范围</a><a href="#七层评估矩阵" data-heading="七层评估矩阵" data-depth="2" data-astro-cid-jojupagh>七层评估矩阵</a><a href="#先写验收证据再选择评估器" data-heading="先写验收证据再选择评估器" data-depth="2" data-astro-cid-jojupagh>先写验收证据，再选择评估器</a><a href="#四类评估器怎样组合" data-heading="四类评估器怎样组合" data-depth="2" data-astro-cid-jojupagh>四类评估器怎样组合</a><a href="#确定性验证器" data-heading="确定性验证器" data-depth="3" data-astro-cid-jojupagh>确定性验证器</a><a href="#llm-as-a-judge" data-heading="llm-as-a-judge" data-depth="3" data-astro-cid-jojupagh>LLM-as-a-Judge</a><a href="#agent-as-a-judge" data-heading="agent-as-a-judge" data-depth="3" data-astro-cid-jojupagh>Agent-as-a-Judge</a><a href="#人工评估" data-heading="人工评估" data-depth="3" data-astro-cid-jojupagh>人工评估</a><a href="#轨迹评估关注关键决策不评分隐藏思维" data-heading="轨迹评估关注关键决策不评分隐藏思维" data-depth="2" data-astro-cid-jojupagh>轨迹评估关注关键决策，不评分隐藏思维</a><a href="#evaluator-calibration" data-heading="evaluator-calibration" data-depth="2" data-astro-cid-jojupagh>Evaluator Calibration</a><a href="#evaluation-result-参考结构" data-heading="evaluation-result-参考结构" data-depth="2" data-astro-cid-jojupagh>Evaluation Result 参考结构</a><a href="#实施检查表" data-heading="实施检查表" data-depth="2" data-astro-cid-jojupagh>实施检查表</a> </nav> </aside> </div> </div> <div class="selection-share" data-selection-share data-content-selector=".chapter-content" data-title="结果、过程与轨迹评估" data-author="Agent Engineering / IMCODERS" data-section="AGENT ENGINEERING PLAYBOOK" data-url="https://imcoders.cn/playbook/agent/21-agent-evaluation/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>    </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

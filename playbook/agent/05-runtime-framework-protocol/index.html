@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>Framework、Runtime 与 Protocol | Agent Engineering Playbook</title><meta name="description" content="区分开发框架、执行环境、外部协议与 Harness，建立不依赖具体产品的 Agent 系统分层。"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="Framework、Runtime 与 Protocol | Agent Engineering Playbook"><meta property="og:description" content="区分开发框架、执行环境、外部协议与 Harness，建立不依赖具体产品的 Agent 系统分层。"><meta property="og:url" content="https://imcoders.cn/playbook/agent/05-runtime-framework-protocol/"><meta property="og:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta property="og:image:width" content="1774"><meta property="og:image:height" content="887"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Framework、Runtime 与 Protocol | Agent Engineering Playbook"><meta name="twitter:description" content="区分开发框架、执行环境、外部协议与 Harness，建立不依赖具体产品的 Agent 系统分层。"><meta name="twitter:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta itemprop="name" content="Framework、Runtime 与 Protocol | Agent Engineering Playbook"><meta itemprop="description" content="区分开发框架、执行环境、外部协议与 Harness，建立不依赖具体产品的 Agent 系统分层。"><meta itemprop="image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "Framework、Runtime 与 Protocol | Agent Engineering Playbook";
+const shareDesc = "区分开发框架、执行环境、外部协议与 Harness，建立不依赖具体产品的 Agent 系统分层。";
+const shareLink = "https://imcoders.cn/playbook/agent/05-runtime-framework-protocol/";
+const shareImg = "https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.C-FedgiN.css"><script type="module" src="/_astro/hoisted.BfDpThc8.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook" aria-current="page">Playbook</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main>  <div class="reading-progress" aria-hidden="true" data-astro-cid-jojupagh></div> <div class="reader" data-astro-cid-jojupagh> <header class="reader-bar" data-astro-cid-jojupagh> <a class="reader-home" href="/playbook/agent" data-astro-cid-jojupagh>AGENT ENGINEERING <span data-astro-cid-jojupagh>PLAYBOOK</span></a> <span class="reader-meta" data-astro-cid-jojupagh>15 / 30</span> </header> <div class="mobile-index" data-astro-cid-jojupagh> <details data-astro-cid-jojupagh> <summary data-astro-cid-jojupagh>打开全书目录</summary> <div class="mobile-index-body" data-astro-cid-jojupagh> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" class="is-current" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </div> </details> </div> <div class="reader-grid" data-astro-cid-jojupagh> <aside class="book-index" aria-label="全书目录" data-astro-cid-jojupagh> <h2 class="index-title" data-astro-cid-jojupagh>全书目录</h2> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" class="is-current" aria-current="page" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </aside> <section class="chapter-main" data-astro-cid-jojupagh> <header class="chapter-header" data-astro-cid-jojupagh> <div class="chapter-label" data-astro-cid-jojupagh>第十五章 / 第四部分：Agent Runtime 与执行协议</div> <h1 data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</h1> <p class="chapter-description" data-astro-cid-jojupagh>区分开发框架、执行环境、外部协议与 Harness，建立不依赖具体产品的 Agent 系统分层。</p> <p class="chapter-updated" data-astro-cid-jojupagh>更新于 2026/8/12</p>  </header> <article class="chapter-content" data-astro-cid-jojupagh> <p>前三部分已经定义了 Agent 的执行内核、状态连续性、行动能力与控制边界。接下来要回答更具体的问题：这个系统由谁持续承载？当一次执行跨越多个模型调用、工具调用和人工等待时，外部产品又怎样知道它正在运行、需要输入，还是已经结束？</p>
+<p>这些问题不能只靠一段 Agent Loop 代码回答。<code>while</code> 循环描述计算内核，Runtime 才负责让这个循环在真实环境中获得身份、状态、资源和生命周期。</p>
+<h2 id="术语来源与适用范围">术语来源与适用范围</h2>
+<p>Framework、Runtime、Protocol 和 Harness 都不是 Agent 领域独有的词，也没有一套被所有产品共同采用的分层标准。真实产品经常同时跨越多层：例如 <a href="https://langchain-ai.github.io/langgraph/index.html">LangGraph</a>把自己描述为 orchestration framework 与 runtime，<a href="https://openai.github.io/openai-agents-python/">OpenAI Agents SDK</a>既提供 Agent、Tool 等构造抽象，也内置 Agent Loop、Session 和 Tracing。因而，本章按<strong>责任</strong>区分概念，不按产品名称给厂商或开源项目归类。</p>
+<p>本章所说的 <code>Framework</code>，指开发者用于声明和组合 Agent 的编程抽象；<code>Runtime</code> 指让一次执行持续推进并管理其生命周期的系统责任。两者可以由同一个库实现，也可以分别位于 SDK、应用进程和远程服务中。这里的边界用于架构分析，不表示 Framework 只能参与构建阶段，也不表示 Runtime 必须是独立部署的常驻服务。</p>
+<p><code>Protocol</code> 在这里是“系统边界上的外部契约”这一类概念，不是名为 Agent Protocol 的单一标准。现有协议各自覆盖不同边界：<a href="https://modelcontextprotocol.io/docs/learn/architecture">MCP</a>聚焦 AI 应用与 Tool、Resource 等外部能力之间的上下文交换，<a href="https://a2a-protocol.org/latest/specification/">A2A</a>定义远程 Agent 之间的 Message、Task 与 Artifact，<a href="https://docs.ag-ui.com/concepts/architecture">AG-UI</a>定义 Agent 后端与用户界面之间的 Run 和 Event。本文使用 <code>Runtime Protocol</code> 作为描述性统称，具体实现可以采用其中一项、多项或自定义 API。</p>
+<p><code>Harness</code> 原本广泛用于测试和工具系统；在 Agent Engineering 中，它又被用来描述模型之外让 Agent 能够可靠工作的脚手架、约束和反馈回路。<a href="https://openai.com/index/harness-engineering/">OpenAI 的 Harness Engineering 实践</a>涵盖仓库结构、工具、文档、验证和可观测性。本 Playbook 进一步把它限定为<strong>面向特定工作域的工作方式</strong>：它把 Runtime 能力与仓库规则、默认 Tool、权限和交付流程组合起来。Harness 的实现可能分布在仓库、CLI、CI 和平台中，不要求对应一个独立进程或产品。</p>
+<p>因此，后文首字母大写的 Framework、Runtime、Protocol 和 Harness 是本 Playbook 的工作定义。阅读其他系统文档时，应比较它实际承担的责任，而不是只按术语名称做一一映射。</p>
+<h2 id="四个容易混用的概念">四个容易混用的概念</h2>
+<p>Framework、Runtime、Protocol 和 Harness 经常被放在同一句话中，但它们服务于不同角色。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>概念</th><th>服务对象</th><th>核心职责</th><th>常见形态</th></tr></thead><tbody><tr><td>Framework</td><td>Agent 开发者</td><td>提供构造 Agent 的代码抽象</td><td>SDK、Graph DSL、Agent 基类</td></tr><tr><td>Runtime</td><td>正在执行的 Agent</td><td>承载状态转换与生命周期</td><td>Worker、队列、状态存储、调度器</td></tr><tr><td>Protocol</td><td>Runtime 的调用者</td><td>暴露稳定对象、操作与状态语义</td><td>HTTP API、事件流、消息协议</td></tr><tr><td>Harness</td><td>使用 Agent 的工程团队</td><td>把能力组织成默认可用的工作方式</td><td>权限策略、工作区、检查点、验证门禁</td></tr></tbody></table>
+<p><img src="/playbook-images/agent/runtime-layers.svg" alt="Framework、Runtime、Protocol 与 Harness 分层"></p>
+<p><strong>Framework 是构造工具。</strong> 它可以帮助开发者声明 Tool、拼装 Prompt、定义 Graph，或者实现模型供应商切换。程序构建完成以后，一部分 Framework 代码可能留在进程中，也可能只在开发阶段生成配置。</p>
+<p><strong>Runtime 是执行环境。</strong> 它接收目标，创建 Run，组装 Context，调用模型和 Tool，保存状态，处理等待、重试、取消与恢复。只要任务还没有进入终态，Runtime 就必须知道下一步由谁负责。</p>
+<p><strong>Protocol 是外部契约。</strong> 网页、命令行、调度平台或另一个 Agent 不应该依赖 Runtime 内部用了哪一种 Graph。它们需要依赖的是：怎样创建 Run，怎样提交输入，怎样订阅 Event，怎样取消，以及每个状态代表什么。</p>
+<p><strong>Harness 是工作方式。</strong> 它把 Runtime 的原始能力与仓库规范、默认 Tool、权限规则、验证命令和交付流程组合起来。Runtime 可能允许任意命令，Harness 则规定在某个代码库里应该先读什么、能改哪里、完成前必须运行哪些检查。</p>
+<h2 id="runtime-不等于一个常驻进程">Runtime 不等于一个常驻进程</h2>
+<p>本地 Demo 常把 Agent Runtime 写成一个 Python 进程：HTTP 请求进来，循环运行，最后返回文本。进程一旦退出，任务也随之消失。</p>
+<p>生产 Runtime 更像一组协作责任：</p>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“Runtime 不等于一个常驻进程”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>API / Event Gateway</span></span>
+<span class="line"><span>        ↓</span></span>
+<span class="line"><span>Run Store ← Scheduler → Worker</span></span>
+<span class="line"><span>    ↑                    ↓</span></span>
+<span class="line"><span>Checkpoint Store     Model / Tool Executor</span></span>
+<span class="line"><span>    ↑                    ↓</span></span>
+<span class="line"><span>Artifact Store ← Event / Trace Pipeline</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>这些责任可以部署在一个进程中，也可以拆成多个服务。判断 Runtime 是否完整，不看服务数量，而看任务是否拥有独立于单个进程的持续身份和状态。</p>
+<p>例如修复登录失败的 Run 在执行到一半时等待用户授权。此时 Worker 应该释放计算资源，Run 保持 <code>AUTH_REQUIRED</code>。数小时后授权到达，另一个 Worker 可以从 Checkpoint 恢复。对用户来说，这是同一次执行；对基础设施来说，它已经跨越了两个进程。</p>
+<h2 id="protocol-是-runtime-的稳定边界">Protocol 是 Runtime 的稳定边界</h2>
+<p>假设产品前端直接读取某个框架的内部节点：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 JSON 把“Protocol 是 Runtime 的稳定边界”落成可检查的结构化记录，主要字段包括 <code>node</code>、<code>next</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{ </span><span style="color:#79B8FF">"node"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"tool_executor_3"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">"next"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"planner_2"</span><span style="color:#E1E4E8"> }</span></span>
+<span class="line"></span></code></pre>
+<p>一旦团队把 ReAct 改成 Plan-and-Execute，前端、审计系统和任务平台都会跟着失效。更稳定的 Protocol 应暴露业务可依赖的语义：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 JSON 把“Protocol 是 Runtime 的稳定边界”落成可检查的结构化记录，主要字段包括 <code>run_id</code>、<code>status</code>、<code>required_input</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "run_id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"run_128"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "status"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"input_required"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "required_input"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"choice"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "prompt"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"是否允许修改认证配置？"</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<p>Protocol 应该稳定的通常包括：</p>
+<ul>
+<li>核心对象的身份与父子关系。</li>
+<li>Run 的状态、终态和合法转换。</li>
+<li>创建、观察、输入、取消和重试等操作。</li>
+<li>Event 的顺序、幂等和断线补收语义。</li>
+<li>Artifact 的引用、类型和完整性信息。</li>
+<li>错误分类、权限要求和兼容性规则。</li>
+</ul>
+<p>内部应该保留自由的包括：</p>
+<ul>
+<li>使用哪一种模型或推理提示。</li>
+<li>Agent 内部采用 ReAct、Graph 还是 Task List。</li>
+<li>Context 的具体裁剪算法。</li>
+<li>Worker、队列和数据库的部署方式。</li>
+<li>内部 Step 的拆分粒度。</li>
+</ul>
+<p>好的 Protocol 不会把实现细节冻结成公共 API，但也不能只返回一段含糊的自然语言。</p>
+<h2 id="agent-protocol不是某一个标准的专有名称">“Agent Protocol”不是某一个标准的专有名称</h2>
+<p>Agent 系统会同时使用多类协议：Tool 协议描述怎样调用能力，Agent-to-Agent 协议描述多个执行者怎样交换任务，UI 协议描述怎样向用户流式展示状态，Runtime Protocol 则描述一次执行怎样被创建和控制。</p>
+<p>MCP、A2A、AG-UI 或某个云厂商的 Run API 都可能覆盖其中一部分，但不能因此把它们等同于 Agent 的全部协议层。一个 Runtime 甚至可以同时使用：</p>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明““Agent Protocol”不是某一个标准的专有名称”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>前端 ← UI Event Protocol → Runtime</span></span>
+<span class="line"><span>Runtime ← Tool Protocol → MCP Server</span></span>
+<span class="line"><span>Runtime ← Agent Protocol → Remote Agent</span></span>
+<span class="line"><span>业务平台 ← Run Protocol → Runtime</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>设计时先写清楚需要交换的对象和语义，再选择标准或实现方式。标准负责互操作，不替代系统建模。</p>
+<h2 id="怎样判断一个框架是否拥有完整-runtime">怎样判断一个框架是否拥有完整 Runtime</h2>
+<p>“支持 Agent”可能只表示 SDK 能自动执行 Tool Call。可以用下面的能力检查表进一步判断：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>能力</th><th>需要回答的问题</th></tr></thead><tbody><tr><td>执行身份</td><td>每次 Run 是否有稳定 ID，断线后能否再次定位？</td></tr><tr><td>生命周期</td><td>是否区分排队、运行、等待、取消、成功和失败？</td></tr><tr><td>持久状态</td><td>进程退出后，目标、进度和等待条件是否仍然存在？</td></tr><tr><td>恢复</td><td>能否从明确 Checkpoint 继续，而不是从头重跑？</td></tr><tr><td>控制</td><td>外部能否安全地输入、暂停、取消和重试？</td></tr><tr><td>事件</td><td>状态变化能否订阅、排序、去重和补收？</td></tr><tr><td>产物</td><td>代码、报告等结果是否有独立引用和元数据？</td></tr><tr><td>副作用</td><td>是否记录幂等键、授权和不可逆动作结果？</td></tr><tr><td>可观测性</td><td>能否把一次 Run 关联到模型、Tool、成本和错误？</td></tr><tr><td>版本</td><td>能否还原这次执行使用的 Agent、Skill、Tool 和模型版本？</td></tr></tbody></table>
+<p>一个库即使没有内建这些能力，也可以成为 Runtime 的组成部分。真正危险的是系统实际没有这些语义，却因为用了 Agent Framework 而误以为已经具备生产能力。</p>
+<h2 id="harness-与-runtime-在哪里相遇">Harness 与 Runtime 在哪里相遇</h2>
+<p>Runtime 提供机制，Harness 提供面向具体工作域的默认政策。</p>
+<p>例如 Runtime 支持 <code>request_approval(action)</code>，代码仓库 Harness 决定“修改测试文件可以自动执行，改 CI 配置需要确认，发布生产必须由指定角色批准”。Runtime 支持 Checkpoint，Harness 决定在修改前、测试通过后和提交前自动保存。</p>
+<p>同一套 Runtime 可以承载代码 Agent、研究 Agent 和客服 Agent；不同 Harness 会给它们完全不同的能力边界。这个分层让执行基础设施保持通用，同时让工作规约贴近真实场景。</p>
+<h2 id="本章检查">本章检查</h2>
+<ul>
+<li>系统是否明确区分构造代码、执行环境、外部契约和工作规约。</li>
+<li>Run 是否能脱离单个请求和单个 Worker 持续存在。</li>
+<li>Protocol 是否暴露稳定业务语义，而不是内部 Graph 节点。</li>
+<li>是否按对象和操作选择协议，而不是把某个标准当成全部答案。</li>
+<li>Runtime 是否具备生命周期、持久化、恢复、控制、事件和副作用治理能力。</li>
+<li>Harness 是否把通用机制落实为当前环境的默认规则。</li>
+</ul> </article> <nav class="chapter-nav" aria-label="章节导航" data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>← 上一章</span> <strong data-astro-cid-jojupagh>副作用、幂等、事务与补偿</strong> </a> <a class="next" href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>下一章 →</span> <strong data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</strong> </a> </nav> </section> <aside class="page-index" aria-label="本章目录" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>本章目录</h2> <nav data-astro-cid-jojupagh> <a href="#术语来源与适用范围" data-heading="术语来源与适用范围" data-depth="2" data-astro-cid-jojupagh>术语来源与适用范围</a><a href="#四个容易混用的概念" data-heading="四个容易混用的概念" data-depth="2" data-astro-cid-jojupagh>四个容易混用的概念</a><a href="#runtime-不等于一个常驻进程" data-heading="runtime-不等于一个常驻进程" data-depth="2" data-astro-cid-jojupagh>Runtime 不等于一个常驻进程</a><a href="#protocol-是-runtime-的稳定边界" data-heading="protocol-是-runtime-的稳定边界" data-depth="2" data-astro-cid-jojupagh>Protocol 是 Runtime 的稳定边界</a><a href="#agent-protocol不是某一个标准的专有名称" data-heading="agent-protocol不是某一个标准的专有名称" data-depth="2" data-astro-cid-jojupagh>“Agent Protocol”不是某一个标准的专有名称</a><a href="#怎样判断一个框架是否拥有完整-runtime" data-heading="怎样判断一个框架是否拥有完整-runtime" data-depth="2" data-astro-cid-jojupagh>怎样判断一个框架是否拥有完整 Runtime</a><a href="#harness-与-runtime-在哪里相遇" data-heading="harness-与-runtime-在哪里相遇" data-depth="2" data-astro-cid-jojupagh>Harness 与 Runtime 在哪里相遇</a><a href="#本章检查" data-heading="本章检查" data-depth="2" data-astro-cid-jojupagh>本章检查</a> </nav> </aside> </div> </div> <div class="selection-share" data-selection-share data-content-selector=".chapter-content" data-title="Framework、Runtime 与 Protocol" data-author="Agent Engineering / IMCODERS" data-section="AGENT ENGINEERING PLAYBOOK" data-url="https://imcoders.cn/playbook/agent/05-runtime-framework-protocol/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>    </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

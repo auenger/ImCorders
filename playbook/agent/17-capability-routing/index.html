@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>Router 与能力发现 | Agent Engineering Playbook</title><meta name="description" content="根据任务动态选择 Skill、Tool、模型、Agent 或 Workflow 分支，同时管理置信度和回退。"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="Router 与能力发现 | Agent Engineering Playbook"><meta property="og:description" content="根据任务动态选择 Skill、Tool、模型、Agent 或 Workflow 分支，同时管理置信度和回退。"><meta property="og:url" content="https://imcoders.cn/playbook/agent/17-capability-routing/"><meta property="og:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta property="og:image:width" content="1774"><meta property="og:image:height" content="887"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Router 与能力发现 | Agent Engineering Playbook"><meta name="twitter:description" content="根据任务动态选择 Skill、Tool、模型、Agent 或 Workflow 分支，同时管理置信度和回退。"><meta name="twitter:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta itemprop="name" content="Router 与能力发现 | Agent Engineering Playbook"><meta itemprop="description" content="根据任务动态选择 Skill、Tool、模型、Agent 或 Workflow 分支，同时管理置信度和回退。"><meta itemprop="image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "Router 与能力发现 | Agent Engineering Playbook";
+const shareDesc = "根据任务动态选择 Skill、Tool、模型、Agent 或 Workflow 分支，同时管理置信度和回退。";
+const shareLink = "https://imcoders.cn/playbook/agent/17-capability-routing/";
+const shareImg = "https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.C-FedgiN.css"><script type="module" src="/_astro/hoisted.BfDpThc8.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook" aria-current="page">Playbook</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main>  <div class="reading-progress" aria-hidden="true" data-astro-cid-jojupagh></div> <div class="reader" data-astro-cid-jojupagh> <header class="reader-bar" data-astro-cid-jojupagh> <a class="reader-home" href="/playbook/agent" data-astro-cid-jojupagh>AGENT ENGINEERING <span data-astro-cid-jojupagh>PLAYBOOK</span></a> <span class="reader-meta" data-astro-cid-jojupagh>12 / 30</span> </header> <div class="mobile-index" data-astro-cid-jojupagh> <details data-astro-cid-jojupagh> <summary data-astro-cid-jojupagh>打开全书目录</summary> <div class="mobile-index-body" data-astro-cid-jojupagh> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" class="is-current" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </div> </details> </div> <div class="reader-grid" data-astro-cid-jojupagh> <aside class="book-index" aria-label="全书目录" data-astro-cid-jojupagh> <h2 class="index-title" data-astro-cid-jojupagh>全书目录</h2> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" class="is-current" aria-current="page" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </aside> <section class="chapter-main" data-astro-cid-jojupagh> <header class="chapter-header" data-astro-cid-jojupagh> <div class="chapter-label" data-astro-cid-jojupagh>第十二章 / 第三部分：Tool、Skill 与控制面</div> <h1 data-astro-cid-jojupagh>Router 与能力发现</h1> <p class="chapter-description" data-astro-cid-jojupagh>根据任务动态选择 Skill、Tool、模型、Agent 或 Workflow 分支，同时管理置信度和回退。</p> <p class="chapter-updated" data-astro-cid-jojupagh>更新于 2026/8/12</p>  </header> <article class="chapter-content" data-astro-cid-jojupagh> <p>当系统只有三个 Tool 时，可以全部放进 Context；当它拥有数百个 Tool、Skill、模型和远程 Agent 时，“全部展示给模型”会同时增加 Token 成本、误选概率和攻击面。Router 的职责不是替 Agent 完成任务，而是先缩小候选动作空间。</p>
+<p><img src="/playbook-images/agent/tool-skill-routing.svg" alt="能力发现、路由与执行控制面"></p>
+<blockquote>
+<p>Discovery 回答“系统里有什么”，Routing 回答“这次优先考虑什么”，Authorization 回答“当前是否允许执行”。</p>
+</blockquote>
+<h2 id="术语来源与适用范围">术语来源与适用范围</h2>
+<p>Router、Registry 和 Capability Discovery 是服务架构、插件系统和 Agent Framework 中常见的工程概念，但没有统一的 Agent Capability Registry 标准。有的系统只路由模型，有的选择 Tool 或 Agent；<a href="https://openai.github.io/openai-agents-python/handoffs/">OpenAI Agents SDK Handoffs</a> 把专业 Agent 暴露为可选择的交接目标，<a href="https://openai.github.io/openai-agents-python/tools/">OpenAI Agents SDK Tools</a> 也支持延迟发现大规模 Tool 集合。</p>
+<p>本章把 Tool、Skill、Model、Agent 与 Workflow Branch 统一称为“Capability”，用于讨论共同的发现和选择问题。这是本 Playbook 的上位抽象；<code>Capability Registry</code> Schema、评分因素和回退状态同样是参考设计，而非外部标准对象。</p>
+<h2 id="router-路由的不是一种对象">Router 路由的不是一种对象</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Capability</th><th>Router 决定什么</th><th>选择后发生什么</th></tr></thead><tbody><tr><td>Skill</td><td>当前任务采用哪套方法</td><td>加载 Skill 指令与资源索引</td></tr><tr><td>Tool</td><td>哪个动作接口进入候选集</td><td>Tool Definition 暴露给模型</td></tr><tr><td>Model</td><td>使用哪个模型执行某一步</td><td>Runtime 配置模型与预算</td></tr><tr><td>Agent</td><td>由哪个专业执行者处理</td><td>作为 Tool 调用或 Handoff</td></tr><tr><td>Workflow Branch</td><td>进入哪条确定性流程</td><td>Runtime 转换到对应节点</td></tr></tbody></table>
+<p>这些对象可以共享发现入口，但不能假装拥有相同调用语义。选择 Skill 是加载知识；选择 Agent 可能转移控制；选择 Tool 只是把动作加入候选，最终仍要产生合法 Tool Call。</p>
+<h2 id="capability-registry-参考-schema">Capability Registry 参考 Schema</h2>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“Capability Registry 参考 Schema”落成可检查的结构化记录，主要字段包括 <code>capability</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">capability</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  capability_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">tool://payments/create-refund@3.1</span></span>
+<span class="line"><span style="color:#85E89D">  kind</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">tool</span></span>
+<span class="line"><span style="color:#85E89D">  name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">create_refund</span></span>
+<span class="line"><span style="color:#85E89D">  summary</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">为已完成支付创建部分或全额退款</span></span>
+<span class="line"><span style="color:#85E89D">  intents</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">refund_payment</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#85E89D">  domains</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">payment</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">customer_support</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  requirements</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    inputs</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">payment_id</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">amount</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">currency</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#85E89D">    environment</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">payments_api</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#85E89D">    scopes</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">payments.refund</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  behavior</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    side_effect</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">financial_write</span></span>
+<span class="line"><span style="color:#85E89D">    latency_class</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">interactive</span></span>
+<span class="line"><span style="color:#85E89D">    cost_class</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">low</span></span>
+<span class="line"><span style="color:#85E89D">    supports_dry_run</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">false</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  compatibility</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    agent_runtime</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">">=2.4"</span></span>
+<span class="line"><span style="color:#85E89D">    regions</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">cn</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">us</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  provenance</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    provider</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">mcp://payments-server</span></span>
+<span class="line"><span style="color:#85E89D">    schema_digest</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">sha256:8fa...</span></span>
+<span class="line"><span style="color:#85E89D">    reviewed_at</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2026-08-01</span></span>
+<span class="line"></span></code></pre>
+<p>这份 Schema 是 Playbook 扩展设计。Registry 中既有模型可见的发现信息，也有仅供 Runtime 使用的权限、成本和风险元数据；实际实现可以拆成多个索引，而不必放进同一张表。</p>
+<h2 id="先硬过滤再软排序">先硬过滤，再软排序</h2>
+<p>Router 不应该让模型在明显不可用的能力中“凭感觉选择”。推荐管线是：</p>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“先硬过滤，再软排序”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Goal + Task + Current State</span></span>
+<span class="line"><span>          ↓</span></span>
+<span class="line"><span>Intent / Entity Extraction</span></span>
+<span class="line"><span>          ↓</span></span>
+<span class="line"><span>Hard Filters</span></span>
+<span class="line"><span>  environment / compatibility / tenant / region</span></span>
+<span class="line"><span>          ↓</span></span>
+<span class="line"><span>Candidate Retrieval</span></span>
+<span class="line"><span>  keyword / embedding / taxonomy</span></span>
+<span class="line"><span>          ↓</span></span>
+<span class="line"><span>Rerank</span></span>
+<span class="line"><span>  fit / confidence / latency / cost / reliability</span></span>
+<span class="line"><span>          ↓</span></span>
+<span class="line"><span>Expose a small candidate set</span></span>
+<span class="line"><span>          ↓</span></span>
+<span class="line"><span>Agent decision → Permission check → Execute</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Hard Filter 只使用可以确定的约束；相似度、历史成功率和成本属于软排序。权限可以用于提前隐藏明显无权发现的能力，但最终授权仍必须在执行时针对真实参数重新检查。</p>
+<h2 id="规则路由模型路由与混合路由">规则路由、模型路由与混合路由</h2>
+<h3 id="规则路由">规则路由</h3>
+<p>适合高确定性、输入结构明确或合规要求固定的场景，例如文件扩展名为 <code>.pdf</code> 时加载 PDF Skill。优点是可解释、便宜；缺点是难覆盖自然语言长尾。</p>
+<h3 id="模型路由">模型路由</h3>
+<p>适合意图模糊、候选语义接近或需要理解长上下文的场景。模型应输出结构化候选、理由和不确定性，而不是直接执行高风险动作。</p>
+<h3 id="混合路由">混合路由</h3>
+<p>先用规则排除不兼容和越界项，再用检索与模型排序，通常更适合生产环境：</p>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“混合路由”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Deterministic Gate → Semantic Retrieve → Model Rerank → Runtime Verify</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>“模型置信度 0.91”不是天然可信概率。只有在标注数据上做过校准，它才可以用于阈值决策；否则更适合作为相对排序信号。</p>
+<h2 id="低置信度不是错误应有正式回退">低置信度不是错误，应有正式回退</h2>
+<p>Router 至少需要以下结果：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“低置信度不是错误，应有正式回退”落成可检查的结构化记录，主要字段包括 <code>route_decision</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">route_decision</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  decision</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">clarify</span></span>
+<span class="line"><span style="color:#85E89D">  candidates</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    - { </span><span style="color:#85E89D">id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">skill://invoice-analysis</span><span style="color:#E1E4E8">, </span><span style="color:#85E89D">score</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.54</span><span style="color:#E1E4E8"> }</span></span>
+<span class="line"><span style="color:#E1E4E8">    - { </span><span style="color:#85E89D">id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">skill://expense-audit</span><span style="color:#E1E4E8">, </span><span style="color:#85E89D">score</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.49</span><span style="color:#E1E4E8"> }</span></span>
+<span class="line"><span style="color:#85E89D">  missing_information</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">用户希望提取发票还是审计报销</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#85E89D">  reason_code</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">ambiguous_intent</span></span>
+<span class="line"></span></code></pre>
+<p>参考回退顺序：</p>
+<ol>
+<li>用低成本 Observation 补齐事实。</li>
+<li>向用户提出一个能真正区分候选的问题。</li>
+<li>退回更通用、只读的能力。</li>
+<li>转给人工或专业 Agent。</li>
+<li>明确拒绝，而不是随机选择。</li>
+</ol>
+<p>Router 也可以返回 <code>no_match</code>、<code>unavailable</code>、<code>incompatible</code> 或 <code>policy_hidden</code>。这些状态是本 Playbook 建议的内部语义，不是统一协议枚举。</p>
+<h2 id="发现不等于授权">发现不等于授权</h2>
+<p>一个用户可以知道系统存在“退款”能力，但没有权执行退款；也可能由于最小披露原则，连能力详情都不应看到。需要区分三道门：</p>
+<p><strong>代码块说明｜结构示意：</strong> 这段文本把“发现不等于授权”中的关键对象并列出来，帮助读者识别各自责任与边界。它用于概念建模，不代表唯一的产品命名或实现结构。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Discoverable?  是否允许看到名称和描述</span></span>
+<span class="line"><span>Selectable?    是否适合当前任务与环境</span></span>
+<span class="line"><span>Executable?    当前身份、参数和授权是否允许执行</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Router 的命中不能生成权限。执行时仍要检查用户身份、Agent 身份、Tool 风险、资源所有权和本次批准。</p>
+<h2 id="路由结果怎样进入-context">路由结果怎样进入 Context</h2>
+<p>只暴露最小候选集，并保留为什么命中：</p>
+<p><strong>代码块说明｜结构示意：</strong> 这段文本把“路由结果怎样进入 Context”中的关键对象并列出来，帮助读者识别各自责任与边界。它用于概念建模，不代表唯一的产品命名或实现结构。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>[Selected Skill Candidate]</span></span>
+<span class="line"><span>pr-review — 因任务包含 PR URL 且目标是合并判断</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[Available Tools]</span></span>
+<span class="line"><span>get_pull_request — 读取 PR 元数据</span></span>
+<span class="line"><span>read_diff — 读取变更内容</span></span>
+<span class="line"><span>get_ci_status — 查询 CI 当前状态</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>不要把 Registry 中的 Secret 引用、内部风险策略和所有隐藏 Capability 一起放进模型 Context。</p>
+<h2 id="怎样评估-router">怎样评估 Router</h2>
+<p>Router 评估至少包括：</p>
+<ul>
+<li><strong>Top-k Recall</strong>：正确能力是否进入候选集。</li>
+<li><strong>Top-1 Accuracy</strong>：首选是否正确。</li>
+<li><strong>Abstention Quality</strong>：不确定时是否正确澄清或拒绝。</li>
+<li><strong>Forbidden Exposure Rate</strong>：是否泄露不可发现能力。</li>
+<li><strong>Downstream Success</strong>：路由是否真正提高任务成功率。</li>
+<li><strong>Cost / Latency</strong>：路由本身是否比任务还昂贵。</li>
+<li><strong>Calibration</strong>：置信度区间是否对应实际正确率。</li>
+</ul>
+<p>只测分类准确率会遗漏最危险的失败：选到了语义相似但权限、区域或副作用不兼容的能力。</p>
+<h2 id="本章检查">本章检查</h2>
+<ul>
+<li>Discovery、Routing 与 Authorization 是否分别建模。</li>
+<li>Registry 是否记录种类、来源、版本、依赖、风险和兼容性。</li>
+<li>是否先做确定性过滤，再做语义排序。</li>
+<li>是否限制暴露给模型的候选数量与信息范围。</li>
+<li>低置信度是否进入澄清、降级或拒绝流程。</li>
+<li>Router 分数是否经过校准，而不是伪装成概率。</li>
+<li>最终执行是否重新检查真实参数和权限。</li>
+<li>是否用下游成功、安全、成本与校准共同评估路由。</li>
+</ul> </article> <nav class="chapter-nav" aria-label="章节导航" data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>← 上一章</span> <strong data-astro-cid-jojupagh>Skill：可执行知识的工程结构</strong> </a> <a class="next" href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>下一章 →</span> <strong data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</strong> </a> </nav> </section> <aside class="page-index" aria-label="本章目录" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>本章目录</h2> <nav data-astro-cid-jojupagh> <a href="#术语来源与适用范围" data-heading="术语来源与适用范围" data-depth="2" data-astro-cid-jojupagh>术语来源与适用范围</a><a href="#router-路由的不是一种对象" data-heading="router-路由的不是一种对象" data-depth="2" data-astro-cid-jojupagh>Router 路由的不是一种对象</a><a href="#capability-registry-参考-schema" data-heading="capability-registry-参考-schema" data-depth="2" data-astro-cid-jojupagh>Capability Registry 参考 Schema</a><a href="#先硬过滤再软排序" data-heading="先硬过滤再软排序" data-depth="2" data-astro-cid-jojupagh>先硬过滤，再软排序</a><a href="#规则路由模型路由与混合路由" data-heading="规则路由模型路由与混合路由" data-depth="2" data-astro-cid-jojupagh>规则路由、模型路由与混合路由</a><a href="#规则路由" data-heading="规则路由" data-depth="3" data-astro-cid-jojupagh>规则路由</a><a href="#模型路由" data-heading="模型路由" data-depth="3" data-astro-cid-jojupagh>模型路由</a><a href="#混合路由" data-heading="混合路由" data-depth="3" data-astro-cid-jojupagh>混合路由</a><a href="#低置信度不是错误应有正式回退" data-heading="低置信度不是错误应有正式回退" data-depth="2" data-astro-cid-jojupagh>低置信度不是错误，应有正式回退</a><a href="#发现不等于授权" data-heading="发现不等于授权" data-depth="2" data-astro-cid-jojupagh>发现不等于授权</a><a href="#路由结果怎样进入-context" data-heading="路由结果怎样进入-context" data-depth="2" data-astro-cid-jojupagh>路由结果怎样进入 Context</a><a href="#怎样评估-router" data-heading="怎样评估-router" data-depth="2" data-astro-cid-jojupagh>怎样评估 Router</a><a href="#本章检查" data-heading="本章检查" data-depth="2" data-astro-cid-jojupagh>本章检查</a> </nav> </aside> </div> </div> <div class="selection-share" data-selection-share data-content-selector=".chapter-content" data-title="Router 与能力发现" data-author="Agent Engineering / IMCODERS" data-section="AGENT ENGINEERING PLAYBOOK" data-url="https://imcoders.cn/playbook/agent/17-capability-routing/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>    </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+  <title id="title">Agent Version Manifest</title><desc id="desc">Agent Release 在 Run 开始时解析为不可变 Version Manifest，固定 Model、Prompt、Skill、Tool、Policy、Runtime 与 Retrieval Data 的精确版本。</desc>
+  <style>.bg{fill:#f3f0ea}.ink{fill:#181a1d}.muted{fill:#70757e}.hot{fill:#e84c37}.panel{fill:#fff;stroke:#d8d4cc;stroke-width:2}.line{stroke:#a7a29a;stroke-width:3;fill:none}.title{font:700 30px ui-sans-serif,system-ui}.head{font:700 18px ui-sans-serif,system-ui}.body{font:15px ui-sans-serif,system-ui}.mono{font:13px ui-monospace,SFMono-Regular,monospace}</style>
+  <rect class="bg" width="1400" height="720" rx="26"/><text class="title ink" x="54" y="62">Agent Version Manifest</text><text class="body muted" x="54" y="92">发布身份不是复现证据；一次 Run 需要精确解析后的依赖锁</text>
+  <rect x="54" y="150" width="286" height="150" rx="18" fill="#181a1d"/><text class="head" fill="#fff" x="82" y="194">Agent Release</text><text class="mono" fill="#ff7a68" x="82" y="230">support-agent@7.2.0</text><text class="body" fill="#b4bac3" x="82" y="266">可读发布身份 · 依赖范围</text>
+  <path class="line" d="M340 225H456"/><text class="mono hot" x="366" y="206">resolve</text>
+  <rect class="panel" x="456" y="126" width="890" height="510" rx="20"/><text class="head ink" x="488" y="170">Manifest · avm_42</text><text class="mono muted" x="1120" y="170">immutable</text>
+  <g class="body">
+    <rect x="488" y="204" width="250" height="112" rx="14" fill="#f4f1eb"/><text class="head ink" x="510" y="238">Model</text><text class="mono muted" x="510" y="270">revision 2026-07-28</text><text class="mono muted" x="510" y="294">params sha256:ab12</text>
+    <rect x="760" y="204" width="250" height="112" rx="14" fill="#f4f1eb"/><text class="head ink" x="782" y="238">Prompt</text><text class="mono muted" x="782" y="270">system@12</text><text class="mono muted" x="782" y="294">sha256:91e</text>
+    <rect x="1032" y="204" width="282" height="112" rx="14" fill="#f4f1eb"/><text class="head ink" x="1054" y="238">Skill</text><text class="mono muted" x="1054" y="270">refund@3.1.2</text><text class="mono muted" x="1054" y="294">sha256:7cd</text>
+    <rect x="488" y="338" width="250" height="112" rx="14" fill="#f4f1eb"/><text class="head ink" x="510" y="372">Tool Schema</text><text class="mono muted" x="510" y="404">create_refund@3.1</text><text class="mono muted" x="510" y="428">sha256:8fa</text>
+    <rect x="760" y="338" width="250" height="112" rx="14" fill="#f4f1eb"/><text class="head ink" x="782" y="372">Policy</text><text class="mono muted" x="782" y="404">refund-policy@4</text><text class="mono muted" x="782" y="428">router@9</text>
+    <rect x="1032" y="338" width="282" height="112" rx="14" fill="#f4f1eb"/><text class="head ink" x="1054" y="372">Runtime</text><text class="mono muted" x="1054" y="404">runtime 2.8.1</text><text class="mono muted" x="1054" y="428">context-budget@5</text>
+    <rect x="488" y="472" width="826" height="118" rx="14" fill="#181a1d"/><text class="head" fill="#fff" x="510" y="508">Data &amp; Environment</text><text class="mono" fill="#b4bac3" x="510" y="544">retrieval_index support-kb@2026-08-10</text><text class="mono" fill="#ff7a68" x="510" y="570">region cn · feature_flag treatment</text>
+  </g>
+</svg>

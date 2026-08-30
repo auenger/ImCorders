@@ -1,0 +1,430 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>Workflow 与 Agent：谁来决定下一步 | Agent Engineering Playbook</title><meta name="description" content="使用了 LLM 和 Tool 的系统不一定是 Agent。固定流程与动态决策的真正分界，在于下一步动作究竟由程序还是模型决定。"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="Workflow 与 Agent：谁来决定下一步 | Agent Engineering Playbook"><meta property="og:description" content="使用了 LLM 和 Tool 的系统不一定是 Agent。固定流程与动态决策的真正分界，在于下一步动作究竟由程序还是模型决定。"><meta property="og:url" content="https://imcoders.cn/playbook/agent/02-workflow-agent/"><meta property="og:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta property="og:image:width" content="1774"><meta property="og:image:height" content="887"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Workflow 与 Agent：谁来决定下一步 | Agent Engineering Playbook"><meta name="twitter:description" content="使用了 LLM 和 Tool 的系统不一定是 Agent。固定流程与动态决策的真正分界，在于下一步动作究竟由程序还是模型决定。"><meta name="twitter:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta itemprop="name" content="Workflow 与 Agent：谁来决定下一步 | Agent Engineering Playbook"><meta itemprop="description" content="使用了 LLM 和 Tool 的系统不一定是 Agent。固定流程与动态决策的真正分界，在于下一步动作究竟由程序还是模型决定。"><meta itemprop="image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "Workflow 与 Agent：谁来决定下一步 | Agent Engineering Playbook";
+const shareDesc = "使用了 LLM 和 Tool 的系统不一定是 Agent。固定流程与动态决策的真正分界，在于下一步动作究竟由程序还是模型决定。";
+const shareLink = "https://imcoders.cn/playbook/agent/02-workflow-agent/";
+const shareImg = "https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.C-FedgiN.css"><script type="module" src="/_astro/hoisted.BfDpThc8.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook" aria-current="page">Playbook</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main>  <div class="reading-progress" aria-hidden="true" data-astro-cid-jojupagh></div> <div class="reader" data-astro-cid-jojupagh> <header class="reader-bar" data-astro-cid-jojupagh> <a class="reader-home" href="/playbook/agent" data-astro-cid-jojupagh>AGENT ENGINEERING <span data-astro-cid-jojupagh>PLAYBOOK</span></a> <span class="reader-meta" data-astro-cid-jojupagh>3 / 30</span> </header> <div class="mobile-index" data-astro-cid-jojupagh> <details data-astro-cid-jojupagh> <summary data-astro-cid-jojupagh>打开全书目录</summary> <div class="mobile-index-body" data-astro-cid-jojupagh> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" class="is-current" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </div> </details> </div> <div class="reader-grid" data-astro-cid-jojupagh> <aside class="book-index" aria-label="全书目录" data-astro-cid-jojupagh> <h2 class="index-title" data-astro-cid-jojupagh>全书目录</h2> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" class="is-current" aria-current="page" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </aside> <section class="chapter-main" data-astro-cid-jojupagh> <header class="chapter-header" data-astro-cid-jojupagh> <div class="chapter-label" data-astro-cid-jojupagh>第三章 / 第一部分：Agent 基础</div> <h1 data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</h1> <p class="chapter-description" data-astro-cid-jojupagh>使用了 LLM 和 Tool 的系统不一定是 Agent。固定流程与动态决策的真正分界，在于下一步动作究竟由程序还是模型决定。</p> <p class="chapter-updated" data-astro-cid-jojupagh>更新于 2026/8/12</p>  </header> <article class="chapter-content" data-astro-cid-jojupagh> <p>一个程序读取文档、调用 LLM 生成摘要、把摘要写入数据库，最后发送通知。它使用了模型，连接了多个外部系统，也执行了真实动作。它是不是 Agent？</p>
+<p>不一定。判断的关键不在于系统用了多少 LLM、Tool 或 Skill，而在于执行过程中谁决定下一步。</p>
+<p>如果每一步和每一条分支都由程序提前写好，这是 Workflow。如果系统根据最新观察，在多个可行动作中动态选择下一步，它才具有 Agent 的核心特征。</p>
+<h2 id="workflow-的路径由程序决定">Workflow 的路径由程序决定</h2>
+<p>Workflow 把任务拆成一组预先定义的步骤：</p>
+<p><strong>代码块说明｜伪代码：</strong> 这段 Python 以最小控制流程说明“Workflow 的路径由程序决定”怎样运行。它省略了持久化、并发、权限和完整错误处理，用于解释决策顺序，不是可直接部署的完整实现。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#E1E4E8">document </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> read_document(path)</span></span>
+<span class="line"><span style="color:#E1E4E8">summary </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> llm(summarize_prompt, document)</span></span>
+<span class="line"><span style="color:#E1E4E8">record_id </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> save_to_database(summary)</span></span>
+<span class="line"><span style="color:#E1E4E8">send_notification(record_id)</span></span>
+<span class="line"></span></code></pre>
+<p>这里的 LLM 负责生成摘要，但它不决定摘要完成后应该做什么。无论摘要内容是什么，程序都会继续保存数据库，然后发送通知。</p>
+<p>Workflow 也可以拥有条件分支和重试：</p>
+<p><strong>代码块说明｜伪代码：</strong> 这段 Python 以最小控制流程说明“Workflow 的路径由程序决定”怎样运行。它省略了持久化、并发、权限和完整错误处理，用于解释决策顺序，不是可直接部署的完整实现。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> document.language </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> "zh"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    summary </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> summarize_chinese(document)</span></span>
+<span class="line"><span style="color:#F97583">else</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    summary </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> summarize_english(document)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> attempt </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> range</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> save(summary):</span></span>
+<span class="line"><span style="color:#F97583">        break</span></span>
+<span class="line"></span></code></pre>
+<p>有 <code>if</code> 和 <code>for</code> 不会让 Workflow 自动变成 Agent，因为所有可能路径仍然由开发者提前列举。运行时只是在确定性地执行规则。</p>
+<p>Workflow 的优势也正来自这里：</p>
+<ul>
+<li>路径容易理解和测试。</li>
+<li>成本与延迟相对可预测。</li>
+<li>权限边界可以精确绑定到步骤。</li>
+<li>失败位置容易定位。</li>
+<li>相同输入更容易得到一致过程。</li>
+</ul>
+<p>当任务结构稳定、输入差异有限、步骤可以提前枚举时，Workflow 通常比 Agent 更合适。</p>
+<h2 id="agent-的下一步由当前状态决定">Agent 的下一步由当前状态决定</h2>
+<p>考虑另一个任务：“找出这个项目构建失败的原因并修复。”</p>
+<p>系统无法在运行前写死完整路径。失败可能来自依赖缺失、类型错误、环境变量、测试冲突或构建工具版本。不同观察结果会产生不同动作：</p>
+<p><strong>代码块说明｜层级示意：</strong> 这段文本图按缩进和树枝符号阅读，用来展开“Agent 的下一步由当前状态决定”中的父子关系与归属边界。它描述的是逻辑结构，不要求数据库或服务按同样层级拆分。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>运行构建</span></span>
+<span class="line"><span>├── 依赖缺失 → 检查依赖声明</span></span>
+<span class="line"><span>├── 类型错误 → 读取相关代码</span></span>
+<span class="line"><span>├── 环境变量缺失 → 检查配置说明</span></span>
+<span class="line"><span>├── 测试失败 → 运行失败用例</span></span>
+<span class="line"><span>└── 构建成功 → 验证改动并结束</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>这里的路径无法被一个小型固定流程穷举。Agent 需要根据每次工具返回的最新证据，在允许的动作空间里选择下一步。</p>
+<p>可以把两者的核心差异写成：</p>
+<p><strong>代码块说明｜关系式：</strong> 这段表达式把“Agent 的下一步由当前状态决定”压缩成便于比较的组成关系。它是分析模型，不是可执行代码，也不是要求实现者采用的行业标准公式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Workflow：next_step = program(current_step, predefined_rules)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Agent：next_action = model(goal, state, observation, available_actions)</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Agent 不是完全没有程序规则。目标、可用 Tool、权限、预算和终止条件仍然由程序控制。动态的是在这些边界内，模型根据当前状态选择下一步动作。</p>
+<h2 id="一张实用的判断表">一张实用的判断表</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>维度</th><th>Workflow</th><th>Agent</th></tr></thead><tbody><tr><td>下一步由谁决定</td><td>预先编写的程序</td><td>模型根据当前状态选择</td></tr><tr><td>路径是否提前已知</td><td>基本已知</td><td>执行中逐步形成</td></tr><tr><td>适合的任务</td><td>稳定、重复、规则明确</td><td>开放、探索、路径难以穷举</td></tr><tr><td>可预测性</td><td>较高</td><td>较低</td></tr><tr><td>测试方式</td><td>覆盖步骤与分支</td><td>同时评估决策过程与结果</td></tr><tr><td>成本和延迟</td><td>较稳定</td><td>受循环轮数影响</td></tr><tr><td>常见风险</td><td>流程僵化、覆盖不全</td><td>漂移、循环、越权、成本失控</td></tr></tbody></table>
+<p>一个系统调用了十次模型，只要调用顺序由程序固定，它仍然可以是 Workflow。另一个系统可能只调用两次模型，但第二次动作由第一次观察动态决定，它已经具有 Agent 性。</p>
+<h2 id="agent-不是-workflow-的升级版">Agent 不是 Workflow 的升级版</h2>
+<p>把 Workflow 和 Agent 排成“低级到高级”的关系会导致过度设计。两者解决的是不同类型的问题。</p>
+<p>适合 Workflow 的任务包括：</p>
+<ul>
+<li>将固定格式发票抽取成结构化字段。</li>
+<li>按模板生成周报并发送到指定群组。</li>
+<li>每晚备份数据库并检查校验值。</li>
+<li>用户注册后依次创建账户、发送验证邮件。</li>
+</ul>
+<p>适合 Agent 的任务包括：</p>
+<ul>
+<li>调查一个原因未知的线上故障。</li>
+<li>在大型代码库中定位并修复缺陷。</li>
+<li>根据多个来源研究一个开放问题。</li>
+<li>在约束条件下寻找可行的会议安排。</li>
+</ul>
+<p>如果一个任务可以画出稳定、完整的流程图，就优先使用 Workflow。如果关键路径取决于执行中才出现的信息，而且这些路径难以提前穷举，再考虑使用 Agent。</p>
+<h2 id="生产系统通常是-hybrid">生产系统通常是 Hybrid</h2>
+<p>真实系统很少需要“全部由程序控制”或“全部交给模型决定”。更常见、也更可靠的方式是 Hybrid：外层用 Workflow 控制阶段和边界，局部开放问题交给 Agent。</p>
+<p>例如一个代码修改流程：</p>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“生产系统通常是 Hybrid”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Workflow：接收任务并检查权限</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>Agent：探索代码并提出修改方案</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>Workflow：等待人工批准方案</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>Agent：在限定目录中实施修改</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>Workflow：运行固定测试与安全检查</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>Agent：分析失败并尝试修复</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>Workflow：生成报告并请求合并</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>这套设计把确定性的部分交给程序，把无法提前枚举的局部决策交给模型。</p>
+<p>可以用一个简单原则划分边界：</p>
+<blockquote>
+<p>确定性骨架由 Workflow 控制，不确定性节点由 Agent 处理。</p>
+</blockquote>
+<p>登录鉴权、预算检查、审批、事务提交、最终验收等高风险环节，通常适合保留为确定性步骤。资料探索、故障诊断、方案生成等开放环节，可以允许 Agent 动态选择动作。</p>
+<h2 id="tool-calling-不自动产生-agent">Tool Calling 不自动产生 Agent</h2>
+<p>很多框架支持模型生成结构化 Tool Call：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 JSON 把“Tool Calling 不自动产生 Agent”落成可检查的结构化记录，主要字段包括 <code>tool</code>、<code>arguments</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "tool"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"get_weather"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "arguments"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "city"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Shanghai"</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<p>这表示模型能够选择或填写一个工具调用，却不能仅凭这一点判断系统是不是 Agent。</p>
+<p>下面这个程序仍然更接近一次工具增强调用：</p>
+<p><strong>代码块说明｜伪代码：</strong> 这段 Python 以最小控制流程说明“Tool Calling 不自动产生 Agent”怎样运行。它省略了持久化、并发、权限和完整错误处理，用于解释决策顺序，不是可直接部署的完整实现。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#E1E4E8">tool_call </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> llm(user_request, </span><span style="color:#FFAB70">tools</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">[get_weather])</span></span>
+<span class="line"><span style="color:#E1E4E8">tool_result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> execute(tool_call)</span></span>
+<span class="line"><span style="color:#F97583">return</span><span style="color:#E1E4E8"> llm(user_request, tool_result)</span></span>
+<span class="line"></span></code></pre>
+<p>它有一次“模型—工具—模型”的往返，但目标简单、动作空间有限，也没有持续任务状态。工程上没有必要为了名称把它包装成复杂 Agent。</p>
+<p>当系统开始维护一个未完成目标，允许模型根据多轮观察反复选择动作，并由明确终止条件控制执行时，Agent 的概念才真正有用。</p>
+<h2 id="自主性存在连续谱">自主性存在连续谱</h2>
+<p>Workflow 和 Agent 之间不是一条绝对分界线，而是一条连续谱：</p>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“自主性存在连续谱”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>固定程序</span></span>
+<span class="line"><span>  → 程序调用 LLM</span></span>
+<span class="line"><span>  → LLM 选择固定分支</span></span>
+<span class="line"><span>  → LLM 选择单次 Tool</span></span>
+<span class="line"><span>  → LLM 在局部阶段循环行动</span></span>
+<span class="line"><span>  → LLM 在广泛动作空间中持续行动</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>系统越向右移动，处理未知情况的能力通常越强，但可预测性、成本控制和安全审查也越困难。</p>
+<p>设计时应该问的不是“我们能不能做得更 Agentic”，而是：</p>
+<ul>
+<li>哪些决策真的无法提前写成规则？</li>
+<li>动态决策带来的收益是否高于不确定性成本？</li>
+<li>Agent 的动作空间能否被限制在安全范围？</li>
+<li>最终结果是否可以被独立验证？</li>
+</ul>
+<p>最好的 Agent 系统往往不是自主性最高的系统，而是在恰当位置使用自主性的系统。</p>
+<h2 id="不要把设计维度误认为演进阶梯">不要把设计维度误认为演进阶梯</h2>
+<p>讨论 Agent 架构时，经常会看到 Single Agent、ReAct、Plan-and-Execute、Multi-Agent、Router + Skill、Blackboard 和 Graph/Workflow 被并列成七种模式，甚至被排列成从简单到复杂的升级路线。</p>
+<p>这七个名称并不处于同一个分类层次。它们分别在回答不同的设计问题：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>常见名称</th><th>实际回答的问题</th><th>应归属的设计维度</th></tr></thead><tbody><tr><td>Single Agent</td><td>系统中有几个决策执行者？</td><td>执行拓扑</td></tr><tr><td>ReAct</td><td>Agent 每一轮怎样选择动作？</td><td>决策模式</td></tr><tr><td>Plan-and-Execute</td><td>计划和执行怎样交替？</td><td>决策模式</td></tr><tr><td>Multi-Agent</td><td>任务是否拆给多个独立 Agent？</td><td>执行拓扑</td></tr><tr><td>Router + Skill</td><td>怎样选择本次需要的能力和 Context？</td><td>能力组织</td></tr><tr><td>Blackboard</td><td>多个执行者怎样共享状态？</td><td>状态协调</td></tr><tr><td>Graph / Workflow</td><td>整体流程怎样编排、恢复和观测？</td><td>Runtime 编排</td></tr></tbody></table>
+<p>因此，一个系统不需要从七种模式中单选一个。一个 Multi-Agent 系统可以使用 Plan-and-Execute，由 Router 为每个 Agent 选择 Skill，通过 Blackboard 共享状态，再运行在 Graph Runtime 上；每个工作 Agent 内部还可以使用 ReAct。</p>
+<p>所谓“Agent 架构”，更准确地说是一组跨维度设计选择的组合。</p>
+<h2 id="维度一决策模式">维度一：决策模式</h2>
+<p>决策模式定义系统根据当前状态怎样产生下一次状态转换：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>模式</th><th>循环单位</th><th>适合的问题</th></tr></thead><tbody><tr><td>ReAct</td><td>一次动作或 Tool 调用</td><td>探索、搜索、诊断</td></tr><tr><td>Plan-and-Execute</td><td>一个计划步骤</td><td>有阶段、有依赖的长任务</td></tr><tr><td>Task-driven</td><td>一个 Todo 或 Task</td><td>任务持续生成、重排和调度</td></tr><tr><td>Rule-based</td><td>一次规则匹配</td><td>边界明确、高确定性决策</td></tr><tr><td>Event-driven</td><td>一个外部事件</td><td>等待时间较长、异步推进的任务</td></tr></tbody></table>
+<p>这些模式也可以组合。例如，Planner 负责生成 Task Graph，Scheduler 选择下一个任务，执行单个任务时再运行一个局部 ReAct Loop。</p>
+<p>决策模式主要在 Agent Loop 中实现，下一章会详细展开。</p>
+<h2 id="维度二执行拓扑">维度二：执行拓扑</h2>
+<p>执行拓扑定义系统里有几个相对独立的决策上下文，以及责任怎样分配：</p>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“维度二：执行拓扑”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Single Agent</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Orchestrator → Worker A / Worker B / Worker C</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Planner → Executor → Reviewer</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Peer A ↔ Peer B ↔ Peer C</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Single Agent 不代表只能处理简单任务。它可以拥有复杂 Plan、多个 Skill 和大量 Tool。Multi-Agent 也不天然更高级，只有任务能够并行、上下文需要隔离、权限需要分离，或者结果需要独立审查时，拆分才可能产生净收益。</p>
+<p>“单 Agent”和“多 Agent”回答的是数量、所有权和通信问题，不回答每个 Agent 内部怎样决策。</p>
+<h2 id="维度三能力组织">维度三：能力组织</h2>
+<p>能力组织定义 Agent 如何获得完成任务所需的方法和行动空间：</p>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“维度三：能力组织”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>固定 Prompt + 固定 Tool Set</span></span>
+<span class="line"><span>        ↓</span></span>
+<span class="line"><span>按任务加载 Skill</span></span>
+<span class="line"><span>        ↓</span></span>
+<span class="line"><span>Router 选择 Skill 与 Tool</span></span>
+<span class="line"><span>        ↓</span></span>
+<span class="line"><span>运行时发现外部能力</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Router + Skill 属于这一维度。它的价值是控制 Context 和动作空间，而不是创造一种新的 Agent Loop。</p>
+<p>同一个 Single Agent 可以根据任务选择不同 Skill；Multi-Agent 中也可以让 Router 选择合适的专业 Agent。路由目标不一定只是 Skill，还可能是模型、Tool、Agent 或 Workflow 分支。</p>
+<h2 id="维度四状态协调">维度四：状态协调</h2>
+<p>状态协调定义执行者之间怎样保存和交换工作进度：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>状态方式</th><th>适用情况</th></tr></thead><tbody><tr><td>会话内状态</td><td>短任务、单次运行</td></tr><tr><td>持久化 Agent State</td><td>跨会话恢复的单 Agent</td></tr><tr><td>Todo List</td><td>线性或弱依赖任务</td></tr><tr><td>Task Graph</td><td>存在依赖、并行和阻塞关系</td></tr><tr><td>Blackboard</td><td>多个 Agent 围绕共享事实和产物协作</td></tr></tbody></table>
+<p>Blackboard 不是独立的 Agent 类型，而是一种共享状态模式。它需要定义写入权限、数据版本、所有权、冲突解决和事实生命周期。单 Agent 跨会话使用的外部状态文件，也可以看作一个简化的 Blackboard。</p>
+<h2 id="维度五runtime-编排">维度五：Runtime 编排</h2>
+<p>Runtime 编排定义状态转换怎样被真正调度和运行：</p>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“维度五：Runtime 编排”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>同步 while Loop</span></span>
+<span class="line"><span>    → State Machine</span></span>
+<span class="line"><span>    → Graph / DAG</span></span>
+<span class="line"><span>    → Event-driven Workflow</span></span>
+<span class="line"><span>    → Durable Workflow</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Graph 是流程的表达和运行方式。Graph 中的一个节点可以是普通函数、一次 LLM 调用、一个完整 Agent Loop、人工审批或者另一个子图。</p>
+<p>如果节点和边全部由程序预先固定，Graph 仍然是 Workflow。如果某个节点能够根据当前状态动态选择动作、生成任务或修改后续路径，这些局部才具有 Agent 性。</p>
+<p>因此，Graph 不应该被当成 Agent 的最终进化形态。它更像承载 Workflow 和 Agent 节点的 Runtime 骨架。</p>
+<h2 id="用架构配置代替架构名称">用架构配置代替架构名称</h2>
+<p>设计具体系统时，可以用一张配置卡代替含糊的“我们采用某某 Agent 架构”：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“用架构配置代替架构名称”落成可检查的结构化记录，主要字段包括 <code>decision_mode</code>、<code>execution_topology</code>、<code>capability_routing</code>、<code>state_coordination</code>、<code>runtime_orchestration</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">decision_mode</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">task_driven + local_react</span></span>
+<span class="line"><span style="color:#85E89D">execution_topology</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">single_agent</span></span>
+<span class="line"><span style="color:#85E89D">capability_routing</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">skill_router</span></span>
+<span class="line"><span style="color:#85E89D">state_coordination</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">task_list + workspace</span></span>
+<span class="line"><span style="color:#85E89D">runtime_orchestration</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">event_driven_loop</span></span>
+<span class="line"></span></code></pre>
+<p>例如，一个 Coding Agent 可以选择：</p>
+<p><strong>代码块说明｜结构示意：</strong> 这段文本把“用架构配置代替架构名称”中的关键对象并列出来，帮助读者识别各自责任与边界。它用于概念建模，不代表唯一的产品命名或实现结构。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>决策模式：Task-driven，单个任务内部使用 ReAct</span></span>
+<span class="line"><span>执行拓扑：Single Agent</span></span>
+<span class="line"><span>能力组织：Router + Skill</span></span>
+<span class="line"><span>状态协调：Todo List + Git Workspace</span></span>
+<span class="line"><span>Runtime：Event-driven Loop</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>一个企业研究系统则可能选择：</p>
+<p><strong>代码块说明｜结构示意：</strong> 这段文本把“用架构配置代替架构名称”中的关键对象并列出来，帮助读者识别各自责任与边界。它用于概念建模，不代表唯一的产品命名或实现结构。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>决策模式：Plan-and-Execute</span></span>
+<span class="line"><span>执行拓扑：Orchestrator + 多个研究 Agent</span></span>
+<span class="line"><span>能力组织：按领域路由 Skill、Tool 和 Agent</span></span>
+<span class="line"><span>状态协调：Task Graph + Blackboard</span></span>
+<span class="line"><span>Runtime：Graph Workflow</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>这两个系统都不能被一个单独的架构名称完整描述。把设计拆回各自维度之后，团队才能分别讨论：是否真的需要多 Agent、路由是否准确、共享状态怎样治理，以及哪些流程必须保持确定性。</p>
+<h2 id="本章检查">本章检查</h2>
+<ul>
+<li>是否明确了下一步动作由程序还是模型决定。</li>
+<li>可以提前枚举的稳定路径是否优先使用 Workflow。</li>
+<li>Agent 是否只负责路径不确定、需要根据反馈探索的部分。</li>
+<li>权限、审批、预算和验收是否保留在确定性边界中。</li>
+<li>是否因为使用了 Tool Calling 就过早把系统定义为 Agent。</li>
+<li>动态决策带来的收益是否足以覆盖额外的不确定性。</li>
+<li>是否把 ReAct、Multi-Agent、Router、Blackboard 和 Graph 错当成互斥选项。</li>
+<li>是否分别明确了决策模式、执行拓扑、能力组织、状态协调和 Runtime 编排。</li>
+<li>是否能用一张架构配置卡准确描述当前系统。</li>
+</ul> </article> <nav class="chapter-nav" aria-label="章节导航" data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>← 上一章</span> <strong data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</strong> </a> <a class="next" href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>下一章 →</span> <strong data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</strong> </a> </nav> </section> <aside class="page-index" aria-label="本章目录" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>本章目录</h2> <nav data-astro-cid-jojupagh> <a href="#workflow-的路径由程序决定" data-heading="workflow-的路径由程序决定" data-depth="2" data-astro-cid-jojupagh>Workflow 的路径由程序决定</a><a href="#agent-的下一步由当前状态决定" data-heading="agent-的下一步由当前状态决定" data-depth="2" data-astro-cid-jojupagh>Agent 的下一步由当前状态决定</a><a href="#一张实用的判断表" data-heading="一张实用的判断表" data-depth="2" data-astro-cid-jojupagh>一张实用的判断表</a><a href="#agent-不是-workflow-的升级版" data-heading="agent-不是-workflow-的升级版" data-depth="2" data-astro-cid-jojupagh>Agent 不是 Workflow 的升级版</a><a href="#生产系统通常是-hybrid" data-heading="生产系统通常是-hybrid" data-depth="2" data-astro-cid-jojupagh>生产系统通常是 Hybrid</a><a href="#tool-calling-不自动产生-agent" data-heading="tool-calling-不自动产生-agent" data-depth="2" data-astro-cid-jojupagh>Tool Calling 不自动产生 Agent</a><a href="#自主性存在连续谱" data-heading="自主性存在连续谱" data-depth="2" data-astro-cid-jojupagh>自主性存在连续谱</a><a href="#不要把设计维度误认为演进阶梯" data-heading="不要把设计维度误认为演进阶梯" data-depth="2" data-astro-cid-jojupagh>不要把设计维度误认为演进阶梯</a><a href="#维度一决策模式" data-heading="维度一决策模式" data-depth="2" data-astro-cid-jojupagh>维度一：决策模式</a><a href="#维度二执行拓扑" data-heading="维度二执行拓扑" data-depth="2" data-astro-cid-jojupagh>维度二：执行拓扑</a><a href="#维度三能力组织" data-heading="维度三能力组织" data-depth="2" data-astro-cid-jojupagh>维度三：能力组织</a><a href="#维度四状态协调" data-heading="维度四状态协调" data-depth="2" data-astro-cid-jojupagh>维度四：状态协调</a><a href="#维度五runtime-编排" data-heading="维度五runtime-编排" data-depth="2" data-astro-cid-jojupagh>维度五：Runtime 编排</a><a href="#用架构配置代替架构名称" data-heading="用架构配置代替架构名称" data-depth="2" data-astro-cid-jojupagh>用架构配置代替架构名称</a><a href="#本章检查" data-heading="本章检查" data-depth="2" data-astro-cid-jojupagh>本章检查</a> </nav> </aside> </div> </div> <div class="selection-share" data-selection-share data-content-selector=".chapter-content" data-title="Workflow 与 Agent：谁来决定下一步" data-author="Agent Engineering / IMCODERS" data-section="AGENT ENGINEERING PLAYBOOK" data-url="https://imcoders.cn/playbook/agent/02-workflow-agent/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>    </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

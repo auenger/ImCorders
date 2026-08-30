@@ -1,0 +1,353 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>飞书 CLI 化：Agent2Agent 时代的企业协作新范式 - 杨正武</title><meta name="description" content="飞书开源 CLI 工具意味着什么？从 Agent 操作企业软件到 Agent2Agent 协作，我们正在进入一个全新的时代"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="飞书 CLI 化：Agent2Agent 时代的企业协作新范式 - 杨正武"><meta property="og:description" content="飞书开源 CLI 工具意味着什么？从 Agent 操作企业软件到 Agent2Agent 协作，我们正在进入一个全新的时代"><meta property="og:url" content="https://imcoders.cn/blog/lark-cli-agent2agent/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="飞书 CLI 化：Agent2Agent 时代的企业协作新范式 - 杨正武"><meta name="twitter:description" content="飞书开源 CLI 工具意味着什么？从 Agent 操作企业软件到 Agent2Agent 协作，我们正在进入一个全新的时代"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="飞书 CLI 化：Agent2Agent 时代的企业协作新范式 - 杨正武"><meta itemprop="description" content="飞书开源 CLI 工具意味着什么？从 Agent 操作企业软件到 Agent2Agent 协作，我们正在进入一个全新的时代"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "飞书 CLI 化：Agent2Agent 时代的企业协作新范式 - 杨正武";
+const shareDesc = "飞书开源 CLI 工具意味着什么？从 Agent 操作企业软件到 Agent2Agent 协作，我们正在进入一个全新的时代";
+const shareLink = "https://imcoders.cn/blog/lark-cli-agent2agent/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.DUPo9LDV.css"><script type="module" src="/_astro/hoisted.D20CsQCG.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/blog" aria-current="page">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <script>(function(){const shareText = "飞书开源 CLI 工具意味着什么？从 Agent 操作企业软件到 Agent2Agent 协作，我们...\n\nhttps://imcoders.cn/blog/lark-cli-agent2agent/";
+const shareUrl = "https://imcoders.cn/blog/lark-cli-agent2agent/";
+const wechatTitle = "飞书 CLI 化：Agent2Agent 时代的企业协作新范式";
+const wechatDescription = "飞书开源 CLI 工具意味着什么？从 Agent 操作企业软件到 Agent2Agent 协作，我们正在进入一个全新的时代";
+const wechatAuthor = undefined;
+const wechatDate = "2026年3月29日";
+
+    window.shareArticle = async function () {
+      const button = document.querySelector('.share-button');
+      try {
+        await navigator.clipboard.writeText(shareText);
+        if (!button) return;
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> 已复制';
+        button.classList.add('copied');
+        window.setTimeout(() => {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+      } catch (error) {
+        console.error('复制失败', error);
+        window.prompt('请复制下面的分享内容', shareText);
+      }
+    };
+
+    const wechatCopiedProperties = [
+      'color', 'background-color', 'font-family', 'font-size', 'font-weight', 'font-style',
+      'line-height', 'letter-spacing', 'text-align', 'text-decoration', 'text-indent',
+      'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
+      'padding-top', 'padding-right', 'padding-bottom', 'padding-left',
+      'border-top', 'border-right', 'border-bottom', 'border-left', 'border-radius',
+      'display', 'vertical-align',
+      'white-space', 'list-style-type', 'border-collapse', 'overflow-wrap', 'word-break'
+    ];
+
+    const canonicalizeWechatUrl = function (value) {
+      if (!value) return value;
+      try {
+        return new URL(value, shareUrl).href;
+      } catch {
+        return value;
+      }
+    };
+
+    window.buildWechatRichText = function () {
+      const article = document.querySelector('.article-content');
+      if (!article) throw new Error('article content not found');
+
+      const clone = article.cloneNode(true);
+      const sourceNodes = [article, ...article.querySelectorAll('*')];
+      const cloneNodes = [clone, ...clone.querySelectorAll('*')];
+
+      sourceNodes.forEach((sourceNode, index) => {
+        const targetNode = cloneNodes[index];
+        if (!(sourceNode instanceof Element) || !(targetNode instanceof Element)) return;
+
+        const computed = getComputedStyle(sourceNode);
+        const inlineStyles = wechatCopiedProperties
+          .map((property) => `${property}:${computed.getPropertyValue(property)};`)
+          .join('');
+
+        targetNode.setAttribute('style', inlineStyles);
+        targetNode.removeAttribute('id');
+        targetNode.removeAttribute('class');
+        [...targetNode.attributes].forEach((attribute) => {
+          if (attribute.name.startsWith('data-') || attribute.name.startsWith('aria-')) {
+            targetNode.removeAttribute(attribute.name);
+          }
+        });
+
+        if (sourceNode instanceof HTMLImageElement && targetNode instanceof HTMLImageElement) {
+          const rawSource = sourceNode.getAttribute('src') || sourceNode.currentSrc || sourceNode.src;
+          targetNode.setAttribute('src', canonicalizeWechatUrl(rawSource));
+          targetNode.removeAttribute('srcset');
+          targetNode.removeAttribute('sizes');
+          targetNode.removeAttribute('loading');
+          targetNode.removeAttribute('decoding');
+          targetNode.setAttribute('style', `${inlineStyles}display:block;width:100%;max-width:100%;height:auto;margin-left:auto;margin-right:auto;`);
+        }
+
+        if (sourceNode instanceof HTMLAnchorElement && targetNode instanceof HTMLAnchorElement) {
+          targetNode.setAttribute('href', canonicalizeWechatUrl(sourceNode.getAttribute('href') || sourceNode.href));
+          targetNode.removeAttribute('target');
+          targetNode.removeAttribute('rel');
+        }
+      });
+
+      clone.querySelectorAll('script, style, iframe, button, form, input, textarea, select').forEach((node) => node.remove());
+
+      // 微信编辑器的内容栏比桌面文章窄。不要保留桌面布局计算出的固定宽高，
+      // 否则图片缩小后父元素仍会占据原高度，文字换行后也可能互相覆盖。
+      clone.querySelectorAll('p').forEach((paragraph) => {
+        const onlyChild = paragraph.children.length === 1 ? paragraph.firstElementChild : null;
+        if (onlyChild instanceof HTMLImageElement && !paragraph.textContent?.trim()) {
+          paragraph.setAttribute('style', 'margin:24px 0 12px;padding:0;line-height:0;');
+        }
+      });
+
+      clone.querySelectorAll('img').forEach((image) => {
+        image.style.display = 'block';
+        image.style.width = '100%';
+        image.style.maxWidth = '100%';
+        image.style.height = 'auto';
+        image.style.marginLeft = 'auto';
+        image.style.marginRight = 'auto';
+      });
+
+      clone.querySelectorAll('pre').forEach((pre) => {
+        pre.style.display = 'block';
+        pre.style.width = 'auto';
+        pre.style.maxWidth = '100%';
+        pre.style.whiteSpace = 'pre-wrap';
+        pre.style.wordBreak = 'break-word';
+        pre.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('pre code').forEach((code) => {
+        code.style.whiteSpace = 'pre-wrap';
+        code.style.wordBreak = 'break-word';
+        code.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('table').forEach((table) => {
+        table.style.display = 'table';
+        table.style.width = '100%';
+        table.style.maxWidth = '100%';
+        table.style.tableLayout = 'fixed';
+        table.style.borderCollapse = 'collapse';
+      });
+
+      clone.querySelectorAll('th, td').forEach((cell) => {
+        cell.style.minWidth = '0';
+        cell.style.wordBreak = 'break-word';
+        cell.style.overflowWrap = 'anywhere';
+        cell.style.verticalAlign = 'top';
+      });
+
+      const wrapper = document.createElement('section');
+      wrapper.setAttribute('style', 'box-sizing:border-box;width:100%;max-width:100%;margin:0;padding:32px 26px;background-color:#111016;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+
+      const header = document.createElement('header');
+      header.setAttribute('style', 'margin:0 0 34px;padding:0 0 24px;border-bottom:2px solid #e23c3e;');
+
+      const title = document.createElement('h1');
+      title.textContent = wechatTitle;
+      title.setAttribute('style', 'margin:0 0 18px;color:#f1ece2;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:30px;font-weight:800;line-height:1.25;letter-spacing:-0.5px;');
+
+      const description = document.createElement('p');
+      description.textContent = wechatDescription;
+      description.setAttribute('style', 'margin:0 0 16px;color:#a9a3a8;font-size:16px;line-height:1.75;');
+
+      const meta = document.createElement('p');
+      meta.textContent = `${wechatAuthor} · ${wechatDate}`;
+      meta.setAttribute('style', 'margin:0;color:#e23c3e;font-size:13px;font-weight:700;line-height:1.6;letter-spacing:0.5px;');
+
+      header.append(title, description, meta);
+      clone.setAttribute('style', 'width:auto;max-width:100%;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+      wrapper.append(header, clone);
+
+      return {
+        html: wrapper.outerHTML,
+        text: `${wechatTitle}\n\n${wechatDescription}\n\n${wechatAuthor} · ${wechatDate}\n\n${article.innerText}`
+      };
+    };
+
+    const setWechatCopyFeedback = function (button, message, isError = false) {
+      if (!button) return;
+      const original = button.dataset.originalHtml || button.innerHTML;
+      button.dataset.originalHtml = original;
+      button.innerHTML = isError
+        ? `<i class="fas fa-exclamation-circle" aria-hidden="true"></i> ${message}`
+        : `<i class="fas fa-check" aria-hidden="true"></i> ${message}`;
+      button.classList.toggle('copy-error', isError);
+      button.classList.toggle('copied', !isError);
+      window.setTimeout(() => {
+        button.innerHTML = original;
+        button.classList.remove('copied', 'copy-error');
+      }, 2600);
+    };
+
+    window.copyArticleToWechat = async function () {
+      const button = document.querySelector('.wechat-copy-button');
+      try {
+        const payload = window.buildWechatRichText();
+        if (navigator.clipboard?.write && window.ClipboardItem && window.isSecureContext) {
+          await navigator.clipboard.write([new ClipboardItem({
+            'text/html': new Blob([payload.html], { type: 'text/html' }),
+            'text/plain': new Blob([payload.text], { type: 'text/plain' })
+          })]);
+        } else {
+          const holder = document.createElement('div');
+          holder.contentEditable = 'true';
+          holder.style.position = 'fixed';
+          holder.style.left = '-99999px';
+          holder.style.top = '0';
+          holder.innerHTML = payload.html;
+          document.body.appendChild(holder);
+
+          const range = document.createRange();
+          range.selectNodeContents(holder);
+          const selection = window.getSelection();
+          selection?.removeAllRanges();
+          selection?.addRange(range);
+          const copied = document.execCommand('copy');
+          selection?.removeAllRanges();
+          holder.remove();
+          if (!copied) throw new Error('copy command failed');
+        }
+        setWechatCopyFeedback(button, '已复制到公众号');
+      } catch (error) {
+        console.error('复制公众号富文本失败', error);
+        setWechatCopyFeedback(button, '复制失败', true);
+      }
+    };
+  })();</script>  <article class="article-page" data-astro-cid-4sn4zg3r> <header class="article-hero" data-astro-cid-4sn4zg3r> <div class="article-hero-grid" data-astro-cid-4sn4zg3r> <div class="article-kind" data-astro-cid-4sn4zg3r>TECHNICAL ARTICLE</div> <div class="article-heading" data-astro-cid-4sn4zg3r> <h1 class="article-title" data-astro-cid-4sn4zg3r>飞书 CLI 化：Agent2Agent 时代的企业协作新范式</h1> <p class="article-description" data-astro-cid-4sn4zg3r>飞书开源 CLI 工具意味着什么？从 Agent 操作企业软件到 Agent2Agent 协作，我们正在进入一个全新的时代</p> </div> </div> </header> <div class="reader-grid" data-astro-cid-4sn4zg3r> <aside class="article-meta" aria-label="文章信息" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>文章信息</h2> <dl class="meta-list" data-astro-cid-4sn4zg3r> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>发布日期</dt> <dd data-astro-cid-4sn4zg3r><time datetime="2026-03-29T00:00:00.000Z" data-astro-cid-4sn4zg3r>2026年3月29日</time></dd> </div> <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>作者</dt><dd data-astro-cid-4sn4zg3r></dd></div> <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>预计阅读</dt><dd data-astro-cid-4sn4zg3r>8 分钟</dd></div> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>标签</dt> <dd class="article-tags" data-astro-cid-4sn4zg3r><span class="article-tag" data-astro-cid-4sn4zg3r>AI Agent</span><span class="article-tag" data-astro-cid-4sn4zg3r>飞书</span><span class="article-tag" data-astro-cid-4sn4zg3r>Agent2Agent</span><span class="article-tag" data-astro-cid-4sn4zg3r>企业转型</span><span class="article-tag" data-astro-cid-4sn4zg3r>Agent-First</span></dd> </div> </dl> <div class="article-actions" data-astro-cid-4sn4zg3r> <button class="wechat-copy-button" type="button" onclick="copyArticleToWechat()" data-astro-cid-4sn4zg3r> <i class="fab fa-weixin" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 复制到公众号
+</button> <button class="share-button" type="button" onclick="shareArticle()" data-astro-cid-4sn4zg3r> <i class="fas fa-share-alt" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 分享文章
+</button> </div> </aside> <main class="article-content" data-astro-cid-4sn4zg3r> <h2 id="飞书-cli不是工具而是-agent-的神经系统">飞书 CLI：不是工具，而是 Agent 的神经系统</h2>
+<p>就在刚刚，我在 GitHub 上刷到一个项目——飞书官方开源的 CLI 工具 <a href="https://github.com/larksuite/cli">larksuite/cli</a>。说实话，看到的第一眼我就坐不住了。</p>
+<p>这不是一个简单的命令行工具。它覆盖了飞书的 <strong>11 个业务域、200+ 命令、19 个 AI Agent Skills</strong>，从日历、消息、文档到多维表格、邮件、会议纪要，几乎把整个飞书的能力都搬到了命令行里。</p>
+<p>更关键的是它的设计理念——<strong>Agent-Native Design</strong>。它不是给人用的 CLI 然后碰巧 Agent 也能用，而是从一开始就为 AI Agent 设计的。每个命令都经过真实 Agent 测试，参数简洁、智能默认值、结构化输出，最大化 Agent 的调用成功率。</p>
+<p>我为什么觉得这件事意义重大？因为飞书在做的事情，正是我在之前那篇<a href="/blog/anyclaw-agent-first-future/">《当微信开放 Agent 接口：企业软件的 Agent-First 转型思考》</a>里预测的趋势——<strong>企业软件正在从”给人用的 UI”转向”给 Agent 用的接口”</strong>。</p>
+<h3 id="三层架构的深意">三层架构的深意</h3>
+<p>飞书 CLI 的三层架构设计很有意思：</p>
+<ol>
+<li><strong>Shortcuts（快捷命令）</strong>：<code>+</code> 前缀，人类和 AI 都友好，智能默认值，表格输出</li>
+<li><strong>API Commands（API 命令）</strong>：从飞书 OAPI 元数据自动生成，100+ 命令 1:1 映射平台端点</li>
+<li><strong>Raw API（原始 API）</strong>：直接调用任意飞书开放平台端点，覆盖 2500+ API</li>
+</ol>
+<p>这意味着什么？<strong>飞书把自己变成了一个可以被 Agent 完整操作的平台。</strong></p>
+<p>以前你要操作飞书，只能打开浏览器或者 App，点来点去。现在一个 Agent 可以通过 CLI 完成几乎所有操作——查日历、发消息、创建文档、读写表格、管理任务、处理邮件、查询会议纪要。</p>
+<p>这让我想到我在那篇文章里写的一句话：<strong>UI 从”必需品”变成”可选项”</strong>。飞书正在用自己的产品验证这个判断。</p>
+<h2 id="agent2agent不是科幻是正在发生的现实">Agent2Agent：不是科幻，是正在发生的现实</h2>
+<p>飞书 CLI 给我带来的最大启发，其实不是”Agent 可以操作飞书”，而是更深一层的东西——<strong>Agent2Agent 协作</strong>。</p>
+<p>让我描述一个场景：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>[日程 Agent] → 查看飞书日历 → 发现下午3点有产品评审会</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>[文档 Agent] → 飞书 CLI 读取会议文档 → 提取待讨论的议题</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>[数据 Agent] → 从飞书多维表格拉取相关数据 → 生成分析报告</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>[消息 Agent] → 通过飞书消息把报告发给参会人 → 附上会议链接</span></span>
+<span class="line"><span>    ↓</span></span>
+<span class="line"><span>[会议 Agent] → 会后自动获取会议纪要 → 提取 Action Items → 创建飞书任务</span></span>
+<span class="line"><span></span></span></code></pre>
+<p><strong>这个流程里没有任何人类参与。</strong> 每一个 Agent 都在用飞书 CLI 操作飞书，Agent 之间通过消息总线协调，完成了一个原本需要 3-5 个人协作半天的工作流。</p>
+<p>这就是 Agent2Agent 的本质——<strong>不是两个 Agent 在聊天，而是多个 Agent 各司其职，通过共享的工具和协议完成复杂工作流。</strong></p>
+<p>我在 Agents 特区的<a href="https://www.agentszone.ai/articles/agent-first-skill-enterprise">《Agent-First 时代的企业软件：从 SOP 到 Skill 的转型之路》</a>里看到过一个观点，非常认同：</p>
+<blockquote>
+<p>“AI 时代交付逻辑已经变了。很多工作都是 AI 做的，包括 Skill。业务正确性是业务给的，但是步骤 + 指令是 AI 写的。”</p>
+</blockquote>
+<p>当飞书这样的平台提供 CLI 化的 Agent Skills，当微信开放 ClawBot 接口，当 Slack、Discord 都在拥抱 Agent——<strong>Agent2Agent 不再是理论，而是正在成为企业协作的新基础设施。</strong></p>
+<h2 id="ai-agent-员工行业专家--ai-是最佳组合">AI Agent 员工：行业专家 + AI 是最佳组合</h2>
+<p>这是我今天最想强调的一个观点，也是我在实践 AnyClaw 过程中最深刻的认知：</p>
+<p><strong>行业专家 + AI 是最佳组合：纯技术团队做不好，纯业务团队做不了。</strong></p>
+<p>为什么这么说？</p>
+<p><strong>纯技术团队的困境</strong>：技术团队可以写出完美的代码，可以构建漂亮的 Agent 框架，但他们不懂业务。他们不知道一个跨境电商的 SOP 里哪些步骤是关键的，不知道一个财务审批流程里哪些环节容易出错，不知道一个销售团队的日报模板背后藏着怎样的管理逻辑。结果是——技术很炫，但落不了地。</p>
+<p><strong>纯业务团队的困境</strong>：业务专家知道所有的流程和规则，但他们写不了 Skill 代码，设计不了 Agent 的行为边界，搞不定安全防护和错误处理。结果是——想法很好，但做不出来。</p>
+<p><strong>最佳组合是两者融合</strong>：</p>
+<p>正如 Agents 特区社区讨论中一位嘉宾所说：</p>
+<blockquote>
+<p>“这套工作的方法论——实施交付的方法论——是企业的竞争力。行业专家很重要，客户现在要的不仅仅是把客户的想法落地，更希望乙方带着更 NB 的行业解决方案来牵引他们。后者是溢价。”</p>
+</blockquote>
+<p>飞书 CLI 的 19 个 Agent Skills 就是一个很好的例子。这些 Skills 不是飞书的技术团队拍脑袋想出来的——日历 Skill、多维表格 Skill、任务管理 Skill、邮件 Skill——每一个背后都是对真实业务场景的深度理解。</p>
+<p><strong>技术团队负责把业务知识转化为可执行、可测试、可审计的 Skill 代码。业务专家负责定义正确的行为边界和业务规则。</strong> 这才是 AI Agent 员工的正确打开方式。</p>
+<h2 id="从-sop-到-skill方法论才是护城河">从 SOP 到 Skill：方法论才是护城河</h2>
+<p>我在之前的文章里提到过一个核心观点：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>传统流程：人 → SOP 文档 → 人执行</span></span>
+<span class="line"><span>Agent 流程：人 → Skill 代码 → Agent 执行</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>现在飞书 CLI 让这个过程更进一步：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>传统流程：人 → SOP 文档 → 人打开飞书操作</span></span>
+<span class="line"><span>Agent 流程：行业专家定义 SOP → 技术团队编写 Skill → Agent 通过飞书 CLI 自动执行</span></span>
+<span class="line"><span></span></span></code></pre>
+<p><strong>方法论是护城河。</strong> 谁能把行业知识高效地转化为 Agent 可执行的 Skill，谁就赢了。不是谁的技术更炫，而是谁对业务理解更深。</p>
+<p>飞书选择 CLI 化，本质上是在降低这个转化的门槛。当操作企业软件的接口变得标准化、结构化，业务专家和技术团队之间的沟通成本就大幅降低了。</p>
+<h2 id="安全不能回避的话题">安全：不能回避的话题</h2>
+<p>飞书 CLI 的 README 里有一段很诚实的安全警告：</p>
+<blockquote>
+<p>“此工具可被 AI Agent 调用，在飞书开放平台上自动化操作……存在模型幻觉、不可预测执行、Prompt 注入等固有风险。”</p>
+</blockquote>
+<p>这和我在 AnyClaw 实践中的经验完全一致。给 Agent 权限，就像给新员工权限——必须要有边界。</p>
+<p>飞书 CLI 在安全方面做了不少工作：输入注入防护、终端输出净化、OS 原生钥匙串凭证存储。但真正的安全边界不应该只在工具层面，而应该在 Skill 代码层面——<strong>行为边界必须代码化，不是用 Prompt。</strong></p>
+<p>我在 AnyClaw 中实现的安全防护体系，核心就是这个原则。LLM 会遗忘、会理解偏差、会越界，但代码不会。</p>
+<h2 id="开放生态大平台的选择">开放生态：大平台的选择</h2>
+<p>飞书 CLI 的 MIT 开源协议、3 分钟快速上手、<code>npm install</code> 就能用——这不是一家封闭公司的做法。</p>
+<p>微信开放了 ClawBot 接口，企业微信同步开放接入能力，Slack 和 Discord 早就在拥抱 AI，现在飞书也加入了——<strong>所有的大平台都在做同一件事：把 Agent 接口变成基础设施。</strong></p>
+<p>这个趋势传递的信息非常明确：<strong>Agent 正在成为”水电煤”。</strong> 就像当年开放公众号接口催生了整个内容生态，开放 Agent 接口会催生整个 Agent 生态。</p>
+<h2 id="我的判断">我的判断</h2>
+<p>基于飞书 CLI 和最近观察到的一系列变化，我有三个判断：</p>
+<p><strong>第一，Agent2Agent 协作将在 2026 年成为企业数字化的主旋律。</strong> 不是一个超级 Agent 做所有事，而是多个专业化 Agent 各司其职、协同工作。飞书 CLI 这样的工具就是 Agent2Agent 的”神经末梢”。</p>
+<p><strong>第二，AI Agent 员工的竞争力不在技术，在于行业方法论。</strong> 纯技术团队做不好，纯业务团队做不了。谁能把行业专家的知识转化为高质量的 Skill 代码，谁就能在 Agent-First 时代建立真正的竞争壁垒。</p>
+<p><strong>第三，企业软件的 CLI 化是不可逆的趋势。</strong> 当飞书、微信、Slack 都在提供 Agent 原生的接口，还在开发复杂 Web 管理后台的企业，不是在”慢慢来”，而是在”被淘汰”。</p>
+<p>回到我之前那篇文章的结尾——<strong>不是要不要转型的问题，而是转得快不快的问题。</strong> 飞书已经给出了他们的答案。</p>
+<hr>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li><a href="https://github.com/larksuite/cli">飞书 CLI 开源项目 - GitHub</a> — 飞书官方 CLI 工具，19 个 Agent Skills，200+ 命令</li>
+<li><a href="/blog/anyclaw-agent-first-future/">当微信开放 Agent 接口：企业软件的 Agent-First 转型思考</a> — 我之前对 Agent-First 转型的深度分析</li>
+<li><a href="https://www.agentszone.ai/articles/agent-first-skill-enterprise">Agent-First 时代的企业软件：从 SOP 到 Skill 的转型之路 | Agents 特区</a> — 关于 Skill 代码化、安全边界、商业模式的系统讨论</li>
+<li><a href="https://www.junior.so/">Junior - The AI Employee for Any Role</a> — AI 员工概念的代表产品</li>
+<li><a href="https://mp.weixin.qq.com/s/fh1Xw5Mxl_ertT4Avy3AvA">微信可通过插件连接龙虾 - 官方公告</a> — 微信开放 ClawBot 接口的官方公告</li>
+</ul> </main> <aside class="page-toc" aria-label="页面目录" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>页面目录</h2> <ol class="toc-list" data-astro-cid-4sn4zg3r> <li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#飞书-cli不是工具而是-agent-的神经系统" data-astro-cid-4sn4zg3r>飞书 CLI：不是工具，而是 Agent 的神经系统</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#三层架构的深意" data-astro-cid-4sn4zg3r>三层架构的深意</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#agent2agent不是科幻是正在发生的现实" data-astro-cid-4sn4zg3r>Agent2Agent：不是科幻，是正在发生的现实</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#ai-agent-员工行业专家--ai-是最佳组合" data-astro-cid-4sn4zg3r>AI Agent 员工：行业专家 + AI 是最佳组合</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#从-sop-到-skill方法论才是护城河" data-astro-cid-4sn4zg3r>从 SOP 到 Skill：方法论才是护城河</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#安全不能回避的话题" data-astro-cid-4sn4zg3r>安全：不能回避的话题</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#开放生态大平台的选择" data-astro-cid-4sn4zg3r>开放生态：大平台的选择</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#我的判断" data-astro-cid-4sn4zg3r>我的判断</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#参考资料" data-astro-cid-4sn4zg3r>参考资料</a></li> </ol> <a class="toc-back" href="/blog" data-astro-cid-4sn4zg3r><i class="fas fa-arrow-left" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 返回博客</a> </aside> <nav class="article-navigation" aria-label="相邻文章" data-astro-cid-4sn4zg3r> <a class="article-nav-link" href="/blog/feature-workflow-v3" data-astro-cid-4sn4zg3r> <span class="nav-direction" data-astro-cid-4sn4zg3r>较新文章</span> <span class="nav-title" data-astro-cid-4sn4zg3r>Feature Workflow v3：Command + Agent + Skill 三层架构演进</span> </a> <a class="article-nav-link" href="/blog/anyclaw-agent-first-future" data-astro-cid-4sn4zg3r> <span class="nav-direction" data-astro-cid-4sn4zg3r>较早文章</span> <span class="nav-title" data-astro-cid-4sn4zg3r>当微信开放 Agent 接口：企业软件的 Agent-First 转型思考</span> </a> </nav> </div> </article> <div class="selection-share" data-selection-share data-content-selector=".article-content" data-title="飞书 CLI 化：Agent2Agent 时代的企业协作新范式" data-section="IMCODERS BLOG" data-url="https://imcoders.cn/blog/lark-cli-agent2agent/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>   </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

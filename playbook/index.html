@@ -1,0 +1,45 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>Engineering Playbooks - 杨正武</title><meta name="description" content="Harness Engineering 与 Agent Engineering 两本在线工程手册。"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="Engineering Playbooks - 杨正武"><meta property="og:description" content="Harness Engineering 与 Agent Engineering 两本在线工程手册。"><meta property="og:url" content="https://imcoders.cn/playbook/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Engineering Playbooks - 杨正武"><meta name="twitter:description" content="Harness Engineering 与 Agent Engineering 两本在线工程手册。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="Engineering Playbooks - 杨正武"><meta itemprop="description" content="Harness Engineering 与 Agent Engineering 两本在线工程手册。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "Engineering Playbooks - 杨正武";
+const shareDesc = "Harness Engineering 与 Agent Engineering 两本在线工程手册。";
+const shareLink = "https://imcoders.cn/playbook/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/index.92jiaEWV.css"></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook" aria-current="page">Playbook</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main>  <div class="library" data-astro-cid-x7lpxdqw> <div class="library-wrap" data-astro-cid-x7lpxdqw> <header class="library-header" data-astro-cid-x7lpxdqw> <div class="library-kicker" data-astro-cid-x7lpxdqw>ENGINEERING PLAYBOOKS</div> <h1 data-astro-cid-x7lpxdqw>TWO BOOKS.<br data-astro-cid-x7lpxdqw><span data-astro-cid-x7lpxdqw>ONE SYSTEM.</span></h1> <p data-astro-cid-x7lpxdqw>一本研究 Agent 如何工作，一本研究怎样为 Agent 建造可靠的工程环境。</p> </header> <section class="bookshelf" aria-label="Playbook 书架" data-astro-cid-x7lpxdqw> <a class="book-card" href="/playbook/harness" data-astro-cid-x7lpxdqw> <div class="book-card-image" data-astro-cid-x7lpxdqw> <img src="/og-default.png" alt="雪猴 Harness 工程师操作笔记本电脑的漫画封面" width="1200" height="1200" loading="eager" data-astro-cid-x7lpxdqw> </div> <div class="book-card-copy" data-astro-cid-x7lpxdqw> <div data-astro-cid-x7lpxdqw> <div class="book-card-meta" data-astro-cid-x7lpxdqw>33 个章节</div> <h2 data-astro-cid-x7lpxdqw>Harness Engineering 手册</h2> <p data-astro-cid-x7lpxdqw>从可靠的 Agent 编程到规模化开发与组织治理，构建百倍生产力的软件交付制度。</p> </div> <span class="book-card-arrow" aria-hidden="true" data-astro-cid-x7lpxdqw>→</span> </div> </a><a class="book-card" href="/playbook/agent" data-astro-cid-x7lpxdqw> <div class="book-card-image" data-astro-cid-x7lpxdqw> <img src="/site-assets/blog-hero-monkey-v3.jpg" alt="雪猴 Agent 工程师的黑红色视觉封面" width="1200" height="1200" loading="lazy" data-astro-cid-x7lpxdqw> </div> <div class="book-card-copy" data-astro-cid-x7lpxdqw> <div data-astro-cid-x7lpxdqw> <div class="book-card-meta" data-astro-cid-x7lpxdqw>30 个章节</div> <h2 data-astro-cid-x7lpxdqw>Agent Engineering</h2> <p data-astro-cid-x7lpxdqw>从模型调用走向具备状态、工具、记忆与协作能力的智能体系统。</p> </div> <span class="book-card-arrow" aria-hidden="true" data-astro-cid-x7lpxdqw>→</span> </div> </a> </section> </div> </div> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

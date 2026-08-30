@@ -1,0 +1,189 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>实践：博客系统审核队列 | Harness Engineering 手册 Playbook</title><meta name="description" content="前面几节讲了载体的原则和产出方法。这一节用一个真实项目走完全程。看粗略意图怎么在多轮共同产出里变成一份满足原则的载体。"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="实践：博客系统审核队列 | Harness Engineering 手册 Playbook"><meta property="og:description" content="前面几节讲了载体的原则和产出方法。这一节用一个真实项目走完全程。看粗略意图怎么在多轮共同产出里变成一份满足原则的载体。"><meta property="og:url" content="https://imcoders.cn/playbook/harness/04d-case-study/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="实践：博客系统审核队列 | Harness Engineering 手册 Playbook"><meta name="twitter:description" content="前面几节讲了载体的原则和产出方法。这一节用一个真实项目走完全程。看粗略意图怎么在多轮共同产出里变成一份满足原则的载体。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="实践：博客系统审核队列 | Harness Engineering 手册 Playbook"><meta itemprop="description" content="前面几节讲了载体的原则和产出方法。这一节用一个真实项目走完全程。看粗略意图怎么在多轮共同产出里变成一份满足原则的载体。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "实践：博客系统审核队列 | Harness Engineering 手册 Playbook";
+const shareDesc = "前面几节讲了载体的原则和产出方法。这一节用一个真实项目走完全程。看粗略意图怎么在多轮共同产出里变成一份满足原则的载体。";
+const shareLink = "https://imcoders.cn/playbook/harness/04d-case-study/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.C-FedgiN.css"><script type="module" src="/_astro/hoisted.BfDpThc8.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook" aria-current="page">Playbook</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main>  <div class="reading-progress" aria-hidden="true" data-astro-cid-jojupagh></div> <div class="reader" data-astro-cid-jojupagh> <header class="reader-bar" data-astro-cid-jojupagh> <a class="reader-home" href="/playbook/harness" data-astro-cid-jojupagh>HARNESS ENGINEERING <span data-astro-cid-jojupagh>PLAYBOOK</span></a> <span class="reader-meta" data-astro-cid-jojupagh>17 / 33</span> </header> <div class="mobile-index" data-astro-cid-jojupagh> <details data-astro-cid-jojupagh> <summary data-astro-cid-jojupagh>打开全书目录</summary> <div class="mobile-index-body" data-astro-cid-jojupagh> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>导读</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/about" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>Harness Engineering 手册：百倍生产力的可靠软件交付</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/00-introduction" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>引言：为什么需要 Harness Engineering</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>卷一：可靠的 Agent 编程（1→10x）</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/02a-intent-alignment" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>意图对齐：Vibe Coding 为什么失败</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/02b-structured-intent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>用结构传达意图：分层与维度</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/02c-iterative-spec" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>迭代出一份可执行的规约</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/02d-case-study" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>实践：AILock-Step Feature Workflow</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/03-verification" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>验证：确保代码忠实于规约</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/03a-test-first" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>测试基建前置：把规约变成可执行约束</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/03b-code-review" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Code Review：补位测试覆盖不到的意图漂移</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/03c-practice" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>实践：AILock-Step 的验证链路</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/evolution-v1" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>演进：规约与验证的持续迭代</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/v1-conclusion" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>卷一回顾：从闭环到演进</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>卷二：规模化 Agent 开发（10→100x）</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/04-spec-distributed" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>规约：让意图能被并行分发</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/04a-artifact-role" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>规约规模转变：人类脱离循环</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/04b-artifact-principle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>设计原则：自包含</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/04c-cocreation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>产出方式：可判定决策驱动</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/04d-case-study" class="is-current" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>实践：博客系统审核队列</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05-verification-defense" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>验证：当人不再能兜底</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05a-verification-to-mechanism" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>验证责任转移</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05b-drift-locations" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>大规模验证的锚点</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05c-three-layers" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>三层机制：硬门禁、软门禁、集成验证</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05d-case-study" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>实践：博客审核队列的验证链路</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/evolution-v2" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>演进：harness 必然演化</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/v2-conclusion" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>卷二回顾：迭代的harness系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>卷三：治理百倍速的组织</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/06-hybrid-team" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>组织重构：当 Agent 改变了协作的前提</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/06a-why-old-structure-fails" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>为什么旧结构失效了</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/06b-bottleneck-shift" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>瓶颈转移：从代码到组织</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/06c-process-speed" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>让流程匹配 Agent 速度</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/07-role-redefinition" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>角色重定义：从执行者到治理者</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/07a-new-roles" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>围绕治理重新设计角色</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/07b-coordination" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>30</span> <span data-astro-cid-jojupagh>用机制替代人际协调</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/evolution-v3" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>31</span> <span data-astro-cid-jojupagh>演进：组织资产与新护城河</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>附录</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/contributors" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>32</span> <span data-astro-cid-jojupagh>贡献者</span> </a> </li> </ol> </section> </div> </details> </div> <div class="reader-grid" data-astro-cid-jojupagh> <aside class="book-index" aria-label="全书目录" data-astro-cid-jojupagh> <h2 class="index-title" data-astro-cid-jojupagh>全书目录</h2> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>导读</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/about" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>Harness Engineering 手册：百倍生产力的可靠软件交付</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/00-introduction" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>引言：为什么需要 Harness Engineering</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>卷一：可靠的 Agent 编程（1→10x）</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/02a-intent-alignment" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>意图对齐：Vibe Coding 为什么失败</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/02b-structured-intent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>用结构传达意图：分层与维度</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/02c-iterative-spec" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>迭代出一份可执行的规约</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/02d-case-study" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>实践：AILock-Step Feature Workflow</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/03-verification" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>验证：确保代码忠实于规约</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/03a-test-first" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>测试基建前置：把规约变成可执行约束</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/03b-code-review" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Code Review：补位测试覆盖不到的意图漂移</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/03c-practice" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>实践：AILock-Step 的验证链路</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/evolution-v1" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>演进：规约与验证的持续迭代</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/v1-conclusion" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>卷一回顾：从闭环到演进</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>卷二：规模化 Agent 开发（10→100x）</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/04-spec-distributed" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>规约：让意图能被并行分发</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/04a-artifact-role" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>规约规模转变：人类脱离循环</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/04b-artifact-principle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>设计原则：自包含</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/04c-cocreation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>产出方式：可判定决策驱动</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/04d-case-study" class="is-current" aria-current="page" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>实践：博客系统审核队列</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05-verification-defense" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>验证：当人不再能兜底</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05a-verification-to-mechanism" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>验证责任转移</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05b-drift-locations" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>大规模验证的锚点</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05c-three-layers" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>三层机制：硬门禁、软门禁、集成验证</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/05d-case-study" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>实践：博客审核队列的验证链路</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/evolution-v2" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>演进：harness 必然演化</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/v2-conclusion" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>卷二回顾：迭代的harness系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>卷三：治理百倍速的组织</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/06-hybrid-team" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>组织重构：当 Agent 改变了协作的前提</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/06a-why-old-structure-fails" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>为什么旧结构失效了</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/06b-bottleneck-shift" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>瓶颈转移：从代码到组织</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/06c-process-speed" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>让流程匹配 Agent 速度</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/07-role-redefinition" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>角色重定义：从执行者到治理者</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/07a-new-roles" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>围绕治理重新设计角色</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/07b-coordination" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>30</span> <span data-astro-cid-jojupagh>用机制替代人际协调</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/harness/evolution-v3" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>31</span> <span data-astro-cid-jojupagh>演进：组织资产与新护城河</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>附录</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/harness/contributors" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>32</span> <span data-astro-cid-jojupagh>贡献者</span> </a> </li> </ol> </section> </aside> <section class="chapter-main" data-astro-cid-jojupagh> <header class="chapter-header" data-astro-cid-jojupagh> <div class="chapter-label" data-astro-cid-jojupagh>04D / 卷二：规模化 Agent 开发（10→100x）</div> <h1 data-astro-cid-jojupagh>实践：博客系统审核队列</h1> <p class="chapter-description" data-astro-cid-jojupagh>前面几节讲了载体的原则和产出方法。这一节用一个真实项目走完全程。看粗略意图怎么在多轮共同产出里变成一份满足原则的载体。</p> <p class="chapter-updated" data-astro-cid-jojupagh>更新于 2026/7/10</p> <p class="chapter-source" data-astro-cid-jojupagh>内容来源：<a href="https://github.com/Agents-Zone/harness-engineering-playbook/blob/46a94234f8840f148e3c0ce9465be6ad10ca6065/zh/chapters/04d-case-study.md" target="_blank" rel="noopener noreferrer" data-astro-cid-jojupagh>Agents-Zone/harness-engineering-playbook ↗</a></p> </header> <article class="chapter-content" data-astro-cid-jojupagh> <p>前面几节讲了载体的原则和产出方法。这一节用一个真实项目走完全程。看粗略意图怎么在多轮共同产出里变成一份满足原则的载体。</p>
+<p>案例是一个博客系统。产品团队想加一个新功能：文章审核队列。作者提交文章后进入队列，主编审核之后才能发布。</p>
+<h2 id="起点长什么样">起点长什么样</h2>
+<p>起点是一句话。给博客系统增加一个文章审核队列，主编在发文前审核所有稿件。</p>
+<p>这句话跟一份满足载体原则的 spec 相比差得很远。里面缺的东西列一下就知道差距。</p>
+<p>审核的粒度是什么？主编看整篇稿子给一个通过或拒绝，还是可以精确到段落级别标注问题？</p>
+<p>拒稿反馈怎么给作者？主编写一段评语，还是从预设的原因里选？</p>
+<p>多个主编同时审核如何避免撞车？两个主编同时打开一篇稿子，一个通过一个拒绝，怎么处理？</p>
+<p>被拒稿件能不能修改再提交？改多少次算够？改到第几次系统应该介入？</p>
+<p>审核历史如何追溯？保留多久？什么样的查询要支持？</p>
+<p>垃圾投稿要不要单独处理？跟正常投稿混在同一个队列里，还是先过一道垃圾过滤？误伤了怎么办？</p>
+<p>通知怎么发？作者被拒的时候通知吗？主编开始审的时候通知吗？超时未审的时候通知谁？</p>
+<p>超时的稿件怎么办？系统自动通过还是自动拒绝还是标红上升？</p>
+<p>主编离职后交接怎么走？她在审的稿子交给谁？她审过的历史算不算数？</p>
+<p>权限模型是什么？主编能删稿吗？能改稿吗？作者能撤回吗？</p>
+<p>每一个缺项在执行时都会变成 Agent 的自由发挥。五个 Agent 各自发挥，最终产出各自漂移。要产出满足载体原则的 spec，这些缺项都要在执行开始前预先编码进 spec。</p>
+<h2 id="循环的四步">循环的四步</h2>
+<p>从起点到满足原则的载体，走的是多轮循环。每一轮包含四步。</p>
+<p>第一步，大模型基于当前意图扩展出决策点。第一轮的时候，输入是那句起点意图。大模型扩展出的可能是二三十个决策点：上面列的那些加上更多。它把这些决策点结构化地列出来，每个点带简短的描述和几个候选选项。</p>
+<p>第二步，大模型识别出其中人能判定的部分并抛回。二三十个决策点里，只有一部分是这一轮人需要判定的。判定标准是上一节讲的三层约束：领域、杠杆、呈现形式。三层都过的决策抛回。这一轮可能有五到八个决策符合条件。其他的决策，或者杠杆不够、或者当前信息不足以判定、或者领域不匹配抛回对象，这些暂时由大模型自己决定，或者转成可判定的形式留到后面几轮。</p>
+<p>第三步，人做出判定。这一步的输入是抛回的问题清单，输出是选项加简短说明。人不需要写实现细节，只需要在几个已经翻译成产品行为的选项之间做选择。判定过程里如果发现某个选项其实自己还不确定，可以标记为”暂缓”让大模型自己先做一个默认，标记为需要后面再看。</p>
+<p>第四步，大模型依据判定精修意图，并检查新意图和之前决策的一致性。大模型做两件事。第一件是把人的选择固化进意图，把选择的推理过程也写进去，为将来遇到边界情况的 Agent 提供推理依据。第二件是拿这个新增决策去检查它跟之前所有决策是否兼容。有冲突的地方标出来，可能进入下一轮抛回。</p>
+<p>每一轮结束时，预编码的决策数量增加，边界条件更清晰，一致性经过一次覆盖检查。多轮之后，起点那句意图长成一份初步的完整载体。</p>
+<h2 id="前几轮产品层决策">前几轮：产品层决策</h2>
+<p>前几轮，载体是一个大块。审核队列的目的、涉及的角色、大致的用户旅程都放在一起。这个阶段自足性谈不上，单元大小也没到硬约束。大模型抛回的决策主要是产品层面的高杠杆决策。</p>
+<p>第一轮抛回可能长这样。</p>
+<blockquote>
+<p>“审核粒度选文章级还是段落级？</p>
+<p>文章级：主编看整篇文章，通过或拒稿。操作简单，处理时间短，但反馈信号粗。</p>
+<p>段落级：主编可以精确到段落级别标注问题。反馈信号细，作者容易理解，但主编工作量大，需要更好的编辑界面。”</p>
+</blockquote>
+<blockquote>
+<p>“拒稿反馈是自由文字还是分类标签？</p>
+<p>自由文字：主编写任意评语。灵活，可以精确解释问题，但耗时，风格因人而异。</p>
+<p>分类标签：主编从预设的原因里选（比如’内容不合规’、‘重复投稿’、‘需要更多细节’）。快，风格一致，但生硬，特殊情况覆盖不了。”</p>
+</blockquote>
+<blockquote>
+<p>“主编协作是抢占式还是分派式？</p>
+<p>抢占式：所有稿件对所有主编可见，谁先看谁审。管理简单，主编可以主动挑感兴趣的选题，但可能撞车，也可能有稿件长期没人认领。</p>
+<p>分派式：系统根据某种规则把稿件分派给特定主编。分配公平，避免撞车，但需要有一套分派规则，主编丧失选题主动权。”</p>
+</blockquote>
+<p>这几个都是产品经理能判定的。他给出选择：“文章级。理由：段落级需要的编辑界面成本太高，一期我们先做简单的。分类标签，但主编可以额外加自由文字备注。理由：标签保证效率，自由文字给灵活性。分派式，按照主编的擅长领域自动分派。理由：抢占式在我们的团队规模下容易撞车。”</p>
+<p>大模型收到这三个判定，把它们固化进意图。同时把每个决策的推理写进去。“文章级审核。理由：一期不投资段落级界面，未来可能升级。边界：如果审核工作量很大主编要求更精细的反馈，回来考虑段落级。“这样写，将来子空间里的 Agent 遇到”要不要给这个字段加段落级支持”这类边界决策的时候，可以沿着推理判断。</p>
+<p>大模型同时开始扩展下一层决策。既然是分派式，分派规则是什么？分派需要主编标注擅长领域，这个信息从哪来？主编 profile？主编写自己的擅长领域？还是系统根据历史审核记录学习？分派之后主编能主动退回稿件吗？退回的稿件重新进队列还是分派给别人？这些是下一轮抛回。</p>
+<p>第二轮抛回可能长这样。</p>
+<blockquote>
+<p>“主编的擅长领域信息从哪来？</p>
+<p>选项 A：主编在 profile 里手动标注，从预设的 20 个类别中选 3 到 5 个。管理清晰，但主编需要一次性配置，覆盖不到长尾话题。</p>
+<p>选项 B：系统根据主编历史通过的稿件学习。适应性好，能覆盖长尾，但需要一定的历史积累才生效。新入职主编没有历史数据。</p>
+<p>选项 C：混合。手动标注为主，学习作为补充。灵活但复杂度高。”</p>
+</blockquote>
+<blockquote>
+<p>“主编能主动退回稿件吗？</p>
+<p>选项 A：能。主编看了觉得不擅长可以退回，退回后重新分派给别人。灵活，但可能出现踢皮球。</p>
+<p>选项 B：不能。分派就是分派，主编必须处理。责任明确，但可能勉强审核。</p>
+<p>选项 C：能，但每人每天的退回次数有限（比如 3 次）。有灵活性也有约束。”</p>
+</blockquote>
+<p>产品经理的回答：混合方案 C 用于领域标注，因为新入职主编能立刻工作，学习模块作为长期优化。退回选 C，每天限次数，理由是我们的团队规模不大，几个人踢皮球影响很大。</p>
+<p>大模型固化这些决策，同时检查前后一致性。发现一个潜在冲突：如果新入职主编只有 3 个手动标签，而稿件分类可能超过 3 个方向，某些方向可能没人可派。这是覆盖检查抓到的一致性问题。抛回下一轮。</p>
+<blockquote>
+<p>“新入职主编只有 3 个手动标签的情况下，某些主题的稿件可能没有匹配的主编。这时候的分派策略是什么？</p>
+<p>选项 A：分派给最活跃的主编，让他处理。</p>
+<p>选项 B：进入未分派队列，通知所有主编，抢占式认领。</p>
+<p>选项 C：管理员介入分配。”</p>
+</blockquote>
+<p>这类由一致性检查发现的抛回，比第一轮的直接抛回质量更高。因为它是从”你的决策会导致这个具体场景”出发的，具体场景更容易判定。产品经理选了 B，理由是未分派队列是一个安全网机制，能覆盖任何我们没预想到的分派缺口。</p>
+<p>每一轮结束，载体的信息密度上升一个台阶。前几轮的载体像一个不断填充的产品设计文档。大方向定下来，细节逐层展开。经过几轮之后，产品层的决策基本定型。载体开始长出结构。</p>
+<h2 id="中期架构决策浮现">中期：架构决策浮现</h2>
+<p>到中间几轮，载体已经长到审核工作流成型、架构层决策浮现的程度。产品层的关键选择基本定下来，抛回的决策开始出现架构成分。数据存到哪，接口怎么设计，前后端怎么切分，通知走什么渠道。这些决策的抛回对象可能不是同一个人，产品经理判定不了架构问题。这时候需要抛给工程师或者架构师。</p>
+<p>同时，载体的规模开始变得有压力。你打开这份文档发现它已经三四十页。你翻到中间看某一段，看完之后感觉描述得不太清楚，翻回去查前面的定义，走神了几分钟才找回来。同一个概念在不同页出现，感觉描述得不太一样，翻回去对比，发现前后其实是一致的，是自己读的时候记忆漂移。</p>
+<p>这是分块的触发信号。载体本身还是一致的，是消费者（你、其他人、Agent）读不下来了。这个信号越来越明显的时候，就要开始分块。</p>
+<p>分块沿决策边界画开。哪里是决策边界？哪里的决策已经被产品层定完，下面的展开彼此独立，切开来两边可以自足工作，哪里就是决策边界。</p>
+<p>对于这个审核队列，分块可能是这样。</p>
+<p><strong>产品交互块。</strong> 承载主编的操作流程、UI 状态、反馈路径、错误显示、快捷键、批量操作界面。这一块的读者是前端 Agent。上层决策里跟前端相关的部分（分派式、分类标签加自由文字、拒稿后作者的修改流程）都装在这一块里。前端 Agent 不需要读其他块也能干活。这一块的自足边界是：前端能实现一个可运行的界面。</p>
+<p><strong>API 契约块。</strong> 承载前后端交互的接口定义、请求响应结构、错误码、状态机。这一块的读者是负责集成的 Agent。它把产品交互和后端逻辑绑定起来。这一块的自足边界是：能生成一份完整的 API 文档，包括每个端点的输入输出格式和状态转移。</p>
+<p><strong>数据 schema 块。</strong> 承载数据库表结构、字段类型、约束、索引、迁移策略。这一块的读者是数据库 Agent。上层决策里跟存储相关的部分（审核历史保留多久、如何追溯、支持哪些查询、并发写入的处理）都装进来。这一块的自足边界是：能写出建表 SQL 和相应的迁移脚本。</p>
+<p><strong>通知机制块。</strong> 承载事件触发条件、通知渠道、模板、送达失败重试、频率限制、静默期设置。这一块的读者是通知子系统 Agent。这一块的自足边界是：能实现一个从事件到用户接收通知的完整通道。</p>
+<p><strong>垃圾投稿处理块。</strong> 承载识别规则、隔离策略、误伤纠正流程、白名单机制。这一块的读者是反垃圾 Agent。这一块的自足边界是：能实现从投稿到判定的全流程，包括误判的纠错。</p>
+<p>拿数据 schema 块举个具体例子看看这一块里装了什么。开头是这一块的意图和边界。</p>
+<blockquote>
+<p>“本块面向数据库 Agent。目标产出：审核队列相关的建表 SQL、迁移脚本、索引定义。范围：审核队列涉及的所有持久化数据。不包括：反垃圾内部的判定日志（由反垃圾块承载）、通知模板存储（由通知块承载）。”</p>
+</blockquote>
+<p>接下来是核心决策及其依据。</p>
+<blockquote>
+<p>“主表：articles_reviews。承载稿件审核记录。字段包括审核 ID、稿件 ID、主编 ID、状态、提交时间、处理时间、决策类型、反馈类别、反馈备注。理由：状态跟主编 ID 分开存，因为要支持一稿多次审核（初审、复审）。”</p>
+</blockquote>
+<p>再往下是边界和边缘策略。</p>
+<blockquote>
+<p>“审核历史保留三年。理由：内容团队合规要求。实现方式：articles_reviews 按年分区，超过三年的分区归档到冷存储。归档时保留稿件 ID 和最终状态，不保留详细审核记录。”</p>
+</blockquote>
+<blockquote>
+<p>“并发写入：两个主编同时决策的兜底。数据库层用乐观锁，version 字段控制。冲突时后提交的返回错误，交给应用层按产品规则处理（应用层规则见产品交互块）。”</p>
+</blockquote>
+<p>这一块的写法有几个特点。第一，一开头就明确边界，读者知道自己该关心什么、不该关心什么。第二，每条决策带理由。理由不是装饰，是给遇到边界情况的 Agent 用的推理依据。第三，边界处理策略明确到具体机制（乐观锁 + version 字段）。第四，涉及其他块的部分（应用层规则）明确指出去别处看，但同时给出足够的钩子（“按产品规则处理”）让本块的 Agent 不需要跳过去看也能干活。</p>
+<p>这些块之间的关键决策已经在产品层定完，块内部相当独立。每一块开始独立扩展。前几轮扩展是全文档一起做的，现在扩展分块进行。每块内部再多轮迭代，把这块的意图外化到自足。</p>
+<p>分块的时候有一个容易犯的错误。按代码模块切，比如按前端、后端、数据库切。这个切法看起来跟按决策边界切类似，但两者不一样。按代码模块切，跨模块的决策（比如 API 契约的具体格式）落在两个模块中间，两个 Agent 各自的 spec 里都没有完整信息。按决策边界切，API 契约是一个独立的决策块，专门有一份 spec 承载。区别在具体的分块列表里就能看出来。</p>
+<h2 id="后期自足性验证">后期：自足性验证</h2>
+<p>到后几轮，重点转向每块的自足性验证。方法是把每块喂给一个 Agent，看它能否不看其他块就完成任务。</p>
+<p>拿数据 schema 这一块作为例子。你把这一块的 spec 喂给一个 Agent，让它写建表 SQL。它写出来了。假设它写了主表 articles_reviews，字段包含 id、article_id、status、reviewer_id、reviewed_at。它还写了一个附表 review_comments 存主编的评语。你检查 SQL 有没有覆盖需求。</p>
+<p>回头看这块 spec 里的意图。有没有针对审核历史保留时间的策略？spec 里写了要保留三年。SQL 里有没有对应的机制？没看到。articles_reviews 只是一张单表，没有分区，没有归档，也没有触发器把老数据搬到别的地方。这说明 Agent 漏了保留策略。</p>
+<p>为什么漏？可能有两种情况。第一种是 spec 里”保留三年”这条决策没写在这一块里，写在了产品层的”审核历史追溯”相关决策里，还没被拉进来。这种情况是自足性漏了：这一块少了它需要的信息。补上，把保留策略写进 schema 块。</p>
+<p>第二种是 spec 里写了保留策略，但写在一个不显眼的地方，Agent 读的时候在跳读里错过了。这种情况是表达漏了：信息在但没被 Agent 读到。补的方式是提高显著性——把这条策略放到 schema 块的开头显眼位置，或者做一个专门的”存储策略”小节。</p>
+<p>区分这两种情况的方法是把 spec 里跟保留相关的所有内容找出来，看它在什么位置、多显眼、跟别的内容混不混。如果找不到，是自足性漏。如果找到但埋在长段落中间，是表达漏。</p>
+<p>回填之后再喂给 Agent 一次，它这次考虑了保留期，SQL 里加了分区。检查通过。</p>
+<p>对每一块重复这个验证。反垃圾块可能第一次喂给 Agent 的时候，Agent 只写了识别规则，忘了误伤纠正流程。回头看反垃圾块的 spec，误伤纠正的描述是这样一句：“识别到疑似垃圾时先隔离，等待主编确认。“Agent 读的时候可能觉得这句话是关于识别的，没意识到”主编确认”是一整个交互流程需要设计。</p>
+<p>这是一个表达没到位的例子。意图在（spec 明确说了要主编确认），但表达没让 Agent 抓到它是一个独立的交互流程。补的方式是把”主编确认”展开成一个小节，明确定义主编看到什么、能做什么操作、这些操作有什么后果。补完再喂一次，Agent 能完成任务。</p>
+<p>再举一个通知块的例子。通知块喂给 Agent，它写了完整的通知发送逻辑：什么事件触发什么模板，通过什么渠道发送，失败怎么重试。你 review 它的产出，发现它没考虑一个情况——同一个作者同时投了十篇稿件，主编逐一处理，每处理一篇就触发一条通知。结果作者一分钟内收到十条相似的通知，等于骚扰。</p>
+<p>回头看通知块的 spec。里面有”送达失败重试”这条决策，也有”通知模板”这类内容。但没有关于”频率控制”或者”合并通知”的决策。这是意图缺失，不是表达问题。产品层的循环里，主编批量处理场景没有被想到，通知块继承下来的意图里就没有对应的决策。</p>
+<p>补的方式是回到产品层的循环。这个具体的场景（十篇稿件、十条通知、骚扰）作为一个新的抛回问题：一次性处理多篇同一作者的稿件，通知策略是什么？选项 A：每篇一条通知，作者按篇看结果。选项 B：合并成一条通知，列出所有稿件的结果。选项 C：给一个阈值（比如超过 3 条），超过阈值的合并，不超过的分开发。产品经理选 C，理由是既保留个别稿件的独立性，也避免大规模投稿带来的骚扰。</p>
+<p>新决策进入通知块，Agent 再次尝试，产出满足。</p>
+<h2 id="终态与失败模式">终态与失败模式</h2>
+<p>终态载体的验收标准就是原则的操作性检验。拿任意一块喂给 Agent，Agent 能独立完成本块任务，就说明自足性和单元大小联合成立。Agent 完不成的时候，两种失败模式要区分。</p>
+<p><strong>缺依据。</strong> Agent 完成任务需要的某条决策不在这块里。可能这条决策还没做（意图不完整），也可能做了但装在别块（分块问题）。前者要回到产品层的循环，补上决策。后者要把决策从别块拉过来，或者提到公共层。</p>
+<p>诊断方法：把 Agent 卡住的具体点问它一句”你在这里遇到什么信息缺口”。它会告诉你它需要知道什么但不知道。拿这个”需要知道的东西”去 spec 里找。找不到就是意图缺失。找到但在别块就是分块问题。</p>
+<p><strong>过载。</strong> Agent 拿到的块太大，中间的关键决策被跳读了，导致产出漏项。这时候 Agent 不会说”我不知道”，它会自己发挥一个答案。跟意图对不上但看起来自洽。</p>
+<p>诊断方法：把 Agent 产出的东西跟 spec 里的关键决策一条一条对。如果 spec 里有但产出里漏了或者做反了，检查 spec 里那条决策的位置。如果它落在这块的中间段落，可能就是被跳读。</p>
+<p>区分两种失败模式是必要的，因为补的方向不同。缺依据是补内容。过载是重新切分或者压缩内容。</p>
+<h2 id="载体做好之后">载体做好之后</h2>
+<p>走完这一遍，载体的每一块都能被独立消费。你把这份载体分发出去。数据库 Agent 拿 schema 块，前端 Agent 拿产品交互块，API 层 Agent 拿契约块，通知 Agent 拿通知机制块，反垃圾 Agent 拿垃圾处理块。五个 Agent 并行开始工作。</p>
+<p>每个 Agent 在自己的子空间里独立执行。它遇到边界情况沿着 spec 里的推理判断，遇到边缘情况按照 spec 里写的默认策略处理。它不需要跨空间同步，因为 spec 里的自足性已经保证它拿到了所有需要的信息。它不需要跟你实时对话，因为你不在场也无所谓，一切原本在场会补的东西已经预先编码进去。</p>
+<p>产出从五个子空间陆续出来。合起来是一个完整的功能。</p>
+<h2 id="回顾整个过程">回顾整个过程</h2>
+<p>从起点到可用载体，走过了几个关键节点。</p>
+<p>起点是一句话，二三十个字。缺一切细节。</p>
+<p>前几轮把大方向的产品决策定下来。文章级审核、分类标签加自由文字、分派式协作、退回次数限制、混合领域标注。这些决策的杠杆最高，改一次牵动一大片，所以放在最前面。定完之后载体规模从零膨胀到十几页。</p>
+<p>中间几轮把架构层的决策浮现出来。数据存到哪、接口怎么设计、通知走什么渠道、并发怎么处理。载体规模膨胀到三四十页。到这里，一个人一次读完开始困难，触发分块信号。</p>
+<p>分块把载体拆成五块。每一块对应一个决策边界，块内部相当独立，块之间的关键决策已经在产品层定完。</p>
+<p>后几轮针对每一块做自足性验证。挨个把块喂给 Agent，看 Agent 能否独立完成本块任务。完不成的时候诊断是缺依据还是过载，回填或者重切。反复几轮之后，每一块都能通过验证。</p>
+<p>终态的载体分发出去，多个 Agent 并行执行，产出合起来。</p>
+<p>整个过程有几个特点值得强调。</p>
+<p>第一，载体不是设计出来的，是通过多轮共同产出逐步收敛出来的。你没有在某一时刻坐下来说”我要设计一份载体”，然后一次画完整个结构。你是在多轮循环里逐步长出来的。前几轮的决策为后几轮的决策打基础，中间某一轮出现的信号（读不完）触发结构性调整（分块）。收敛过程遵循原则，但具体节奏跟意图本身的复杂度和你判定能力的分布相关。</p>
+<p>第二，你在循环里的负担是可控的。每一轮你要做的判定是五到八个决策，都是产品行为层面的选择，跟你的日常工作强度差不多。你不需要理解 attention 承载力的物理机制，不需要设计分块结构，不需要维护跨块一致性。这些是大模型承担的。你专注在意图判断上。</p>
+<p>第三，元原则始终在起作用。你在每一轮看到的抛回都是可判定的。判定不了的问题你没看到（大模型自己处理了，或者转成了可判定的形式）。这个过滤是共同产出跑通的关键。没有这个过滤，你会疲于奔命判定不了的问题，而载体的对齐也会因为凑合出来的判定而失败。</p>
+<p>第四，失败模式有明确的诊断方法。缺依据和过载两种失败模式对应不同的补救动作。你在验证阶段发现 Agent 完不成任务的时候，不是笼统地”补 spec”，是先诊断属于哪种模式，再针对性补。</p>
+<p>这就是原则加方法确实能产出可用载体的完整论证。载体不是设计出来的，是通过多轮共同产出逐步收敛出来的。逐步收敛的每一步都严格遵守元原则。终态的载体在原则的操作性检验下能通过。多个 Agent 并行执行时的产出可以合起来。</p>
+<p>载体做出来了。多个 Agent 并行工作，各个子空间陆续有产出。这些产出要怎么验证是接下来的问题。卷一里最后一道人肉审已经不成立。验证机制要能自己兜住。这是下一章的话题。</p>
+<hr>
+<p><em>Harness Engineering Playbook · <a href="https://agentszone.ai">AgentsZone</a> Community</em></p> </article> <nav class="chapter-nav" aria-label="章节导航" data-astro-cid-jojupagh> <a href="/playbook/harness/04c-cocreation" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>← 上一章</span> <strong data-astro-cid-jojupagh>产出方式：可判定决策驱动</strong> </a> <a class="next" href="/playbook/harness/05-verification-defense" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>下一章 →</span> <strong data-astro-cid-jojupagh>验证：当人不再能兜底</strong> </a> </nav> </section> <aside class="page-index" aria-label="本章目录" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>本章目录</h2> <nav data-astro-cid-jojupagh> <a href="#起点长什么样" data-heading="起点长什么样" data-depth="2" data-astro-cid-jojupagh>起点长什么样</a><a href="#循环的四步" data-heading="循环的四步" data-depth="2" data-astro-cid-jojupagh>循环的四步</a><a href="#前几轮产品层决策" data-heading="前几轮产品层决策" data-depth="2" data-astro-cid-jojupagh>前几轮：产品层决策</a><a href="#中期架构决策浮现" data-heading="中期架构决策浮现" data-depth="2" data-astro-cid-jojupagh>中期：架构决策浮现</a><a href="#后期自足性验证" data-heading="后期自足性验证" data-depth="2" data-astro-cid-jojupagh>后期：自足性验证</a><a href="#终态与失败模式" data-heading="终态与失败模式" data-depth="2" data-astro-cid-jojupagh>终态与失败模式</a><a href="#载体做好之后" data-heading="载体做好之后" data-depth="2" data-astro-cid-jojupagh>载体做好之后</a><a href="#回顾整个过程" data-heading="回顾整个过程" data-depth="2" data-astro-cid-jojupagh>回顾整个过程</a> </nav> </aside> </div> </div> <div class="selection-share" data-selection-share data-content-selector=".chapter-content" data-title="实践：博客系统审核队列" data-author="Harness Engineering 手册 / IMCODERS" data-section="HARNESS ENGINEERING PLAYBOOK" data-url="https://imcoders.cn/playbook/harness/04d-case-study/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>    </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

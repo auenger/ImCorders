@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>Blackboard、共享状态与并发控制 | Agent Engineering Playbook</title><meta name="description" content="用结构化共享状态连接多个 Agent，并通过版本、所有权、租约和证据引用控制并发写入。"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="Blackboard、共享状态与并发控制 | Agent Engineering Playbook"><meta property="og:description" content="用结构化共享状态连接多个 Agent，并通过版本、所有权、租约和证据引用控制并发写入。"><meta property="og:url" content="https://imcoders.cn/playbook/agent/29-blackboard/"><meta property="og:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta property="og:image:width" content="1774"><meta property="og:image:height" content="887"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Blackboard、共享状态与并发控制 | Agent Engineering Playbook"><meta name="twitter:description" content="用结构化共享状态连接多个 Agent，并通过版本、所有权、租约和证据引用控制并发写入。"><meta name="twitter:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta itemprop="name" content="Blackboard、共享状态与并发控制 | Agent Engineering Playbook"><meta itemprop="description" content="用结构化共享状态连接多个 Agent，并通过版本、所有权、租约和证据引用控制并发写入。"><meta itemprop="image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "Blackboard、共享状态与并发控制 | Agent Engineering Playbook";
+const shareDesc = "用结构化共享状态连接多个 Agent，并通过版本、所有权、租约和证据引用控制并发写入。";
+const shareLink = "https://imcoders.cn/playbook/agent/29-blackboard/";
+const shareImg = "https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.C-FedgiN.css"><script type="module" src="/_astro/hoisted.BfDpThc8.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook" aria-current="page">Playbook</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main>  <div class="reading-progress" aria-hidden="true" data-astro-cid-jojupagh></div> <div class="reader" data-astro-cid-jojupagh> <header class="reader-bar" data-astro-cid-jojupagh> <a class="reader-home" href="/playbook/agent" data-astro-cid-jojupagh>AGENT ENGINEERING <span data-astro-cid-jojupagh>PLAYBOOK</span></a> <span class="reader-meta" data-astro-cid-jojupagh>29 / 30</span> </header> <div class="mobile-index" data-astro-cid-jojupagh> <details data-astro-cid-jojupagh> <summary data-astro-cid-jojupagh>打开全书目录</summary> <div class="mobile-index-body" data-astro-cid-jojupagh> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" class="is-current" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </div> </details> </div> <div class="reader-grid" data-astro-cid-jojupagh> <aside class="book-index" aria-label="全书目录" data-astro-cid-jojupagh> <h2 class="index-title" data-astro-cid-jojupagh>全书目录</h2> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" class="is-current" aria-current="page" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </aside> <section class="chapter-main" data-astro-cid-jojupagh> <header class="chapter-header" data-astro-cid-jojupagh> <div class="chapter-label" data-astro-cid-jojupagh>第二十九章 / 第六部分：Multi-Agent</div> <h1 data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</h1> <p class="chapter-description" data-astro-cid-jojupagh>用结构化共享状态连接多个 Agent，并通过版本、所有权、租约和证据引用控制并发写入。</p> <p class="chapter-updated" data-astro-cid-jojupagh>更新于 2026/8/12</p>  </header> <article class="chapter-content" data-astro-cid-jojupagh> <p>多个 Agent 需要共享信息，但“共享”不等于把每个 Agent 的完整 Conversation 广播给所有参与者。全量同步会迅速放大噪声、敏感信息和过期结论，也让任何一个 Agent 都难以判断哪些内容已经被验证。</p>
+<blockquote>
+<p>Blackboard 是受治理的共享工作状态。它保存可引用的事实、假设、任务、决策和 Artifact，不保存所有 Agent 的完整思考过程。</p>
+</blockquote>
+<h2 id="术语来源与适用范围">术语来源与适用范围</h2>
+<p>Blackboard Architecture 来自早期人工智能系统。Hayes-Roth 的相关工作把 Blackboard 描述为多个知识源围绕共享结构协作的架构思想，而不是一个固定的数据协议；<a href="https://i.stanford.edu/pub/cstr/reports/cs/tr/86/1123/CS-TR-86-1123.pdf">Stanford 的 BB1 Blackboard Architecture for Control 报告</a>进一步讨论了控制问题。</p>
+<p>今天的 Agent 框架也可能把共享消息历史、共享 Store 或 Graph State 称为 Blackboard，但它们的并发和一致性保证并不相同。本章的 Record 类型、Owner、Lease 与版本控制是 Playbook 扩展设计，不是经典 Blackboard 文献或 A2A Protocol 的标准 Schema。</p>
+<p>Lease 与乐观并发是通用分布式系统机制。例如 <a href="https://kubernetes.io/docs/concepts/architecture/leases/">Kubernetes Lease</a>用于协调成员与 Leader Election，但这不意味着 Agent Blackboard 应直接复用 Kubernetes API。本章借用其“持有者、续约和到期”语义管理 Task 所有权。</p>
+<h2 id="共享什么隔离什么">共享什么，隔离什么</h2>
+<p>适合进入 Blackboard：</p>
+<ul>
+<li>已确认事实及其 Evidence Reference。</li>
+<li>明确标记的假设、置信度与验证状态。</li>
+<li>Task、依赖、Owner、Lease 和进展状态。</li>
+<li>Artifact Reference、Schema、Version 和校验结果。</li>
+<li>决策、批准、否决和原因。</li>
+<li>面向协作方的短消息与 Input Request。</li>
+</ul>
+<p>不应默认进入 Blackboard：</p>
+<ul>
+<li>完整 System Prompt、私有 Skill 内容和 Secret。</li>
+<li>每一步隐藏推理或未经整理的内部草稿。</li>
+<li>与其他 Agent 无关的完整 Conversation。</li>
+<li>没有来源、Owner 和时间的自然语言结论。</li>
+<li>大型二进制文件正文，应该保存 Artifact Reference。</li>
+</ul>
+<p>共享状态是 Context 来源之一，不是所有参与者的完整 Context。每个 Agent 仍由 Runtime 按当前 Task、权限和 Token Budget 组装局部视图。</p>
+<h2 id="blackboard-参考-schema">Blackboard 参考 Schema</h2>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“Blackboard 参考 Schema”落成可检查的结构化记录，主要字段包括 <code>blackboard_id</code>、<code>root_run_id</code>、<code>revision</code>、<code>records</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">blackboard_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">bb_run_100</span></span>
+<span class="line"><span style="color:#85E89D">root_run_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">run_100</span></span>
+<span class="line"><span style="color:#85E89D">revision</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">184</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">records</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">record_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">fact_41</span></span>
+<span class="line"><span style="color:#85E89D">    kind</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">fact</span></span>
+<span class="line"><span style="color:#85E89D">    subject</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">api.status_field</span></span>
+<span class="line"><span style="color:#85E89D">    value</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">required</span></span>
+<span class="line"><span style="color:#85E89D">    status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">confirmed</span></span>
+<span class="line"><span style="color:#85E89D">    evidence_refs</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">artifact://requirements/api-v4#line-82</span></span>
+<span class="line"><span style="color:#85E89D">    author_run_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">run_101</span></span>
+<span class="line"><span style="color:#85E89D">    version</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2</span></span>
+<span class="line"><span style="color:#85E89D">    created_at</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2026-08-12T10:02:00Z</span></span>
+<span class="line"><span style="color:#85E89D">    valid_until</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">null</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">record_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">task_52</span></span>
+<span class="line"><span style="color:#85E89D">    kind</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">task</span></span>
+<span class="line"><span style="color:#85E89D">    status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">running</span></span>
+<span class="line"><span style="color:#85E89D">    owner_run_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">run_102</span></span>
+<span class="line"><span style="color:#85E89D">    lease</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      lease_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">lease_90</span></span>
+<span class="line"><span style="color:#85E89D">      fencing_token</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">7</span></span>
+<span class="line"><span style="color:#85E89D">      expires_at</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2026-08-12T10:20:00Z</span></span>
+<span class="line"><span style="color:#85E89D">    depends_on</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">fact_41</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">record_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">artifact_73</span></span>
+<span class="line"><span style="color:#85E89D">    kind</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">artifact</span></span>
+<span class="line"><span style="color:#85E89D">    ref</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">artifact://migration-review/44</span></span>
+<span class="line"><span style="color:#85E89D">    schema</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">migration_review_v2</span></span>
+<span class="line"><span style="color:#85E89D">    producer_run_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">run_102</span></span>
+<span class="line"><span style="color:#85E89D">    status</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">candidate</span></span>
+<span class="line"></span></code></pre>
+<p><code>revision</code> 表示 Blackboard 全局修订号，Record 自己也有 <code>version</code>。高并发系统可以按 Partition 或 Record 使用局部版本，避免所有写入争用一个全局计数器。</p>
+<h2 id="读取与写入路径必须分开">读取与写入路径必须分开</h2>
+<p><img src="/playbook-images/agent/blackboard-concurrency.svg" alt="Blackboard 共享状态与并发控制"></p>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“读取与写入路径必须分开”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Agent Local Context</span></span>
+<span class="line"><span>    ↓ propose(record, expected_version)</span></span>
+<span class="line"><span>Validation / Authorization / Conflict Check</span></span>
+<span class="line"><span>    ↓ commit</span></span>
+<span class="line"><span>Blackboard Revision N+1</span></span>
+<span class="line"><span>    ↓ publish event</span></span>
+<span class="line"><span>Subscriber 按权限重新组装 Context</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Agent 不直接覆盖共享文档。它提交带类型和前置版本的 Proposal，State Service 检查 Schema、权限、证据与并发条件后提交。订阅者收到的是“某条记录已更新”的 Event，再按需读取，而不是把整个 Blackboard 自动塞入 Context。</p>
+<h2 id="事实假设和决策不能互相覆盖">事实、假设和决策不能互相覆盖</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Record Kind</th><th>写入要求</th><th>更新规则</th></tr></thead><tbody><tr><td>Fact</td><td>必须有 Evidence Reference</td><td>新证据可以 supersede，保留旧版本</td></tr><tr><td>Hypothesis</td><td>标记置信度和验证任务</td><td>验证后转为 Fact 或 Rejected，不原地伪装成事实</td></tr><tr><td>Task</td><td>Owner、状态、依赖与 Lease</td><td>只能按状态机转换</td></tr><tr><td>Artifact</td><td>Producer、Schema、Digest</td><td>Candidate 经验证后提升为 Accepted</td></tr><tr><td>Decision</td><td>Decision Owner、依据与范围</td><td>通过新 Decision 撤销，不删除历史</td></tr></tbody></table>
+<p>同一 Subject 出现矛盾 Fact 时，不要最后写入者获胜。系统应创建 Conflict Record，保存双方证据，阻止依赖任务使用“已确认”状态，直到完成 Reconcile。</p>
+<h2 id="乐观并发控制">乐观并发控制</h2>
+<p>更新请求携带 <code>expected_version</code>：</p>
+<p><strong>代码块说明｜伪代码：</strong> 这段 Python 以 <code>update_record()</code> 为主要入口说明“乐观并发控制”怎样运行。它省略了持久化、并发、权限和完整错误处理，用于解释决策顺序，不是可直接部署的完整实现。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> update_record</span><span style="color:#E1E4E8">(record_id, expected_version, patch):</span></span>
+<span class="line"><span style="color:#E1E4E8">    current </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> store.get(record_id)</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> current.version </span><span style="color:#F97583">!=</span><span style="color:#E1E4E8"> expected_version:</span></span>
+<span class="line"><span style="color:#F97583">        raise</span><span style="color:#E1E4E8"> VersionConflict(</span><span style="color:#FFAB70">current</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">current)</span></span>
+<span class="line"><span style="color:#E1E4E8">    validated </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> validate_transition(current, patch)</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> store.compare_and_swap(current, validated)</span></span>
+<span class="line"></span></code></pre>
+<p>版本冲突后，Agent 必须读取最新记录，再决定合并、放弃或升级仲裁。对 Artifact 描述、评论和独立 Fact，可以按字段或追加合并；对 Task Owner、审批结论和外部副作用状态，不能自动进行自然语言合并。</p>
+<h2 id="task-所有权lease-与-fencing-token">Task 所有权、Lease 与 Fencing Token</h2>
+<p>只写 <code>owner = agent_a</code> 不足以处理 Agent 崩溃。Lease 允许所有权在超时后回收：</p>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“Task 所有权、Lease 与 Fencing Token”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>acquire(task) → lease_id + fencing_token + expires_at</span></span>
+<span class="line"><span>renew(lease)  → new expires_at</span></span>
+<span class="line"><span>complete(task, fencing_token)</span></span>
+<span class="line"><span></span></span></code></pre>
+<p><code>fencing_token</code> 每次重新分配时单调增加。即使旧 Agent 在网络恢复后继续提交，State Service 也能拒绝旧 Token，避免两个 Worker 同时完成同一 Task。</p>
+<p>Lease 到期不代表旧 Worker 的外部动作从未发生。接管者必须先读取 Step Effect Record，确认是否存在 unknown 或 confirmed 副作用，再从安全 Checkpoint 继续。</p>
+<h2 id="孤儿任务怎样回收">孤儿任务怎样回收</h2>
+<p>Task 可能因 Worker 崩溃、Parent 被取消或消息丢失成为 Orphan。Sweeper 可以定期检查：</p>
+<ol>
+<li>Lease 是否过期。</li>
+<li>Owner Run 是否仍处于可执行状态。</li>
+<li>Parent Contract 是否有效。</li>
+<li>是否存在未确认外部副作用。</li>
+<li>Task 可否重分配、需要人工确认，或应该取消。</li>
+</ol>
+<p>不要看到 Lease 过期就直接重跑。带副作用的 Task 必须先 Reconcile。</p>
+<h2 id="blackboard-不是所有系统的默认答案">Blackboard 不是所有系统的默认答案</h2>
+<p>简单的 Orchestrator-Worker 系统，如果 Worker 只返回一次结构化 Artifact，Parent State 已足够，不需要额外 Blackboard。只有多个持续参与者需要读写共享事实、Task 和 Artifact，且协作关系不是简单父子返回时，Blackboard 才能抵消它带来的治理成本。</p>
+<h2 id="本章检查">本章检查</h2>
+<ul>
+<li>Blackboard 是否只保存结构化共享状态，而不是广播完整 Conversation。</li>
+<li>Fact、Hypothesis、Task、Artifact 和 Decision 是否使用不同更新规则。</li>
+<li>每个共享结论是否有 Author、Version、Evidence 和有效范围。</li>
+<li>写入是否经过 Schema、权限和前置版本检查。</li>
+<li>冲突是否成为显式 Record，而不是最后写入者获胜。</li>
+<li>Task 是否使用 Lease、续约、到期与 Fencing Token 管理所有权。</li>
+<li>Lease 到期后的接管是否先确认外部副作用。</li>
+</ul> </article> <nav class="chapter-nav" aria-label="章节导航" data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>← 上一章</span> <strong data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</strong> </a> <a class="next" href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>下一章 →</span> <strong data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</strong> </a> </nav> </section> <aside class="page-index" aria-label="本章目录" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>本章目录</h2> <nav data-astro-cid-jojupagh> <a href="#术语来源与适用范围" data-heading="术语来源与适用范围" data-depth="2" data-astro-cid-jojupagh>术语来源与适用范围</a><a href="#共享什么隔离什么" data-heading="共享什么隔离什么" data-depth="2" data-astro-cid-jojupagh>共享什么，隔离什么</a><a href="#blackboard-参考-schema" data-heading="blackboard-参考-schema" data-depth="2" data-astro-cid-jojupagh>Blackboard 参考 Schema</a><a href="#读取与写入路径必须分开" data-heading="读取与写入路径必须分开" data-depth="2" data-astro-cid-jojupagh>读取与写入路径必须分开</a><a href="#事实假设和决策不能互相覆盖" data-heading="事实假设和决策不能互相覆盖" data-depth="2" data-astro-cid-jojupagh>事实、假设和决策不能互相覆盖</a><a href="#乐观并发控制" data-heading="乐观并发控制" data-depth="2" data-astro-cid-jojupagh>乐观并发控制</a><a href="#task-所有权lease-与-fencing-token" data-heading="task-所有权lease-与-fencing-token" data-depth="2" data-astro-cid-jojupagh>Task 所有权、Lease 与 Fencing Token</a><a href="#孤儿任务怎样回收" data-heading="孤儿任务怎样回收" data-depth="2" data-astro-cid-jojupagh>孤儿任务怎样回收</a><a href="#blackboard-不是所有系统的默认答案" data-heading="blackboard-不是所有系统的默认答案" data-depth="2" data-astro-cid-jojupagh>Blackboard 不是所有系统的默认答案</a><a href="#本章检查" data-heading="本章检查" data-depth="2" data-astro-cid-jojupagh>本章检查</a> </nav> </aside> </div> </div> <div class="selection-share" data-selection-share data-content-selector=".chapter-content" data-title="Blackboard、共享状态与并发控制" data-author="Agent Engineering / IMCODERS" data-section="AGENT ENGINEERING PLAYBOOK" data-url="https://imcoders.cn/playbook/agent/29-blackboard/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>    </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

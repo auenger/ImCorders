@@ -1,0 +1,339 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>Identity、Permission、Guardrail 与 Human-in-the-Loop | Agent Engineering Playbook</title><meta name="description" content="认证用户、Agent 与 Runtime Workload 的多重身份，并把委托授权、审批和风险控制放进 Runtime 状态机。"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="Identity、Permission、Guardrail 与 Human-in-the-Loop | Agent Engineering Playbook"><meta property="og:description" content="认证用户、Agent 与 Runtime Workload 的多重身份，并把委托授权、审批和风险控制放进 Runtime 状态机。"><meta property="og:url" content="https://imcoders.cn/playbook/agent/18-permission-hitl/"><meta property="og:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta property="og:image:width" content="1774"><meta property="og:image:height" content="887"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Identity、Permission、Guardrail 与 Human-in-the-Loop | Agent Engineering Playbook"><meta name="twitter:description" content="认证用户、Agent 与 Runtime Workload 的多重身份，并把委托授权、审批和风险控制放进 Runtime 状态机。"><meta name="twitter:image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><meta itemprop="name" content="Identity、Permission、Guardrail 与 Human-in-the-Loop | Agent Engineering Playbook"><meta itemprop="description" content="认证用户、Agent 与 Runtime Workload 的多重身份，并把委托授权、审批和风险控制放进 Runtime 状态机。"><meta itemprop="image" content="https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "Identity、Permission、Guardrail 与 Human-in-the-Loop | Agent Engineering Playbook";
+const shareDesc = "认证用户、Agent 与 Runtime Workload 的多重身份，并把委托授权、审批和风险控制放进 Runtime 状态机。";
+const shareLink = "https://imcoders.cn/playbook/agent/18-permission-hitl/";
+const shareImg = "https://imcoders.cn/site-assets/blog-hero-monkey-v3.jpg";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.C-FedgiN.css"><script type="module" src="/_astro/hoisted.BfDpThc8.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook" aria-current="page">Playbook</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main>  <div class="reading-progress" aria-hidden="true" data-astro-cid-jojupagh></div> <div class="reader" data-astro-cid-jojupagh> <header class="reader-bar" data-astro-cid-jojupagh> <a class="reader-home" href="/playbook/agent" data-astro-cid-jojupagh>AGENT ENGINEERING <span data-astro-cid-jojupagh>PLAYBOOK</span></a> <span class="reader-meta" data-astro-cid-jojupagh>13 / 30</span> </header> <div class="mobile-index" data-astro-cid-jojupagh> <details data-astro-cid-jojupagh> <summary data-astro-cid-jojupagh>打开全书目录</summary> <div class="mobile-index-body" data-astro-cid-jojupagh> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" class="is-current" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </div> </details> </div> <div class="reader-grid" data-astro-cid-jojupagh> <aside class="book-index" aria-label="全书目录" data-astro-cid-jojupagh> <h2 class="index-title" data-astro-cid-jojupagh>全书目录</h2> <section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第一部分：Agent 基础</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/00-agent-system" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>00</span> <span data-astro-cid-jojupagh>从 LLM 到 Agent：先把基本概念说清楚</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/03-tool-use" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>01</span> <span data-astro-cid-jojupagh>Skill、Tool 与 Environment：方法、能力和外部世界</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/02-workflow-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>02</span> <span data-astro-cid-jojupagh>Workflow 与 Agent：谁来决定下一步</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/01-agent-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>03</span> <span data-astro-cid-jojupagh>Agent Loop：一个 while 循环如何变成执行系统</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第二部分：Context、State 与 Memory</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/10-context-assembly" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>04</span> <span data-astro-cid-jojupagh>Context Assembly：Agent 这一轮看见什么</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/11-run-state" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>05</span> <span data-astro-cid-jojupagh>Run State：Agent 现在做到哪里</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/12-plan-task-graph" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>06</span> <span data-astro-cid-jojupagh>Plan、Todo 与 Task Graph</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/13-workspace-sandbox" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>07</span> <span data-astro-cid-jojupagh>Workspace 与 Sandbox：执行环境也是状态</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/14-long-term-memory" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>08</span> <span data-astro-cid-jojupagh>Memory Architecture：Session、User、Agent 与 Long-term Memory</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第三部分：Tool、Skill 与控制面</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/15-tool-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>09</span> <span data-astro-cid-jojupagh>Tool Protocol：动作空间的稳定接口</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/16-skill-engineering" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>10</span> <span data-astro-cid-jojupagh>Skill：可执行知识的工程结构</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>11</span> <span data-astro-cid-jojupagh>Router 与能力发现</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/18-permission-hitl" class="is-current" aria-current="page" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>12</span> <span data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>13</span> <span data-astro-cid-jojupagh>副作用、幂等、事务与补偿</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第四部分：Agent Runtime 与执行协议</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/05-runtime-framework-protocol" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>14</span> <span data-astro-cid-jojupagh>Framework、Runtime 与 Protocol</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/06-runtime-objects" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>15</span> <span data-astro-cid-jojupagh>Agent Definition、Thread、Run、Attempt 与 Step</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/07-event-artifact-checkpoint" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>16</span> <span data-astro-cid-jojupagh>Event、Artifact、Checkpoint 与 Trace</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/08-run-lifecycle" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>17</span> <span data-astro-cid-jojupagh>Agent 任务生命周期</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/09-interrupt-resume-cancel-retry" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>18</span> <span data-astro-cid-jojupagh>Interrupt、Resume、Cancel 与 Retry</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第五部分：Observability、Evaluation 与优化</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/20-trace-span-event" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>19</span> <span data-astro-cid-jojupagh>Trace、Span 与 Event：看见完整执行轨迹</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/21-agent-evaluation" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>20</span> <span data-astro-cid-jojupagh>结果、过程与轨迹评估</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/22-dataset-replay" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>21</span> <span data-astro-cid-jojupagh>Dataset、Bad Case、Replay 与 Regression</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/23-agent-versioning" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>22</span> <span data-astro-cid-jojupagh>Prompt、Skill、Model 与 Agent Version</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/24-production-metrics" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>23</span> <span data-astro-cid-jojupagh>质量、成本、安全与效率指标</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/25-optimization-loop" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>24</span> <span data-astro-cid-jojupagh>从线上轨迹到优化闭环</span> </a> </li> </ol> </section><section class="index-part" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>第六部分：Multi-Agent</h2> <ol data-astro-cid-jojupagh> <li data-astro-cid-jojupagh> <a href="/playbook/agent/26-when-multi-agent" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>25</span> <span data-astro-cid-jojupagh>什么时候应该拆成多个 Agent</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/27-multi-agent-topology" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>26</span> <span data-astro-cid-jojupagh>Orchestrator、Worker、Reviewer 与 Peer</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/28-delegation-contract" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>27</span> <span data-astro-cid-jojupagh>Delegation Contract、Task Tree 与消息协议</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/29-blackboard" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>28</span> <span data-astro-cid-jojupagh>Blackboard、共享状态与并发控制</span> </a> </li><li data-astro-cid-jojupagh> <a href="/playbook/agent/30-merge-arbitration" data-astro-cid-jojupagh> <span class="index-number" data-astro-cid-jojupagh>29</span> <span data-astro-cid-jojupagh>结果合并、冲突仲裁与最终责任</span> </a> </li> </ol> </section> </aside> <section class="chapter-main" data-astro-cid-jojupagh> <header class="chapter-header" data-astro-cid-jojupagh> <div class="chapter-label" data-astro-cid-jojupagh>第十三章 / 第三部分：Tool、Skill 与控制面</div> <h1 data-astro-cid-jojupagh>Identity、Permission、Guardrail 与 Human-in-the-Loop</h1> <p class="chapter-description" data-astro-cid-jojupagh>认证用户、Agent 与 Runtime Workload 的多重身份，并把委托授权、审批和风险控制放进 Runtime 状态机。</p> <p class="chapter-updated" data-astro-cid-jojupagh>更新于 2026/8/12</p>  </header> <article class="chapter-content" data-astro-cid-jojupagh> <p>Agent 知道怎样退款，不代表它有权退款；Router 选中了 <code>create_refund</code>，也不代表这次调用已经获批。在 User 驱动的 Agent 中，还必须回答：用户是谁、哪个 Agent 正代表他行动、真正连接支付系统的是哪个 Runtime Workload，以及用户究竟把多大权限委托给了这次 Run。</p>
+<p>权限判断必须发生在身份链、真实参数和目标资源已经明确之后，并由 Runtime 控制面执行。</p>
+<blockquote>
+<p>Skill 描述方法，Tool 声明动作，Router 选择候选，Policy 决定许可，Human-in-the-Loop 处理无法自动决定的风险。</p>
+</blockquote>
+<h2 id="术语来源与适用范围">术语来源与适用范围</h2>
+<p>Authentication、Authorization、Delegation、Least Privilege、Policy Enforcement 和 Human-in-the-Loop 都是既有安全或自动化概念，但 Agent Runtime 没有统一的身份与权限状态机。<a href="https://www.rfc-editor.org/rfc/rfc8693.html">OAuth 2.0 Token Exchange（RFC 8693）</a> 区分 Subject 与 Actor，可以表达“Actor 代表 Subject 行动”；<a href="https://spiffe.io/docs/latest/spiffe/concepts/">SPIFFE</a> 为进程或服务提供可验证的 Workload Identity。它们分别覆盖委托授权和运行工作负载认证的一部分，但都没有定义完整的 Agent Definition、Run 或 Tool Call 身份模型。</p>
+<p><a href="https://openai.github.io/openai-agents-python/human_in_the_loop/">OpenAI Agents SDK Human-in-the-loop</a> 展示了一种明确模式：Tool 声明审批要求，Run 以 interruption 暂停，审批决定写入状态，然后恢复原 Run。<a href="https://openai.github.io/openai-agents-python/guardrails/">OpenAI Agents SDK Guardrails</a> 则说明 Guardrail 可以作用于输入、输出或 Tool 调用，但不同 Tool 类型与 Handoff 的覆盖边界并不相同。</p>
+<p>本章的风险等级、Permission Policy、Approval Request 和 Resume Token 是 Playbook 参考设计。它们说明 Runtime 必须保存哪些语义，不是某个 SDK 的原生字段或行业统一协议。</p>
+<h2 id="permissionguardrail-与-approval-不是一回事">Permission、Guardrail 与 Approval 不是一回事</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>机制</th><th>回答的问题</th><th>示例</th></tr></thead><tbody><tr><td>Authentication</td><td>每个参与主体是谁，凭什么相信</td><td>用户登录凭证、Agent 版本证明、Workload Credential</td></tr><tr><td>Authorization</td><td>是否有权对目标执行动作</td><td>能否退款 payment_9</td></tr><tr><td>Delegation</td><td>谁把哪些权限委托给谁</td><td>user_42 允许 support-agent 在本 Run 发起退款</td></tr><tr><td>Guardrail</td><td>输入、输出或调用是否满足规则</td><td>邮件正文不得包含 Secret</td></tr><tr><td>Approval</td><td>是否由有资格的人接受本次风险</td><td>财务负责人批准退款 6800 元</td></tr><tr><td>Validation</td><td>动作参数和前置条件是否仍有效</td><td>支付仍可退款、币种一致</td></tr></tbody></table>
+<p>审批不能替代权限：无权操作的人点了“同意”，动作仍不应执行。Guardrail 也不是只写一句 Prompt；如果规则必须强制执行，应落到确定性校验或 Policy Enforcement Point。</p>
+<p><img src="/playbook-images/agent/agent-identity-chain.svg" alt="用户驱动 Agent 的多重身份与委托链"></p>
+<h2 id="agent-场景不是一个身份而是一条-actor-chain">Agent 场景不是一个身份，而是一条 Actor Chain</h2>
+<p>一次 User 驱动的 Tool Call 通常涉及五个可以独立变化的主体：</p>
+<ul>
+<li><strong>User Identity</strong>：谁提出目标，原本拥有哪项业务权限。</li>
+<li><strong>Agent Definition Identity</strong>：哪个版本化 Agent、配置和发布物做出决策。</li>
+<li><strong>Run Identity</strong>：哪一次有边界的执行正在使用该委托。</li>
+<li><strong>Runtime Workload Identity</strong>：哪个可验证的进程、容器或服务实际发出网络请求。</li>
+<li><strong>Approver Identity</strong>：高风险动作由谁批准，他是否具备批准资格。</li>
+</ul>
+<p>外部系统还拥有自己的 <strong>Resource Identity</strong>：例如请求到达的是支付生产环境，而不是测试环境。认证只有同时绑定正确 Audience、Environment 和 Resource，才不会把给测试系统的凭证误用到生产系统。</p>
+<p>这里最容易误解的是“Agent Identity”。逻辑上的 <code>support-agent@7</code> 不是天然的密码学主体：一个名称和 Prompt 不能向支付系统证明身份。真正完成 mTLS 或 Token 认证的通常是 <code>agent-runtime-prod</code> 这个 Workload；Runtime 再通过签名发布记录、不可变版本摘要和 Run Trace，证明此次请求由哪个 Agent Definition 发起。</p>
+<p>因此需要同时保留两种证据：</p>
+<p><strong>代码块说明｜结构示意：</strong> 这段文本把“Agent 场景不是一个身份，而是一条 Actor Chain”中的关键对象并列出来，帮助读者识别各自责任与边界。它用于概念建模，不代表唯一的产品命名或实现结构。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Execution authentication：哪个 Workload 真的建立了连接</span></span>
+<span class="line"><span>Decision attribution：哪个 Agent Definition / Run 产生了动作决定</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>SPIFFE 等 Workload Identity 机制可以解决前者的一部分，但不会自动证明某个 Prompt、Skill 或 Agent Version 被加载；后者仍需要 Runtime 自己的发布与审计链。</p>
+<h2 id="四类常见执行关系">四类常见执行关系</h2>
+<h3 id="用户本人直接操作">用户本人直接操作</h3>
+<p>用户在产品界面中点击退款，后端代表该用户调用支付系统。这里仍有 User 与 Service 两个身份，但没有 Agent 决策者。</p>
+<h3 id="用户驱动的-agent-代表用户操作">用户驱动的 Agent 代表用户操作</h3>
+<p>用户要求客服 Agent 处理重复扣款。用户是 Subject，Agent 是当前 Actor，Runtime Workload 是技术调用方。系统既要证明用户身份，也要证明用户确实将“对 <code>payment_9</code> 退款、金额不超过 6800 元”的权限委托给这次 Run。</p>
+<h3 id="自治或定时-agent-以组织身份操作">自治或定时 Agent 以组织身份操作</h3>
+<p>夜间巡检 Agent 没有当前在线用户，不应该伪造 <code>user_id</code>。它的权限应来自 Service / Organization Principal、预先批准的 Job Policy 和有限资源范围。审计要明确写成“系统任务触发”，而不是“代表最近登录的用户”。</p>
+<h3 id="agent-向子-agent-或远程-agent-委派">Agent 向子 Agent 或远程 Agent 委派</h3>
+<p>父 Agent 只能向下传递自己的权限子集。子 Agent 的有效权限不能因为换了执行者而扩大，也不能只复制父级 Token。每次 Handoff / Agent-as-Tool 都应创建新的 Delegation Edge，绑定任务、目标、Scope 和期限。</p>
+<h2 id="用户驱动-agent-需要双重认证--委托证明">用户驱动 Agent 需要“双重认证 + 委托证明”</h2>
+<p>“双重认证”在这里不是指用户登录时的 MFA，而是至少验证两个不同主体：</p>
+<ol>
+<li><strong>验证 User</strong>：通过企业 IdP、Session、OAuth/OIDC 等确认用户身份及认证强度。</li>
+<li><strong>验证 Runtime Workload</strong>：通过 mTLS、云 Workload Identity 或 SPIFFE SVID 等确认真正发出请求的服务。</li>
+<li><strong>验证 Agent Definition</strong>：确认 Agent 版本、Tool/Skill 配置和部署摘要属于获准发布物。</li>
+<li><strong>验证 Delegation</strong>：确认该用户允许这个 Agent 在本 Run、目标资源和期限内代表自己行动。</li>
+</ol>
+<p>只有用户登录凭证，没有 Agent / Workload 身份，外部系统无法区分可信 Runtime 与窃取 Token 的其他程序；只有 Agent Service Account，没有 User 与 Delegation，系统又无法证明它为什么有权操作 <code>payment_9</code>。</p>
+<p><a href="https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693</a> 中的 <code>subject_token</code>、<code>actor_token</code> 以及签发 Token 中的 <code>sub</code> / <code>act</code> Claim 为 On-Behalf-Of 场景提供了一种标准表达。不过 RFC 并不规定 Agent Version、Run ID 和 Tool Call ID；这些仍需在 Runtime 审计上下文中记录，或通过受信任的扩展 Claim / 外部记录关联。</p>
+<h2 id="身份链参考模型">身份链参考模型</h2>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“身份链参考模型”落成可检查的结构化记录，主要字段包括 <code>actor_chain</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">actor_chain</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  subject</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">user</span></span>
+<span class="line"><span style="color:#85E89D">    id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">user_42</span></span>
+<span class="line"><span style="color:#85E89D">    issuer</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">https://id.example.com</span></span>
+<span class="line"><span style="color:#85E89D">    authentication_time</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2026-08-12T13:10:00+08:00</span></span>
+<span class="line"><span style="color:#85E89D">    authentication_strength</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">phishing_resistant_mfa</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  actors</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">agent_definition</span></span>
+<span class="line"><span style="color:#85E89D">      id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">support-agent@7</span></span>
+<span class="line"><span style="color:#85E89D">      artifact_digest</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">sha256:agent...</span></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">run</span></span>
+<span class="line"><span style="color:#85E89D">      id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">run_128</span></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#85E89D">type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">workload</span></span>
+<span class="line"><span style="color:#85E89D">      id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">spiffe://example.com/prod/agent-runtime</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  delegation</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    grant_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">grant_73</span></span>
+<span class="line"><span style="color:#85E89D">    delegated_by</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">user_42</span></span>
+<span class="line"><span style="color:#85E89D">    delegated_to</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">support-agent@7</span></span>
+<span class="line"><span style="color:#85E89D">    scopes</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">payments.refund</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#85E89D">    resource_scope</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">payment_9</span></span>
+<span class="line"><span style="color:#85E89D">    constraints</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      max_amount</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">6800</span></span>
+<span class="line"><span style="color:#85E89D">      currency</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">CNY</span></span>
+<span class="line"><span style="color:#85E89D">    expires_at</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2026-08-12T14:00:00+08:00</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  audience</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">payments-prod</span></span>
+<span class="line"></span></code></pre>
+<p><code>actor_chain</code>、<code>agent_definition</code>、<code>run</code> 和 <code>delegation</code> 的组合是本 Playbook 的参考审计模型，不是 OAuth Token 或 SPIFFE SVID 的标准格式。生产实现可以让 Token 只携带必要 Claim，把完整链条保存在不可篡改的授权与审计系统中，以避免 Token 过大或泄露内部结构。</p>
+<h2 id="有效权限取身份链的交集">有效权限取身份链的交集</h2>
+<p>User 驱动 Agent 的有效权限不应该等于用户权限，也不应该等于 Runtime Service Account 的权限上限，而是多层限制的交集：</p>
+<p><strong>代码块说明｜关系式：</strong> 这段表达式把“有效权限取身份链的交集”压缩成便于比较的组成关系。它是分析模型，不是可执行代码，也不是要求实现者采用的行业标准公式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Effective Permission</span></span>
+<span class="line"><span>  = User Entitlement</span></span>
+<span class="line"><span>  ∩ Agent Allowed Capabilities</span></span>
+<span class="line"><span>  ∩ Delegation Grant for this Run</span></span>
+<span class="line"><span>  ∩ Runtime Workload Permission</span></span>
+<span class="line"><span>  ∩ Resource / Environment Policy</span></span>
+<span class="line"><span>  ∩ Current Approval Scope</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>这个公式是 Playbook 的分析表达，不是标准授权算法。它强调任何一层收窄都必须生效：用户有全额退款权，不代表 Agent 被允许使用；Runtime 技术上能访问所有支付，也不能突破用户只对 <code>payment_9</code> 的委托；审批只接受本次风险，不能把原本没有的基础权限凭空增加出来。</p>
+<h2 id="身份必须在每个信任边界重新验证">身份必须在每个信任边界重新验证</h2>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“身份必须在每个信任边界重新验证”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>User → Product UI：验证 User Session 与认证强度</span></span>
+<span class="line"><span>UI → Agent Runtime：绑定 User、Goal、Run 与 Delegation Grant</span></span>
+<span class="line"><span>Runtime → Tool Executor：验证 Agent Version、Policy 与 Tool Call</span></span>
+<span class="line"><span>Executor → External System：使用面向目标 Audience 的短期凭证</span></span>
+<span class="line"><span>Parent Agent → Child Agent：衰减 Scope，建立新的 Delegation Edge</span></span>
+<span class="line"><span>Approver → Runtime：验证审批人身份、角色与参数摘要</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>身份链不是由上游传来一个 <code>X-User-Id</code> Header 就算完成。每跨越一个信任域，都应验证签发者、签名、Audience、有效期和防重放条件，并决定是否信任上游提供的 Agent / Run Claim。</p>
+<h2 id="不要让全能-service-account-吞掉身份语义">不要让全能 Service Account 吞掉身份语义</h2>
+<p>如果所有 Agent 都共享一个全能 Service Account，外部系统看到的只是“平台管理员”，无法表达用户和任务边界。更安全的做法是使用短期、降权、带 Audience 和 Scope 的凭证，并把代表关系记录进审计：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“不要让全能 Service Account 吞掉身份语义”落成可检查的结构化记录，主要字段包括 <code>delegation_context</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">delegation_context</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  user_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">user_42</span></span>
+<span class="line"><span style="color:#85E89D">  agent_definition_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">support-agent@7</span></span>
+<span class="line"><span style="color:#85E89D">  run_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">run_128</span></span>
+<span class="line"><span style="color:#85E89D">  workload_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">spiffe://example.com/prod/agent-runtime</span></span>
+<span class="line"><span style="color:#85E89D">  grant_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">grant_73</span></span>
+<span class="line"><span style="color:#85E89D">  scopes</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">payments.refund</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#85E89D">  resource_scope</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">payment_9</span></span>
+<span class="line"><span style="color:#85E89D">  expires_at</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2026-08-12T14:00:00+08:00</span></span>
+<span class="line"></span></code></pre>
+<p>这份精简的 <code>delegation_context</code> 同样是参考审计模型，不是 OAuth 标准 Token 格式。真实系统可以用 OAuth Token Exchange、云 IAM、SPIFFE 或内部 Capability Token 组合实现，但不要让模型看到原始凭证。</p>
+<p><img src="/playbook-images/agent/permission-effect-flow.svg" alt="权限检查、审批与副作用提交"></p>
+<h2 id="动作风险分级">动作风险分级</h2>
+<p>风险不是 Tool 的永久常数，同一个 Tool 会因参数、对象和环境变化：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>等级</th><th>典型动作</th><th>默认处理</th></tr></thead><tbody><tr><td>R0：只读低敏</td><td>读取公开文档</td><td>自动执行，记录 Trace</td></tr><tr><td>R1：可恢复局部写</td><td>修改隔离 Workspace 文件</td><td>Policy 自动允许，可撤销</td></tr><tr><td>R2：外部可见或敏感</td><td>发单封邮件、改共享任务</td><td>参数预览，按策略审批</td></tr><tr><td>R3：财务/生产/批量</td><td>退款、生产发布、群发</td><td>强审批、职责分离、重新验证</td></tr><tr><td>R4：禁止或不可委托</td><td>导出 Secret、绕过审计</td><td>拒绝，不提供审批绕过</td></tr></tbody></table>
+<p>该分级是本 Playbook 的示例，不是行业标准。实现时应结合影响范围、可逆性、数据敏感度、金额、环境和受众计算风险。</p>
+<h2 id="permission-policy-示例">Permission Policy 示例</h2>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“Permission Policy 示例”落成可检查的结构化记录，主要字段包括 <code>policy</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">policy</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  policy_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">refund-v4</span></span>
+<span class="line"><span style="color:#85E89D">  match</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    tool</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">create_refund</span></span>
+<span class="line"><span style="color:#85E89D">    environment</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">production</span></span>
+<span class="line"><span style="color:#85E89D">  rules</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#85E89D">when</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">amount &#x3C;= 10000 and user.has_scope("payments.refund")</span></span>
+<span class="line"><span style="color:#85E89D">      decision</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">require_approval</span></span>
+<span class="line"><span style="color:#85E89D">      approver_role</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">finance_operator</span></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#85E89D">when</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">amount > 10000</span></span>
+<span class="line"><span style="color:#85E89D">      decision</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">require_approval</span></span>
+<span class="line"><span style="color:#85E89D">      approver_role</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">finance_manager</span></span>
+<span class="line"><span style="color:#85E89D">      require_separation_of_duties</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#E1E4E8">    - </span><span style="color:#85E89D">when</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">currency != payment.currency</span></span>
+<span class="line"><span style="color:#85E89D">      decision</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">deny</span></span>
+<span class="line"></span></code></pre>
+<p>这里的表达式语言是说明性的。生产 Policy Engine 需要确定性求值、版本化、测试和默认拒绝；模型可以提供分类信号，但不应成为高风险授权的唯一裁决者。</p>
+<h2 id="审批请求必须描述将要发生的动作">审批请求必须描述将要发生的动作</h2>
+<p>“Agent 请求继续，是否同意？”不是有效审批。请求至少应包含：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“审批请求必须描述将要发生的动作”落成可检查的结构化记录，主要字段包括 <code>approval_request</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">approval_request</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  approval_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">apr_39</span></span>
+<span class="line"><span style="color:#85E89D">  run_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">run_128</span></span>
+<span class="line"><span style="color:#85E89D">  tool_call_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">call_81</span></span>
+<span class="line"><span style="color:#85E89D">  action</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">create_refund</span></span>
+<span class="line"><span style="color:#85E89D">  target</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">payment_9</span></span>
+<span class="line"><span style="color:#85E89D">  parameter_digest</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">sha256:51a...</span></span>
+<span class="line"><span style="color:#85E89D">  preview</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    amount</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">6800</span></span>
+<span class="line"><span style="color:#85E89D">    currency</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">CNY</span></span>
+<span class="line"><span style="color:#85E89D">    reason</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">重复扣款</span></span>
+<span class="line"><span style="color:#85E89D">  risk</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">R3</span></span>
+<span class="line"><span style="color:#85E89D">  policy_version</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">refund-v4</span></span>
+<span class="line"><span style="color:#85E89D">  expires_at</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2026-08-12T14:00:00+08:00</span></span>
+<span class="line"></span></code></pre>
+<p>批准应绑定不可变参数摘要。审批后如果 Agent 把 6800 改成 68000、改变收件人或环境，原批准必须失效并重新请求。</p>
+<h2 id="approval-是可恢复协议状态">Approval 是可恢复协议状态</h2>
+<p><strong>代码块说明｜层级示意：</strong> 这段文本图按缩进和树枝符号阅读，用来展开“Approval 是可恢复协议状态”中的父子关系与归属边界。它描述的是逻辑结构，不要求数据库或服务按同样层级拆分。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>RUNNING</span></span>
+<span class="line"><span>   ↓ policy: approval required</span></span>
+<span class="line"><span>WAITING_APPROVAL</span></span>
+<span class="line"><span>   ├─ reject / expire → RUNNING with rejection observation 或终止</span></span>
+<span class="line"><span>   └─ approve</span></span>
+<span class="line"><span>          ↓ revalidate identity + parameters + external preconditions</span></span>
+<span class="line"><span>       RUNNING → execute exact Tool Call</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>等待期间 Worker 可以释放，但 Run、Tool Call、参数摘要、Policy 版本和审批上下文必须持久化。恢复时不能只依赖一条聊天消息“已同意”。</p>
+<p><code>WAITING_APPROVAL</code> 是本 Playbook 的语义名称；具体 Runtime 可能使用 interruption、input required 或 suspended。关键是审批成为可序列化、可过期、可审计的状态转换。</p>
+<h2 id="拒绝不是-tool-故障">拒绝不是 Tool 故障</h2>
+<p>用户拒绝表示这条执行路径没有授权，不代表外部服务出错。Runtime 应把它作为结构化 Observation 返回给 Agent：</p>
+<p><strong>代码块说明｜Playbook 参考 Schema：</strong> 这段 YAML 把“拒绝不是 Tool 故障”落成可检查的结构化记录，主要字段包括 <code>approval_result</code>。除非正文另有说明，字段名和示例值用于解释设计语义，不是某个外部协议的标准格式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">approval_result</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  decision</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">rejected</span></span>
+<span class="line"><span style="color:#85E89D">  reason_code</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">user_declined</span></span>
+<span class="line"><span style="color:#85E89D">  tool_call_id</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">call_81</span></span>
+<span class="line"><span style="color:#85E89D">  reusable</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">false</span></span>
+<span class="line"></span></code></pre>
+<p>Agent 可以提供草稿、建议其他无副作用方案或结束任务；不能改名、拆分参数后偷偷重试同一动作。</p>
+<h2 id="secret-不进入不必要的-context">Secret 不进入不必要的 Context</h2>
+<p>模型通常只需要知道“凭证可用”和它允许的 Scope，而不需要看到 Token 内容：</p>
+<p><strong>代码块说明｜流程示意：</strong> 这段文本图按箭头方向阅读，用来说明“Secret 不进入不必要的 Context”中的执行顺序、状态变化或责任流转。它表达逻辑关系，不代表组件必须按图中的数量和位置部署。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Model generates Tool Call without credential</span></span>
+<span class="line"><span>              ↓</span></span>
+<span class="line"><span>Runtime validates identity and policy</span></span>
+<span class="line"><span>              ↓</span></span>
+<span class="line"><span>Credential Broker issues short-lived secret</span></span>
+<span class="line"><span>              ↓</span></span>
+<span class="line"><span>Executor injects credential out of model context</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Trace 中也应记录 Credential Reference、Scope 和签发结果，而不是 Secret 本身。向子 Agent 委派时重新计算最小权限，不应复制父 Agent 的全部凭证。</p>
+<h2 id="human-in-the-loop-不只用于批准">Human-in-the-Loop 不只用于批准</h2>
+<p>人工介入还可能承担：补充缺失输入、选择歧义方案、核实身份、编辑参数和接管任务。协议应区分 <code>approval_required</code>、<code>input_required</code>、<code>review_required</code> 与 <code>takeover_required</code>，因为它们的 UI、权限和恢复语义不同。这组名称仍属于参考分类。</p>
+<h2 id="本章检查">本章检查</h2>
+<ul>
+<li>Authentication、Delegation、Authorization、Guardrail、Approval 是否分开。</li>
+<li>User、Agent Definition、Run、Runtime Workload 与 Approver Identity 是否可以审计关联。</li>
+<li>是否同时保留 Workload 的执行认证和 Agent Definition 的决策归因证据。</li>
+<li>用户驱动 Agent 是否验证 User、Workload、Agent Version 与 Delegation Grant。</li>
+<li>自治 Agent 是否使用明确的组织或服务身份，而不是伪造用户身份。</li>
+<li>子 Agent 是否只获得衰减后的权限，并建立新的 Delegation Edge。</li>
+<li>有效权限是否取用户权限、Agent 能力、委托、Workload 权限与 Policy 的交集。</li>
+<li>风险是否结合真实参数、资源、环境和可逆性计算。</li>
+<li>高风险 Policy 是否确定性求值、版本化并默认拒绝。</li>
+<li>Approval 是否绑定 Tool Call 与参数摘要，并设置有效期。</li>
+<li>Resume 前是否重新验证身份、权限和外部前置条件。</li>
+<li>拒绝是否作为正式结果处理，而不是被 Agent 绕过。</li>
+<li>Secret 是否由 Executor 注入，并从 Context、Artifact 和 Trace 中剔除。</li>
+</ul> </article> <nav class="chapter-nav" aria-label="章节导航" data-astro-cid-jojupagh> <a href="/playbook/agent/17-capability-routing" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>← 上一章</span> <strong data-astro-cid-jojupagh>Router 与能力发现</strong> </a> <a class="next" href="/playbook/agent/19-side-effects" data-astro-cid-jojupagh> <span data-astro-cid-jojupagh>下一章 →</span> <strong data-astro-cid-jojupagh>副作用、幂等、事务与补偿</strong> </a> </nav> </section> <aside class="page-index" aria-label="本章目录" data-astro-cid-jojupagh> <h2 data-astro-cid-jojupagh>本章目录</h2> <nav data-astro-cid-jojupagh> <a href="#术语来源与适用范围" data-heading="术语来源与适用范围" data-depth="2" data-astro-cid-jojupagh>术语来源与适用范围</a><a href="#permissionguardrail-与-approval-不是一回事" data-heading="permissionguardrail-与-approval-不是一回事" data-depth="2" data-astro-cid-jojupagh>Permission、Guardrail 与 Approval 不是一回事</a><a href="#agent-场景不是一个身份而是一条-actor-chain" data-heading="agent-场景不是一个身份而是一条-actor-chain" data-depth="2" data-astro-cid-jojupagh>Agent 场景不是一个身份，而是一条 Actor Chain</a><a href="#四类常见执行关系" data-heading="四类常见执行关系" data-depth="2" data-astro-cid-jojupagh>四类常见执行关系</a><a href="#用户本人直接操作" data-heading="用户本人直接操作" data-depth="3" data-astro-cid-jojupagh>用户本人直接操作</a><a href="#用户驱动的-agent-代表用户操作" data-heading="用户驱动的-agent-代表用户操作" data-depth="3" data-astro-cid-jojupagh>用户驱动的 Agent 代表用户操作</a><a href="#自治或定时-agent-以组织身份操作" data-heading="自治或定时-agent-以组织身份操作" data-depth="3" data-astro-cid-jojupagh>自治或定时 Agent 以组织身份操作</a><a href="#agent-向子-agent-或远程-agent-委派" data-heading="agent-向子-agent-或远程-agent-委派" data-depth="3" data-astro-cid-jojupagh>Agent 向子 Agent 或远程 Agent 委派</a><a href="#用户驱动-agent-需要双重认证--委托证明" data-heading="用户驱动-agent-需要双重认证--委托证明" data-depth="2" data-astro-cid-jojupagh>用户驱动 Agent 需要“双重认证 + 委托证明”</a><a href="#身份链参考模型" data-heading="身份链参考模型" data-depth="2" data-astro-cid-jojupagh>身份链参考模型</a><a href="#有效权限取身份链的交集" data-heading="有效权限取身份链的交集" data-depth="2" data-astro-cid-jojupagh>有效权限取身份链的交集</a><a href="#身份必须在每个信任边界重新验证" data-heading="身份必须在每个信任边界重新验证" data-depth="2" data-astro-cid-jojupagh>身份必须在每个信任边界重新验证</a><a href="#不要让全能-service-account-吞掉身份语义" data-heading="不要让全能-service-account-吞掉身份语义" data-depth="2" data-astro-cid-jojupagh>不要让全能 Service Account 吞掉身份语义</a><a href="#动作风险分级" data-heading="动作风险分级" data-depth="2" data-astro-cid-jojupagh>动作风险分级</a><a href="#permission-policy-示例" data-heading="permission-policy-示例" data-depth="2" data-astro-cid-jojupagh>Permission Policy 示例</a><a href="#审批请求必须描述将要发生的动作" data-heading="审批请求必须描述将要发生的动作" data-depth="2" data-astro-cid-jojupagh>审批请求必须描述将要发生的动作</a><a href="#approval-是可恢复协议状态" data-heading="approval-是可恢复协议状态" data-depth="2" data-astro-cid-jojupagh>Approval 是可恢复协议状态</a><a href="#拒绝不是-tool-故障" data-heading="拒绝不是-tool-故障" data-depth="2" data-astro-cid-jojupagh>拒绝不是 Tool 故障</a><a href="#secret-不进入不必要的-context" data-heading="secret-不进入不必要的-context" data-depth="2" data-astro-cid-jojupagh>Secret 不进入不必要的 Context</a><a href="#human-in-the-loop-不只用于批准" data-heading="human-in-the-loop-不只用于批准" data-depth="2" data-astro-cid-jojupagh>Human-in-the-Loop 不只用于批准</a><a href="#本章检查" data-heading="本章检查" data-depth="2" data-astro-cid-jojupagh>本章检查</a> </nav> </aside> </div> </div> <div class="selection-share" data-selection-share data-content-selector=".chapter-content" data-title="Identity、Permission、Guardrail 与 Human-in-the-Loop" data-author="Agent Engineering / IMCODERS" data-section="AGENT ENGINEERING PLAYBOOK" data-url="https://imcoders.cn/playbook/agent/18-permission-hitl/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>    </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

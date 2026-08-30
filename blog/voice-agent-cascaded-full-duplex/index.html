@@ -1,0 +1,489 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>语音 Agent 的双工，不等于原生双工 - 杨正武</title><meta name="description" content="结合最近一个项目的实时语音实践，拆解 WebSocket 全双工、ASR / Agent / TTS 级联、VAD 与 Barge-in，并说明它和原生 Audio-to-Audio 双工模型的真正区别。"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="语音 Agent 的双工，不等于原生双工 - 杨正武"><meta property="og:description" content="结合最近一个项目的实时语音实践，拆解 WebSocket 全双工、ASR / Agent / TTS 级联、VAD 与 Barge-in，并说明它和原生 Audio-to-Audio 双工模型的真正区别。"><meta property="og:url" content="https://imcoders.cn/blog/voice-agent-cascaded-full-duplex/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="语音 Agent 的双工，不等于原生双工 - 杨正武"><meta name="twitter:description" content="结合最近一个项目的实时语音实践，拆解 WebSocket 全双工、ASR / Agent / TTS 级联、VAD 与 Barge-in，并说明它和原生 Audio-to-Audio 双工模型的真正区别。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="语音 Agent 的双工，不等于原生双工 - 杨正武"><meta itemprop="description" content="结合最近一个项目的实时语音实践，拆解 WebSocket 全双工、ASR / Agent / TTS 级联、VAD 与 Barge-in，并说明它和原生 Audio-to-Audio 双工模型的真正区别。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "语音 Agent 的双工，不等于原生双工 - 杨正武";
+const shareDesc = "结合最近一个项目的实时语音实践，拆解 WebSocket 全双工、ASR / Agent / TTS 级联、VAD 与 Barge-in，并说明它和原生 Audio-to-Audio 双工模型的真正区别。";
+const shareLink = "https://imcoders.cn/blog/voice-agent-cascaded-full-duplex/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.DUPo9LDV.css"><script type="module" src="/_astro/hoisted.D20CsQCG.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/blog" aria-current="page">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <script>(function(){const shareText = "结合最近一个项目的实时语音实践，拆解 WebSocket 全双工、ASR / Agent / TTS...\n\nhttps://imcoders.cn/blog/voice-agent-cascaded-full-duplex/";
+const shareUrl = "https://imcoders.cn/blog/voice-agent-cascaded-full-duplex/";
+const wechatTitle = "语音 Agent 的双工，不等于原生双工";
+const wechatDescription = "结合最近一个项目的实时语音实践，拆解 WebSocket 全双工、ASR / Agent / TTS 级联、VAD 与 Barge-in，并说明它和原生 Audio-to-Audio 双工模型的真正区别。";
+const wechatAuthor = "杨正武";
+const wechatDate = "2026年8月10日";
+
+    window.shareArticle = async function () {
+      const button = document.querySelector('.share-button');
+      try {
+        await navigator.clipboard.writeText(shareText);
+        if (!button) return;
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> 已复制';
+        button.classList.add('copied');
+        window.setTimeout(() => {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+      } catch (error) {
+        console.error('复制失败', error);
+        window.prompt('请复制下面的分享内容', shareText);
+      }
+    };
+
+    const wechatCopiedProperties = [
+      'color', 'background-color', 'font-family', 'font-size', 'font-weight', 'font-style',
+      'line-height', 'letter-spacing', 'text-align', 'text-decoration', 'text-indent',
+      'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
+      'padding-top', 'padding-right', 'padding-bottom', 'padding-left',
+      'border-top', 'border-right', 'border-bottom', 'border-left', 'border-radius',
+      'display', 'vertical-align',
+      'white-space', 'list-style-type', 'border-collapse', 'overflow-wrap', 'word-break'
+    ];
+
+    const canonicalizeWechatUrl = function (value) {
+      if (!value) return value;
+      try {
+        return new URL(value, shareUrl).href;
+      } catch {
+        return value;
+      }
+    };
+
+    window.buildWechatRichText = function () {
+      const article = document.querySelector('.article-content');
+      if (!article) throw new Error('article content not found');
+
+      const clone = article.cloneNode(true);
+      const sourceNodes = [article, ...article.querySelectorAll('*')];
+      const cloneNodes = [clone, ...clone.querySelectorAll('*')];
+
+      sourceNodes.forEach((sourceNode, index) => {
+        const targetNode = cloneNodes[index];
+        if (!(sourceNode instanceof Element) || !(targetNode instanceof Element)) return;
+
+        const computed = getComputedStyle(sourceNode);
+        const inlineStyles = wechatCopiedProperties
+          .map((property) => `${property}:${computed.getPropertyValue(property)};`)
+          .join('');
+
+        targetNode.setAttribute('style', inlineStyles);
+        targetNode.removeAttribute('id');
+        targetNode.removeAttribute('class');
+        [...targetNode.attributes].forEach((attribute) => {
+          if (attribute.name.startsWith('data-') || attribute.name.startsWith('aria-')) {
+            targetNode.removeAttribute(attribute.name);
+          }
+        });
+
+        if (sourceNode instanceof HTMLImageElement && targetNode instanceof HTMLImageElement) {
+          const rawSource = sourceNode.getAttribute('src') || sourceNode.currentSrc || sourceNode.src;
+          targetNode.setAttribute('src', canonicalizeWechatUrl(rawSource));
+          targetNode.removeAttribute('srcset');
+          targetNode.removeAttribute('sizes');
+          targetNode.removeAttribute('loading');
+          targetNode.removeAttribute('decoding');
+          targetNode.setAttribute('style', `${inlineStyles}display:block;width:100%;max-width:100%;height:auto;margin-left:auto;margin-right:auto;`);
+        }
+
+        if (sourceNode instanceof HTMLAnchorElement && targetNode instanceof HTMLAnchorElement) {
+          targetNode.setAttribute('href', canonicalizeWechatUrl(sourceNode.getAttribute('href') || sourceNode.href));
+          targetNode.removeAttribute('target');
+          targetNode.removeAttribute('rel');
+        }
+      });
+
+      clone.querySelectorAll('script, style, iframe, button, form, input, textarea, select').forEach((node) => node.remove());
+
+      // 微信编辑器的内容栏比桌面文章窄。不要保留桌面布局计算出的固定宽高，
+      // 否则图片缩小后父元素仍会占据原高度，文字换行后也可能互相覆盖。
+      clone.querySelectorAll('p').forEach((paragraph) => {
+        const onlyChild = paragraph.children.length === 1 ? paragraph.firstElementChild : null;
+        if (onlyChild instanceof HTMLImageElement && !paragraph.textContent?.trim()) {
+          paragraph.setAttribute('style', 'margin:24px 0 12px;padding:0;line-height:0;');
+        }
+      });
+
+      clone.querySelectorAll('img').forEach((image) => {
+        image.style.display = 'block';
+        image.style.width = '100%';
+        image.style.maxWidth = '100%';
+        image.style.height = 'auto';
+        image.style.marginLeft = 'auto';
+        image.style.marginRight = 'auto';
+      });
+
+      clone.querySelectorAll('pre').forEach((pre) => {
+        pre.style.display = 'block';
+        pre.style.width = 'auto';
+        pre.style.maxWidth = '100%';
+        pre.style.whiteSpace = 'pre-wrap';
+        pre.style.wordBreak = 'break-word';
+        pre.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('pre code').forEach((code) => {
+        code.style.whiteSpace = 'pre-wrap';
+        code.style.wordBreak = 'break-word';
+        code.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('table').forEach((table) => {
+        table.style.display = 'table';
+        table.style.width = '100%';
+        table.style.maxWidth = '100%';
+        table.style.tableLayout = 'fixed';
+        table.style.borderCollapse = 'collapse';
+      });
+
+      clone.querySelectorAll('th, td').forEach((cell) => {
+        cell.style.minWidth = '0';
+        cell.style.wordBreak = 'break-word';
+        cell.style.overflowWrap = 'anywhere';
+        cell.style.verticalAlign = 'top';
+      });
+
+      const wrapper = document.createElement('section');
+      wrapper.setAttribute('style', 'box-sizing:border-box;width:100%;max-width:100%;margin:0;padding:32px 26px;background-color:#111016;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+
+      const header = document.createElement('header');
+      header.setAttribute('style', 'margin:0 0 34px;padding:0 0 24px;border-bottom:2px solid #e23c3e;');
+
+      const title = document.createElement('h1');
+      title.textContent = wechatTitle;
+      title.setAttribute('style', 'margin:0 0 18px;color:#f1ece2;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:30px;font-weight:800;line-height:1.25;letter-spacing:-0.5px;');
+
+      const description = document.createElement('p');
+      description.textContent = wechatDescription;
+      description.setAttribute('style', 'margin:0 0 16px;color:#a9a3a8;font-size:16px;line-height:1.75;');
+
+      const meta = document.createElement('p');
+      meta.textContent = `${wechatAuthor} · ${wechatDate}`;
+      meta.setAttribute('style', 'margin:0;color:#e23c3e;font-size:13px;font-weight:700;line-height:1.6;letter-spacing:0.5px;');
+
+      header.append(title, description, meta);
+      clone.setAttribute('style', 'width:auto;max-width:100%;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+      wrapper.append(header, clone);
+
+      return {
+        html: wrapper.outerHTML,
+        text: `${wechatTitle}\n\n${wechatDescription}\n\n${wechatAuthor} · ${wechatDate}\n\n${article.innerText}`
+      };
+    };
+
+    const setWechatCopyFeedback = function (button, message, isError = false) {
+      if (!button) return;
+      const original = button.dataset.originalHtml || button.innerHTML;
+      button.dataset.originalHtml = original;
+      button.innerHTML = isError
+        ? `<i class="fas fa-exclamation-circle" aria-hidden="true"></i> ${message}`
+        : `<i class="fas fa-check" aria-hidden="true"></i> ${message}`;
+      button.classList.toggle('copy-error', isError);
+      button.classList.toggle('copied', !isError);
+      window.setTimeout(() => {
+        button.innerHTML = original;
+        button.classList.remove('copied', 'copy-error');
+      }, 2600);
+    };
+
+    window.copyArticleToWechat = async function () {
+      const button = document.querySelector('.wechat-copy-button');
+      try {
+        const payload = window.buildWechatRichText();
+        if (navigator.clipboard?.write && window.ClipboardItem && window.isSecureContext) {
+          await navigator.clipboard.write([new ClipboardItem({
+            'text/html': new Blob([payload.html], { type: 'text/html' }),
+            'text/plain': new Blob([payload.text], { type: 'text/plain' })
+          })]);
+        } else {
+          const holder = document.createElement('div');
+          holder.contentEditable = 'true';
+          holder.style.position = 'fixed';
+          holder.style.left = '-99999px';
+          holder.style.top = '0';
+          holder.innerHTML = payload.html;
+          document.body.appendChild(holder);
+
+          const range = document.createRange();
+          range.selectNodeContents(holder);
+          const selection = window.getSelection();
+          selection?.removeAllRanges();
+          selection?.addRange(range);
+          const copied = document.execCommand('copy');
+          selection?.removeAllRanges();
+          holder.remove();
+          if (!copied) throw new Error('copy command failed');
+        }
+        setWechatCopyFeedback(button, '已复制到公众号');
+      } catch (error) {
+        console.error('复制公众号富文本失败', error);
+        setWechatCopyFeedback(button, '复制失败', true);
+      }
+    };
+  })();</script>  <article class="article-page" data-astro-cid-4sn4zg3r> <header class="article-hero" data-astro-cid-4sn4zg3r> <div class="article-hero-grid" data-astro-cid-4sn4zg3r> <div class="article-kind" data-astro-cid-4sn4zg3r>TECHNICAL ARTICLE</div> <div class="article-heading" data-astro-cid-4sn4zg3r> <h1 class="article-title" data-astro-cid-4sn4zg3r>语音 Agent 的双工，不等于原生双工</h1> <p class="article-description" data-astro-cid-4sn4zg3r>结合最近一个项目的实时语音实践，拆解 WebSocket 全双工、ASR / Agent / TTS 级联、VAD 与 Barge-in，并说明它和原生 Audio-to-Audio 双工模型的真正区别。</p> </div> </div> </header> <div class="reader-grid" data-astro-cid-4sn4zg3r> <aside class="article-meta" aria-label="文章信息" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>文章信息</h2> <dl class="meta-list" data-astro-cid-4sn4zg3r> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>发布日期</dt> <dd data-astro-cid-4sn4zg3r><time datetime="2026-08-10T00:00:00.000Z" data-astro-cid-4sn4zg3r>2026年8月10日</time></dd> </div> <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>作者</dt><dd data-astro-cid-4sn4zg3r>杨正武</dd></div> <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>预计阅读</dt><dd data-astro-cid-4sn4zg3r>11 分钟</dd></div> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>标签</dt> <dd class="article-tags" data-astro-cid-4sn4zg3r><span class="article-tag" data-astro-cid-4sn4zg3r>Voice Agent</span><span class="article-tag" data-astro-cid-4sn4zg3r>全双工</span><span class="article-tag" data-astro-cid-4sn4zg3r>Barge-in</span><span class="article-tag" data-astro-cid-4sn4zg3r>WebSocket</span><span class="article-tag" data-astro-cid-4sn4zg3r>Agent Engineering</span></dd> </div> </dl> <div class="article-actions" data-astro-cid-4sn4zg3r> <button class="wechat-copy-button" type="button" onclick="copyArticleToWechat()" data-astro-cid-4sn4zg3r> <i class="fab fa-weixin" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 复制到公众号
+</button> <button class="share-button" type="button" onclick="shareArticle()" data-astro-cid-4sn4zg3r> <i class="fas fa-share-alt" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 分享文章
+</button> </div> </aside> <main class="article-content" data-astro-cid-4sn4zg3r> <p>最近在一个项目里设计实时语音对话能力时，我们遇到了一个看似简单、实际很容易说不清楚的问题：</p>
+<blockquote>
+<p>使用 ASR、Agent 和 TTS 级联出来的语音对话，到底算不算双工？它和模型原生的语音双工又有什么区别？</p>
+</blockquote>
+<p>如果只看产品体验，用户可以在 Agent 说话时继续开口，系统能立刻停止播放、取消当前生成并开始听新的问题，这当然已经具备双工对话最重要的特征。</p>
+<p>但如果只看模型链路，声音先被识别成文字，文字交给 Agent 推理，回答再经过 TTS 变成声音，它又明显不是端到端的 Audio-to-Audio。</p>
+<p>这两个判断并不矛盾。更准确的结论是：</p>
+<blockquote>
+<p><strong>这套设计采用的是级联式应用层全双工语音架构，而不是原生端到端语音双工模型。</strong></p>
+</blockquote>
+<p>“全双工”和“原生双工”描述的不是同一个层面。前者主要回答输入与输出能不能同时发生、用户能不能自然打断；后者回答模型是否直接理解和生成音频。</p>
+<h2 id="先把双工拆成四个层次">先把“双工”拆成四个层次</h2>
+<p>很多语音产品说自己支持双工，但“双工”至少可能指四件不同的事。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>层次</th><th>关注的问题</th><th>当前项目的实现</th></tr></thead><tbody><tr><td>传输层</td><td>上行与下行数据能否同时传输</td><td>浏览器与后端使用全双工 WebSocket</td></tr><tr><td>流式处理层</td><td>ASR、Agent、TTS 能否边输入边输出</td><td>ASR 流式转写，Agent 流式生成，TTS 流式返回 PCM</td></tr><tr><td>交互层</td><td>Agent 播放时用户能否继续说话和打断</td><td>持续录音 + Local VAD + Barge-in</td></tr><tr><td>模型层</td><td>模型是否直接消费和生成音频</td><td>否，仍然是 ASR → Agent → TTS 级联</td></tr></tbody></table>
+<p>因此，判断一个语音系统是不是双工，不能只看它是否使用名为 <code>bidirection</code> 的接口，也不能只看它是不是 Audio-to-Audio 模型。</p>
+<p>一个系统完全可能在传输层和交互层实现真正的全双工，同时在模型层保持级联。这正是这个项目当前选择的路线。</p>
+<h2 id="整体架构三条实时链路由-voicesession-编排">整体架构：三条实时链路由 VoiceSession 编排</h2>
+<p>这套语音链路由浏览器、FastAPI 语音编排层和语音服务三部分组成。</p>
+<p><img src="/blog-images/voice-agent-conversation-architecture.svg" alt="Voice Agent 级联式全双工语音对话架构"></p>
+<p><em>麦克风 PCM 上行和 TTS PCM 下行可以并发；VoiceSession 负责状态、轮次、取消和 ASR / TTS 生命周期。</em></p>
+<h3 id="浏览器不是一个被动播放器">浏览器不是一个被动播放器</h3>
+<p>浏览器同时承担录音、预处理、本地语音检测和音频播放：</p>
+<ul>
+<li>Web Audio 获取麦克风输入，并将设备原生采样率重采样为 PCM16 mono 16kHz；</li>
+<li>音频以 20ms 小帧持续发送，后端聚合成 200ms 数据块交给 ASR；</li>
+<li>下行 PCM16 24kHz 使用播放时间游标连续排程，减少片段之间的空隙和爆音；</li>
+<li>即使 Agent 正在播放回复，麦克风仍然保持采集；</li>
+<li>Local VAD 检测到用户重新开口后，立即触发打断。</li>
+</ul>
+<p>浏览器与 FastAPI 之间只需要一条 WebSocket。二进制帧承载上下行 PCM，JSON 承载 <code>voice.start</code>、状态变化、转写事件、Agent 文本增量和 <code>playback.clear</code> 等控制消息。</p>
+<p>这条连接在传输意义上是真正的全双工：麦克风音频上行时，下行语音与控制消息仍然可以同时到达。</p>
+<h3 id="voicesession-是语音系统真正的控制中心">VoiceSession 是语音系统真正的控制中心</h3>
+<p>语音体验并不是把 ASR、LLM 和 TTS 三个 API 串起来就结束了。真正决定对话是否自然的，是中间的 VoiceSession。</p>
+<p>它需要同时维护：</p>
+<ul>
+<li><code>idle</code>、<code>listening</code>、<code>thinking</code>、<code>speaking</code> 等会话状态；</li>
+<li>当前轮次和 Turn Lock，避免两个回答交叉执行；</li>
+<li>ASR 流、Agent task、TTS pump 和 TTS Session 的生命周期；</li>
+<li>VAD 事件、partial transcript 与 idle commit；</li>
+<li>当前播放是否需要清空，以及哪些异步任务必须被取消；</li>
+<li>文字聊天和语音聊天共用的 <code>session_id</code>、消息时间线和用量记录。</li>
+</ul>
+<p>换句话说，VoiceSession 不是一个简单的 WebSocket Handler，而是一套面向实时语音的任务编排器。</p>
+<h2 id="一次语音轮次是怎样流动的">一次语音轮次是怎样流动的</h2>
+<p>一次完整的交互大致经过九步：</p>
+<ol>
+<li>浏览器发送 <code>voice.start</code>，绑定当前 Agent 和会话。</li>
+<li>麦克风持续产生 PCM16 16kHz、20ms 音频帧。</li>
+<li>VoiceSession 将音频聚合为 200ms 数据块，发送给流式 ASR。</li>
+<li>ASR 持续返回 partial 和 final transcript，页面同步显示转写过程。</li>
+<li>final transcript 被提交给 Agent Harness。</li>
+<li>LangGraph Agent 流式返回 <code>text_delta</code>，页面先显示文字。</li>
+<li>TTS pump 从文本流中切出完整句，清理 Markdown 后送入 TTS queue。</li>
+<li>TTS 流式返回 PCM16 24kHz 音频，浏览器边收边播。</li>
+<li>如果用户在思考或播放阶段重新开口，Local VAD 发出 <code>Speech.START</code>，触发全链路打断。</li>
+</ol>
+<p>这里有一个对延迟很重要的设计：<strong>Agent 与 TTS 不是前后串行等待，而是异步流水线。</strong></p>
+<p>Agent 还在生成后面的内容时，前面已经完成的句子就可以进入 TTS。这样不必等整个答案生成完才开始说话，又能在句子边界上做 Markdown 清理和更稳定的语音合成。</p>
+<p>它不是极限低延迟方案，但在可控性、语义完整度和首音速度之间取得了更现实的平衡。</p>
+<h2 id="真正困难的不是能听能说而是自然打断">真正困难的不是“能听能说”，而是自然打断</h2>
+<p>很多语音 Demo 看起来已经能对话，但用户一旦在播放过程中插话，系统就会暴露问题：旧音频还在播放、上一轮 Agent 继续调用工具、新问题与旧答案混在一起，甚至 TTS 的残留片段会在下一轮突然出现。</p>
+<p>所以，Barge-in 不能只做成前端的“停止播放”。一次可靠的打断至少要同时完成：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Speech.START</span></span>
+<span class="line"><span>  → 停止并清空所有已排程的浏览器 AudioBufferSourceNode</span></span>
+<span class="line"><span>  → 重置未来播放时间游标</span></span>
+<span class="line"><span>  → 发送 playback.clear / interrupt</span></span>
+<span class="line"><span>  → 取消当前 LLM task</span></span>
+<span class="line"><span>  → 取消 TTS pump task</span></span>
+<span class="line"><span>  → 关闭并废弃当前 TTS Session</span></span>
+<span class="line"><span>  → 回到 listening</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>被取消的 TTS WebSocket 不应该继续复用。重新建立会话虽然增加一点连接成本，却能避免上一轮的 <code>SessionCanceled</code>、残留音频或协议状态污染下一轮。</p>
+<p>ASR 也需要轮次边界。当前语句提交以后重建上游识别流，可以避免前一轮累积的转写上下文影响新的问题。</p>
+<p>另外，播放期间持续录音会带来扬声器回灌。浏览器侧的回声消除、降噪和自动增益是基础，但 VAD 阈值、设备差异和外放音量仍然会直接影响误打断率。双工体验最终不是一个布尔值，而是一组需要持续评测的工程指标。</p>
+<h2 id="它与原生-audio-to-audio-双工有什么区别">它与原生 Audio-to-Audio 双工有什么区别</h2>
+<p>原生双工语音模型通常直接接收连续音频并直接生成音频。声音不需要先完整压缩成文字语义，模型可以同时利用词义、停顿、语速、重音、情绪和其他声学信息。</p>
+<p><img src="/blog-images/voice-agent-cascaded-vs-native-duplex.png" alt="级联式全双工与原生 Audio-to-Audio 双工架构对比"></p>
+<p><em>左侧级联架构保留 ASR、Agent、TTS 以及转写、工具和事件检查点；右侧原生架构用统一实时模型直接连接输入与输出音频。两者都能实现双工交互，但优化目标不同。</em></p>
+<p>级联式全双工与原生端到端双工的主要区别可以概括为：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>维度</th><th>级联式应用层全双工</th><th>原生 Audio-to-Audio 双工</th></tr></thead><tbody><tr><td>核心链路</td><td>Audio → ASR → Text Agent → TTS → Audio</td><td>Audio → Realtime Model → Audio</td></tr><tr><td>中间语义</td><td>有明确 transcript 和文本回答</td><td>语义与音频状态更多保留在模型内部</td></tr><tr><td>延迟来源</td><td>ASR endpoint、Agent 首 token、分句、TTS 首包</td><td>实时模型直接处理音频，理论链路更短</td></tr><tr><td>语气理解</td><td>主要依赖 ASR 可保留的信息</td><td>可以直接利用停顿、语气和情绪</td></tr><tr><td>语音表现</td><td>由 TTS 音色和文本控制</td><td>更容易生成连续、自然的韵律响应</td></tr><tr><td>工具与工作流</td><td>可直接复用成熟 Text Agent、LangGraph、工具和 HITL</td><td>需要模型或外层 Runtime 提供可靠工具编排</td></tr><tr><td>可观测性</td><td>每一层都有文本、事件和明确状态</td><td>内部决策更端到端，调试与归因更困难</td></tr><tr><td>审计与存档</td><td>transcript 天然适合搜索、审计和持久化</td><td>往往需要额外转写或结构化记录</td></tr><tr><td>供应商替换</td><td>ASR、模型、TTS 可以分别替换</td><td>能力更集中于实时模型供应商</td></tr><tr><td>故障定位</td><td>可以判断问题出在识别、推理还是合成</td><td>体验统一，但错误边界更模糊</td></tr></tbody></table>
+<p>原生双工的优势，是更短的感知—响应路径和更完整的声学上下文。它更接近人与人交谈：用户没有说完时，模型已经开始理解意图；语气变化、犹豫和情绪也可以成为输入；输出声音不必等到完整文本句子确定后才合成。</p>
+<p>级联架构的优势，则是可控、可替换、可观测，而且能够复用已经成熟的 Agent 工程体系。对于需要工具调用、权限控制、Human-in-the-loop、会话审计和结构化产物的企业 Agent，这些能力往往比少几百毫秒更重要。</p>
+<p>所以“原生”不天然等于“更适合所有 Agent”。它是另一组产品取舍。</p>
+<h2 id="websocket-全双工也不等于-webrtc">WebSocket 全双工，也不等于 WebRTC</h2>
+<p>另一个容易混在一起的概念，是实时语音传输。</p>
+<p>当前架构使用 WebSocket 传输原始 PCM。它实现简单，JSON 控制事件和二进制音频可以复用一条连接，也很适合普通 Web 应用与后端服务编排。</p>
+<p>但它不是完整的实时媒体栈。WebRTC 还包含 RTP、DTLS、抖动缓冲、网络拥塞控制、带宽自适应、Opus 编码和更成熟的回声处理能力。</p>
+<p>因此：</p>
+<ul>
+<li>在网络稳定的浏览器语音助手场景里，WebSocket + PCM 足够直接；</li>
+<li>在移动网络、跨地域、长时间通话和强弱网环境里，WebRTC 的媒体能力更有优势；</li>
+<li>是否使用 WebRTC，与模型是不是 Audio-to-Audio 是两个独立选择。</li>
+</ul>
+<p>一个系统可以使用 WebRTC 传输音频，但后端仍然是 ASR → Agent → TTS；也可以通过 WebSocket 连接原生实时语音模型。不要把媒体协议和模型架构混为一谈。</p>
+<h2 id="为什么当前阶段选择级联式全双工">为什么当前阶段选择级联式全双工</h2>
+<p>在这个项目里，语音不是一个独立的聊天产品，而是现有 Agent 工作能力的另一个入口。</p>
+<p>用户通过文字或语音发起请求，背后使用的是同一个 Agent、同一个 <code>session_id</code>、同一套 LangGraph Harness、工具系统、会话历史和权限边界。这意味着语音模式不能为了追求“像真人”而丢掉 Agent 已有的工作能力。</p>
+<p>级联架构让这件事变得自然：</p>
+<ul>
+<li>ASR 把语音转换成 Agent 已经理解的输入形式；</li>
+<li>Agent 仍然可以调用工具、进入工作流、触发中断和人工确认；</li>
+<li>文本增量同时用于 UI、持久化和 TTS；</li>
+<li>TTS 只负责表达，不接管任务逻辑；</li>
+<li>每个阶段都能被取消、重试、监控和替换。</li>
+</ul>
+<p>从工程角度看，这不是退而求其次，而是先守住 Agent 的可靠性，再通过应用层编排获得接近自然对话的实时体验。</p>
+<h2 id="后续应该怎么继续演进">后续应该怎么继续演进</h2>
+<p>这套架构还可以沿几个方向继续优化。</p>
+<p>第一是从完整句 TTS 逐步走向更细粒度的稳定语义片段。目标不是盲目逐字符发送，而是在不破坏语义和 Markdown 清理的前提下降低首音延迟。</p>
+<p>第二是建立真正的语音 Eval，而不是只测接口是否连通。至少应该持续记录：</p>
+<ul>
+<li>首个 partial transcript 延迟；</li>
+<li>用户停顿到 final transcript 的 endpoint latency；</li>
+<li>Agent 首 token 与 TTS 首音延迟；</li>
+<li>打断信号到音频完全停止的延迟；</li>
+<li>误打断率与漏打断率；</li>
+<li>播放队列 underrun、爆音和片段间空隙；</li>
+<li>ASR 错误对工具调用与任务结果的影响。</li>
+</ul>
+<p>第三是根据场景引入 WebRTC、语义 VAD 和更完善的回声处理，让弱网和外放环境更加稳定。</p>
+<p>第四是保留混合路线。闲聊、陪伴和强情绪表达可以交给原生 Audio-to-Audio；工具密集、需要审计和结构化交付的工作任务仍走级联 Agent。两条链路共享会话与权限，而不是强迫所有语音需求使用同一种模型。</p>
+<h2 id="双工是一种系统能力不是一个模型标签">双工是一种系统能力，不是一个模型标签</h2>
+<p>语音 Agent 是否自然，不由某一个 ASR、TTS 或实时模型单独决定。</p>
+<p>它取决于音频是否持续采集、上下行是否真正并发、状态是否清晰、任务能否及时取消、播放能否瞬间清空、回声是否被抑制、轮次是否会互相污染，以及 Agent 的工具和上下文能否完整保留。</p>
+<p>当前设计不是原生端到端语音模型，但它已经在传输层、处理层和交互层实现了真实的双工能力。</p>
+<p>更重要的是，它没有为了语音重新发明一套 Agent，而是让语音进入现有的 Agent Harness：</p>
+<blockquote>
+<p><strong>声音是新的交互通道，Agent 仍然是工作的执行主体，VoiceSession 负责把实时对话变成一条可控、可打断、可观测的执行链路。</strong></p>
+</blockquote>
+<p>这可能比简单地接入一个“原生双工模型”，更接近企业语音 Agent 真正需要解决的问题。</p>
+<hr>
+<p>延伸阅读：<a href="/blog/context-management-is-the-real-skill">上下文管理才是 Agent 时代真正的 Skill</a> · <a href="/blog/ai-agent-engineering">AI Agent 工程：从 Demo 到可靠系统</a></p> </main> <aside class="page-toc" aria-label="页面目录" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>页面目录</h2> <ol class="toc-list" data-astro-cid-4sn4zg3r> <li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#先把双工拆成四个层次" data-astro-cid-4sn4zg3r>先把“双工”拆成四个层次</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#整体架构三条实时链路由-voicesession-编排" data-astro-cid-4sn4zg3r>整体架构：三条实时链路由 VoiceSession 编排</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#浏览器不是一个被动播放器" data-astro-cid-4sn4zg3r>浏览器不是一个被动播放器</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#voicesession-是语音系统真正的控制中心" data-astro-cid-4sn4zg3r>VoiceSession 是语音系统真正的控制中心</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#一次语音轮次是怎样流动的" data-astro-cid-4sn4zg3r>一次语音轮次是怎样流动的</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#真正困难的不是能听能说而是自然打断" data-astro-cid-4sn4zg3r>真正困难的不是“能听能说”，而是自然打断</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#它与原生-audio-to-audio-双工有什么区别" data-astro-cid-4sn4zg3r>它与原生 Audio-to-Audio 双工有什么区别</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#websocket-全双工也不等于-webrtc" data-astro-cid-4sn4zg3r>WebSocket 全双工，也不等于 WebRTC</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#为什么当前阶段选择级联式全双工" data-astro-cid-4sn4zg3r>为什么当前阶段选择级联式全双工</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#后续应该怎么继续演进" data-astro-cid-4sn4zg3r>后续应该怎么继续演进</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#双工是一种系统能力不是一个模型标签" data-astro-cid-4sn4zg3r>双工是一种系统能力，不是一个模型标签</a></li> </ol> <a class="toc-back" href="/blog" data-astro-cid-4sn4zg3r><i class="fas fa-arrow-left" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 返回博客</a> </aside> <nav class="article-navigation" aria-label="相邻文章" data-astro-cid-4sn4zg3r> <a class="article-nav-link" href="/blog/database-agent-chat2db-work-os" data-astro-cid-4sn4zg3r> <span class="nav-direction" data-astro-cid-4sn4zg3r>较新文章</span> <span class="nav-title" data-astro-cid-4sn4zg3r>把 Chat2DB 变成一名数据库员工</span> </a> <a class="article-nav-link" href="/blog/human-agent-collaboration-work-os" data-astro-cid-4sn4zg3r> <span class="nav-direction" data-astro-cid-4sn4zg3r>较早文章</span> <span class="nav-title" data-astro-cid-4sn4zg3r>公司真正需要的，不是更多 Agent</span> </a> </nav> </div> </article> <div class="selection-share" data-selection-share data-content-selector=".article-content" data-title="语音 Agent 的双工，不等于原生双工" data-author="杨正武" data-section="IMCODERS BLOG" data-url="https://imcoders.cn/blog/voice-agent-cascaded-full-duplex/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>   </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

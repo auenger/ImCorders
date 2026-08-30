@@ -1,0 +1,376 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>Visual Replay Tester：下一代桌面自动化测试工具 - 杨正武</title><meta name="description" content="基于 Electron + Playwright + MCP 的 AI 驱动测试平台"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="Visual Replay Tester：下一代桌面自动化测试工具 - 杨正武"><meta property="og:description" content="基于 Electron + Playwright + MCP 的 AI 驱动测试平台"><meta property="og:url" content="https://imcoders.cn/blog/visual-replay-tester/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Visual Replay Tester：下一代桌面自动化测试工具 - 杨正武"><meta name="twitter:description" content="基于 Electron + Playwright + MCP 的 AI 驱动测试平台"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="Visual Replay Tester：下一代桌面自动化测试工具 - 杨正武"><meta itemprop="description" content="基于 Electron + Playwright + MCP 的 AI 驱动测试平台"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "Visual Replay Tester：下一代桌面自动化测试工具 - 杨正武";
+const shareDesc = "基于 Electron + Playwright + MCP 的 AI 驱动测试平台";
+const shareLink = "https://imcoders.cn/blog/visual-replay-tester/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.DUPo9LDV.css"><script type="module" src="/_astro/hoisted.D20CsQCG.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/blog" aria-current="page">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <script>(function(){const shareText = "基于 Electron + Playwright + MCP 的 AI 驱动测试平台\n\nhttps://imcoders.cn/blog/visual-replay-tester/";
+const shareUrl = "https://imcoders.cn/blog/visual-replay-tester/";
+const wechatTitle = "Visual Replay Tester：下一代桌面自动化测试工具";
+const wechatDescription = "基于 Electron + Playwright + MCP 的 AI 驱动测试平台";
+const wechatAuthor = "杨正武";
+const wechatDate = "2026年3月13日";
+
+    window.shareArticle = async function () {
+      const button = document.querySelector('.share-button');
+      try {
+        await navigator.clipboard.writeText(shareText);
+        if (!button) return;
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> 已复制';
+        button.classList.add('copied');
+        window.setTimeout(() => {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+      } catch (error) {
+        console.error('复制失败', error);
+        window.prompt('请复制下面的分享内容', shareText);
+      }
+    };
+
+    const wechatCopiedProperties = [
+      'color', 'background-color', 'font-family', 'font-size', 'font-weight', 'font-style',
+      'line-height', 'letter-spacing', 'text-align', 'text-decoration', 'text-indent',
+      'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
+      'padding-top', 'padding-right', 'padding-bottom', 'padding-left',
+      'border-top', 'border-right', 'border-bottom', 'border-left', 'border-radius',
+      'display', 'vertical-align',
+      'white-space', 'list-style-type', 'border-collapse', 'overflow-wrap', 'word-break'
+    ];
+
+    const canonicalizeWechatUrl = function (value) {
+      if (!value) return value;
+      try {
+        return new URL(value, shareUrl).href;
+      } catch {
+        return value;
+      }
+    };
+
+    window.buildWechatRichText = function () {
+      const article = document.querySelector('.article-content');
+      if (!article) throw new Error('article content not found');
+
+      const clone = article.cloneNode(true);
+      const sourceNodes = [article, ...article.querySelectorAll('*')];
+      const cloneNodes = [clone, ...clone.querySelectorAll('*')];
+
+      sourceNodes.forEach((sourceNode, index) => {
+        const targetNode = cloneNodes[index];
+        if (!(sourceNode instanceof Element) || !(targetNode instanceof Element)) return;
+
+        const computed = getComputedStyle(sourceNode);
+        const inlineStyles = wechatCopiedProperties
+          .map((property) => `${property}:${computed.getPropertyValue(property)};`)
+          .join('');
+
+        targetNode.setAttribute('style', inlineStyles);
+        targetNode.removeAttribute('id');
+        targetNode.removeAttribute('class');
+        [...targetNode.attributes].forEach((attribute) => {
+          if (attribute.name.startsWith('data-') || attribute.name.startsWith('aria-')) {
+            targetNode.removeAttribute(attribute.name);
+          }
+        });
+
+        if (sourceNode instanceof HTMLImageElement && targetNode instanceof HTMLImageElement) {
+          const rawSource = sourceNode.getAttribute('src') || sourceNode.currentSrc || sourceNode.src;
+          targetNode.setAttribute('src', canonicalizeWechatUrl(rawSource));
+          targetNode.removeAttribute('srcset');
+          targetNode.removeAttribute('sizes');
+          targetNode.removeAttribute('loading');
+          targetNode.removeAttribute('decoding');
+          targetNode.setAttribute('style', `${inlineStyles}display:block;width:100%;max-width:100%;height:auto;margin-left:auto;margin-right:auto;`);
+        }
+
+        if (sourceNode instanceof HTMLAnchorElement && targetNode instanceof HTMLAnchorElement) {
+          targetNode.setAttribute('href', canonicalizeWechatUrl(sourceNode.getAttribute('href') || sourceNode.href));
+          targetNode.removeAttribute('target');
+          targetNode.removeAttribute('rel');
+        }
+      });
+
+      clone.querySelectorAll('script, style, iframe, button, form, input, textarea, select').forEach((node) => node.remove());
+
+      // 微信编辑器的内容栏比桌面文章窄。不要保留桌面布局计算出的固定宽高，
+      // 否则图片缩小后父元素仍会占据原高度，文字换行后也可能互相覆盖。
+      clone.querySelectorAll('p').forEach((paragraph) => {
+        const onlyChild = paragraph.children.length === 1 ? paragraph.firstElementChild : null;
+        if (onlyChild instanceof HTMLImageElement && !paragraph.textContent?.trim()) {
+          paragraph.setAttribute('style', 'margin:24px 0 12px;padding:0;line-height:0;');
+        }
+      });
+
+      clone.querySelectorAll('img').forEach((image) => {
+        image.style.display = 'block';
+        image.style.width = '100%';
+        image.style.maxWidth = '100%';
+        image.style.height = 'auto';
+        image.style.marginLeft = 'auto';
+        image.style.marginRight = 'auto';
+      });
+
+      clone.querySelectorAll('pre').forEach((pre) => {
+        pre.style.display = 'block';
+        pre.style.width = 'auto';
+        pre.style.maxWidth = '100%';
+        pre.style.whiteSpace = 'pre-wrap';
+        pre.style.wordBreak = 'break-word';
+        pre.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('pre code').forEach((code) => {
+        code.style.whiteSpace = 'pre-wrap';
+        code.style.wordBreak = 'break-word';
+        code.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('table').forEach((table) => {
+        table.style.display = 'table';
+        table.style.width = '100%';
+        table.style.maxWidth = '100%';
+        table.style.tableLayout = 'fixed';
+        table.style.borderCollapse = 'collapse';
+      });
+
+      clone.querySelectorAll('th, td').forEach((cell) => {
+        cell.style.minWidth = '0';
+        cell.style.wordBreak = 'break-word';
+        cell.style.overflowWrap = 'anywhere';
+        cell.style.verticalAlign = 'top';
+      });
+
+      const wrapper = document.createElement('section');
+      wrapper.setAttribute('style', 'box-sizing:border-box;width:100%;max-width:100%;margin:0;padding:32px 26px;background-color:#111016;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+
+      const header = document.createElement('header');
+      header.setAttribute('style', 'margin:0 0 34px;padding:0 0 24px;border-bottom:2px solid #e23c3e;');
+
+      const title = document.createElement('h1');
+      title.textContent = wechatTitle;
+      title.setAttribute('style', 'margin:0 0 18px;color:#f1ece2;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:30px;font-weight:800;line-height:1.25;letter-spacing:-0.5px;');
+
+      const description = document.createElement('p');
+      description.textContent = wechatDescription;
+      description.setAttribute('style', 'margin:0 0 16px;color:#a9a3a8;font-size:16px;line-height:1.75;');
+
+      const meta = document.createElement('p');
+      meta.textContent = `${wechatAuthor} · ${wechatDate}`;
+      meta.setAttribute('style', 'margin:0;color:#e23c3e;font-size:13px;font-weight:700;line-height:1.6;letter-spacing:0.5px;');
+
+      header.append(title, description, meta);
+      clone.setAttribute('style', 'width:auto;max-width:100%;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+      wrapper.append(header, clone);
+
+      return {
+        html: wrapper.outerHTML,
+        text: `${wechatTitle}\n\n${wechatDescription}\n\n${wechatAuthor} · ${wechatDate}\n\n${article.innerText}`
+      };
+    };
+
+    const setWechatCopyFeedback = function (button, message, isError = false) {
+      if (!button) return;
+      const original = button.dataset.originalHtml || button.innerHTML;
+      button.dataset.originalHtml = original;
+      button.innerHTML = isError
+        ? `<i class="fas fa-exclamation-circle" aria-hidden="true"></i> ${message}`
+        : `<i class="fas fa-check" aria-hidden="true"></i> ${message}`;
+      button.classList.toggle('copy-error', isError);
+      button.classList.toggle('copied', !isError);
+      window.setTimeout(() => {
+        button.innerHTML = original;
+        button.classList.remove('copied', 'copy-error');
+      }, 2600);
+    };
+
+    window.copyArticleToWechat = async function () {
+      const button = document.querySelector('.wechat-copy-button');
+      try {
+        const payload = window.buildWechatRichText();
+        if (navigator.clipboard?.write && window.ClipboardItem && window.isSecureContext) {
+          await navigator.clipboard.write([new ClipboardItem({
+            'text/html': new Blob([payload.html], { type: 'text/html' }),
+            'text/plain': new Blob([payload.text], { type: 'text/plain' })
+          })]);
+        } else {
+          const holder = document.createElement('div');
+          holder.contentEditable = 'true';
+          holder.style.position = 'fixed';
+          holder.style.left = '-99999px';
+          holder.style.top = '0';
+          holder.innerHTML = payload.html;
+          document.body.appendChild(holder);
+
+          const range = document.createRange();
+          range.selectNodeContents(holder);
+          const selection = window.getSelection();
+          selection?.removeAllRanges();
+          selection?.addRange(range);
+          const copied = document.execCommand('copy');
+          selection?.removeAllRanges();
+          holder.remove();
+          if (!copied) throw new Error('copy command failed');
+        }
+        setWechatCopyFeedback(button, '已复制到公众号');
+      } catch (error) {
+        console.error('复制公众号富文本失败', error);
+        setWechatCopyFeedback(button, '复制失败', true);
+      }
+    };
+  })();</script>  <article class="article-page" data-astro-cid-4sn4zg3r> <header class="article-hero" data-astro-cid-4sn4zg3r> <div class="article-hero-grid" data-astro-cid-4sn4zg3r> <div class="article-kind" data-astro-cid-4sn4zg3r>TECHNICAL ARTICLE</div> <div class="article-heading" data-astro-cid-4sn4zg3r> <h1 class="article-title" data-astro-cid-4sn4zg3r>Visual Replay Tester：下一代桌面自动化测试工具</h1> <p class="article-description" data-astro-cid-4sn4zg3r>基于 Electron + Playwright + MCP 的 AI 驱动测试平台</p> </div> </div> </header> <div class="reader-grid" data-astro-cid-4sn4zg3r> <aside class="article-meta" aria-label="文章信息" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>文章信息</h2> <dl class="meta-list" data-astro-cid-4sn4zg3r> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>发布日期</dt> <dd data-astro-cid-4sn4zg3r><time datetime="2026-03-13T00:00:00.000Z" data-astro-cid-4sn4zg3r>2026年3月13日</time></dd> </div> <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>作者</dt><dd data-astro-cid-4sn4zg3r>杨正武</dd></div> <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>预计阅读</dt><dd data-astro-cid-4sn4zg3r>5 分钟</dd></div> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>标签</dt> <dd class="article-tags" data-astro-cid-4sn4zg3r><span class="article-tag" data-astro-cid-4sn4zg3r>自动化测试</span><span class="article-tag" data-astro-cid-4sn4zg3r>Playwright</span><span class="article-tag" data-astro-cid-4sn4zg3r>MCP</span><span class="article-tag" data-astro-cid-4sn4zg3r>AI Agent</span></dd> </div> </dl> <div class="article-actions" data-astro-cid-4sn4zg3r> <button class="wechat-copy-button" type="button" onclick="copyArticleToWechat()" data-astro-cid-4sn4zg3r> <i class="fab fa-weixin" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 复制到公众号
+</button> <button class="share-button" type="button" onclick="shareArticle()" data-astro-cid-4sn4zg3r> <i class="fas fa-share-alt" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 分享文章
+</button> </div> </aside> <main class="article-content" data-astro-cid-4sn4zg3r> <h2 id="引言">引言</h2>
+<p>传统前端 E2E 测试存在两个问题。脚本维护成本高，UI 变动会导致测试失败。视觉覆盖不全，Canvas、Shadow DOM 等场景难以测试。</p>
+<p>为了解决这些问题，我开发了 Visual Replay Tester (VRT)。这是一个集成了 Playwright、Electron 和 MCP 的自动化测试工具。</p>
+<h2 id="核心理念">核心理念</h2>
+<p>VRT 的核心价值在于将昂贵的 AI 推理转化为低成本、高稳定性的工程化脚本。初次探索使用 AI，后续回归使用固化脚本，成本大幅降低。</p>
+<h3 id="架构设计">架构设计</h3>
+<p>VRT 实现了输入 URL 返回测试报告的全自动闭环。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#E1E4E8">graph TD</span></span>
+<span class="line"><span style="color:#E1E4E8">    User[用户] -->|URL/指令| Agent[AI 智能体]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    subgraph "核心引擎"</span></span>
+<span class="line"><span style="color:#E1E4E8">        Agent -->|视觉感知| VLM[VLM 视觉模型]</span></span>
+<span class="line"><span style="color:#E1E4E8">        Agent -->|操作指令| Hybrid[混合执行器]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        Hybrid -->|标准操作| MCP[MCP 客户端]</span></span>
+<span class="line"><span style="color:#E1E4E8">        Hybrid -->|复杂交互| VIS[视觉驱动器]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        MCP -->|CDP/Accessibility| Browser[内置浏览器]</span></span>
+<span class="line"><span style="color:#E1E4E8">        VIS -->|坐标模拟| Browser</span></span>
+<span class="line"><span style="color:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    Browser -->|反馈/截图| Agent</span></span>
+<span class="line"><span style="color:#E1E4E8">    Hybrid -->|编译| Script[自动化脚本]</span></span>
+<span class="line"><span style="color:#E1E4E8">    Script -->|CI/CD| Report[测试报告]</span></span>
+<span class="line"></span></code></pre>
+<h2 id="四层自动化体系">四层自动化体系</h2>
+<h3 id="l1-高保真录制回放">L1 高保真录制回放</h3>
+<p>适用于冒烟测试和固定业务流程回归。首选策略基于唯一 CSS 选择器进行精准操作。当选择器失效时，降级策略自动切换至空间坐标系。关键步骤强制进行视觉 Diff，确保渲染层面的正确性。</p>
+<h3 id="l2-cdp-语义交互">L2 CDP 语义交互</h3>
+<p>适用于动态复杂页面和高频交互场景。不依赖脆弱的 DOM 结构，而是基于稳定的无障碍语义树。根据 Viewport 和交互上下文，只提取即时可用的语义节点。</p>
+<h3 id="l3-纯视觉-ai">L3 纯视觉 AI</h3>
+<p>适用于 Shadow DOM、Canvas、Web 游戏。利用 VLM 像人类一样通过截图理解屏幕。默认使用 CDP 获取轻量级语义，仅在遇到黑盒区域时才唤起 VLM。</p>
+<h3 id="l4-智能-agent">L4 智能 Agent</h3>
+<p>适用于探索性测试和模糊指令执行。基于观察、思考、行动、修正的循环。将 Agent 的探索过程持久化为标准测试脚本。</p>
+<h2 id="混合执行引擎">混合执行引擎</h2>
+<h3 id="mcp-高速通道">MCP 高速通道</h3>
+<p>对于标准 HTML 元素，通过 MCP 协议直接调用 CDP 接口。这种方式速度快、稳定性高、可记录为标准代码。能处理 80% 的标准 DOM 操作。</p>
+<h3 id="vlm-视觉直觉">VLM 视觉直觉</h3>
+<p>当遇到 Canvas 画布、极度混淆的 DOM、ShadowRoot 内部时，调用 VLM 进行判断。计算目标图像坐标，模拟鼠标物理点击。</p>
+<h2 id="核心功能">核心功能</h2>
+<h3 id="智能-mcp-自动化">智能 MCP 自动化</h3>
+<p>自然语言控制，告诉 AI 测试搜索功能，它会自动规划并执行。使用语义化的定位方式，告别脆弱的 CSS 选择器。完全兼容 Model Context Protocol。</p>
+<h3 id="内嵌录制工作室">内嵌录制工作室</h3>
+<p>直接在 Electron 应用内进行录制和调试。拖拽式编辑测试步骤。自动捕获关键节点的视觉状态。</p>
+<h2 id="技术栈">技术栈</h2>
+<p>Frontend 使用 React + TypeScript + TailwindCSS。Backend/Main 使用 Electron + Node.js。Protocol 采用 Model Context Protocol。Browser 使用 Playwright + Chrome DevTools Protocol。</p>
+<h2 id="方案对比">方案对比</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方案层级</th><th>核心技术</th><th>关键优势</th><th>推荐场景</th></tr></thead><tbody><tr><td>L1</td><td>高保真录制</td><td>100% 复现，零代码成本</td><td>核心流程冒烟，固定回归</td></tr><tr><td>L2</td><td>CDP 语义交互</td><td>极高健壮性，抗 UI 变动</td><td>复杂表单，动态单页应用</td></tr><tr><td>L3</td><td>纯视觉 AI</td><td>无视 DOM 限制</td><td>Canvas，游戏，第三方插件</td></tr><tr><td>L4</td><td>智能 Agent</td><td>自主探索，生成可复用脚本</td><td>新功能探索，模糊任务</td></tr></tbody></table>
+<h2 id="成本分析">成本分析</h2>
+<p>只在初次探索和生成脚本阶段大量消耗 Token 和算力。脚本生成后，后续回归测试仅运行固化的脚本，成本趋近于零。</p>
+<p>通过 VLM 视觉方案，解决了 Canvas、WebGL 等传统自动化工具难以处理的场景。完整的闭环包括生成、验证、报告三个阶段。</p>
+<h2 id="快速开始">快速开始</h2>
+<h3 id="环境要求">环境要求</h3>
+<p>Node.js v20+ 是必需的。支持 macOS、Windows、Linux。</p>
+<h3 id="安装步骤">安装步骤</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># 克隆项目</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> clone</span><span style="color:#9ECBFF"> https://github.com/auenger/Visual-Replay-Tester</span></span>
+<span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> Visual-Replay-Tester</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 安装依赖</span></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 安装浏览器内核</span></span>
+<span class="line"><span style="color:#B392F0">npx</span><span style="color:#9ECBFF"> playwright</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> chromium</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 启动开发环境</span></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> run</span><span style="color:#9ECBFF"> dev</span></span>
+<span class="line"></span></code></pre>
+<h2 id="相关链接">相关链接</h2>
+<ul>
+<li>官网: <a href="https://vrtest.cn">https://vrtest.cn</a></li>
+<li>GitHub: <a href="https://github.com/auenger/Visual-Replay-Tester">https://github.com/auenger/Visual-Replay-Tester</a></li>
+<li>MCP 协议: <a href="https://modelcontextprotocol.io">https://modelcontextprotocol.io</a></li>
+</ul> </main> <aside class="page-toc" aria-label="页面目录" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>页面目录</h2> <ol class="toc-list" data-astro-cid-4sn4zg3r> <li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#引言" data-astro-cid-4sn4zg3r>引言</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#核心理念" data-astro-cid-4sn4zg3r>核心理念</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#架构设计" data-astro-cid-4sn4zg3r>架构设计</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#四层自动化体系" data-astro-cid-4sn4zg3r>四层自动化体系</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#l1-高保真录制回放" data-astro-cid-4sn4zg3r>L1 高保真录制回放</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#l2-cdp-语义交互" data-astro-cid-4sn4zg3r>L2 CDP 语义交互</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#l3-纯视觉-ai" data-astro-cid-4sn4zg3r>L3 纯视觉 AI</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#l4-智能-agent" data-astro-cid-4sn4zg3r>L4 智能 Agent</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#混合执行引擎" data-astro-cid-4sn4zg3r>混合执行引擎</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#mcp-高速通道" data-astro-cid-4sn4zg3r>MCP 高速通道</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#vlm-视觉直觉" data-astro-cid-4sn4zg3r>VLM 视觉直觉</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#核心功能" data-astro-cid-4sn4zg3r>核心功能</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#智能-mcp-自动化" data-astro-cid-4sn4zg3r>智能 MCP 自动化</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#内嵌录制工作室" data-astro-cid-4sn4zg3r>内嵌录制工作室</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#技术栈" data-astro-cid-4sn4zg3r>技术栈</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#方案对比" data-astro-cid-4sn4zg3r>方案对比</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#成本分析" data-astro-cid-4sn4zg3r>成本分析</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#快速开始" data-astro-cid-4sn4zg3r>快速开始</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#环境要求" data-astro-cid-4sn4zg3r>环境要求</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#安装步骤" data-astro-cid-4sn4zg3r>安装步骤</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#相关链接" data-astro-cid-4sn4zg3r>相关链接</a></li> </ol> <a class="toc-back" href="/blog" data-astro-cid-4sn4zg3r><i class="fas fa-arrow-left" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 返回博客</a> </aside> <nav class="article-navigation" aria-label="相邻文章" data-astro-cid-4sn4zg3r> <a class="article-nav-link" href="/blog/neuro-ide" data-astro-cid-4sn4zg3r> <span class="nav-direction" data-astro-cid-4sn4zg3r>较新文章</span> <span class="nav-title" data-astro-cid-4sn4zg3r>Neuro-IDE：以 Markdown 为核心的 AI 原生开发环境</span> </a> <a class="article-nav-link" href="/blog/welcome" data-astro-cid-4sn4zg3r> <span class="nav-direction" data-astro-cid-4sn4zg3r>较早文章</span> <span class="nav-title" data-astro-cid-4sn4zg3r>欢迎来到我的技术博客</span> </a> </nav> </div> </article> <div class="selection-share" data-selection-share data-content-selector=".article-content" data-title="Visual Replay Tester：下一代桌面自动化测试工具" data-author="杨正武" data-section="IMCODERS BLOG" data-url="https://imcoders.cn/blog/visual-replay-tester/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>   </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

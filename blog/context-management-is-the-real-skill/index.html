@@ -1,0 +1,395 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>Context 管理：AI 工程里最被低估的核心能力 - 杨正武</title><meta name="description" content="大多数人以为 prompt 工程就是写好一段话。但真正决定 AI 输出质量的，是你往上下文里塞了什么、没塞什么、以什么顺序塞的。Context 管理是注意力预算管理，不是 token 管理。"><meta property="og:type" content="website"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="Context 管理：AI 工程里最被低估的核心能力 - 杨正武"><meta property="og:description" content="大多数人以为 prompt 工程就是写好一段话。但真正决定 AI 输出质量的，是你往上下文里塞了什么、没塞什么、以什么顺序塞的。Context 管理是注意力预算管理，不是 token 管理。"><meta property="og:url" content="https://imcoders.cn/blog/context-management-is-the-real-skill/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Context 管理：AI 工程里最被低估的核心能力 - 杨正武"><meta name="twitter:description" content="大多数人以为 prompt 工程就是写好一段话。但真正决定 AI 输出质量的，是你往上下文里塞了什么、没塞什么、以什么顺序塞的。Context 管理是注意力预算管理，不是 token 管理。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="Context 管理：AI 工程里最被低估的核心能力 - 杨正武"><meta itemprop="description" content="大多数人以为 prompt 工程就是写好一段话。但真正决定 AI 输出质量的，是你往上下文里塞了什么、没塞什么、以什么顺序塞的。Context 管理是注意力预算管理，不是 token 管理。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "Context 管理：AI 工程里最被低估的核心能力 - 杨正武";
+const shareDesc = "大多数人以为 prompt 工程就是写好一段话。但真正决定 AI 输出质量的，是你往上下文里塞了什么、没塞什么、以什么顺序塞的。Context 管理是注意力预算管理，不是 token 管理。";
+const shareLink = "https://imcoders.cn/blog/context-management-is-the-real-skill/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.DUPo9LDV.css"><script type="module" src="/_astro/hoisted.D20CsQCG.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/blog" aria-current="page">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <script>(function(){const shareText = "大多数人以为 prompt 工程就是写好一段话。但真正决定 AI 输出质量的，是你往上下文里塞了什么...\n\nhttps://imcoders.cn/blog/context-management-is-the-real-skill/";
+const shareUrl = "https://imcoders.cn/blog/context-management-is-the-real-skill/";
+const wechatTitle = "Context 管理：AI 工程里最被低估的核心能力";
+const wechatDescription = "大多数人以为 prompt 工程就是写好一段话。但真正决定 AI 输出质量的，是你往上下文里塞了什么、没塞什么、以什么顺序塞的。Context 管理是注意力预算管理，不是 token 管理。";
+const wechatAuthor = "杨正武";
+const wechatDate = "2026年4月23日";
+
+    window.shareArticle = async function () {
+      const button = document.querySelector('.share-button');
+      try {
+        await navigator.clipboard.writeText(shareText);
+        if (!button) return;
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> 已复制';
+        button.classList.add('copied');
+        window.setTimeout(() => {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+      } catch (error) {
+        console.error('复制失败', error);
+        window.prompt('请复制下面的分享内容', shareText);
+      }
+    };
+
+    const wechatCopiedProperties = [
+      'color', 'background-color', 'font-family', 'font-size', 'font-weight', 'font-style',
+      'line-height', 'letter-spacing', 'text-align', 'text-decoration', 'text-indent',
+      'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
+      'padding-top', 'padding-right', 'padding-bottom', 'padding-left',
+      'border-top', 'border-right', 'border-bottom', 'border-left', 'border-radius',
+      'display', 'vertical-align',
+      'white-space', 'list-style-type', 'border-collapse', 'overflow-wrap', 'word-break'
+    ];
+
+    const canonicalizeWechatUrl = function (value) {
+      if (!value) return value;
+      try {
+        return new URL(value, shareUrl).href;
+      } catch {
+        return value;
+      }
+    };
+
+    window.buildWechatRichText = function () {
+      const article = document.querySelector('.article-content');
+      if (!article) throw new Error('article content not found');
+
+      const clone = article.cloneNode(true);
+      const sourceNodes = [article, ...article.querySelectorAll('*')];
+      const cloneNodes = [clone, ...clone.querySelectorAll('*')];
+
+      sourceNodes.forEach((sourceNode, index) => {
+        const targetNode = cloneNodes[index];
+        if (!(sourceNode instanceof Element) || !(targetNode instanceof Element)) return;
+
+        const computed = getComputedStyle(sourceNode);
+        const inlineStyles = wechatCopiedProperties
+          .map((property) => `${property}:${computed.getPropertyValue(property)};`)
+          .join('');
+
+        targetNode.setAttribute('style', inlineStyles);
+        targetNode.removeAttribute('id');
+        targetNode.removeAttribute('class');
+        [...targetNode.attributes].forEach((attribute) => {
+          if (attribute.name.startsWith('data-') || attribute.name.startsWith('aria-')) {
+            targetNode.removeAttribute(attribute.name);
+          }
+        });
+
+        if (sourceNode instanceof HTMLImageElement && targetNode instanceof HTMLImageElement) {
+          const rawSource = sourceNode.getAttribute('src') || sourceNode.currentSrc || sourceNode.src;
+          targetNode.setAttribute('src', canonicalizeWechatUrl(rawSource));
+          targetNode.removeAttribute('srcset');
+          targetNode.removeAttribute('sizes');
+          targetNode.removeAttribute('loading');
+          targetNode.removeAttribute('decoding');
+          targetNode.setAttribute('style', `${inlineStyles}display:block;width:100%;max-width:100%;height:auto;margin-left:auto;margin-right:auto;`);
+        }
+
+        if (sourceNode instanceof HTMLAnchorElement && targetNode instanceof HTMLAnchorElement) {
+          targetNode.setAttribute('href', canonicalizeWechatUrl(sourceNode.getAttribute('href') || sourceNode.href));
+          targetNode.removeAttribute('target');
+          targetNode.removeAttribute('rel');
+        }
+      });
+
+      clone.querySelectorAll('script, style, iframe, button, form, input, textarea, select').forEach((node) => node.remove());
+
+      // 微信编辑器的内容栏比桌面文章窄。不要保留桌面布局计算出的固定宽高，
+      // 否则图片缩小后父元素仍会占据原高度，文字换行后也可能互相覆盖。
+      clone.querySelectorAll('p').forEach((paragraph) => {
+        const onlyChild = paragraph.children.length === 1 ? paragraph.firstElementChild : null;
+        if (onlyChild instanceof HTMLImageElement && !paragraph.textContent?.trim()) {
+          paragraph.setAttribute('style', 'margin:24px 0 12px;padding:0;line-height:0;');
+        }
+      });
+
+      clone.querySelectorAll('img').forEach((image) => {
+        image.style.display = 'block';
+        image.style.width = '100%';
+        image.style.maxWidth = '100%';
+        image.style.height = 'auto';
+        image.style.marginLeft = 'auto';
+        image.style.marginRight = 'auto';
+      });
+
+      clone.querySelectorAll('pre').forEach((pre) => {
+        pre.style.display = 'block';
+        pre.style.width = 'auto';
+        pre.style.maxWidth = '100%';
+        pre.style.whiteSpace = 'pre-wrap';
+        pre.style.wordBreak = 'break-word';
+        pre.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('pre code').forEach((code) => {
+        code.style.whiteSpace = 'pre-wrap';
+        code.style.wordBreak = 'break-word';
+        code.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('table').forEach((table) => {
+        table.style.display = 'table';
+        table.style.width = '100%';
+        table.style.maxWidth = '100%';
+        table.style.tableLayout = 'fixed';
+        table.style.borderCollapse = 'collapse';
+      });
+
+      clone.querySelectorAll('th, td').forEach((cell) => {
+        cell.style.minWidth = '0';
+        cell.style.wordBreak = 'break-word';
+        cell.style.overflowWrap = 'anywhere';
+        cell.style.verticalAlign = 'top';
+      });
+
+      const wrapper = document.createElement('section');
+      wrapper.setAttribute('style', 'box-sizing:border-box;width:100%;max-width:100%;margin:0;padding:32px 26px;background-color:#111016;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+
+      const header = document.createElement('header');
+      header.setAttribute('style', 'margin:0 0 34px;padding:0 0 24px;border-bottom:2px solid #e23c3e;');
+
+      const title = document.createElement('h1');
+      title.textContent = wechatTitle;
+      title.setAttribute('style', 'margin:0 0 18px;color:#f1ece2;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:30px;font-weight:800;line-height:1.25;letter-spacing:-0.5px;');
+
+      const description = document.createElement('p');
+      description.textContent = wechatDescription;
+      description.setAttribute('style', 'margin:0 0 16px;color:#a9a3a8;font-size:16px;line-height:1.75;');
+
+      const meta = document.createElement('p');
+      meta.textContent = `${wechatAuthor} · ${wechatDate}`;
+      meta.setAttribute('style', 'margin:0;color:#e23c3e;font-size:13px;font-weight:700;line-height:1.6;letter-spacing:0.5px;');
+
+      header.append(title, description, meta);
+      clone.setAttribute('style', 'width:auto;max-width:100%;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+      wrapper.append(header, clone);
+
+      return {
+        html: wrapper.outerHTML,
+        text: `${wechatTitle}\n\n${wechatDescription}\n\n${wechatAuthor} · ${wechatDate}\n\n${article.innerText}`
+      };
+    };
+
+    const setWechatCopyFeedback = function (button, message, isError = false) {
+      if (!button) return;
+      const original = button.dataset.originalHtml || button.innerHTML;
+      button.dataset.originalHtml = original;
+      button.innerHTML = isError
+        ? `<i class="fas fa-exclamation-circle" aria-hidden="true"></i> ${message}`
+        : `<i class="fas fa-check" aria-hidden="true"></i> ${message}`;
+      button.classList.toggle('copy-error', isError);
+      button.classList.toggle('copied', !isError);
+      window.setTimeout(() => {
+        button.innerHTML = original;
+        button.classList.remove('copied', 'copy-error');
+      }, 2600);
+    };
+
+    window.copyArticleToWechat = async function () {
+      const button = document.querySelector('.wechat-copy-button');
+      try {
+        const payload = window.buildWechatRichText();
+        if (navigator.clipboard?.write && window.ClipboardItem && window.isSecureContext) {
+          await navigator.clipboard.write([new ClipboardItem({
+            'text/html': new Blob([payload.html], { type: 'text/html' }),
+            'text/plain': new Blob([payload.text], { type: 'text/plain' })
+          })]);
+        } else {
+          const holder = document.createElement('div');
+          holder.contentEditable = 'true';
+          holder.style.position = 'fixed';
+          holder.style.left = '-99999px';
+          holder.style.top = '0';
+          holder.innerHTML = payload.html;
+          document.body.appendChild(holder);
+
+          const range = document.createRange();
+          range.selectNodeContents(holder);
+          const selection = window.getSelection();
+          selection?.removeAllRanges();
+          selection?.addRange(range);
+          const copied = document.execCommand('copy');
+          selection?.removeAllRanges();
+          holder.remove();
+          if (!copied) throw new Error('copy command failed');
+        }
+        setWechatCopyFeedback(button, '已复制到公众号');
+      } catch (error) {
+        console.error('复制公众号富文本失败', error);
+        setWechatCopyFeedback(button, '复制失败', true);
+      }
+    };
+  })();</script>  <article class="article-page" data-astro-cid-4sn4zg3r> <header class="article-hero" data-astro-cid-4sn4zg3r> <div class="article-hero-grid" data-astro-cid-4sn4zg3r> <div class="article-kind" data-astro-cid-4sn4zg3r>TECHNICAL ARTICLE</div> <div class="article-heading" data-astro-cid-4sn4zg3r> <h1 class="article-title" data-astro-cid-4sn4zg3r>Context 管理：AI 工程里最被低估的核心能力</h1> <p class="article-description" data-astro-cid-4sn4zg3r>大多数人以为 prompt 工程就是写好一段话。但真正决定 AI 输出质量的，是你往上下文里塞了什么、没塞什么、以什么顺序塞的。Context 管理是注意力预算管理，不是 token 管理。</p> </div> </div> </header> <div class="reader-grid" data-astro-cid-4sn4zg3r> <aside class="article-meta" aria-label="文章信息" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>文章信息</h2> <dl class="meta-list" data-astro-cid-4sn4zg3r> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>发布日期</dt> <dd data-astro-cid-4sn4zg3r><time datetime="2026-04-23T00:00:00.000Z" data-astro-cid-4sn4zg3r>2026年4月23日</time></dd> </div> <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>作者</dt><dd data-astro-cid-4sn4zg3r>杨正武</dd></div> <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>预计阅读</dt><dd data-astro-cid-4sn4zg3r>7 分钟</dd></div> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>标签</dt> <dd class="article-tags" data-astro-cid-4sn4zg3r><span class="article-tag" data-astro-cid-4sn4zg3r>AI Agent</span><span class="article-tag" data-astro-cid-4sn4zg3r>Context 管理</span><span class="article-tag" data-astro-cid-4sn4zg3r>AI Coding</span><span class="article-tag" data-astro-cid-4sn4zg3r>Prompt Engineering</span><span class="article-tag" data-astro-cid-4sn4zg3r>注意力机制</span></dd> </div> </dl> <div class="article-actions" data-astro-cid-4sn4zg3r> <button class="wechat-copy-button" type="button" onclick="copyArticleToWechat()" data-astro-cid-4sn4zg3r> <i class="fab fa-weixin" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 复制到公众号
+</button> <button class="share-button" type="button" onclick="shareArticle()" data-astro-cid-4sn4zg3r> <i class="fas fa-share-alt" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 分享文章
+</button> </div> </aside> <main class="article-content" data-astro-cid-4sn4zg3r> <h2 id="一个被反复验证的事实">一个被反复验证的事实</h2>
+<p>用 AI 写代码的人都会遇到这个场景：你把整个项目丢给 AI，说”帮我改一下登录页面的 bug”。AI 迅速改完了登录页面，但顺手把旁边的支付模块也”优化”了一下。</p>
+<p>你以为它不懂你的需求？不，它懂。但你的 context 里塞了太多跟登录页面无关的东西，它的注意力被分散了。就像你让一个人在嘈杂的工地里念一段电话号码，他能听到，但记不全。</p>
+<p>这不是个别现象。我在多个项目里反复验证过同一个规律：<strong>context 的质量决定了 AI 输出的质量，而 context 的质量跟 token 数量几乎无关。</strong></p>
+<h2 id="注意力是有预算的">注意力是有预算的</h2>
+<p>很多人对 LLM 有一个根本性的误解：以为 context window 是一个”容器”，往里面装的信息越多，AI 就越”了解”你的项目。</p>
+<p>但 context window 更像是一个注意力预算池。你往里面放的每一条信息，都在消耗这份预算。</p>
+<h3 id="lost-in-the-middle">Lost in the Middle</h3>
+<p>2023 年有一篇论文（<a href="https://arxiv.org/abs/2307.03172">Lost in the Middle: How Language Models Use Long Contexts</a>）做了一个实验：把一条关键信息放在 context 的不同位置，然后让模型回答基于这条信息的问题。</p>
+<p>结果很直观：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>信息位置：开头 ████████████ 回答准确率：~95%</span></span>
+<span class="line"><span>信息位置：中间 ░░░░░░░░░░░░ 回答准确率：~55%</span></span>
+<span class="line"><span>信息位置：结尾 ████████████ 回答准确率：~90%</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>模型对 context 中间部分的信息，关注度显著低于开头和结尾。这不是 bug，是 Transformer 架构的固有特性，self-attention 机制天然会给首尾位置更高的权重。</p>
+<p>所以当你把 200K tokens 的代码一股脑塞给 AI 时，真正被它”看到”的信息，可能只有开头和结尾的各 20%。中间那 60%，它大概是扫了一眼，就过去了。</p>
+<h3 id="这跟-ai-coding-有什么关系">这跟 AI Coding 有什么关系</h3>
+<p>关系很大。</p>
+<p>你在 Cursor 或者 Claude Code 里打开一个项目，AI 能”看到”的东西包括：</p>
+<ul>
+<li>你当前编辑的文件</li>
+<li>你通过 @ 引入的其他文件</li>
+<li>项目结构</li>
+<li>linter 错误</li>
+<li>terminal 输出</li>
+<li>git diff</li>
+<li>system prompt</li>
+</ul>
+<p>每一项都在消耗注意力预算。</p>
+<p>一个常见的反面案例：你在改一个 React 组件的样式问题，但 context 里还残留着上一次对话讨论的 API 重构方案。AI 这时候可能会把”API 优化”的思路带到”改 CSS”的任务上，给出的方案里夹带了完全不相关的建议。</p>
+<p>这就是<strong>注意力偏移</strong>。它不是 AI”犯傻”，是你给了它错误的信号。</p>
+<h2 id="context-管理的本质信噪比">Context 管理的本质：信噪比</h2>
+<p>把 context 管理理解为 token 管理，是把问题想浅了。</p>
+<p>真正的 context 管理是在做<strong>信噪比优化</strong>。你要做的是：</p>
+<ol>
+<li><strong>提升信号</strong>：只放跟当前任务直接相关的信息</li>
+<li><strong>压制噪声</strong>：过滤掉跟任务无关的内容</li>
+<li><strong>排列顺序</strong>：把最关键的信息放在注意力最高的位置</li>
+</ol>
+<p>用一个具体的例子。假设你要让 AI 帮你修复一个 bug，你有两种 context 策略：</p>
+<p><strong>策略 A（大而全）</strong>：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>整个项目的文件结构</span></span>
+<span class="line"><span>bug 所在文件的全部代码（800 行）</span></span>
+<span class="line"><span>相关的类型定义文件</span></span>
+<span class="line"><span>相关的测试文件</span></span>
+<span class="line"><span>最近的 git diff</span></span>
+<span class="line"><span>README</span></span>
+<span class="line"><span>package.json</span></span>
+<span class="line"><span></span></span></code></pre>
+<p><strong>策略 B（精准裁剪）</strong>：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>bug 相关的函数及上下文（50 行）</span></span>
+<span class="line"><span>函数的输入输出类型定义</span></span>
+<span class="line"><span>触发 bug 的测试用例</span></span>
+<span class="line"><span>一行项目背景说明</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>策略 B 的效果几乎总是更好。因为 AI 在 50 行代码里找 bug，和在 800 行代码里找 bug，是完全不同的任务。前者它真的在读每一行，后者它大概率只扫了前 200 行和后 200 行。</p>
+<h2 id="需求专注度最常见的失败模式">需求专注度：最常见的失败模式</h2>
+<p>AI Coding 里最常见的失败，不是 AI 写不出代码，是它<strong>偏离了你的需求</strong>。</p>
+<h3 id="偏离是怎么发生的">偏离是怎么发生的</h3>
+<p>需求偏离通常不是一步到位的，而是一个渐变过程：</p>
+<ol>
+<li>你给了一个明确的任务</li>
+<li>context 里有一些相关信息，AI 觉得”顺便一起改了会更好”</li>
+<li>AI 的修改引入了新的 context（改了文件 A，现在文件 B 也需要调整）</li>
+<li>新的 context 又触发了新的”顺便”</li>
+<li>你要的是改一个按钮颜色，AI 给你重构了整个组件体系</li>
+</ol>
+<p>这个过程很像人类的”注意力漂移”。区别在于，人类漂移了自己能意识到，AI 漂移了它完全不知道，还觉得自己做得很好。</p>
+<h3 id="怎么防">怎么防</h3>
+<p>几个实践中验证过的做法：</p>
+<p><strong>缩小 context 边界。</strong> 只给 AI 跟当前任务相关的文件和代码。不要把”可能有用”的东西也塞进去，“可能有用”和”确定有用”之间隔着巨大的信噪比差距。</p>
+<p><strong>显式声明约束。</strong> 在任务描述里加上明确的边界：“只修改这个函数的逻辑，不要改动其他函数。不要重构。不要优化。只修 bug。“这种看起来很”啰嗦”的约束，实际上是在帮 AI 划定注意力的边界。</p>
+<p><strong>分步执行。</strong> 一个大任务拆成几个小步骤，每一步只加载必要的 context。第一步做完，清掉跟第二步无关的上下文，再开始第二步。不要在一个超长对话里把所有事情都做了。</p>
+<p><strong>及时纠偏。</strong> AI 开始”自由发挥”的时候，马上打断。不要指望它自己绕回来，它不会的。每发现一次偏离，就是一次重新校准 context 的机会。</p>
+<h2 id="context-管理的几个工程模式">Context 管理的几个工程模式</h2>
+<p>在 Agent 设计和 AI Coding 的实践中，有几个比较成熟的 context 管理模式。</p>
+<h3 id="1-渐进式加载">1. 渐进式加载</h3>
+<p>不要一次性把所有信息塞进去，按需加载。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>第一轮：任务描述 + 核心文件</span></span>
+<span class="line"><span>第二轮：根据第一轮的分析结果，加载相关依赖</span></span>
+<span class="line"><span>第三轮：根据前两轮的结果，加载测试和边界情况</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>每一轮只加载”当前缺少的信息”。这样做的好处是，AI 的注意力始终聚焦在当前步骤需要的信息上，不会被还没用到的内容分散。</p>
+<h3 id="2-上下文裁剪">2. 上下文裁剪</h3>
+<p>定期检查和清理 context，把已经完成、不再需要的上下文移除。</p>
+<ul>
+<li>已修复的 bug 相关的报错信息？删掉</li>
+<li>上一个任务的讨论记录？删掉</li>
+<li>仅供参考、已经用完的文档？删掉</li>
+</ul>
+<p>context 不是越积越多的，应该是流动的。用完的信息就应该腾出位置，给新的信息让路。</p>
+<h3 id="3-结构化注入">3. 结构化注入</h3>
+<p>往 context 里放信息的时候，不是堆砌，而是有结构的组织。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>## 任务</span></span>
+<span class="line"><span>修复用户注册表单的邮箱验证 bug</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>## 约束</span></span>
+<span class="line"><span>- 只修改 validateEmail 函数</span></span>
+<span class="line"><span>- 不改动表单组件的其他逻辑</span></span>
+<span class="line"><span>- 保持现有的错误消息格式</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>## 相关代码</span></span>
+<span class="line"><span>[只包含 validateEmail 函数及其直接依赖]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>## 测试用例</span></span>
+<span class="line"><span>[只包含邮箱验证相关的测试]</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>结构化的 context 让 AI 能快速定位每一部分信息的角色，减少”理解成本”，把更多注意力留给任务本身。</p>
+<h3 id="4-场景隔离">4. 场景隔离</h3>
+<p>不同场景之间共享 context 要极其谨慎。</p>
+<p>A 项目的技术栈偏好，不要自动带入 B 项目。昨天对话里的临时决策，不要自动出现在今天的对话里。CLI 会话中的操作，不要自动关联到 Web 界面的会话。</p>
+<p>这一点在我之前那篇讲 Hermes 和 OpenClaw 的文章里展开聊过。context 跨场景流动看起来像是”智能”，实际上往往是”污染”。每个任务、每个项目、每个会话都应该有自己干净的 context 边界。</p>
+<h3 id="5-上下文预算">5. 上下文预算</h3>
+<p>给每次 AI 调用设定一个隐性的”上下文预算”。比如：</p>
+<ul>
+<li>简单 bug 修复：500-1000 tokens 的 context 就够了</li>
+<li>功能开发：2000-5000 tokens</li>
+<li>架构重构：5000-10000 tokens</li>
+</ul>
+<p>如果你发现一个简单 bug 修复需要加载 20000 tokens 的 context，要么是你的任务拆分有问题，要么是项目结构需要优化了。</p>
+<h2 id="从写好-prompt到管好-context">从”写好 prompt”到”管好 context”</h2>
+<p>Prompt engineering 这个词很容易让人产生一种错觉，以为 AI 工程的核心就是”写好一段话”。</p>
+<p>写好 prompt 当然重要。但 prompt 只是 context 的一个组成部分。真正的能力在于：<strong>你知道在什么时间点，用什么结构，往 AI 的视野里放什么信息，不放什么信息。</strong></p>
+<p>这个能力的背后，是对注意力机制的直觉理解。你知道 AI 的注意力是有限的、是不均匀分布的、是容易被噪声带偏的。所以你做的每一个 context 相关的决策——给什么文件、不给什么文件、信息怎么排列、什么时候清理——都是在帮 AI 把有限的注意力花在刀刃上。</p>
+<p>回到开头那个比喻。context window 不是容器，是注意力预算。你管理 context，本质上是在帮 AI 管理它的注意力。</p>
+<p>做不好这件事的人，会在 AI 的”自由发挥”里反复踩坑。
+做好这件事的人，会让 AI 的输出看起来像是它真的”懂”你的项目。</p>
+<p>区别不在于 AI 的能力，在于你往它的视野里放了什么。</p> </main> <aside class="page-toc" aria-label="页面目录" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>页面目录</h2> <ol class="toc-list" data-astro-cid-4sn4zg3r> <li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#一个被反复验证的事实" data-astro-cid-4sn4zg3r>一个被反复验证的事实</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#注意力是有预算的" data-astro-cid-4sn4zg3r>注意力是有预算的</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#lost-in-the-middle" data-astro-cid-4sn4zg3r>Lost in the Middle</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#这跟-ai-coding-有什么关系" data-astro-cid-4sn4zg3r>这跟 AI Coding 有什么关系</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#context-管理的本质信噪比" data-astro-cid-4sn4zg3r>Context 管理的本质：信噪比</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#需求专注度最常见的失败模式" data-astro-cid-4sn4zg3r>需求专注度：最常见的失败模式</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#偏离是怎么发生的" data-astro-cid-4sn4zg3r>偏离是怎么发生的</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#怎么防" data-astro-cid-4sn4zg3r>怎么防</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#context-管理的几个工程模式" data-astro-cid-4sn4zg3r>Context 管理的几个工程模式</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#1-渐进式加载" data-astro-cid-4sn4zg3r>1. 渐进式加载</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#2-上下文裁剪" data-astro-cid-4sn4zg3r>2. 上下文裁剪</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#3-结构化注入" data-astro-cid-4sn4zg3r>3. 结构化注入</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#4-场景隔离" data-astro-cid-4sn4zg3r>4. 场景隔离</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#5-上下文预算" data-astro-cid-4sn4zg3r>5. 上下文预算</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#从写好-prompt到管好-context" data-astro-cid-4sn4zg3r>从”写好 prompt”到”管好 context”</a></li> </ol> <a class="toc-back" href="/blog" data-astro-cid-4sn4zg3r><i class="fas fa-arrow-left" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 返回博客</a> </aside> <nav class="article-navigation" aria-label="相邻文章" data-astro-cid-4sn4zg3r> <a class="article-nav-link" href="/blog/edith-agent" data-astro-cid-4sn4zg3r> <span class="nav-direction" data-astro-cid-4sn4zg3r>较新文章</span> <span class="nav-title" data-astro-cid-4sn4zg3r>Edith：把代码变成 AI 可消费的知识</span> </a> <a class="article-nav-link" href="/blog/thingjs-architecture-testing" data-astro-cid-4sn4zg3r> <span class="nav-direction" data-astro-cid-4sn4zg3r>较早文章</span> <span class="nav-title" data-astro-cid-4sn4zg3r>Thing.js 数字孪生平台技术架构分析与自动化测试方案</span> </a> </nav> </div> </article> <div class="selection-share" data-selection-share data-content-selector=".article-content" data-title="Context 管理：AI 工程里最被低估的核心能力" data-author="杨正武" data-section="IMCODERS BLOG" data-url="https://imcoders.cn/blog/context-management-is-the-real-skill/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>   </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>
