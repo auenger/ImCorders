@@ -270,9 +270,9 @@ const wechatDate = "2026年8月27日";
 <p>客户端不再只能等一个最终字符串。它可以实时收到 <code>item/started</code>、<code>item/completed</code>、消息增量、工具进度和 <code>turn/completed</code>；可以中断当前 Turn，也可以在 Agent 正在运行时继续 <code>turn/steer</code>。</p>
 <p>更关键的是，审批不是 UI 自己猜出来的弹窗，而是协议中的双向请求。当 Agent 想执行命令、修改文件或申请额外权限时，客户端可以展示风险，收集人的决定，再把结果交还 Runtime。这样换掉 UI 之后，安全边界并没有一起被换掉。</p>
 <p>一个最小客户端的骨架其实很简单：</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> proc</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> spawn</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"codex", ["app-server"]);</span></span>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> proc</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> spawn</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"codex"</span><span style="color:#E1E4E8">, [</span><span style="color:#9ECBFF">"app-server"</span><span style="color:#E1E4E8">]);</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#9ECBFF">send(</span><span style="color:#FDAEB7;font-style:italic">{</span></span>
+<span class="line"><span style="color:#B392F0">send</span><span style="color:#E1E4E8">({</span></span>
 <span class="line"><span style="color:#E1E4E8">  method: </span><span style="color:#9ECBFF">"initialize"</span><span style="color:#E1E4E8">,</span></span>
 <span class="line"><span style="color:#E1E4E8">  id: </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">,</span></span>
 <span class="line"><span style="color:#E1E4E8">  params: {</span></span>
