@@ -1,0 +1,117 @@
+# 杨正武 · imcoders
+
+> 杨正武的个人站，记录 Harness Engineering、Agent Engineering、软件开发与数据库 Agent 实践。
+
+本站公开文章和手册提供 HTML 与 Markdown 两种形式，内容来自同一份源文件。每篇 Markdown 包含作者、原文地址与内容日期。
+
+## 导航
+
+- [首页](https://imcoders.cn/)
+- [内容索引](https://imcoders.cn/content-index.json): 标题、摘要、标签、日期及正文地址。
+- [RSS](https://imcoders.cn/rss.xml): 博客与手册的发布、更新订阅。
+- [站点地图](https://imcoders.cn/sitemap.xml)
+
+## 技术博客
+
+- [Codex 开源 App Server：当 Agent Runtime 不再绑定 UI](https://imcoders.cn/blog/2026-08-27-codex-app-server-runtime/index.md): Codex 开放 App Server 后，认证、会话、审批、工具调用与流式事件都可以被新的客户端复用。本文结合 zcode-tui 的实践，讨论如何把官方 Agent 内核变成 TUI、IDE、移动端和自动化系统背后的通用 Runtime。
+- [当 Agent 开始使用软件，我们还要先做一个页面吗？](https://imcoders.cn/blog/2026-09-07-agent-first-software-design/index.md): 从 Rust 版 Chat2DB 的产品讨论出发，重新思考 Agent 时代的软件设计：优先建设稳定的服务能力、权限和治理体系，让前端成为可以按场景组合的轻量入口。
+- [工程师拥抱 Agent，普通人却重新开始开发软件](https://imcoders.cn/blog/agent-technical-reflux/index.md): 工程师试图用 Agent 重写传统系统，普通人则借助千问办公和 WorkBuddy 搭建自己的工作台。个人工具不必成为生产系统，但它与企业数据、API 和外部服务之间的连接必须被认真建设。
+- [AgentsZone：一个让 AI Agent 互相说话的平台](https://imcoders.cn/blog/agentszone/index.md): 基于 A2A 协议的桌面端 Agent 协作平台，支持跨机器通信、任务委派和上下文编排
+- [AILock-Step 协议：解决 AI Agent 幻觉性跳步的工程实践](https://imcoders.cn/blog/ai-agent-engineering/index.md): 基于状态锚点（STP）的线性执行协议，实现 AI Agent 断点续传级开发
+- [AI Agent 的未来：从工具到协作伙伴](https://imcoders.cn/blog/ai-agent-future/index.md): 探讨 AI Agent 技术发展趋势，以及如何构建真正可靠的 AI 工程环境
+- [All In AI 之后团队感觉没变，是不是缺少了一条「鲶鱼」](https://imcoders.cn/blog/ai-catfish-transformation/index.md): 很多团队宣布 All In AI 之后，配齐了工具，搞了培训，但几个月过去日常输出毫无变化。问题不在工具和流程，在于团队里缺一个敢于质疑框架的人。而管理学上那个著名的鲶鱼效应，本身就是一个虚假故事。
+- [AI 编程框架深度对比：OpenSpec、BMad Method 与 Superpowers](https://imcoders.cn/blog/ai-framework-comparison/index.md): 深入分析三个领先的 AI 辅助编程框架，理解它们的设计哲学、核心特性和适用场景
+- [当微信开放 Agent 接口：企业软件的 Agent-First 转型思考](https://imcoders.cn/blog/anyclaw-agent-first-future/index.md): 从 AnyClaw 的实践经验出发，探讨微信开放 ClawBot 插件接口意味着什么，以及企业为什么必须认真考虑 Agent 转型
+- [AnyClaw：Agent 框架中的安全约束设计](https://imcoders.cn/blog/anyclaw-security-skill-design/index.md): 从实践角度分析 AI Agent 框架中安全边界的设计，以及 Skill 代码化的工程意义
+- [不重写 App，如何用 DSH Plugin 完成 Agent 化转型](https://imcoders.cn/blog/app-to-agent-runtime-dsh-plugin/index.md): 以 Chat2DB 与 DeepSeek Harness Plugin 的真实实践为例：保留原 App 的业务、权限与审计，把 DSH 作为外部 Agent Runtime，通过授权后的能力映射，让传统软件逐步变成 Agent 可驱动的应用。
+- [Context 管理：AI 工程里最被低估的核心能力](https://imcoders.cn/blog/context-management-is-the-real-skill/index.md): 大多数人以为 prompt 工程就是写好一段话。但真正决定 AI 输出质量的，是你往上下文里塞了什么、没塞什么、以什么顺序塞的。Context 管理是注意力预算管理，不是 token 管理。
+- [把 Chat2DB 变成一名数据库员工](https://imcoders.cn/blog/database-agent-chat2db-work-os/index.md): Database Agent 不应该只是一个会写 SQL 的聊天框。把 Chat2DB 的数据库能力接入 Silieco Work OS，让 Task 成为工作入口、审批成为安全边界、Artifact 成为交付结果，才可能出现真正可用的数据库 Agent 员工。
+- [DeepSeek Harness：Agent 内核全开源，套皮就是商业软件](https://imcoders.cn/blog/deepseek-harness/index.md): DeepSeek Harness 开源了，插件在疯狂涌现，软件行业已死。模型、loop、上下文、对话与 Session 管理全部插件化，套一层皮加插件就是产品。
+- [别急着裁掉中层：先用 Agent 生态放大业务专家](https://imcoders.cn/blog/domain-expert-agent-ecosystem/index.md): AI 能穿透岗位边界，但不代表所有中层都该被替代。本文以 GM 散热仿真平台为例，讨论如何围绕业务专家定制 Agent 生态，把少数人的判断力变成组织的质量底线。
+- [Edith：把代码变成 AI 可消费的知识](https://imcoders.cn/blog/edith-agent/index.md): 一个自动从代码中提取知识、生成纯 Markdown 的 AI 基础设施，让任何 Agent 都能直接消费
+- [AI 转型为什么在公司内部推不动：组织惯性、委托代理和水平断层](https://imcoders.cn/blog/enterprise-ai-transformation-pitfalls/index.md): 铠铂云那套 FDE 改造跑通了，可同样的方法换一家公司就推不动。问题不在技术，在组织。中层在挡，员工没动力把自己的活儿蒸馏出来，团队水平参差导致人和 Agent 的边界全乱。与其全员转型，不如划一块特区先跑通。
+- [中国本土 FDE 的内核：从 Palantir 到腾讯 WorkBuddy](https://imcoders.cn/blog/fde-china-kernel/index.md): Palantir 的 FDE 神话背后是整套产品线托底，国内 FDE 普遍靠个人能力活成高级外包。腾讯 WorkBuddy 的 FDE JD 已把抽取共性反哺产品写进职责，用 Skills/MCP/多 Agent 生态接住经验，在补这层缺口。企业做 Agent 落地得先有产品或生态，再谈场景客制化。
+- [企业AI改造实战案例｜号称年薪百万的 FDE 工程师，究竟怎么帮企业成倍提效](https://imcoders.cn/blog/fde-million-salary/index.md): FDE 被硅谷炒成百万年薪的热门岗位，但它到底能给企业带来什么？用一个真实的制造业测机改造案例，讲清 FDE 的四样真价值：诊断结构问题、重构业务流程、把经验沉淀成资产、给 AI 铺干净环境，每个价值点都有铠铂云技术负责人站台作证。再讲企业内部怎么用三人小组加 FDD 工作流自己转型。
+- [Feature Workflow v3：Command + Agent + Skill 三层架构演进](https://imcoders.cn/blog/feature-workflow-v3/index.md): 从纯 Skill 链式调用到 Shell 脚本再到三层架构，Feature Workflow v3 实现了原生集成、上下文隔离和全生命周期自动化
+- [Feature Workflow：基于 Worktree 的多特性并行开发范式](https://imcoders.cn/blog/feature-workflow/index.md): 融合 Bmad 与 OpenSpec 的 AI 工作流，实现真正的多特性并行开发
+- [当文件夹成为 Agent 的个人工作站](https://imcoders.cn/blog/folder-as-agent-workstation/index.md): WorkBuddy 等 Agent 软件不一定要围绕聊天框构建。把 README、AGENTS.md、业务 Skill、结构化索引、脚本与校验规则放进同一个本地目录，一个文件夹就能成为可搜索、可执行、可迁移的个人业务系统。
+- [半天训练营：AI 研发转型的五堂课](https://imcoders.cn/blog/harness-engineering-training/index.md): 基于 Harness Engineering Playbook 的半天课程，覆盖规约驱动开发、饱和式测试、模型选型、流程精简和组织重构
+- [Hermes 来了，OpenClaw 要凉了？但它们都绕开了同一个问题](https://imcoders.cn/blog/hermes-agent-memory-context/index.md): 当所有人都在讨论 Hermes Agent 和 OpenClaw 谁更强时，一个更根本的问题被刻意回避了：Agent 的 Memory 和 Context 到底应该怎么设计？
+- [公司真正需要的，不是更多 Agent](https://imcoders.cn/blog/human-agent-collaboration-work-os/index.md): 企业落地 AI 的关键，不是增加几个自动化工具，而是让人和 Agent 在统一的任务、SOP、Skill 与上下文中协作，让执行有标准、过程可追溯、结果能验收。
+- [飞书 CLI 化：Agent2Agent 时代的企业协作新范式](https://imcoders.cn/blog/lark-cli-agent2agent/index.md): 飞书开源 CLI 工具意味着什么？从 Agent 操作企业软件到 Agent2Agent 协作，我们正在进入一个全新的时代
+- [软件不再是成品：从 Chat2DB、DSH 到 Silieco 的可塑软件实践](https://imcoders.cn/blog/malleable-software/index.md): 软件不再由厂商预先凝固为一组固定功能，而是成为一套可由用户用自然语言组合、在真实工作中运行并持续沉淀的能力生态。本文以散热仿真 SOP、DeepSeek Harness 和 Chat2DB Plugin 为例，讨论可塑软件如何成立。
+- [MateAgent: 如何用 ES 中间层解决多 Agent 上下文爆炸问题](https://imcoders.cn/blog/mate-agent-context-optimization/index.md): 当 Assistant Agent 数量从 10 个增长到 100 个时，传统的全量上下文方案面临 Token 消耗线性增长、响应速度变慢、关键信息被稀释的困境。本文介绍 MateAgent 如何通过 Elasticsearch 中间层实现智能路由
+- [Neuro-IDE：重构 AI 开发体验](https://imcoders.cn/blog/neuro-ide-design/index.md): 分享 Neuro-IDE 的设计理念，探讨如何打造以 Markdown 为核心的 AI 原生开发环境
+- [Neuro-IDE：以 Markdown 为核心的 AI 原生开发环境](https://imcoders.cn/blog/neuro-ide/index.md): 基于 Electron 边车架构的多角色终端 IDE
+- [Thing.js 数字孪生平台技术架构分析与自动化测试方案](https://imcoders.cn/blog/thingjs-architecture-testing/index.md): 深入分析 Thing.js 平台技术架构，探讨基于 Playwright 与 Agent Browser 的 E2E 测试方案
+- [Visual Replay Tester：下一代桌面自动化测试工具](https://imcoders.cn/blog/visual-replay-tester/index.md): 基于 Electron + Playwright + MCP 的 AI 驱动测试平台
+- [下一代自动化测试：视觉驱动的新范式](https://imcoders.cn/blog/visual-testing/index.md): 深入讨论 Visual Replay Tester 的设计理念，探索基于视觉的自动化测试解决方案
+- [语音 Agent 的双工，不等于原生双工](https://imcoders.cn/blog/voice-agent-cascaded-full-duplex/index.md): 结合最近一个项目的实时语音实践，拆解 WebSocket 全双工、ASR / Agent / TTS 级联、VAD 与 Barge-in，并说明它和原生 Audio-to-Audio 双工模型的真正区别。
+- [欢迎来到我的技术博客](https://imcoders.cn/blog/welcome/index.md): 基于 Astro 构建的 AI 友好博客系统，让 AI 可以直接创作高质量技术文章
+- [模型越来越强，研发工作流应该变重还是变轻？](https://imcoders.cn/blog/when-models-get-stronger-workflows-should-get-lighter/index.md): 当模型已经内化了搜索、拆解、规划和大部分代码协作能力，研发工作流还需要继续叠加更多 Skill、Agent 和状态文件吗？本文以一次 Feature Workflow 的复盘为例，讨论 Harness Engineering 如何从流程编排转向边界、状态与验证设计。
+
+## 工程手册
+
+- [从 LLM 到 Agent：先把基本概念说清楚](https://imcoders.cn/playbook/agent/00-agent-system/index.md): LLM、Prompt、Context 和 Agent 经常被混在一起。本章从一次模型调用出发，建立 Agent Engineering 最基础的概念边界。
+- [Agent Loop：一个 while 循环如何变成执行系统](https://imcoders.cn/playbook/agent/01-agent-loop/index.md): Agent 的计算内核可以写成一个 while 循环，但只有加入观察、状态、动作结果和终止语义，它才能成为可工作的执行系统。
+- [Workflow 与 Agent：谁来决定下一步](https://imcoders.cn/playbook/agent/02-workflow-agent/index.md): 使用了 LLM 和 Tool 的系统不一定是 Agent。固定流程与动态决策的真正分界，在于下一步动作究竟由程序还是模型决定。
+- [Skill、Tool 与 Environment：方法、能力和外部世界](https://imcoders.cn/playbook/agent/03-tool-use/index.md): Skill 告诉 Agent 怎样完成一类任务，Tool 让它能够采取动作，Environment 则提供动作发生和结果被观察的地方。
+- [Framework、Runtime 与 Protocol](https://imcoders.cn/playbook/agent/05-runtime-framework-protocol/index.md): 区分开发框架、执行环境、外部协议与 Harness，建立不依赖具体产品的 Agent 系统分层。
+- [Agent Definition、Thread、Run、Attempt 与 Step](https://imcoders.cn/playbook/agent/06-runtime-objects/index.md): 用一组稳定对象描述 Agent 版本、长期上下文、一次执行、重试尝试和内部步骤。
+- [Event、Artifact、Checkpoint 与 Trace](https://imcoders.cn/playbook/agent/07-event-artifact-checkpoint/index.md): 区分执行事件、正式产物、恢复快照和观测轨迹，明确每类对象的事实边界。
+- [Agent 任务生命周期](https://imcoders.cn/playbook/agent/08-run-lifecycle/index.md): 设计 Run 从提交、排队、运行到等待、取消、失败和完成的完整状态机。
+- [Interrupt、Resume、Cancel 与 Retry](https://imcoders.cn/playbook/agent/09-interrupt-resume-cancel-retry/index.md): 让暂停、恢复、取消和重试成为可持久化、可审计的 Runtime 控制操作。
+- [Context Assembly：Agent 这一轮看见什么](https://imcoders.cn/playbook/agent/10-context-assembly/index.md): 把目标、状态、Skill、观察和记忆组装成当前模型调用所需的有限工作集。
+- [Run State：Agent 现在做到哪里](https://imcoders.cn/playbook/agent/11-run-state/index.md): 建立可以持久化、版本化和恢复的执行状态，而不是依赖不断膨胀的对话历史。
+- [Plan、Todo 与 Task Graph](https://imcoders.cn/playbook/agent/12-plan-task-graph/index.md): 把计划视为可修改的执行假设，通过 Task 生命周期、依赖和调度持续推进目标。
+- [Workspace 与 Sandbox：执行环境也是状态](https://imcoders.cn/playbook/agent/13-workspace-sandbox/index.md): 管理 Agent 跨工具调用使用的文件、代码、浏览器和中间产物，并控制隔离与生命周期。
+- [Memory Architecture：Session、User、Agent 与 Long-term Memory](https://imcoders.cn/playbook/agent/14-long-term-memory/index.md): 从时间跨度、归属范围和内容类型拆解 Agent Memory，并建立读取、写入、遗忘与修正机制。
+- [Tool Protocol：动作空间的稳定接口](https://imcoders.cn/playbook/agent/15-tool-protocol/index.md): 通过明确的语义、参数、结果和错误契约，让 Agent 能够可靠地读取和改变外部环境。
+- [Skill：可执行知识的工程结构](https://imcoders.cn/playbook/agent/16-skill-engineering/index.md): 把领域方法、操作步骤、资源和检查标准封装成可版本化、可选择和可评估的能力包。
+- [Router 与能力发现](https://imcoders.cn/playbook/agent/17-capability-routing/index.md): 根据任务动态选择 Skill、Tool、模型、Agent 或 Workflow 分支，同时管理置信度和回退。
+- [Identity、Permission、Guardrail 与 Human-in-the-Loop](https://imcoders.cn/playbook/agent/18-permission-hitl/index.md): 认证用户、Agent 与 Runtime Workload 的多重身份，并把委托授权、审批和风险控制放进 Runtime 状态机。
+- [副作用、幂等、事务与补偿](https://imcoders.cn/playbook/agent/19-side-effects/index.md): 控制重试、取消和故障恢复对真实外部系统产生的重复或不可逆影响。
+- [Trace、Span 与 Event：看见完整执行轨迹](https://imcoders.cn/playbook/agent/20-trace-span-event/index.md): 以 Run 为核心关联模型、Tool、子 Agent、审批、成本和外部副作用的完整因果链。
+- [结果、过程与轨迹评估](https://imcoders.cn/playbook/agent/21-agent-evaluation/index.md): 同时评估目标完成、产物质量、计划、工具选择、执行轨迹、安全和恢复行为。
+- [Dataset、Bad Case、Replay 与 Regression](https://imcoders.cn/playbook/agent/22-dataset-replay/index.md): 把线上轨迹转化为经过脱敏、去重和验证的回归数据，并支持从状态或轨迹重放。
+- [Prompt、Skill、Model 与 Agent Version](https://imcoders.cn/playbook/agent/23-agent-versioning/index.md): 把一次 Run 使用的模型、Prompt、Skill、Tool Schema、策略和 Runtime 版本完整固定下来。
+- [质量、成本、安全与效率指标](https://imcoders.cn/playbook/agent/24-production-metrics/index.md): 用分层指标识别任务失败、Token 浪费、延迟热点、无进展循环和危险行为。
+- [从线上轨迹到优化闭环](https://imcoders.cn/playbook/agent/25-optimization-loop/index.md): 把观测、评估、数据集、实验和发布门禁连接成可审计的持续优化流程。
+- [什么时候应该拆成多个 Agent](https://imcoders.cn/playbook/agent/26-when-multi-agent/index.md): 用并行收益、上下文隔离、权限边界和独立判断，判断多 Agent 是否值得它带来的协调成本。
+- [Orchestrator、Worker、Reviewer 与 Peer](https://imcoders.cn/playbook/agent/27-multi-agent-topology/index.md): 比较集中编排、阶段流水线、独立审查和对等协作拓扑，并明确角色、控制权与最终责任。
+- [Delegation Contract、Task Tree 与消息协议](https://imcoders.cn/playbook/agent/28-delegation-contract/index.md): 让每次委派携带目标、最小上下文、约束、权限、验收标准和可追踪的父子 Run 关系。
+- [Blackboard、共享状态与并发控制](https://imcoders.cn/playbook/agent/29-blackboard/index.md): 用结构化共享状态连接多个 Agent，并通过版本、所有权、租约和证据引用控制并发写入。
+- [结果合并、冲突仲裁与最终责任](https://imcoders.cn/playbook/agent/30-merge-arbitration/index.md): 把多个候选结果经过校验、去重、冲突分类、仲裁和组合验证，提升为唯一正式产物。
+- [引言：为什么需要 Harness Engineering](https://imcoders.cn/playbook/harness/00-introduction/index.md): 如果你读到了这本书，相信你已经在Vibe Coding上有了一些经验。Vibe Coding是一片糖衣炮弹，它的初期体验非常好：跟 Claude Code说一个需求，几分钟的等待后大段的代码生成，应用启动。再加上几句短暂的讨论，更多的...
+- [意图对齐：Vibe Coding 为什么失败](https://imcoders.cn/playbook/harness/02a-intent-alignment/index.md): 如果你曾经有过当"甲方"外包工作给其它团队的经验，无论是软件开发、还是新家装修，你大概率会有一个明确的感受：无论你请到的外包团队水平有多么高超，外包任务的推进仍然会缓慢而痛苦，因为瓶颈从来就不在外包团队的能力，而是确保团队完全理解了你...
+- [用结构传达意图：分层与维度](https://imcoders.cn/playbook/harness/02b-structured-intent/index.md): 上一节诊断了三种 vibe coding 的失败模式：早期指令被挤出注意力范围，前后矛盾的指令没有优先级，compaction 主动删除信息。这三个问题有一个共同的结构性原因：意图活在对话里。
+- [迭代出一份可执行的规约](https://imcoders.cn/playbook/harness/02c-iterative-spec/index.md): 前面两节建立了一个方法论框架：信息要分层，每层有三个维度，层与层之间用交叉验证检测漂移。这一节讲拿到这个框架之后，面对一个具体的需求，你实际上怎么操作。
+- [实践：AILock-Step Feature Workflow](https://imcoders.cn/playbook/harness/02d-case-study/index.md): 前面几节建立了规约的方法论框架：信息分层、三个维度、交叉验证、迭代循环。这些概念回答了"为什么"和"是什么"。这一节回答"在真实项目里长什么样"。
+- [验证：确保代码忠实于规约](https://imcoders.cn/playbook/harness/03-verification/index.md): 上一章的 OKR 案例里，spec 经过两轮迭代修正，13 条 acceptance criteria 和 5 条 business rules 全部定义清楚。Agent 根据这份 spec 生成了 12 个后端文件、4 个前端文件。...
+- [测试基建前置：把规约变成可执行约束](https://imcoders.cn/playbook/harness/03a-test-first/index.md): 测试是 spec 的可执行形式。验收标准写的是自然语言，测试把它翻译成机器能运行的断言。这个翻译必须在第一行业务代码之前完成，这样 Agent 从执行的第一步开始就有反馈信号：这一步是否忠实于 spec。
+- [Code Review：补位测试覆盖不到的意图漂移](https://imcoders.cn/playbook/harness/03b-code-review/index.md): 测试验证的是行为：spec 说的功能，代码做到了吗。但代码中还有一类问题，行为层面完全正确，测试全绿，意图却在悄悄偏离。Code review 的工作就是捕获这些测试的盲区。
+- [实践：AILock-Step 的验证链路](https://imcoders.cn/playbook/harness/03c-practice/index.md): 前面两节建立了原则和机制。这一节用 02d 的 OKR 系统案例继续，展示这些机制在 AILock-Step Feature Workflow 框架中怎么落地。02d 展示了 spec 从一句话到可执行文档的全过程。这里接着看：spe...
+- [规约：让意图能被并行分发](https://imcoders.cn/playbook/harness/04-spec-distributed/index.md): 卷一里 spec 是一份共享工作台。你和一个 Agent 在这份工作台上来回。你写方案，它执行，你审核，你修改。所有意图对齐都在这个来回里完成。
+- [规约规模转变：人类脱离循环](https://imcoders.cn/playbook/harness/04a-artifact-role/index.md): 想一下你在卷一里怎么和 Agent 做事。你打开对话，让 Agent 读一份 spec，让它按照 spec 写代码。你在旁边盯着。它写到某个函数的时候需要处理错误，选了返回 null。你觉得这里应该抛异常，你打断它，说"这个函数错的时...
+- [设计原则：自包含](https://imcoders.cn/playbook/harness/04b-artifact-principle/index.md): 上一节说到卷二要把原本对话承载的东西都装进 spec，让它变成一份独立的载体。这一节回答一个具体的问题。载体应该长什么样。什么样的载体才能真的支持多个 Agent 独立执行。
+- [产出方式：可判定决策驱动](https://imcoders.cn/playbook/harness/04c-cocreation/index.md): 上一节推出的结论是：卷二的载体规模比卷一大一个数量级。承载几千个决策，每个决策带推理、边界、边缘情况，块之间保持冗余，块间的一致性还要能维护。这样一份载体，产出方法是什么。
+- [实践：博客系统审核队列](https://imcoders.cn/playbook/harness/04d-case-study/index.md): 前面几节讲了载体的原则和产出方法。这一节用一个真实项目走完全程。看粗略意图怎么在多轮共同产出里变成一份满足原则的载体。
+- [验证：当人不再能兜底](https://imcoders.cn/playbook/harness/05-verification-defense/index.md): 卷一里验证的最后一道是人。测试查行为，code review 查意图，人对项目的理解补前两者的漏。三层配合工作，人在第三层做兜底。
+- [验证责任转移](https://imcoders.cn/playbook/harness/05a-verification-to-mechanism/index.md): 上一章讲了 spec 从工作台变成载体。同一条物理事实（执行时人不在每个子空间的现场）对验证也起作用，方向不同。载体解决的是意图怎么在人不在场时被传输。验证解决的是产出怎么在人不在场时被判定可信。这一章从后一个问题开始。
+- [大规模验证的锚点](https://imcoders.cn/playbook/harness/05b-drift-locations/index.md): 上一节推出验证责任要从人转移到机制。这一节问一个更具体的问题：机制承担什么责任才能可信。
+- [三层机制：硬门禁、软门禁、集成验证](https://imcoders.cn/playbook/harness/05c-three-layers/index.md): 从两个漂移地点推出机制的具体形态。代码与载体块之间的漂按机制性质拆两层，一层用脚本，一层用模型。载体块之间的漂独立成一层，用跨块行为的预演机制。三层加起来在两个地点上都有专门机制，失效边界两两互补。
+- [实践：博客审核队列的验证链路](https://imcoders.cn/playbook/harness/05d-case-study/index.md): 原则和机制都已经清楚。这一节用规约章建立的博客审核队列的载体走一遍完整流程。前半段展示三层机制怎么从载体派生加人判定失效边界建起来。后半段展示建成的机制跑一遍五份产出，抓到三种漂移。整个流程沿用规约章的共同产出框架。
+- [组织重构：当 Agent 改变了协作的前提](https://imcoders.cn/playbook/harness/06-hybrid-team/index.md): 卷二解决的是个人效率问题。一个人指挥多个 Agent 并行，个人产出可以达到几十倍。但当团队里有几个人都开始这样做的时候，一个新的瓶颈出现了：团队的分工和流程是为人类执行速度设计的，它扛不住 Agent 的产出速度。
+- [为什么旧结构失效了](https://imcoders.cn/playbook/harness/06a-why-old-structure-fails/index.md): 传统团队按功能分工：前端两人，后端三人，QA 一人。这种结构的隐含假设是每个人的产出能力大致相当，工作量可以按人头均分。当 Agent 让个人产出差异从两倍拉大到十倍，这个假设就不成立了。同一个级别的两个后端工程师，一个用 Agent...
+- [瓶颈转移：从代码到组织](https://imcoders.cn/playbook/harness/06b-bottleneck-shift/index.md): 传统软件团队的瓶颈在执行层：代码写得不够快，功能交付赶不上需求。Agent 消除了执行瓶颈之后，新的瓶颈浮现在组织层。review 队列堆积，reviewer 的时间成为稀缺资源。部署窗口为人类节奏设计，一天两次的发布频率扛不住 Ag...
+- [让流程匹配 Agent 速度](https://imcoders.cn/playbook/harness/06c-process-speed/index.md): Code review、部署流水线、测试流程、发布审批，这些流程在人类开发速度下是质量保障机制。Agent 的产出速度把它们变成了吞吐瓶颈。但不能因为它们变慢了就一刀切地去掉，每个流程当初存在都有其质量理由。
+- [角色重定义：从执行者到治理者](https://imcoders.cn/playbook/harness/07-role-redefinition/index.md): 团队里最好的工程师已经几乎不写代码了。他们设计规约，搭建验证体系，管理 Agent 舰队，定义模块边界和接口契约。但他们的 title 还是 Senior Engineer，JD 上写的是"设计和实现软件系统"，绩效考核还在数代码产出...
+- [围绕治理重新设计角色](https://imcoders.cn/playbook/harness/07a-new-roles/index.md): 当 Agent 接管了执行层，工程师的日常工作从"写代码实现功能"变成了"设计和维护 Agent 高效执行的环境"。这个环境包括规约体系、验证框架、Skill 库、上下文工程策略、反馈基础设施。维护这个环境的能力，和写出高质量代码的能...
+- [用机制替代人际协调](https://imcoders.cn/playbook/harness/07b-coordination/index.md): 张三的 Agent 重构了支付模块的接口，李四的 Agent 还在用老接口调用。以前张三会在站会上提一句"我今天要改支付接口"，李四听到就知道先别动相关代码。这种非正式协调几乎零成本，依赖人类"听到之后记住并调整行为"的能力。Agen...
+- [Harness Engineering 手册：百倍生产力的可靠软件交付](https://imcoders.cn/playbook/harness/about/index.md): 如何组织 AI 与人类完成可靠的软件交付
+- [贡献者](https://imcoders.cn/playbook/harness/contributors/index.md): 本书由 AgentsZone 社区集体创作。以下是对本书内容有直接贡献的社区成员。
+- [演进：规约与验证的持续迭代](https://imcoders.cn/playbook/harness/evolution-v1/index.md): 引言定义了 harness 的两个原则：闭环控制和持续演进。前两章建立了闭环，用规约定义意图，用验证确认执行。但我们还没有触碰第二个原则。
+- [演进：harness 必然演化](https://imcoders.cn/playbook/harness/evolution-v2/index.md): 到上一章结束，harness 已经建成。载体承载完整意图，三层机制在两个漂移地点上都有覆盖，五个 Agent 并行工作产出可以合并。这一整套东西一旦跑起来，看起来就是完成品。
+- [演进：组织资产与新护城河](https://imcoders.cn/playbook/harness/evolution-v3/index.md): 传统软件公司的核心资产是两样东西：代码和人。
+- [卷一回顾：从闭环到演进](https://imcoders.cn/playbook/harness/v1-conclusion/index.md): 三章读下来，Agent 开发和传统开发之间的结构性差异应该已经从一组模糊的症状变成了可以诊断的问题。意图丢失不再是"Agent 不够聪明"，而是 context 中缺少了显式的 spec。验证失败不再是"测试没写好"，而是验证的锚点对...
+- [卷二回顾：迭代的harness系统](https://imcoders.cn/playbook/harness/v2-conclusion/index.md): 三章走下来，卷一里的三个诊断都出现了新的形态。意图丢失原来是 spec 没写出来，现在是载体的块之间失去一致性。验证漏了原来是测试没写好，现在是三层机制的某一层失效边界跟实际范围偏了。harness 腐烂原来是文档跟不上代码，现在是 ...

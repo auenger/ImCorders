@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Search discovery is independent of model-training permission.
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
+
+User-agent: GPTBot
+Disallow: /
+
+Sitemap: https://imcoders.cn/sitemap.xml
