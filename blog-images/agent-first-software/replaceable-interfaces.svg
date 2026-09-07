@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<style>text {font-family: "PingFang SC", "Microsoft YaHei", sans-serif;}</style>
+<defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 H 0 V 40" fill="none" stroke="#ffffff" stroke-opacity="0.035"/></pattern><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7894ff"/></marker></defs>
+<rect width="1600" height="900" fill="#0b1015"/>
+<rect width="1600" height="900" fill="url(#grid)"/>
+<text x="72" y="76" font-size="19" fill="#9ba9b7" font-weight="600" text-anchor="start">AGENT-FIRST SOFTWARE  /  03</text>
+<text x="72" y="143" font-size="44" fill="#f1f4f8" font-weight="600" text-anchor="start">一套稳定服务，多种轻量界面</text>
+<text x="72" y="191" font-size="25" fill="#9ba9b7" font-weight="400" text-anchor="start">默认壳子完成基本任务，自定义界面适配各自的工作方式</text>
+<rect x="72" y="268" width="420" height="228" rx="18" fill="#121b26" stroke="#7894ff" stroke-width="2"/>
+<path d="M 72 312 H 492" fill="none" stroke="#344152" stroke-width="3"/>
+<circle cx="96" cy="290" r="4" fill="#9ba9b7"/>
+<circle cx="114" cy="290" r="4" fill="#9ba9b7"/>
+<circle cx="132" cy="290" r="4" fill="#9ba9b7"/>
+<text x="102" y="378" font-size="31" fill="#f1f4f8" font-weight="600" text-anchor="start">Agent 入口</text>
+<text x="102" y="432" font-size="24" fill="#9ba9b7" font-weight="400" text-anchor="start">提问 · 调用 · 获取结果</text>
+<path d="M 282 496 V 610" fill="none" stroke="#7894ff" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="590" y="268" width="420" height="228" rx="18" fill="#121b26" stroke="#7894ff" stroke-width="2"/>
+<path d="M 590 312 H 1010" fill="none" stroke="#344152" stroke-width="3"/>
+<circle cx="614" cy="290" r="4" fill="#9ba9b7"/>
+<circle cx="632" cy="290" r="4" fill="#9ba9b7"/>
+<circle cx="650" cy="290" r="4" fill="#9ba9b7"/>
+<text x="620" y="378" font-size="31" fill="#f1f4f8" font-weight="600" text-anchor="start">默认管理页面</text>
+<text x="620" y="432" font-size="24" fill="#9ba9b7" font-weight="400" text-anchor="start">连接 · 授权 · 审计</text>
+<path d="M 800 496 V 610" fill="none" stroke="#7894ff" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="1108" y="268" width="420" height="228" rx="18" fill="#121b26" stroke="#7894ff" stroke-width="2"/>
+<path d="M 1108 312 H 1528" fill="none" stroke="#344152" stroke-width="3"/>
+<circle cx="1132" cy="290" r="4" fill="#9ba9b7"/>
+<circle cx="1150" cy="290" r="4" fill="#9ba9b7"/>
+<circle cx="1168" cy="290" r="4" fill="#9ba9b7"/>
+<text x="1138" y="378" font-size="31" fill="#f1f4f8" font-weight="600" text-anchor="start">用户自建工作台</text>
+<text x="1138" y="432" font-size="24" fill="#9ba9b7" font-weight="400" text-anchor="start">分析 · 图表 · 团队流程</text>
+<path d="M 1318 496 V 610" fill="none" stroke="#7894ff" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="72" y="610" width="1456" height="134" rx="18" fill="#191625" stroke="#b399ff" stroke-width="2"/>
+<text x="108" y="665" font-size="31" fill="#f1f4f8" font-weight="600" text-anchor="start">统一服务与治理</text>
+<text x="108" y="710" font-size="27" fill="#b399ff" font-weight="400" text-anchor="start">身份认证     权限策略     业务规则     数据访问     操作审计</text>
+<path d="M 72 790 H 1528" fill="none" stroke="#293440" stroke-width="3"/>
+<text x="72" y="843" font-size="27" fill="#86efac" font-weight="600" text-anchor="start">入口可以替换，所有请求都遵守同一套服务规则。</text>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<style>text {font-family: "PingFang SC", "Microsoft YaHei", sans-serif;}</style>
+<defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 H 0 V 40" fill="none" stroke="#ffffff" stroke-opacity="0.035"/></pattern><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7894ff"/></marker></defs>
+<rect width="1600" height="900" fill="#0b1015"/>
+<rect width="1600" height="900" fill="url(#grid)"/>
+<text x="72" y="76" font-size="19" fill="#9ba9b7" font-weight="600" text-anchor="start">AGENT-FIRST SOFTWARE  /  02</text>
+<text x="72" y="143" font-size="44" fill="#f1f4f8" font-weight="600" text-anchor="start">权限在执行边界落实</text>
+<text x="72" y="191" font-size="25" fill="#9ba9b7" font-weight="400" text-anchor="start">模型提出请求，身份与授权决定请求能否执行</text>
+<rect x="72" y="292" width="280" height="188" rx="18" fill="#121b26" stroke="#7894ff" stroke-width="2"/>
+<text x="102" y="352" font-size="30" fill="#f1f4f8" font-weight="600" text-anchor="start">Agent 请求</text>
+<text x="102" y="408" font-size="23" fill="#9ba9b7" font-weight="400" text-anchor="start">携带所代表的用户身份</text>
+<rect x="472" y="292" width="400" height="188" rx="18" fill="#121b26" stroke="#b399ff" stroke-width="2"/>
+<text x="502" y="352" font-size="30" fill="#f1f4f8" font-weight="600" text-anchor="start">服务端校验</text>
+<text x="502" y="408" font-size="23" fill="#9ba9b7" font-weight="400" text-anchor="start">身份 · 数据范围 · 操作类型</text>
+<rect x="1080" y="292" width="448" height="188" rx="18" fill="#121b26" stroke="#7894ff" stroke-width="2"/>
+<text x="1110" y="352" font-size="30" fill="#f1f4f8" font-weight="600" text-anchor="start">数据库执行</text>
+<text x="1110" y="408" font-size="23" fill="#9ba9b7" font-weight="400" text-anchor="start">使用受限数据库凭证</text>
+<path d="M 352 390 H 472" fill="none" stroke="#7894ff" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M 872 390 H 1080" fill="none" stroke="#7894ff" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="976" y="362" font-size="23" fill="#86efac" font-weight="400" text-anchor="middle">授权通过</text>
+<rect x="472" y="570" width="400" height="102" rx="18" fill="#25171d" stroke="#ad6070" stroke-width="2"/>
+<text x="672" y="631" font-size="27" fill="#f4a1af" font-weight="600" text-anchor="middle">越权请求：拒绝执行</text>
+<path d="M 672 480 V 570" fill="none" stroke="#7894ff" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="694" y="532" font-size="22" fill="#9ba9b7" font-weight="400" text-anchor="start">校验失败</text>
+<rect x="1080" y="570" width="448" height="102" rx="18" fill="#111e1a" stroke="#4c6559" stroke-width="2"/>
+<text x="1304" y="632" font-size="27" fill="#86efac" font-weight="600" text-anchor="middle">记录访问与执行结果</text>
+<path d="M 1304 480 V 570" fill="none" stroke="#7894ff" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="72" y="731" font-size="24" fill="#9ba9b7" font-weight="400" text-anchor="start">访问留痕覆盖允许与拒绝；权限变更、撤销也需要及时生效。</text>
+<path d="M 72 790 H 1528" fill="none" stroke="#293440" stroke-width="3"/>
+<text x="72" y="843" font-size="27" fill="#86efac" font-weight="600" text-anchor="start">应用层检查与数据库最小权限共同约束执行；LLM 不负责授予权限。</text>
+</svg>
