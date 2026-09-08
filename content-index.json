@@ -41,6 +41,25 @@
       "markdownUrl": "https://imcoders.cn/blog/2026-09-07-agent-first-software-design/index.md"
     },
     {
+      "id": "blog/2026-09-08-ai-work-entry-enterprise-services",
+      "kind": "blog",
+      "title": "大厂争夺 AI 工作入口，软件服务商如何升级",
+      "description": "从腾讯 WorkBuddy、阿里千问办公和字节豆包工作的布局出发，结合 Silieco 的人机协作思路，分析软件服务商如何围绕企业流程、数据接入与缺失系统建设，形成可持续的 Agent 业务。",
+      "author": "杨正武",
+      "tags": [
+        "AI Agent",
+        "企业服务",
+        "软件转型",
+        "Silieco",
+        "生态建设"
+      ],
+      "publishedAt": "2026-09-08T00:00:00.000Z",
+      "updatedAt": "2026-09-08T00:00:00.000Z",
+      "url": "https://imcoders.cn/blog/2026-09-08-ai-work-entry-enterprise-services/",
+      "image": "/blog-images/ai-work-entry/hero-enterprise-ecosystem.png",
+      "markdownUrl": "https://imcoders.cn/blog/2026-09-08-ai-work-entry-enterprise-services/index.md"
+    },
+    {
       "id": "blog/agent-technical-reflux",
       "kind": "blog",
       "title": "工程师拥抱 Agent，普通人却重新开始开发软件",

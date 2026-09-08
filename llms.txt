@@ -15,6 +15,7 @@
 
 - [Codex 开源 App Server：当 Agent Runtime 不再绑定 UI](https://imcoders.cn/blog/2026-08-27-codex-app-server-runtime/index.md): Codex 开放 App Server 后，认证、会话、审批、工具调用与流式事件都可以被新的客户端复用。本文结合 zcode-tui 的实践，讨论如何把官方 Agent 内核变成 TUI、IDE、移动端和自动化系统背后的通用 Runtime。
 - [当 Agent 开始使用软件，我们还要先做一个页面吗？](https://imcoders.cn/blog/2026-09-07-agent-first-software-design/index.md): 从 Rust 版 Chat2DB 的产品讨论出发，重新思考 Agent 时代的软件设计：优先建设稳定的服务能力、权限和治理体系，让前端成为可以按场景组合的轻量入口。
+- [大厂争夺 AI 工作入口，软件服务商如何升级](https://imcoders.cn/blog/2026-09-08-ai-work-entry-enterprise-services/index.md): 从腾讯 WorkBuddy、阿里千问办公和字节豆包工作的布局出发，结合 Silieco 的人机协作思路，分析软件服务商如何围绕企业流程、数据接入与缺失系统建设，形成可持续的 Agent 业务。
 - [工程师拥抱 Agent，普通人却重新开始开发软件](https://imcoders.cn/blog/agent-technical-reflux/index.md): 工程师试图用 Agent 重写传统系统，普通人则借助千问办公和 WorkBuddy 搭建自己的工作台。个人工具不必成为生产系统，但它与企业数据、API 和外部服务之间的连接必须被认真建设。
 - [AgentsZone：一个让 AI Agent 互相说话的平台](https://imcoders.cn/blog/agentszone/index.md): 基于 A2A 协议的桌面端 Agent 协作平台，支持跨机器通信、任务委派和上下文编排
 - [AILock-Step 协议：解决 AI Agent 幻觉性跳步的工程实践](https://imcoders.cn/blog/ai-agent-engineering/index.md): 基于状态锚点（STP）的线性执行协议，实现 AI Agent 断点续传级开发
