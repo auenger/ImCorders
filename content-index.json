@@ -60,6 +60,25 @@
       "markdownUrl": "https://imcoders.cn/blog/2026-09-08-ai-work-entry-enterprise-services/index.md"
     },
     {
+      "id": "blog/2026-09-17-gpt6-logo-design",
+      "kind": "blog",
+      "title": "用 GPT 6 做 Logo：怎样释放模型的真实能力",
+      "description": "硅基源流 Logo 的原始视觉稿来自 GPT 图像生成模型，GPT 6 又把它变成几何系统、构造动画和设计工具。这次实践让我重新理解了怎样释放强模型能力。",
+      "author": "杨正武",
+      "tags": [
+        "GPT 6",
+        "Logo 设计",
+        "AI 编程",
+        "Remotion",
+        "Agent"
+      ],
+      "publishedAt": "2026-09-17T00:00:00.000Z",
+      "updatedAt": "2026-09-17T00:00:00.000Z",
+      "url": "https://imcoders.cn/blog/2026-09-17-gpt6-logo-design/",
+      "image": "/blog-images/gpt6-logo/hero.png",
+      "markdownUrl": "https://imcoders.cn/blog/2026-09-17-gpt6-logo-design/index.md"
+    },
+    {
       "id": "blog/agent-technical-reflux",
       "kind": "blog",
       "title": "工程师拥抱 Agent，普通人却重新开始开发软件",

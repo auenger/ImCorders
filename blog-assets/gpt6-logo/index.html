@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>硅基源流 Logo 几何构造动画</title>
+  <style>
+    :root { --ink:#202020; --muted:#72777b; --line:#dce0e2; --paper:#fff; --accent:#168570; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--paper); font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
+    button, select, input { font:inherit; }
+    button, select { padding:9px 12px; color:var(--ink); background:var(--paper); border:1px solid var(--line); border-radius:6px; cursor:pointer; }
+    button:hover { border-color:#92989c; }
+    button:focus-visible, select:focus-visible, input:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+    button[aria-pressed="true"] { color:var(--paper); background:var(--ink); border-color:var(--ink); }
+    .motion-player { width:100%; background:#fff; }
+    .motion-transport { display:flex; align-items:center; gap:12px; padding:14px; border-top:1px solid var(--line); }
+    .motion-buttons { display:flex; gap:7px; flex:none; }
+    .motion-rate { display:flex; align-items:center; gap:7px; margin:0; color:var(--muted); font-size:12px; white-space:nowrap; }
+    .motion-rate select { width:70px; }
+    .motion-seek { flex:1; margin:0; }
+    .motion-seek input { width:100%; accent-color:var(--accent); }
+    .motion-time { min-width:82px; color:var(--muted); font-size:12px; font-variant-numeric:tabular-nums; }
+    .motion-chapters { display:grid; grid-template-columns:repeat(5,1fr); border-top:1px solid var(--line); }
+    .motion-chapters button { padding:14px 6px; border:0; border-radius:0; font-size:12px; }
+    .motion-chapters button span { margin-right:6px; font-size:9px; opacity:.55; }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
+    #logo-animation-root > p { padding:32px; color:var(--muted); }
+    @media (max-width:720px) {
+      .motion-transport { flex-wrap:wrap; }
+      .motion-buttons { width:100%; }
+      .motion-buttons button { flex:1; padding-inline:5px; }
+      .motion-seek { order:3; flex-basis:70%; }
+      .motion-chapters button span { display:block; margin:0 0 4px; }
+    }
+  </style>
+</head>
+<body>
+  <main aria-label="硅基源流 Logo 动态构造过程">
+    <div id="logo-animation-root"><p>正在加载设计过程动画…</p></div>
+  </main>
+  <script src="./logo-animation.js" defer></script>
+</body>
+</html>
