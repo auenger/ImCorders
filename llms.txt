@@ -17,6 +17,7 @@
 - [当 Agent 开始使用软件，我们还要先做一个页面吗？](https://imcoders.cn/blog/2026-09-07-agent-first-software-design/index.md): 从 Rust 版 Chat2DB 的产品讨论出发，重新思考 Agent 时代的软件设计：优先建设稳定的服务能力、权限和治理体系，让前端成为可以按场景组合的轻量入口。
 - [大厂争夺 AI 工作入口，软件服务商如何升级](https://imcoders.cn/blog/2026-09-08-ai-work-entry-enterprise-services/index.md): 从腾讯 WorkBuddy、阿里千问办公和字节豆包工作的布局出发，结合 Silieco 的人机协作思路，分析软件服务商如何围绕企业流程、数据接入与缺失系统建设，形成可持续的 Agent 业务。
 - [用 GPT 6 做 Logo，我重新理解了强模型的能力](https://imcoders.cn/blog/2026-09-17-gpt6-logo-design/index.md): 硅基源流 Logo 的原始视觉稿来自 GPT 图像生成模型，GPT 6 又把它变成几何系统、构造动画和设计工具。这次实践让我重新理解了怎样释放强模型能力。
+- [阿里 AI Native 实践再次印证 Harness 与 Feature Workflow](https://imcoders.cn/blog/2026-09-28-alibaba-ai-native-handbook/index.md): 对照阿里巴巴《AI Native 研发范式实践手册》与我的 Feature Workflow，观察 FDD 特性切片、隔离执行和质量门禁如何在企业研发现场得到验证，并延伸到生产 Guardrail 与交付度量。
 - [工程师拥抱 Agent，普通人却重新开始开发软件](https://imcoders.cn/blog/agent-technical-reflux/index.md): 工程师试图用 Agent 重写传统系统，普通人则借助千问办公和 WorkBuddy 搭建自己的工作台。个人工具不必成为生产系统，但它与企业数据、API 和外部服务之间的连接必须被认真建设。
 - [AgentsZone：一个让 AI Agent 互相说话的平台](https://imcoders.cn/blog/agentszone/index.md): 基于 A2A 协议的桌面端 Agent 协作平台，支持跨机器通信、任务委派和上下文编排
 - [AILock-Step 协议：解决 AI Agent 幻觉性跳步的工程实践](https://imcoders.cn/blog/ai-agent-engineering/index.md): 基于状态锚点（STP）的线性执行协议，实现 AI Agent 断点续传级开发
@@ -110,6 +111,8 @@
 - [角色重定义：从执行者到治理者](https://imcoders.cn/playbook/harness/07-role-redefinition/index.md): 团队里最好的工程师已经几乎不写代码了。他们设计规约，搭建验证体系，管理 Agent 舰队，定义模块边界和接口契约。但他们的 title 还是 Senior Engineer，JD 上写的是"设计和实现软件系统"，绩效考核还在数代码产出...
 - [围绕治理重新设计角色](https://imcoders.cn/playbook/harness/07a-new-roles/index.md): 当 Agent 接管了执行层，工程师的日常工作从"写代码实现功能"变成了"设计和维护 Agent 高效执行的环境"。这个环境包括规约体系、验证框架、Skill 库、上下文工程策略、反馈基础设施。维护这个环境的能力，和写出高质量代码的能...
 - [用机制替代人际协调](https://imcoders.cn/playbook/harness/07b-coordination/index.md): 张三的 Agent 重构了支付模块的接口，李四的 Agent 还在用老接口调用。以前张三会在站会上提一句"我今天要改支付接口"，李四听到就知道先别动相关代码。这种非正式协调几乎零成本，依赖人类"听到之后记住并调整行为"的能力。Agen...
+- [补遗：把 Agent 接进可复现的交付现场](https://imcoders.cn/playbook/harness/08-enterprise-execution/index.md): 补齐企业研发环境、任务沙箱、运行身份与生产门控，让规约和验证真正延伸到构建、发布与故障恢复。
+- [补遗：用交付事实衡量 Harness](https://imcoders.cn/playbook/harness/09-measurement-feedback/index.md): 把会话、代码、变更和需求连成证据链，区分工具使用、工程质量与业务交付，并让失败轨迹回流到规约和环境。
 - [Harness Engineering 手册：百倍生产力的可靠软件交付](https://imcoders.cn/playbook/harness/about/index.md): 如何组织 AI 与人类完成可靠的软件交付
 - [贡献者](https://imcoders.cn/playbook/harness/contributors/index.md): 本书由 AgentsZone 社区集体创作。以下是对本书内容有直接贡献的社区成员。
 - [演进：规约与验证的持续迭代](https://imcoders.cn/playbook/harness/evolution-v1/index.md): 引言定义了 harness 的两个原则：闭环控制和持续演进。前两章建立了闭环，用规约定义意图，用验证确认执行。但我们还没有触碰第二个原则。

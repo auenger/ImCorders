@@ -79,6 +79,24 @@
       "markdownUrl": "https://imcoders.cn/blog/2026-09-17-gpt6-logo-design/index.md"
     },
     {
+      "id": "blog/2026-09-28-alibaba-ai-native-handbook",
+      "kind": "blog",
+      "title": "阿里 AI Native 实践再次印证 Harness 与 Feature Workflow",
+      "description": "对照阿里巴巴《AI Native 研发范式实践手册》与我的 Feature Workflow，观察 FDD 特性切片、隔离执行和质量门禁如何在企业研发现场得到验证，并延伸到生产 Guardrail 与交付度量。",
+      "author": "杨正武",
+      "tags": [
+        "AI Native",
+        "Harness Engineering",
+        "Agent 工程",
+        "研发效能"
+      ],
+      "publishedAt": "2026-09-28T00:00:00.000Z",
+      "updatedAt": "2026-09-28T00:00:00.000Z",
+      "url": "https://imcoders.cn/blog/2026-09-28-alibaba-ai-native-handbook/",
+      "image": "/blog-images/alibaba-ai-native-handbook/hero.png",
+      "markdownUrl": "https://imcoders.cn/blog/2026-09-28-alibaba-ai-native-handbook/index.md"
+    },
+    {
       "id": "blog/agent-technical-reflux",
       "kind": "blog",
       "title": "工程师拥抱 Agent，普通人却重新开始开发软件",
@@ -1524,6 +1542,36 @@
       "url": "https://imcoders.cn/playbook/harness/07b-coordination/",
       "image": "/og-default.png",
       "markdownUrl": "https://imcoders.cn/playbook/harness/07b-coordination/index.md"
+    },
+    {
+      "id": "playbook/harness/08-enterprise-execution",
+      "kind": "playbook",
+      "title": "补遗：把 Agent 接进可复现的交付现场",
+      "description": "补齐企业研发环境、任务沙箱、运行身份与生产门控，让规约和验证真正延伸到构建、发布与故障恢复。",
+      "author": "杨正武",
+      "tags": [
+        "Harness Engineering 手册",
+        "专题补遗：企业落地"
+      ],
+      "updatedAt": "2026-09-28T00:00:00.000Z",
+      "url": "https://imcoders.cn/playbook/harness/08-enterprise-execution/",
+      "image": "/og-default.png",
+      "markdownUrl": "https://imcoders.cn/playbook/harness/08-enterprise-execution/index.md"
+    },
+    {
+      "id": "playbook/harness/09-measurement-feedback",
+      "kind": "playbook",
+      "title": "补遗：用交付事实衡量 Harness",
+      "description": "把会话、代码、变更和需求连成证据链，区分工具使用、工程质量与业务交付，并让失败轨迹回流到规约和环境。",
+      "author": "杨正武",
+      "tags": [
+        "Harness Engineering 手册",
+        "专题补遗：企业落地"
+      ],
+      "updatedAt": "2026-09-28T00:00:00.000Z",
+      "url": "https://imcoders.cn/playbook/harness/09-measurement-feedback/",
+      "image": "/og-default.png",
+      "markdownUrl": "https://imcoders.cn/playbook/harness/09-measurement-feedback/index.md"
     },
     {
       "id": "playbook/harness/about",
