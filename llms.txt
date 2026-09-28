@@ -17,7 +17,7 @@
 - [当 Agent 开始使用软件，我们还要先做一个页面吗？](https://imcoders.cn/blog/2026-09-07-agent-first-software-design/index.md): 从 Rust 版 Chat2DB 的产品讨论出发，重新思考 Agent 时代的软件设计：优先建设稳定的服务能力、权限和治理体系，让前端成为可以按场景组合的轻量入口。
 - [大厂争夺 AI 工作入口，软件服务商如何升级](https://imcoders.cn/blog/2026-09-08-ai-work-entry-enterprise-services/index.md): 从腾讯 WorkBuddy、阿里千问办公和字节豆包工作的布局出发，结合 Silieco 的人机协作思路，分析软件服务商如何围绕企业流程、数据接入与缺失系统建设，形成可持续的 Agent 业务。
 - [用 GPT 6 做 Logo，我重新理解了强模型的能力](https://imcoders.cn/blog/2026-09-17-gpt6-logo-design/index.md): 硅基源流 Logo 的原始视觉稿来自 GPT 图像生成模型，GPT 6 又把它变成几何系统、构造动画和设计工具。这次实践让我重新理解了怎样释放强模型能力。
-- [从 Manus 到 Claw，Agent 产品接下来怎么做](https://imcoders.cn/blog/2026-09-28-agent-product-manus-claw/index.md): 把 AI Agent 分成云端 Manus 和本地 Claw 两种形态，可以看清它们各自的优势与限制。结合 Hermes、OpenClaw、WorkBuddy、Muse 和 Grok Bot，讨论用户需求、持续使用、端云协同与新产品的切入方向。
+- [从 Manus 到 Claw，把 AI 实习生带成正式工](https://imcoders.cn/blog/2026-09-28-agent-product-manus-claw/index.md): 从云端 Manus 与本地 Claw 出发，讨论一种 Agent 产品方向：业务专家带着 AI 实习生做真实任务，在使用和纠正中沉淀业务方法，经过验证后逐步成为 AI 正式工，并形成专家参与培养、交付和维护的生态。
 - [阿里 AI Native 实践再次印证 Harness 与 Feature Workflow](https://imcoders.cn/blog/2026-09-28-alibaba-ai-native-handbook/index.md): 对照阿里巴巴《AI Native 研发范式实践手册》与我的 Feature Workflow，观察 FDD 特性切片、隔离执行和质量门禁如何在企业研发现场得到验证，并延伸到生产 Guardrail 与交付度量。
 - [工程师拥抱 Agent，普通人却重新开始开发软件](https://imcoders.cn/blog/agent-technical-reflux/index.md): 工程师试图用 Agent 重写传统系统，普通人则借助千问办公和 WorkBuddy 搭建自己的工作台。个人工具不必成为生产系统，但它与企业数据、API 和外部服务之间的连接必须被认真建设。
 - [AgentsZone：一个让 AI Agent 互相说话的平台](https://imcoders.cn/blog/agentszone/index.md): 基于 A2A 协议的桌面端 Agent 协作平台，支持跨机器通信、任务委派和上下文编排

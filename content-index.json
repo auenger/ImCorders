@@ -81,19 +81,20 @@
     {
       "id": "blog/2026-09-28-agent-product-manus-claw",
       "kind": "blog",
-      "title": "从 Manus 到 Claw，Agent 产品接下来怎么做",
-      "description": "把 AI Agent 分成云端 Manus 和本地 Claw 两种形态，可以看清它们各自的优势与限制。结合 Hermes、OpenClaw、WorkBuddy、Muse 和 Grok Bot，讨论用户需求、持续使用、端云协同与新产品的切入方向。",
+      "title": "从 Manus 到 Claw，把 AI 实习生带成正式工",
+      "description": "从云端 Manus 与本地 Claw 出发，讨论一种 Agent 产品方向：业务专家带着 AI 实习生做真实任务，在使用和纠正中沉淀业务方法，经过验证后逐步成为 AI 正式工，并形成专家参与培养、交付和维护的生态。",
       "author": "杨正武",
       "tags": [
         "AI Agent",
         "产品设计",
-        "Manus",
-        "OpenClaw",
-        "端云协同"
+        "AI 实习生",
+        "业务专家",
+        "生态建设"
       ],
       "publishedAt": "2026-09-28T00:00:00.000Z",
       "updatedAt": "2026-09-28T00:00:00.000Z",
       "url": "https://imcoders.cn/blog/2026-09-28-agent-product-manus-claw/",
+      "image": "/blog-images/agent-intern/hero-ai-interns.png",
       "markdownUrl": "https://imcoders.cn/blog/2026-09-28-agent-product-manus-claw/index.md"
     },
     {
