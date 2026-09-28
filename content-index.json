@@ -82,7 +82,7 @@
       "id": "blog/2026-09-28-agent-product-manus-claw",
       "kind": "blog",
       "title": "从 Manus 到 Claw，Agent 产品接下来怎么做",
-      "description": "把 AI Agent 分成云端 Manus 和本地 Claw 两种形态，可以看清它们各自的优势与限制。结合 Hermes、OpenClaw、WorkBuddy、Muse 和 Grok Bot，讨论持续工作、端云协同与新产品的切入方向。",
+      "description": "把 AI Agent 分成云端 Manus 和本地 Claw 两种形态，可以看清它们各自的优势与限制。结合 Hermes、OpenClaw、WorkBuddy、Muse 和 Grok Bot，讨论用户需求、持续使用、端云协同与新产品的切入方向。",
       "author": "杨正武",
       "tags": [
         "AI Agent",
