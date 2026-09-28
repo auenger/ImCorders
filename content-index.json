@@ -79,6 +79,24 @@
       "markdownUrl": "https://imcoders.cn/blog/2026-09-17-gpt6-logo-design/index.md"
     },
     {
+      "id": "blog/2026-09-28-agent-product-manus-claw",
+      "kind": "blog",
+      "title": "从 Manus 到 Claw，Agent 产品接下来怎么做",
+      "description": "把 AI Agent 分成云端 Manus 和本地 Claw 两种形态，可以看清它们各自的优势与限制。结合 Hermes、OpenClaw、WorkBuddy、Muse 和 Grok Bot，讨论持续工作、端云协同与新产品的切入方向。",
+      "author": "杨正武",
+      "tags": [
+        "AI Agent",
+        "产品设计",
+        "Manus",
+        "OpenClaw",
+        "端云协同"
+      ],
+      "publishedAt": "2026-09-28T00:00:00.000Z",
+      "updatedAt": "2026-09-28T00:00:00.000Z",
+      "url": "https://imcoders.cn/blog/2026-09-28-agent-product-manus-claw/",
+      "markdownUrl": "https://imcoders.cn/blog/2026-09-28-agent-product-manus-claw/index.md"
+    },
+    {
       "id": "blog/2026-09-28-alibaba-ai-native-handbook",
       "kind": "blog",
       "title": "阿里 AI Native 实践再次印证 Harness 与 Feature Workflow",

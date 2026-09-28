@@ -1,0 +1,386 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>从 Manus 到 Claw，Agent 产品接下来怎么做 - 杨正武</title><meta name="description" content="把 AI Agent 分成云端 Manus 和本地 Claw 两种形态，可以看清它们各自的优势与限制。结合 Hermes、OpenClaw、WorkBuddy、Muse 和 Grok Bot，讨论持续工作、端云协同与新产品的切入方向。"><link rel="canonical" href="https://imcoders.cn/blog/2026-09-28-agent-product-manus-claw/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/blog/2026-09-28-agent-product-manus-claw/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/blog/2026-09-28-agent-product-manus-claw/#article","headline":"从 Manus 到 Claw，Agent 产品接下来怎么做","description":"把 AI Agent 分成云端 Manus 和本地 Claw 两种形态，可以看清它们各自的优势与限制。结合 Hermes、OpenClaw、WorkBuddy、Muse 和 Grok Bot，讨论持续工作、端云协同与新产品的切入方向。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/blog/2026-09-28-agent-product-manus-claw/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-09-28T00:00:00.000Z","dateModified":"2026-09-28T00:00:00.000Z","articleSection":"技术博客"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"博客","item":"https://imcoders.cn/blog/"},{"@type":"ListItem","position":3,"name":"从 Manus 到 Claw，Agent 产品接下来怎么做","item":"https://imcoders.cn/blog/2026-09-28-agent-product-manus-claw/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-09-28T00:00:00.000Z"><meta property="article:modified_time" content="2026-09-28T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="从 Manus 到 Claw，Agent 产品接下来怎么做 - 杨正武"><meta property="og:description" content="把 AI Agent 分成云端 Manus 和本地 Claw 两种形态，可以看清它们各自的优势与限制。结合 Hermes、OpenClaw、WorkBuddy、Muse 和 Grok Bot，讨论持续工作、端云协同与新产品的切入方向。"><meta property="og:url" content="https://imcoders.cn/blog/2026-09-28-agent-product-manus-claw/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="从 Manus 到 Claw，Agent 产品接下来怎么做 - 杨正武"><meta name="twitter:description" content="把 AI Agent 分成云端 Manus 和本地 Claw 两种形态，可以看清它们各自的优势与限制。结合 Hermes、OpenClaw、WorkBuddy、Muse 和 Grok Bot，讨论持续工作、端云协同与新产品的切入方向。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="从 Manus 到 Claw，Agent 产品接下来怎么做 - 杨正武"><meta itemprop="description" content="把 AI Agent 分成云端 Manus 和本地 Claw 两种形态，可以看清它们各自的优势与限制。结合 Hermes、OpenClaw、WorkBuddy、Muse 和 Grok Bot，讨论持续工作、端云协同与新产品的切入方向。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "从 Manus 到 Claw，Agent 产品接下来怎么做 - 杨正武";
+const shareDesc = "把 AI Agent 分成云端 Manus 和本地 Claw 两种形态，可以看清它们各自的优势与限制。结合 Hermes、OpenClaw、WorkBuddy、Muse 和 Grok Bot，讨论持续工作、端云协同与新产品的切入方向。";
+const shareLink = "https://imcoders.cn/blog/2026-09-28-agent-product-manus-claw/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.DUPo9LDV.css"><script type="module" src="/_astro/hoisted.D20CsQCG.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/blog" aria-current="page">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <script>(function(){const shareText = "把 AI Agent 分成云端 Manus 和本地 Claw 两种形态，可以看清它们各自的优势与限制...\n\nhttps://imcoders.cn/blog/2026-09-28-agent-product-manus-claw/";
+const shareUrl = "https://imcoders.cn/blog/2026-09-28-agent-product-manus-claw/";
+const wechatTitle = "从 Manus 到 Claw，Agent 产品接下来怎么做";
+const wechatDescription = "把 AI Agent 分成云端 Manus 和本地 Claw 两种形态，可以看清它们各自的优势与限制。结合 Hermes、OpenClaw、WorkBuddy、Muse 和 Grok Bot，讨论持续工作、端云协同与新产品的切入方向。";
+const wechatAuthor = "杨正武";
+const wechatDate = "2026年9月28日";
+
+    window.shareArticle = async function () {
+      const button = document.querySelector('button.share-button');
+      try {
+        await navigator.clipboard.writeText(shareText);
+        if (!button) return;
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> 已复制';
+        button.classList.add('copied');
+        window.setTimeout(() => {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+      } catch (error) {
+        console.error('复制失败', error);
+        window.prompt('请复制下面的分享内容', shareText);
+      }
+    };
+
+    const wechatCopiedProperties = [
+      'color', 'background-color', 'font-family', 'font-size', 'font-weight', 'font-style',
+      'line-height', 'letter-spacing', 'text-align', 'text-decoration', 'text-indent',
+      'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
+      'padding-top', 'padding-right', 'padding-bottom', 'padding-left',
+      'border-top', 'border-right', 'border-bottom', 'border-left', 'border-radius',
+      'display', 'vertical-align',
+      'white-space', 'list-style-type', 'border-collapse', 'overflow-wrap', 'word-break'
+    ];
+
+    const canonicalizeWechatUrl = function (value) {
+      if (!value) return value;
+      try {
+        return new URL(value, shareUrl).href;
+      } catch {
+        return value;
+      }
+    };
+
+    window.buildWechatRichText = function () {
+      const article = document.querySelector('.article-content');
+      if (!article) throw new Error('article content not found');
+
+      const clone = article.cloneNode(true);
+      const sourceNodes = [article, ...article.querySelectorAll('*')];
+      const cloneNodes = [clone, ...clone.querySelectorAll('*')];
+
+      sourceNodes.forEach((sourceNode, index) => {
+        const targetNode = cloneNodes[index];
+        if (!(sourceNode instanceof Element) || !(targetNode instanceof Element)) return;
+
+        const computed = getComputedStyle(sourceNode);
+        const inlineStyles = wechatCopiedProperties
+          .map((property) => `${property}:${computed.getPropertyValue(property)};`)
+          .join('');
+
+        targetNode.setAttribute('style', inlineStyles);
+        targetNode.removeAttribute('id');
+        targetNode.removeAttribute('class');
+        [...targetNode.attributes].forEach((attribute) => {
+          if (attribute.name.startsWith('data-') || attribute.name.startsWith('aria-')) {
+            targetNode.removeAttribute(attribute.name);
+          }
+        });
+
+        if (sourceNode instanceof HTMLImageElement && targetNode instanceof HTMLImageElement) {
+          const rawSource = sourceNode.getAttribute('src') || sourceNode.currentSrc || sourceNode.src;
+          targetNode.setAttribute('src', canonicalizeWechatUrl(rawSource));
+          targetNode.removeAttribute('srcset');
+          targetNode.removeAttribute('sizes');
+          targetNode.removeAttribute('loading');
+          targetNode.removeAttribute('decoding');
+          targetNode.setAttribute('style', `${inlineStyles}display:block;width:100%;max-width:100%;height:auto;margin-left:auto;margin-right:auto;`);
+        }
+
+        if (sourceNode instanceof HTMLAnchorElement && targetNode instanceof HTMLAnchorElement) {
+          targetNode.setAttribute('href', canonicalizeWechatUrl(sourceNode.getAttribute('href') || sourceNode.href));
+          targetNode.removeAttribute('target');
+          targetNode.removeAttribute('rel');
+        }
+      });
+
+      clone.querySelectorAll('script, style, iframe, button, form, input, textarea, select').forEach((node) => node.remove());
+
+      // 微信编辑器的内容栏比桌面文章窄。不要保留桌面布局计算出的固定宽高，
+      // 否则图片缩小后父元素仍会占据原高度，文字换行后也可能互相覆盖。
+      clone.querySelectorAll('p').forEach((paragraph) => {
+        const onlyChild = paragraph.children.length === 1 ? paragraph.firstElementChild : null;
+        if (onlyChild instanceof HTMLImageElement && !paragraph.textContent?.trim()) {
+          paragraph.setAttribute('style', 'margin:24px 0 12px;padding:0;line-height:0;');
+        }
+      });
+
+      clone.querySelectorAll('img').forEach((image) => {
+        image.style.display = 'block';
+        image.style.width = '100%';
+        image.style.maxWidth = '100%';
+        image.style.height = 'auto';
+        image.style.marginLeft = 'auto';
+        image.style.marginRight = 'auto';
+      });
+
+      clone.querySelectorAll('pre').forEach((pre) => {
+        pre.style.display = 'block';
+        pre.style.width = 'auto';
+        pre.style.maxWidth = '100%';
+        pre.style.whiteSpace = 'pre-wrap';
+        pre.style.wordBreak = 'break-word';
+        pre.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('pre code').forEach((code) => {
+        code.style.whiteSpace = 'pre-wrap';
+        code.style.wordBreak = 'break-word';
+        code.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('table').forEach((table) => {
+        table.style.display = 'table';
+        table.style.width = '100%';
+        table.style.maxWidth = '100%';
+        table.style.tableLayout = 'fixed';
+        table.style.borderCollapse = 'collapse';
+      });
+
+      clone.querySelectorAll('th, td').forEach((cell) => {
+        cell.style.minWidth = '0';
+        cell.style.wordBreak = 'break-word';
+        cell.style.overflowWrap = 'anywhere';
+        cell.style.verticalAlign = 'top';
+      });
+
+      const wrapper = document.createElement('section');
+      wrapper.setAttribute('style', 'box-sizing:border-box;width:100%;max-width:100%;margin:0;padding:32px 26px;background-color:#111016;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+
+      const header = document.createElement('header');
+      header.setAttribute('style', 'margin:0 0 34px;padding:0 0 24px;border-bottom:2px solid #e23c3e;');
+
+      const title = document.createElement('h1');
+      title.textContent = wechatTitle;
+      title.setAttribute('style', 'margin:0 0 18px;color:#f1ece2;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:30px;font-weight:800;line-height:1.25;letter-spacing:-0.5px;');
+
+      const description = document.createElement('p');
+      description.textContent = wechatDescription;
+      description.setAttribute('style', 'margin:0 0 16px;color:#a9a3a8;font-size:16px;line-height:1.75;');
+
+      const meta = document.createElement('p');
+      meta.textContent = `${wechatAuthor} · ${wechatDate}`;
+      meta.setAttribute('style', 'margin:0;color:#e23c3e;font-size:13px;font-weight:700;line-height:1.6;letter-spacing:0.5px;');
+
+      header.append(title, description, meta);
+      clone.setAttribute('style', 'width:auto;max-width:100%;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+      wrapper.append(header, clone);
+
+      return {
+        html: wrapper.outerHTML,
+        text: `${wechatTitle}\n\n${wechatDescription}\n\n${wechatAuthor} · ${wechatDate}\n\n${article.innerText}`
+      };
+    };
+
+    const setWechatCopyFeedback = function (button, message, isError = false) {
+      if (!button) return;
+      const original = button.dataset.originalHtml || button.innerHTML;
+      button.dataset.originalHtml = original;
+      button.innerHTML = isError
+        ? `<i class="fas fa-exclamation-circle" aria-hidden="true"></i> ${message}`
+        : `<i class="fas fa-check" aria-hidden="true"></i> ${message}`;
+      button.classList.toggle('copy-error', isError);
+      button.classList.toggle('copied', !isError);
+      window.setTimeout(() => {
+        button.innerHTML = original;
+        button.classList.remove('copied', 'copy-error');
+      }, 2600);
+    };
+
+    window.copyArticleToWechat = async function () {
+      const button = document.querySelector('.wechat-copy-button');
+      try {
+        const payload = window.buildWechatRichText();
+        if (navigator.clipboard?.write && window.ClipboardItem && window.isSecureContext) {
+          await navigator.clipboard.write([new ClipboardItem({
+            'text/html': new Blob([payload.html], { type: 'text/html' }),
+            'text/plain': new Blob([payload.text], { type: 'text/plain' })
+          })]);
+        } else {
+          const holder = document.createElement('div');
+          holder.contentEditable = 'true';
+          holder.style.position = 'fixed';
+          holder.style.left = '-99999px';
+          holder.style.top = '0';
+          holder.innerHTML = payload.html;
+          document.body.appendChild(holder);
+
+          const range = document.createRange();
+          range.selectNodeContents(holder);
+          const selection = window.getSelection();
+          selection?.removeAllRanges();
+          selection?.addRange(range);
+          const copied = document.execCommand('copy');
+          selection?.removeAllRanges();
+          holder.remove();
+          if (!copied) throw new Error('copy command failed');
+        }
+        setWechatCopyFeedback(button, '已复制到公众号');
+      } catch (error) {
+        console.error('复制公众号富文本失败', error);
+        setWechatCopyFeedback(button, '复制失败', true);
+      }
+    };
+  })();</script>  <article class="article-page" data-astro-cid-4sn4zg3r> <header class="article-hero" data-astro-cid-4sn4zg3r> <div class="article-hero-grid" data-astro-cid-4sn4zg3r> <div class="article-kind" data-astro-cid-4sn4zg3r>TECHNICAL ARTICLE</div> <div class="article-heading" data-astro-cid-4sn4zg3r> <h1 class="article-title" data-astro-cid-4sn4zg3r>从 Manus 到 Claw，Agent 产品接下来怎么做</h1> <p class="article-description" data-astro-cid-4sn4zg3r>把 AI Agent 分成云端 Manus 和本地 Claw 两种形态，可以看清它们各自的优势与限制。结合 Hermes、OpenClaw、WorkBuddy、Muse 和 Grok Bot，讨论持续工作、端云协同与新产品的切入方向。</p> </div> </div> </header> <div class="reader-grid" data-astro-cid-4sn4zg3r> <aside class="article-meta" aria-label="文章信息" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>文章信息</h2> <dl class="meta-list" data-astro-cid-4sn4zg3r> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>发布日期</dt> <dd data-astro-cid-4sn4zg3r><time datetime="2026-09-28T00:00:00.000Z" data-astro-cid-4sn4zg3r>2026年9月28日</time></dd> </div> <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>作者</dt><dd data-astro-cid-4sn4zg3r>杨正武</dd></div>  <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>预计阅读</dt><dd data-astro-cid-4sn4zg3r>9 分钟</dd></div> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>标签</dt> <dd class="article-tags" data-astro-cid-4sn4zg3r><span class="article-tag" data-astro-cid-4sn4zg3r>AI Agent</span><span class="article-tag" data-astro-cid-4sn4zg3r>产品设计</span><span class="article-tag" data-astro-cid-4sn4zg3r>Manus</span><span class="article-tag" data-astro-cid-4sn4zg3r>OpenClaw</span><span class="article-tag" data-astro-cid-4sn4zg3r>端云协同</span></dd> </div> </dl> <div class="article-actions" data-astro-cid-4sn4zg3r> <a class="share-button" href="https://imcoders.cn/blog/2026-09-28-agent-product-manus-claw/index.md" data-astro-cid-4sn4zg3r>阅读 Markdown</a> <button class="wechat-copy-button" type="button" onclick="copyArticleToWechat()" data-astro-cid-4sn4zg3r> <i class="fab fa-weixin" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 复制到公众号
+</button> <button class="share-button" type="button" onclick="shareArticle()" data-astro-cid-4sn4zg3r> <i class="fas fa-share-alt" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 分享文章
+</button> </div> </aside> <main class="article-content" data-astro-cid-4sn4zg3r> <p>现在看 AI Agent 产品，我习惯先把它们分成两类。一类像 Manus，在云端给 Agent 一个工作环境，把任务交过去，等它返回结果。另一类像 Claw，把 Agent 接进自己的电脑，直接使用手边的文件、工具和工作环境。</p>
+<p>沿着这个分法，Hermes、OpenClaw、WorkBuddy 可以放到 Claw 这一侧，Manus、Muse、Grok Bot 可以放到云端这一侧。接下来再做一个 Agent 产品，该选哪边？我更看好围绕具体工作做产品，让同一项工作按需要使用本地和云端。</p>
+<h2 id="两种形态从不同的地方接近用户">两种形态，从不同的地方接近用户</h2>
+<p>这里的 Claw 形态是一个讨论产品的简称，并不表示这些产品有相同的技术实现，或都属于 OpenClaw 生态。它强调的是：Agent 进入用户已有的环境，获得持续工作的上下文。</p>
+<p>Manus 形态则强调托管体验。用户交出任务，平台准备执行环境、管理运行过程，再把结果交回来。</p>
+<p>截至 2026 年 9 月 28 日，几款产品的公开能力已经让这条边界变得模糊。下面依据官方资料整理，并非逐款实测。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>产品</th><th>与这次讨论相关的公开能力</th><th>本文的观察角度</th></tr></thead><tbody><tr><td>Hermes Agent</td><td>支持本地安装，也可运行在 VPS 和其他远程基础设施上，提供跨会话记忆、技能与定时任务</td><td>从用户可管理的长期 Agent 环境理解 Claw 形态</td></tr><tr><td>OpenClaw</td><td>自托管 Gateway 连接消息入口与 Agent，也支持远程 Gateway 和本地节点</td><td>工作环境可以分布在多台机器上</td></tr><tr><td>WorkBuddy</td><td>桌面办公工作台，可读写本地文件、调用工具并交付工作结果</td><td>Agent 直接进入个人办公现场</td></tr><tr><td>Manus</td><td>以云端执行为起点，也通过 Browser Operator 使用用户本地浏览器</td><td>托管执行逐步连接用户已有环境</td></tr><tr><td>Muse</td><td>此处指 Meta 的个人 Agent，运行在专属云端虚拟机中，能在关闭应用后继续工作</td><td>云端也能承载长期个人上下文</td></tr><tr><td>Grok Bot</td><td>在持久化云端电脑上工作，拥有浏览器、文件系统和终端</td><td>云端 Agent 可以成为持续存在的工作伙伴</td></tr></tbody></table>
+<p>对应资料：<a href="https://hermes-agent.nousresearch.com/docs/">Hermes 文档</a>、<a href="https://docs.openclaw.ai/help/faq/remote-gateways-and-nodes">OpenClaw 远程 Gateway 与节点</a>、<a href="https://cloud.tencent.com/product/workbuddy">WorkBuddy 产品页</a>、<a href="https://manus.im/blog/manus-browser-operator">Manus Browser Operator</a>、<a href="https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/">Meta Muse 发布说明</a>、<a href="https://docs.x.ai/grok-bot/overview">Grok Bot 文档</a>。</p>
+<p>因此，“Claw 是本地、Manus 是云端”适合作为理解起点。继续讨论产品方向时，还得看执行环境由谁管理、上下文能保留多久、用户怎样参与工作。安装了桌面客户端，不代表任务一定在本地执行；Agent 在本地运行，也不代表模型推理和数据处理全部留在本机。</p>
+<h2 id="云端省下维护本地靠近工作现场">云端省下维护，本地靠近工作现场</h2>
+<p>Manus 形态最吸引我的地方，是用户不用先搭一套环境。查资料、分析公开数据、制作一份报告，都可以从一个目标开始。任务主要依赖公开信息或用户愿意上传的材料时，云端环境很合适。</p>
+<p>托管服务也更容易承接离线后的工作。电脑合上了，任务仍能继续；换到手机，可以查看进度和处理需要决定的事情。平台还可以按任务分配资源，让耗时的工作在后台完成。这些便利依赖具体产品的运行与资源策略，不能从“云端”两个字自动推导出来。</p>
+<p>困难通常出现在任务接近真实业务的时候。资料存在某个本地目录，系统只能从内网访问，浏览器里有用户自己的登录状态。把这些条件搬到云端，需要上传、连接、授权和维护。任务执行前，用户可能已经花了不少时间整理输入。</p>
+<p>Claw 形态靠近这些东西。项目文件、现成脚本、桌面软件都在眼前，Agent 可以直接接着已有工作往下做。对开发、设计、工程分析以及大量围绕文件展开的办公任务，这种距离很有价值。我之前写的<a href="/blog/folder-as-agent-workstation/">目录工作站</a>，就是把资料、规则和执行方法留在同一个工作目录里。</p>
+<p>但本地也把运行责任带给了用户。机器休眠、网络中断、软件升级、权限变化，都可能让任务停下来。Agent 如果和人共用一个桌面，还可能抢焦点、改动正在编辑的文件。开放整个硬盘的权限，远远超过完成一项具体工作所需的范围。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>要做的工作</th><th>更适合从哪里起步</th><th>需要解决的问题</th></tr></thead><tbody><tr><td>基于公开资料做研究、生成报告</td><td>云端</td><td>来源质量、结果核验、运行费用</td></tr><tr><td>整理本地项目、使用桌面专业软件</td><td>本地</td><td>文件权限、环境依赖、对人的干扰</td></tr><tr><td>持续跟踪云端业务系统</td><td>云端或企业托管环境</td><td>账号授权、业务状态、失败恢复</td></tr><tr><td>同时依赖内网资料和外部信息</td><td>按步骤组合两者</td><td>数据边界、任务交接、重复执行</td></tr></tbody></table>
+<p>我不认为每款产品都应该马上做端云协同。如果用户的全部工作已经能在云端完成，增加本地客户端可能只会增加维护负担。同样，一项围绕本地工程软件的任务，也没有必要为了“云化”先搬走整个工作环境。</p>
+<h2 id="下一步要让同一项工作持续下去">下一步要让同一项工作持续下去</h2>
+<p>我更在意一个具体体验：今天交给 Agent 的工作，明天能不能接着做？中途换了设备、等了一次人工确认、补了一份资料，还需不需要重新解释？</p>
+<p>云端虚拟机持续存在，只解决了环境保留的一部分问题。产品还得知道这项工作目前处于什么状态，哪些结论已经确认，哪些操作已经执行，什么条件满足后才能继续。</p>
+<p>假设做一个面向小型咨询团队的项目助手。这是产品设计示例，不代表前面任何产品已经实现了整套流程。</p>
+<p>一个客户项目可能持续数周。需求记录和历史交付物在本地目录，行业信息来自网页，客户沟通发生在邮件里。用户希望每周得到一份进度报告，并随时知道还有哪些材料没收齐。</p>
+<p>在这个场景里，我希望它这样工作：</p>
+<ol>
+<li>用户选定项目目录和可以访问的服务，产品记住本次授权范围。</li>
+<li>本地执行部分整理已有材料，云端执行部分检索外部信息，只传递这一步允许使用的数据。</li>
+<li>任务页持续保存资料来源、当前结论、报告版本和待确认事项。</li>
+<li>用户在手机上补充一个决定，后续执行沿用这个决定，不再反复询问。</li>
+<li>报告生成后进入待审核状态；发送给客户需要的授权与确认单独处理，发出后记录结果。</li>
+</ol>
+<p>这里的产品主体可以是一个“项目”，聊天框只是其中一个入口。打开项目，用户先看到本周有什么变化、哪里卡住、有什么需要自己决定，再按需展开执行过程。</p>
+<p>记忆也应该围绕项目组织。客户已经确认的交付范围，要和 Agent 的临时猜测分开；过期报价要有时间标记；一位成员的个人偏好，不应该自动变成全团队的规则。用户能查看、纠正和删除这些记录，才能长期依赖它。</p>
+<p>端云交接尤其需要明确状态。本地电脑离线时，产品应显示“等待本地资料”，同时继续允许独立完成的云端步骤。如果邮件发送后网络断开，下次恢复时要先核实发送结果，避免重复发送。给 Agent 增加更多工具之前，这些细节就会决定用户敢不敢把工作留给它。</p>
+<p><strong>我更看好的产品形态，是围绕项目或业务对象组织的持续工作空间，下面连接合适的执行环境。</strong> 对用户来说，重点是同一项工作能够延续、检查和接管。</p>
+<h2 id="新产品应该从哪一小块做起">新产品应该从哪一小块做起</h2>
+<p>如果现在让我做一个新产品，我会先找一类每周都要重复、资料会不断积累、结果又能明确验收的工作。比如咨询项目的资料归档与进度报告、工程项目的文件检查、售后问题的跟进。频率和验收方式，比能演示多少种能力更值得优先确认。</p>
+<p>以咨询项目为例，第一版可以很小：一个项目目录、一套报告模板、一张缺失资料清单、一个审核入口。先把“收集材料到产出可用周报”做稳，再根据实际需要增加邮件连接和后台运行。</p>
+<p>开始时甚至可以直接利用已有的 Claw 或云端 Agent，验证业务流程。只有现成产品在状态保存、权限范围或交付验收上有明确缺口，再补自己的产品层。这样能更早知道客户愿意为什么付费。</p>
+<p>我会把投入放在三个地方。</p>
+<p>一是让交付结果可以核对。报告里的进度来自哪份记录，哪些材料仍然缺失，本周改动了什么，都要找得到依据。对这个产品来说，打开报告就能继续工作，比多生成几页内容更有价值。</p>
+<p>二是把人工参与做得顺手。用户需要的是一个集中处理问题的地方：补资料、改结论、批准发送、退回重做。每次都弹出一句“是否继续”，会把省下来的时间重新消耗掉。可以预先授权的常规动作，应当在明确范围内执行。</p>
+<p>三是积累这个场景的方法。不同项目的资料结构、客户确认规则、报告模板和检查项，都可以逐步完善。模型和执行平台可以更换，这些业务知识及用户留下的项目记录仍然有用。技能能否迁移，也要连同工具依赖、权限和运行环境一起检查，不能只复制一份提示词。</p>
+<p>收费方式也应该跟这个工作单位对应。可以先按项目或工作空间收费，再给高成本任务设置清楚的额度和预算。直接承诺“按成功结果收费”需要谨慎：成功由谁确认、客户材料缺失算不算失败，都得先谈清楚。无论怎么定价，都要把模型、运行环境和人工支持成本一起算进去。</p>
+<p>试点时，我会看用户修改后才能交付的比例、每个项目需要人工介入的次数、断点恢复是否成功，以及算上检查和返工以后究竟节省多少时间。任务运行次数和生成字数，只能说明系统忙过。</p>
+<h2 id="通用入口会融合机会仍然在具体工作里">通用入口会融合，机会仍然在具体工作里</h2>
+<p>Manus 连接本地浏览器，OpenClaw 连接远程 Gateway 与本地节点，已经显示出两类环境相互连接的方向。我的判断是，通用 Agent 产品会继续补齐这些能力。但端云融合的实现并不轻：文件版本、凭据、任务状态、离线恢复，都要在两侧保持清楚。</p>
+<p>对大平台来说，值得投入的是统一入口、托管执行和广泛的服务连接。对一个较小的团队来说，我更愿意沿用这些能力，深入一个自己熟悉的工作场景。这和我在<a href="/blog/2026-09-08-ai-work-entry-enterprise-services/">AI 工作入口与企业服务</a>里讨论的方向一致：入口逐渐通用之后，具体业务依然需要接入、规则和交付。</p>
+<p>当然，平台也会进入这些场景。新产品需要持续证明自己的价值：客户的工作更容易完成，资料和决定能留得住，出了问题有人能定位并修复。单纯增加一个聊天入口，很难支撑长期差异。</p>
+<p>如果现在开始，我会先选几个有相同工作习惯的团队，用现有 Agent 跑通一项每周重复的任务，记录一个月里的失败和返工。等到确认用户愿意持续交给它，再决定哪些步骤放在云端，哪些能力必须留在本地，以及是否值得做一个独立工作空间。</p> </main> <aside class="page-toc" aria-label="页面目录" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>页面目录</h2> <ol class="toc-list" data-astro-cid-4sn4zg3r> <li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#两种形态从不同的地方接近用户" data-astro-cid-4sn4zg3r>两种形态，从不同的地方接近用户</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#云端省下维护本地靠近工作现场" data-astro-cid-4sn4zg3r>云端省下维护，本地靠近工作现场</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#下一步要让同一项工作持续下去" data-astro-cid-4sn4zg3r>下一步要让同一项工作持续下去</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#新产品应该从哪一小块做起" data-astro-cid-4sn4zg3r>新产品应该从哪一小块做起</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#通用入口会融合机会仍然在具体工作里" data-astro-cid-4sn4zg3r>通用入口会融合，机会仍然在具体工作里</a></li> </ol> <a class="toc-back" href="/blog" data-astro-cid-4sn4zg3r><i class="fas fa-arrow-left" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 返回博客</a> </aside> <nav class="article-navigation single" aria-label="相邻文章" data-astro-cid-4sn4zg3r>  <a class="article-nav-link" href="/blog/2026-09-28-alibaba-ai-native-handbook" data-astro-cid-4sn4zg3r> <span class="nav-direction" data-astro-cid-4sn4zg3r>较早文章</span> <span class="nav-title" data-astro-cid-4sn4zg3r>阿里 AI Native 实践再次印证 Harness 与 Feature Workflow</span> </a> </nav> </div> </article> <div class="selection-share" data-selection-share data-content-selector=".article-content" data-title="从 Manus 到 Claw，Agent 产品接下来怎么做" data-author="杨正武" data-section="IMCODERS BLOG" data-url="https://imcoders.cn/blog/2026-09-28-agent-product-manus-claw/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>   </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>
