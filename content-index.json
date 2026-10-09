@@ -116,6 +116,25 @@
       "markdownUrl": "https://imcoders.cn/blog/2026-09-28-alibaba-ai-native-handbook/index.md"
     },
     {
+      "id": "blog/2026-10-09-ai-workflows-after-stronger-models",
+      "kind": "blog",
+      "title": "模型变强之后，热门 AI 工作流改了什么",
+      "description": "重新追踪 BMAD、OpenSpec 与 Superpowers 的近期更新，分析计划精简、统一执行、规范同步和审查证据背后的设计变化，并结合 Feature Workflow 已有优化，讨论下一步如何调整工作流。",
+      "author": "杨正武",
+      "tags": [
+        "AI 工作流",
+        "Harness Engineering",
+        "Feature Workflow",
+        "规约驱动开发",
+        "AI Agent"
+      ],
+      "publishedAt": "2026-10-09T00:00:00.000Z",
+      "updatedAt": "2026-10-09T00:00:00.000Z",
+      "url": "https://imcoders.cn/blog/2026-10-09-ai-workflows-after-stronger-models/",
+      "image": "/blog-images/ai-workflows-after-stronger-models/hero.png",
+      "markdownUrl": "https://imcoders.cn/blog/2026-10-09-ai-workflows-after-stronger-models/index.md"
+    },
+    {
       "id": "blog/2026-10-09-sysfactory",
       "kind": "blog",
       "title": "用 SysFactory 把业务想法做成可用系统",

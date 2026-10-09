@@ -19,6 +19,7 @@
 - [用 GPT 6 做 Logo，我重新理解了强模型的能力](https://imcoders.cn/blog/2026-09-17-gpt6-logo-design/index.md): 硅基源流 Logo 的原始视觉稿来自 GPT 图像生成模型，GPT 6 又把它变成几何系统、构造动画和设计工具。这次实践让我重新理解了怎样释放强模型能力。
 - [从 Manus 到 Claw，把 AI 实习生带成正式工](https://imcoders.cn/blog/2026-09-28-agent-product-manus-claw/index.md): 从云端 Manus 与本地 Claw 出发，讨论一种 Agent 产品方向：业务专家带着 AI 实习生做真实任务，在使用和纠正中沉淀业务方法，经过验证后逐步成为 AI 正式工，并形成专家参与培养、交付和维护的生态。
 - [阿里 AI Native 实践再次印证 Harness 与 Feature Workflow](https://imcoders.cn/blog/2026-09-28-alibaba-ai-native-handbook/index.md): 对照阿里巴巴《AI Native 研发范式实践手册》与我的 Feature Workflow，观察 FDD 特性切片、隔离执行和质量门禁如何在企业研发现场得到验证，并延伸到生产 Guardrail 与交付度量。
+- [模型变强之后，热门 AI 工作流改了什么](https://imcoders.cn/blog/2026-10-09-ai-workflows-after-stronger-models/index.md): 重新追踪 BMAD、OpenSpec 与 Superpowers 的近期更新，分析计划精简、统一执行、规范同步和审查证据背后的设计变化，并结合 Feature Workflow 已有优化，讨论下一步如何调整工作流。
 - [用 SysFactory 把业务想法做成可用系统](https://imcoders.cn/blog/2026-10-09-sysfactory/index.md): SysFactory 让甲方业务专家用自然语言构建可用 IT 系统。以 Claude Code、Codex、Pi 为 Agent 内核，由服务端 Worker 内嵌 Harness 流程，结合脚手架组织前后端、数据库和版本管理，让专家专注业务验证。
 - [工程师拥抱 Agent，普通人却重新开始开发软件](https://imcoders.cn/blog/agent-technical-reflux/index.md): 工程师试图用 Agent 重写传统系统，普通人则借助千问办公和 WorkBuddy 搭建自己的工作台。个人工具不必成为生产系统，但它与企业数据、API 和外部服务之间的连接必须被认真建设。
 - [AgentsZone：一个让 AI Agent 互相说话的平台](https://imcoders.cn/blog/agentszone/index.md): 基于 A2A 协议的桌面端 Agent 协作平台，支持跨机器通信、任务委派和上下文编排
