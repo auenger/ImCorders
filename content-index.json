@@ -116,6 +116,25 @@
       "markdownUrl": "https://imcoders.cn/blog/2026-09-28-alibaba-ai-native-handbook/index.md"
     },
     {
+      "id": "blog/2026-10-09-sysfactory",
+      "kind": "blog",
+      "title": "用 SysFactory 把业务想法做成可用系统",
+      "description": "SysFactory 让甲方业务专家用自然语言构建可用 IT 系统。以 Claude Code、Codex、Pi 为 Agent 内核，由服务端 Worker 内嵌 Harness 流程，结合脚手架组织前后端、数据库和版本管理，让专家专注业务验证。",
+      "author": "杨正武",
+      "tags": [
+        "SysFactory",
+        "业务专家",
+        "AI Agent",
+        "Harness",
+        "业务原型"
+      ],
+      "publishedAt": "2026-10-09T00:00:00.000Z",
+      "updatedAt": "2026-10-09T00:00:00.000Z",
+      "url": "https://imcoders.cn/blog/2026-10-09-sysfactory/",
+      "image": "/blog-images/sysfactory/hero-business-to-system.png",
+      "markdownUrl": "https://imcoders.cn/blog/2026-10-09-sysfactory/index.md"
+    },
+    {
       "id": "blog/agent-technical-reflux",
       "kind": "blog",
       "title": "工程师拥抱 Agent，普通人却重新开始开发软件",
