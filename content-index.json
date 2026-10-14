@@ -1808,6 +1808,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/eam-equipment-downtime-analysis/index.md"
     },
     {
+      "id": "manufacturing/engineering-tools-process-data",
+      "kind": "manufacturing",
+      "title": "研发工程工具与工艺数据如何衔接",
+      "description": "沿用风机支架工程变更，拆解 CAD、PDM、PLM 与 CAPP 的文件、零件、结构、工序和指导书关系，说明 CAE 与 CAM 的适用分支，以及版本基线、工艺分配、发布回执和现场偏差怎样受控衔接。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "CAD",
+        "PDM",
+        "CAPP",
+        "工程数据"
+      ],
+      "publishedAt": "2026-10-14T00:00:00.000Z",
+      "updatedAt": "2026-10-14T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/engineering-tools-process-data/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/engineering-tools-process-data/index.md"
+    },
+    {
       "id": "manufacturing/erp-order-material-cost",
       "kind": "manufacturing",
       "title": "ERP 怎样连接订单、物料、生产与成本",

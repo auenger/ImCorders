@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "设计文件、制造结构与工艺怎样关联",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-engineering-20261014-155635/engineering-object-links/engineering-object-links.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "对象与引用"
+        },
+        "security": {
+          "label": "条件核验"
+        },
+        "emphasis": {
+          "label": "批准与应用"
+        },
+        "dashed": {
+          "label": "回执与反馈"
+        },
+        "database": {
+          "label": "定义与履历"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "来源定义"
+    },
+    {
+      "label": "关联核验"
+    },
+    {
+      "label": "受控定义"
+    },
+    {
+      "label": "下游核验"
+    },
+    {
+      "label": "基线或实绩"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "r0n0",
+      "type": "database",
+      "label": "CAD 模型与图纸",
+      "sublabel": "原生文件及引用集合",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n1",
+      "type": "security",
+      "label": "PDM 文件核验",
+      "sublabel": "依赖、表示与保存版本",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n2",
+      "type": "database",
+      "label": "批准文件版本",
+      "sublabel": "按对象保留批准身份",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n3",
+      "type": "security",
+      "label": "PLM 零件关联",
+      "sublabel": "对象、版本及关系类型",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n4",
+      "type": "database",
+      "label": "工程结构基线",
+      "sublabel": "FAN-100 · 修订 B",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n0",
+      "type": "database",
+      "label": "工程结构基线",
+      "sublabel": "BKT-018 · 使用位置",
+      "stage": 0,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n1",
+      "type": "security",
+      "label": "制造映射核验",
+      "sublabel": "工厂、位置、数量与单位",
+      "stage": 1,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n2",
+      "type": "database",
+      "label": "A 厂制造 BOM",
+      "sublabel": "修订 04 · 保留来源关系",
+      "stage": 2,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n3",
+      "type": "security",
+      "label": "工序分配核验",
+      "sublabel": "用料及路径条件完整",
+      "stage": 3,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n4",
+      "type": "database",
+      "label": "CAPP 工艺基线",
+      "sublabel": "R04 · OP-030/3",
+      "stage": 4,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n0",
+      "type": "database",
+      "label": "路线与工序要求",
+      "sublabel": "方法、资源及检验要求",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n1",
+      "type": "security",
+      "label": "作业定义核验",
+      "sublabel": "适用版本与条件完整",
+      "stage": 1,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n2",
+      "type": "database",
+      "label": "批准作业指导书",
+      "sublabel": "WI-030/E · 受控表示",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n3",
+      "type": "security",
+      "label": "MES 工单绑定",
+      "sublabel": "批准范围及当前状态",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n4",
+      "type": "database",
+      "label": "执行及偏差记录",
+      "sublabel": "配置快照与实际结果",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "r0f0",
+      "from": "r0n0",
+      "to": "r0n1",
+      "label": "引用",
+      "variant": "default"
+    },
+    {
+      "id": "r0f1",
+      "from": "r0n1",
+      "to": "r0n2",
+      "label": "批准",
+      "variant": "emphasis"
+    },
+    {
+      "id": "r0f2",
+      "from": "r0n2",
+      "to": "r0n3",
+      "label": "关联",
+      "variant": "default"
+    },
+    {
+      "id": "r0f3",
+      "from": "r0n3",
+      "to": "r0n4",
+      "label": "确认",
+      "variant": "security"
+    },
+    {
+      "id": "r1f0",
+      "from": "r1n0",
+      "to": "r1n1",
+      "label": "引用",
+      "variant": "default"
+    },
+    {
+      "id": "r1f1",
+      "from": "r1n1",
+      "to": "r1n2",
+      "label": "批准",
+      "variant": "emphasis"
+    },
+    {
+      "id": "r1f2",
+      "from": "r1n2",
+      "to": "r1n3",
+      "label": "分配",
+      "variant": "default"
+    },
+    {
+      "id": "r1f3",
+      "from": "r1n3",
+      "to": "r1n4",
+      "label": "确认",
+      "variant": "security"
+    },
+    {
+      "id": "r2f0",
+      "from": "r2n0",
+      "to": "r2n1",
+      "label": "引用",
+      "variant": "default"
+    },
+    {
+      "id": "r2f1",
+      "from": "r2n1",
+      "to": "r2n2",
+      "label": "批准",
+      "variant": "emphasis"
+    },
+    {
+      "id": "r2f2",
+      "from": "r2n2",
+      "to": "r2n3",
+      "label": "绑定",
+      "variant": "security"
+    },
+    {
+      "id": "r2f3",
+      "from": "r2n3",
+      "to": "r2n4",
+      "label": "反馈",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "三行展开不同关联层次",
+      "items": [
+        "文件与零件、工程与制造结构、工艺与执行分别核对",
+        "各行端点引用同一业务基线，不能靠文件名推断关联"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "版本各自受控",
+      "items": [
+        "产品 B、制造 BOM 04、路线 R04 与指导书 E 分别保存",
+        "工装、资源和检验要求不随意作为产品材料重复扣账"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "定义与实际分别记录",
+      "items": [
+        "批准定义需要绑定到工单，现场偏差另走受控流程",
+        "实际批次及返工谱系不反写覆盖工程标准用量"
+      ]
+    }
+  ]
+}
