@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "电子批记录怎样支持复核、放行与谱系",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-batch-20261014-170331/batch-record-release/batch-record-release.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "定义与事实"
+        },
+        "security": {
+          "label": "身份与条件核验"
+        },
+        "emphasis": {
+          "label": "批准与执行"
+        },
+        "dashed": {
+          "label": "回执与核对"
+        },
+        "database": {
+          "label": "版本与记录"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "事实与证据"
+    },
+    {
+      "label": "完整性及范围核验"
+    },
+    {
+      "label": "受控记录或批准"
+    },
+    {
+      "label": "业务核验与应用"
+    },
+    {
+      "label": "结果与履历"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "r0n0",
+      "label": "执行及过程来源",
+      "sublabel": "MES、历史库及人工记录",
+      "type": "database",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n1",
+      "label": "批次阶段数据核验",
+      "sublabel": "对象、时间、质量与缺口",
+      "type": "security",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n2",
+      "label": "电子批记录集合",
+      "sublabel": "保留原始引用及修订",
+      "type": "database",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n3",
+      "label": "完整性与偏差复核",
+      "sublabel": "所需项目及未结事项",
+      "type": "security",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n4",
+      "label": "获批批记录复核",
+      "sublabel": "记录身份与结论范围",
+      "type": "database",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n0",
+      "label": "LIMS / QMS 结果",
+      "sublabel": "样品、检验及处置依据",
+      "type": "database",
+      "stage": 0,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n1",
+      "label": "批审及结果核验",
+      "sublabel": "有效结果与所需批审满足",
+      "type": "security",
+      "stage": 1,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n2",
+      "label": "QMS 批准放行",
+      "sublabel": "限定产品批次及数量",
+      "type": "security",
+      "stage": 2,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n3",
+      "label": "WMS 条件应用",
+      "sublabel": "只解除指定质量限制",
+      "type": "backend",
+      "stage": 3,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n4",
+      "label": "放行业务回执",
+      "sublabel": "对象范围及目标版本",
+      "type": "database",
+      "stage": 4,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n0",
+      "label": "已放行散装产品",
+      "sublabel": "BULK-M001 · 988 kg",
+      "type": "database",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n1",
+      "label": "分装与谱系核验",
+      "sublabel": "父子映射及数量条件",
+      "type": "security",
+      "stage": 1,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n2",
+      "label": "获批分装事实",
+      "sublabel": "子批 500 与 488 kg",
+      "type": "database",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n3",
+      "label": "WMS 包装转换应用",
+      "sublabel": "扣减原范围且不重复增量",
+      "type": "backend",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n4",
+      "label": "谱系与物料平衡",
+      "sublabel": "父子关系及实际范围",
+      "type": "database",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "r0f0",
+      "from": "r0n0",
+      "to": "r0n1",
+      "label": "归集",
+      "variant": "default"
+    },
+    {
+      "id": "r0f1",
+      "from": "r0n1",
+      "to": "r0n2",
+      "label": "满足",
+      "variant": "security"
+    },
+    {
+      "id": "r0f2",
+      "from": "r0n2",
+      "to": "r0n3",
+      "label": "复核",
+      "variant": "default"
+    },
+    {
+      "id": "r0f3",
+      "from": "r0n3",
+      "to": "r0n4",
+      "label": "批准",
+      "variant": "emphasis"
+    },
+    {
+      "id": "r1f0",
+      "from": "r1n0",
+      "to": "r1n1",
+      "label": "关联",
+      "variant": "default"
+    },
+    {
+      "id": "r1f1",
+      "from": "r1n1",
+      "to": "r1n2",
+      "label": "满足",
+      "variant": "security"
+    },
+    {
+      "id": "r1f2",
+      "from": "r1n2",
+      "to": "r1n3",
+      "label": "应用",
+      "variant": "emphasis"
+    },
+    {
+      "id": "r1f3",
+      "from": "r1n3",
+      "to": "r1n4",
+      "label": "核对",
+      "variant": "dashed"
+    },
+    {
+      "id": "r2f0",
+      "from": "r2n0",
+      "to": "r2n1",
+      "label": "引用",
+      "variant": "default"
+    },
+    {
+      "id": "r2f1",
+      "from": "r2n1",
+      "to": "r2n2",
+      "label": "满足",
+      "variant": "security"
+    },
+    {
+      "id": "r2f2",
+      "from": "r2n2",
+      "to": "r2n3",
+      "label": "应用",
+      "variant": "emphasis"
+    },
+    {
+      "id": "r2f3",
+      "from": "r2n3",
+      "to": "r2n4",
+      "label": "核对",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "批记录、放行与分装分别保存",
+      "items": [
+        "电子批记录汇集事实，质量批准仍需适用授权与依据",
+        "控制阶段结束、记录复核、库存放行是不同结果"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "质量平衡限定同一范围",
+      "items": [
+        "988 kg 散装净产出已与样品、留存和处置物分开",
+        "分装后子批合计 988 kg，不再叠加原散装库存"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "修订不覆盖异常事实",
+      "items": [
+        "失败结果、更正原因和恢复执行分别可查",
+        "记录缺口保持未决，不以趋势插值补造真实实绩"
+      ]
+    }
+  ]
+}

@@ -1772,6 +1772,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/aps-finite-capacity-rescheduling/index.md"
     },
     {
+      "id": "manufacturing/batch-recipe-record-process-control",
+      "kind": "manufacturing",
+      "title": "批次、配方、电子批记录与过程控制",
+      "description": "用一批独立的虚构混配记录，拆解用料配方、主配方、控制配方、批次订单、设备阶段与电子批记录的关系，核对实际投料、过程数据、物料平衡、质量放行和分装谱系，并记录异常恢复与集成验收边界。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "流程制造",
+        "配方管理",
+        "电子批记录",
+        "过程控制"
+      ],
+      "publishedAt": "2026-10-14T00:00:00.000Z",
+      "updatedAt": "2026-10-14T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/batch-recipe-record-process-control/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/batch-recipe-record-process-control/index.md"
+    },
+    {
       "id": "manufacturing/customer-configuration-supply-planning",
       "kind": "manufacturing",
       "title": "客户配置、采购与供应链计划",

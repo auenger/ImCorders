@@ -1,0 +1,323 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>批次、配方、电子批记录与过程控制 | 制造业系统</title><meta name="description" content="用一批独立的虚构混配记录，拆解用料配方、主配方、控制配方、批次订单、设备阶段与电子批记录的关系，核对实际投料、过程数据、物料平衡、质量放行和分装谱系，并记录异常恢复与集成验收边界。"><link rel="canonical" href="https://imcoders.cn/manufacturing/batch-recipe-record-process-control/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/batch-recipe-record-process-control/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/batch-recipe-record-process-control/#article","headline":"批次、配方、电子批记录与过程控制","description":"用一批独立的虚构混配记录，拆解用料配方、主配方、控制配方、批次订单、设备阶段与电子批记录的关系，核对实际投料、过程数据、物料平衡、质量放行和分装谱系，并记录异常恢复与集成验收边界。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/batch-recipe-record-process-control/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-14T00:00:00.000Z","dateModified":"2026-10-14T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"批次、配方、电子批记录与过程控制","item":"https://imcoders.cn/manufacturing/batch-recipe-record-process-control/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-14T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-14T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="批次、配方、电子批记录与过程控制 | 制造业系统"><meta property="og:description" content="用一批独立的虚构混配记录，拆解用料配方、主配方、控制配方、批次订单、设备阶段与电子批记录的关系，核对实际投料、过程数据、物料平衡、质量放行和分装谱系，并记录异常恢复与集成验收边界。"><meta property="og:url" content="https://imcoders.cn/manufacturing/batch-recipe-record-process-control/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="批次、配方、电子批记录与过程控制 | 制造业系统"><meta name="twitter:description" content="用一批独立的虚构混配记录，拆解用料配方、主配方、控制配方、批次订单、设备阶段与电子批记录的关系，核对实际投料、过程数据、物料平衡、质量放行和分装谱系，并记录异常恢复与集成验收边界。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="批次、配方、电子批记录与过程控制 | 制造业系统"><meta itemprop="description" content="用一批独立的虚构混配记录，拆解用料配方、主配方、控制配方、批次订单、设备阶段与电子批记录的关系，核对实际投料、过程数据、物料平衡、质量放行和分装谱系，并记录异常恢复与集成验收边界。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "批次、配方、电子批记录与过程控制 | 制造业系统";
+const shareDesc = "用一批独立的虚构混配记录，拆解用料配方、主配方、控制配方、批次订单、设备阶段与电子批记录的关系，核对实际投料、过程数据、物料平衡、质量放行和分装谱系，并记录异常恢复与集成验收边界。";
+const shareLink = "https://imcoders.cn/manufacturing/batch-recipe-record-process-control/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>批次、配方、电子批记录与过程控制</h1><p class="mfg-lead" data-astro-cid-767rrl5b>用一批独立的虚构混配记录，拆解用料配方、主配方、控制配方、批次订单、设备阶段与电子批记录的关系，核对实际投料、过程数据、物料平衡、质量放行和分装谱系，并记录异常恢复与集成验收边界。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/batch-recipe-record-process-control/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-14</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#配方批次订单与执行实例分别管理什么" data-astro-cid-767rrl5b>配方、批次订单与执行实例分别管理什么</a></li><li data-astro-cid-767rrl5b><a href="#一批物料怎样从投料走到产出" data-astro-cid-767rrl5b>一批物料怎样从投料走到产出</a></li><li data-astro-cid-767rrl5b><a href="#设备阶段和过程数据怎样关联到批次" data-astro-cid-767rrl5b>设备阶段和过程数据怎样关联到批次</a></li><li data-astro-cid-767rrl5b><a href="#电子批记录怎样支持复核与放行" data-astro-cid-767rrl5b>电子批记录怎样支持复核与放行</a></li><li data-astro-cid-767rrl5b><a href="#用独立样本验收批次链条" data-astro-cid-767rrl5b>用独立样本验收批次链条</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>前面的风机案例按零件、工序和序列号追踪产品。转到批次制造以后，一批原料可能经过称量、设备处理和转储，再分装成多个产品批次。设备显示阶段完成，仍需查清用了哪版定义、投了哪些原料、过程记录是否完整，以及产品能否放行。</p>
+<p>这一篇另设一批虚构的混配记录，只用于讨论系统对象和数据关系，与风机订单无关。原料仅用 A、B 标识，不代表真实物质；不设温度、压力、转速或其他生产参数，也不提供真实配制方法。</p>
+<h2 id="配方批次订单与执行实例分别管理什么">配方、批次订单与执行实例分别管理什么</h2>
+<h3 id="用料定义与执行配方保留对应关系">用料定义与执行配方保留对应关系</h3>
+<p>ERP 中的用料配方可以描述材料、数量、产出及适用范围，配合路线参与计划和生产。Microsoft 的<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/production-control/formulas-versions">配方与版本说明</a>展示了这类 formula 对象、版本与批准机制。不同厂商对“配方”的范围并不完全相同，需要先约定它指材料定义还是执行过程。</p>
+<p>批控制中的主配方还可能组织过程结构、阶段、参数要求和设备需求；针对某次批次形成的控制配方实例，保存本次采用的定义与执行上下文。Rockwell 的 <a href="https://literature.rockwellautomation.com/idc/groups/literature/documents/um/batch-um006_-en-d.pdf">FactoryTalk Batch Recipe Editor 手册</a>展示了主配方和过程阶段的组织方式。本文借此区分对象，接口字段与部署仍按实际产品确定。</p>
+<p>ERP formula、主配方和控制配方可以有关联版本，但不能只凭中文都叫“配方”就当成同一条记录。工厂选择某项材料定义，不足以证明批控制系统已经加载适用的过程定义，也不能从设备当前程序名反推出采购与实际投料的批次。</p>
+<h3 id="订单生产批次和库存批号各有粒度">订单、生产批次和库存批号各有粒度</h3>
+<p>本文产品示意为 <code>MIX-100</code>，投料基准为 1000 kg。ERP 批次订单为 <code>BO-M001</code>，本次生产批次为 <code>BATCH-M001</code>，采用用料定义 <code>FORM-M01 / 03</code>、主配方 <code>MR-M01 / 05</code>，生成控制配方实例 <code>CR-M001 / 1</code>。</p>
+<p>这些编号全部为模拟。1000 kg 表示本样本的投料基准，不承诺最终产品必定产出 1000 kg。ERP 配方修订 03 与主配方版本 05 分别批准，不能根据编号不同就认定冲突，也不能将它们压成一个“最新配方”。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>对象</th><th>本例身份</th><th>需要保留的范围</th></tr></thead><tbody><tr><td>ERP 用料定义</td><td>FORM-M01 / 03</td><td>材料、基准数量、单位与适用条件</td></tr><tr><td>批控制主配方</td><td>MR-M01 / 05</td><td>过程结构、阶段要求与设备需求</td></tr><tr><td>ERP 批次订单</td><td>BO-M001</td><td>产品、计划范围、来源需求及核算关联</td></tr><tr><td>生产批次</td><td>BATCH-M001</td><td>本次生产履历与实际投入产出</td></tr><tr><td>控制配方实例</td><td>CR-M001 / 1</td><td>本次冻结定义、参数来源与执行上下文</td></tr><tr><td>设备与阶段实例</td><td>MIX-U01、PH-M001-20-01</td><td>实际单元、阶段执行次数与反馈</td></tr><tr><td>散装产品批次</td><td>BULK-M001</td><td>转储后的产品身份、数量与质量限制</td></tr><tr><td>后续分装子批</td><td>PACK-M001-A、PACK-M001-B</td><td>父批来源、分装质量与包装关联</td></tr></tbody></table>
+<p>一个批次订单能否跨多个生产批、一个生产批是否对应多个库存批号，由业务模型决定。订单号、配方实例号、罐号和库存批号之间需要明确映射，不能都用同一段字符串来掩盖粒度差异。</p>
+<h3 id="批量变化需要重新核对适用条件">批量变化需要重新核对适用条件</h3>
+<p>配方放大或缩小，可能包含比例用量、固定用量和阶梯规则；设备容量、处理能力与批准范围也会约束批量。材料数量能够线性换算，并不意味着所有过程参数都能按同一比例改变。</p>
+<p>本样本仅固定 A 为 600 kg、B 为 400 kg，便于手算。实际场景还要明确毛重、净重、皮重、单位、精度以及需要的属性依据；涉及浓度或其他属性调整时，保存批准的计算规则及来源，不能直接用一个方便的比例替代。</p>
+<p>开批前核对产品、工厂、设备单元、物料资格、人员与所需作业条件，固定本次执行基线。配方后来更新，已执行批次继续保留原依据；需要修改当前批次时，按受控变更记录范围、理由和批准结果。</p>
+<h2 id="一批物料怎样从投料走到产出">一批物料怎样从投料走到产出</h2>
+<h3 id="领料称量和实际投料分别留证据">领料、称量和实际投料分别留证据</h3>
+<p>WMS 分配或配送原料，不代表原料已进入设备。称量记录需要对应物料、原料批次、容器、计量设备、净质量与操作身份；投料记录再关联实际投入动作、阶段实例和设备范围。一次称量能否拆分投料，或多次称量能否合并，按批准流程保持数量和身份关系。</p>
+<p>本例 A 来自两个原料批次，B 来自一个批次。教学样本假定下表均为已经核对并完成实际投料的净质量，未设置余料退回或追加投料。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>原料</th><th>原料批次</th><th>实际投入</th><th>单位</th></tr></thead><tbody><tr><td>A</td><td>LOT-A01</td><td>400</td><td>kg</td></tr><tr><td>A</td><td>LOT-A02</td><td>200</td><td>kg</td></tr><tr><td>B</td><td>LOT-B01</td><td>400</td><td>kg</td></tr><tr><td>合计</td><td>三个原料批次</td><td>1000</td><td>kg</td></tr></tbody></table>
+<p>这些原料批次共同进入 <code>BATCH-M001</code> 的谱系。扫码和计量结果有冲突时，保持未决并核对实物与原始记录；不能根据计划用量直接补出一条“实际投料成功”。</p>
+<p>ERP 和 MES 还需约定耗用过账来源。称量、领料、实际投料和配方倒冲若描述同一业务范围，不能各自完整扣减一次。样品、设备留存和后续处置也保留独立去向，不能在多个系统里重复记为材料损耗。</p>
+<h3 id="按同一计量范围核对物料平衡">按同一计量范围核对物料平衡</h3>
+<p>为了说明记录方法，本例假定是无反应混配，采用同一质量单位，所有下列数量均有各自的测量与记录依据。检查点固定在本次处理结束后、后续分装之前，不包含其他批次、额外进出料或未记录介质。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>去向</th><th>记录质量</th><th>本例含义</th></tr></thead><tbody><tr><td>散装产品 BULK-M001</td><td>988 kg</td><td>取样、留存与处置后进入产品范围的净质量</td></tr><tr><td>检验样品</td><td>2 kg</td><td>从本批取得并独立登记的样品</td></tr><tr><td>设备或管线留存</td><td>5 kg</td><td>仍需继续追踪的实测留存，未自动认定报废</td></tr><tr><td>单独记录的处置物</td><td>5 kg</td><td>已识别的非产品去向，处置按批准记录</td></tr><tr><td>合计</td><td>1000 kg</td><td>覆盖本次实际投入</td></tr></tbody></table>
+<p>按这组前提，<code>600 + 400 = 988 + 2 + 5 + 5 = 1000 kg</code>。988 kg 已是取样后的净产出，不能再从它扣一次 2 kg 样品。设备留存有实物和后续去向，不能为了结案直接归零。</p>
+<p>若只看主产品净回收比例，本例是 <code>988 / 1000 = 98.8%</code>，分子与分母需要同时说明。它不表示质量合格率，也不能作为真实工厂的正常损耗标准。实际平衡缺口应保留为差异，再核对量程、计量、留存、转储与其他去向，不能把差额自动改名为损耗来消账。</p>
+<p>其他工艺可能有反应、蒸发、引入介质、联产品、副产品或重复利用料，需要重新定义系统边界与计量规则。质量和体积也不能直接相加；不同单位的比较必须有适用的测量或换算依据。</p>
+<h3 id="分装继续保留父子批次关系">分装继续保留父子批次关系</h3>
+<p>再设一个后续检查点：<code>BULK-M001</code> 的 988 kg 已按所需程序放行，按批准安排分成 <code>PACK-M001-A</code> 500 kg 与 <code>PACK-M001-B</code> 488 kg。此处仅演示净质量与谱系，假定没有额外包装损失，包装物另行记录。</p>
+<p>分装后两个子批合计为 988 kg，原散装范围的相应数量已经转出，不能再将散装 988 kg 与子批 988 kg 相加成 1976 kg 产品。是否新建库存批号、包装标识或其他对象，取决于企业规则，来源关系始终应可查。</p>
+<p>两个子批共享本次上游生产批及原料来源，但可能在不同包装、时间或后续检验范围下产生不同状态。父批放行并不自动代替所有包装后要求。若涉及拼批、回用或返工，另外记录批准条件和实际多来源关系，不能只保留一个看起来整齐的父批号。</p>
+<h2 id="设备阶段和过程数据怎样关联到批次">设备阶段和过程数据怎样关联到批次</h2>
+<h3 id="阶段定义阶段执行和设备状态分开">阶段定义、阶段执行和设备状态分开</h3>
+<p>批过程通常可以按程序、单元程序、操作和阶段组织，具体层级与对象名称由所用模型和产品确定。阶段定义描述允许执行的过程能力，阶段实例则指某个批次在某次设备分配下的实际执行；同一阶段被重做或恢复时，需要辨别是原执行继续还是新的执行实例。</p>
+<p>本例以 <code>MIX-U01</code> 为设备单元，为一项示意处理阶段建立 <code>PH-M001-20-01</code>。只固定身份和关联，不定义真实动作顺序、控制设定或完成阈值。设备阶段报告结束，只能说明它满足该阶段模型的相应条件，尚不能单独确认整批记录完整或产品合格。</p>
+<p>下面是一条阶段结束反馈的概念记录，字段为本文自定义，表示接收到了什么事实，没有发送任何控制指令。实际契约还需来源与接收时间、状态版本和必要的原始证据。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "batch_id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"BATCH-M001"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "control_recipe"</span><span style="color:#E1E4E8">: { </span><span style="color:#79B8FF">"id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"CR-M001"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">"revision"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8"> },</span></span>
+<span class="line"><span style="color:#79B8FF">  "phase_execution_id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"PH-M001-20-01"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "source_unit"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"MIX-U01"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "source_event_id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"PH-EV-M001-07"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "record_kind"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"PHASE_COMPLETION_REPORTED"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "evidence_ref"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"JOURNAL-M001-07"</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<p>MES 或批控制层可以组织过程与阶段，PLC、DCS 或其他控制角色负责现场能力与反馈，实际边界可能合并。阶段请求、接受、开始、暂停和结束等状态，按具体实现保留业务语义；上层批准不替代现场既有的保护与准入条件。</p>
+<h3 id="历史库曲线需要批次和阶段上下文">历史库曲线需要批次和阶段上下文</h3>
+<p>过程趋势、报警、计量和阶段事件可能存放在不同系统。归集到电子批记录时，保留来源设备与点位、单位、来源时间、接收时间、数据质量、批次、阶段实例和所用定义版本，才能解释某段曲线对应哪次执行。</p>
+<p>同一设备连续处理两批产品时，不能只按设备名和粗略时间窗口拼接。转储、多单元处理、暂停恢复以及时钟偏差，都可能让数据落到错误批次。批次与阶段的有效区间、事件边界和修订依据应能互相核对。</p>
+<p>采样周期、压缩与事件保存方式也会影响能看到的细节。趋势显示平滑，并不证明未采到的时段没有异常；通信中断或数据质量无效时，保留缺口和未决范围。展示插值可以辅助阅读，不能补造成真实测量记录或满足缺失的检验依据。</p>
+<h3 id="超时以后先核对实际执行范围">超时以后先核对实际执行范围</h3>
+<p>阶段请求超时，设备可能已经接受并投入了原料，也可能尚未开始。恢复前查询原阶段实例、设备状态、动作身份和实际投料记录，不因为缺少回执就再次执行完整投料。</p>
+<p>暂停、停止、中止与重启的含义取决于设备和配方设计。恢复应沿批准的状态转换与现场流程核对当前内容、剩余范围和必要验证，保留原始异常及已执行事实。不能通过删除一次失败执行，让新实例看起来像从未发生过问题。</p>
+<p>批准额外投料或调整当前批次时，记录变更依据和适用范围，更新实际投入与物料平衡。ERP 标准定义仍有自己的版本管理，当前批次的偏差不会自动成为所有后续批次的新配方。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>配方定义怎样进入批次与设备执行</strong><a href="/manufacturing/maps/batch-recipe-execution.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/batch-recipe-execution.html" title="ERP 用料配方 MES 控制配方批次实例 PLC DCS 阶段执行与原料投料谱系交互数据图" loading="lazy" allowfullscreen></iframe>
+<figcaption>三行分别展开用料定义与批次、主配方与设备阶段、原料投入与谱系。它们引用同一生产批次的不同对象，不能只用相同名称或时间接近来推断对应关系。条件满足才进入相应执行范围，动画只表达数据方向，不提供设备操作顺序或在线状态。</figcaption>
+</figure>
+<h2 id="电子批记录怎样支持复核与放行">电子批记录怎样支持复核与放行</h2>
+<h3 id="记录集合能够追到原始事实">记录集合能够追到原始事实</h3>
+<p>电子批记录（EBR）应关联本次批准依据和实际执行：批次与对象版本、原料及计量、设备与阶段事件、过程数据、人工确认、检验、偏差、修订和复核。它可以由结构化记录与原始引用共同组成，输出一份 PDF 只是其中一种呈现方式。</p>
+<p>Microsoft 的<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/production-control/quality-electronic-batch-record">电子批记录说明</a>给出了关联制造定义与批次生产记录的产品实现。不同产品的记录范围、对象名称和功能前提需要核对，不能假设启用一个菜单就已经采齐现场全部证据。</p>
+<p>原始值、更正、复核与批准分别保存。人工补录需要说明来源、实际发生时间、录入时间、原因及相应权限，不能用补录时间冒充设备当时的时间。来源记录被修订后，电子批记录要能识别使用了哪一版及是否需要重新复核。</p>
+<h3 id="完整性偏差与检验结果一起核对">完整性、偏差与检验结果一起核对</h3>
+<p>复核规则应明确哪些项目必须完成、哪些数据缺口或异常尚未关闭，以及哪些结论需要相应岗位批准。基于例外的审阅可以帮助聚焦已识别异常，但检测规则、覆盖范围和数据完整性仍需验证。Rockwell 的<a href="https://literature.rockwellautomation.com/idc/groups/literature/documents/br/life-br014_-en-p.pdf">电子批记录与 MES 资料</a>介绍了按例外审阅的产品思路，不能据此把“没有告警”当成整批合格证明。</p>
+<p>样品 <code>2 kg</code> 关联到本次生产批和具体检验任务。LIMS 可以承接实际实验室流程，现场检验也可以由适用模块完成；结果有效性、方法与要求版本、异常调查和处置都保留在相应对象中。重复检测不能覆盖原始失败记录。</p>
+<p>审批或电子签署还应关联签署人身份、动作含义、对象范围、记录版本和时间，采用何种方式按适用业务要求实施。有登录记录、按钮或一张签名图片，并不足以证明全部记录和授权要求已经满足。</p>
+<h3 id="质量批准与库存应用分别确认">质量批准与库存应用分别确认</h3>
+<p>本样本的散装产品 988 kg 在待放行时，仍保留相应质量限制。所需批记录复核、检验与处置条件满足后，由获授权岗位批准指定范围，再由库存系统应用并返回业务结果；其他仍有效的限制继续核对。</p>
+<p>设备阶段完成、生产批结束、电子批记录复核和质量放行是不同结果。某项过程或质量证据缺失时，可以先形成明确的待处理事项，不能为了让订单结案就把记录状态改成全部通过。<a href="/manufacturing/qms-lims-quality-release/">QMS 篇</a>里的范围、授权和目标回执规则可以继续沿用。</p>
+<p>放行后新增异常，也保留原批准和后续隔离、追溯及处置关系。若散装产品已分成两个子批或部分已发出，按实际谱系核对影响范围；不能只冻结一个已无剩余数量的父批，就宣称所有下游实物都受控了。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>电子批记录怎样支持复核、放行与谱系</strong><a href="/manufacturing/maps/batch-record-release.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/batch-record-release.html" title="电子批记录原始数据复核 LIMS QMS 质量放行 WMS 应用与分装批次谱系交互数据图" loading="lazy" allowfullscreen></iframe>
+<figcaption>三行分别核对批记录、质量放行和后续分装。批记录复核是本例放行所需依据之一，分装则使用已经满足所需放行条件的散装产品；各行不表示无条件连续执行。图中条件按对象范围核验，动画不代表在线批控制或真实审批状态。</figcaption>
+</figure>
+<h2 id="用独立样本验收批次链条">用独立样本验收批次链条</h2>
+<h3 id="先明确不同制造场景的适用边界">先明确不同制造场景的适用边界</h3>
+<p>本文选择的是便于核对的批次混配记录。连续生产可能按时间、流量、罐区和切换段定义追溯范围，不能把连续区间强行套成一次独立容器批次。食品、制药、化工等场景还会有不同的工艺、清洁、质量和记录要求，需要按具体产品与过程继续拆解。</p>
+<p>当前样本没有真实材料、反应或工艺设定，也没有验证任何行业的合规结论。这里留下的是对象与证据链，不能将 98.8% 净回收比例、样品质量或分装方式直接用作其他工厂的标准。</p>
+<h3 id="同时核对版本物料和执行事实">同时核对版本、物料和执行事实</h3>
+<p>以下验收只针对集成设计，本站没有连接真实批控制、PLC、DCS 或实验室系统。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>验收场景</th><th>需要核实的结果</th></tr></thead><tbody><tr><td>ERP 用料版本与主配方版本分别更新</td><td>本批绑定固定对应关系，不按“最新”重建历史</td></tr><tr><td>1000 kg 投料基准改变</td><td>复核用量规则、设备能力与批准范围，不盲目缩放参数</td></tr><tr><td>A 来自两个批次、B 来自一个批次</td><td>400、200、400 kg 均关联本批，来源谱系不丢失</td></tr><tr><td>已领料或称量但未实际投入</td><td>状态分别保存，不伪造投料成功或重复耗用</td></tr><tr><td>阶段请求超时，原料可能已投入</td><td>先查原实例与实际记录，不重复执行整项投料</td></tr><tr><td>同一设备相邻两批或多单元转储</td><td>批次与阶段边界正确，趋势不串批</td></tr><tr><td>过程数据缺口或质量无效</td><td>缺口保持可见，不用插值制造真实测量记录</td></tr><tr><td>处理结束检查点</td><td>988 产品、2 样品、5 留存、5 处置物合计 1000 kg</td></tr><tr><td>留存或平衡差异待确认</td><td>不自动归零或改写为损耗，后续去向可追踪</td></tr><tr><td>散装 988 kg 分为 500 与 488 kg</td><td>子批合计 988，原范围转出，不重复增加产品库存</td></tr><tr><td>阶段完成但批记录或检验未满足</td><td>不能自动生成有效放行或清除库存限制</td></tr><tr><td>失败结果后发生更正或复检</td><td>原始事实、原因、授权及新记录分别可查</td></tr><tr><td>放行后异常影响已分装产品</td><td>沿实际父子谱系核对下游范围和目标应用结果</td></tr><tr><td>多系统结果部分成功或回执丢失</td><td>保留未决，按原动作查询与核对，重试不重复过账</td></tr></tbody></table>
+<p>接口核对还需说明批次订单、控制配方、设备阶段、原料批次、产品批次和分装对象的映射，哪些字段是计划、哪些是实绩，时间和单位采用什么基准。<a href="/manufacturing/master-data-events-reconciliation/">主数据与对账篇</a>的身份、版本和完成位置规则仍然适用。</p>
+<h3 id="agent-先整理本批缺少哪些证据">Agent 先整理本批缺少哪些证据</h3>
+<p>Agent 可以汇集本批用料与配方基线、投料谱系、阶段记录、数据缺口、检验与偏差，生成带来源、版本和查询时间的复核清单。问“这一批能放行吗”，就分别列出已完成条件、仍未满足条件与需要授权决定的事项。</p>
+<p>如果只查到设备阶段结束，就先报告这个范围内的事实，继续核对电子批记录和质量处置。若产出不平衡，列明实际计量边界与缺失去向，不能替人员编造一项损耗解释。</p>
+<p>配方修改、批次恢复、额外投料、记录批准和质量放行分别沿用已有权限与受控流程。Agent 可以准备比对和评审材料，写入前重新核对当前对象、状态和授权，取得目标业务结果以后再报告落实范围。</p>
+<p>下一篇进入工装、计量、公用工程与能源环境数据，继续看支持生产的资源资格、测量证据和消耗记录怎样与具体任务关联。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 
