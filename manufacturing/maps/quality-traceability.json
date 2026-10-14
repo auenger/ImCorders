@@ -4,7 +4,7 @@
   "meta": {
     "title": "检验结果如何进入处置与追溯",
     "locale": "zh-CN",
-    "output": ".archify/dataflow-manufacturing-20261014-105817/quality-traceability/quality-traceability.html",
+    "output": ".archify/dataflow-manufacturing-motion-20261014-120540/quality-traceability/quality-traceability.html",
     "viewBox": [
       1080,
       520
@@ -28,7 +28,8 @@
           "label": "持久记录"
         }
       }
-    }
+    },
+    "animation": "trace"
   },
   "stages": [
     {

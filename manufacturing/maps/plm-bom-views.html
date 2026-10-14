@@ -4987,7 +4987,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     <!-- Main Diagram -->
     <div class="diagram-container" data-detail-level="read"
          data-preset-badge-editorial-plate="ARCHIFY / 图版 04">
-      <svg viewBox="0 0 1080 520" role="img" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" data-preset="classic" data-quality-profile="showcase">
+      <svg viewBox="0 0 1080 520" role="img" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase">
         <title id="archify-diagram-title">从设计结构到工单执行</title>
         <desc id="archify-diagram-description">由 Archify 生成的数据流图。</desc>
         <!-- Definitions -->
@@ -5029,20 +5029,20 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text x="960" y="68" class="t-dim" font-size="9" font-weight="600" text-anchor="middle">05 / 执行与实绩</text>
 
         <!-- Flow paths -->
-        <path data-edge-from="cad" data-edge-to="ebom" data-edge-label="设计关联" data-edge-key="0" data-edge-id="design-link" data-composition-points="176,160;239,160" d="M 176 160 L 239 160" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="ebom" data-edge-to="mbom" data-edge-label="转换映射" data-edge-key="1" data-edge-id="bom-reconcile" data-composition-points="391,160;454,160" d="M 391 160 L 454 160" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="mbom" data-edge-to="erp" data-edge-label="批准结构" data-edge-key="2" data-edge-id="release-bom" data-composition-points="606,160;669,160" d="M 606 160 L 669 160" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="erp" data-edge-to="order" data-edge-label="适用配置" data-edge-key="3" data-edge-id="order-snapshot" data-composition-points="821,160;884,160" d="M 821 160 L 884 160" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="mbom" data-edge-to="bop" data-edge-label="工序关联" data-edge-key="4" data-edge-id="process-allocation" data-composition-points="530,192;530,356" d="M 530 192 L 530 356" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="bop" data-edge-to="mes-route" data-edge-label="批准路线" data-edge-key="5" data-edge-id="release-process" data-composition-points="606,388;669,388" d="M 606 388 L 669 388" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="mes-route" data-edge-to="as-built" data-edge-label="执行依据" data-edge-key="6" data-edge-id="execution-context" data-composition-points="821,388;884,388" d="M 821 388 L 884 388" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="order" data-edge-to="as-built" data-edge-label="实际执行" data-edge-key="7" data-edge-id="built-record" data-composition-points="960,192;960,356" d="M 960 192 L 960 356" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="cad" data-edge-to="ebom" data-edge-label="设计关联" data-edge-key="0" data-edge-id="design-link" data-composition-points="176,160;239,160" d="M 176 160 L 239 160" class="a-default" data-animate="edge" style="--step:0" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="ebom" data-edge-to="mbom" data-edge-label="转换映射" data-edge-key="1" data-edge-id="bom-reconcile" data-composition-points="391,160;454,160" d="M 391 160 L 454 160" class="a-default" data-animate="edge" style="--step:1" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="mbom" data-edge-to="erp" data-edge-label="批准结构" data-edge-key="2" data-edge-id="release-bom" data-composition-points="606,160;669,160" d="M 606 160 L 669 160" class="a-emphasis" data-animate="edge" style="--step:2" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="erp" data-edge-to="order" data-edge-label="适用配置" data-edge-key="3" data-edge-id="order-snapshot" data-composition-points="821,160;884,160" d="M 821 160 L 884 160" class="a-default" data-animate="edge" style="--step:3" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="mbom" data-edge-to="bop" data-edge-label="工序关联" data-edge-key="4" data-edge-id="process-allocation" data-composition-points="530,192;530,356" d="M 530 192 L 530 356" class="a-default" data-animate="edge" style="--step:4" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="bop" data-edge-to="mes-route" data-edge-label="批准路线" data-edge-key="5" data-edge-id="release-process" data-composition-points="606,388;669,388" d="M 606 388 L 669 388" class="a-emphasis" data-animate="edge" style="--step:5" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="mes-route" data-edge-to="as-built" data-edge-label="执行依据" data-edge-key="6" data-edge-id="execution-context" data-composition-points="821,388;884,388" d="M 821 388 L 884 388" class="a-default" data-animate="edge" style="--step:6" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="order" data-edge-to="as-built" data-edge-label="实际执行" data-edge-key="7" data-edge-id="built-record" data-composition-points="960,192;960,356" d="M 960 192 L 960 356" class="a-default" data-animate="edge" style="--step:7" stroke-width="1.4" marker-end="url(#arrowhead)"/>
 
         <!-- Nodes -->
         <g id="node-cad" data-node-id="cad" data-node-label="CAD / 图纸" tabindex="0" role="button" aria-label="聚焦CAD / 图纸，模型与受控文档, 01 / 设计来源" aria-pressed="false" data-node-kind="backend" data-node-sublabel="模型与受控文档" data-node-context="01 / 设计来源">
           <title>CAD / 图纸 · 模型与受控文档 · 01 / 设计来源</title>
           <rect x="24" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="24" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="24" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:0" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(30 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5053,7 +5053,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-ebom" data-node-id="ebom" data-node-label="EBOM" tabindex="0" role="button" aria-label="聚焦EBOM，产品设计组成, 02 / 产品结构" aria-pressed="false" data-node-kind="backend" data-node-sublabel="产品设计组成" data-node-context="02 / 产品结构">
           <title>EBOM · 产品设计组成 · 02 / 产品结构</title>
           <rect x="239" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="239" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="239" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:1" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(245 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5064,7 +5064,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-mbom" data-node-id="mbom" data-node-label="MBOM" tabindex="0" role="button" aria-label="聚焦MBOM，按工厂组织制造用料, 03 / 制造准备" aria-pressed="false" data-node-kind="backend" data-node-sublabel="按工厂组织制造用料" data-node-context="03 / 制造准备">
           <title>MBOM · 按工厂组织制造用料 · 03 / 制造准备</title>
           <rect x="454" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="454" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="454" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:2" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(460 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5075,7 +5075,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-erp" data-node-id="erp" data-node-label="ERP 主数据" tabindex="0" role="button" aria-label="聚焦ERP 主数据，物料、制造 BOM 与用途, 04 / 下游定义" aria-pressed="false" data-node-kind="backend" data-node-sublabel="物料、制造 BOM 与用途" data-node-context="04 / 下游定义">
           <title>ERP 主数据 · 物料、制造 BOM 与用途 · 04 / 下游定义</title>
           <rect x="669" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="669" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="669" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:3" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(675 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5086,7 +5086,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-order" data-node-id="order" data-node-label="生产订单 / 工单" tabindex="0" role="button" aria-label="聚焦生产订单 / 工单，适用结构与版本快照, 05 / 执行与实绩" aria-pressed="false" data-node-kind="backend" data-node-sublabel="适用结构与版本快照" data-node-context="05 / 执行与实绩">
           <title>生产订单 / 工单 · 适用结构与版本快照 · 05 / 执行与实绩</title>
           <rect x="884" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="884" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="884" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:4" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(890 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5097,7 +5097,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-bop" data-node-id="bop" data-node-label="BOP / 工艺规划" tabindex="0" role="button" aria-label="聚焦BOP / 工艺规划，工序、用料分配与资源, 03 / 制造准备" aria-pressed="false" data-node-kind="backend" data-node-sublabel="工序、用料分配与资源" data-node-context="03 / 制造准备">
           <title>BOP / 工艺规划 · 工序、用料分配与资源 · 03 / 制造准备</title>
           <rect x="454" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="454" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="454" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:5" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(460 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5108,7 +5108,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-mes-route" data-node-id="mes-route" data-node-label="MES 工艺定义" tabindex="0" role="button" aria-label="聚焦MES 工艺定义，批准的路线与作业文件, 04 / 下游定义" aria-pressed="false" data-node-kind="backend" data-node-sublabel="批准的路线与作业文件" data-node-context="04 / 下游定义">
           <title>MES 工艺定义 · 批准的路线与作业文件 · 04 / 下游定义</title>
           <rect x="669" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="669" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="669" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:6" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(675 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5119,7 +5119,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-as-built" data-node-id="as-built" data-node-label="MES 实际谱系" tabindex="0" role="button" aria-label="聚焦MES 实际谱系，实际批次、用料与版本, 05 / 执行与实绩" aria-pressed="false" data-node-kind="database" data-node-sublabel="实际批次、用料与版本" data-node-context="05 / 执行与实绩">
           <title>MES 实际谱系 · 实际批次、用料与版本 · 05 / 执行与实绩</title>
           <rect x="884" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="884" y="356" width="152" height="64" rx="6" class="c-database" stroke-width="1.5"/>
+          <rect x="884" y="356" width="152" height="64" rx="6" class="c-database" data-animate="node" style="--step:7" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(890 362) scale(0.6875)">
             <ellipse cx="8" cy="4" rx="5" ry="2"/>
             <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>

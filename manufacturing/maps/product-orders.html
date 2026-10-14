@@ -4987,7 +4987,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     <!-- Main Diagram -->
     <div class="diagram-container" data-detail-level="read"
          data-preset-badge-editorial-plate="ARCHIFY / 图版 04">
-      <svg viewBox="0 0 1080 520" role="img" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" data-preset="classic" data-quality-profile="showcase">
+      <svg viewBox="0 0 1080 520" role="img" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase">
         <title id="archify-diagram-title">产品定义如何进入生产订单</title>
         <desc id="archify-diagram-description">由 Archify 生成的数据流图。</desc>
         <!-- Definitions -->
@@ -5029,22 +5029,22 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text x="960" y="68" class="t-dim" font-size="9" font-weight="600" text-anchor="middle">05 / 现场与反馈</text>
 
         <!-- Flow paths -->
-        <path data-edge-from="design" data-edge-to="plm" data-edge-label="设计版本" data-edge-key="0" data-edge-id="design-release" data-composition-points="176,160;239,160" d="M 176 160 L 239 160" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="plm" data-edge-to="process" data-edge-label="产品定义" data-edge-key="1" data-edge-id="process-definition" data-composition-points="391,160;454,160" d="M 391 160 L 454 160" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="process" data-edge-to="instructions" data-edge-label="生效工艺" data-edge-key="2" data-edge-id="route-release" data-composition-points="606,160;669,160" d="M 606 160 L 669 160" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="instructions" data-edge-to="station" data-edge-label="适用程序" data-edge-key="3" data-edge-id="program-dispatch" data-composition-points="821,160;884,160" d="M 821 160 L 884 160" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="sales" data-edge-to="erp-order" data-edge-label="确认配置" data-edge-key="4" data-edge-id="sales-order" data-composition-points="176,388;239,388" d="M 176 388 L 239 388" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="erp-order" data-edge-to="schedule" data-edge-label="生产需求" data-edge-key="5" data-edge-id="production-demand" data-composition-points="391,388;454,388" d="M 391 388 L 454 388" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="schedule" data-edge-to="execution" data-edge-label="批准排程" data-edge-key="6" data-edge-id="dispatch" data-composition-points="606,388;669,388" d="M 606 388 L 669 388" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="execution" data-edge-to="accounting" data-edge-label="产出消耗" data-edge-key="7" data-edge-id="actuals" data-composition-points="821,388;884,388" d="M 821 388 L 884 388" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
-        <path data-edge-from="instructions" data-edge-to="execution" data-edge-label="适用版本" data-edge-key="8" data-edge-id="applicable-route" data-composition-points="745,192;745,356" d="M 745 192 L 745 356" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="plm" data-edge-to="erp-order" data-edge-label="生效物料" data-edge-key="9" data-edge-id="bom-for-planning" data-composition-points="315,192;315,356" d="M 315 192 L 315 356" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="design" data-edge-to="plm" data-edge-label="设计版本" data-edge-key="0" data-edge-id="design-release" data-composition-points="176,160;239,160" d="M 176 160 L 239 160" class="a-default" data-animate="edge" style="--step:0" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="plm" data-edge-to="process" data-edge-label="产品定义" data-edge-key="1" data-edge-id="process-definition" data-composition-points="391,160;454,160" d="M 391 160 L 454 160" class="a-emphasis" data-animate="edge" style="--step:1" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="process" data-edge-to="instructions" data-edge-label="生效工艺" data-edge-key="2" data-edge-id="route-release" data-composition-points="606,160;669,160" d="M 606 160 L 669 160" class="a-emphasis" data-animate="edge" style="--step:2" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="instructions" data-edge-to="station" data-edge-label="适用程序" data-edge-key="3" data-edge-id="program-dispatch" data-composition-points="821,160;884,160" d="M 821 160 L 884 160" class="a-default" data-animate="edge" style="--step:3" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="sales" data-edge-to="erp-order" data-edge-label="确认配置" data-edge-key="4" data-edge-id="sales-order" data-composition-points="176,388;239,388" d="M 176 388 L 239 388" class="a-default" data-animate="edge" style="--step:4" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="erp-order" data-edge-to="schedule" data-edge-label="生产需求" data-edge-key="5" data-edge-id="production-demand" data-composition-points="391,388;454,388" d="M 391 388 L 454 388" class="a-emphasis" data-animate="edge" style="--step:5" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="schedule" data-edge-to="execution" data-edge-label="批准排程" data-edge-key="6" data-edge-id="dispatch" data-composition-points="606,388;669,388" d="M 606 388 L 669 388" class="a-emphasis" data-animate="edge" style="--step:6" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="execution" data-edge-to="accounting" data-edge-label="产出消耗" data-edge-key="7" data-edge-id="actuals" data-composition-points="821,388;884,388" d="M 821 388 L 884 388" class="a-dashed" data-animate="edge" style="--step:7" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="instructions" data-edge-to="execution" data-edge-label="适用版本" data-edge-key="8" data-edge-id="applicable-route" data-composition-points="745,192;745,356" d="M 745 192 L 745 356" class="a-default" data-animate="edge" style="--step:8" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="plm" data-edge-to="erp-order" data-edge-label="生效物料" data-edge-key="9" data-edge-id="bom-for-planning" data-composition-points="315,192;315,356" d="M 315 192 L 315 356" class="a-default" data-animate="edge" style="--step:9" stroke-width="1.4" marker-end="url(#arrowhead)"/>
 
         <!-- Nodes -->
         <g id="node-design" data-node-id="design" data-node-label="CAD / PDM" tabindex="0" role="button" aria-label="聚焦CAD / PDM，模型、图纸、设计版本, 01 / 业务来源" aria-pressed="false" data-node-kind="backend" data-node-sublabel="模型、图纸、设计版本" data-node-context="01 / 业务来源">
           <title>CAD / PDM · 模型、图纸、设计版本 · 01 / 业务来源</title>
           <rect x="24" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="24" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="24" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:0" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(30 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5055,7 +5055,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-plm" data-node-id="plm" data-node-label="PLM" tabindex="0" role="button" aria-label="聚焦PLM，产品结构、变更与生效, 02 / 定义与建单" aria-pressed="false" data-node-kind="backend" data-node-sublabel="产品结构、变更与生效" data-node-context="02 / 定义与建单">
           <title>PLM · 产品结构、变更与生效 · 02 / 定义与建单</title>
           <rect x="239" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="239" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="239" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:1" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(245 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5066,7 +5066,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-process" data-node-id="process" data-node-label="CAPP / 工艺规划" tabindex="0" role="button" aria-label="聚焦CAPP / 工艺规划，制造结构、路线与工序, 03 / 计划与准备" aria-pressed="false" data-node-kind="backend" data-node-sublabel="制造结构、路线与工序" data-node-context="03 / 计划与准备">
           <title>CAPP / 工艺规划 · 制造结构、路线与工序 · 03 / 计划与准备</title>
           <rect x="454" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="454" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="454" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:2" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(460 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5077,7 +5077,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-instructions" data-node-id="instructions" data-node-label="MES 工艺视角" tabindex="0" role="button" aria-label="聚焦MES 工艺视角，已发布路线与作业版本, 04 / 执行依据" aria-pressed="false" data-node-kind="backend" data-node-sublabel="已发布路线与作业版本" data-node-context="04 / 执行依据">
           <title>MES 工艺视角 · 已发布路线与作业版本 · 04 / 执行依据</title>
           <rect x="669" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="669" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="669" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:3" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(675 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5088,7 +5088,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-station" data-node-id="station" data-node-label="工位 / DNC" tabindex="0" role="button" aria-label="聚焦工位 / DNC，适用文件与加工程序, 05 / 现场与反馈" aria-pressed="false" data-node-kind="backend" data-node-sublabel="适用文件与加工程序" data-node-context="05 / 现场与反馈">
           <title>工位 / DNC · 适用文件与加工程序 · 05 / 现场与反馈</title>
           <rect x="884" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="884" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="884" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:4" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(890 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5099,7 +5099,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-sales" data-node-id="sales" data-node-label="CRM / CPQ" tabindex="0" role="button" aria-label="聚焦CRM / CPQ，需求、配置与交期承诺, 01 / 业务来源" aria-pressed="false" data-node-kind="backend" data-node-sublabel="需求、配置与交期承诺" data-node-context="01 / 业务来源">
           <title>CRM / CPQ · 需求、配置与交期承诺 · 01 / 业务来源</title>
           <rect x="24" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="24" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="24" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:4" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(30 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5110,7 +5110,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-erp-order" data-node-id="erp-order" data-node-label="ERP 订单视角" tabindex="0" role="button" aria-label="聚焦ERP 订单视角，销售单与生产订单, 02 / 定义与建单" aria-pressed="false" data-node-kind="backend" data-node-sublabel="销售单与生产订单" data-node-context="02 / 定义与建单">
           <title>ERP 订单视角 · 销售单与生产订单 · 02 / 定义与建单</title>
           <rect x="239" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="239" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="239" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:5" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(245 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5121,7 +5121,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-schedule" data-node-id="schedule" data-node-label="APS" tabindex="0" role="button" aria-label="聚焦APS，资源约束与排程版本, 03 / 计划与准备" aria-pressed="false" data-node-kind="backend" data-node-sublabel="资源约束与排程版本" data-node-context="03 / 计划与准备">
           <title>APS · 资源约束与排程版本 · 03 / 计划与准备</title>
           <rect x="454" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="454" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="454" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:6" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(460 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5132,7 +5132,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-execution" data-node-id="execution" data-node-label="MES 工单视角" tabindex="0" role="button" aria-label="聚焦MES 工单视角，派工、执行、产出与消耗, 04 / 执行依据" aria-pressed="false" data-node-kind="backend" data-node-sublabel="派工、执行、产出与消耗" data-node-context="04 / 执行依据">
           <title>MES 工单视角 · 派工、执行、产出与消耗 · 04 / 执行依据</title>
           <rect x="669" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="669" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="669" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:7" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(675 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5143,7 +5143,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-accounting" data-node-id="accounting" data-node-label="ERP 核算视角" tabindex="0" role="button" aria-label="聚焦ERP 核算视角，报工、收发料与成本, 05 / 现场与反馈" aria-pressed="false" data-node-kind="backend" data-node-sublabel="报工、收发料与成本" data-node-context="05 / 现场与反馈">
           <title>ERP 核算视角 · 报工、收发料与成本 · 05 / 现场与反馈</title>
           <rect x="884" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="884" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="884" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:8" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(890 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>

@@ -129,4 +129,5 @@
 ## 制造业系统
 
 - [制造业系统数据地图](https://imcoders.cn/manufacturing/data-map/index.md): 用五张交互地图连接产品、订单、物料、质量、设备和组织数据，明确系统之间传递的对象、版本、状态与回执，作为制造业系统深度拆解的起点。
+- [ERP 怎样连接订单、物料、生产与成本](https://imcoders.cn/manufacturing/erp-order-material-cost/index.md): 沿着一张风机订单，拆解 ERP 中的销售需求、MRP、采购与生产订单、库存事务和成本核算，说明工程变更后怎样重算缺料、接收现场记录、处理接口重试，并用动态图与验收案例保留跨系统证据。
 - [PLM 工程变更如何从设计进入生产](https://imcoders.cn/manufacturing/plm-engineering-change/index.md): 用一次风机支架变更拆解 PLM 的产品结构、EBOM 与 MBOM、版本和生效条件，追踪 ERP、MES、WMS 如何接收变更、处置旧料并保留执行证据，同时分析 Agent 的查询与操作边界。

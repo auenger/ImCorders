@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "从订单需求到生产与采购供给",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-erp-20261014-122037/erp-demand-supply/erp-demand-supply.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "quality_profile": "showcase",
+    "animation": "trace",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "业务依据"
+        },
+        "emphasis": {
+          "label": "授权转单"
+        },
+        "security": {
+          "label": "接收校验"
+        },
+        "dashed": {
+          "label": "记录与核对"
+        },
+        "database": {
+          "label": "业务记录"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "业务来源"
+    },
+    {
+      "label": "需求与定义"
+    },
+    {
+      "label": "计算与供给"
+    },
+    {
+      "label": "计划建议"
+    },
+    {
+      "label": "授权订单"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "sales",
+      "type": "backend",
+      "label": "ERP 销售订单",
+      "sublabel": "客户、配置、数量与交期",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "demand",
+      "type": "backend",
+      "label": "ERP 需求行",
+      "sublabel": "200 台分为旧 40 与新 160",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "mrp",
+      "type": "backend",
+      "label": "MRP 需求计算",
+      "sublabel": "按工厂、日期与适用版本",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "planned-make",
+      "type": "backend",
+      "label": "计划生产订单",
+      "sublabel": "供给建议与需求关联",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "make",
+      "type": "backend",
+      "label": "ERP 生产订单",
+      "sublabel": "转单后仍须检查释放条件",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "definition",
+      "type": "backend",
+      "label": "PLM 批准定义",
+      "sublabel": "变更范围与制造结构",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "master",
+      "type": "backend",
+      "label": "ERP 适用主数据",
+      "sublabel": "BOM、路线、单位与提前期",
+      "stage": 1,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "supply",
+      "type": "database",
+      "label": "ERP 供给快照",
+      "sublabel": "可用库存、在途与预留",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "planned-buy",
+      "type": "backend",
+      "label": "计划采购订单",
+      "sublabel": "新支架建议补足 160 件",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "purchase",
+      "type": "backend",
+      "label": "ERP 采购订单",
+      "sublabel": "供应商确认与到货待跟踪",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "sales-demand",
+      "from": "sales",
+      "to": "demand",
+      "label": "确认需求",
+      "variant": "default"
+    },
+    {
+      "id": "demand-plan",
+      "from": "demand",
+      "to": "mrp",
+      "label": "分期需求",
+      "variant": "default",
+      "route": "straight",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "definition-master",
+      "from": "definition",
+      "to": "master",
+      "label": "批准映射",
+      "variant": "default"
+    },
+    {
+      "id": "master-plan",
+      "from": "master",
+      "to": "mrp",
+      "label": "适用结构",
+      "variant": "default"
+    },
+    {
+      "id": "supply-plan",
+      "from": "supply",
+      "to": "mrp",
+      "label": "供给抵扣",
+      "variant": "default"
+    },
+    {
+      "id": "make-advice",
+      "from": "mrp",
+      "to": "planned-make",
+      "label": "生产建议",
+      "variant": "default",
+      "route": "straight",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "buy-advice",
+      "from": "mrp",
+      "to": "planned-buy",
+      "label": "采购建议",
+      "variant": "default"
+    },
+    {
+      "id": "firm-make",
+      "from": "planned-make",
+      "to": "make",
+      "label": "批准转单",
+      "variant": "emphasis"
+    },
+    {
+      "id": "firm-buy",
+      "from": "planned-buy",
+      "to": "purchase",
+      "label": "批准转单",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "本例的需求边界",
+      "items": [
+        "200 台拆为已开工旧配置 40 台与未开工新配置 160 台。",
+        "图中重复的 ERP 对象属于业务视图，不规定独立系统。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "160 件的计算前提",
+      "items": [
+        "新支架期初为零，没有已确认可抵扣供给，也无额外备库。",
+        "旧支架库存和旧采购单不自动抵扣新料需求。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "建议与承诺分别核对",
+      "items": [
+        "需求关联说明计算依据，不自动形成独占库存预留。",
+        "图中省略重排与回执；转单后仍须检查供应与释放条件。",
+        "本例由计划员授权转单；创建订单不等于允许开工",
+        "本例由采购岗位按权限确认；采购单不等于供应商已承诺"
+      ]
+    }
+  ]
+}

@@ -4,7 +4,7 @@
   "meta": {
     "title": "工程变更需要分别核对下游回执",
     "locale": "zh-CN",
-    "output": ".archify/dataflow-plm-20261014-112936/change-receipts/change-receipts.html",
+    "output": ".archify/dataflow-manufacturing-motion-20261014-120540/plm-change-receipts/plm-change-receipts.html",
     "viewBox": [
       1080,
       520
@@ -28,7 +28,8 @@
           "label": "历史记录"
         }
       }
-    }
+    },
+    "animation": "trace"
   },
   "stages": [
     {

@@ -4,7 +4,7 @@
   "meta": {
     "title": "产品定义如何进入生产订单",
     "locale": "zh-CN",
-    "output": ".archify/dataflow-manufacturing-20261014-105817/product-orders/product-orders.html",
+    "output": ".archify/dataflow-manufacturing-motion-20261014-120540/product-orders/product-orders.html",
     "viewBox": [
       1080,
       520
@@ -28,7 +28,8 @@
           "label": "持久记录"
         }
       }
-    }
+    },
+    "animation": "trace"
   },
   "stages": [
     {

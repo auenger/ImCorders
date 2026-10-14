@@ -71,9 +71,11 @@ EBOM 是 Engineering Bill of Materials，工程物料清单，描述设计所定
 | 工单配置快照 | 这次生产选择了哪些结构和工艺版本 | 现场是否严格按定义执行 |
 | 实际谱系 | 产品实际投入的批次、序列号及执行记录 | 未发生的未来工单应该使用什么定义 |
 
-![BOM 视图数据图，从 CAD、EBOM、MBOM 到 ERP 主数据、工单配置和 MES 实际谱系](/blog-images/manufacturing-plm/bom-views.png)
-
-*本例的逻辑关系图。上排连接产品结构与订单配置，下排连接工艺定义与实际记录。[打开可缩放版本](/manufacturing/maps/plm-bom-views.html)。*
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>BOM 视图与实际谱系</strong><a href="/manufacturing/maps/plm-bom-views.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/plm-bom-views.html" title="BOM 视图与实际谱系交互数据图" loading="lazy" allowfullscreen></iframe>
+<figcaption>本例的逻辑关系图。上排连接产品结构与订单配置，下排连接工艺定义与实际记录。 点击节点或连线查看细节，使用图内控件播放流转；动画不表示实际执行时序或运行状态。</figcaption>
+</figure>
 
 图中的 MBOM 和工艺由制造规划岗位维护，批准后分发到 ERP 和 MES。企业也可以选择在 ERP 或其他系统维护制造结构，接口和数据责任需要随部署调整。
 
@@ -171,9 +173,11 @@ PLM 可以沿零部件的使用关系向上查产品。PTC 的 [Part 信息页�
 
 PLM 不需要把内部全部对象复制到每个系统。ERP 需要生产和采购相关的物料与结构；MES 需要执行相关的路线、参数和文件；WMS 需要可落实的库存或发料限制。这些内容可以通过集成平台分发，也可以采用直连接口或受控文件交换。
 
-![工程变更回执图，ECN 按 ERP、MES、WMS 三条并行路径下发，各系统校验后返回业务结果并登记实施台账](/blog-images/manufacturing-plm/change-receipts.png)
-
-*三行是同一变更面向不同系统的交接视角。[打开可缩放版本](/manufacturing/maps/plm-change-receipts.html)。目标系统校验后分别反馈，图中不规定具体中间件。*
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>工程变更下发与业务回执</strong><a href="/manufacturing/maps/plm-change-receipts.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/plm-change-receipts.html" title="工程变更下发与业务回执交互数据图" loading="lazy" allowfullscreen></iframe>
+<figcaption>三行是同一变更面向不同系统的交接视角。目标系统校验后分别反馈，图中不规定具体中间件。 点击节点或连线查看细节，使用图内控件播放流转；动画不表示实际执行时序或运行状态。</figcaption>
+</figure>
 
 下面是面向 ERP 的概念数据包片段，用于说明契约需要表达什么，不对应厂商 API：
 

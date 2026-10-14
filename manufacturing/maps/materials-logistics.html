@@ -4987,7 +4987,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     <!-- Main Diagram -->
     <div class="diagram-container" data-detail-level="read"
          data-preset-badge-editorial-plate="ARCHIFY / 图版 04">
-      <svg viewBox="0 0 1080 520" role="img" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" data-preset="classic" data-quality-profile="showcase">
+      <svg viewBox="0 0 1080 520" role="img" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase">
         <title id="archify-diagram-title">物料如何从到货走到消耗与交付</title>
         <desc id="archify-diagram-description">由 Archify 生成的数据流图。</desc>
         <!-- Definitions -->
@@ -5029,19 +5029,19 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text x="960" y="68" class="t-dim" font-size="9" font-weight="600" text-anchor="middle">05 / 现场与客户</text>
 
         <!-- Flow paths -->
-        <path data-edge-from="supplier" data-edge-to="purchase" data-edge-label="到货承诺" data-edge-key="0" data-edge-id="supplier-commitment" data-composition-points="176,160;239,160" d="M 176 160 L 239 160" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="purchase" data-edge-to="warehouse" data-edge-label="收发需求" data-edge-key="1" data-edge-id="warehouse-order" data-composition-points="391,160;454,160" d="M 391 160 L 454 160" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="warehouse" data-edge-to="warehouse-control" data-edge-label="搬运任务" data-edge-key="2" data-edge-id="move-tasks" data-composition-points="606,160;669,160" d="M 606 160 L 669 160" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="warehouse-control" data-edge-to="material-use" data-edge-label="送达确认" data-edge-key="3" data-edge-id="delivery-receipt" data-composition-points="821,160;884,160" d="M 821 160 L 884 160" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="quality-release" data-edge-to="warehouse" data-edge-label="批准放行" data-edge-key="4" data-edge-id="quality-gate" data-composition-points="530,356;530,192" d="M 530 356 L 530 192" class="a-security" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
-        <path data-edge-from="warehouse" data-edge-to="transport" data-edge-label="发运交接" data-edge-key="5" data-edge-id="shipping" data-composition-points="606,160;637.5,160;637.5,388;669,388" d="M 606 160 L 637.5 160 L 637.5 388 L 669 388" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="transport" data-edge-to="service" data-edge-label="签收结果" data-edge-key="6" data-edge-id="proof-of-delivery" data-composition-points="821,388;884,388" d="M 821 388 L 884 388" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="supplier" data-edge-to="purchase" data-edge-label="到货承诺" data-edge-key="0" data-edge-id="supplier-commitment" data-composition-points="176,160;239,160" d="M 176 160 L 239 160" class="a-default" data-animate="edge" style="--step:0" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="purchase" data-edge-to="warehouse" data-edge-label="收发需求" data-edge-key="1" data-edge-id="warehouse-order" data-composition-points="391,160;454,160" d="M 391 160 L 454 160" class="a-emphasis" data-animate="edge" style="--step:1" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="warehouse" data-edge-to="warehouse-control" data-edge-label="搬运任务" data-edge-key="2" data-edge-id="move-tasks" data-composition-points="606,160;669,160" d="M 606 160 L 669 160" class="a-emphasis" data-animate="edge" style="--step:2" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="warehouse-control" data-edge-to="material-use" data-edge-label="送达确认" data-edge-key="3" data-edge-id="delivery-receipt" data-composition-points="821,160;884,160" d="M 821 160 L 884 160" class="a-default" data-animate="edge" style="--step:3" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="quality-release" data-edge-to="warehouse" data-edge-label="批准放行" data-edge-key="4" data-edge-id="quality-gate" data-composition-points="530,356;530,192" d="M 530 356 L 530 192" class="a-security" data-animate="edge" style="--step:4" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
+        <path data-edge-from="warehouse" data-edge-to="transport" data-edge-label="发运交接" data-edge-key="5" data-edge-id="shipping" data-composition-points="606,160;637.5,160;637.5,388;669,388" d="M 606 160 L 637.5 160 L 637.5 388 L 669 388" class="a-default" data-animate="edge" style="--step:5" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="transport" data-edge-to="service" data-edge-label="签收结果" data-edge-key="6" data-edge-id="proof-of-delivery" data-composition-points="821,388;884,388" d="M 821 388 L 884 388" class="a-dashed" data-animate="edge" style="--step:6" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
 
         <!-- Nodes -->
         <g id="node-supplier" data-node-id="supplier" data-node-label="SRM / 供应商" tabindex="0" role="button" aria-label="聚焦SRM / 供应商，交付承诺、到货通知, 01 / 外部协同" aria-pressed="false" data-node-kind="backend" data-node-sublabel="交付承诺、到货通知" data-node-context="01 / 外部协同">
           <title>SRM / 供应商 · 交付承诺、到货通知 · 01 / 外部协同</title>
           <rect x="24" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="24" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="24" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:0" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(30 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5052,7 +5052,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-purchase" data-node-id="purchase" data-node-label="ERP" tabindex="0" role="button" aria-label="聚焦ERP，采购单、交货单与需求, 02 / 业务单据" aria-pressed="false" data-node-kind="backend" data-node-sublabel="采购单、交货单与需求" data-node-context="02 / 业务单据">
           <title>ERP · 采购单、交货单与需求 · 02 / 业务单据</title>
           <rect x="239" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="239" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="239" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:1" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(245 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5063,7 +5063,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-warehouse" data-node-id="warehouse" data-node-label="WMS" tabindex="0" role="button" aria-label="聚焦WMS，收货、库存、库位与任务, 03 / 仓库作业" aria-pressed="false" data-node-kind="backend" data-node-sublabel="收货、库存、库位与任务" data-node-context="03 / 仓库作业">
           <title>WMS · 收货、库存、库位与任务 · 03 / 仓库作业</title>
           <rect x="454" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="454" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="454" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:2" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(460 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5074,7 +5074,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-warehouse-control" data-node-id="warehouse-control" data-node-label="WES / WCS / 车队" tabindex="0" role="button" aria-label="聚焦WES / WCS / 车队，仓内与厂内搬运任务, 04 / 执行与运输" aria-pressed="false" data-node-kind="backend" data-node-sublabel="仓内与厂内搬运任务" data-node-context="04 / 执行与运输">
           <title>WES / WCS / 车队 · 仓内与厂内搬运任务 · 04 / 执行与运输</title>
           <rect x="669" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="669" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="669" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:3" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(675 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5085,7 +5085,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-material-use" data-node-id="material-use" data-node-label="MES" tabindex="0" role="button" aria-label="聚焦MES，领用确认、批次与消耗, 05 / 现场与客户" aria-pressed="false" data-node-kind="backend" data-node-sublabel="领用确认、批次与消耗" data-node-context="05 / 现场与客户">
           <title>MES · 领用确认、批次与消耗 · 05 / 现场与客户</title>
           <rect x="884" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="884" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="884" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:4" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(890 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5096,7 +5096,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-quality-release" data-node-id="quality-release" data-node-label="QMS / IQC" tabindex="0" role="button" aria-label="聚焦QMS / IQC，来料检验与批准处置, 03 / 仓库作业" aria-pressed="false" data-node-kind="backend" data-node-sublabel="来料检验与批准处置" data-node-context="03 / 仓库作业">
           <title>QMS / IQC · 来料检验与批准处置 · 03 / 仓库作业</title>
           <rect x="454" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="454" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="454" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:4" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(460 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5107,7 +5107,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-transport" data-node-id="transport" data-node-label="TMS / YMS" tabindex="0" role="button" aria-label="聚焦TMS / YMS，预约、运单与在途状态, 04 / 执行与运输" aria-pressed="false" data-node-kind="backend" data-node-sublabel="预约、运单与在途状态" data-node-context="04 / 执行与运输">
           <title>TMS / YMS · 预约、运单与在途状态 · 04 / 执行与运输</title>
           <rect x="669" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="669" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="669" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:6" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(675 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5118,7 +5118,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-service" data-node-id="service" data-node-label="CRM / FSM" tabindex="0" role="button" aria-label="聚焦CRM / FSM，签收、客户与服务记录, 05 / 现场与客户" aria-pressed="false" data-node-kind="backend" data-node-sublabel="签收、客户与服务记录" data-node-context="05 / 现场与客户">
           <title>CRM / FSM · 签收、客户与服务记录 · 05 / 现场与客户</title>
           <rect x="884" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="884" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="884" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:7" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(890 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>

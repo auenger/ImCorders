@@ -1772,6 +1772,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/data-map/index.md"
     },
     {
+      "id": "manufacturing/erp-order-material-cost",
+      "kind": "manufacturing",
+      "title": "ERP 怎样连接订单、物料、生产与成本",
+      "description": "沿着一张风机订单，拆解 ERP 中的销售需求、MRP、采购与生产订单、库存事务和成本核算，说明工程变更后怎样重算缺料、接收现场记录、处理接口重试，并用动态图与验收案例保留跨系统证据。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "ERP",
+        "MRP",
+        "成本核算",
+        "系统集成"
+      ],
+      "publishedAt": "2026-10-14T00:00:00.000Z",
+      "updatedAt": "2026-10-14T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/erp-order-material-cost/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/erp-order-material-cost/index.md"
+    },
+    {
       "id": "manufacturing/plm-engineering-change",
       "kind": "manufacturing",
       "title": "PLM 工程变更如何从设计进入生产",

@@ -4987,7 +4987,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     <!-- Main Diagram -->
     <div class="diagram-container" data-detail-level="read"
          data-preset-badge-editorial-plate="ARCHIFY / 图版 04">
-      <svg viewBox="0 0 1080 520" role="img" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" data-preset="classic" data-quality-profile="showcase">
+      <svg viewBox="0 0 1080 520" role="img" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase">
         <title id="archify-diagram-title">业务数据如何成为受控的跨系统证据</title>
         <desc id="archify-diagram-description">由 Archify 生成的数据流图。</desc>
         <!-- Definitions -->
@@ -5029,20 +5029,20 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text x="960" y="68" class="t-dim" font-size="9" font-weight="600" text-anchor="middle">05 / 使用与协同</text>
 
         <!-- Flow paths -->
-        <path data-edge-from="business-records" data-edge-to="integration" data-edge-label="业务记录" data-edge-key="0" data-edge-id="data-exchange" data-composition-points="176,160;239,160" d="M 176 160 L 239 160" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
-        <path data-edge-from="integration" data-edge-to="semantics" data-edge-label="对象映射" data-edge-key="1" data-edge-id="normalization" data-composition-points="391,160;454,160" d="M 391 160 L 454 160" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="semantics" data-edge-to="curated" data-edge-label="治理数据" data-edge-key="2" data-edge-id="curated-evidence" data-composition-points="606,160;669,160" d="M 606 160 L 669 160" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="curated" data-edge-to="consumers" data-edge-label="受控证据" data-edge-key="3" data-edge-id="evidence-read" data-composition-points="821,160;884,160" d="M 821 160 L 884 160" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="people-docs" data-edge-to="workflow" data-edge-label="资格版本" data-edge-key="4" data-edge-id="qualification" data-composition-points="176,388;239,388" d="M 176 388 L 239 388" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="workflow" data-edge-to="action-gate" data-edge-label="待办动作" data-edge-key="5" data-edge-id="task-authorization" data-composition-points="391,388;454,388" d="M 391 388 L 454 388" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="action-gate" data-edge-to="system-action" data-edge-label="授权通过" data-edge-key="6" data-edge-id="permitted-write" data-composition-points="606,388;669,388" d="M 606 388 L 669 388" class="a-security" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
-        <path data-edge-from="system-action" data-edge-to="audit" data-edge-label="执行回执" data-edge-key="7" data-edge-id="audit-receipt" data-composition-points="821,388;884,388" d="M 821 388 L 884 388" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="business-records" data-edge-to="integration" data-edge-label="业务记录" data-edge-key="0" data-edge-id="data-exchange" data-composition-points="176,160;239,160" d="M 176 160 L 239 160" class="a-dashed" data-animate="edge" style="--step:0" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="integration" data-edge-to="semantics" data-edge-label="对象映射" data-edge-key="1" data-edge-id="normalization" data-composition-points="391,160;454,160" d="M 391 160 L 454 160" class="a-default" data-animate="edge" style="--step:1" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="semantics" data-edge-to="curated" data-edge-label="治理数据" data-edge-key="2" data-edge-id="curated-evidence" data-composition-points="606,160;669,160" d="M 606 160 L 669 160" class="a-default" data-animate="edge" style="--step:2" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="curated" data-edge-to="consumers" data-edge-label="受控证据" data-edge-key="3" data-edge-id="evidence-read" data-composition-points="821,160;884,160" d="M 821 160 L 884 160" class="a-default" data-animate="edge" style="--step:3" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="people-docs" data-edge-to="workflow" data-edge-label="资格版本" data-edge-key="4" data-edge-id="qualification" data-composition-points="176,388;239,388" d="M 176 388 L 239 388" class="a-default" data-animate="edge" style="--step:4" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="workflow" data-edge-to="action-gate" data-edge-label="待办动作" data-edge-key="5" data-edge-id="task-authorization" data-composition-points="391,388;454,388" d="M 391 388 L 454 388" class="a-default" data-animate="edge" style="--step:5" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="action-gate" data-edge-to="system-action" data-edge-label="授权通过" data-edge-key="6" data-edge-id="permitted-write" data-composition-points="606,388;669,388" d="M 606 388 L 669 388" class="a-security" data-animate="edge" style="--step:6" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
+        <path data-edge-from="system-action" data-edge-to="audit" data-edge-label="执行回执" data-edge-key="7" data-edge-id="audit-receipt" data-composition-points="821,388;884,388" d="M 821 388 L 884 388" class="a-dashed" data-animate="edge" style="--step:7" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
 
         <!-- Nodes -->
         <g id="node-business-records" data-node-id="business-records" data-node-label="业务系统与现场" tabindex="0" role="button" aria-label="聚焦业务系统与现场，ERP、MES、WMS 与设备记录, 01 / 数据与规则来源" aria-pressed="false" data-node-kind="backend" data-node-sublabel="ERP、MES、WMS 与设备记录" data-node-context="01 / 数据与规则来源">
           <title>业务系统与现场 · ERP、MES、WMS 与设备记录 · 01 / 数据与规则来源</title>
           <rect x="24" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="24" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="24" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:0" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(30 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5053,7 +5053,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-integration" data-node-id="integration" data-node-label="API / EDI / 事件" tabindex="0" role="button" aria-label="聚焦API / EDI / 事件，消息、文件与变更捕获, 02 / 交换与执行" aria-pressed="false" data-node-kind="messagebus" data-node-sublabel="消息、文件与变更捕获" data-node-context="02 / 交换与执行">
           <title>API / EDI / 事件 · 消息、文件与变更捕获 · 02 / 交换与执行</title>
           <rect x="239" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="239" y="128" width="152" height="64" rx="6" class="c-messagebus" stroke-width="1.5"/>
+          <rect x="239" y="128" width="152" height="64" rx="6" class="c-messagebus" data-animate="node" style="--step:1" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="messagebus" class="semantic-sigil s-messagebus" transform="translate(245 134) scale(0.6875)">
             <path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11"/>
             <circle cx="5" cy="4.5" r="1" class="sigil-fill"/>
@@ -5067,7 +5067,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-semantics" data-node-id="semantics" data-node-label="MDM / 数据治理" tabindex="0" role="button" aria-label="聚焦MDM / 数据治理，编码、单位、时间与血缘, 03 / 语义与治理" aria-pressed="false" data-node-kind="backend" data-node-sublabel="编码、单位、时间与血缘" data-node-context="03 / 语义与治理">
           <title>MDM / 数据治理 · 编码、单位、时间与血缘 · 03 / 语义与治理</title>
           <rect x="454" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="454" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="454" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:2" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(460 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5078,7 +5078,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-curated" data-node-id="curated" data-node-label="数据平台 / 知识库" tabindex="0" role="button" aria-label="聚焦数据平台 / 知识库，业务副本、文档与证据, 04 / 可复核数据" aria-pressed="false" data-node-kind="database" data-node-sublabel="业务副本、文档与证据" data-node-context="04 / 可复核数据">
           <title>数据平台 / 知识库 · 业务副本、文档与证据 · 04 / 可复核数据</title>
           <rect x="669" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="669" y="128" width="152" height="64" rx="6" class="c-database" stroke-width="1.5"/>
+          <rect x="669" y="128" width="152" height="64" rx="6" class="c-database" data-animate="node" style="--step:3" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(675 134) scale(0.6875)">
             <ellipse cx="8" cy="4" rx="5" ry="2"/>
             <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
@@ -5090,7 +5090,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-consumers" data-node-id="consumers" data-node-label="BI / 仿真 / Agent" tabindex="0" role="button" aria-label="聚焦BI / 仿真 / Agent，分析、查询与方案建议, 05 / 使用与协同" aria-pressed="false" data-node-kind="backend" data-node-sublabel="分析、查询与方案建议" data-node-context="05 / 使用与协同">
           <title>BI / 仿真 / Agent · 分析、查询与方案建议 · 05 / 使用与协同</title>
           <rect x="884" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="884" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="884" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:4" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(890 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5101,7 +5101,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-people-docs" data-node-id="people-docs" data-node-label="HR / LMS / DMS" tabindex="0" role="button" aria-label="聚焦HR / LMS / DMS，人员资格与受控文件, 01 / 数据与规则来源" aria-pressed="false" data-node-kind="backend" data-node-sublabel="人员资格与受控文件" data-node-context="01 / 数据与规则来源">
           <title>HR / LMS / DMS · 人员资格与受控文件 · 01 / 数据与规则来源</title>
           <rect x="24" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="24" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="24" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:4" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(30 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5112,7 +5112,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-workflow" data-node-id="workflow" data-node-label="BPM / 业务校验" tabindex="0" role="button" aria-label="聚焦BPM / 业务校验，角色、适用版本与任务, 02 / 交换与执行" aria-pressed="false" data-node-kind="backend" data-node-sublabel="角色、适用版本与任务" data-node-context="02 / 交换与执行">
           <title>BPM / 业务校验 · 角色、适用版本与任务 · 02 / 交换与执行</title>
           <rect x="239" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="239" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="239" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:5" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(245 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5123,7 +5123,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-action-gate" data-node-id="action-gate" data-node-label="身份 / 授权 / 审批" tabindex="0" role="button" aria-label="聚焦身份 / 授权 / 审批，校验对象、动作与条件, 03 / 语义与治理" aria-pressed="false" data-node-kind="security" data-node-sublabel="校验对象、动作与条件" data-node-context="03 / 语义与治理">
           <title>身份 / 授权 / 审批 · 校验对象、动作与条件 · 03 / 语义与治理</title>
           <rect x="454" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="454" y="356" width="152" height="64" rx="6" class="c-security" stroke-width="1.5"/>
+          <rect x="454" y="356" width="152" height="64" rx="6" class="c-security" data-animate="node" style="--step:6" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(460 362) scale(0.6875)">
             <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
             <path d="m5.8 8 1.5 1.5 3-3"/>
@@ -5135,7 +5135,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-system-action" data-node-id="system-action" data-node-label="业务系统写入接口" tabindex="0" role="button" aria-label="聚焦业务系统写入接口，幂等、状态前置与审计, 04 / 可复核数据" aria-pressed="false" data-node-kind="backend" data-node-sublabel="幂等、状态前置与审计" data-node-context="04 / 可复核数据">
           <title>业务系统写入接口 · 幂等、状态前置与审计 · 04 / 可复核数据</title>
           <rect x="669" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="669" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="669" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:7" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(675 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5146,7 +5146,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-audit" data-node-id="audit" data-node-label="审计与运行支撑" tabindex="0" role="button" aria-label="聚焦审计与运行支撑，结果、失败、恢复与对账, 05 / 使用与协同" aria-pressed="false" data-node-kind="database" data-node-sublabel="结果、失败、恢复与对账" data-node-context="05 / 使用与协同">
           <title>审计与运行支撑 · 结果、失败、恢复与对账 · 05 / 使用与协同</title>
           <rect x="884" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="884" y="356" width="152" height="64" rx="6" class="c-database" stroke-width="1.5"/>
+          <rect x="884" y="356" width="152" height="64" rx="6" class="c-database" data-animate="node" style="--step:8" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(890 362) scale(0.6875)">
             <ellipse cx="8" cy="4" rx="5" ry="2"/>
             <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>

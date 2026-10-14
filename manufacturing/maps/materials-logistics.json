@@ -4,7 +4,7 @@
   "meta": {
     "title": "物料如何从到货走到消耗与交付",
     "locale": "zh-CN",
-    "output": ".archify/dataflow-manufacturing-20261014-105817/materials-logistics/materials-logistics.html",
+    "output": ".archify/dataflow-manufacturing-motion-20261014-120540/materials-logistics/materials-logistics.html",
     "viewBox": [
       1080,
       520
@@ -28,7 +28,8 @@
           "label": "持久记录"
         }
       }
-    }
+    },
+    "animation": "trace"
   },
   "stages": [
     {

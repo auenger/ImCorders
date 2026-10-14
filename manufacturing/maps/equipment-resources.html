@@ -4987,7 +4987,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     <!-- Main Diagram -->
     <div class="diagram-container" data-detail-level="read"
          data-preset-badge-editorial-plate="ARCHIFY / 图版 04">
-      <svg viewBox="0 0 1080 520" role="img" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" data-preset="classic" data-quality-profile="showcase">
+      <svg viewBox="0 0 1080 520" role="img" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase">
         <title id="archify-diagram-title">设备信号如何影响维护与可用产能</title>
         <desc id="archify-diagram-description">由 Archify 生成的数据流图。</desc>
         <!-- Definitions -->
@@ -5029,21 +5029,21 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text x="960" y="68" class="t-dim" font-size="9" font-weight="600" text-anchor="middle">05 / 计划与分析</text>
 
         <!-- Flow paths -->
-        <path data-edge-from="control" data-edge-to="supervision" data-edge-label="状态报警" data-edge-key="0" data-edge-id="signal-collection" data-composition-points="176,160;239,160" d="M 176 160 L 239 160" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="supervision" data-edge-to="historical" data-edge-label="带时标值" data-edge-key="1" data-edge-id="time-series" data-composition-points="391,160;454,160" d="M 391 160 L 454 160" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
-        <path data-edge-from="historical" data-edge-to="mes-context" data-edge-label="过程证据" data-edge-key="2" data-edge-id="contextualization" data-composition-points="606,160;669,160" d="M 606 160 L 669 160" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="mes-context" data-edge-to="capacity" data-edge-label="进度约束" data-edge-key="3" data-edge-id="availability-feedback" data-composition-points="821,160;884,160" d="M 821 160 L 884 160" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
-        <path data-edge-from="meters" data-edge-to="energy" data-edge-label="计量读数" data-edge-key="4" data-edge-id="meter-reading" data-composition-points="176,388;239,388" d="M 176 388 L 239 388" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="supervision" data-edge-to="maintenance" data-edge-label="故障事件" data-edge-key="5" data-edge-id="failure-event" data-composition-points="391,160;422.5,160;422.5,388;454,388" d="M 391 160 L 422.5 160 L 422.5 388 L 454 388" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="maintenance" data-edge-to="resource-approval" data-edge-label="维护记录" data-edge-key="6" data-edge-id="maintenance-complete" data-composition-points="606,388;669,388" d="M 606 388 L 669 388" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="resource-approval" data-edge-to="capacity" data-edge-label="确认窗口" data-edge-key="7" data-edge-id="capacity-release" data-composition-points="821,388;852.5,388;852.5,160;884,160" d="M 821 388 L 852.5 388 L 852.5 160 L 884 160" class="a-security" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
-        <path data-edge-from="energy" data-edge-to="performance" data-edge-label="能耗分项" data-edge-key="8" data-edge-id="energy-allocation" data-composition-points="315,420;315,466;960,466;960,420" d="M 315 420 L 315 466 L 960 466 L 960 420" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="control" data-edge-to="supervision" data-edge-label="状态报警" data-edge-key="0" data-edge-id="signal-collection" data-composition-points="176,160;239,160" d="M 176 160 L 239 160" class="a-default" data-animate="edge" style="--step:0" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="supervision" data-edge-to="historical" data-edge-label="带时标值" data-edge-key="1" data-edge-id="time-series" data-composition-points="391,160;454,160" d="M 391 160 L 454 160" class="a-dashed" data-animate="edge" style="--step:1" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="historical" data-edge-to="mes-context" data-edge-label="过程证据" data-edge-key="2" data-edge-id="contextualization" data-composition-points="606,160;669,160" d="M 606 160 L 669 160" class="a-default" data-animate="edge" style="--step:2" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="mes-context" data-edge-to="capacity" data-edge-label="进度约束" data-edge-key="3" data-edge-id="availability-feedback" data-composition-points="821,160;884,160" d="M 821 160 L 884 160" class="a-dashed" data-animate="edge" style="--step:3" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="meters" data-edge-to="energy" data-edge-label="计量读数" data-edge-key="4" data-edge-id="meter-reading" data-composition-points="176,388;239,388" d="M 176 388 L 239 388" class="a-default" data-animate="edge" style="--step:4" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="supervision" data-edge-to="maintenance" data-edge-label="故障事件" data-edge-key="5" data-edge-id="failure-event" data-composition-points="391,160;422.5,160;422.5,388;454,388" d="M 391 160 L 422.5 160 L 422.5 388 L 454 388" class="a-default" data-animate="edge" style="--step:5" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="maintenance" data-edge-to="resource-approval" data-edge-label="维护记录" data-edge-key="6" data-edge-id="maintenance-complete" data-composition-points="606,388;669,388" d="M 606 388 L 669 388" class="a-default" data-animate="edge" style="--step:6" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="resource-approval" data-edge-to="capacity" data-edge-label="确认窗口" data-edge-key="7" data-edge-id="capacity-release" data-composition-points="821,388;852.5,388;852.5,160;884,160" d="M 821 388 L 852.5 388 L 852.5 160 L 884 160" class="a-security" data-animate="edge" style="--step:7" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
+        <path data-edge-from="energy" data-edge-to="performance" data-edge-label="能耗分项" data-edge-key="8" data-edge-id="energy-allocation" data-composition-points="315,420;315,466;960,466;960,420" d="M 315 420 L 315 466 L 960 466 L 960 420" class="a-dashed" data-animate="edge" style="--step:8" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
 
         <!-- Nodes -->
         <g id="node-control" data-node-id="control" data-node-label="PLC / DCS / CNC" tabindex="0" role="button" aria-label="聚焦PLC / DCS / CNC，设备状态、参数与报警, 01 / 现场来源" aria-pressed="false" data-node-kind="backend" data-node-sublabel="设备状态、参数与报警" data-node-context="01 / 现场来源">
           <title>PLC / DCS / CNC · 设备状态、参数与报警 · 01 / 现场来源</title>
           <rect x="24" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="24" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="24" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:0" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(30 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5054,7 +5054,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-supervision" data-node-id="supervision" data-node-label="SCADA / 边缘网关" tabindex="0" role="button" aria-label="聚焦SCADA / 边缘网关，点位、事件与质量标记, 02 / 采集与监视" aria-pressed="false" data-node-kind="backend" data-node-sublabel="点位、事件与质量标记" data-node-context="02 / 采集与监视">
           <title>SCADA / 边缘网关 · 点位、事件与质量标记 · 02 / 采集与监视</title>
           <rect x="239" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="239" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="239" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:1" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(245 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5065,7 +5065,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-historical" data-node-id="historical" data-node-label="Historian" tabindex="0" role="button" aria-label="聚焦Historian，时序、时间戳与历史事件, 03 / 记录与管理" aria-pressed="false" data-node-kind="database" data-node-sublabel="时序、时间戳与历史事件" data-node-context="03 / 记录与管理">
           <title>Historian · 时序、时间戳与历史事件 · 03 / 记录与管理</title>
           <rect x="454" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="454" y="128" width="152" height="64" rx="6" class="c-database" stroke-width="1.5"/>
+          <rect x="454" y="128" width="152" height="64" rx="6" class="c-database" data-animate="node" style="--step:2" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(460 134) scale(0.6875)">
             <ellipse cx="8" cy="4" rx="5" ry="2"/>
             <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
@@ -5077,7 +5077,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-mes-context" data-node-id="mes-context" data-node-label="MES" tabindex="0" role="button" aria-label="聚焦MES，设备、工序、批次与班次, 04 / 业务关联" aria-pressed="false" data-node-kind="backend" data-node-sublabel="设备、工序、批次与班次" data-node-context="04 / 业务关联">
           <title>MES · 设备、工序、批次与班次 · 04 / 业务关联</title>
           <rect x="669" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="669" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="669" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:3" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(675 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5088,7 +5088,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-capacity" data-node-id="capacity" data-node-label="APS" tabindex="0" role="button" aria-label="聚焦APS，可用日历与产能约束, 05 / 计划与分析" aria-pressed="false" data-node-kind="backend" data-node-sublabel="可用日历与产能约束" data-node-context="05 / 计划与分析">
           <title>APS · 可用日历与产能约束 · 05 / 计划与分析</title>
           <rect x="884" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="884" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="884" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:4" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(890 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5099,7 +5099,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-meters" data-node-id="meters" data-node-label="能源表计" tabindex="0" role="button" aria-label="聚焦能源表计，电、水、气与蒸汽读数, 01 / 现场来源" aria-pressed="false" data-node-kind="backend" data-node-sublabel="电、水、气与蒸汽读数" data-node-context="01 / 现场来源">
           <title>能源表计 · 电、水、气与蒸汽读数 · 01 / 现场来源</title>
           <rect x="24" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="24" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="24" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:4" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(30 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5110,7 +5110,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-energy" data-node-id="energy" data-node-label="能源 / 公用工程" tabindex="0" role="button" aria-label="聚焦能源 / 公用工程，计量边界与运行状态, 02 / 采集与监视" aria-pressed="false" data-node-kind="backend" data-node-sublabel="计量边界与运行状态" data-node-context="02 / 采集与监视">
           <title>能源 / 公用工程 · 计量边界与运行状态 · 02 / 采集与监视</title>
           <rect x="239" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="239" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="239" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:5" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(245 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5121,7 +5121,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-maintenance" data-node-id="maintenance" data-node-label="EAM / CMMS / APM" tabindex="0" role="button" aria-label="聚焦EAM / CMMS / APM，健康、维修与维护窗口, 03 / 记录与管理" aria-pressed="false" data-node-kind="backend" data-node-sublabel="健康、维修与维护窗口" data-node-context="03 / 记录与管理">
           <title>EAM / CMMS / APM · 健康、维修与维护窗口 · 03 / 记录与管理</title>
           <rect x="454" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="454" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="454" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:6" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(460 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5132,7 +5132,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-resource-approval" data-node-id="resource-approval" data-node-label="资源状态确认" tabindex="0" role="button" aria-label="聚焦资源状态确认，维护结束与可用性确认, 04 / 业务关联" aria-pressed="false" data-node-kind="backend" data-node-sublabel="维护结束与可用性确认" data-node-context="04 / 业务关联">
           <title>资源状态确认 · 维护结束与可用性确认 · 04 / 业务关联</title>
           <rect x="669" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="669" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="669" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:7" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(675 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5143,7 +5143,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-performance" data-node-id="performance" data-node-label="BI / EPM / EHS" tabindex="0" role="button" aria-label="聚焦BI / EPM / EHS，能效、成本与风险分析, 05 / 计划与分析" aria-pressed="false" data-node-kind="backend" data-node-sublabel="能效、成本与风险分析" data-node-context="05 / 计划与分析">
           <title>BI / EPM / EHS · 能效、成本与风险分析 · 05 / 计划与分析</title>
           <rect x="884" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="884" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="884" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:9" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(890 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>

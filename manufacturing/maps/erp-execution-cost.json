@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "三类现场记录怎样进入 ERP 库存与成本",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-erp-20261014-122037/erp-execution-cost/erp-execution-cost.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "quality_profile": "showcase",
+    "animation": "trace",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "业务依据"
+        },
+        "emphasis": {
+          "label": "授权转单"
+        },
+        "security": {
+          "label": "接收校验"
+        },
+        "dashed": {
+          "label": "记录与核对"
+        },
+        "database": {
+          "label": "业务记录"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "来源记录"
+    },
+    {
+      "label": "接收与校验"
+    },
+    {
+      "label": "ERP 业务记录"
+    },
+    {
+      "label": "成本处理"
+    },
+    {
+      "label": "核对与结算"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "material-0",
+      "type": "backend",
+      "label": "领退料 / WMS",
+      "sublabel": "发料、退料与批次记录",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "material-1",
+      "type": "security",
+      "label": "ERP 事务校验",
+      "sublabel": "订单、单位、重复与期间",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "material-2",
+      "type": "database",
+      "label": "材料库存事务",
+      "sublabel": "按业务配置扣减或退回",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "material-3",
+      "type": "backend",
+      "label": "订单材料成本",
+      "sublabel": "用量、价格与原事务关联",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "material-4",
+      "type": "database",
+      "label": "订单成本明细",
+      "sublabel": "同一订单的材料视图",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "resource-0",
+      "type": "backend",
+      "label": "报工 / MES",
+      "sublabel": "工序、工时与合格报废数",
+      "stage": 0,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "resource-1",
+      "type": "security",
+      "label": "ERP 报工校验",
+      "sublabel": "工序、累计量与重复检查",
+      "stage": 1,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "resource-2",
+      "type": "database",
+      "label": "工时与产出记录",
+      "sublabel": "接受的数量与资源用量",
+      "stage": 2,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "resource-3",
+      "type": "backend",
+      "label": "订单资源成本",
+      "sublabel": "费率、实际或标准依据",
+      "stage": 3,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "resource-4",
+      "type": "database",
+      "label": "订单成本明细",
+      "sublabel": "同一订单的资源视图",
+      "stage": 4,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "finished-0",
+      "type": "backend",
+      "label": "成品收货 / WMS",
+      "sublabel": "订单、数量与批次关联",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "finished-1",
+      "type": "security",
+      "label": "ERP 完工校验",
+      "sublabel": "报工与收货关联、防重复",
+      "stage": 1,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "finished-2",
+      "type": "database",
+      "label": "产成品库存事务",
+      "sublabel": "入库与质量状态分开记录",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "finished-3",
+      "type": "backend",
+      "label": "ERP 完工核算",
+      "sublabel": "待核对成本与未结事项",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "finished-4",
+      "type": "database",
+      "label": "结算与凭证",
+      "sublabel": "按成本方法与期间规则",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "material-flow-0",
+      "from": "material-0",
+      "to": "material-1",
+      "label": "领退记录",
+      "variant": "security"
+    },
+    {
+      "id": "material-flow-1",
+      "from": "material-1",
+      "to": "material-2",
+      "label": "校验通过",
+      "variant": "dashed"
+    },
+    {
+      "id": "material-flow-2",
+      "from": "material-2",
+      "to": "material-3",
+      "label": "计价归集",
+      "variant": "dashed"
+    },
+    {
+      "id": "material-flow-3",
+      "from": "material-3",
+      "to": "material-4",
+      "label": "关联订单",
+      "variant": "dashed"
+    },
+    {
+      "id": "resource-flow-0",
+      "from": "resource-0",
+      "to": "resource-1",
+      "label": "报工记录",
+      "variant": "security"
+    },
+    {
+      "id": "resource-flow-1",
+      "from": "resource-1",
+      "to": "resource-2",
+      "label": "校验通过",
+      "variant": "dashed"
+    },
+    {
+      "id": "resource-flow-2",
+      "from": "resource-2",
+      "to": "resource-3",
+      "label": "资源计价",
+      "variant": "dashed"
+    },
+    {
+      "id": "resource-flow-3",
+      "from": "resource-3",
+      "to": "resource-4",
+      "label": "关联订单",
+      "variant": "dashed"
+    },
+    {
+      "id": "finished-flow-0",
+      "from": "finished-0",
+      "to": "finished-1",
+      "label": "收货记录",
+      "variant": "security"
+    },
+    {
+      "id": "finished-flow-1",
+      "from": "finished-1",
+      "to": "finished-2",
+      "label": "校验通过",
+      "variant": "dashed"
+    },
+    {
+      "id": "finished-flow-2",
+      "from": "finished-2",
+      "to": "finished-3",
+      "label": "完工依据",
+      "variant": "dashed"
+    },
+    {
+      "id": "finished-flow-3",
+      "from": "finished-3",
+      "to": "finished-4",
+      "label": "核对后结算",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "三行是业务视图",
+      "items": [
+        "材料、资源和完工记录均关联同一 ERP 生产订单。",
+        "成本明细汇入该订单核算，三行不代表三个独立成本账。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "先确定过账边界",
+      "items": [
+        "线边库转移、生产耗用与成品入库须约定各自触发来源。",
+        "MES 报工与 WMS 收货若对应同一入库，不得分别重复增加库存。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "核对后再结束订单",
+      "items": [
+        "图中省略失败回执、质量放行、发票和期末调整路径。",
+        "结算还须核对材料与资源完整性；动画不表示实际时序。",
+        "模拟接口边界；同一业务只选择一个过账触发来源，失败结果进入差异队列"
+      ]
+    }
+  ]
+}

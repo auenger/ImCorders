@@ -4987,7 +4987,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     <!-- Main Diagram -->
     <div class="diagram-container" data-detail-level="read"
          data-preset-badge-editorial-plate="ARCHIFY / 图版 04">
-      <svg viewBox="0 0 1080 520" role="img" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" data-preset="classic" data-quality-profile="showcase">
+      <svg viewBox="0 0 1080 520" role="img" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase">
         <title id="archify-diagram-title">工程变更需要分别核对下游回执</title>
         <desc id="archify-diagram-description">由 Archify 生成的数据流图。</desc>
         <!-- Definitions -->
@@ -5029,24 +5029,24 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text x="960" y="68" class="t-dim" font-size="9" font-weight="600" text-anchor="middle">05 / 实施核对</text>
 
         <!-- Flow paths -->
-        <path data-edge-from="package-erp" data-edge-to="target-erp" data-edge-label="批准下发" data-edge-key="0" data-edge-id="dispatch-erp" data-composition-points="176,160;239,160" d="M 176 160 L 239 160" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="target-erp" data-edge-to="check-erp" data-edge-label="对象版本" data-edge-key="1" data-edge-id="validate-erp" data-composition-points="391,160;454,160" d="M 391 160 L 454 160" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="check-erp" data-edge-to="ack-erp" data-edge-label="处理结果" data-edge-key="2" data-edge-id="acknowledge-erp" data-composition-points="606,160;669,160" d="M 606 160 L 669 160" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
-        <path data-edge-from="ack-erp" data-edge-to="ledger-erp" data-edge-label="登记状态" data-edge-key="3" data-edge-id="reconcile-erp" data-composition-points="821,160;884,160" d="M 821 160 L 884 160" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
-        <path data-edge-from="package-mes" data-edge-to="target-mes" data-edge-label="批准下发" data-edge-key="4" data-edge-id="dispatch-mes" data-composition-points="176,274;239,274" d="M 176 274 L 239 274" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="target-mes" data-edge-to="check-mes" data-edge-label="对象版本" data-edge-key="5" data-edge-id="validate-mes" data-composition-points="391,274;454,274" d="M 391 274 L 454 274" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="check-mes" data-edge-to="ack-mes" data-edge-label="处理结果" data-edge-key="6" data-edge-id="acknowledge-mes" data-composition-points="606,274;669,274" d="M 606 274 L 669 274" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
-        <path data-edge-from="ack-mes" data-edge-to="ledger-mes" data-edge-label="登记状态" data-edge-key="7" data-edge-id="reconcile-mes" data-composition-points="821,274;884,274" d="M 821 274 L 884 274" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
-        <path data-edge-from="package-wms" data-edge-to="target-wms" data-edge-label="批准下发" data-edge-key="8" data-edge-id="dispatch-wms" data-composition-points="176,388;239,388" d="M 176 388 L 239 388" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="target-wms" data-edge-to="check-wms" data-edge-label="对象版本" data-edge-key="9" data-edge-id="validate-wms" data-composition-points="391,388;454,388" d="M 391 388 L 454 388" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="check-wms" data-edge-to="ack-wms" data-edge-label="处理结果" data-edge-key="10" data-edge-id="acknowledge-wms" data-composition-points="606,388;669,388" d="M 606 388 L 669 388" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
-        <path data-edge-from="ack-wms" data-edge-to="ledger-wms" data-edge-label="登记状态" data-edge-key="11" data-edge-id="reconcile-wms" data-composition-points="821,388;884,388" d="M 821 388 L 884 388" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="package-erp" data-edge-to="target-erp" data-edge-label="批准下发" data-edge-key="0" data-edge-id="dispatch-erp" data-composition-points="176,160;239,160" d="M 176 160 L 239 160" class="a-emphasis" data-animate="edge" style="--step:0" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="target-erp" data-edge-to="check-erp" data-edge-label="对象版本" data-edge-key="1" data-edge-id="validate-erp" data-composition-points="391,160;454,160" d="M 391 160 L 454 160" class="a-default" data-animate="edge" style="--step:1" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="check-erp" data-edge-to="ack-erp" data-edge-label="处理结果" data-edge-key="2" data-edge-id="acknowledge-erp" data-composition-points="606,160;669,160" d="M 606 160 L 669 160" class="a-dashed" data-animate="edge" style="--step:2" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="ack-erp" data-edge-to="ledger-erp" data-edge-label="登记状态" data-edge-key="3" data-edge-id="reconcile-erp" data-composition-points="821,160;884,160" d="M 821 160 L 884 160" class="a-dashed" data-animate="edge" style="--step:3" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="package-mes" data-edge-to="target-mes" data-edge-label="批准下发" data-edge-key="4" data-edge-id="dispatch-mes" data-composition-points="176,274;239,274" d="M 176 274 L 239 274" class="a-emphasis" data-animate="edge" style="--step:4" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="target-mes" data-edge-to="check-mes" data-edge-label="对象版本" data-edge-key="5" data-edge-id="validate-mes" data-composition-points="391,274;454,274" d="M 391 274 L 454 274" class="a-default" data-animate="edge" style="--step:5" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="check-mes" data-edge-to="ack-mes" data-edge-label="处理结果" data-edge-key="6" data-edge-id="acknowledge-mes" data-composition-points="606,274;669,274" d="M 606 274 L 669 274" class="a-dashed" data-animate="edge" style="--step:6" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="ack-mes" data-edge-to="ledger-mes" data-edge-label="登记状态" data-edge-key="7" data-edge-id="reconcile-mes" data-composition-points="821,274;884,274" d="M 821 274 L 884 274" class="a-dashed" data-animate="edge" style="--step:7" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="package-wms" data-edge-to="target-wms" data-edge-label="批准下发" data-edge-key="8" data-edge-id="dispatch-wms" data-composition-points="176,388;239,388" d="M 176 388 L 239 388" class="a-emphasis" data-animate="edge" style="--step:8" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="target-wms" data-edge-to="check-wms" data-edge-label="对象版本" data-edge-key="9" data-edge-id="validate-wms" data-composition-points="391,388;454,388" d="M 391 388 L 454 388" class="a-default" data-animate="edge" style="--step:9" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="check-wms" data-edge-to="ack-wms" data-edge-label="处理结果" data-edge-key="10" data-edge-id="acknowledge-wms" data-composition-points="606,388;669,388" d="M 606 388 L 669 388" class="a-dashed" data-animate="edge" style="--step:10" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="ack-wms" data-edge-to="ledger-wms" data-edge-label="登记状态" data-edge-key="11" data-edge-id="reconcile-wms" data-composition-points="821,388;884,388" d="M 821 388 L 884 388" class="a-dashed" data-animate="edge" style="--step:11" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
 
         <!-- Nodes -->
         <g id="node-package-erp" data-node-id="package-erp" data-node-label="ECN-042 批准包" tabindex="0" role="button" aria-label="聚焦ECN-042 批准包，同一变更的目标系统视图, 01 / 同一变更分发" aria-pressed="false" data-node-kind="backend" data-node-sublabel="同一变更的目标系统视图" data-node-context="01 / 同一变更分发">
           <title>ECN-042 批准包 · 同一变更的目标系统视图 · 01 / 同一变更分发</title>
           <rect x="24" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="24" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="24" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:0" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(30 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5057,7 +5057,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-target-erp" data-node-id="target-erp" data-node-label="ERP" tabindex="0" role="button" aria-label="聚焦ERP，物料、BOM 与订单, 02 / 接收方" aria-pressed="false" data-node-kind="backend" data-node-sublabel="物料、BOM 与订单" data-node-context="02 / 接收方">
           <title>ERP · 物料、BOM 与订单 · 02 / 接收方</title>
           <rect x="239" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="239" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="239" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:1" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(245 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5068,7 +5068,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-check-erp" data-node-id="check-erp" data-node-label="目标系统业务校验" tabindex="0" role="button" aria-label="聚焦目标系统业务校验，结构与工厂校验, 03 / 条件与前置" aria-pressed="false" data-node-kind="security" data-node-sublabel="结构与工厂校验" data-node-context="03 / 条件与前置">
           <title>目标系统业务校验 · 结构与工厂校验 · 03 / 条件与前置</title>
           <rect x="454" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="454" y="128" width="152" height="64" rx="6" class="c-security" stroke-width="1.5"/>
+          <rect x="454" y="128" width="152" height="64" rx="6" class="c-security" data-animate="node" style="--step:2" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(460 134) scale(0.6875)">
             <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
             <path d="m5.8 8 1.5 1.5 3-3"/>
@@ -5080,7 +5080,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-ack-erp" data-node-id="ack-erp" data-node-label="业务回执" tabindex="0" role="button" aria-label="聚焦业务回执，接受或拒绝, 04 / 业务结果" aria-pressed="false" data-node-kind="backend" data-node-sublabel="接受或拒绝" data-node-context="04 / 业务结果">
           <title>业务回执 · 接受或拒绝 · 04 / 业务结果</title>
           <rect x="669" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="669" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="669" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:3" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(675 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5091,7 +5091,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-ledger-erp" data-node-id="ledger-erp" data-node-label="变更实施台账" tabindex="0" role="button" aria-label="聚焦变更实施台账，ERP 准备状态, 05 / 实施核对" aria-pressed="false" data-node-kind="database" data-node-sublabel="ERP 准备状态" data-node-context="05 / 实施核对">
           <title>变更实施台账 · ERP 准备状态 · 05 / 实施核对</title>
           <rect x="884" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="884" y="128" width="152" height="64" rx="6" class="c-database" stroke-width="1.5"/>
+          <rect x="884" y="128" width="152" height="64" rx="6" class="c-database" data-animate="node" style="--step:4" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(890 134) scale(0.6875)">
             <ellipse cx="8" cy="4" rx="5" ry="2"/>
             <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
@@ -5103,7 +5103,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-package-mes" data-node-id="package-mes" data-node-label="ECN-042 批准包" tabindex="0" role="button" aria-label="聚焦ECN-042 批准包，同一变更的目标系统视图, 01 / 同一变更分发" aria-pressed="false" data-node-kind="backend" data-node-sublabel="同一变更的目标系统视图" data-node-context="01 / 同一变更分发">
           <title>ECN-042 批准包 · 同一变更的目标系统视图 · 01 / 同一变更分发</title>
           <rect x="24" y="242" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="24" y="242" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="24" y="242" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:4" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(30 248) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5114,7 +5114,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-target-mes" data-node-id="target-mes" data-node-label="MES" tabindex="0" role="button" aria-label="聚焦MES，路线、文件与工单, 02 / 接收方" aria-pressed="false" data-node-kind="backend" data-node-sublabel="路线、文件与工单" data-node-context="02 / 接收方">
           <title>MES · 路线、文件与工单 · 02 / 接收方</title>
           <rect x="239" y="242" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="239" y="242" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="239" y="242" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:5" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(245 248) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5125,7 +5125,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-check-mes" data-node-id="check-mes" data-node-label="目标系统业务校验" tabindex="0" role="button" aria-label="聚焦目标系统业务校验，适用范围校验, 03 / 条件与前置" aria-pressed="false" data-node-kind="security" data-node-sublabel="适用范围校验" data-node-context="03 / 条件与前置">
           <title>目标系统业务校验 · 适用范围校验 · 03 / 条件与前置</title>
           <rect x="454" y="242" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="454" y="242" width="152" height="64" rx="6" class="c-security" stroke-width="1.5"/>
+          <rect x="454" y="242" width="152" height="64" rx="6" class="c-security" data-animate="node" style="--step:6" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(460 248) scale(0.6875)">
             <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
             <path d="m5.8 8 1.5 1.5 3-3"/>
@@ -5137,7 +5137,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-ack-mes" data-node-id="ack-mes" data-node-label="业务回执" tabindex="0" role="button" aria-label="聚焦业务回执，就绪或阻断, 04 / 业务结果" aria-pressed="false" data-node-kind="backend" data-node-sublabel="就绪或阻断" data-node-context="04 / 业务结果">
           <title>业务回执 · 就绪或阻断 · 04 / 业务结果</title>
           <rect x="669" y="242" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="669" y="242" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="669" y="242" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:7" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(675 248) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5148,7 +5148,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-ledger-mes" data-node-id="ledger-mes" data-node-label="变更实施台账" tabindex="0" role="button" aria-label="聚焦变更实施台账，MES 切换状态, 05 / 实施核对" aria-pressed="false" data-node-kind="database" data-node-sublabel="MES 切换状态" data-node-context="05 / 实施核对">
           <title>变更实施台账 · MES 切换状态 · 05 / 实施核对</title>
           <rect x="884" y="242" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="884" y="242" width="152" height="64" rx="6" class="c-database" stroke-width="1.5"/>
+          <rect x="884" y="242" width="152" height="64" rx="6" class="c-database" data-animate="node" style="--step:8" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(890 248) scale(0.6875)">
             <ellipse cx="8" cy="4" rx="5" ry="2"/>
             <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
@@ -5160,7 +5160,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-package-wms" data-node-id="package-wms" data-node-label="ECN-042 批准包" tabindex="0" role="button" aria-label="聚焦ECN-042 批准包，同一变更的目标系统视图, 01 / 同一变更分发" aria-pressed="false" data-node-kind="backend" data-node-sublabel="同一变更的目标系统视图" data-node-context="01 / 同一变更分发">
           <title>ECN-042 批准包 · 同一变更的目标系统视图 · 01 / 同一变更分发</title>
           <rect x="24" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="24" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="24" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:8" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(30 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5171,7 +5171,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-target-wms" data-node-id="target-wms" data-node-label="WMS" tabindex="0" role="button" aria-label="聚焦WMS，旧料与指定处置任务, 02 / 接收方" aria-pressed="false" data-node-kind="backend" data-node-sublabel="旧料与指定处置任务" data-node-context="02 / 接收方">
           <title>WMS · 旧料与指定处置任务 · 02 / 接收方</title>
           <rect x="239" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="239" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="239" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:9" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(245 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5182,7 +5182,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-check-wms" data-node-id="check-wms" data-node-label="目标系统业务校验" tabindex="0" role="button" aria-label="聚焦目标系统业务校验，批次与处置授权, 03 / 条件与前置" aria-pressed="false" data-node-kind="security" data-node-sublabel="批次与处置授权" data-node-context="03 / 条件与前置">
           <title>目标系统业务校验 · 批次与处置授权 · 03 / 条件与前置</title>
           <rect x="454" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="454" y="356" width="152" height="64" rx="6" class="c-security" stroke-width="1.5"/>
+          <rect x="454" y="356" width="152" height="64" rx="6" class="c-security" data-animate="node" style="--step:10" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(460 362) scale(0.6875)">
             <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
             <path d="m5.8 8 1.5 1.5 3-3"/>
@@ -5194,7 +5194,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-ack-wms" data-node-id="ack-wms" data-node-label="业务回执" tabindex="0" role="button" aria-label="聚焦业务回执，落实或异常, 04 / 业务结果" aria-pressed="false" data-node-kind="backend" data-node-sublabel="落实或异常" data-node-context="04 / 业务结果">
           <title>业务回执 · 落实或异常 · 04 / 业务结果</title>
           <rect x="669" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="669" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="669" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:11" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(675 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5205,7 +5205,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-ledger-wms" data-node-id="ledger-wms" data-node-label="变更实施台账" tabindex="0" role="button" aria-label="聚焦变更实施台账，WMS 处置状态, 05 / 实施核对" aria-pressed="false" data-node-kind="database" data-node-sublabel="WMS 处置状态" data-node-context="05 / 实施核对">
           <title>变更实施台账 · WMS 处置状态 · 05 / 实施核对</title>
           <rect x="884" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="884" y="356" width="152" height="64" rx="6" class="c-database" stroke-width="1.5"/>
+          <rect x="884" y="356" width="152" height="64" rx="6" class="c-database" data-animate="node" style="--step:12" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(890 362) scale(0.6875)">
             <ellipse cx="8" cy="4" rx="5" ry="2"/>
             <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>

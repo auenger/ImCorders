@@ -1,0 +1,319 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>ERP 怎样连接订单、物料、生产与成本 | 制造业系统</title><meta name="description" content="沿着一张风机订单，拆解 ERP 中的销售需求、MRP、采购与生产订单、库存事务和成本核算，说明工程变更后怎样重算缺料、接收现场记录、处理接口重试，并用动态图与验收案例保留跨系统证据。"><link rel="canonical" href="https://imcoders.cn/manufacturing/erp-order-material-cost/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/erp-order-material-cost/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/erp-order-material-cost/#article","headline":"ERP 怎样连接订单、物料、生产与成本","description":"沿着一张风机订单，拆解 ERP 中的销售需求、MRP、采购与生产订单、库存事务和成本核算，说明工程变更后怎样重算缺料、接收现场记录、处理接口重试，并用动态图与验收案例保留跨系统证据。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/erp-order-material-cost/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-14T00:00:00.000Z","dateModified":"2026-10-14T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"ERP 怎样连接订单、物料、生产与成本","item":"https://imcoders.cn/manufacturing/erp-order-material-cost/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-14T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-14T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="ERP 怎样连接订单、物料、生产与成本 | 制造业系统"><meta property="og:description" content="沿着一张风机订单，拆解 ERP 中的销售需求、MRP、采购与生产订单、库存事务和成本核算，说明工程变更后怎样重算缺料、接收现场记录、处理接口重试，并用动态图与验收案例保留跨系统证据。"><meta property="og:url" content="https://imcoders.cn/manufacturing/erp-order-material-cost/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="ERP 怎样连接订单、物料、生产与成本 | 制造业系统"><meta name="twitter:description" content="沿着一张风机订单，拆解 ERP 中的销售需求、MRP、采购与生产订单、库存事务和成本核算，说明工程变更后怎样重算缺料、接收现场记录、处理接口重试，并用动态图与验收案例保留跨系统证据。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="ERP 怎样连接订单、物料、生产与成本 | 制造业系统"><meta itemprop="description" content="沿着一张风机订单，拆解 ERP 中的销售需求、MRP、采购与生产订单、库存事务和成本核算，说明工程变更后怎样重算缺料、接收现场记录、处理接口重试，并用动态图与验收案例保留跨系统证据。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "ERP 怎样连接订单、物料、生产与成本 | 制造业系统";
+const shareDesc = "沿着一张风机订单，拆解 ERP 中的销售需求、MRP、采购与生产订单、库存事务和成本核算，说明工程变更后怎样重算缺料、接收现场记录、处理接口重试，并用动态图与验收案例保留跨系统证据。";
+const shareLink = "https://imcoders.cn/manufacturing/erp-order-material-cost/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>ERP 怎样连接订单、物料、生产与成本</h1><p class="mfg-lead" data-astro-cid-767rrl5b>沿着一张风机订单，拆解 ERP 中的销售需求、MRP、采购与生产订单、库存事务和成本核算，说明工程变更后怎样重算缺料、接收现场记录、处理接口重试，并用动态图与验收案例保留跨系统证据。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/erp-order-material-cost/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-14</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#一张客户订单会形成哪些-erp-记录" data-astro-cid-767rrl5b>一张客户订单会形成哪些 ERP 记录</a></li><li data-astro-cid-767rrl5b><a href="#工程变更后怎样重新计算物料供给" data-astro-cid-767rrl5b>工程变更后怎样重新计算物料供给</a></li><li data-astro-cid-767rrl5b><a href="#仓库和车间的记录怎样进入-erp" data-astro-cid-767rrl5b>仓库和车间的记录怎样进入 ERP</a></li><li data-astro-cid-767rrl5b><a href="#订单完工以后还要核对哪些成本" data-astro-cid-767rrl5b>订单完工以后还要核对哪些成本</a></li><li data-astro-cid-767rrl5b><a href="#怎样验收这条链路并接入-agent" data-astro-cid-767rrl5b>怎样验收这条链路并接入 Agent</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p><a href="/manufacturing/plm-engineering-change/">上一篇 PLM 专题</a>里，风机支架从 <code>BKT-017</code> 换成了 <code>BKT-018</code>。设计已经批准，200 台需求中，40 台继续使用旧配置，160 台等待新配置。仓库还有旧料，供应商手里还有旧采购单，新料库存却是零。</p>
+<p>这些记录进入 ERP 后，计划员要重新计算供给，采购要拿到供应商答复，生产要确认什么时候能开工。等现场报回耗料和工时，财务还要查清订单上的成本从哪里来。沿着这张订单看下去，ERP 的对象和系统边界会具体得多。</p>
+<p>本文继续使用模拟的 A 工厂离散装配场景。数量、单号和金额均为教学设定，不对应客户部署或厂商 API。本文讨论制造相关的经营记录；税务、收入确认及完整财务制度另有业务规则，不在本篇展开。</p>
+<h2 id="一张客户订单会形成哪些-erp-记录">一张客户订单会形成哪些 ERP 记录</h2>
+<h3 id="先分清订单行项目和执行对象">先分清订单、行项目和执行对象</h3>
+<p>销售订单 <code>SO-200</code> 要交付 200 台 <code>FAN-100</code>。客户、交货地点、数量、配置和日期落在订单及行项目上。工程切换后，内部需要将 40 台旧配置和 160 台新配置分别关联到适用的生产供给；是否拆销售行，要看客户合同、配置表达和企业订单规则。</p>
+<p>ERP 中可以有多张生产订单来满足同一销售行，也可以合并多个需求来安排生产。本例为了跟踪变更范围，将旧配置 40 台保留在已开工订单 <code>MO-0040</code>，为新配置 160 台建立供给安排，后续形成 <code>MO-0160</code>。两者都保留回到销售需求的关联。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>业务对象</th><th>本例要保存的内容</th><th>不能仅凭它推断的事实</th></tr></thead><tbody><tr><td>销售订单行</td><td>产品、数量、客户要求日期与确认交期</td><td>工厂已经具备生产条件</td></tr><tr><td>需求记录</td><td>工厂、配置、需求日期与来源</td><td>已经独占某批库存</td></tr><tr><td>计划订单</td><td>建议生产或采购的数量与日期</td><td>正式订单已建立或供应商已确认</td></tr><tr><td>采购订单行</td><td>物料、供应商、数量、价格与交付安排</td><td>物料已到货、检验合格或可领</td></tr><tr><td>生产订单</td><td>产品、数量、适用 BOM 与路线、计划及执行状态</td><td>所有物料齐套或成本已经完整</td></tr><tr><td>库存事务</td><td>收发、转移、调整及关联单据</td><td>每一笔都已完成最终财务计价</td></tr><tr><td>成本与凭证记录</td><td>材料、资源、费用、结算依据及期间</td><td>现场没有漏报、重复或迟到记录</td></tr></tbody></table>
+<p>CRM 可以提供客户和商机，CPQ 可以形成报价与配置结果，SRM 可以承接供应商协同。它们传入 ERP 的数据仍要经过编码、单位、组织和业务状态校验。ERP 中的采购单已经发出，SRM 中的供应商答复还未收到，这两个状态可以同时存在。</p>
+<h3 id="系统名称无法替代数据责任约定">系统名称无法替代数据责任约定</h3>
+<p>本例让 PLM 管理批准的产品定义，ERP 管理经营订单和核算记录，MES 保存执行过程，WMS 保存库位、批次与仓储动作。企业可以使用同一套软件中的多个模块承接这些职责，也可以部署独立产品。</p>
+<p>交接时要确定记录的维护方。例如 ERP 生产订单与 MES 执行工单可能一对多；ERP 的工厂和仓库可能对应 WMS 中更多的库区与库位。接口需要保存这些映射，不能只用一个同名的“工单号”或“仓库号”连起来。</p>
+<p>制造 BOM、工艺路线、采购提前期、最小采购量、单位换算、成本方法和库存维度都会影响后面的结果。若 <code>BKT-018</code> 在 ERP 中被误设成“箱”，WMS 却按“件”回传，接口即使返回成功，库存数量也可能已经错了。</p>
+<h2 id="工程变更后怎样重新计算物料供给">工程变更后怎样重新计算物料供给</h2>
+<h3 id="先把新旧配置的数量放在同一个时点">先把新旧配置的数量放在同一个时点</h3>
+<p>沿用上一篇的切换安排，计划员在一个固定快照下核对：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>对象</th><th>快照中的状态</th><th>对新配置 160 台的作用</th></tr></thead><tbody><tr><td><code>MO-0040</code></td><td>40 台已开工，旧支架已领出</td><td>继续旧配置，已领数量不再作为仓库可用量</td></tr><tr><td>未开工需求</td><td>160 台，每台用一件新支架</td><td>形成 160 件 <code>BKT-018</code> 毛需求</td></tr><tr><td><code>BKT-017</code> 库存</td><td>80 件，受旧版用途限制</td><td>本例无批准替代关系，不抵扣新料需求</td></tr><tr><td><code>BKT-017</code> 未收采购</td><td>100 件，尚未确认修改</td><td>仍然是旧料供给，不抵扣新料需求</td></tr><tr><td><code>BKT-018</code> 库存</td><td>0 件</td><td>无现货抵扣</td></tr><tr><td><code>BKT-018</code> 已确认在途</td><td>0 件</td><td>无已确认到货抵扣</td></tr></tbody></table>
+<p>为便于核算，这一步暂不设安全库存、损耗、最小采购量、其他需求及额外预留。新支架净缺口就是 160 件。若新料有合格库存或已确认供给，必须先检查工厂、配置、可用日期和适用状态，再决定哪些可以抵扣。</p>
+<p>MRP（物料需求计划）按需求与供给计算补货建议。Microsoft 的<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/master-planning/planning-optimization/net-requirements">净需求与需求关联文档</a>展示了需求如何由现货和计划供给覆盖，也说明查看结果时需要选对计划，并在供需变化后重新运行相关计划。本文的缺口计算是简化模型，实际还要纳入企业启用的批量、日历和补货规则。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>订单需求怎样形成生产与采购供给</strong><a href="/manufacturing/maps/erp-demand-supply.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/erp-demand-supply.html" title="ERP 订单需求与生产采购供给交互数据图" loading="lazy" allowfullscreen></iframe>
+<figcaption>本例的业务数据关系。供给快照与适用主数据共同参与需求计算，建议经授权转成正式订单。点击节点或连线查看细节，可播放流转；动画不表示真实接口时序、耗时或在线状态。窄屏可打开独立窗口查看。</figcaption>
+</figure>
+<h3 id="计划建议正式订单和交付承诺分别核对">计划建议、正式订单和交付承诺分别核对</h3>
+<p>采购与供应商协商后，原来的 100 件旧料采购可以出现三种结果：保留旧料、取消，或按批准流程改为新料。假设本例最终确认改为 100 件 <code>BKT-018</code>，且在需求日前可用，再运行计划时，新料剩余缺口才变成 60 件。</p>
+<p>这 60 件需要另一笔供给。旧采购单改料与新增采购之间要保留关联，避免一边仍将旧单 100 件算成新料供给，一边又额外采购完整的 160 件。原先生成的计划建议也应在重算或转单时正确处理，不能重复算成一笔独立供给。</p>
+<p>计划订单可以经人工确认，也可以按授权的自动规则转为正式订单。<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/master-planning/planning-optimization/planned-order-firming">Dynamics 365 的计划订单转单说明</a>区分了手动、自动和基于查询的转单方式。本文选择由相应岗位确认转单，避免把某个产品的自动化设置当作通用前提。</p>
+<p>需求关联通常称为 pegging，用来解释某笔供给覆盖哪些需求。它与库存预留的业务作用不同。需要独占库存时，还要执行企业配置的预留或分配动作，并核对它作用到物料、仓库还是具体批次。</p>
+<h3 id="数量够了日期仍然可能不够">数量够了，日期仍然可能不够</h3>
+<p>假设从本次重排时点起，160 件新支架需要在第 4 天具备可领条件。供应商确认其中 100 件第 3 天到货，另 60 件第 5 天到货。到货后还需要收货、检验和配送时间，因此第 4 天的缺口至少仍有 60 件；连先到的 100 件是否可领，也要继续检查。</p>
+<p>MRP 的建议到货日、采购单交货日、供应商确认日、物料可用日和客户承诺日需要分别记录。如果没有经过产能、物流和现场条件确认，不能仅凭一份采购安排推导整批风机的新交期。</p>
+<p>MRP 可以计算物料需求，也可以与资源计划相连。有限产能能否同时满足，要看启用的计划与排程能力，不能简单认定所有 ERP 都按无限产能运行，或所有 APS 结果都可以直接执行。排程算法和插单规则留到 APS 专题展开。</p>
+<h2 id="仓库和车间的记录怎样进入-erp">仓库和车间的记录怎样进入 ERP</h2>
+<h3 id="到货可领耗用和完工各有依据">到货、可领、耗用和完工各有依据</h3>
+<p>采购到货后，本例进一步假设 160 件新支架都已收货，其中 140 件质量放行，20 件待检。ERP 与 WMS 可以同时显示在库 160 件、可领 140 件。待检的 20 件是否参与未来计划供给，应按质量规则和预计可用日期处理，不能直接变成当前可发数量。</p>
+<p>如果允许分批生产，计划岗位可按授权安排 140 台先行；如果必须整批切换，就继续等待。两种做法都需要留下数量、工单范围和版本依据，不能让一次“齐套”布尔值掩盖剩余缺口。</p>
+<p>材料配送到线边也未必表示已经耗用。有的企业把它作为仓库之间的转移，之后按实际投料或倒冲记录生产耗用；有的企业直接按工单领料记入生产。本文不预设统一模式，项目中应明确每类动作由谁触发 ERP 事务。</p>
+<p>倒冲指按报工等触发条件，依据 BOM 和配置自动计算并扣记用料。如果 MES 已上传实际耗料，ERP 又对同一业务自动倒冲，就可能重复扣料。采用哪一种记录作为过账依据，要与异常补料、退料和替代料规则一起确定。</p>
+<h3 id="同一批实物只能形成约定的一次库存增加">同一批实物只能形成约定的一次库存增加</h3>
+<p>MES 完工报工可以先提供合格数、报废数、工序和工时；WMS 成品收货可以补充批次、库位和实收数量。如果两者描述同一笔完工入库，就要选择一个过账触发来源，另一个做关联或核对。不同企业的完工暂存、收货和上架流程会有差异，不能让两个接口各自无条件增加成品库存。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>现场记录怎样进入库存与订单成本</strong><a href="/manufacturing/maps/erp-execution-cost.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/erp-execution-cost.html" title="ERP 现场记录库存事务与订单成本交互数据图" loading="lazy" allowfullscreen></iframe>
+<figcaption>三行分别展开材料、资源与完工记录的业务视图，均关联同一生产订单。成本结算还需核对全部相关记录；失败回执、质量放行和期末调整路径在正文说明。点击节点或连线查看细节，动画只表示图中的流向。</figcaption>
+</figure>
+<p>收发和财务处理也有不同阶段。<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/cost-management/physical-financial-updates">Dynamics 365 的实物与财务更新说明</a>将采购收货与供应商发票、生产完工报告与生产成本处理分别列出。项目中应确认各阶段如何影响数量、计价与凭证，不能把“还没有发票”解释成“物料不存在”。</p>
+<h3 id="接口重试需要回到业务事务">接口重试需要回到业务事务</h3>
+<p>下面是一条追加领料事件的概念示例。<code>MO-0160</code> 的基础用料此前已单独记录，这条事件只表示追加的 2 件支架；单号、时间和字段均为模拟值。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "source_system"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"WMS_A"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "business_event_id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"ISSUE-00871"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "event_revision"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "event_type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"material_issue"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "plant"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"A"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "erp_production_order"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"MO-0160"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "source_document"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"PICK-0072"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "source_line"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"10"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "material"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"BKT-018"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "batch"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"LOT-B018-03"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "quantity"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "unit"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"EA"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "business_date"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"2026-10-14"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "occurred_at"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"2026-10-14T10:20:00+08:00"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "reason_code"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"APPROVED_COMPONENT_SCRAP_REPLACEMENT"</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<p>接收方先检查订单与工厂映射、物料和单位、批次状态、订单是否允许该动作，以及业务日期所属期间。价格应来自约定的计价规则或受控成本来源，WMS 的数量记录不能自行决定 ERP 的财务估值。</p>
+<p>幂等处理可以用“来源系统＋业务事件编号”识别同一事件，另保存修订和内容校验信息。相同内容重传时返回已有结果，包括 ERP 事务号；同一身份却带来不同数量时，进入冲突处理。更正用独立的更正事件关联原事务，不能通过覆盖事件内容悄悄多扣或少扣库存。</p>
+<p>接收成功、业务校验通过、过账完成应分别可查。异步接口可以先返回接收编号，后续再回传或查询业务结果。若 ERP 已过账但回执丢失，发送方应按原事件查询或重试，不生成一个全新的事件编号来绕过重复检查。</p>
+<p>期间已关闭、订单已结束或批次不允许发料时，失败结果要进入可跟踪的差异队列。责任人按授权处理，不能由接口自行改成当天日期、换一个工单或解除质量限制。</p>
+<h2 id="订单完工以后还要核对哪些成本">订单完工以后还要核对哪些成本</h2>
+<h3 id="先核对数量与执行记录再解释差异">先核对数量与执行记录，再解释差异</h3>
+<p>接着前面的模拟场景，假设剩余 20 件支架后来也获得放行，<code>MO-0160</code> 最终完成 160 台合格风机。装配过程中有 2 件支架损坏，按批准流程另补供并领用 2 件，支架总净耗用为 162 件，无退料。这里损坏的是部件，不能据此再虚增 2 台整机报废。</p>
+<p>为便于解释，取支架材料、装配人工和一项制造费用做核对，其余材料与费用省略。下表仅是这些选定成本项的小计，不能当作整机成本或报价依据。金额使用模拟人民币数据，采用简化的实际成本分析口径，不计税费、汇率和在制分摊。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>成本项</th><th>计划依据</th><th>实际依据</th><th>计划金额</th><th>实际金额</th><th>差异</th></tr></thead><tbody><tr><td>支架材料</td><td>160 件 × 20 元</td><td>净耗用 162 件 × 22 元</td><td>3,200</td><td>3,564</td><td>+364</td></tr><tr><td>装配人工</td><td>80 小时 × 50 元</td><td>88 小时 × 50 元</td><td>4,000</td><td>4,400</td><td>+400</td></tr><tr><td>选定制造费用</td><td>计划分配 1,000 元</td><td>按批准口径分配 1,100 元</td><td>1,000</td><td>1,100</td><td>+100</td></tr><tr><td>选定项目合计</td><td>同一订单与范围</td><td>同一订单与范围</td><td>8,200</td><td>9,064</td><td>+864</td></tr></tbody></table>
+<p>这里选择以计划数量计算价格影响，以实际价格计算增量用料影响：160 ×（22 − 20）＝320 元；2 × 22＝44 元，两项相加为材料差异 364 元。若用另一种差异分解顺序，分类金额可能变化，比较时应保持同一口径。</p>
+<p>人工多了 8 小时，对应 400 元。是否由支架损坏、等待、返修或其他工序问题造成，还需要 MES 的工时类型和异常记录支持。制造费用增加 100 元，也要追到费用池、分配基础、费率及批准规则，不能仅凭“制造费用”四个字归因。</p>
+<h3 id="完工数量订单结束和期间关闭分别验收">完工数量、订单结束和期间关闭分别验收</h3>
+<p>成本核对至少要能沿生产订单找到领退料事务、报工记录、资源费率、完工入库与必要的调整。若采购价格尚未最终确认，或工时有迟报，当前成本就应带上状态和计算时点。</p>
+<p><a href="https://learn.microsoft.com/en-us/dynamics365/finance/general-ledger/production-posting">Microsoft 的生产过账文档</a>分别说明了材料耗用、时间耗用、完工报告和订单结束时的成本处理。本文借此区分这些阶段；具体入账科目、暂估与冲回方式仍取决于成本方法和系统配置。</p>
+<p>采用标准成本时，库存计价和差异记录的表现会与上面的简化实际成本分析不同，不能直接把 9,064 元写成产成品入库价值。即使订单已经结束，某些成本方法仍可能有期末调整。核对报告应写明当前看到的是计划、估计、已过账还是期末调整后的金额。</p>
+<p>成品可销售还可能受质量状态约束，客户交付又涉及拣货、发运和签收。订单有 160 台完工记录，不会自动证明 160 台都已交付或客户款项已收回。<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/production-control/production-process-overview">Dynamics 365 的生产流程概览</a>也将完工报告、质量评估、仓储发运、订单结束和期间关闭列为不同业务环节。</p>
+<p>发现已经过账的数量错误时，按允许的退料、冲销、调整或返工流程处理，保存原记录与更正关系。跨期间的修改还要遵循相应财务权限，不能回写一个更好看的历史数值。</p>
+<h2 id="怎样验收这条链路并接入-agent">怎样验收这条链路并接入 Agent</h2>
+<h3 id="用同一组对象核对正常异常和恢复路径">用同一组对象核对正常、异常和恢复路径</h3>
+<p>验收时可以从 <code>SO-200</code> 的需求出发，查到旧配置 <code>MO-0040</code>、新配置 <code>MO-0160</code>、对应采购供给、库存事务和成本依据。查询应固定组织、配置、数量单位和时间范围；各系统读取时间不同，要标出差异，必要时等待记录齐全后再对账。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>验收场景</th><th>应当看到的结果</th></tr></thead><tbody><tr><td>只有 80 件旧支架与旧料采购单</td><td>新支架 160 件缺口仍存在，不跨料号抵扣</td></tr><tr><td>旧采购 100 件获批改为新料</td><td>更新正式供给并重算，新增建议为 60 件，原建议不重复计入</td></tr><tr><td>供应总量足够，但 60 件晚于需求日</td><td>显示日期缺口，保留供应商承诺与计划依据</td></tr><tr><td>新料收货 160 件，待检 20 件</td><td>区分在库与可领，按授权决定是否分批释放</td></tr><tr><td>同一领料事件重传，或 ERP 回执丢失</td><td>只有一笔业务事务，能够按原事件查到过账结果</td></tr><tr><td>同一事件身份带来不同数量</td><td>标为冲突，不静默覆盖原事务</td></tr><tr><td>MES 报工与 WMS 收货描述同一完工</td><td>按配置只形成一次入库，另一来源完成关联或核对</td></tr><tr><td>160 台合格品，支架净耗用 162 件</td><td>保留补料与部件报废依据，不额外生成整机产出或报废</td></tr><tr><td>成本记录缺一笔或到达已关闭期间</td><td>报告缺失与阻断，不自动改日期或结束订单</td></tr><tr><td>下游系统无法读取</td><td>返回未知范围，不能解释为零库存、零在制或零成本</td></tr></tbody></table>
+<p>数量对账也要区分计数粒度。工序报工数可能含返工再次过站，不能把所有工序的数量相加当作整机产量；仓库发料减退料得到的净发料，也不一定等于现场已实际耗用。线边余料、转移和倒冲规则都要进入核对范围。</p>
+<h3 id="agent-先回答有证据的问题">Agent 先回答有证据的问题</h3>
+<p>适合从两个问题开始：“新配置的 160 台还缺什么？”以及“这张订单的选定成本项为什么多了 864 元？”</p>
+<p>第一个问题需要读取适用 BOM、计划版本、可用库存、质量状态、已确认采购供给和需求日期。第二个问题需要读取相同订单范围内的材料净耗、价格依据、工时、费率和费用分配记录。每条结论保留来源系统、对象标识、业务发生时间、读取时间及计算口径。</p>
+<p>Agent 应把事实、计算和待确认原因分开。例如“多耗 2 件支架”有事务支持，“按本例口径增加 44 元”属于计算，“是某个工位操作不当造成”还需要异常与责任调查记录。来源缺失时，只能明确列出尚不能判断的部分。</p>
+<p>可以让 Agent 生成缺料说明、建议催交清单、接口差异清单或成本核对草稿。转采购单、释放生产订单、调整库存、冲销过账和关闭期间需要各自的业务授权与前置状态校验。执行后再保存目标事务号和可核对的结果，不能只记一次工具调用成功。</p>
+<p>这篇留下了 ERP 的订单与供给关系、现场事务边界，以及成本核对的样本。下一篇进入 MES，沿 <code>MO-0160</code> 继续记录派工、开工、过站、报工、返工与完工的状态变化。相关路径可以回到<a href="/manufacturing/data-map/#product-orders">制造业系统数据地图</a>，选题进度保留在<a href="/blog/2026-10-14-manufacturing-systems-map/">全景目录</a>。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 

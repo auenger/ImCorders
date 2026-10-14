@@ -4987,7 +4987,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     <!-- Main Diagram -->
     <div class="diagram-container" data-detail-level="read"
          data-preset-badge-editorial-plate="ARCHIFY / 图版 04">
-      <svg viewBox="0 0 1080 520" role="img" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" data-preset="classic" data-quality-profile="showcase">
+      <svg viewBox="0 0 1080 520" role="img" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase">
         <title id="archify-diagram-title">检验结果如何进入处置与追溯</title>
         <desc id="archify-diagram-description">由 Archify 生成的数据流图。</desc>
         <!-- Definitions -->
@@ -5029,21 +5029,21 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text x="960" y="68" class="t-dim" font-size="9" font-weight="600" text-anchor="middle">05 / 受控状态</text>
 
         <!-- Flow paths -->
-        <path data-edge-from="mes-facts" data-edge-to="inspection" data-edge-label="检验申请" data-edge-key="0" data-edge-id="inspect-request" data-composition-points="176,160;239,160" d="M 176 160 L 239 160" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="inspection" data-edge-to="laboratory" data-edge-label="样品任务" data-edge-key="1" data-edge-id="sample-task" data-composition-points="391,160;454,160" d="M 391 160 L 454 160" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="laboratory" data-edge-to="disposition" data-edge-label="检验结果" data-edge-key="2" data-edge-id="test-results" data-composition-points="606,160;669,160" d="M 606 160 L 669 160" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
-        <path data-edge-from="disposition" data-edge-to="stock-status" data-edge-label="批准处置" data-edge-key="3" data-edge-id="approved-decision" data-composition-points="821,160;884,160" d="M 821 160 L 884 160" class="a-security" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
-        <path data-edge-from="engineering" data-edge-to="genealogy" data-edge-label="版本关联" data-edge-key="4" data-edge-id="version-context" data-composition-points="176,388;239,388" d="M 176 388 L 239 388" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="mes-facts" data-edge-to="genealogy" data-edge-label="批次谱系" data-edge-key="5" data-edge-id="genealogy-facts" data-composition-points="100,192;100,265;315,265;315,356" d="M 100 192 L 100 265 L 315 265 L 315 356" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="genealogy" data-edge-to="analysis" data-edge-label="关联证据" data-edge-key="6" data-edge-id="evidence-analysis" data-composition-points="391,388;454,388" d="M 391 388 L 454 388" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="analysis" data-edge-to="change" data-edge-label="改进建议" data-edge-key="7" data-edge-id="improvement-request" data-composition-points="606,388;669,388" d="M 606 388 L 669 388" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="change" data-edge-to="new-route" data-edge-label="批准生效" data-edge-key="8" data-edge-id="change-effective" data-composition-points="821,388;884,388" d="M 821 388 L 884 388" class="a-security" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
+        <path data-edge-from="mes-facts" data-edge-to="inspection" data-edge-label="检验申请" data-edge-key="0" data-edge-id="inspect-request" data-composition-points="176,160;239,160" d="M 176 160 L 239 160" class="a-emphasis" data-animate="edge" style="--step:0" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="inspection" data-edge-to="laboratory" data-edge-label="样品任务" data-edge-key="1" data-edge-id="sample-task" data-composition-points="391,160;454,160" d="M 391 160 L 454 160" class="a-default" data-animate="edge" style="--step:1" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="laboratory" data-edge-to="disposition" data-edge-label="检验结果" data-edge-key="2" data-edge-id="test-results" data-composition-points="606,160;669,160" d="M 606 160 L 669 160" class="a-dashed" data-animate="edge" style="--step:2" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="disposition" data-edge-to="stock-status" data-edge-label="批准处置" data-edge-key="3" data-edge-id="approved-decision" data-composition-points="821,160;884,160" d="M 821 160 L 884 160" class="a-security" data-animate="edge" style="--step:3" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
+        <path data-edge-from="engineering" data-edge-to="genealogy" data-edge-label="版本关联" data-edge-key="4" data-edge-id="version-context" data-composition-points="176,388;239,388" d="M 176 388 L 239 388" class="a-default" data-animate="edge" style="--step:4" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="mes-facts" data-edge-to="genealogy" data-edge-label="批次谱系" data-edge-key="5" data-edge-id="genealogy-facts" data-composition-points="100,192;100,265;315,265;315,356" d="M 100 192 L 100 265 L 315 265 L 315 356" class="a-default" data-animate="edge" style="--step:5" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="genealogy" data-edge-to="analysis" data-edge-label="关联证据" data-edge-key="6" data-edge-id="evidence-analysis" data-composition-points="391,388;454,388" d="M 391 388 L 454 388" class="a-default" data-animate="edge" style="--step:6" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="analysis" data-edge-to="change" data-edge-label="改进建议" data-edge-key="7" data-edge-id="improvement-request" data-composition-points="606,388;669,388" d="M 606 388 L 669 388" class="a-default" data-animate="edge" style="--step:7" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="change" data-edge-to="new-route" data-edge-label="批准生效" data-edge-key="8" data-edge-id="change-effective" data-composition-points="821,388;884,388" d="M 821 388 L 884 388" class="a-security" data-animate="edge" style="--step:8" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
 
         <!-- Nodes -->
         <g id="node-mes-facts" data-node-id="mes-facts" data-node-label="MES" tabindex="0" role="button" aria-label="聚焦MES，工序、批次与过程记录, 01 / 生产与定义" aria-pressed="false" data-node-kind="backend" data-node-sublabel="工序、批次与过程记录" data-node-context="01 / 生产与定义">
           <title>MES · 工序、批次与过程记录 · 01 / 生产与定义</title>
           <rect x="24" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="24" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="24" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:0" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(30 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5054,7 +5054,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-inspection" data-node-id="inspection" data-node-label="QMS 检验视角" tabindex="0" role="button" aria-label="聚焦QMS 检验视角，检验批、计划与样品, 02 / 检验与关联" aria-pressed="false" data-node-kind="backend" data-node-sublabel="检验批、计划与样品" data-node-context="02 / 检验与关联">
           <title>QMS 检验视角 · 检验批、计划与样品 · 02 / 检验与关联</title>
           <rect x="239" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="239" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="239" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:1" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(245 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5065,7 +5065,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-laboratory" data-node-id="laboratory" data-node-label="LIMS / 检测设备" tabindex="0" role="button" aria-label="聚焦LIMS / 检测设备，方法版本、测量与报告, 03 / 结果与分析" aria-pressed="false" data-node-kind="backend" data-node-sublabel="方法版本、测量与报告" data-node-context="03 / 结果与分析">
           <title>LIMS / 检测设备 · 方法版本、测量与报告 · 03 / 结果与分析</title>
           <rect x="454" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="454" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="454" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:2" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(460 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5076,7 +5076,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-disposition" data-node-id="disposition" data-node-label="QMS 处置视角" tabindex="0" role="button" aria-label="聚焦QMS 处置视角，合格、隔离、返工与报废, 04 / 批准与改进" aria-pressed="false" data-node-kind="backend" data-node-sublabel="合格、隔离、返工与报废" data-node-context="04 / 批准与改进">
           <title>QMS 处置视角 · 合格、隔离、返工与报废 · 04 / 批准与改进</title>
           <rect x="669" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="669" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="669" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:3" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(675 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5087,7 +5087,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-stock-status" data-node-id="stock-status" data-node-label="WMS / MES" tabindex="0" role="button" aria-label="聚焦WMS / MES，冻结、放行与执行限制, 05 / 受控状态" aria-pressed="false" data-node-kind="backend" data-node-sublabel="冻结、放行与执行限制" data-node-context="05 / 受控状态">
           <title>WMS / MES · 冻结、放行与执行限制 · 05 / 受控状态</title>
           <rect x="884" y="128" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="884" y="128" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="884" y="128" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:4" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(890 134) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5098,7 +5098,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-engineering" data-node-id="engineering" data-node-label="PLM / 工艺" tabindex="0" role="button" aria-label="聚焦PLM / 工艺，物料、工艺与变更版本, 01 / 生产与定义" aria-pressed="false" data-node-kind="backend" data-node-sublabel="物料、工艺与变更版本" data-node-context="01 / 生产与定义">
           <title>PLM / 工艺 · 物料、工艺与变更版本 · 01 / 生产与定义</title>
           <rect x="24" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="24" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="24" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:4" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(30 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5109,7 +5109,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-genealogy" data-node-id="genealogy" data-node-label="追溯谱系" tabindex="0" role="button" aria-label="聚焦追溯谱系，批次投入产出与序列号, 02 / 检验与关联" aria-pressed="false" data-node-kind="database" data-node-sublabel="批次投入产出与序列号" data-node-context="02 / 检验与关联">
           <title>追溯谱系 · 批次投入产出与序列号 · 02 / 检验与关联</title>
           <rect x="239" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="239" y="356" width="152" height="64" rx="6" class="c-database" stroke-width="1.5"/>
+          <rect x="239" y="356" width="152" height="64" rx="6" class="c-database" data-animate="node" style="--step:5" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(245 362) scale(0.6875)">
             <ellipse cx="8" cy="4" rx="5" ry="2"/>
             <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
@@ -5121,7 +5121,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-analysis" data-node-id="analysis" data-node-label="SPC / 质量分析" tabindex="0" role="button" aria-label="聚焦SPC / 质量分析，异常证据与原因调查, 03 / 结果与分析" aria-pressed="false" data-node-kind="backend" data-node-sublabel="异常证据与原因调查" data-node-context="03 / 结果与分析">
           <title>SPC / 质量分析 · 异常证据与原因调查 · 03 / 结果与分析</title>
           <rect x="454" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="454" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="454" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:7" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(460 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5132,7 +5132,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-change" data-node-id="change" data-node-label="PLM 变更视角" tabindex="0" role="button" aria-label="聚焦PLM 变更视角，经审核的变更与生效, 04 / 批准与改进" aria-pressed="false" data-node-kind="backend" data-node-sublabel="经审核的变更与生效" data-node-context="04 / 批准与改进">
           <title>PLM 变更视角 · 经审核的变更与生效 · 04 / 批准与改进</title>
           <rect x="669" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="669" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="669" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:8" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(675 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
@@ -5143,7 +5143,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g id="node-new-route" data-node-id="new-route" data-node-label="MES 适用版本" tabindex="0" role="button" aria-label="聚焦MES 适用版本，新版本与现场隔离规则, 05 / 受控状态" aria-pressed="false" data-node-kind="backend" data-node-sublabel="新版本与现场隔离规则" data-node-context="05 / 受控状态">
           <title>MES 适用版本 · 新版本与现场隔离规则 · 05 / 受控状态</title>
           <rect x="884" y="356" width="152" height="64" rx="6" class="c-mask"/>
-          <rect x="884" y="356" width="152" height="64" rx="6" class="c-backend" stroke-width="1.5"/>
+          <rect x="884" y="356" width="152" height="64" rx="6" class="c-backend" data-animate="node" style="--step:9" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(890 362) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>

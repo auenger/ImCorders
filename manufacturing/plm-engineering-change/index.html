@@ -24,8 +24,8 @@ const shareImg = "https://imcoders.cn/blog-images/manufacturing-plm/hero-design-
           .catch(function (error) { console.error('wx-sign failed', error); });
       })();
     })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
-<link rel="stylesheet" href="/_astro/_slug_.iu4oVNMm.css">
-<link rel="stylesheet" href="/_astro/_slug_.BHX-bYp0.css"><script type="module" src="/_astro/hoisted.BtBmmIK8.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
 杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>PLM 工程变更如何从设计进入生产</h1><p class="mfg-lead" data-astro-cid-767rrl5b>用一次风机支架变更拆解 PLM 的产品结构、EBOM 与 MBOM、版本和生效条件，追踪 ERP、MES、WMS 如何接收变更、处置旧料并保留执行证据，同时分析 Agent 的查询与操作边界。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/plm-engineering-change/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-14</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#plm-管理的产品定义由哪些对象组成" data-astro-cid-767rrl5b>PLM 管理的产品定义由哪些对象组成</a></li><li data-astro-cid-767rrl5b><a href="#ebommbom-和工单记录分别说明什么" data-astro-cid-767rrl5b>EBOM、MBOM 和工单记录分别说明什么</a></li><li data-astro-cid-767rrl5b><a href="#一次支架变更怎样穿过现有订单" data-astro-cid-767rrl5b>一次支架变更怎样穿过现有订单</a></li><li data-astro-cid-767rrl5b><a href="#系统之间怎样下发和回收变更" data-astro-cid-767rrl5b>系统之间怎样下发和回收变更</a></li><li data-astro-cid-767rrl5b><a href="#现场验收和-agent-接入怎样落到证据" data-astro-cid-767rrl5b>现场验收和 Agent 接入怎样落到证据</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>一张新图纸已经批准，车间却还在使用旧支架。仓库有旧料，采购单还没到货，几张工单已经领料开工。研发说“新版本已发布”，计划问“哪一台开始切换”，双方讨论的其实是不同状态。</p>
 <p>PLM 专题先从这次交接写起。下面用一台工业风机组件的支架变更串起产品结构、BOM、版本、审批和生产生效。产品、编号、数量与处置方案均为模拟，厂商资料只用于核对概念，不代表某个客户项目。</p>
 <p><img src="/_content-images/038b2b77721fdcebbb40-1536.webp" alt="制造现场概念插画，工程师核对风机组件图纸，生产人员检查装配支架" loading="eager" decoding="async" fetchpriority="high" width="1536" height="1024" srcset="/_content-images/038b2b77721fdcebbb40-640.webp 640w, /_content-images/038b2b77721fdcebbb40-960.webp 960w, /_content-images/038b2b77721fdcebbb40-1536.webp 1536w" sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1200px) 75vw, 900px"></p>
@@ -166,8 +166,11 @@ const shareImg = "https://imcoders.cn/blog-images/manufacturing-plm/hero-design-
 
 
 <table><thead><tr><th>观察视角</th><th>在本例中要表达的内容</th><th>不能直接推导出的信息</th></tr></thead><tbody><tr><td>EBOM</td><td>产品采用哪些设计组件、各自的版本和用量</td><td>工厂怎样分工序装配</td></tr><tr><td>MBOM</td><td>工厂需要准备哪些用料、怎样组成制造层级</td><td>具体作业顺序、人员和设备安排</td></tr><tr><td>BOP / 工艺路线</td><td>工序、资源、用料分配和作业要求</td><td>某一台产品实际用了哪个原料批次</td></tr><tr><td>工单配置快照</td><td>这次生产选择了哪些结构和工艺版本</td><td>现场是否严格按定义执行</td></tr><tr><td>实际谱系</td><td>产品实际投入的批次、序列号及执行记录</td><td>未发生的未来工单应该使用什么定义</td></tr></tbody></table>
-<p><img src="/_content-images/170995f5307ab8767266-1600.webp" alt="BOM 视图数据图，从 CAD、EBOM、MBOM 到 ERP 主数据、工单配置和 MES 实际谱系" loading="lazy" decoding="async" width="4736" height="2696" srcset="/_content-images/170995f5307ab8767266-640.webp 640w, /_content-images/170995f5307ab8767266-960.webp 960w, /_content-images/170995f5307ab8767266-1600.webp 1600w" sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1200px) 75vw, 900px"></p>
-<p><em>本例的逻辑关系图。上排连接产品结构与订单配置，下排连接工艺定义与实际记录。<a href="/manufacturing/maps/plm-bom-views.html">打开可缩放版本</a>。</em></p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>BOM 视图与实际谱系</strong><a href="/manufacturing/maps/plm-bom-views.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/plm-bom-views.html" title="BOM 视图与实际谱系交互数据图" loading="lazy" allowfullscreen></iframe>
+<figcaption>本例的逻辑关系图。上排连接产品结构与订单配置，下排连接工艺定义与实际记录。 点击节点或连线查看细节，使用图内控件播放流转；动画不表示实际执行时序或运行状态。</figcaption>
+</figure>
 <p>图中的 MBOM 和工艺由制造规划岗位维护，批准后分发到 ERP 和 MES。企业也可以选择在 ERP 或其他系统维护制造结构，接口和数据责任需要随部署调整。</p>
 <h3 id="转换后要保留对应关系">转换后要保留对应关系</h3>
 <p>如果同一电机在 MBOM 中被放进一个预装组件，设计变更时仍要找得到它。工艺工程师需要知道设计侧改了什么、哪些制造结构已处理、哪些仍有差异。</p>
@@ -316,8 +319,11 @@ const shareImg = "https://imcoders.cn/blog-images/manufacturing-plm/hero-design-
 <h2 id="系统之间怎样下发和回收变更">系统之间怎样下发和回收变更</h2>
 <h3 id="传递一份有范围的受控数据包">传递一份有范围的受控数据包</h3>
 <p>PLM 不需要把内部全部对象复制到每个系统。ERP 需要生产和采购相关的物料与结构；MES 需要执行相关的路线、参数和文件；WMS 需要可落实的库存或发料限制。这些内容可以通过集成平台分发，也可以采用直连接口或受控文件交换。</p>
-<p><img src="/_content-images/f6be36cd9e222fa53359-1600.webp" alt="工程变更回执图，ECN 按 ERP、MES、WMS 三条并行路径下发，各系统校验后返回业务结果并登记实施台账" loading="lazy" decoding="async" width="4736" height="2696" srcset="/_content-images/f6be36cd9e222fa53359-640.webp 640w, /_content-images/f6be36cd9e222fa53359-960.webp 960w, /_content-images/f6be36cd9e222fa53359-1600.webp 1600w" sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1200px) 75vw, 900px"></p>
-<p><em>三行是同一变更面向不同系统的交接视角。<a href="/manufacturing/maps/plm-change-receipts.html">打开可缩放版本</a>。目标系统校验后分别反馈，图中不规定具体中间件。</em></p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>工程变更下发与业务回执</strong><a href="/manufacturing/maps/plm-change-receipts.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/plm-change-receipts.html" title="工程变更下发与业务回执交互数据图" loading="lazy" allowfullscreen></iframe>
+<figcaption>三行是同一变更面向不同系统的交接视角。目标系统校验后分别反馈，图中不规定具体中间件。 点击节点或连线查看细节，使用图内控件播放流转；动画不表示实际执行时序或运行状态。</figcaption>
+</figure>
 <p>下面是面向 ERP 的概念数据包片段，用于说明契约需要表达什么，不对应厂商 API：</p>
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
 <span class="line"><span style="color:#79B8FF">  "change_id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"ECN-042"</span><span style="color:#E1E4E8">,</span></span>

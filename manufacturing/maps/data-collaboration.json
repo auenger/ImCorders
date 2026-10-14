@@ -4,7 +4,7 @@
   "meta": {
     "title": "业务数据如何成为受控的跨系统证据",
     "locale": "zh-CN",
-    "output": ".archify/dataflow-manufacturing-20261014-105817/data-collaboration/data-collaboration.html",
+    "output": ".archify/dataflow-manufacturing-motion-20261014-120540/data-collaboration/data-collaboration.html",
     "viewBox": [
       1080,
       520
@@ -28,7 +28,8 @@
           "label": "持久记录"
         }
       }
-    }
+    },
+    "animation": "trace"
   },
   "stages": [
     {
