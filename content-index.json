@@ -1772,6 +1772,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/aps-finite-capacity-rescheduling/index.md"
     },
     {
+      "id": "manufacturing/customer-configuration-supply-planning",
+      "kind": "manufacturing",
+      "title": "客户配置、采购与供应链计划",
+      "description": "沿用风机订单与新旧支架切换，拆解 CRM、CPQ、ERP、SRM 和计划系统之间的配置、转单、供需关联与供应商答复，说明采购版本、分批交付、在途、质量放行和客户承诺怎样分别核对。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "CPQ",
+        "SRM",
+        "供应链计划",
+        "采购协同"
+      ],
+      "publishedAt": "2026-10-14T00:00:00.000Z",
+      "updatedAt": "2026-10-14T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/customer-configuration-supply-planning/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/customer-configuration-supply-planning/index.md"
+    },
+    {
       "id": "manufacturing/data-map",
       "kind": "manufacturing",
       "title": "制造业系统数据地图",

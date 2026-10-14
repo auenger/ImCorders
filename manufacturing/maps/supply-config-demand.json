@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "客户配置怎样进入订单与供需计划",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-supply-20261014-161817/supply-config-demand/supply-config-demand.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "业务依据"
+        },
+        "security": {
+          "label": "条件核验"
+        },
+        "emphasis": {
+          "label": "批准与落实"
+        },
+        "dashed": {
+          "label": "回执与关联"
+        },
+        "database": {
+          "label": "对象与基线"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "需求或规则来源"
+    },
+    {
+      "label": "条件核验"
+    },
+    {
+      "label": "批准基线"
+    },
+    {
+      "label": "目标核验或应用"
+    },
+    {
+      "label": "关联与结果"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "r0n0",
+      "label": "CRM 客户需求",
+      "sublabel": "选项、数量及交付要求",
+      "type": "database",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n1",
+      "label": "CPQ 配置报价核验",
+      "sublabel": "规则版本及商业条件",
+      "type": "security",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n2",
+      "label": "获批报价与配置",
+      "sublabel": "固定范围及有效版本",
+      "type": "database",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n3",
+      "label": "ERP 转单核验",
+      "sublabel": "来源行、配置与幂等身份",
+      "type": "security",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n4",
+      "label": "销售订单基线",
+      "sublabel": "保留配置与来源行关联",
+      "type": "database",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n0",
+      "label": "工程配置规则",
+      "sublabel": "批准选项与适用范围",
+      "type": "database",
+      "stage": 0,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n1",
+      "label": "配置模型发布核验",
+      "sublabel": "产品、工厂及模型版本",
+      "type": "security",
+      "stage": 1,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n2",
+      "label": "批准配置模型",
+      "sublabel": "例外进入工程评审",
+      "type": "database",
+      "stage": 2,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n3",
+      "label": "CPQ 配置解析",
+      "sublabel": "不自动扩大制造资格",
+      "type": "security",
+      "stage": 3,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n4",
+      "label": "工程配置引用",
+      "sublabel": "关联制造 BOM 与路线",
+      "type": "database",
+      "stage": 4,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n0",
+      "label": "ERP 有效需求",
+      "sublabel": "SO-200 及供给关联",
+      "type": "database",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n1",
+      "label": "MRP 供需核验",
+      "sublabel": "状态、日期及重复覆盖",
+      "type": "security",
+      "stage": 1,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n2",
+      "label": "获批转单方案",
+      "sublabel": "范围、数量与来源建议",
+      "type": "database",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n3",
+      "label": "采购及生产订单",
+      "sublabel": "按授权生成目标订单",
+      "type": "backend",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n4",
+      "label": "供需关联台账",
+      "sublabel": "转单回执与覆盖范围",
+      "type": "database",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "r0f0",
+      "from": "r0n0",
+      "to": "r0n1",
+      "label": "引用",
+      "variant": "default"
+    },
+    {
+      "id": "r0f1",
+      "from": "r0n1",
+      "to": "r0n2",
+      "label": "批准",
+      "variant": "emphasis"
+    },
+    {
+      "id": "r0f2",
+      "from": "r0n2",
+      "to": "r0n3",
+      "label": "提交",
+      "variant": "default"
+    },
+    {
+      "id": "r0f3",
+      "from": "r0n3",
+      "to": "r0n4",
+      "label": "应用",
+      "variant": "security"
+    },
+    {
+      "id": "r1f0",
+      "from": "r1n0",
+      "to": "r1n1",
+      "label": "引用",
+      "variant": "default"
+    },
+    {
+      "id": "r1f1",
+      "from": "r1n1",
+      "to": "r1n2",
+      "label": "批准",
+      "variant": "emphasis"
+    },
+    {
+      "id": "r1f2",
+      "from": "r1n2",
+      "to": "r1n3",
+      "label": "采用",
+      "variant": "default"
+    },
+    {
+      "id": "r1f3",
+      "from": "r1n3",
+      "to": "r1n4",
+      "label": "确认",
+      "variant": "security"
+    },
+    {
+      "id": "r2f0",
+      "from": "r2n0",
+      "to": "r2n1",
+      "label": "读取",
+      "variant": "default"
+    },
+    {
+      "id": "r2f1",
+      "from": "r2n1",
+      "to": "r2n2",
+      "label": "批准",
+      "variant": "emphasis"
+    },
+    {
+      "id": "r2f2",
+      "from": "r2n2",
+      "to": "r2n3",
+      "label": "转单",
+      "variant": "emphasis"
+    },
+    {
+      "id": "r2f3",
+      "from": "r2n3",
+      "to": "r2n4",
+      "label": "核对",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "三行展开不同交接",
+      "items": [
+        "客户转单、工程模型发布和供给转单分别核对",
+        "系统角色可合并部署，责任与对象版本仍需明确"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "配置有效不等于能够交付",
+      "items": [
+        "客户选项、工程修订与制造版本分别保留",
+        "超出已批准规则的要求先进入工程评审"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "需求与供给避免重复",
+      "items": [
+        "报价转订单保留来源身份，预测转实单按规则冲减",
+        "计划建议转单后追踪原建议，不再多算一份供给"
+      ]
+    }
+  ]
+}

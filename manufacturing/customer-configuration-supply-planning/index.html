@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>客户配置、采购与供应链计划 | 制造业系统</title><meta name="description" content="沿用风机订单与新旧支架切换，拆解 CRM、CPQ、ERP、SRM 和计划系统之间的配置、转单、供需关联与供应商答复，说明采购版本、分批交付、在途、质量放行和客户承诺怎样分别核对。"><link rel="canonical" href="https://imcoders.cn/manufacturing/customer-configuration-supply-planning/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/customer-configuration-supply-planning/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/customer-configuration-supply-planning/#article","headline":"客户配置、采购与供应链计划","description":"沿用风机订单与新旧支架切换，拆解 CRM、CPQ、ERP、SRM 和计划系统之间的配置、转单、供需关联与供应商答复，说明采购版本、分批交付、在途、质量放行和客户承诺怎样分别核对。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/customer-configuration-supply-planning/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-14T00:00:00.000Z","dateModified":"2026-10-14T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"客户配置、采购与供应链计划","item":"https://imcoders.cn/manufacturing/customer-configuration-supply-planning/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-14T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-14T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="客户配置、采购与供应链计划 | 制造业系统"><meta property="og:description" content="沿用风机订单与新旧支架切换，拆解 CRM、CPQ、ERP、SRM 和计划系统之间的配置、转单、供需关联与供应商答复，说明采购版本、分批交付、在途、质量放行和客户承诺怎样分别核对。"><meta property="og:url" content="https://imcoders.cn/manufacturing/customer-configuration-supply-planning/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="客户配置、采购与供应链计划 | 制造业系统"><meta name="twitter:description" content="沿用风机订单与新旧支架切换，拆解 CRM、CPQ、ERP、SRM 和计划系统之间的配置、转单、供需关联与供应商答复，说明采购版本、分批交付、在途、质量放行和客户承诺怎样分别核对。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="客户配置、采购与供应链计划 | 制造业系统"><meta itemprop="description" content="沿用风机订单与新旧支架切换，拆解 CRM、CPQ、ERP、SRM 和计划系统之间的配置、转单、供需关联与供应商答复，说明采购版本、分批交付、在途、质量放行和客户承诺怎样分别核对。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "客户配置、采购与供应链计划 | 制造业系统";
+const shareDesc = "沿用风机订单与新旧支架切换，拆解 CRM、CPQ、ERP、SRM 和计划系统之间的配置、转单、供需关联与供应商答复，说明采购版本、分批交付、在途、质量放行和客户承诺怎样分别核对。";
+const shareLink = "https://imcoders.cn/manufacturing/customer-configuration-supply-planning/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>客户配置、采购与供应链计划</h1><p class="mfg-lead" data-astro-cid-767rrl5b>沿用风机订单与新旧支架切换，拆解 CRM、CPQ、ERP、SRM 和计划系统之间的配置、转单、供需关联与供应商答复，说明采购版本、分批交付、在途、质量放行和客户承诺怎样分别核对。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/customer-configuration-supply-planning/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-14</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#客户配置怎样成为可执行订单" data-astro-cid-767rrl5b>客户配置怎样成为可执行订单</a></li><li data-astro-cid-767rrl5b><a href="#供应链计划先区分需求与供给" data-astro-cid-767rrl5b>供应链计划先区分需求与供给</a></li><li data-astro-cid-767rrl5b><a href="#供应商答复怎样改变采购安排" data-astro-cid-767rrl5b>供应商答复怎样改变采购安排</a></li><li data-astro-cid-767rrl5b><a href="#交期承诺怎样随供给事实更新" data-astro-cid-767rrl5b>交期承诺怎样随供给事实更新</a></li><li data-astro-cid-767rrl5b><a href="#从接口与业务结果验收交接" data-astro-cid-767rrl5b>从接口与业务结果验收交接</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>客户选好配置、接受报价之后，工厂还要确认这套配置对应什么产品定义，哪些材料可以采购，以及供给何时能够支持生产。供应商回复“可以交”，采购单、计划看板与客户交期也未必已经同步改变。</p>
+<p>这一篇接在<a href="/manufacturing/engineering-tools-process-data/">工程工具与工艺数据篇</a>之后，回到销售和供应侧。继续使用 200 台风机订单与新支架的模拟案例，另设供应商分批改期的独立分支，不改变前文已经完成的收货、返工和消耗结果。</p>
+<h2 id="客户配置怎样成为可执行订单">客户配置怎样成为可执行订单</h2>
+<h3 id="客户要求产品配置与工程修订分别保存">客户要求、产品配置与工程修订分别保存</h3>
+<p>CRM 可以承接客户、商机和需求，CPQ（配置、定价与报价）帮助组合选项、计算价格并形成报价。SAP 的 <a href="https://help.sap.com/docs/SAP_CPQ/551616e85ad64739835aa69241222f53/31c234bf754646fa8fd64a0afede0a41.html">CPQ 产品说明</a>也将配置、定价、报价及向外部系统发送订单作为相关能力。它们形成的商业结果，仍需关联工程与制造定义。</p>
+<p>客户选择的安装方式、交付文件或其他受控选项，属于客户配置；产品设计修订 B、制造 BOM 04 与路线 R04，则表达各自的工程和制造版本。内部工程变更未必改变客户订购选项，也可能影响客户必须确认的要求，具体由合同、规格与批准方案判断。</p>
+<p>本例 <code>SO-200</code> 的需求始终是 200 台 <code>FAN-100</code>。工程切换后，40 台由旧工单 <code>MO-0040</code> 继续执行，160 台采用新定义并进入 <code>MO-0160</code>。两笔生产供给覆盖原需求，不能再额外生成 200 台销售需求，也不能把内部切换直接解释成客户购买了两个新型号。</p>
+<h3 id="配置规则应能追到批准的模型">配置规则应能追到批准的模型</h3>
+<p>配置模型需要说明允许哪些选项、组合约束、适用工厂或市场，以及与产品结构和工艺的关系。Microsoft 的<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/pim/product-configuration-models">产品配置模型说明</a>展示了通过约束与计算组织产品变型、BOM 和路线的实现。具体企业可以由 CPQ、ERP、PLM 或其他模块共同承接，不能假设报价系统独自掌握全部制造条件。</p>
+<p>客户要求超出已批准目录时，先形成技术澄清或工程评审任务，保留需求、例外范围与批准依据。为演示这条分支，可以另设一项未在配置模型中定义的安装要求 X；它仅是验收输入，不是给原风机追加了一项真实规格。系统应显示待评审，不能为了完成报价自动选择看起来相近的安装方案。</p>
+<p>配置有效还需与商业条件分开。报价范围、数量、计价单位、币种、价格规则、折扣批准和有效期，要随报价版本保留；工程允许某种组合，不代表任意报价条件都已获准。本篇不设价格数值，也不展开税务或收入确认规则。</p>
+<h3 id="报价转单保留来源行与配置快照">报价转单保留来源行与配置快照</h3>
+<p>客户接受报价后，按企业流程转为销售订单。接收方核对客户与组织身份、产品和配置、数量单位、交付节点、报价版本及有效条件，再返回实际订单和行项目身份。合同、接受记录与系统转单回执分别保存。</p>
+<p>同一报价转单超时，应查询原动作结果；重复发送相同身份与内容，不再建立一张新销售订单。报价行拆成多个订单行、或多项需求按批准规则合并时，也保留对应数量和来源关系，不能只保存一个无法核对明细的报价号。</p>
+<p>进入订单以后，冻结本次采用的配置与规则版本。后续配置模型更新，不自动改写已确认订单。客户改选项、改数量或取消部分需求时，形成订单变更并评估采购、在制和交付影响；原批准记录和已执行动作继续可查。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>客户配置怎样进入订单与供需计划</strong><a href="/manufacturing/maps/supply-config-demand.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/supply-config-demand.html" title="CRM CPQ 工程配置模型 ERP 销售转单与 MRP 供给转单交互数据图" loading="lazy" allowfullscreen></iframe>
+<figcaption>三行分别展示客户转单、工程配置模型发布和供给转单，属于同一交接链的不同视角。客户选项、工程修订与制造版本各自保留；只有相应条件满足并获准，才形成或应用目标记录。点击节点与连线探索关系，动画仅表达数据方向。</figcaption>
+</figure>
+<h2 id="供应链计划先区分需求与供给">供应链计划先区分需求与供给</h2>
+<h3 id="预测订单和生产用料按规则关联">预测、订单和生产用料按规则关联</h3>
+<p>销售预测、报价机会与已确认订单处于不同阶段，是否参与计划、按什么概率或规则参与，需要明确。预测被实单消耗的方式、时间窗口、产品与组织范围也要写清，不能将同一客户需求同时按预测和订单完整计算两遍。</p>
+<p>计划还需区分面向库存、面向订单和需要新增工程定义的业务。它们可能共享物料，也可能需要保留客户或订单专属关系；不能只用一个“有库存”字段决定是否满足当前需求。相同产品编码下，配置、工厂、批次状态、所有权与用途都可能影响可用范围。</p>
+<p>本例新工单需要 160 件 <code>BKT-018</code>。旧支架库存 80 件仍受旧版用途限制，尚未修改的旧支架采购 100 件也仍是旧料供给。没有批准的替代或采购修改时，两者都不抵扣这 160 件新料需求。</p>
+<h3 id="计划建议转单以后保持一份供给">计划建议转单以后保持一份供给</h3>
+<p>沿用 <a href="/manufacturing/erp-order-material-cost/">ERP 篇</a>的方案，原未收采购 100 件经批准并与供应商确认改为新支架，再补足 60 件新支架。数量覆盖为 <code>100 + 60 = 160 件</code>，还需继续核对日期、状态和用途。</p>
+<p>这 60 件在转单前可以是计划建议，获准后形成正式采购订单。Microsoft 的<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/master-planning/planning-optimization/planned-order-firming">计划订单转单说明</a>描述了建议转为采购、转移或生产订单的行为。转单后需要保留来源建议、目标单据及覆盖关系，避免新采购已生成，原建议又被当成另一笔供给。</p>
+<p>本文为这笔新增 60 件采购使用示意号 <code>PO-N60</code>。采购申请、询价、供应商报价、获批采购单和供应商确认是不同记录，具体是否都采用独立单据取决于流程。询价回复或内部批准，不能直接替代供应商对实际采购版本的答复。</p>
+<h3 id="供需关联预留和采购承诺作用不同">供需关联、预留和采购承诺作用不同</h3>
+<p>需求关联用于解释供给覆盖哪项需求；库存预留或分配则按企业规则限制资源被其他需求使用。供应商答应某日交货，也不一定意味着这批货已经对本订单独占，仍需核对合同、分配和系统处理方式。</p>
+<p>本例不设安全库存、批量取整、额外损耗或其他订单争用，以便核对数量。实际计划应纳入启用的最小采购量、包装倍数、日历、供应商资格和其他需求。净缺口为 60 件时，正式采购量可能受批量规则影响，超出的部分要有明确用途与账面归属。</p>
+<p>供应商承诺、发运通知、在途和收货也可能描述同一批供给的不同阶段。报表可分别展示这些状态，计划覆盖需要按业务身份识别继承与替换关系，不能把每一次状态更新都作为新增加的供给。</p>
+<h2 id="供应商答复怎样改变采购安排">供应商答复怎样改变采购安排</h2>
+<h3 id="答复必须指出回应了哪一版采购单">答复必须指出回应了哪一版采购单</h3>
+<p>SRM 或供应商门户可以承接询价、订单协同、交付与质量信息，也可能与 ERP 合并部署。采购单发送时保留供应商、订单和行、发送版本、数量、物料及交付安排，供应商答复再引用这个版本。</p>
+<p>Microsoft 的<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/procurement/vendor-collaboration-work-external-vendors">供应商协作文档</a>展示了接受、拒绝、建议修改及分批交付等处理，并说明供应商已接受与采购单已确认可以处于不同状态。这个实例说明，门户收到答复以后，还需核对采购方实际应用结果，不能只同步一个“接受”标志。</p>
+<p>供应商建议换料时，先保留原答复与候选物料，按工程、质量和采购权限评估；名称相近或价格相同不能形成替代资格。若旧版本答复迟到，先比较当前采购基线与已发生收货，不能用旧日期覆盖新安排。</p>
+<h3 id="分批改期把数量节点和状态一起保存">分批改期把数量、节点和状态一起保存</h3>
+<p>下面另设一条尚未收货时的改期分支，与前文最终收货实绩分开。假设 <code>PO-N60</code> 当前发送版本为 2，原安排 60 件在相对日 D5 到达 A 工厂。供应商现在建议拆成 40 件 D5、20 件 D7，采购方尚未批准应用。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "response_id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"RESP-N60-01"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "purchase_order"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"PO-N60"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "purchase_order_revision"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "line_id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"10"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "material"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"BKT-018"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "unit"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"EA"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "status"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"PROPOSED_CHANGE"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "date_basis"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"independent_sample_relative_days"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "date_node"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"arrival_at_plant_A"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "proposed_deliveries"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">    { </span><span style="color:#79B8FF">"quantity"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">40</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">"day"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"D5"</span><span style="color:#E1E4E8"> },</span></span>
+<span class="line"><span style="color:#E1E4E8">    { </span><span style="color:#79B8FF">"quantity"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">"day"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"D7"</span><span style="color:#E1E4E8"> }</span></span>
+<span class="line"><span style="color:#E1E4E8">  ]</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<p>字段和编号仅为概念示例，不对应厂商 API。完整契约还需供应商身份、实际日期与时区、确认动作、取消或短交规则、数量累计范围、当前目标版本及批准依据。D5、D7 属于本分支的相对日，不重放订单延期篇的 D 日历，也不伪装为真实日期。</p>
+<p>建议分批合计仍为 60 件。采购评审若接受，按权限形成更新后的采购安排，并取得 ERP 业务回执；若拒绝或要求重报，保留未决状态。仅收到建议时，不将它显示为采购方已确认，更不能把 40 和 20 再加到原 60 上算成 120 件。</p>
+<h3 id="采购修改要核对已收在途和剩余范围">采购修改要核对已收、在途和剩余范围</h3>
+<p>如果采购单已有部分收货，修改针对未收余额及尚可调整的交付安排。已经形成的在途、承运任务、收货和发票等对象可能有自己的处理规则；采购方发出取消通知，也不能自动让实物或目标记录消失。</p>
+<p>分批交付还要区分本批数量与累计数量，支持原行与子交付安排的关联。供应商更新一份累计已发数量，如果接收方误当成新增本批数量，会重复增加在途；ASN 更正、部分到货和短交关闭同样需要保留原身份及修订。</p>
+<p>异常不能仅靠采购单头状态表达。一张订单可能部分已确认、部分拒绝、部分到货、部分待检；计划需要看到行、交付批次与数量范围。目标仅应用了部分修改时，回执也要标出实际成功范围，剩余部分进入差异台账。</p>
+<h2 id="交期承诺怎样随供给事实更新">交期承诺怎样随供给事实更新</h2>
+<h3 id="先用数量快照核对状态转换">先用数量快照核对状态转换</h3>
+<p>回到原案例的 160 件新支架范围，先不包含后续返工额外补供的两件。为说明同一批供给如何转换，固定下面三个教学检查点；各检查点均未发生后续领料，也不含其他占用与限制。它们表达数量状态，不补写具体发生日期。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>检查点</th><th>相关未收采购量</th><th>累计已收量</th><th>当前质量可领量</th><th>核对含义</th></tr></thead><tbody><tr><td>100 件改料与新增 60 件均已确认，尚未收货</td><td>160</td><td>0</td><td>0</td><td>160 件仍是未来供给，不能当当前库存</td></tr><tr><td>第一批 100 件已收且放行，其余尚未收</td><td>60</td><td>100</td><td>100</td><td>未收余量与已收量合计仍是 160</td></tr><tr><td>全部 160 件已收，140 件放行、20 件待检</td><td>0</td><td>160</td><td>140</td><td>待检 20 件属于已收库存，不另算一笔新采购</td></tr></tbody></table>
+<p>第一批检查点只为展开状态转换，不改变前文 <code>LOT-N01</code> 的 100 件、<code>LOT-N02</code> 的 40 件与 <code>LOT-N03</code> 的 20 件身份。后续返工补发两件按独立业务追加，使实际支架净耗用达到 162 件，不倒改最初 160 件标准需求。</p>
+<p>采购未收量按所选范围、单位和已落实收货扣减；退供、取消、超收或修订如果发生，继续加入批准的数量关系。ASN 已覆盖某笔未收采购时，它用于细化发运与预计到达，不能再与同一笔未收量相加扩张覆盖量。</p>
+<h3 id="到料可用发货与签收日期分别判断">到料、可用、发货与签收日期分别判断</h3>
+<p>供应商的交货日要说明具体节点：出厂、交承运人、到工厂，还是其他约定地点。再叠加适用的运输、收货、质量和配送条件，才能形成面向生产的预计可用时间。若检验尚未完成，预测可用日期仍需标明依据和不确定性。</p>
+<p>ATP（可承诺量）与 CTP（考虑能力的承诺计算）需要按实际产品功能理解。Microsoft 的 <a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/master-planning/planning-optimization/calculate-delivery-dates-using-ctp">CTP 交期说明</a>描述了基于计划计算确认日期的行为，并区分 ATP 与 CTP。接入时应检查模型实际纳入哪些库存、需求、物料、资源与日历，不能只看方法名就认定全部现场条件已经满足。</p>
+<p>本例新支架数量覆盖 160 件，仍不能单独推导 160 台风机的发货日。还要核对其他物料、资源、工艺版本、终检、仓储和运输安排；计划形成候选后，按规则落实与确认。采购方接受 20 件推迟到 D7 的建议，也不自动等于客户接受了新的签收日期。</p>
+<h3 id="供给变化后保留承诺版本与未决条件">供给变化后保留承诺版本与未决条件</h3>
+<p>供应变动应能追到受影响的需求、工序任务与订单行。计划重新计算时保存输入快照、受影响范围和方案差异，区分有明确证据的变化与仍在估计的条件。一个供应商延迟通知，不一定影响所有订单，也不一定只有一张订单受影响。</p>
+<p>候选措施可以包括协商分批、调整任务顺序、使用经批准的替代供给或资源，以及修改客户交付安排。每项都需要核对新前提和影响，不能把“加急”“换供应商”写成已经实现的供给。供应商资格、物料版本和质量条件仍然有效。</p>
+<p><a href="/manufacturing/order-delivery-delay-analysis/">订单延期篇</a>已经区分客户要求、原确认与后续实际节点。本篇继续保留原确认版本，再记录候选承诺、内部批准、订单更新回执及客户沟通或接受情况。修改系统日期不会抹去原承诺，也不能凭一条已发送通知声称客户已经同意。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>供应商答复怎样变成可用供给与交期依据</strong><a href="/manufacturing/maps/supply-confirmation-availability.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/supply-confirmation-availability.html" title="SRM 供应商答复 ERP 采购确认 ASN WMS 收货 QMS 放行与客户承诺调整交互数据图" loading="lazy" allowfullscreen></iframe>
+<figcaption>三行分别核对采购答复、实物收货与可领资格、客户承诺调整。采购承诺、ASN、已收库存描述供给的不同状态，不可无条件累加；放行及目标回执仍按对象范围核验。可点击节点和连线查看关系，动画不代表真实接口时序或在线业务状态。</figcaption>
+</figure>
+<h2 id="从接口与业务结果验收交接">从接口与业务结果验收交接</h2>
+<h3 id="用原案例核对正常与异常分支">用原案例核对正常与异常分支</h3>
+<p>下面是设计验收用例，站点展示的配置、采购与计划数据均为模拟，没有接入真实 CRM、CPQ、SRM 或 ERP。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>验收场景</th><th>需要核实的结果</th></tr></thead><tbody><tr><td>客户选项超出已批准配置模型</td><td>进入技术澄清或评审，不自动映射相近选项</td></tr><tr><td>报价模型更新但订单已确认</td><td>订单保留原配置快照，变更有单独依据</td></tr><tr><td>同一报价转单超时后重试</td><td>查询原结果，不重复生成订单与需求</td></tr><tr><td>SO-200 由 40 台和 160 台两笔生产供给覆盖</td><td>客户需求仍为 200 台，不因拆分重复增加</td></tr><tr><td>新料缺口计算时存在旧库存与旧采购</td><td>未获准替代或改料前，不抵扣新料需求</td></tr><tr><td>60 件建议转成 PO-N60</td><td>保留转单回执，不将原建议再作为另一笔供给</td></tr><tr><td>供应商建议 40 件 D5、20 件 D7</td><td>合计仍为 60，建议、批准和目标应用分别可查</td></tr><tr><td>旧采购版本的答复迟到</td><td>不覆盖当前安排，核对冲突与已执行范围</td></tr><tr><td>采购已有部分收货再修改</td><td>已收、未收及可调整交付范围数量一致</td></tr><tr><td>ASN、未收采购与实收同时出现在看板</td><td>按身份和阶段去重，不重复增加供给</td></tr><tr><td>收货 160 件、可领 140 件</td><td>20 件待检保持受限，不自动视为当前齐套</td></tr><tr><td>供应商提出替代产品</td><td>保留候选，满足工程、质量与采购批准才可采用</td></tr><tr><td>ERP 应用失败或回执丢失</td><td>按原动作查询，未决范围不冒充已确认</td></tr><tr><td>采购或计划日期变化</td><td>不自动覆盖客户承诺，原版本与沟通结果保留</td></tr></tbody></table>
+<p>接口还要明确来源与目标的组织、订单行、配置、单位、版本和动作身份。一个系统的“交付日期”如果指工厂到货，另一个系统却按客户签收解释，字段名称相同也无法保证交接正确。<a href="/manufacturing/master-data-events-reconciliation/">跨系统对账篇</a>的明细、版本和完成位置核对规则可以继续沿用。</p>
+<h3 id="差异看板按数量范围和责任岗位追踪">差异看板按数量范围和责任岗位追踪</h3>
+<p>配置未评审、报价待批准、采购待答复、供应商建议待处理、目标未应用和收货待检，应能分别识别。只汇总一个“订单未就绪”总数，采购和计划很难判断各自需要完成什么。</p>
+<p>差异应关联责任角色、当前证据、对象与数量、约定时限及关闭条件。信息缺失时保留未知；供应商门户无法访问，不意味着供应商没有交货，质量结果查询失败也不等于物料已经合格。处理后重新核对目标业务记录，再关闭对应范围。</p>
+<h3 id="agent-先解释配置供给与承诺之间的缺口">Agent 先解释配置、供给与承诺之间的缺口</h3>
+<p>Agent 可以汇集报价配置、工程适用关系、销售需求、采购版本、供应商答复及收货放行状态，生成带来源和查询时间的待办清单。面对“这 160 台还差什么”，先固定需求与供给快照，再逐项回答数量、日期和资格条件。</p>
+<p>若只看到供应商回复 60 件可以交，就说明已经取得什么答复、采购方是否已应用，以及到货和放行还有哪些未确认条件。不能把回复内容直接变成当前库存，也不能仅凭物料覆盖量承诺整机客户交期。</p>
+<p>报价修改、采购下单、接受改期、切换替代供给和更改客户承诺，分别沿用已有权限与批准流程。Agent 可以准备方案和核对材料，实际写入前重新检查当前版本、业务条件及授权范围，取得目标回执后再报告落实结果。</p>
+<p>下一篇进入自动化仓储、厂内物流与运输协同，继续追踪一笔业务需求怎样变成搬运任务、设备执行和运输交接，以及各系统如何确认实物已经到达。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 
