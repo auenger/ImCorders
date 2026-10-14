@@ -1754,6 +1754,24 @@
       "markdownUrl": "https://imcoders.cn/playbook/harness/v2-conclusion/index.md"
     },
     {
+      "id": "manufacturing/aps-finite-capacity-rescheduling",
+      "kind": "manufacturing",
+      "title": "APS 如何处理物料、产能、换型和插单",
+      "description": "从风机尾批任务与一张急单出发，拆解 APS 的输入快照、有限产能、物料、日历、换型和冻结规则，比较三种排程方案，并记录候选评审、ERP 与 MES 发布回执、实绩重排和 Agent 接入的验收边界。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "APS",
+        "有限产能",
+        "生产排程",
+        "系统集成"
+      ],
+      "publishedAt": "2026-10-14T00:00:00.000Z",
+      "updatedAt": "2026-10-14T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/aps-finite-capacity-rescheduling/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/aps-finite-capacity-rescheduling/index.md"
+    },
+    {
       "id": "manufacturing/data-map",
       "kind": "manufacturing",
       "title": "制造业系统数据地图",

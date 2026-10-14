@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "APS 候选计划来自可核对的输入与约束",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-aps-20261014-141926/aps-constraint-inputs/aps-constraint-inputs.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "quality_profile": "showcase",
+    "animation": "trace",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "输入与关联"
+        },
+        "emphasis": {
+          "label": "授权动作"
+        },
+        "security": {
+          "label": "约束校验"
+        },
+        "dashed": {
+          "label": "候选与回执"
+        },
+        "database": {
+          "label": "快照与记录"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "来源记录"
+    },
+    {
+      "label": "对象与条件核验"
+    },
+    {
+      "label": "输入基线"
+    },
+    {
+      "label": "约束与计算"
+    },
+    {
+      "label": "候选与解释"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "orders",
+      "type": "backend",
+      "label": "ERP 订单与路线",
+      "sublabel": "需求、交期、受控路线与供给",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "materials",
+      "type": "backend",
+      "label": "物料与供给记录",
+      "sublabel": "批次、可领状态与预计到料",
+      "stage": 0,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "resources",
+      "type": "backend",
+      "label": "MES 与资源主数据",
+      "sublabel": "实绩、日历、资格与换型",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "order-check",
+      "type": "security",
+      "label": "需求与依赖核验",
+      "sublabel": "对象、数量与工序先后",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "material-check",
+      "type": "security",
+      "label": "物料与时间核验",
+      "sublabel": "用途、状态与时间可信度",
+      "stage": 1,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "resource-check",
+      "type": "security",
+      "label": "资源与冻结核验",
+      "sublabel": "可选资源及不可移动任务",
+      "stage": 1,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "snapshot",
+      "type": "database",
+      "label": "APS 输入快照",
+      "sublabel": "版本、来源与模型假设",
+      "stage": 2,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "solver",
+      "type": "backend",
+      "label": "约束排程与检查",
+      "sublabel": "物料、日历、换型与任务",
+      "stage": 3,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "candidate",
+      "type": "database",
+      "label": "候选计划与指标",
+      "sublabel": "可行性、目标与未满足项",
+      "stage": 4,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "demand-input",
+      "from": "orders",
+      "to": "order-check",
+      "label": "任务数据",
+      "variant": "default"
+    },
+    {
+      "id": "material-input",
+      "from": "materials",
+      "to": "material-check",
+      "label": "库存供给",
+      "variant": "default"
+    },
+    {
+      "id": "resource-input",
+      "from": "resources",
+      "to": "resource-check",
+      "label": "资源实绩",
+      "variant": "default"
+    },
+    {
+      "id": "task-snapshot",
+      "from": "order-check",
+      "to": "snapshot",
+      "label": "需求依赖",
+      "variant": "default",
+      "fromSide": "right",
+      "toSide": "top",
+      "via": [
+        [
+          423,
+          160
+        ],
+        [
+          423,
+          220
+        ],
+        [
+          530,
+          220
+        ]
+      ],
+      "labelAt": [
+        470,
+        207
+      ]
+    },
+    {
+      "id": "material-snapshot",
+      "from": "material-check",
+      "to": "snapshot",
+      "label": "到料条件",
+      "variant": "default",
+      "route": "straight",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "resource-snapshot",
+      "from": "resource-check",
+      "to": "snapshot",
+      "label": "资源条件",
+      "variant": "default"
+    },
+    {
+      "id": "solve",
+      "from": "snapshot",
+      "to": "solver",
+      "label": "固定输入",
+      "variant": "default"
+    },
+    {
+      "id": "candidate-output",
+      "from": "solver",
+      "to": "candidate",
+      "label": "方案结果",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "输入带版本与时间范围",
+      "items": [
+        "三路输入汇成同一份快照，避免混用不同时间的状态。",
+        "工艺、日历和资格来源按实际部署确认。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "模型中的条件同时生效",
+      "items": [
+        "日历、物料、顺序、换型和辅助资源需要一起检查。",
+        "缺少必要输入时保留未知，不默认无限可用。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "候选不自动成为执行计划",
+      "items": [
+        "求解状态区分可行、已证最优、不可行与尚无结论。",
+        "方案评审与发布另有授权，图中不声称算法永远找到最优解。"
+      ]
+    }
+  ]
+}

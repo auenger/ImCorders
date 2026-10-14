@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "排程评审、受控发布与执行反馈分别留证",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-aps-20261014-141926/aps-plan-execution/aps-plan-execution.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "quality_profile": "showcase",
+    "animation": "trace",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "输入与关联"
+        },
+        "emphasis": {
+          "label": "授权动作"
+        },
+        "security": {
+          "label": "约束校验"
+        },
+        "dashed": {
+          "label": "候选与回执"
+        },
+        "database": {
+          "label": "快照与记录"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "候选或实绩"
+    },
+    {
+      "label": "前置与范围核验"
+    },
+    {
+      "label": "业务计算与应用"
+    },
+    {
+      "label": "结果或发布记录"
+    },
+    {
+      "label": "版本与核对"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "publish-0",
+      "type": "backend",
+      "label": "APS 候选版本",
+      "sublabel": "任务区间、资源与方案依据",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "publish-1",
+      "type": "security",
+      "label": "发布前置校验",
+      "sublabel": "已批准且对象基线仍有效",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "publish-2",
+      "type": "backend",
+      "label": "ERP / MES 业务应用",
+      "sublabel": "各系统按契约分别应用",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "publish-3",
+      "type": "database",
+      "label": "目标回执台账",
+      "sublabel": "接受、拒绝与实际目标版本",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "publish-4",
+      "type": "database",
+      "label": "APS 执行基线",
+      "sublabel": "只确认已落实的计划范围",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "replan-0",
+      "type": "backend",
+      "label": "MES / WMS 实绩",
+      "sublabel": "开工、完成、缺料与故障",
+      "stage": 0,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "replan-1",
+      "type": "security",
+      "label": "状态与时间核验",
+      "sublabel": "事件身份、时点与版本",
+      "stage": 1,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "replan-2",
+      "type": "backend",
+      "label": "冻结与剩余任务",
+      "sublabel": "已执行范围及当前剩余量",
+      "stage": 2,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "replan-3",
+      "type": "database",
+      "label": "APS 允许范围重排",
+      "sublabel": "保留约束并比较候选",
+      "stage": 3,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "replan-4",
+      "type": "database",
+      "label": "方案变化清单",
+      "sublabel": "受影响订单与资源变化",
+      "stage": 4,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "review-0",
+      "type": "backend",
+      "label": "APS 候选比较",
+      "sublabel": "S1、S2 与附条件的 S3",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "review-1",
+      "type": "security",
+      "label": "约束与指标核验",
+      "sublabel": "同一口径、输入与新条件",
+      "stage": 1,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "review-2",
+      "type": "backend",
+      "label": "岗位选择与批准",
+      "sublabel": "记录取舍及适用范围",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "review-3",
+      "type": "database",
+      "label": "受控发布记录",
+      "sublabel": "关联批准与目标系统范围",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "review-4",
+      "type": "database",
+      "label": "计划版本历史",
+      "sublabel": "基线、候选、批准与回执",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "publish-flow-0",
+      "from": "publish-0",
+      "to": "publish-1",
+      "label": "候选差异",
+      "variant": "default"
+    },
+    {
+      "id": "publish-flow-1",
+      "from": "publish-1",
+      "to": "publish-2",
+      "label": "校验通过",
+      "variant": "default"
+    },
+    {
+      "id": "publish-flow-2",
+      "from": "publish-2",
+      "to": "publish-3",
+      "label": "业务结果",
+      "variant": "default"
+    },
+    {
+      "id": "publish-flow-3",
+      "from": "publish-3",
+      "to": "publish-4",
+      "label": "落实核对",
+      "variant": "dashed"
+    },
+    {
+      "id": "replan-flow-0",
+      "from": "replan-0",
+      "to": "replan-1",
+      "label": "变化记录",
+      "variant": "default"
+    },
+    {
+      "id": "replan-flow-1",
+      "from": "replan-1",
+      "to": "replan-2",
+      "label": "范围确定",
+      "variant": "default"
+    },
+    {
+      "id": "replan-flow-2",
+      "from": "replan-2",
+      "to": "replan-3",
+      "label": "授权范围",
+      "variant": "default"
+    },
+    {
+      "id": "replan-flow-3",
+      "from": "replan-3",
+      "to": "replan-4",
+      "label": "影响核对",
+      "variant": "dashed"
+    },
+    {
+      "id": "review-flow-0",
+      "from": "review-0",
+      "to": "review-1",
+      "label": "比较材料",
+      "variant": "default"
+    },
+    {
+      "id": "review-flow-1",
+      "from": "review-1",
+      "to": "review-2",
+      "label": "方案评审",
+      "variant": "default"
+    },
+    {
+      "id": "review-flow-2",
+      "from": "review-2",
+      "to": "review-3",
+      "label": "批准发布",
+      "variant": "emphasis"
+    },
+    {
+      "id": "review-flow-3",
+      "from": "review-3",
+      "to": "review-4",
+      "label": "历史关联",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "三行是同一闭环的业务视角",
+      "items": [
+        "候选评审、目标落实和实绩重排不表示三个独立系统。",
+        "发布前核对对象基线，ERP 与 MES 分别返回结果。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "冻结已执行与承诺范围",
+      "items": [
+        "已开工任务按当前规则冻结，不覆盖历史执行事实。",
+        "未开工任务重排也须检查已备料、已换型与其他订单。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "失败不能静默变成新计划",
+      "items": [
+        "部分应用失败时记录各自范围，按已批准规则处理。",
+        "撤销计划不撤销实物动作，恢复需核对当前事实。",
+        "动画只表达数据方向，不表示真实时序与在线状态。"
+      ]
+    }
+  ]
+}

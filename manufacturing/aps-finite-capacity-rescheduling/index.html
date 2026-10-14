@@ -1,0 +1,332 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>APS 如何处理物料、产能、换型和插单 | 制造业系统</title><meta name="description" content="从风机尾批任务与一张急单出发，拆解 APS 的输入快照、有限产能、物料、日历、换型和冻结规则，比较三种排程方案，并记录候选评审、ERP 与 MES 发布回执、实绩重排和 Agent 接入的验收边界。"><link rel="canonical" href="https://imcoders.cn/manufacturing/aps-finite-capacity-rescheduling/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/aps-finite-capacity-rescheduling/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/aps-finite-capacity-rescheduling/#article","headline":"APS 如何处理物料、产能、换型和插单","description":"从风机尾批任务与一张急单出发，拆解 APS 的输入快照、有限产能、物料、日历、换型和冻结规则，比较三种排程方案，并记录候选评审、ERP 与 MES 发布回执、实绩重排和 Agent 接入的验收边界。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/aps-finite-capacity-rescheduling/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-14T00:00:00.000Z","dateModified":"2026-10-14T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"APS 如何处理物料、产能、换型和插单","item":"https://imcoders.cn/manufacturing/aps-finite-capacity-rescheduling/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-14T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-14T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="APS 如何处理物料、产能、换型和插单 | 制造业系统"><meta property="og:description" content="从风机尾批任务与一张急单出发，拆解 APS 的输入快照、有限产能、物料、日历、换型和冻结规则，比较三种排程方案，并记录候选评审、ERP 与 MES 发布回执、实绩重排和 Agent 接入的验收边界。"><meta property="og:url" content="https://imcoders.cn/manufacturing/aps-finite-capacity-rescheduling/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="APS 如何处理物料、产能、换型和插单 | 制造业系统"><meta name="twitter:description" content="从风机尾批任务与一张急单出发，拆解 APS 的输入快照、有限产能、物料、日历、换型和冻结规则，比较三种排程方案，并记录候选评审、ERP 与 MES 发布回执、实绩重排和 Agent 接入的验收边界。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="APS 如何处理物料、产能、换型和插单 | 制造业系统"><meta itemprop="description" content="从风机尾批任务与一张急单出发，拆解 APS 的输入快照、有限产能、物料、日历、换型和冻结规则，比较三种排程方案，并记录候选评审、ERP 与 MES 发布回执、实绩重排和 Agent 接入的验收边界。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "APS 如何处理物料、产能、换型和插单 | 制造业系统";
+const shareDesc = "从风机尾批任务与一张急单出发，拆解 APS 的输入快照、有限产能、物料、日历、换型和冻结规则，比较三种排程方案，并记录候选评审、ERP 与 MES 发布回执、实绩重排和 Agent 接入的验收边界。";
+const shareLink = "https://imcoders.cn/manufacturing/aps-finite-capacity-rescheduling/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>APS 如何处理物料、产能、换型和插单</h1><p class="mfg-lead" data-astro-cid-767rrl5b>从风机尾批任务与一张急单出发，拆解 APS 的输入快照、有限产能、物料、日历、换型和冻结规则，比较三种排程方案，并记录候选评审、ERP 与 MES 发布回执、实绩重排和 Agent 接入的验收边界。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/aps-finite-capacity-rescheduling/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-14</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#排程先确定要安排哪些任务" data-astro-cid-767rrl5b>排程先确定要安排哪些任务</a></li><li data-astro-cid-767rrl5b><a href="#物料日历和换型要在同一模型里成立" data-astro-cid-767rrl5b>物料、日历和换型要在同一模型里成立</a></li><li data-astro-cid-767rrl5b><a href="#同一张急单可以形成哪些候选方案" data-astro-cid-767rrl5b>同一张急单可以形成哪些候选方案</a></li><li data-astro-cid-767rrl5b><a href="#重排怎样成为车间能够执行的计划" data-astro-cid-767rrl5b>重排怎样成为车间能够执行的计划</a></li><li data-astro-cid-767rrl5b><a href="#怎样验收排程结果并让-agent-参与" data-astro-cid-767rrl5b>怎样验收排程结果并让 Agent 参与</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p><a href="/manufacturing/order-delivery-delay-analysis/">订单延期篇</a>把尾批开工写成了物料与资源同时满足后的时点。现场要进一步决定任务先后、具体资源和开始时间时，还会遇到班次、换型、已开工任务与新来的急单。</p>
+<p>这一篇进入 APS（高级计划与排程），用一个可手算的样本比较候选方案，再看方案怎样交给 ERP、MES。样本沿用风机尾批的业务背景，另设任务工时和相对小时，不重放前文的 D 日历，也不改写既有订单的实际记录。</p>
+<h2 id="排程先确定要安排哪些任务">排程先确定要安排哪些任务</h2>
+<h3 id="供需数量工序安排和执行状态分别核对">供需数量、工序安排和执行状态分别核对</h3>
+<p>ERP 可以保存需求、生产订单和供给关联，MRP 可以计算物料需求与补货建议。排程还要把工序任务放到满足条件的资源和时间区间中。不同 ERP 本身也可能提供有限产能或详细排程能力，不能只凭产品缩写判断它是否考虑产能。</p>
+<p>APS 需要明确本次范围：哪些工单、哪些工序、哪些资源，以及覆盖多长时间。计划员按整张工单排顺序，与按工序实例选择设备，使用的数据粒度不同。只给任务一个总工时，可能掩盖中间工序和资源切换。</p>
+<p>Microsoft 的<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/production-control/job-scheduling">详细作业排程说明</a>区分工序层面的安排与更细的任务拆解，并描述有限产能、物料和具体资源的考虑。本文借此落实输入粒度，不将某个产品的字段当作所有 APS 的统一模型。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>输入</th><th>至少需要确定的内容</th><th>缺少时可能出现的问题</th></tr></thead><tbody><tr><td>需求与交期</td><td>数量、需要节点、承诺版本、优先规则</td><td>把工序完成当作客户交付，或优化错目标</td></tr><tr><td>工艺与任务</td><td>先后关系、工时、批量、允许拆分与转移规则</td><td>后工序提前开始，或把不能中断的任务切开</td></tr><tr><td>物料</td><td>适用批次、可领状态、分配与预计可用时间</td><td>有到货记录却无法实际开工</td></tr><tr><td>资源</td><td>资格、产能单位、日历、已有占用与效率依据</td><td>空闲设备不具备能力，或同一资源重复占用</td></tr><tr><td>换型与辅助条件</td><td>产品族、前后状态、工装及合格人员</td><td>忽略换型，或多台设备争用同一副工装</td></tr><tr><td>现场实绩</td><td>已开工、已完成、暂停、剩余量与预计剩余工时</td><td>重排已发生的动作，或重复安排全部任务</td></tr></tbody></table>
+<h3 id="输入快照保留版本来源和不确定性">输入快照保留版本、来源和不确定性</h3>
+<p>物料状态、设备占用和订单优先级会持续变化。一次计算应保存使用的输入版本、查询时间、来源及模型假设，避免将上午的库存、下午的资源日历和另一版工艺混在一起。</p>
+<p>预计到料与已经可领需要分开。本次计划如果把预计到料作为允许条件，就要暴露这项依赖，并在执行前复核；不能让一个尚未确认的日期在输出中变成确定可用的库存。</p>
+<p>工时也要有适用范围。历史平均值可以支持估算，但产品配置、设备、班组或批量变化后，实际节拍可能不同。候选计划应保留采用的工时与效率依据，后续用实绩核对，不能把排程结果的精确到分钟误当成预测已经准确。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>排程输入怎样形成同一份约束快照</strong><a href="/manufacturing/maps/aps-constraint-inputs.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/aps-constraint-inputs.html" title="APS 订单物料资源输入与约束排程交互数据图" loading="lazy" allowfullscreen></iframe>
+<figcaption>三路输入经对象与条件核验后进入同一快照，再形成候选计划及指标。来源可以由不同业务模块提供，图中不规定固定厂商接口。点击节点或连线查看关系，可播放流转；动画不表示真实运行状态或计算耗时，窄屏可打开独立窗口查看。</figcaption>
+</figure>
+<h2 id="物料日历和换型要在同一模型里成立">物料、日历和换型要在同一模型里成立</h2>
+<h3 id="有限产能约束要落到具体资源">有限产能约束要落到具体资源</h3>
+<p>一台只能同时处理一个任务的设备，需要检查占用区间是否重叠。两台设备各有两小时空档，也不一定能接住一个必须连续运行三小时的任务。资源组汇总的小时数，还要继续拆到实际可选设备、资格和连续窗口。</p>
+<p><a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/master-planning/planning-optimization/finite-capacity">Microsoft 的有限产能说明</a>描述了产能不足时任务需要移到可用时段、日期可能后移的行为。有限产能计算能够揭示冲突，交期能否满足仍取决于资源与其他条件。</p>
+<p>Google 的 <a href="https://developers.google.com/optimization/scheduling/job_shop">Job Shop 示例</a>把工序先后和同一机器上的不重叠作为基本约束。现场还需继续加入本次启用的日历、物料、换型、辅助资源与冻结规则，不能直接将一个简化算法示例等同于完整工厂模型。</p>
+<h3 id="日历约束同时作用于加工和必要准备">日历约束同时作用于加工和必要准备</h3>
+<p>设备、人员、工装与检验资源可能有不同日历。若一个任务同时需要设备和合格操作员，只有设备空闲还不够。维护窗口、休息、停产与已占用时段，也要按实际规则参与计算。</p>
+<p>任务能否跨休息时间、能否暂停后继续、最小转移批量是多少，需要显式定义。允许拆分时还要记录拆出的任务、剩余量与额外准备；不能让求解过程为了塞进空档，自动改变本来不允许中断的工艺。</p>
+<h3 id="换型时间取决于前后状态">换型时间取决于前后状态</h3>
+<p>从 A 族切换到 B 族，与从 B 切换回 A，耗时可以不同。同一族连续生产也可能仍需要清理、换刀或首件检查，具体规则应由工艺与现场确认。</p>
+<p>换型占用什么资源，能否提前准备，是否必须等物料到位，休息或隔夜后是否保留准备状态，都会改变可排区间。产品族相同就默认零换型，只能作为明确批准的样本前提，不能成为所有产线的默认规则。</p>
+<p>交期可以作为允许一定偏差的优化目标，资格、质量限制和不可重叠等则按企业批准的模型作为必须满足的条件。改变这些业务条件需要相应批准，不能仅把违反条件的惩罚调高一点，就允许排程越过限制。</p>
+<h2 id="同一张急单可以形成哪些候选方案">同一张急单可以形成哪些候选方案</h2>
+<h3 id="先固定一个独立的小时样本">先固定一个独立的小时样本</h3>
+<p>以下仅模拟装配工位上的任务，T 代表一项 20 台尾批装配任务，U 代表新增急单。完成时点只指本段工序结束，不包含后续终检、仓储和客户签收；工时不能用来推算前文整张风机工单的真实产能。</p>
+<p>以样本工作日 08:00 为相对小时 h0，h24 表示次日 08:00。主设备 <code>ASM-01</code> 及本段所需操作员的可用窗口为 <code>[0,4)</code>、<code>[5,9)</code>、<code>[24,28)</code>、<code>[29,33)</code>。h4 至 h5 休息，h9 至 h24 不工作；任务可以恰好在窗口终点结束。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>任务</th><th>产品族</th><th>加工时长</th><th>物料最早满足</th><th>本段工序期望完成时点</th></tr></thead><tbody><tr><td>F，已开工任务</td><td>A</td><td>本次固定占用 <code>[0,2)</code></td><td>已满足</td><td>保持当前安排</td></tr><tr><td>T，20 台尾批</td><td>B</td><td>3 小时</td><td>h2</td><td>h7</td></tr><tr><td>U，新增 10 件急单</td><td>A</td><td>2 小时</td><td>h0</td><td>h4</td></tr></tbody></table>
+<p>在 h1 收到插单请求并形成快照。F 已开工，后续预计占用到 h2，本次计算将它冻结；新任务从快照时点以后安排。若实际剩余工时或设备状态再变化，需要新一轮计算。</p>
+<p>样本进一步固定以下规则：设备初始为 A；A→B 和 B→A 换型各 1 小时，同族换型为 0。换型和加工都占用主设备与所需操作员，各自不可中断，只能落在可用窗口内。换型不得早于对应物料可用，完成后的状态在休息和隔夜期间保留。本例只核对这些规则，没有额外工装冲突。</p>
+<h3 id="保尾批与先急单会产生不同结果">保尾批与先急单会产生不同结果</h3>
+<p>S1 先安排 T。F 到 h2 结束，T 的换型放在 <code>[2,3)</code>。剩下的 <code>[3,4)</code> 只有一小时，不能容纳不可中断的三小时加工，所以 T 在 <code>[5,8)</code> 加工。随后 <code>[8,9)</code> 从 B 换回 A，U 只能等到次日 <code>[24,26)</code> 加工。</p>
+<p>S2 先安排 U。设备仍为 A，U 在 <code>[2,4)</code> 加工，h4 完成。休息后在 <code>[5,6)</code> 为 T 换型，再在 <code>[6,9)</code> 加工 T。急单满足了本段 h4 的期望，T 则比 h7 晚两小时。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方案</th><th>F</th><th>U 加工区间</th><th>T 换型及加工</th><th>本段结果</th></tr></thead><tbody><tr><td>S1，先 T</td><td><code>[0,2)</code> 冻结</td><td>B→A 换型 <code>[8,9)</code>，加工 <code>[24,26)</code></td><td>A→B <code>[2,3)</code>，加工 <code>[5,8)</code></td><td>T 完成 h8，U 完成 h26</td></tr><tr><td>S2，先 U</td><td><code>[0,2)</code> 冻结</td><td>同族免换型，加工 <code>[2,4)</code></td><td>A→B <code>[5,6)</code>，加工 <code>[6,9)</code></td><td>U 完成 h4，T 完成 h9</td></tr></tbody></table>
+<p>两个方案都保留了本次的硬约束，却没有同时满足两项期望完成时点。它们是人工构造并逐条核对的候选，不是运行求解器后得到的全局最优证明。</p>
+<p>用连续小时计算本段延期，<code>延期 = max(0, 完成时点 − 期望完成时点)</code>，休息和隔夜不从偏差里扣除。S1 的 T 晚 1 小时、U 晚 22 小时；S2 的 T 晚 2 小时、U 不晚。这个口径与“超出多少工作小时”不同，报表里应写清。</p>
+<h3 id="增加合格资源要单独说明新前提">增加合格资源要单独说明新前提</h3>
+<p>再构造 S3：允许使用另一台已完成资格确认的 <code>ASM-02</code>，初始为 B；它与独立的合格操作员在 <code>[3,7)</code> 连续可用，期间没有主设备那段休息限制。物料和其他要求也已满足。这样 T 可以免换型在 <code>[3,6)</code> 加工，U 仍在 <code>ASM-01</code> 的 <code>[2,4)</code> 加工。</p>
+<p>S3 的 T、U 都能满足本段期望，但它改变了资源前提。设备资格、人员、特殊窗口、成本和授权必须分别确认，不能只因为甘特图上有一台空设备，就认定它能够替代。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方案</th><th>T 延期</th><th>U 延期</th><th>示例指标 <code>T延期 + 5×U延期</code></th><th>新增资源条件</th></tr></thead><tbody><tr><td>S1</td><td>1 小时</td><td>22 小时</td><td>111</td><td>无</td></tr><tr><td>S2</td><td>2 小时</td><td>0</td><td>2</td><td>无</td></tr><tr><td>S3</td><td>0</td><td>0</td><td>0</td><td>另增合格设备、独立人员与连续窗口</td></tr></tbody></table>
+<p>这个加权指标只是演示如何表达偏好，不对应违约金或真实经营损失。S3 分数更低，还需比较新增资源代价与落实可能性；S1、S2 则要说明各自影响了哪张订单。换型最少、完工最早、延期最小和计划最稳定，可能给出不同选择。</p>
+<p>求解结果也要说明状态。<a href="https://developers.google.com/optimization/cp/cp_solver">Google CP-SAT 文档</a>区分已证明最优、找到可行解、已证明不可行、模型无效及尚无结论等情况。限时没有找到方案，不能直接写成工厂一定排不下；找到可行方案，也不能省略模型范围就宣传为最优。</p>
+<h2 id="重排怎样成为车间能够执行的计划">重排怎样成为车间能够执行的计划</h2>
+<h3 id="先核对已执行范围和允许调整的部分">先核对已执行范围和允许调整的部分</h3>
+<p>设备故障、质量挂起、缺料、插单或报工偏差，都可能触发新计算。重排应先读取当前已完成量、已开工区间、预计剩余工时及未结任务，避免把整个原始任务重新安排一遍。</p>
+<p>已经开工的 F 在本例中保持冻结。其他场景还可能冻结已备料、已完成换型或即将开工的任务；冻结窗口与可移动范围属于业务规则。尚未开工也不代表调整没有代价，仓库可能已经配送，工装与人员可能已经预约。</p>
+<p>重排输出至少包括哪些任务改变了资源、时间、顺序或批量，影响哪些上下游任务与订单，以及仍有哪些条件没有落实。每次重排都追求局部交期更早，可能让现场频繁搬料、换型和改派，因此还要比较计划变动范围。</p>
+<h3 id="候选批准和下游应用分别保存版本">候选、批准和下游应用分别保存版本</h3>
+<p>本例可将 S2 保存为候选 <code>APS-S2-01</code>，关联输入快照和目标偏好。评审时核对 U 被提前、T 被延后，固定任务 F 保持原安排。计划岗位选择后，再按权限与约定发布给 ERP、MES，必要时同步备料需要时间。</p>
+<p>下面只表示候选数据片段，所有字段均为概念结构，不对应厂商 API，也没有执行发布：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "plan_id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"APS-S2-01"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "status"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"CANDIDATE"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "input_snapshot"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"INPUT-APS-07"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "expected_execution_revision"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"E12"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "time_basis"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"sample_relative_hours"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "frozen_tasks"</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">"F"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#79B8FF">  "tasks"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "task"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"U"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "resource"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"ASM-01"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "run_start"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "run_end"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "quantity"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "unit"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"EA"</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "task"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"T"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "resource"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"ASM-01"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "setup_start"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "setup_end"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">6</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "run_start"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">6</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "run_end"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">9</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "quantity"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "unit"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"EA"</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  ]</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<p>U 的加工时长按表中的整项任务参数计算，没有据此建立通用节拍。完整契约还需来源任务映射、工序版本、辅助资源、日历版本、修改范围、审批引用与幂等身份。</p>
+<p>发布前应与最新对象状态比较。如果 MES 已经改变派工，或者 F 的剩余工时发生变化，就需要按规则重新核对受影响的差异，不能用候选里的预期区间覆盖当前执行事实。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>从候选评审到执行反馈</strong><a href="/manufacturing/maps/aps-plan-execution.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/aps-plan-execution.html" title="APS 候选计划评审受控发布执行回执与实绩重排交互图" loading="lazy" allowfullscreen></iframe>
+<figcaption>三行分别展开目标落实、实绩重排和方案批准，属于同一计划闭环的不同业务视角。候选不会自动成为执行基线，ERP 与 MES 分别返回业务结果。点击节点或连线查看细节，动画只表示已绘制的数据方向。</figcaption>
+</figure>
+<h3 id="部分应用失败时保留各系统的实际结果">部分应用失败时保留各系统的实际结果</h3>
+<p>ERP 接受新时间，MES 因工序状态变化拒绝应用，是可能存在的中间结果。发布台账应标出每个目标的接受范围、拒绝原因、目标版本和未落实任务，不能只显示一个笼统的“发布成功”。</p>
+<p>按企业批准的规则，可以暂停相关新任务释放、处理冲突后补发，或批准新的局部方案。相同发布身份与相同内容重试时，应能够查到已有结果；内容改变则形成明确的新版本，避免重复建立任务或覆盖另一轮修改。</p>
+<p>撤销候选或恢复旧计划，不会自动撤销已经发生的领料、换型、开工与实物移动。恢复时要重新核对当前事实，再决定可以撤回哪些未执行安排、哪些需要补偿或另行批准。</p>
+<h2 id="怎样验收排程结果并让-agent-参与">怎样验收排程结果并让 Agent 参与</h2>
+<h3 id="用小样本检查硬约束和计划变动">用小样本检查硬约束和计划变动</h3>
+<p>可以先人工核对本文三个方案，再选真实岗位认可的样本覆盖多工序、共享资源和异常恢复。每项验收同时保留输入、约束配置、候选区间与检查结果，不能只验收画面上是否出现了甘特条。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>验收情形</th><th>应看到的结果</th></tr></thead><tbody><tr><td>T 物料 h2 才满足</td><td>本例不允许在 h2 前为 T 换型或加工</td></tr><tr><td>h4 至 h5 休息、加工不可中断</td><td>不把三小时加工直接排成 <code>[3,6)</code> 放在主设备上</td></tr><tr><td>S1 的换型已在 h3 完成</td><td>保留 B 状态，T <code>[5,8)</code> 加工后再换回 A</td></tr><tr><td>S2 插入 U</td><td>F 不移动，U <code>[2,4)</code>，T 换型 <code>[5,6)</code>、加工 <code>[6,9)</code></td></tr><tr><td>候选使用 ASM-02</td><td>同时核对设备资格、独立人员、特殊窗口与批准条件</td></tr><tr><td>两台设备共用同一工装或人员</td><td>纳入辅助资源冲突，不能仅检查设备不重叠</td></tr><tr><td>限时未找到方案或发现模型错误</td><td>区分尚无结论、不可行与模型无效，不伪造成功计划</td></tr><tr><td>快照之后已有任务开工或状态变化</td><td>发布前重新校验，保留已执行记录和剩余范围</td></tr><tr><td>ERP 与 MES 只接受一部分</td><td>各自结果可查询，相关任务按批准规则处理</td></tr><tr><td>同一发布重试或迟到旧版本到达</td><td>不重复建任务，不静默覆盖较新的目标基线</td></tr></tbody></table>
+<p>涉及加班、允许跨班加工、替代资源或批量拆分时，应作为新方案条件单独记录。它们可能改善结果，也会改变成本、质量依据和现场安排，不能在计算过程中悄悄启用。</p>
+<h3 id="agent-先整理约束与解释候选差异">Agent 先整理约束与解释候选差异</h3>
+<p>适合从“为什么 T 不能在 h3 直接加工三小时”开始。Agent 读取物料时间、主设备日历、不可中断规则与已占用区间，指出 h4 至 h5 的休息窗口，再关联到允许的候选。</p>
+<p>比较 S1 与 S2 时，Agent 可以列出任务区间、换型次数、延期口径和受影响订单；比较 S3 时，应指出新增资源条件，避免把改变约束后的结果包装成同一前提下的算法提升。每条结论附来源对象、输入版本、读取时间与所用规则。</p>
+<p>Agent 可以生成缺失输入清单、冲突解释、候选对比和评审草稿。模型生成的自然语言顺序，还需经过排程约束检查；发布、改派、解除冻结和改变资源资格分别走授权业务动作，执行后保存目标回执。</p>
+<p>这篇先把排程输入、手算候选和执行交接留下。下一篇进入 QMS、LIMS 与质量放行，继续拆检验结果、处置权限和库存限制怎样影响生产与交付。目录进度保留在<a href="/blog/2026-10-14-manufacturing-systems-map/">制造业研究目录</a>，计划与执行关系可以回到<a href="/manufacturing/data-map/#product-orders">数据地图</a>查看。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 
