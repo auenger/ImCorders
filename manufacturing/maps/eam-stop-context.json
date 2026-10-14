@@ -1,0 +1,349 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "现场信号怎样关联停机与维修",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-eam-20261014-150935/eam-stop-context/eam-stop-context.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "quality_profile": "showcase",
+    "animation": "trace",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "数据关联"
+        },
+        "emphasis": {
+          "label": "受控动作"
+        },
+        "security": {
+          "label": "条件核验"
+        },
+        "dashed": {
+          "label": "反馈与核对"
+        },
+        "database": {
+          "label": "记录与证据"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "来源记录"
+    },
+    {
+      "label": "对象与时间"
+    },
+    {
+      "label": "关联事件"
+    },
+    {
+      "label": "业务核验"
+    },
+    {
+      "label": "目标记录"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "signals",
+      "label": "PLC / SCADA 信号",
+      "sublabel": "值、质量与来源时间",
+      "type": "database",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "signal-check",
+      "label": "采集数据核验",
+      "sublabel": "设备映射与时间质量",
+      "type": "security",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "execution",
+      "label": "MES 执行记录",
+      "sublabel": "任务、工序与产出",
+      "type": "database",
+      "stage": 0,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "context-check",
+      "label": "执行上下文核验",
+      "sublabel": "设备及任务有效区间",
+      "type": "security",
+      "stage": 1,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "calendar",
+      "label": "资源与班次日历",
+      "sublabel": "计划生产及维护窗口",
+      "type": "database",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "calendar-check",
+      "label": "日历版本核验",
+      "sublabel": "资源关系与适用范围",
+      "type": "security",
+      "stage": 1,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "stop",
+      "label": "设备事件关联",
+      "sublabel": "STOP-E01 · 保留来源",
+      "type": "database",
+      "stage": 2,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "maintenance",
+      "label": "维修需求评估",
+      "sublabel": "现象与维修范围确认",
+      "type": "security",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "eam-order",
+      "label": "EAM 维修工单",
+      "sublabel": "批准后创建及关联",
+      "type": "backend",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "production",
+      "label": "生产停机核对",
+      "sublabel": "区间、原因及计量口径",
+      "type": "security",
+      "stage": 3,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "stop-ledger",
+      "label": "MES 停机台账",
+      "sublabel": "确认范围与修订版本",
+      "type": "backend",
+      "stage": 4,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "capacity",
+      "label": "资源影响核对",
+      "sublabel": "资格、窗口及未知状态",
+      "type": "security",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "resource-ledger",
+      "label": "APS 资源限制",
+      "sublabel": "确认窗口及版本回执",
+      "type": "backend",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "source-0",
+      "from": "signals",
+      "to": "signal-check",
+      "label": "核验",
+      "variant": "default"
+    },
+    {
+      "id": "source-1",
+      "from": "execution",
+      "to": "context-check",
+      "label": "核验",
+      "variant": "default"
+    },
+    {
+      "id": "source-2",
+      "from": "calendar",
+      "to": "calendar-check",
+      "label": "核验",
+      "variant": "default"
+    },
+    {
+      "id": "signal-stop",
+      "from": "signal-check",
+      "to": "stop",
+      "label": "信号",
+      "variant": "default",
+      "fromSide": "right",
+      "toSide": "left",
+      "via": [
+        [
+          445,
+          160
+        ],
+        [
+          445,
+          274
+        ]
+      ],
+      "labelAt": [
+        420,
+        207
+      ]
+    },
+    {
+      "id": "execution-stop",
+      "from": "context-check",
+      "to": "stop",
+      "label": "任务",
+      "variant": "default",
+      "route": "straight",
+      "fromSide": "right",
+      "toSide": "left",
+      "labelAt": [
+        420,
+        243
+      ]
+    },
+    {
+      "id": "calendar-stop",
+      "from": "calendar-check",
+      "to": "stop",
+      "label": "日历",
+      "variant": "default"
+    },
+    {
+      "id": "stop-maintenance",
+      "from": "stop",
+      "to": "maintenance",
+      "label": "关联",
+      "variant": "security",
+      "fromSide": "top",
+      "toSide": "left",
+      "via": [
+        [
+          530,
+          160
+        ]
+      ],
+      "labelAt": [
+        620,
+        147
+      ]
+    },
+    {
+      "id": "apply-maintenance",
+      "from": "maintenance",
+      "to": "eam-order",
+      "label": "批准",
+      "variant": "emphasis"
+    },
+    {
+      "id": "stop-production",
+      "from": "stop",
+      "to": "production",
+      "label": "区间",
+      "variant": "security",
+      "route": "straight",
+      "fromSide": "right",
+      "toSide": "left",
+      "labelAt": [
+        638,
+        261
+      ]
+    },
+    {
+      "id": "apply-production",
+      "from": "production",
+      "to": "stop-ledger",
+      "label": "确认",
+      "variant": "emphasis"
+    },
+    {
+      "id": "stop-capacity",
+      "from": "stop",
+      "to": "capacity",
+      "label": "关联",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "left",
+      "via": [
+        [
+          530,
+          388
+        ]
+      ],
+      "labelAt": [
+        620,
+        375
+      ]
+    },
+    {
+      "id": "apply-capacity",
+      "from": "capacity",
+      "to": "resource-ledger",
+      "label": "确认",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "事件保留多种来源",
+      "items": [
+        "报警、生产执行及计划日历按资产与有效时间关联",
+        "信号缺失保持未知，不自动判成设备停止"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "三种业务分别核验",
+      "items": [
+        "停机事件不必然产生维修工单，也不等于根因已确认",
+        "资源受影响窗口按实际映射和当前证据确认"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "聚合不删除原始记录",
+      "items": [
+        "报警抖动与重复上报按批准规则处理并保留来源",
+        "计划窗口、预测恢复和实际恢复分别保存"
+      ]
+    }
+  ]
+}

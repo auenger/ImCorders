@@ -130,6 +130,7 @@
 
 - [APS 如何处理物料、产能、换型和插单](https://imcoders.cn/manufacturing/aps-finite-capacity-rescheduling/index.md): 从风机尾批任务与一张急单出发，拆解 APS 的输入快照、有限产能、物料、日历、换型和冻结规则，比较三种排程方案，并记录候选评审、ERP 与 MES 发布回执、实绩重排和 Agent 接入的验收边界。
 - [制造业系统数据地图](https://imcoders.cn/manufacturing/data-map/index.md): 用五张交互地图连接产品、订单、物料、质量、设备和组织数据，明确系统之间传递的对象、版本、状态与回执，作为制造业系统深度拆解的起点。
+- [EAM、现场状态与设备停机分析](https://imcoders.cn/manufacturing/eam-equipment-downtime-analysis/index.md): 从一台装配设备的独立停机样本出发，拆解 PLC、SCADA、MES、EAM 与 APS 的设备映射、时间质量、维修工单、复产条件和产能回执，计算停机与可用率，并记录跨系统接入的验收场景。
 - [ERP 怎样连接订单、物料、生产与成本](https://imcoders.cn/manufacturing/erp-order-material-cost/index.md): 沿着一张风机订单，拆解 ERP 中的销售需求、MRP、采购与生产订单、库存事务和成本核算，说明工程变更后怎样重算缺料、接收现场记录、处理接口重试，并用动态图与验收案例保留跨系统证据。
 - [MES 中一张工单的完整生命周期](https://imcoders.cn/manufacturing/mes-work-order-lifecycle/index.md): 沿着一张风机工单，拆解 MES 的接单、准备、派工、开工、过站、报工、质量挂起、返工和完工，区分工单与单件状态，用动态图记录 ERP、WMS 和质量系统的交接，并给出异常恢复、追溯与 Agent 接入的验收范围。
 - [用数据解释一张订单为什么延期](https://imcoders.cn/manufacturing/order-delivery-delay-analysis/index.md): 把 PLM、ERP、MES 与 WMS 的记录接到同一张风机订单，区分客户要求、确认承诺、计划版本和实际事件，用数量范围、并行条件及条件重算解释延期，避免把局部等待相加或将接口迟到误判为现场停工。

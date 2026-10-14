@@ -1790,6 +1790,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/data-map/index.md"
     },
     {
+      "id": "manufacturing/eam-equipment-downtime-analysis",
+      "kind": "manufacturing",
+      "title": "EAM、现场状态与设备停机分析",
+      "description": "从一台装配设备的独立停机样本出发，拆解 PLC、SCADA、MES、EAM 与 APS 的设备映射、时间质量、维修工单、复产条件和产能回执，计算停机与可用率，并记录跨系统接入的验收场景。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "EAM",
+        "设备管理",
+        "停机分析",
+        "系统集成"
+      ],
+      "publishedAt": "2026-10-14T00:00:00.000Z",
+      "updatedAt": "2026-10-14T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/eam-equipment-downtime-analysis/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/eam-equipment-downtime-analysis/index.md"
+    },
+    {
       "id": "manufacturing/erp-order-material-cost",
       "kind": "manufacturing",
       "title": "ERP 怎样连接订单、物料、生产与成本",
