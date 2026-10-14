@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "模拟订单的可发时点由并行条件共同决定",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-order-delay-20261014-133922/order-delay-dependencies/order-delay-dependencies.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "quality_profile": "showcase",
+    "animation": "trace",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "对象与条件"
+        },
+        "emphasis": {
+          "label": "必要依赖"
+        },
+        "security": {
+          "label": "范围校验"
+        },
+        "dashed": {
+          "label": "履约证据"
+        },
+        "database": {
+          "label": "来源记录"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "前置条件"
+    },
+    {
+      "label": "尾批开工"
+    },
+    {
+      "label": "单件集合就绪"
+    },
+    {
+      "label": "全量可发条件"
+    },
+    {
+      "label": "仓储与运输"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "material",
+      "type": "database",
+      "label": "尾批物料可领",
+      "sublabel": "实际 D5，基线 D4",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "resource",
+      "type": "database",
+      "label": "尾批资源可用",
+      "sublabel": "实际 D6，基线 D4",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "start",
+      "type": "security",
+      "label": "尾批 20 台开工",
+      "sublabel": "条件取较晚时点 D6",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "tail",
+      "type": "backend",
+      "label": "尾批 20 台放行",
+      "sublabel": "开工后 1 日，实际 D7",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "others",
+      "type": "backend",
+      "label": "其他 178 台就绪",
+      "sublabel": "旧 40 台 D3，新 138 台 D4",
+      "stage": 2,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "rework",
+      "type": "backend",
+      "label": "返工 2 台放行",
+      "sublabel": "独立返工工位，实际 D8",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "ready",
+      "type": "security",
+      "label": "全单 200 台可发",
+      "sublabel": "40 + 138 + 20 + 2，D8",
+      "stage": 3,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "delivered",
+      "type": "database",
+      "label": "发运与客户签收",
+      "sublabel": "发运 D9，签收 D10",
+      "stage": 4,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "material-condition",
+      "from": "material",
+      "to": "start",
+      "label": "物料条件",
+      "variant": "emphasis",
+      "route": "straight",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "resource-condition",
+      "from": "resource",
+      "to": "start",
+      "label": "资源条件",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "bottom",
+      "via": [
+        [
+          315,
+          388
+        ]
+      ],
+      "labelAt": [
+        315,
+        285
+      ]
+    },
+    {
+      "id": "tail-production",
+      "from": "start",
+      "to": "tail",
+      "label": "执行一日",
+      "variant": "default"
+    },
+    {
+      "id": "tail-ready",
+      "from": "tail",
+      "to": "ready",
+      "label": "尾批条件",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "top",
+      "via": [
+        [
+          638,
+          160
+        ],
+        [
+          638,
+          220
+        ],
+        [
+          745,
+          220
+        ]
+      ],
+      "labelAt": [
+        685,
+        207
+      ]
+    },
+    {
+      "id": "others-ready",
+      "from": "others",
+      "to": "ready",
+      "label": "已就绪量",
+      "variant": "emphasis",
+      "route": "straight",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "rework-ready",
+      "from": "rework",
+      "to": "ready",
+      "label": "返工条件",
+      "variant": "emphasis"
+    },
+    {
+      "id": "delivery-lag",
+      "from": "ready",
+      "to": "delivered",
+      "label": "仓运两日",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "固定本篇的简化日历",
+      "items": [
+        "D0 起按连续自然日、同一日界比较。",
+        "全量同批交付；可发后次日发运，再过 1 日签收。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "基线与实际分别计算",
+      "items": [
+        "基线全量 D5 就绪、D6 发运、D7 签收。",
+        "实际尾批 D7 放行，但最后两台到 D8 才放行。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "条件依赖不等于责任分摊",
+      "items": [
+        "物料晚 1 日、资源晚 2 日，不能直接相加。",
+        "模型固定其他条件，未模拟共享资源重排与全部异常。",
+        "动画表示依赖方向，不表示已验证的真实时间流逝。"
+      ]
+    }
+  ]
+}

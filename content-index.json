@@ -1808,6 +1808,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/mes-work-order-lifecycle/index.md"
     },
     {
+      "id": "manufacturing/order-delivery-delay-analysis",
+      "kind": "manufacturing",
+      "title": "用数据解释一张订单为什么延期",
+      "description": "把 PLM、ERP、MES 与 WMS 的记录接到同一张风机订单，区分客户要求、确认承诺、计划版本和实际事件，用数量范围、并行条件及条件重算解释延期，避免把局部等待相加或将接口迟到误判为现场停工。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "订单交付",
+        "延期分析",
+        "数据分析",
+        "AI Agent"
+      ],
+      "publishedAt": "2026-10-14T00:00:00.000Z",
+      "updatedAt": "2026-10-14T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/order-delivery-delay-analysis/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/order-delivery-delay-analysis/index.md"
+    },
+    {
       "id": "manufacturing/plm-engineering-change",
       "kind": "manufacturing",
       "title": "PLM 工程变更如何从设计进入生产",

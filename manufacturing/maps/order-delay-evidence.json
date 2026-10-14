@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "交期分析先关联订单、版本与履约证据",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-order-delay-20261014-133922/order-delay-evidence/order-delay-evidence.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "quality_profile": "showcase",
+    "animation": "trace",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "对象与条件"
+        },
+        "emphasis": {
+          "label": "必要依赖"
+        },
+        "security": {
+          "label": "范围校验"
+        },
+        "dashed": {
+          "label": "履约证据"
+        },
+        "database": {
+          "label": "来源记录"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "订单与来源"
+    },
+    {
+      "label": "映射与适用范围"
+    },
+    {
+      "label": "执行上下文"
+    },
+    {
+      "label": "交接与结果"
+    },
+    {
+      "label": "核对与留证"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "delivery-0",
+      "type": "backend",
+      "label": "ERP 销售订单行",
+      "sublabel": "200 台与承诺基线 C0",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "delivery-1",
+      "type": "backend",
+      "label": "订单供给映射",
+      "sublabel": "旧 40 台与新 160 台",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "delivery-2",
+      "type": "backend",
+      "label": "MES 执行批次",
+      "sublabel": "不同单件及最终放行",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "delivery-3",
+      "type": "backend",
+      "label": "WMS 发运明细",
+      "sublabel": "产品、数量与承运交接",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "delivery-4",
+      "type": "database",
+      "label": "客户签收记录",
+      "sublabel": "实际签收数量与时点",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "definition-0",
+      "type": "backend",
+      "label": "PLM 产品基线",
+      "sublabel": "批准变更与适用范围",
+      "stage": 0,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "definition-1",
+      "type": "backend",
+      "label": "ERP 工单配置",
+      "sublabel": "适用 BOM、路线与工厂",
+      "stage": 1,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "definition-2",
+      "type": "backend",
+      "label": "WMS 备料与配送",
+      "sublabel": "新料批次、状态与交接",
+      "stage": 2,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "definition-3",
+      "type": "backend",
+      "label": "MES 投入与版本",
+      "sublabel": "产品与用料、文件关联",
+      "stage": 3,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "definition-4",
+      "type": "database",
+      "label": "工单依据核对",
+      "sublabel": "当时依据与实际记录",
+      "stage": 4,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "execution-0",
+      "type": "backend",
+      "label": "ERP 采购供给",
+      "sublabel": "采购行、承诺与需求",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "execution-1",
+      "type": "backend",
+      "label": "WMS 收货与放行",
+      "sublabel": "实收到货与质量可领",
+      "stage": 1,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "execution-2",
+      "type": "backend",
+      "label": "MES 开工条件",
+      "sublabel": "物料、资源与资格",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "execution-3",
+      "type": "backend",
+      "label": "MES 报工与返工",
+      "sublabel": "首轮、返工与再检记录",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "execution-4",
+      "type": "database",
+      "label": "最终单件集合",
+      "sublabel": "不同产品去重与状态",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "delivery-flow-0",
+      "from": "delivery-0",
+      "to": "delivery-1",
+      "label": "供给关联",
+      "variant": "default"
+    },
+    {
+      "id": "delivery-flow-1",
+      "from": "delivery-1",
+      "to": "delivery-2",
+      "label": "工单映射",
+      "variant": "default"
+    },
+    {
+      "id": "delivery-flow-2",
+      "from": "delivery-2",
+      "to": "delivery-3",
+      "label": "成品交接",
+      "variant": "default"
+    },
+    {
+      "id": "delivery-flow-3",
+      "from": "delivery-3",
+      "to": "delivery-4",
+      "label": "发运关联",
+      "variant": "dashed"
+    },
+    {
+      "id": "definition-flow-0",
+      "from": "definition-0",
+      "to": "definition-1",
+      "label": "版本关联",
+      "variant": "default"
+    },
+    {
+      "id": "definition-flow-1",
+      "from": "definition-1",
+      "to": "definition-2",
+      "label": "物料范围",
+      "variant": "default"
+    },
+    {
+      "id": "definition-flow-2",
+      "from": "definition-2",
+      "to": "definition-3",
+      "label": "投入关联",
+      "variant": "default"
+    },
+    {
+      "id": "definition-flow-3",
+      "from": "definition-3",
+      "to": "definition-4",
+      "label": "依据核对",
+      "variant": "dashed"
+    },
+    {
+      "id": "execution-flow-0",
+      "from": "execution-0",
+      "to": "execution-1",
+      "label": "供给映射",
+      "variant": "default"
+    },
+    {
+      "id": "execution-flow-1",
+      "from": "execution-1",
+      "to": "execution-2",
+      "label": "前置核对",
+      "variant": "default"
+    },
+    {
+      "id": "execution-flow-2",
+      "from": "execution-2",
+      "to": "execution-3",
+      "label": "执行记录",
+      "variant": "default"
+    },
+    {
+      "id": "execution-flow-3",
+      "from": "execution-3",
+      "to": "execution-4",
+      "label": "结果核对",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "关联方向不等于接口拓扑",
+      "items": [
+        "箭头是本次查询的对象关联方向，不规定系统直连接口。",
+        "三行共享同一订单、工单、物料及单件上下文。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "承诺、计划与事实分别保存",
+      "items": [
+        "客户要求、确认承诺、计划版本与实际事件不能互相覆盖。",
+        "最终签收需要签收证据，不能以完工或发运替代。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "证据仍需补齐时间与来源",
+      "items": [
+        "开工条件还须读取资源日历、资格与限制的来源记录。",
+        "图上的连通关系不能单独证明因果或岗位责任。"
+      ]
+    }
+  ]
+}
