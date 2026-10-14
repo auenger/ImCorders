@@ -1,0 +1,267 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "检验结果如何进入处置与追溯",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-manufacturing-20261014-105817/quality-traceability/quality-traceability.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "数据交换"
+        },
+        "emphasis": {
+          "label": "主要下达"
+        },
+        "security": {
+          "label": "授权与生效"
+        },
+        "dashed": {
+          "label": "事实与结果"
+        },
+        "database": {
+          "label": "持久记录"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "生产与定义"
+    },
+    {
+      "label": "检验与关联"
+    },
+    {
+      "label": "结果与分析"
+    },
+    {
+      "label": "批准与改进"
+    },
+    {
+      "label": "受控状态"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "mes-facts",
+      "type": "backend",
+      "label": "MES",
+      "sublabel": "工序、批次与过程记录",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "inspection",
+      "type": "backend",
+      "label": "QMS 检验视角",
+      "sublabel": "检验批、计划与样品",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "laboratory",
+      "type": "backend",
+      "label": "LIMS / 检测设备",
+      "sublabel": "方法版本、测量与报告",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "disposition",
+      "type": "backend",
+      "label": "QMS 处置视角",
+      "sublabel": "合格、隔离、返工与报废",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "stock-status",
+      "type": "backend",
+      "label": "WMS / MES",
+      "sublabel": "冻结、放行与执行限制",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "engineering",
+      "type": "backend",
+      "label": "PLM / 工艺",
+      "sublabel": "物料、工艺与变更版本",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "genealogy",
+      "type": "database",
+      "label": "追溯谱系",
+      "sublabel": "批次投入产出与序列号",
+      "stage": 1,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "analysis",
+      "type": "backend",
+      "label": "SPC / 质量分析",
+      "sublabel": "异常证据与原因调查",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "change",
+      "type": "backend",
+      "label": "PLM 变更视角",
+      "sublabel": "经审核的变更与生效",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "new-route",
+      "type": "backend",
+      "label": "MES 适用版本",
+      "sublabel": "新版本与现场隔离规则",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "inspect-request",
+      "to": "inspection",
+      "label": "检验申请",
+      "variant": "emphasis",
+      "from": "mes-facts",
+      "route": "straight"
+    },
+    {
+      "id": "sample-task",
+      "to": "laboratory",
+      "label": "样品任务",
+      "variant": "default",
+      "from": "inspection",
+      "route": "straight"
+    },
+    {
+      "id": "test-results",
+      "to": "disposition",
+      "label": "检验结果",
+      "variant": "dashed",
+      "from": "laboratory",
+      "route": "straight"
+    },
+    {
+      "id": "approved-decision",
+      "to": "stock-status",
+      "label": "批准处置",
+      "variant": "security",
+      "from": "disposition",
+      "route": "straight"
+    },
+    {
+      "id": "version-context",
+      "to": "genealogy",
+      "label": "版本关联",
+      "variant": "default",
+      "from": "engineering",
+      "route": "straight"
+    },
+    {
+      "id": "genealogy-facts",
+      "to": "genealogy",
+      "label": "批次谱系",
+      "variant": "default",
+      "from": "mes-facts",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "via": [
+        [
+          100,
+          265
+        ],
+        [
+          315,
+          265
+        ]
+      ],
+      "labelAt": [
+        208,
+        250
+      ]
+    },
+    {
+      "id": "evidence-analysis",
+      "to": "analysis",
+      "label": "关联证据",
+      "variant": "default",
+      "from": "genealogy",
+      "route": "straight"
+    },
+    {
+      "id": "improvement-request",
+      "to": "change",
+      "label": "改进建议",
+      "variant": "default",
+      "from": "analysis",
+      "route": "straight"
+    },
+    {
+      "id": "change-effective",
+      "to": "new-route",
+      "label": "批准生效",
+      "variant": "security",
+      "from": "change",
+      "route": "straight"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "结果与决定",
+      "items": [
+        "检验结果进入 QMS，放行取决于授权角色与业务规则。",
+        "WMS、MES 收到处置后各自执行库存和生产限制。"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "追溯依赖原始记录",
+      "items": [
+        "批次、序列号、设备、人员、工艺版本需在生产时关联。",
+        "追溯平台可以由 MES 或数据平台承接。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "变更仍需审批",
+      "items": [
+        "分析发现异常可以发起改进建议。",
+        "工艺修改按变更流程批准，不能由统计异常直接覆盖。"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "物料如何从到货走到消耗与交付",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-manufacturing-20261014-105817/materials-logistics/materials-logistics.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "数据交换"
+        },
+        "emphasis": {
+          "label": "主要下达"
+        },
+        "security": {
+          "label": "授权与生效"
+        },
+        "dashed": {
+          "label": "事实与结果"
+        },
+        "database": {
+          "label": "持久记录"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "外部协同"
+    },
+    {
+      "label": "业务单据"
+    },
+    {
+      "label": "仓库作业"
+    },
+    {
+      "label": "执行与运输"
+    },
+    {
+      "label": "现场与客户"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "supplier",
+      "type": "backend",
+      "label": "SRM / 供应商",
+      "sublabel": "交付承诺、到货通知",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "purchase",
+      "type": "backend",
+      "label": "ERP",
+      "sublabel": "采购单、交货单与需求",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "warehouse",
+      "type": "backend",
+      "label": "WMS",
+      "sublabel": "收货、库存、库位与任务",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "warehouse-control",
+      "type": "backend",
+      "label": "WES / WCS / 车队",
+      "sublabel": "仓内与厂内搬运任务",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "material-use",
+      "type": "backend",
+      "label": "MES",
+      "sublabel": "领用确认、批次与消耗",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "quality-release",
+      "type": "backend",
+      "label": "QMS / IQC",
+      "sublabel": "来料检验与批准处置",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "transport",
+      "type": "backend",
+      "label": "TMS / YMS",
+      "sublabel": "预约、运单与在途状态",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "service",
+      "type": "backend",
+      "label": "CRM / FSM",
+      "sublabel": "签收、客户与服务记录",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "supplier-commitment",
+      "to": "purchase",
+      "label": "到货承诺",
+      "variant": "default",
+      "from": "supplier",
+      "route": "straight"
+    },
+    {
+      "id": "warehouse-order",
+      "to": "warehouse",
+      "label": "收发需求",
+      "variant": "emphasis",
+      "from": "purchase",
+      "route": "straight"
+    },
+    {
+      "id": "move-tasks",
+      "to": "warehouse-control",
+      "label": "搬运任务",
+      "variant": "emphasis",
+      "from": "warehouse",
+      "route": "straight"
+    },
+    {
+      "id": "delivery-receipt",
+      "to": "material-use",
+      "label": "送达确认",
+      "variant": "default",
+      "from": "warehouse-control",
+      "route": "straight"
+    },
+    {
+      "id": "quality-gate",
+      "to": "warehouse",
+      "label": "批准放行",
+      "variant": "security",
+      "from": "quality-release"
+    },
+    {
+      "id": "shipping",
+      "to": "transport",
+      "label": "发运交接",
+      "variant": "default",
+      "from": "warehouse"
+    },
+    {
+      "id": "proof-of-delivery",
+      "to": "service",
+      "label": "签收结果",
+      "variant": "dashed",
+      "from": "transport",
+      "route": "straight"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "数据与实物",
+      "items": [
+        "箭头表示任务、状态和单据交换，物料实物流另行记录。",
+        "WES、WCS 和车队按能力分组，不代表三者必须串联。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "库存条件",
+      "items": [
+        "到货不等于可领用；检验、冻结、预留共同影响可用量。",
+        "本图只展示放行返回路径；检验申请与结果见质量视图。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "必须回传",
+      "items": [
+        "搬运完成或失败要回传 WMS；耗料与入库还需与 ERP 对账。",
+        "主图突出下达方向，回传契约在正文逐项列出。"
+      ]
+    }
+  ]
+}

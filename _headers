@@ -8,6 +8,15 @@
   X-Robots-Tag: noindex
   Link: </llms.txt>; rel="describedby"
 
+/manufacturing/*/index.md
+  Content-Type: text/markdown; charset=utf-8
+  X-Robots-Tag: noindex
+  Link: </llms.txt>; rel="describedby"
+
+/manufacturing/maps/*
+  X-Robots-Tag: noindex
+  Link: </manufacturing/data-map/>; rel="canonical"
+
 /content-index.json
   Content-Type: application/json; charset=utf-8
   X-Robots-Tag: noindex

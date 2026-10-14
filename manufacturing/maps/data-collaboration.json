@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "业务数据如何成为受控的跨系统证据",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-manufacturing-20261014-105817/data-collaboration/data-collaboration.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "数据交换"
+        },
+        "emphasis": {
+          "label": "主要下达"
+        },
+        "security": {
+          "label": "授权与生效"
+        },
+        "dashed": {
+          "label": "事实与结果"
+        },
+        "database": {
+          "label": "持久记录"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "数据与规则来源"
+    },
+    {
+      "label": "交换与执行"
+    },
+    {
+      "label": "语义与治理"
+    },
+    {
+      "label": "可复核数据"
+    },
+    {
+      "label": "使用与协同"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "business-records",
+      "type": "backend",
+      "label": "业务系统与现场",
+      "sublabel": "ERP、MES、WMS 与设备记录",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "integration",
+      "type": "messagebus",
+      "label": "API / EDI / 事件",
+      "sublabel": "消息、文件与变更捕获",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "semantics",
+      "type": "backend",
+      "label": "MDM / 数据治理",
+      "sublabel": "编码、单位、时间与血缘",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "curated",
+      "type": "database",
+      "label": "数据平台 / 知识库",
+      "sublabel": "业务副本、文档与证据",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "consumers",
+      "type": "backend",
+      "label": "BI / 仿真 / Agent",
+      "sublabel": "分析、查询与方案建议",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "people-docs",
+      "type": "backend",
+      "label": "HR / LMS / DMS",
+      "sublabel": "人员资格与受控文件",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "workflow",
+      "type": "backend",
+      "label": "BPM / 业务校验",
+      "sublabel": "角色、适用版本与任务",
+      "stage": 1,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "action-gate",
+      "type": "security",
+      "label": "身份 / 授权 / 审批",
+      "sublabel": "校验对象、动作与条件",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "system-action",
+      "type": "backend",
+      "label": "业务系统写入接口",
+      "sublabel": "幂等、状态前置与审计",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "audit",
+      "type": "database",
+      "label": "审计与运行支撑",
+      "sublabel": "结果、失败、恢复与对账",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "data-exchange",
+      "to": "integration",
+      "label": "业务记录",
+      "variant": "dashed",
+      "from": "business-records",
+      "route": "straight"
+    },
+    {
+      "id": "normalization",
+      "to": "semantics",
+      "label": "对象映射",
+      "variant": "default",
+      "from": "integration",
+      "route": "straight"
+    },
+    {
+      "id": "curated-evidence",
+      "to": "curated",
+      "label": "治理数据",
+      "variant": "default",
+      "from": "semantics",
+      "route": "straight"
+    },
+    {
+      "id": "evidence-read",
+      "to": "consumers",
+      "label": "受控证据",
+      "variant": "default",
+      "from": "curated",
+      "route": "straight"
+    },
+    {
+      "id": "qualification",
+      "to": "workflow",
+      "label": "资格版本",
+      "variant": "default",
+      "from": "people-docs",
+      "route": "straight"
+    },
+    {
+      "id": "task-authorization",
+      "to": "action-gate",
+      "label": "待办动作",
+      "variant": "default",
+      "from": "workflow",
+      "route": "straight"
+    },
+    {
+      "id": "permitted-write",
+      "to": "system-action",
+      "label": "授权通过",
+      "variant": "security",
+      "from": "action-gate",
+      "route": "straight"
+    },
+    {
+      "id": "audit-receipt",
+      "to": "audit",
+      "label": "执行回执",
+      "variant": "dashed",
+      "from": "system-action",
+      "route": "straight"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "多种集成方式",
+      "items": [
+        "本图是数据加工示意，并不要求全部数据集中落库。",
+        "实时查询可经受控连接器直接读取来源系统。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "分析与动作分开",
+      "items": [
+        "上排用于分析与查询，下排表示受控业务动作的执行路径。",
+        "Agent 的动作建议若要执行，也必须进入下排授权与业务校验。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "责任留在来源系统",
+      "items": [
+        "数据副本保留来源、版本、业务时间与读取时间。",
+        "备份、监控、ITSM 与网络边界支撑恢复，不改变业务数据所有者。"
+      ]
+    }
+  ]
+}

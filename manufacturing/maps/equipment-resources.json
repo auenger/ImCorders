@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "设备信号如何影响维护与可用产能",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-manufacturing-20261014-105817/equipment-resources/equipment-resources.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "数据交换"
+        },
+        "emphasis": {
+          "label": "主要下达"
+        },
+        "security": {
+          "label": "授权与生效"
+        },
+        "dashed": {
+          "label": "事实与结果"
+        },
+        "database": {
+          "label": "持久记录"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "现场来源"
+    },
+    {
+      "label": "采集与监视"
+    },
+    {
+      "label": "记录与管理"
+    },
+    {
+      "label": "业务关联"
+    },
+    {
+      "label": "计划与分析"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "control",
+      "type": "backend",
+      "label": "PLC / DCS / CNC",
+      "sublabel": "设备状态、参数与报警",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "supervision",
+      "type": "backend",
+      "label": "SCADA / 边缘网关",
+      "sublabel": "点位、事件与质量标记",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "historical",
+      "type": "database",
+      "label": "Historian",
+      "sublabel": "时序、时间戳与历史事件",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "mes-context",
+      "type": "backend",
+      "label": "MES",
+      "sublabel": "设备、工序、批次与班次",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "capacity",
+      "type": "backend",
+      "label": "APS",
+      "sublabel": "可用日历与产能约束",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "meters",
+      "type": "backend",
+      "label": "能源表计",
+      "sublabel": "电、水、气与蒸汽读数",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "energy",
+      "type": "backend",
+      "label": "能源 / 公用工程",
+      "sublabel": "计量边界与运行状态",
+      "stage": 1,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "maintenance",
+      "type": "backend",
+      "label": "EAM / CMMS / APM",
+      "sublabel": "健康、维修与维护窗口",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "resource-approval",
+      "type": "backend",
+      "label": "资源状态确认",
+      "sublabel": "维护结束与可用性确认",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "performance",
+      "type": "backend",
+      "label": "BI / EPM / EHS",
+      "sublabel": "能效、成本与风险分析",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "signal-collection",
+      "to": "supervision",
+      "label": "状态报警",
+      "variant": "default",
+      "from": "control",
+      "route": "straight"
+    },
+    {
+      "id": "time-series",
+      "to": "historical",
+      "label": "带时标值",
+      "variant": "dashed",
+      "from": "supervision",
+      "route": "straight"
+    },
+    {
+      "id": "contextualization",
+      "to": "mes-context",
+      "label": "过程证据",
+      "variant": "default",
+      "from": "historical",
+      "route": "straight"
+    },
+    {
+      "id": "availability-feedback",
+      "to": "capacity",
+      "label": "进度约束",
+      "variant": "dashed",
+      "from": "mes-context",
+      "route": "straight"
+    },
+    {
+      "id": "meter-reading",
+      "to": "energy",
+      "label": "计量读数",
+      "variant": "default",
+      "from": "meters",
+      "route": "straight"
+    },
+    {
+      "id": "failure-event",
+      "to": "maintenance",
+      "label": "故障事件",
+      "variant": "default",
+      "from": "supervision"
+    },
+    {
+      "id": "maintenance-complete",
+      "to": "resource-approval",
+      "label": "维护记录",
+      "variant": "default",
+      "from": "maintenance",
+      "route": "straight"
+    },
+    {
+      "id": "capacity-release",
+      "to": "capacity",
+      "label": "确认窗口",
+      "variant": "security",
+      "from": "resource-approval"
+    },
+    {
+      "id": "energy-allocation",
+      "to": "performance",
+      "label": "能耗分项",
+      "variant": "dashed",
+      "from": "energy",
+      "route": "bottom-channel",
+      "channelY": 466,
+      "fromSide": "bottom",
+      "toSide": "bottom"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "时间与语义",
+      "items": [
+        "设备点位须关联设备编号、单位、采样时间与质量标记。",
+        "MES 补充工单、工序和批次上下文。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "控制边界",
+      "items": [
+        "本图展示向上采集和业务反馈，不画通用 Agent 下发控制。",
+        "SIS 与本地联锁保留独立职责；涉及控制需另做工程设计。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "资源仍需核实",
+      "items": [
+        "维护完成后确认可用性，再更新排程约束。",
+        "能源分析须补齐班次、产量及分摊依据，图中略去侧向输入。"
+      ]
+    }
+  ]
+}

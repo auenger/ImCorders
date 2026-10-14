@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "产品定义如何进入生产订单",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-manufacturing-20261014-105817/product-orders/product-orders.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "数据交换"
+        },
+        "emphasis": {
+          "label": "主要下达"
+        },
+        "security": {
+          "label": "授权与生效"
+        },
+        "dashed": {
+          "label": "事实与结果"
+        },
+        "database": {
+          "label": "持久记录"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "业务来源"
+    },
+    {
+      "label": "定义与建单"
+    },
+    {
+      "label": "计划与准备"
+    },
+    {
+      "label": "执行依据"
+    },
+    {
+      "label": "现场与反馈"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "design",
+      "type": "backend",
+      "label": "CAD / PDM",
+      "sublabel": "模型、图纸、设计版本",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "plm",
+      "type": "backend",
+      "label": "PLM",
+      "sublabel": "产品结构、变更与生效",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "process",
+      "type": "backend",
+      "label": "CAPP / 工艺规划",
+      "sublabel": "制造结构、路线与工序",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "instructions",
+      "type": "backend",
+      "label": "MES 工艺视角",
+      "sublabel": "已发布路线与作业版本",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "station",
+      "type": "backend",
+      "label": "工位 / DNC",
+      "sublabel": "适用文件与加工程序",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "sales",
+      "type": "backend",
+      "label": "CRM / CPQ",
+      "sublabel": "需求、配置与交期承诺",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "erp-order",
+      "type": "backend",
+      "label": "ERP 订单视角",
+      "sublabel": "销售单与生产订单",
+      "stage": 1,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "schedule",
+      "type": "backend",
+      "label": "APS",
+      "sublabel": "资源约束与排程版本",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "execution",
+      "type": "backend",
+      "label": "MES 工单视角",
+      "sublabel": "派工、执行、产出与消耗",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "accounting",
+      "type": "backend",
+      "label": "ERP 核算视角",
+      "sublabel": "报工、收发料与成本",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "design-release",
+      "to": "plm",
+      "label": "设计版本",
+      "variant": "default",
+      "from": "design",
+      "route": "straight"
+    },
+    {
+      "id": "process-definition",
+      "to": "process",
+      "label": "产品定义",
+      "variant": "emphasis",
+      "from": "plm",
+      "route": "straight"
+    },
+    {
+      "id": "route-release",
+      "to": "instructions",
+      "label": "生效工艺",
+      "variant": "emphasis",
+      "from": "process",
+      "route": "straight"
+    },
+    {
+      "id": "program-dispatch",
+      "to": "station",
+      "label": "适用程序",
+      "variant": "default",
+      "from": "instructions",
+      "route": "straight"
+    },
+    {
+      "id": "sales-order",
+      "to": "erp-order",
+      "label": "确认配置",
+      "variant": "default",
+      "from": "sales",
+      "route": "straight"
+    },
+    {
+      "id": "production-demand",
+      "to": "schedule",
+      "label": "生产需求",
+      "variant": "emphasis",
+      "from": "erp-order",
+      "route": "straight"
+    },
+    {
+      "id": "dispatch",
+      "to": "execution",
+      "label": "批准排程",
+      "variant": "emphasis",
+      "from": "schedule",
+      "route": "straight"
+    },
+    {
+      "id": "actuals",
+      "to": "accounting",
+      "label": "产出消耗",
+      "variant": "dashed",
+      "from": "execution",
+      "route": "straight"
+    },
+    {
+      "id": "applicable-route",
+      "to": "execution",
+      "label": "适用版本",
+      "variant": "default",
+      "from": "instructions",
+      "route": "straight",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [
+        745,
+        275
+      ]
+    },
+    {
+      "id": "bom-for-planning",
+      "to": "erp-order",
+      "label": "生效物料",
+      "variant": "default",
+      "from": "plm",
+      "route": "straight",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [
+        315,
+        275
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "读图范围",
+      "items": [
+        "以离散制造为起点，工艺规划可由 PLM、ERP 或 MES 模块承接。",
+        "同名系统按业务视角重复显示，实际可能是同一实例。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "对象与关联键",
+      "items": [
+        "物料编码 + 版本 + BOM 生效条件；订单号 + 行号。",
+        "生产订单、工单、工序与序列号之间保留映射。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "批准与反馈",
+      "items": [
+        "排程、工艺和程序在批准且适用后进入执行。",
+        "报工与耗料返回 ERP；反馈到 APS 的约束见设备视图。"
+      ]
+    }
+  ]
+}

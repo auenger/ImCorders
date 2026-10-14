@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>制造业系统数据地图 | 制造业系统</title><meta name="description" content="用五张交互地图连接产品、订单、物料、质量、设备和组织数据，明确系统之间传递的对象、版本、状态与回执，作为制造业系统深度拆解的起点。"><link rel="canonical" href="https://imcoders.cn/manufacturing/data-map/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/data-map/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/data-map/#article","headline":"制造业系统数据地图","description":"用五张交互地图连接产品、订单、物料、质量、设备和组织数据，明确系统之间传递的对象、版本、状态与回执，作为制造业系统深度拆解的起点。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/data-map/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-14T00:00:00.000Z","dateModified":"2026-10-14T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"制造业系统数据地图","item":"https://imcoders.cn/manufacturing/data-map/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-14T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-14T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="制造业系统数据地图 | 制造业系统"><meta property="og:description" content="用五张交互地图连接产品、订单、物料、质量、设备和组织数据，明确系统之间传递的对象、版本、状态与回执，作为制造业系统深度拆解的起点。"><meta property="og:url" content="https://imcoders.cn/manufacturing/data-map/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="制造业系统数据地图 | 制造业系统"><meta name="twitter:description" content="用五张交互地图连接产品、订单、物料、质量、设备和组织数据，明确系统之间传递的对象、版本、状态与回执，作为制造业系统深度拆解的起点。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="制造业系统数据地图 | 制造业系统"><meta itemprop="description" content="用五张交互地图连接产品、订单、物料、质量、设备和组织数据，明确系统之间传递的对象、版本、状态与回执，作为制造业系统深度拆解的起点。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "制造业系统数据地图 | 制造业系统";
+const shareDesc = "用五张交互地图连接产品、订单、物料、质量、设备和组织数据，明确系统之间传递的对象、版本、状态与回执，作为制造业系统深度拆解的起点。";
+const shareLink = "https://imcoders.cn/manufacturing/data-map/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.pHh__snC.css">
+<link rel="stylesheet" href="/_astro/_slug_.TIXeSygo.css"><script type="module" src="/_astro/hoisted.BtBmmIK8.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 数据地图</a><h1 data-astro-cid-767rrl5b>制造业系统数据地图</h1><p class="mfg-lead" data-astro-cid-767rrl5b>用五张交互地图连接产品、订单、物料、质量、设备和组织数据，明确系统之间传递的对象、版本、状态与回执，作为制造业系统深度拆解的起点。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#maps" data-astro-cid-767rrl5b>阅读交互地图 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/data-map/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-14</p></div></header> <section class="mfg-section" id="maps" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><p class="map-scope" data-astro-cid-767rrl5b>首版采用离散制造参考场景。箭头表示有方向的数据交换；相同系统按业务视角重复出现。实际接口、数据所有者和生效规则需按企业部署确认。</p><section class="map-reader" data-manufacturing-map aria-label="制造业系统数据地图" data-astro-cid-yp6hapjw> <div class="map-tabs" role="tablist" aria-label="选择数据流转视图" data-astro-cid-yp6hapjw> <button type="button" id="tab-product-orders" role="tab" aria-selected="true" aria-controls="panel-product-orders" tabindex="0" data-map-key="product-orders" data-astro-cid-yp6hapjw> <span data-astro-cid-yp6hapjw>01</span>产品与订单 </button><button type="button" id="tab-materials-logistics" role="tab" aria-selected="false" aria-controls="panel-materials-logistics" tabindex="-1" data-map-key="materials-logistics" data-astro-cid-yp6hapjw> <span data-astro-cid-yp6hapjw>02</span>物料与物流 </button><button type="button" id="tab-quality-traceability" role="tab" aria-selected="false" aria-controls="panel-quality-traceability" tabindex="-1" data-map-key="quality-traceability" data-astro-cid-yp6hapjw> <span data-astro-cid-yp6hapjw>03</span>质量与追溯 </button><button type="button" id="tab-equipment-resources" role="tab" aria-selected="false" aria-controls="panel-equipment-resources" tabindex="-1" data-map-key="equipment-resources" data-astro-cid-yp6hapjw> <span data-astro-cid-yp6hapjw>04</span>设备与资源 </button><button type="button" id="tab-data-collaboration" role="tab" aria-selected="false" aria-controls="panel-data-collaboration" tabindex="-1" data-map-key="data-collaboration" data-astro-cid-yp6hapjw> <span data-astro-cid-yp6hapjw>05</span>数据与协同 </button> </div> <div class="map-panel" id="panel-product-orders" role="tabpanel" aria-labelledby="tab-product-orders" tabindex="0" data-astro-cid-yp6hapjw> <div class="map-context" data-astro-cid-yp6hapjw> <div data-astro-cid-yp6hapjw><h2 data-astro-cid-yp6hapjw>产品定义如何进入生产订单</h2><p data-astro-cid-yp6hapjw>将图纸、BOM 和工艺版本接到订单、排程与工单，再追踪产出和消耗怎样返回经营账目。</p><small data-astro-cid-yp6hapjw>物料 · BOM · 工艺版本 · 订单 · 工单</small></div> <a class="map-open" href="/manufacturing/maps/product-orders.html" target="_blank" rel="noopener noreferrer" data-astro-cid-yp6hapjw>独立窗口查看 ↗</a> </div> <p class="map-mobile-hint" data-astro-cid-yp6hapjw>下方列出本图的全部流转。交互地图适合在大屏独立窗口中查看。</p> <iframe src="/manufacturing/maps/product-orders.html" data-src="/manufacturing/maps/product-orders.html" title="产品与订单交互数据地图" loading="lazy" allowfullscreen data-astro-cid-yp6hapjw></iframe> <details class="map-contracts" data-astro-cid-yp6hapjw> <summary data-astro-cid-yp6hapjw>查看本图的 10 条数据流转</summary> <div class="map-contract-list" data-astro-cid-yp6hapjw> <div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>CAD / PDM</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>PLM</span><small data-astro-cid-yp6hapjw>设计版本</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>PLM</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>CAPP / 工艺规划</span><small data-astro-cid-yp6hapjw>产品定义</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>CAPP / 工艺规划</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>MES 工艺视角</span><small data-astro-cid-yp6hapjw>生效工艺</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>MES 工艺视角</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>工位 / DNC</span><small data-astro-cid-yp6hapjw>适用程序</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>CRM / CPQ</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>ERP 订单视角</span><small data-astro-cid-yp6hapjw>确认配置</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>ERP 订单视角</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>APS</span><small data-astro-cid-yp6hapjw>生产需求</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>APS</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>MES 工单视角</span><small data-astro-cid-yp6hapjw>批准排程</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>MES 工单视角</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>ERP 核算视角</span><small data-astro-cid-yp6hapjw>产出消耗</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>MES 工艺视角</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>MES 工单视角</span><small data-astro-cid-yp6hapjw>适用版本</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>PLM</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>ERP 订单视角</span><small data-astro-cid-yp6hapjw>生效物料</small></div> </div> <a class="map-source" href="/manufacturing/maps/product-orders.json" download data-astro-cid-yp6hapjw>下载地图源文件 JSON ↓</a> </details> </div><div class="map-panel" id="panel-materials-logistics" role="tabpanel" aria-labelledby="tab-materials-logistics" tabindex="0" hidden data-astro-cid-yp6hapjw> <div class="map-context" data-astro-cid-yp6hapjw> <div data-astro-cid-yp6hapjw><h2 data-astro-cid-yp6hapjw>物料如何从到货走到消耗与交付</h2><p data-astro-cid-yp6hapjw>区分到货、收货、可用库存和送达，查看仓储任务、质量放行与运输交接之间的数据关系。</p><small data-astro-cid-yp6hapjw>采购单 · 库存 · 批次 · 搬运任务 · 运单</small></div> <a class="map-open" href="/manufacturing/maps/materials-logistics.html" target="_blank" rel="noopener noreferrer" data-astro-cid-yp6hapjw>独立窗口查看 ↗</a> </div> <p class="map-mobile-hint" data-astro-cid-yp6hapjw>下方列出本图的全部流转。交互地图适合在大屏独立窗口中查看。</p> <iframe data-src="/manufacturing/maps/materials-logistics.html" title="物料与物流交互数据地图" loading="lazy" allowfullscreen data-astro-cid-yp6hapjw></iframe> <details class="map-contracts" data-astro-cid-yp6hapjw> <summary data-astro-cid-yp6hapjw>查看本图的 7 条数据流转</summary> <div class="map-contract-list" data-astro-cid-yp6hapjw> <div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>SRM / 供应商</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>ERP</span><small data-astro-cid-yp6hapjw>到货承诺</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>ERP</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>WMS</span><small data-astro-cid-yp6hapjw>收发需求</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>WMS</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>WES / WCS / 车队</span><small data-astro-cid-yp6hapjw>搬运任务</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>WES / WCS / 车队</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>MES</span><small data-astro-cid-yp6hapjw>送达确认</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>QMS / IQC</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>WMS</span><small data-astro-cid-yp6hapjw>批准放行</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>WMS</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>TMS / YMS</span><small data-astro-cid-yp6hapjw>发运交接</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>TMS / YMS</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>CRM / FSM</span><small data-astro-cid-yp6hapjw>签收结果</small></div> </div> <a class="map-source" href="/manufacturing/maps/materials-logistics.json" download data-astro-cid-yp6hapjw>下载地图源文件 JSON ↓</a> </details> </div><div class="map-panel" id="panel-quality-traceability" role="tabpanel" aria-labelledby="tab-quality-traceability" tabindex="0" hidden data-astro-cid-yp6hapjw> <div class="map-context" data-astro-cid-yp6hapjw> <div data-astro-cid-yp6hapjw><h2 data-astro-cid-yp6hapjw>检验结果如何进入处置与追溯</h2><p data-astro-cid-yp6hapjw>从检验申请到测量结果、批准处置和库存限制，沿批次谱系找回工艺版本与过程证据。</p><small data-astro-cid-yp6hapjw>检验批 · 样品 · 处置单 · 谱系 · 变更单</small></div> <a class="map-open" href="/manufacturing/maps/quality-traceability.html" target="_blank" rel="noopener noreferrer" data-astro-cid-yp6hapjw>独立窗口查看 ↗</a> </div> <p class="map-mobile-hint" data-astro-cid-yp6hapjw>下方列出本图的全部流转。交互地图适合在大屏独立窗口中查看。</p> <iframe data-src="/manufacturing/maps/quality-traceability.html" title="质量与追溯交互数据地图" loading="lazy" allowfullscreen data-astro-cid-yp6hapjw></iframe> <details class="map-contracts" data-astro-cid-yp6hapjw> <summary data-astro-cid-yp6hapjw>查看本图的 9 条数据流转</summary> <div class="map-contract-list" data-astro-cid-yp6hapjw> <div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>MES</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>QMS 检验视角</span><small data-astro-cid-yp6hapjw>检验申请</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>QMS 检验视角</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>LIMS / 检测设备</span><small data-astro-cid-yp6hapjw>样品任务</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>LIMS / 检测设备</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>QMS 处置视角</span><small data-astro-cid-yp6hapjw>检验结果</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>QMS 处置视角</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>WMS / MES</span><small data-astro-cid-yp6hapjw>批准处置</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>PLM / 工艺</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>追溯谱系</span><small data-astro-cid-yp6hapjw>版本关联</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>MES</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>追溯谱系</span><small data-astro-cid-yp6hapjw>批次谱系</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>追溯谱系</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>SPC / 质量分析</span><small data-astro-cid-yp6hapjw>关联证据</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>SPC / 质量分析</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>PLM 变更视角</span><small data-astro-cid-yp6hapjw>改进建议</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>PLM 变更视角</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>MES 适用版本</span><small data-astro-cid-yp6hapjw>批准生效</small></div> </div> <a class="map-source" href="/manufacturing/maps/quality-traceability.json" download data-astro-cid-yp6hapjw>下载地图源文件 JSON ↓</a> </details> </div><div class="map-panel" id="panel-equipment-resources" role="tabpanel" aria-labelledby="tab-equipment-resources" tabindex="0" hidden data-astro-cid-yp6hapjw> <div class="map-context" data-astro-cid-yp6hapjw> <div data-astro-cid-yp6hapjw><h2 data-astro-cid-yp6hapjw>设备信号如何影响维护与可用产能</h2><p data-astro-cid-yp6hapjw>将设备点位与工单上下文关联，分别理解状态采集、维修确认、产能反馈和能源分析。</p><small data-astro-cid-yp6hapjw>点位 · 设备 · 维修工单 · 日历 · 计量读数</small></div> <a class="map-open" href="/manufacturing/maps/equipment-resources.html" target="_blank" rel="noopener noreferrer" data-astro-cid-yp6hapjw>独立窗口查看 ↗</a> </div> <p class="map-mobile-hint" data-astro-cid-yp6hapjw>下方列出本图的全部流转。交互地图适合在大屏独立窗口中查看。</p> <iframe data-src="/manufacturing/maps/equipment-resources.html" title="设备与资源交互数据地图" loading="lazy" allowfullscreen data-astro-cid-yp6hapjw></iframe> <details class="map-contracts" data-astro-cid-yp6hapjw> <summary data-astro-cid-yp6hapjw>查看本图的 9 条数据流转</summary> <div class="map-contract-list" data-astro-cid-yp6hapjw> <div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>PLC / DCS / CNC</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>SCADA / 边缘网关</span><small data-astro-cid-yp6hapjw>状态报警</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>SCADA / 边缘网关</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>Historian</span><small data-astro-cid-yp6hapjw>带时标值</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>Historian</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>MES</span><small data-astro-cid-yp6hapjw>过程证据</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>MES</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>APS</span><small data-astro-cid-yp6hapjw>进度约束</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>能源表计</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>能源 / 公用工程</span><small data-astro-cid-yp6hapjw>计量读数</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>SCADA / 边缘网关</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>EAM / CMMS / APM</span><small data-astro-cid-yp6hapjw>故障事件</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>EAM / CMMS / APM</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>资源状态确认</span><small data-astro-cid-yp6hapjw>维护记录</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>资源状态确认</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>APS</span><small data-astro-cid-yp6hapjw>确认窗口</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>能源 / 公用工程</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>BI / EPM / EHS</span><small data-astro-cid-yp6hapjw>能耗分项</small></div> </div> <a class="map-source" href="/manufacturing/maps/equipment-resources.json" download data-astro-cid-yp6hapjw>下载地图源文件 JSON ↓</a> </details> </div><div class="map-panel" id="panel-data-collaboration" role="tabpanel" aria-labelledby="tab-data-collaboration" tabindex="0" hidden data-astro-cid-yp6hapjw> <div class="map-context" data-astro-cid-yp6hapjw> <div data-astro-cid-yp6hapjw><h2 data-astro-cid-yp6hapjw>业务数据如何成为受控的跨系统证据</h2><p data-astro-cid-yp6hapjw>查看交换、编码映射和数据治理怎样支持分析，以及人员资格、文件和授权怎样约束业务动作。</p><small data-astro-cid-yp6hapjw>对象映射 · 事件 · 来源 · 资格 · 执行回执</small></div> <a class="map-open" href="/manufacturing/maps/data-collaboration.html" target="_blank" rel="noopener noreferrer" data-astro-cid-yp6hapjw>独立窗口查看 ↗</a> </div> <p class="map-mobile-hint" data-astro-cid-yp6hapjw>下方列出本图的全部流转。交互地图适合在大屏独立窗口中查看。</p> <iframe data-src="/manufacturing/maps/data-collaboration.html" title="数据与协同交互数据地图" loading="lazy" allowfullscreen data-astro-cid-yp6hapjw></iframe> <details class="map-contracts" data-astro-cid-yp6hapjw> <summary data-astro-cid-yp6hapjw>查看本图的 8 条数据流转</summary> <div class="map-contract-list" data-astro-cid-yp6hapjw> <div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>业务系统与现场</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>API / EDI / 事件</span><small data-astro-cid-yp6hapjw>业务记录</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>API / EDI / 事件</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>MDM / 数据治理</span><small data-astro-cid-yp6hapjw>对象映射</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>MDM / 数据治理</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>数据平台 / 知识库</span><small data-astro-cid-yp6hapjw>治理数据</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>数据平台 / 知识库</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>BI / 仿真 / Agent</span><small data-astro-cid-yp6hapjw>受控证据</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>HR / LMS / DMS</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>BPM / 业务校验</span><small data-astro-cid-yp6hapjw>资格版本</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>BPM / 业务校验</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>身份 / 授权 / 审批</span><small data-astro-cid-yp6hapjw>待办动作</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>身份 / 授权 / 审批</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>业务系统写入接口</span><small data-astro-cid-yp6hapjw>授权通过</small></div><div class="map-contract" data-astro-cid-yp6hapjw><span data-astro-cid-yp6hapjw>业务系统写入接口</span><b aria-hidden="true" data-astro-cid-yp6hapjw>→</b><span data-astro-cid-yp6hapjw>审计与运行支撑</span><small data-astro-cid-yp6hapjw>执行回执</small></div> </div> <a class="map-source" href="/manufacturing/maps/data-collaboration.json" download data-astro-cid-yp6hapjw>下载地图源文件 JSON ↓</a> </details> </div> <noscript><p data-astro-cid-yp6hapjw>交互切换需要 JavaScript。可直接打开五张地图：</p><ul data-astro-cid-yp6hapjw><li data-astro-cid-yp6hapjw><a href="/manufacturing/maps/product-orders.html" data-astro-cid-yp6hapjw>产品与订单</a></li><li data-astro-cid-yp6hapjw><a href="/manufacturing/maps/materials-logistics.html" data-astro-cid-yp6hapjw>物料与物流</a></li><li data-astro-cid-yp6hapjw><a href="/manufacturing/maps/quality-traceability.html" data-astro-cid-yp6hapjw>质量与追溯</a></li><li data-astro-cid-yp6hapjw><a href="/manufacturing/maps/equipment-resources.html" data-astro-cid-yp6hapjw>设备与资源</a></li><li data-astro-cid-yp6hapjw><a href="/manufacturing/maps/data-collaboration.html" data-astro-cid-yp6hapjw>数据与协同</a></li></ul></noscript> </section>  </div></section> <div class="mfg-wrap mfg-reader" data-astro-cid-767rrl5b><div class="mfg-prose" data-astro-cid-767rrl5b><p>制造业系统的名字容易记住，系统之间的数据关系更值得逐项核对。ERP 下达一张生产订单，MES 收到的未必是同一种“工单”；WMS 看见库存，也还要检查批次、冻结、预留和检验状态。</p>
+<p>这份地图从这些交接处开始。先用离散制造参考场景建立五个视图，再用下面的契约表说明主要输入、回传和责任边界。它是一份研究与讨论用的参考模型；每家企业的模块划分、接口方式和状态规则还需要现场确认。</p>
+<h2 id="从哪张地图开始读">从哪张地图开始读</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>视图</th><th>阅读顺序</th><th>独立地图</th></tr></thead><tbody><tr><td>产品与订单</td><td>设计、产品结构、工艺定义；需求、订单、排程、执行与核算</td><td><a href="/manufacturing/maps/product-orders.html">打开产品与订单地图</a></td></tr><tr><td>物料与物流</td><td>到货承诺、收发需求、仓库任务、厂内配送与客户签收</td><td><a href="/manufacturing/maps/materials-logistics.html">打开物料与物流地图</a></td></tr><tr><td>质量与追溯</td><td>检验申请、测量结果、批准处置；谱系、调查与工程改进</td><td><a href="/manufacturing/maps/quality-traceability.html">打开质量与追溯地图</a></td></tr><tr><td>设备与资源</td><td>状态报警、历史记录、业务上下文、维护窗口与能源数据</td><td><a href="/manufacturing/maps/equipment-resources.html">打开设备与资源地图</a></td></tr><tr><td>数据与协同</td><td>系统记录、编码映射、证据查询；资格、授权与执行回执</td><td><a href="/manufacturing/maps/data-collaboration.html">打开数据与协同地图</a></td></tr></tbody></table>
+<p>交互地图由 archify 的 dataflow 模式生成，可以独立打开、切换主题并导出图片或 SVG。站内页面提供视图切换和文字流转清单，手机页面直接显示流转清单，交互地图可在独立窗口打开。阶段标题表示本视图的阅读顺序，不对应 ISA-95 的层级或网络分区。</p>
+<p>同一系统可能在一张图里出现多次。例如“ERP 订单视角”和“ERP 核算视角”用于区分数据的下达和回收，实际可以是同一个 ERP 实例。MES 中的工艺定义、工单执行与版本适用也有类似情况。没有箭头的两个节点之间，不推断存在直接接口。</p>
+<p>首版图上突出主路径，部分回执和侧向输入写在下表中。后续拆到具体场景时，再把请求、接受、完成、拒绝和补偿逐一画开。</p>
+<h2 id="系统交接时究竟传什么">系统交接时究竟传什么</h2>
+<h3 id="产品定义和订单不能只传一个编号">产品定义和订单不能只传一个编号</h3>
+<p>图纸发布、工艺生效和生产下达是不同的业务事件。现场需要拿到对当前物料、配置、工单和时间适用的版本。系统中存在一份工艺文件，无法直接说明它已经获准用于这张工单。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方向</th><th>主要数据契约</th><th>必须确认的条件或回传</th></tr></thead><tbody><tr><td>CAD / PDM → PLM</td><td>模型、图纸、设计版本、产品结构关联</td><td>发布状态、文件校验与关联物料</td></tr><tr><td>PLM → ERP</td><td>物料、BOM、配置、替代关系和变更生效条件</td><td>谁维护哪些字段，ERP 是否接受该版本</td></tr><tr><td>PLM / CAPP → MES</td><td>制造结构、路线、工序、参数与作业文件</td><td>工厂、产品、工单的适用范围；下发接受或拒绝</td></tr><tr><td>CRM / CPQ → ERP</td><td>客户配置、订单行、数量、承诺日期</td><td>配置是否可生产，订单变更如何处理</td></tr><tr><td>ERP → APS</td><td>生产需求、交期、优先级和物料需求</td><td>计划基线、日历、在制状态与约束数据的更新时间</td></tr><tr><td>APS → MES</td><td>经批准的作业计划、资源分配、顺序与时间窗口</td><td>MES 接受结果、无法执行的原因与重排规则</td></tr><tr><td>MES → ERP / APS</td><td>产出、报废、消耗、工时、进度与资源变化</td><td>区分回到 ERP 的业务过账与回到 APS 的执行约束</td></tr></tbody></table>
+<p>这张图采用 PLM 管产品定义、工艺规划生成执行依据的部署假设。MBOM 可以在 PLM、ERP 或其他制造规划模块中形成，专题会按实际企业说明其维护位置。PLM、MES、ERP 贯通的产品与制造协同，可参考 <a href="https://webinars.sw.siemens.com/en-US/closed-loop-manufacturing-for-defense/">Siemens 的闭环制造介绍</a>。</p>
+<p>ERP 与执行系统之间的下达和回报，需要单独确认消息类型。<a href="https://help.sap.com/doc/f6b2ab2222794bebad4c0dcd33138e71/latest/en-US/SAP_DMC_Integration_Guide_enUS.pdf">SAP Digital Manufacturing 集成指南</a>提供了生产订单、产出与报废确认、货物移动等接口的具体例子；本文没有把这些产品接口当作所有企业的固定实现。</p>
+<h3 id="库存要能解释位置和可用条件">库存要能解释位置和可用条件</h3>
+<p>同一批货可能已经到厂，仍在待检区；可能完成上架，却已经被别的订单预留。缺料分析需要把这些状态带到同一口径里。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方向</th><th>主要数据契约</th><th>必须确认的条件或回传</th></tr></thead><tbody><tr><td>SRM → ERP / WMS</td><td>供应商承诺、到货通知、采购单行与批次信息</td><td>承诺日期与实际收货分开记录</td></tr><tr><td>ERP → WMS</td><td>采购收货、生产领退料、成品入库与发运需求</td><td>单据行、单位、仓库、批次规则与业务状态</td></tr><tr><td>MES ↔ WMS</td><td>工单需求、配送请求、发料、退料和实耗关联</td><td>送达、领用、消耗分别由谁确认</td></tr><tr><td>WMS ↔ WCS / WES / 车队</td><td>搬运任务、来源目的位置、载具与优先级</td><td>接受、开始、完成、失败；重复任务如何去重</td></tr><tr><td>QMS / 质量模块 → WMS / MES</td><td>经授权规则形成的放行、隔离、返工或报废决定</td><td>决定范围、批准人或自动规则、限制生效结果</td></tr><tr><td>WMS ↔ TMS / YMS</td><td>发运交接、装卸、运单与园区作业状态</td><td>出库、装车、离厂与签收各自的业务时间</td></tr><tr><td>WMS / MES → ERP</td><td>收发存、产出和耗料的确认记录</td><td>物理完成与财务过账的差异、失败与对账状态</td></tr></tbody></table>
+<p>图中的 WES、WCS 和车队调度合并表示物流执行能力，不规定它们的内部串联关系。实际项目需要继续拆到“哪个系统创建任务、哪个系统控制设备、哪个系统确认完成”。</p>
+<h3 id="检验完成以后还要形成处置">检验完成以后还要形成处置</h3>
+<p>LIMS 和检测设备提供样品或产品的测量结果。QMS 或业务系统中的质量模块，再根据授权和规则形成处置。库存与生产系统接收决定后，分别落实对应限制。</p>
+<p><a href="https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2bc3ee8d1c83404e8cf62418640004f2/3a7fb6535fe6b74ce10000000a174cb4.html">SAP 对检验批使用决策的说明</a>展示了这一区别：结果记录、特性关闭、权限和当前状态，都会影响能否做出使用决策。具体产品也可以按预先配置的规则执行自动决策。</p>
+<p>质量追溯还需要记录批次分拆、合并、替代、返工和序列号关联。只保存最终检验结果，往往无法回到发生异常的工序和物料投入。首版将谱系画成独立的数据角色，实际可以由 MES、专用追溯系统或数据平台承接。</p>
+<p>质量分析输出的是原因调查材料和改进建议。要改变工艺、检验计划或物料版本，继续走相应的变更和生效流程。</p>
+<h3 id="设备信号需要补上业务上下文">设备信号需要补上业务上下文</h3>
+<p>一条温度或报警记录，至少还需要知道来自哪台设备、采用什么单位、何时采集、数据质量如何，以及当时正在执行哪张工单。Historian 保存历史时序，MES 等运营系统提供工序、批次和班次关联。</p>
+<p>故障事件进入 EAM 或 CMMS 后，可以产生检查和维修任务。维修结束、设备具备运行条件、重新进入排程日历，也需要分别确认。产能反馈可以来自 MES，也可以通过排程集成直接使用维护日历，图中展示的是一种逻辑分工。</p>
+<p>能源分项分析还需补充计量边界、生产数量、班次和分摊依据。设备地图只画出主要来源，BI、EPM 和 EHS 是不同用途的下游使用者，具体读取范围由业务决定。</p>
+<p>这里没有画通用 Agent 直接写 PLC、DCS 或 SIS 的路径。现场控制、联锁与安全保护有独立的工程职责，后续讨论控制系统时会另外说明。</p>
+<h2 id="把五张图接起来靠哪些共同对象">把五张图接起来靠哪些共同对象</h2>
+<p>系统连接完成以后，名称、编码和时间仍然可能对不上。首版先保留下面七组关联键，后续专题再展开字段字典与状态映射。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>对象</th><th>跨系统关联所需的信息</th><th>容易遗漏的差异</th></tr></thead><tbody><tr><td>物料与产品</td><td>来源系统、物料编码、版本、配置、单位</td><td>同码不同版、异码同物、单位换算</td></tr><tr><td>订单与任务</td><td>销售单行、生产订单、工单、工序、任务 ID</td><td>一张订单拆成多个工单，撤销后重建</td></tr><tr><td>批次与序列号</td><td>原料批次、生产批次、单件身份、投入产出关系</td><td>分批、合批、返工和替代用料</td></tr><tr><td>工艺与文件</td><td>路线版本、程序版本、文件版本、生效与适用范围</td><td>文件已发布但不适用于当前工单</td></tr><tr><td>库存与物流</td><td>工厂、仓库、库位、批次、载具、状态和预留</td><td>在库量、可用量、在途量和实物位置</td></tr><tr><td>设备与人员</td><td>资产编号、采集点位、资源组、人员身份与技能资格</td><td>设备在线但不可排产，人在岗但资格过期</td></tr><tr><td>事件与决定</td><td>事件 ID、业务时间、接收时间、来源版本、处置依据</td><td>补录、补传、重复、乱序和决定未落实</td></tr></tbody></table>
+<p><a href="https://www.isa.org/standards-and-publications/isa-standards/isa-95-standard">ISA-95</a>为制造运营与企业业务之间的信息交换提供对象和活动模型。首版沿用其区分计划、运营与控制职责的思路，同时保留供应商、研发和组织协同等站点研究范围。</p>
+<p>数据与协同视图上排展示一种加工路径，可以使用 API、消息、文件或数据副本实现。Agent 做跨系统查询时也可以通过受控连接器直接读取来源系统，不要求将全部工业数据搬到同一个平台。</p>
+<p>下排展示业务动作的执行条件。人员资格、受控文件、身份权限、审批和状态前置条件需要在实际动作入口校验；建议进入执行时同样遵循这些条件。调用成功后还要记录业务是否接受、状态是否完成，以及失败后如何恢复。</p>
+<h2 id="本版边界与下一步内容">本版边界与下一步内容</h2>
+<p>这一版覆盖主要系统族之间的逻辑数据流。它没有规定消息中间件、数据库、网络拓扑、接口实时性或厂商选型，也没有把所有分析消费者的侧向输入画满。图中的角色可以由独立系统、ERP 模块或 MES 扩展实现。</p>
+<p>首批后续内容按 <a href="/blog/2026-10-14-manufacturing-systems-map/">研究目录</a>中的编号推进：M01 的产品结构与工程变更，M02 的订单和经营记录，M03 的 MES 工单生命周期，M04 的库存和生产配送，以及 S02 的订单延期分析。它们发布后，会从<a href="/manufacturing/">制造业系统模块</a>进入。</p>
+<p>流程制造还要补配方、批次执行与电子批记录，连续过程还需展开 DCS 与物料平衡。批次部分将参考 <a href="https://www.isa.org/standards-and-publications/isa-standards/isa-88-standards">ISA-88</a>，分别注明案例的行业、工段和部署假设。</p>
+<p>地图源文件以 JSON 保留，站点上的五张 HTML 与源文件一一对应。后续修订会同时更新箭头、数据契约和说明，并记录实质修订日期。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav></div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 

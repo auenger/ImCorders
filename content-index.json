@@ -154,6 +154,24 @@
       "markdownUrl": "https://imcoders.cn/blog/2026-10-09-sysfactory/index.md"
     },
     {
+      "id": "blog/2026-10-14-manufacturing-systems-map",
+      "kind": "blog",
+      "title": "制造业系统全景与深度拆解目录",
+      "description": "从研发设计、经营计划到生产执行、仓储物流、质量、设备和现场控制，整理制造业系统的覆盖范围、业务边界与协作关系，并建立后续深度文章、行业案例和 Agent 接入专题的持续更新索引。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "工业软件",
+        "系统架构",
+        "FDE",
+        "AI Agent"
+      ],
+      "publishedAt": "2026-10-14T00:00:00.000Z",
+      "updatedAt": "2026-10-14T00:00:00.000Z",
+      "url": "https://imcoders.cn/blog/2026-10-14-manufacturing-systems-map/",
+      "markdownUrl": "https://imcoders.cn/blog/2026-10-14-manufacturing-systems-map/index.md"
+    },
+    {
       "id": "blog/agent-technical-reflux",
       "kind": "blog",
       "title": "工程师拥抱 Agent，普通人却重新开始开发软件",
@@ -1734,6 +1752,24 @@
       "url": "https://imcoders.cn/playbook/harness/v2-conclusion/",
       "image": "/og-default.png",
       "markdownUrl": "https://imcoders.cn/playbook/harness/v2-conclusion/index.md"
+    },
+    {
+      "id": "manufacturing/data-map",
+      "kind": "manufacturing",
+      "title": "制造业系统数据地图",
+      "description": "用五张交互地图连接产品、订单、物料、质量、设备和组织数据，明确系统之间传递的对象、版本、状态与回执，作为制造业系统深度拆解的起点。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "数据流转",
+        "系统集成",
+        "MES",
+        "AI Agent"
+      ],
+      "publishedAt": "2026-10-14T00:00:00.000Z",
+      "updatedAt": "2026-10-14T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/data-map/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/data-map/index.md"
     }
   ]
 }
