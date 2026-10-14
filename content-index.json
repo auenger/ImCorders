@@ -1770,6 +1770,25 @@
       "updatedAt": "2026-10-14T00:00:00.000Z",
       "url": "https://imcoders.cn/manufacturing/data-map/",
       "markdownUrl": "https://imcoders.cn/manufacturing/data-map/index.md"
+    },
+    {
+      "id": "manufacturing/plm-engineering-change",
+      "kind": "manufacturing",
+      "title": "PLM 工程变更如何从设计进入生产",
+      "description": "用一次风机支架变更拆解 PLM 的产品结构、EBOM 与 MBOM、版本和生效条件，追踪 ERP、MES、WMS 如何接收变更、处置旧料并保留执行证据，同时分析 Agent 的查询与操作边界。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "PLM",
+        "工程变更",
+        "BOM",
+        "AI Agent"
+      ],
+      "publishedAt": "2026-10-14T00:00:00.000Z",
+      "updatedAt": "2026-10-14T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/plm-engineering-change/",
+      "image": "/blog-images/manufacturing-plm/hero-design-to-production.png",
+      "markdownUrl": "https://imcoders.cn/manufacturing/plm-engineering-change/index.md"
     }
   ]
 }

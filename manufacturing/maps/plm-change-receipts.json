@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "工程变更需要分别核对下游回执",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-plm-20261014-112936/change-receipts/change-receipts.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "对象关联"
+        },
+        "emphasis": {
+          "label": "批准下发"
+        },
+        "security": {
+          "label": "条件校验"
+        },
+        "dashed": {
+          "label": "业务回执"
+        },
+        "database": {
+          "label": "历史记录"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "同一变更分发"
+    },
+    {
+      "label": "接收方"
+    },
+    {
+      "label": "条件与前置"
+    },
+    {
+      "label": "业务结果"
+    },
+    {
+      "label": "实施核对"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "package-erp",
+      "type": "backend",
+      "label": "ECN-042 批准包",
+      "sublabel": "同一变更的目标系统视图",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "target-erp",
+      "type": "backend",
+      "label": "ERP",
+      "sublabel": "物料、BOM 与订单",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "check-erp",
+      "type": "security",
+      "label": "目标系统业务校验",
+      "sublabel": "结构与工厂校验",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "ack-erp",
+      "type": "backend",
+      "label": "业务回执",
+      "sublabel": "接受或拒绝",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "ledger-erp",
+      "type": "database",
+      "label": "变更实施台账",
+      "sublabel": "ERP 准备状态",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "package-mes",
+      "type": "backend",
+      "label": "ECN-042 批准包",
+      "sublabel": "同一变更的目标系统视图",
+      "stage": 0,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "target-mes",
+      "type": "backend",
+      "label": "MES",
+      "sublabel": "路线、文件与工单",
+      "stage": 1,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "check-mes",
+      "type": "security",
+      "label": "目标系统业务校验",
+      "sublabel": "适用范围校验",
+      "stage": 2,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "ack-mes",
+      "type": "backend",
+      "label": "业务回执",
+      "sublabel": "就绪或阻断",
+      "stage": 3,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "ledger-mes",
+      "type": "database",
+      "label": "变更实施台账",
+      "sublabel": "MES 切换状态",
+      "stage": 4,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "package-wms",
+      "type": "backend",
+      "label": "ECN-042 批准包",
+      "sublabel": "同一变更的目标系统视图",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "target-wms",
+      "type": "backend",
+      "label": "WMS",
+      "sublabel": "旧料与指定处置任务",
+      "stage": 1,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "check-wms",
+      "type": "security",
+      "label": "目标系统业务校验",
+      "sublabel": "批次与处置授权",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "ack-wms",
+      "type": "backend",
+      "label": "业务回执",
+      "sublabel": "落实或异常",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "ledger-wms",
+      "type": "database",
+      "label": "变更实施台账",
+      "sublabel": "WMS 处置状态",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "dispatch-erp",
+      "from": "package-erp",
+      "to": "target-erp",
+      "label": "批准下发",
+      "variant": "emphasis"
+    },
+    {
+      "id": "validate-erp",
+      "from": "target-erp",
+      "to": "check-erp",
+      "label": "对象版本",
+      "variant": "default"
+    },
+    {
+      "id": "acknowledge-erp",
+      "from": "check-erp",
+      "to": "ack-erp",
+      "label": "处理结果",
+      "variant": "dashed"
+    },
+    {
+      "id": "reconcile-erp",
+      "from": "ack-erp",
+      "to": "ledger-erp",
+      "label": "登记状态",
+      "variant": "dashed"
+    },
+    {
+      "id": "dispatch-mes",
+      "from": "package-mes",
+      "to": "target-mes",
+      "label": "批准下发",
+      "variant": "emphasis"
+    },
+    {
+      "id": "validate-mes",
+      "from": "target-mes",
+      "to": "check-mes",
+      "label": "对象版本",
+      "variant": "default"
+    },
+    {
+      "id": "acknowledge-mes",
+      "from": "check-mes",
+      "to": "ack-mes",
+      "label": "处理结果",
+      "variant": "dashed"
+    },
+    {
+      "id": "reconcile-mes",
+      "from": "ack-mes",
+      "to": "ledger-mes",
+      "label": "登记状态",
+      "variant": "dashed"
+    },
+    {
+      "id": "dispatch-wms",
+      "from": "package-wms",
+      "to": "target-wms",
+      "label": "批准下发",
+      "variant": "emphasis"
+    },
+    {
+      "id": "validate-wms",
+      "from": "target-wms",
+      "to": "check-wms",
+      "label": "对象版本",
+      "variant": "default"
+    },
+    {
+      "id": "acknowledge-wms",
+      "from": "check-wms",
+      "to": "ack-wms",
+      "label": "处理结果",
+      "variant": "dashed"
+    },
+    {
+      "id": "reconcile-wms",
+      "from": "ack-wms",
+      "to": "ledger-wms",
+      "label": "登记状态",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "三条并行路径",
+      "items": [
+        "三行共享同一变更编号，按目标系统裁剪数据。",
+        "接口可直连或经过集成平台，图中不规定中间件。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "接受与生效分开",
+      "items": [
+        "收到数据后仍要做对象、权限和状态校验。",
+        "MES 继续核对切换条件；旧料按批准处置执行。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "关闭条件",
+      "items": [
+        "台账合并各系统结果，并记录未结例外。",
+        "回执字段是本文示意，不对应厂商 API。"
+      ]
+    }
+  ]
+}

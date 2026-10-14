@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "从设计结构到工单执行",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-plm-20261014-112936/bom-views/bom-views.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "对象关联"
+        },
+        "emphasis": {
+          "label": "批准下发"
+        },
+        "security": {
+          "label": "条件校验"
+        },
+        "dashed": {
+          "label": "业务回执"
+        },
+        "database": {
+          "label": "历史记录"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "设计来源"
+    },
+    {
+      "label": "产品结构"
+    },
+    {
+      "label": "制造准备"
+    },
+    {
+      "label": "下游定义"
+    },
+    {
+      "label": "执行与实绩"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "cad",
+      "type": "backend",
+      "label": "CAD / 图纸",
+      "sublabel": "模型与受控文档",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "ebom",
+      "type": "backend",
+      "label": "EBOM",
+      "sublabel": "产品设计组成",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "mbom",
+      "type": "backend",
+      "label": "MBOM",
+      "sublabel": "按工厂组织制造用料",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "erp",
+      "type": "backend",
+      "label": "ERP 主数据",
+      "sublabel": "物料、制造 BOM 与用途",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "order",
+      "type": "backend",
+      "label": "生产订单 / 工单",
+      "sublabel": "适用结构与版本快照",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "bop",
+      "type": "backend",
+      "label": "BOP / 工艺规划",
+      "sublabel": "工序、用料分配与资源",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "mes-route",
+      "type": "backend",
+      "label": "MES 工艺定义",
+      "sublabel": "批准的路线与作业文件",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "as-built",
+      "type": "database",
+      "label": "MES 实际谱系",
+      "sublabel": "实际批次、用料与版本",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "design-link",
+      "from": "cad",
+      "to": "ebom",
+      "label": "设计关联",
+      "variant": "default"
+    },
+    {
+      "id": "bom-reconcile",
+      "from": "ebom",
+      "to": "mbom",
+      "label": "转换映射",
+      "variant": "default"
+    },
+    {
+      "id": "release-bom",
+      "from": "mbom",
+      "to": "erp",
+      "label": "批准结构",
+      "variant": "emphasis"
+    },
+    {
+      "id": "order-snapshot",
+      "from": "erp",
+      "to": "order",
+      "label": "适用配置",
+      "variant": "default"
+    },
+    {
+      "id": "process-allocation",
+      "from": "mbom",
+      "to": "bop",
+      "label": "工序关联",
+      "variant": "default",
+      "route": "straight",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [
+        530,
+        275
+      ]
+    },
+    {
+      "id": "release-process",
+      "from": "bop",
+      "to": "mes-route",
+      "label": "批准路线",
+      "variant": "emphasis"
+    },
+    {
+      "id": "execution-context",
+      "from": "mes-route",
+      "to": "as-built",
+      "label": "执行依据",
+      "variant": "default"
+    },
+    {
+      "id": "built-record",
+      "from": "order",
+      "to": "as-built",
+      "label": "实际执行",
+      "variant": "default",
+      "route": "straight",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [
+        960,
+        275
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "三种定义",
+      "items": [
+        "EBOM 说明设计组成，MBOM 组织制造用料。",
+        "BOP 关联工序、资源及用料分配。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "映射需要维护",
+      "items": [
+        "一次设计修改可能影响多个工厂的制造结构。",
+        "工艺与 MBOM 的维护位置由实际部署决定。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "定义与事实",
+      "items": [
+        "工单使用适用配置，历史工单保留版本依据。",
+        "实际用料形成谱系，不能用今天的 BOM 覆盖。"
+      ]
+    }
+  ]
+}

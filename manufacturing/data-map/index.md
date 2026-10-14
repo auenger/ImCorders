@@ -110,7 +110,7 @@ LIMS 和检测设备提供样品或产品的测量结果。QMS 或业务系统�
 
 这一版覆盖主要系统族之间的逻辑数据流。它没有规定消息中间件、数据库、网络拓扑、接口实时性或厂商选型，也没有把所有分析消费者的侧向输入画满。图中的角色可以由独立系统、ERP 模块或 MES 扩展实现。
 
-首批后续内容按 [研究目录](/blog/2026-10-14-manufacturing-systems-map/)中的编号推进：M01 的产品结构与工程变更，M02 的订单和经营记录，M03 的 MES 工单生命周期，M04 的库存和生产配送，以及 S02 的订单延期分析。它们发布后，会从[制造业系统模块](/manufacturing/)进入。
+首批后续内容按 [研究目录](/blog/2026-10-14-manufacturing-systems-map/)中的编号推进：M01 的[产品结构与工程变更](/manufacturing/plm-engineering-change/)，M02 的订单和经营记录，M03 的 MES 工单生命周期，M04 的库存和生产配送，以及 S02 的订单延期分析。它们发布后，会从[制造业系统模块](/manufacturing/)进入。
 
 流程制造还要补配方、批次执行与电子批记录，连续过程还需展开 DCS 与物料平衡。批次部分将参考 [ISA-88](https://www.isa.org/standards-and-publications/isa-standards/isa-88-standards)，分别注明案例的行业、工段和部署假设。
 
