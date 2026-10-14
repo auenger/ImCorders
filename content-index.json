@@ -1826,6 +1826,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/erp-order-material-cost/index.md"
     },
     {
+      "id": "manufacturing/master-data-events-reconciliation",
+      "kind": "manufacturing",
+      "title": "主数据、事件与跨系统对账",
+      "description": "沿用风机订单与补发支架案例，拆解制造业系统的主数据责任、编码映射、事件身份、可靠发送、幂等与乱序处理，并用两件补发料的独立差异样本说明数量守恒、业务回执、补偿和对账验收。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "主数据",
+        "事件集成",
+        "跨系统对账",
+        "数据治理"
+      ],
+      "publishedAt": "2026-10-14T00:00:00.000Z",
+      "updatedAt": "2026-10-14T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/master-data-events-reconciliation/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/master-data-events-reconciliation/index.md"
+    },
+    {
       "id": "manufacturing/mes-work-order-lifecycle",
       "kind": "manufacturing",
       "title": "MES 中一张工单的完整生命周期",
