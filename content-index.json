@@ -1825,6 +1825,24 @@
       "url": "https://imcoders.cn/manufacturing/plm-engineering-change/",
       "image": "/blog-images/manufacturing-plm/hero-design-to-production.png",
       "markdownUrl": "https://imcoders.cn/manufacturing/plm-engineering-change/index.md"
+    },
+    {
+      "id": "manufacturing/wms-inventory-production-delivery",
+      "kind": "manufacturing",
+      "title": "WMS 中的库存、库位与生产配送",
+      "description": "沿着风机支架的收货、待检、上架、备料、配送和退料，拆解 WMS 的库存身份、质量状态、库位与任务占用，说明在库有货为何仍不可领，并用动态图、数量核对和接口样本记录 ERP、MES 与仓储现场的交接。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "WMS",
+        "库存管理",
+        "生产配送",
+        "系统集成"
+      ],
+      "publishedAt": "2026-10-14T00:00:00.000Z",
+      "updatedAt": "2026-10-14T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/wms-inventory-production-delivery/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/wms-inventory-production-delivery/index.md"
     }
   ]
 }

@@ -1,0 +1,319 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>WMS 中的库存、库位与生产配送 | 制造业系统</title><meta name="description" content="沿着风机支架的收货、待检、上架、备料、配送和退料，拆解 WMS 的库存身份、质量状态、库位与任务占用，说明在库有货为何仍不可领，并用动态图、数量核对和接口样本记录 ERP、MES 与仓储现场的交接。"><link rel="canonical" href="https://imcoders.cn/manufacturing/wms-inventory-production-delivery/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/wms-inventory-production-delivery/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/wms-inventory-production-delivery/#article","headline":"WMS 中的库存、库位与生产配送","description":"沿着风机支架的收货、待检、上架、备料、配送和退料，拆解 WMS 的库存身份、质量状态、库位与任务占用，说明在库有货为何仍不可领，并用动态图、数量核对和接口样本记录 ERP、MES 与仓储现场的交接。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/wms-inventory-production-delivery/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-14T00:00:00.000Z","dateModified":"2026-10-14T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"WMS 中的库存、库位与生产配送","item":"https://imcoders.cn/manufacturing/wms-inventory-production-delivery/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-14T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-14T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="WMS 中的库存、库位与生产配送 | 制造业系统"><meta property="og:description" content="沿着风机支架的收货、待检、上架、备料、配送和退料，拆解 WMS 的库存身份、质量状态、库位与任务占用，说明在库有货为何仍不可领，并用动态图、数量核对和接口样本记录 ERP、MES 与仓储现场的交接。"><meta property="og:url" content="https://imcoders.cn/manufacturing/wms-inventory-production-delivery/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="WMS 中的库存、库位与生产配送 | 制造业系统"><meta name="twitter:description" content="沿着风机支架的收货、待检、上架、备料、配送和退料，拆解 WMS 的库存身份、质量状态、库位与任务占用，说明在库有货为何仍不可领，并用动态图、数量核对和接口样本记录 ERP、MES 与仓储现场的交接。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="WMS 中的库存、库位与生产配送 | 制造业系统"><meta itemprop="description" content="沿着风机支架的收货、待检、上架、备料、配送和退料，拆解 WMS 的库存身份、质量状态、库位与任务占用，说明在库有货为何仍不可领，并用动态图、数量核对和接口样本记录 ERP、MES 与仓储现场的交接。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "WMS 中的库存、库位与生产配送 | 制造业系统";
+const shareDesc = "沿着风机支架的收货、待检、上架、备料、配送和退料，拆解 WMS 的库存身份、质量状态、库位与任务占用，说明在库有货为何仍不可领，并用动态图、数量核对和接口样本记录 ERP、MES 与仓储现场的交接。";
+const shareLink = "https://imcoders.cn/manufacturing/wms-inventory-production-delivery/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>WMS 中的库存、库位与生产配送</h1><p class="mfg-lead" data-astro-cid-767rrl5b>沿着风机支架的收货、待检、上架、备料、配送和退料，拆解 WMS 的库存身份、质量状态、库位与任务占用，说明在库有货为何仍不可领，并用动态图、数量核对和接口样本记录 ERP、MES 与仓储现场的交接。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/wms-inventory-production-delivery/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-14</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#一个库存数背后有哪些对象" data-astro-cid-767rrl5b>一个库存数背后有哪些对象</a></li><li data-astro-cid-767rrl5b><a href="#收货质量放行和上架分别发生了什么" data-astro-cid-767rrl5b>收货、质量放行和上架分别发生了什么</a></li><li data-astro-cid-767rrl5b><a href="#一次生产配送怎样改变库存记录" data-astro-cid-767rrl5b>一次生产配送怎样改变库存记录</a></li><li data-astro-cid-767rrl5b><a href="#退料和盘点为什么需要单独的业务动作" data-astro-cid-767rrl5b>退料和盘点为什么需要单独的业务动作</a></li><li data-astro-cid-767rrl5b><a href="#接口对账和-agent-查询怎样验收到库存明细" data-astro-cid-767rrl5b>接口对账和 Agent 查询怎样验收到库存明细</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p><a href="/manufacturing/mes-work-order-lifecycle/">MES 篇</a>里，新配置风机先生产了 140 台，另外 20 台等待支架放行。仓库确实收到了 160 件新支架，车间却不能一次领齐。要解释这个差别，需要把库存继续拆到批次、质量状态、库位和任务。</p>
+<p>这一篇沿着 <code>BKT-018</code> 支架进入 WMS（仓储管理系统），从采购到货一直看到线边配送和库存核对。仍采用模拟的 A 工厂离散装配场景，单号、位置与数量用于说明业务关系，不对应真实客户或厂商 API。</p>
+<h2 id="一个库存数背后有哪些对象">一个库存数背后有哪些对象</h2>
+<h3 id="物料相同未必属于同一份可用库存">物料相同，未必属于同一份可用库存</h3>
+<p>ERP 可能按工厂和仓库汇总物料数量，WMS 还需要回答它在哪个库位、属于哪个批次、装在哪个容器、当前能否移动。查询范围不同，两边显示的数量可能都正确，却无法直接比较。</p>
+<p>本例只看 A 工厂自有的 <code>BKT-018</code>，统一按件 <code>EA</code> 计量。旧支架 <code>BKT-017</code> 的 80 件库存仍单独保留用途限制，不抵扣新配置需求。跨料号替代必须有批准依据，不能因为外形相近就在拣选时换过去。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>对象或维度</th><th>本例要记录的内容</th><th>它解决的问题</th></tr></thead><tbody><tr><td>工厂与仓库</td><td>A 工厂、原料仓及线边库存范围</td><td>这份库存属于哪里，查询覆盖哪些位置</td></tr><tr><td>物料与单位</td><td><code>BKT-018</code>、<code>EA</code></td><td>同一种东西按什么单位计量</td></tr><tr><td>批次</td><td><code>LOT-N01</code> 等收货批次</td><td>哪次供给、检验与追溯记录适用于它</td></tr><tr><td>库位</td><td>收货区、隔离位、存储位、线边位</td><td>实物当前放在哪里，能否从这里执行任务</td></tr><tr><td>容器身份</td><td>托盘、箱或其他装载单元编号</td><td>一次搬运和扫码实际操作了哪些库存</td></tr><tr><td>库存与质量状态</td><td>待检、可用、受限等受控分类</td><td>允许执行哪些业务动作</td></tr><tr><td>预留、分配与仓库任务</td><td>需求占用、拣选和放置记录</td><td>哪份库存已经承诺给哪次作业</td></tr></tbody></table>
+<p>容器号标识一次装载关系，物料批次标识追溯范围，库位标识位置。一个批次可以分装在多个容器，一个容器能否混装则由企业规则决定。拆箱、并箱或更换托盘时，需要维护装载关系，不能直接把旧标签贴到另一批实物上。</p>
+<p>如果 ERP 按箱采购，仓库按件拣选，还要维护适用的单位换算和包装规则。数量比较先统一单位；批次、所有者、库存状态等维度是否参与管理，也要按企业实际配置确认。</p>
+<h3 id="在库可用和可领需要带上查询条件">在库、可用和可领需要带上查询条件</h3>
+<p>在本文的简化口径里，“在库”表示指定范围内已经登记、尚未耗用或出库的物料数量，包含待检库存。“质量可用”表示通过本例质量条件的那部分；它仍可能已经被其他任务占用。“可领”还要结合指定工单、批次适用性、位置和任务状态判断。</p>
+<p>这些名称不是所有产品统一的字段定义。Microsoft 的<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/inventory/inventory-statuses">库存状态说明</a>把状态作为库存分类维度，并说明受阻库存仍属于实物库存。项目中应继续核对哪些状态允许预留、拣选、生产使用及计划抵扣，不能只按界面上的“有货”两个字判断。</p>
+<p>以质量可用的 140 件为例，如果已经为本次配送分配 60 件，在本例没有其他占用的前提下，尚未分配的质量可用量是 80 件。60 件已经包含在 140 件中，不能再次相加。若系统里的冻结、预留与任务占用相互重叠，也不能把几个字段依次相减，凭空得出一个可用量。</p>
+<h2 id="收货质量放行和上架分别发生了什么">收货、质量放行和上架分别发生了什么</h2>
+<h3 id="先按采购范围确认实际收到的物料">先按采购范围确认实际收到的物料</h3>
+<p>采购订单、供应商送货通知和实物到达提供不同证据。WMS 收货时，需要核对来源单据、物料、单位、批次、容器和实收数量。少到、多到、包装损坏或标签无法识别时，按对应规则记录差异，不能用采购数量直接替代实收数量。</p>
+<p>收货记录再通过约定的业务动作更新 ERP。接口是否按逐次收货、订单行汇总或其他粒度处理，应提前确定，避免多次部分收货被误认为一笔重复记录，也避免同一笔实收被两个入口分别增加库存。</p>
+<p>为了展开前文的 160 件，本篇追加三个模拟批次和位置。以下是收货、相应上架和质量状态处理完成后的一个快照，不表示刚到货时就已经在这些位置：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>批次</th><th>数量</th><th>当前位置</th><th>质量状态</th><th>对本次生产的作用</th></tr></thead><tbody><tr><td><code>LOT-N01</code></td><td>100 件</td><td><code>RM-A01</code> 存储位</td><td>已放行</td><td>可以参加后续分配与拣选校验</td></tr><tr><td><code>LOT-N02</code></td><td>40 件</td><td><code>RM-A02</code> 存储位</td><td>已放行</td><td>可以参加后续分配与拣选校验</td></tr><tr><td><code>LOT-N03</code></td><td>20 件</td><td><code>QC-01</code> 隔离位</td><td>待检</td><td>当前不能发给新配置工单</td></tr><tr><td>合计</td><td>160 件</td><td>同一查询范围</td><td>已放行 140 件、待检 20 件</td><td>尚不能一次领齐 160 件</td></tr></tbody></table>
+<p>这张表只展开最初的 160 件供给。MES 篇两件损坏支架所需的追加供给在后面另行到货与批准，不混进这里的期初快照。</p>
+<h3 id="放行改变业务资格上架改变实物位置">放行改变业务资格，上架改变实物位置</h3>
+<p>质量结果需要关联明确的批次或库存范围，经过相应权限处理，再更新 WMS 中可执行的状态。检验申请、检验结果和批准处置可以分别由 QMS、ERP 质量模块或其他受控模块承接，实际维护方要明确。</p>
+<p>仓库人员将待检料移入隔离库位，不会使它自动变成合格料。反过来，批准放行消息到达后，如果仍有未结上架、移动或冻结任务，也要按产品规则处理，不能假定任何状态都能立即覆盖。</p>
+<p>本例允许待检料按规则上架到隔离位。其他企业可能先在收货区检验，再安排上架，或采用不同的抽样与隔离方式。Microsoft 的<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/quality-check">仓库质量检查说明</a>展示了接收流程中的检查及异常处理配置，这类检查也不应直接等同于所有行业要求的完整质量放行。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>收货、质量状态与上架位置</strong><a href="/manufacturing/maps/wms-receipt-availability.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/wms-receipt-availability.html" title="WMS 收货质量状态上架与库存可用量交互数据图" loading="lazy" allowfullscreen></iframe>
+<figcaption>三行分别展示采购收货、质量处置和库位更新，使用同一库存身份。它们是不同业务视角，不规定唯一的先后顺序。点击节点或连线查看关系，使用图内控件播放流转；动画不表示真实系统时序或运行状态，窄屏可打开独立窗口查看。</figcaption>
+</figure>
+<h3 id="库位建议还需要实际落位确认">库位建议还需要实际落位确认</h3>
+<p>上架任务通常要按物料属性、库位容量、混放、包装或其他规则寻找位置。建议位置不等于实物已到位，任务完成还需要保存执行人与目标位置的确认。现场换位时，应走允许的变更或异常流程，避免系统仍指向原来的空库位。</p>
+<p>Microsoft 的<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/control-warehouse-location-directives">工作模板与库位指令说明</a>分别描述了仓库工作如何执行、从哪里取以及放到哪里。具体产品可以采用不同的任务模型，项目应确认哪些动作改变库存位置、哪些仅形成计划。</p>
+<p>拣选位不足时，可能需要从存储位补货。库房汇总数量够、当前拣选位却没有可取数量，是另一种常见缺料原因。这个问题应沿补货任务和位置记录查，不应直接归为采购未到货。</p>
+<h2 id="一次生产配送怎样改变库存记录">一次生产配送怎样改变库存记录</h2>
+<h3 id="从工单需求选出一份可执行的库存">从工单需求选出一份可执行的库存</h3>
+<p>假设 <code>MO-0160</code> 首次请求配送 60 件支架。请求至少带上工单、物料、数量、需要时间和目标线边位置，WMS 再按质量、批次适用性、预留与位置条件选择库存。</p>
+<p>先进先出、按有效期先出、指定批次或其他拣选策略，需要服从已批准的适用规则。不能为了凑齐数量，把待检料或另一用途的受限库存直接替进来；也不能因为某批库存最早到货，就忽略它已被其他任务占用。</p>
+<p>本例从 <code>LOT-N01</code> 分配 60 件，形成对应的拣选与放置任务。若只拣到 58 件，应记录短拣，核对实物、未结任务和库存差异，再决定补拣或调整交付范围。任务上原本写了 60 件，不能据此确认车间实收了 60 件。</p>
+<h3 id="仓库到线边的转移不直接代表耗用">仓库到线边的转移不直接代表耗用</h3>
+<p>主案例假设这次实际拣选、配送和接收均为 60 件。线边位 <code>LINE-030</code> 也在 WMS 管理的库存范围内，仓库到线边按库存转移处理；实际投入后，再按约定的来源记录耗用。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>时点</th><th>仓库存储及隔离位置</th><th>线边未耗用库存</th><th>本范围物料库存合计</th><th>累计实际耗用</th></tr></thead><tbody><tr><td>配送前</td><td>160</td><td>0</td><td>160</td><td>0</td></tr><tr><td>分配 60 件，尚未搬运</td><td>160</td><td>0</td><td>160</td><td>0</td></tr><tr><td>60 件已交到线边</td><td>100</td><td>60</td><td>160</td><td>0</td></tr><tr><td>其中 58 件完成投入与耗用确认</td><td>100</td><td>2</td><td>102</td><td>58</td></tr></tbody></table>
+<p>这里仍只看最初的 160 件新料，仓库的 100 件包含那 20 件待检料。60 件被分配时没有多出一份库存；转移到线边后，也不能继续同时算在原库位和线边。表中的库存合计不包含已计入生产耗用的材料，计价与成本记录按企业核算配置处理。</p>
+<p>Microsoft 的<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/production-control/flushing-principles">生产耗用与倒冲说明</a>区分了物料搬到生产投入位置和后续耗用。本例据此明确这条边界；如果企业采用按工单领料直接计耗或其他模式，就应调整接口与对账口径。</p>
+<p>本次 2 件线边余料后来继续投入，没有发生余料退回。后续其他批次放行并投入，再加上两件经批准的追加替换支架，主案例最终仍为 162 件净耗用、160 台合格风机，与 ERP、MES 篇一致。</p>
+<h3 id="配送任务和自动化搬运各自留下结果">配送任务和自动化搬运各自留下结果</h3>
+<p>人工叉车、输送线或移动机器人都可以承接搬运。采用 WCS（仓储控制）或 WES（仓储执行）时，要确认任务拆分、调度与设备执行分别由谁负责，产品之间的实际边界可能不同。</p>
+<p>WMS 下发任务，只能证明产生了搬运安排；控制系统接受命令、设备完成搬运、目标位置确认与业务库存更新，还需要各自的证据。机器人已经到站，但容器身份不匹配时，不能仅凭设备的“完成”信号认定指定物料已经交付。</p>
+<p>设备任务重试也应保留原业务任务与执行尝试的关联。某次搬运实际上已经完成，只是回执丢失，恢复时应先核对当前位置，避免再次搬走同一个容器。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>生产配送、退料与盘点的记录关系</strong><a href="/manufacturing/maps/wms-production-reconciliation.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/wms-production-reconciliation.html" title="WMS 生产配送余料退回盘点调整与对账交互数据图" loading="lazy" allowfullscreen></iframe>
+<figcaption>三行展开配送、退料和盘点的独立业务视角。退料用于边界验收，不改写主案例的无退料记录。实际投入、库存调整和下游回执各自保留依据；点击节点或连线可查看关系，动画只表达图中已绘制的流向。</figcaption>
+</figure>
+<h2 id="退料和盘点为什么需要单独的业务动作">退料和盘点为什么需要单独的业务动作</h2>
+<h3 id="退回来的物料先恢复身份再判断用途">退回来的物料先恢复身份，再判断用途</h3>
+<p>主案例最终没有余料退回，但系统实施必须另外准备退料样本。样本应关联原配送、实际退回数量、批次、容器、来源与目标位置，核对是否已经耗用、是否拆包、是否混料，以及质量或用途是否发生变化。</p>
+<p>如果只是未耗用物料从线边退回仓库，在本例模型中属于位置与必要状态的更新，不能额外再增加一份工厂总库存。如果此前已经记为生产耗用，就涉及授权的退料或冲销记录，要能关联原耗用事务。两种情况不能使用同一个无条件“退库加库存”动作。</p>
+<p>退回物料也未必立刻可用。身份无法确认、包装损坏或需要重新检验的物料，应进入相应受限范围。退回任务完成，最多说明本次交接已经处理，不能代替质量放行。</p>
+<h3 id="盘点先保留实数再核对差异来源">盘点先保留实数，再核对差异来源</h3>
+<p>盘点对象可以按库位、物料、容器或其他范围组织，但要明确计数单位和时点。盘点期间是否暂停收发、允许哪些任务继续，以及怎样纳入同期移动，需提前确定，不能假定创建盘点任务就自动冻结所有库存。</p>
+<p><a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/cycle-counting">Microsoft 的循环盘点说明</a>把创建盘点工作、录入实数和处理差异分开，并说明存在盘点工作时的预留及出库行为。项目要按实际配置验收，尤其检查计数期间发生的移动。</p>
+<p>在独立的差异样本中，如果系统显示 40 件，实物只数到 39 件，应先查单位、容器拆分、未结搬运、耗用回传和计数遗漏。复核与授权后再执行库存调整，保留原计数、原因、批准人与目标事务号，不能让接口为了“账实一致”自动扣掉一件。</p>
+<p>调整已经过账而回执尚未到达时，两边应显示待核对状态；重复回传不能再次调整。差异也不能只存在于集成日志里，仓库与核算岗位需要能查到处理结果。</p>
+<h3 id="成品入库和销售出库延续同样的身份与交接规则">成品入库和销售出库延续同样的身份与交接规则</h3>
+<p>MES 完工后，成品收货应关联生产订单、单件或批次、实收数量、容器与位置。若 MES 完工消息已经触发 ERP 入库，WMS 的收货与上架结果就要按约定关联，不能再次无条件增加同一批成品数量。</p>
+<p>后续按销售或交付需求拣选、复核、装运时，仍需核对质量状态、数量与实物身份。拣到集货位、装车、承运交接和客户签收分别保留记录。运输调度和签收链路留到物流专题继续拆，本篇先保留 WMS 向外部交接的边界。</p>
+<h2 id="接口对账和-agent-查询怎样验收到库存明细">接口对账和 Agent 查询怎样验收到库存明细</h2>
+<h3 id="用业务事件表达一次已经完成的转移">用业务事件表达一次已经完成的转移</h3>
+<p>下面是本次 60 件线边配送的概念记录。容器在拣选时完成拆分并生成配送容器身份，拆分明细另有关联记录；编号与时间均为模拟值，不对应厂商 API。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "source_system"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"WMS_A"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "event_id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"MOVE-0060-COMPLETE"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "event_type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"warehouse_transfer_completed"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "work_id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"WORK-0060"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "work_line"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"10"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "plant"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"A"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "erp_production_order"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"MO-0160"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "material"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"BKT-018"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "batch"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"LOT-N01"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "handling_unit"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"HU-DEL-0060"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "quantity"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">60</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "unit"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"EA"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "source_location"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"RM-A01"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "destination_location"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"LINE-030"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "delivery_confirmation"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"DELIVERY-0060-ACK"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "occurred_at"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"2026-10-14T15:10:00+08:00"</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<p>这条记录描述库存转移，不能直接解释为 60 件材料已耗用。MES 可以用它关联到位信息，再保存实际投入；ERP 是否需要生成转移事务，由仓库与位置映射决定。接收方返回业务结果时，应带上原事件身份与目标记录，便于后续核对。</p>
+<p>同一来源、同一事件身份、相同内容重传时，返回已有结果；同一身份携带不同数量或批次时，进入冲突处理。更正要关联原记录，不能覆盖内容后再重发一次，希望目标系统自行猜出差量。</p>
+<p>分配与任务创建还要处理并发。两个请求同时读取剩余 60 件，都认为自己能够分配，需要由业务系统的预留与事务控制保证不超占。Agent 或接口先查询到可用量，再执行分配时，应重新校验最新状态。</p>
+<h3 id="对账先统一范围再比较数量与状态">对账先统一范围，再比较数量与状态</h3>
+<p>按工厂、仓库、物料、批次、状态、单位和时点核对，并保存两个系统各自的读取时间。某个系统将线边单独列为仓库，另一个系统将它包含在原料仓中时，要先完成映射与汇总，不能只拿两个同名字段相减。</p>
+<p><a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/wms-only-mode-exchange-data">Microsoft 的仓储系统数据交换说明</a>给出了收货与发货更新、库存状态映射等产品实例。这里更需要逐项确定业务含义与目标结果，字段名称相同不代表可以直接同步。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>验收情形</th><th>应当保留的结果与证据</th></tr></thead><tbody><tr><td>初始收货 160 件，其中待检 20 件</td><td>在库与质量可用分开，不允许直接领齐 160 件</td></tr><tr><td>存在旧料库存与用途限制</td><td>不跨料号抵扣，也不绕过适用规则拣选</td></tr><tr><td>质量可用 140 件，已分配 60 件</td><td>在本例无其他占用时，尚未分配量为 80 件，不重复计数</td></tr><tr><td>分配 60 件但只拣到 58 件</td><td>保留短拣与后续处理，不自动确认实收 60 件</td></tr><tr><td>60 件交到线边、其中耗用 58 件</td><td>线边余料 2 件，本范围物料库存合计 102 件</td></tr><tr><td>退回未耗用余料或已耗用材料</td><td>分开处理位置转移与授权退料冲销，均关联原依据</td></tr><tr><td>盘点期间发生移动或存在未结任务</td><td>对齐计数范围与时点，差异先复核再批准调整</td></tr><tr><td>重复、迟到或内容冲突的事件</td><td>不重复增加或扣减，能找到原事件和目标事务</td></tr><tr><td>设备完成搬运而业务回执丢失</td><td>核对实物当前位置，避免重复搬运和重复确认</td></tr><tr><td>某个来源查询失败</td><td>列出未知范围，不当作零库存或全部可用</td></tr></tbody></table>
+<h3 id="agent-先回答为什么这张工单领不到料">Agent 先回答为什么这张工单领不到料</h3>
+<p>对 <code>MO-0160</code>，Agent 可以先整理一份有来源的备料说明：需求是什么，当前已放行多少，多少被占用，缺口在哪个批次、位置或任务，以及下一步需要谁处理。</p>
+<p>查询至少保留来源系统、库存身份、业务时间、读取时间和状态依据。系统显示有 20 件待检，可以报告这个事实；预计什么时候可领，还需要检验安排与批准结果。不能仅凭一个预计到货日就给车间确认生产时间。</p>
+<p>可以先让 Agent 生成短拣核对清单、未结搬运任务、盘点差异摘要和跨系统对账草稿。释放库存限制、改批次、重新分配、取消任务、调整数量及冲销过账仍通过授权业务动作执行，保存前置校验与实际结果。</p>
+<p>这篇留下了库存身份、状态、位置和仓储任务的核对范围。下一篇把 PLM、ERP、MES 与 WMS 的记录接在一起，分析一张订单为什么延期，区分客户承诺、计划安排和实际发生的事件。选题进度继续保留在<a href="/blog/2026-10-14-manufacturing-systems-map/">制造业研究目录</a>，物流关系可以回到<a href="/manufacturing/data-map/#materials-logistics">数据地图</a>查看。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 
