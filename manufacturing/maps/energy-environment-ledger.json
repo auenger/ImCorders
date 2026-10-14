@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "能源归集与环境异常证据",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-resources-20261014-171609/energy-environment-ledger/energy-environment-ledger.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "quality_profile": "showcase",
+    "animation": "trace",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "业务依据"
+        },
+        "security": {
+          "label": "条件核验"
+        },
+        "emphasis": {
+          "label": "通过后的记录"
+        },
+        "dashed": {
+          "label": "核对与处置"
+        },
+        "database": {
+          "label": "对象与履历"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "来源与身份"
+    },
+    {
+      "label": "适用范围"
+    },
+    {
+      "label": "核对条件"
+    },
+    {
+      "label": "业务记录"
+    },
+    {
+      "label": "关联与追溯"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "meter",
+      "type": "external",
+      "label": "能源计量点",
+      "sublabel": "表计与读数单位",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "interval",
+      "type": "backend",
+      "label": "区间处理",
+      "sublabel": "时段与复位核对",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "balance",
+      "type": "security",
+      "label": "层级核对",
+      "sublabel": "父表与分表边界",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "ledger",
+      "type": "database",
+      "label": "能源台账",
+      "sublabel": "通过后留存区间量",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "allocation",
+      "type": "backend",
+      "label": "任务归集",
+      "sublabel": "实测与分摊分列",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "production",
+      "type": "database",
+      "label": "生产记录",
+      "sublabel": "任务与产出范围",
+      "stage": 0,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "output",
+      "type": "backend",
+      "label": "产出快照",
+      "sublabel": "单位与质量状态",
+      "stage": 1,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "boundary",
+      "type": "security",
+      "label": "口径核验",
+      "sublabel": "时段与范围一致",
+      "stage": 2,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "intensity",
+      "type": "database",
+      "label": "单耗结果",
+      "sublabel": "匹配能源台账",
+      "stage": 3,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "compare",
+      "type": "backend",
+      "label": "基线比较",
+      "sublabel": "条件与修订版本",
+      "stage": 4,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "environment",
+      "type": "external",
+      "label": "环境监测点",
+      "sublabel": "介质与监测位置",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "quality",
+      "type": "backend",
+      "label": "采样状态",
+      "sublabel": "时间与设备质量",
+      "stage": 1,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "rule",
+      "type": "security",
+      "label": "适用规则",
+      "sublabel": "范围与规则版本",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "event",
+      "type": "database",
+      "label": "评估记录",
+      "sublabel": "异常或待核查",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "disposition",
+      "type": "backend",
+      "label": "责任人处置",
+      "sublabel": "复核与关闭依据",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "flow-0-0",
+      "from": "meter",
+      "to": "interval",
+      "label": "采集",
+      "variant": "default"
+    },
+    {
+      "id": "flow-0-1",
+      "from": "interval",
+      "to": "balance",
+      "label": "核对",
+      "variant": "default"
+    },
+    {
+      "id": "flow-0-2",
+      "from": "balance",
+      "to": "ledger",
+      "label": "通过",
+      "variant": "security"
+    },
+    {
+      "id": "flow-0-3",
+      "from": "ledger",
+      "to": "allocation",
+      "label": "归集",
+      "variant": "emphasis"
+    },
+    {
+      "id": "flow-1-0",
+      "from": "production",
+      "to": "output",
+      "label": "取数",
+      "variant": "default"
+    },
+    {
+      "id": "flow-1-1",
+      "from": "output",
+      "to": "boundary",
+      "label": "匹配",
+      "variant": "default"
+    },
+    {
+      "id": "flow-1-2",
+      "from": "boundary",
+      "to": "intensity",
+      "label": "通过",
+      "variant": "security"
+    },
+    {
+      "id": "flow-1-3",
+      "from": "intensity",
+      "to": "compare",
+      "label": "比较",
+      "variant": "dashed"
+    },
+    {
+      "id": "flow-2-0",
+      "from": "environment",
+      "to": "quality",
+      "label": "采集",
+      "variant": "default"
+    },
+    {
+      "id": "flow-2-1",
+      "from": "quality",
+      "to": "rule",
+      "label": "评估",
+      "variant": "default"
+    },
+    {
+      "id": "flow-2-2",
+      "from": "rule",
+      "to": "event",
+      "label": "留痕",
+      "variant": "emphasis"
+    },
+    {
+      "id": "flow-2-3",
+      "from": "event",
+      "to": "disposition",
+      "label": "复核",
+      "variant": "dashed"
+    },
+    {
+      "id": "ledger-intensity",
+      "from": "ledger",
+      "to": "intensity",
+      "label": "台账",
+      "variant": "default",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "straight",
+      "labelAt": [
+        745,
+        217
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "台账间的关联",
+      "items": [
+        "单耗按同一范围关联第一行能源台账",
+        "总表包含分表，不能再次累加分表",
+        "共享消耗采用批准规则，单列分摊部分"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "质量与版本",
+      "items": [
+        "失联或失效读数保持待核查，不能补成零",
+        "环境规则保留来源、版本与适用范围",
+        "动画展示数据方向，不表示在线合规判定"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "比较条件",
+      "items": [
+        "单位产出变化需要复核产品与运行条件",
+        "能源、成本与排放分别保留计算依据",
+        "估算和人工修订保留原值及审批履历"
+      ]
+    }
+  ]
+}

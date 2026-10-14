@@ -1971,6 +1971,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/qms-lims-quality-release/index.md"
     },
     {
+      "id": "manufacturing/tooling-metrology-utilities-energy",
+      "kind": "manufacturing",
+      "title": "工装、计量、公用工程与能源环境数据",
+      "description": "从生产任务的资源资格与使用履历出发，拆解工装寿命、计量适用性、公用工程条件、能源计量与环境监测的数据关系，用独立模拟账本核对总分表、任务归集与单耗，并整理异常追溯和集成验收方法。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "工装管理",
+        "计量管理",
+        "公用工程",
+        "能源管理"
+      ],
+      "publishedAt": "2026-10-14T00:00:00.000Z",
+      "updatedAt": "2026-10-14T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/tooling-metrology-utilities-energy/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/tooling-metrology-utilities-energy/index.md"
+    },
+    {
       "id": "manufacturing/warehouse-automation-logistics-transport",
       "kind": "manufacturing",
       "title": "自动化仓储、厂内物流与运输协同",

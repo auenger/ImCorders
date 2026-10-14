@@ -1,0 +1,318 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "生产资源资格与使用证据",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-resources-20261014-171609/resource-use-evidence/resource-use-evidence.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "quality_profile": "showcase",
+    "animation": "trace",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "业务依据"
+        },
+        "security": {
+          "label": "条件核验"
+        },
+        "emphasis": {
+          "label": "通过后的记录"
+        },
+        "dashed": {
+          "label": "核对与处置"
+        },
+        "database": {
+          "label": "对象与履历"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "来源与身份"
+    },
+    {
+      "label": "适用范围"
+    },
+    {
+      "label": "核对条件"
+    },
+    {
+      "label": "业务记录"
+    },
+    {
+      "label": "关联与追溯"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "tool",
+      "type": "database",
+      "label": "工装单件",
+      "sublabel": "型号与单件身份",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "binding",
+      "type": "backend",
+      "label": "任务需求",
+      "sublabel": "工序与适用版本",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "toolgate",
+      "type": "security",
+      "label": "工装核验",
+      "sublabel": "状态与寿命余量",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "mount",
+      "type": "backend",
+      "label": "装夹确认",
+      "sublabel": "通过后登记使用",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "toolhistory",
+      "type": "database",
+      "label": "使用履历",
+      "sublabel": "工单与计数依据",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "gauge",
+      "type": "database",
+      "label": "计量设备",
+      "sublabel": "证书与历史状态",
+      "stage": 0,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "method",
+      "type": "backend",
+      "label": "测量要求",
+      "sublabel": "方法与适用量程",
+      "stage": 1,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "measuregate",
+      "type": "security",
+      "label": "适用性核验",
+      "sublabel": "有效性与不确定度",
+      "stage": 2,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "result",
+      "type": "database",
+      "label": "测量结果",
+      "sublabel": "通过后关联依据",
+      "stage": 3,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "review",
+      "type": "backend",
+      "label": "影响评估",
+      "sublabel": "异常后圈定范围",
+      "stage": 4,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "utility",
+      "type": "external",
+      "label": "公用工程",
+      "sublabel": "服务区域与点位",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "service",
+      "type": "backend",
+      "label": "服务条件",
+      "sublabel": "任务时段与容量",
+      "stage": 1,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "utilitygate",
+      "type": "security",
+      "label": "条件核验",
+      "sublabel": "质量标志与新鲜度",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "snapshot",
+      "type": "database",
+      "label": "条件快照",
+      "sublabel": "通过后关联任务",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "scope",
+      "type": "backend",
+      "label": "异常处置",
+      "sublabel": "影响任务与批准",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "flow-0-0",
+      "from": "tool",
+      "to": "binding",
+      "label": "选型",
+      "variant": "default"
+    },
+    {
+      "id": "flow-0-1",
+      "from": "binding",
+      "to": "toolgate",
+      "label": "匹配",
+      "variant": "default"
+    },
+    {
+      "id": "flow-0-2",
+      "from": "toolgate",
+      "to": "mount",
+      "label": "通过",
+      "variant": "security"
+    },
+    {
+      "id": "flow-0-3",
+      "from": "mount",
+      "to": "toolhistory",
+      "label": "登记",
+      "variant": "emphasis"
+    },
+    {
+      "id": "flow-1-0",
+      "from": "gauge",
+      "to": "method",
+      "label": "关联",
+      "variant": "default"
+    },
+    {
+      "id": "flow-1-1",
+      "from": "method",
+      "to": "measuregate",
+      "label": "核验",
+      "variant": "default"
+    },
+    {
+      "id": "flow-1-2",
+      "from": "measuregate",
+      "to": "result",
+      "label": "通过",
+      "variant": "security"
+    },
+    {
+      "id": "flow-1-3",
+      "from": "result",
+      "to": "review",
+      "label": "追溯",
+      "variant": "dashed"
+    },
+    {
+      "id": "flow-2-0",
+      "from": "utility",
+      "to": "service",
+      "label": "映射",
+      "variant": "default"
+    },
+    {
+      "id": "flow-2-1",
+      "from": "service",
+      "to": "utilitygate",
+      "label": "核验",
+      "variant": "default"
+    },
+    {
+      "id": "flow-2-2",
+      "from": "utilitygate",
+      "to": "snapshot",
+      "label": "通过",
+      "variant": "security"
+    },
+    {
+      "id": "flow-2-3",
+      "from": "snapshot",
+      "to": "scope",
+      "label": "追溯",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "三条证据链",
+      "items": [
+        "各行展示独立核验路径，共同关联生产任务",
+        "核验通过才登记相应使用或条件证据",
+        "本图为教学数据关系，动画不代表实时连接"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "有效性有范围",
+      "items": [
+        "预约不代表已经装夹或使用",
+        "计量溯源不能单独证明用途适合",
+        "公用工程状态必须附区域、时段与质量标志"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "异常保留历史",
+      "items": [
+        "核验失败进入未决处置，不生成通过记录",
+        "后续异常由履历圈定受影响任务",
+        "图中登记不替代 MES 总体开工许可"
+      ]
+    }
+  ]
+}
