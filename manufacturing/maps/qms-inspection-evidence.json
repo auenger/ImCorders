@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "检验记录怎样成为放行依据",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-qms-20261014-145209/qms-inspection-evidence/qms-inspection-evidence.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "quality_profile": "showcase",
+    "animation": "trace",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "业务记录"
+        },
+        "emphasis": {
+          "label": "批准动作"
+        },
+        "security": {
+          "label": "条件校验"
+        },
+        "dashed": {
+          "label": "结果与核对"
+        },
+        "database": {
+          "label": "来源与证据"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "对象与要求"
+    },
+    {
+      "label": "任务与方法"
+    },
+    {
+      "label": "结果与复核"
+    },
+    {
+      "label": "处置与授权"
+    },
+    {
+      "label": "执行与回执"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "r0n0",
+      "type": "database",
+      "label": "收货批次",
+      "sublabel": "LOT-N03 · 20 件",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n1",
+      "type": "backend",
+      "label": "来料检验任务",
+      "sublabel": "批次范围与方案版本",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n2",
+      "type": "security",
+      "label": "检验结果复核",
+      "sublabel": "项目完整且结果有效",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n3",
+      "type": "security",
+      "label": "批准来料放行",
+      "sublabel": "限定批次与数量",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n4",
+      "type": "backend",
+      "label": "WMS 应用回执",
+      "sublabel": "仅解除本项质量限制",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n0",
+      "type": "external",
+      "label": "实验室委托",
+      "sublabel": "仅在确需送检时使用",
+      "stage": 0,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n1",
+      "type": "backend",
+      "label": "LIMS 样品任务",
+      "sublabel": "样品链与方法版本",
+      "stage": 1,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n2",
+      "type": "security",
+      "label": "实验结果审核",
+      "sublabel": "原始数据及异常调查",
+      "stage": 2,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n3",
+      "type": "database",
+      "label": "QMS 处置依据",
+      "sublabel": "关联任务及覆盖范围",
+      "stage": 3,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n4",
+      "type": "backend",
+      "label": "关联放行任务",
+      "sublabel": "仍需授权与目标回执",
+      "stage": 4,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n0",
+      "type": "database",
+      "label": "MES 不合格记录",
+      "sublabel": "两台风机 · 序列号",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n1",
+      "type": "security",
+      "label": "返工方案审批",
+      "sublabel": "RW-0021 · 换件范围",
+      "stage": 1,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n2",
+      "type": "database",
+      "label": "返工与复检记录",
+      "sublabel": "保留原失败及谱系",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n3",
+      "type": "security",
+      "label": "批准成品放行",
+      "sublabel": "逐台核对未结限制",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n4",
+      "type": "backend",
+      "label": "MES / WMS 回执",
+      "sublabel": "生产与库存分别确认",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "r0f0",
+      "from": "r0n0",
+      "to": "r0n1",
+      "label": "建单",
+      "variant": "default"
+    },
+    {
+      "id": "r0f1",
+      "from": "r0n1",
+      "to": "r0n2",
+      "label": "核验",
+      "variant": "security"
+    },
+    {
+      "id": "r0f2",
+      "from": "r0n2",
+      "to": "r0n3",
+      "label": "批准",
+      "variant": "emphasis"
+    },
+    {
+      "id": "r0f3",
+      "from": "r0n3",
+      "to": "r0n4",
+      "label": "应用",
+      "variant": "dashed"
+    },
+    {
+      "id": "r1f0",
+      "from": "r1n0",
+      "to": "r1n1",
+      "label": "登记",
+      "variant": "default"
+    },
+    {
+      "id": "r1f1",
+      "from": "r1n1",
+      "to": "r1n2",
+      "label": "复核",
+      "variant": "security"
+    },
+    {
+      "id": "r1f2",
+      "from": "r1n2",
+      "to": "r1n3",
+      "label": "引用",
+      "variant": "emphasis"
+    },
+    {
+      "id": "r1f3",
+      "from": "r1n3",
+      "to": "r1n4",
+      "label": "关联",
+      "variant": "dashed"
+    },
+    {
+      "id": "r2f0",
+      "from": "r2n0",
+      "to": "r2n1",
+      "label": "提请",
+      "variant": "default"
+    },
+    {
+      "id": "r2f1",
+      "from": "r2n1",
+      "to": "r2n2",
+      "label": "执行",
+      "variant": "security"
+    },
+    {
+      "id": "r2f2",
+      "from": "r2n2",
+      "to": "r2n3",
+      "label": "批准",
+      "variant": "emphasis"
+    },
+    {
+      "id": "r2f3",
+      "from": "r2n3",
+      "to": "r2n4",
+      "label": "应用",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "三行是不同业务分支",
+      "items": [
+        "来料检验、可选实验室送检、成品返工分别展开",
+        "实验室结果进入关联任务后，仍须完成处置与授权"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "结果范围不能扩大",
+      "items": [
+        "样品合格不自动代表任意批次或数量可用",
+        "放行依据绑定规格、方法、对象及有效版本"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "回执决定落实状态",
+      "items": [
+        "批准完成与目标系统应用完成分别记录",
+        "解除质量限制不会自动清除其他独立限制"
+      ]
+    }
+  ]
+}

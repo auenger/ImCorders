@@ -1863,6 +1863,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/plm-engineering-change/index.md"
     },
     {
+      "id": "manufacturing/qms-lims-quality-release",
+      "kind": "manufacturing",
+      "title": "QMS、LIMS 与质量放行的衔接",
+      "description": "沿用风机订单中的 20 件待检支架与两台返工产品，拆解 QMS、LIMS、MES 和 WMS 之间的检验依据、样品范围、质量处置、放行授权、库存限制、复检记录与接口回执，并给出可执行的集成验收场景。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "QMS",
+        "LIMS",
+        "质量管理",
+        "系统集成"
+      ],
+      "publishedAt": "2026-10-14T00:00:00.000Z",
+      "updatedAt": "2026-10-14T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/qms-lims-quality-release/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/qms-lims-quality-release/index.md"
+    },
+    {
       "id": "manufacturing/wms-inventory-production-delivery",
       "kind": "manufacturing",
       "title": "WMS 中的库存、库位与生产配送",
