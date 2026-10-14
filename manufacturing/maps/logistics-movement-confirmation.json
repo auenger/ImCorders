@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "厂内配送怎样区分任务、搬运与交付",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-logistics-20261014-165058/logistics-movement-confirmation/logistics-movement-confirmation.html",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "业务与反馈"
+        },
+        "security": {
+          "label": "身份与条件核验"
+        },
+        "emphasis": {
+          "label": "授权动作"
+        },
+        "dashed": {
+          "label": "回执与核对"
+        },
+        "database": {
+          "label": "任务与证据"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "来源需求或证据"
+    },
+    {
+      "label": "前置核验"
+    },
+    {
+      "label": "业务动作"
+    },
+    {
+      "label": "执行或应用结果"
+    },
+    {
+      "label": "交接与核对"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "r0n0",
+      "label": "MES 配送需求",
+      "sublabel": "MO-0160 · 支架 60 件",
+      "type": "database",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n1",
+      "label": "WMS 库存核验",
+      "sublabel": "批次、状态、位置与占用",
+      "type": "security",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n2",
+      "label": "WMS 配送任务",
+      "sublabel": "MOV-0060 · 固定范围",
+      "type": "database",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n3",
+      "label": "WES 资源调度",
+      "sublabel": "站点容量及执行资格",
+      "type": "security",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r0n4",
+      "label": "WCS / 车队接单",
+      "sublabel": "任务接受不等于已交付",
+      "type": "backend",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n0",
+      "label": "设备执行及交接证据",
+      "sublabel": "原任务与执行尝试关联",
+      "type": "database",
+      "stage": 0,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n1",
+      "label": "容器与站点核验",
+      "sublabel": "身份、数量及实际交接",
+      "type": "security",
+      "stage": 1,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n2",
+      "label": "WMS 位置应用",
+      "sublabel": "指定库存只记一次移动",
+      "type": "backend",
+      "stage": 2,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n3",
+      "label": "WMS 业务回执",
+      "sublabel": "动作范围与新位置版本",
+      "type": "database",
+      "stage": 3,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r1n4",
+      "label": "线边交付状态",
+      "sublabel": "可用条件及实际接收",
+      "type": "backend",
+      "stage": 4,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n0",
+      "label": "超时、故障或取消请求",
+      "sublabel": "保留原动作与执行记录",
+      "type": "database",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n1",
+      "label": "实际状态再核验",
+      "sublabel": "当前位置、持载与未结项",
+      "type": "security",
+      "stage": 1,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n2",
+      "label": "获批重派或补偿",
+      "sublabel": "不重复执行已完成搬运",
+      "type": "security",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n3",
+      "label": "新的执行尝试记录",
+      "sublabel": "关联原业务任务及范围",
+      "type": "database",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "r2n4",
+      "label": "原任务差异核对",
+      "sublabel": "交接与业务结果另查",
+      "type": "backend",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "r0f0",
+      "from": "r0n0",
+      "to": "r0n1",
+      "label": "请求",
+      "variant": "default"
+    },
+    {
+      "id": "r0f1",
+      "from": "r0n1",
+      "to": "r0n2",
+      "label": "授权",
+      "variant": "emphasis"
+    },
+    {
+      "id": "r0f2",
+      "from": "r0n2",
+      "to": "r0n3",
+      "label": "分派",
+      "variant": "default"
+    },
+    {
+      "id": "r0f3",
+      "from": "r0n3",
+      "to": "r0n4",
+      "label": "满足",
+      "variant": "security"
+    },
+    {
+      "id": "r1f0",
+      "from": "r1n0",
+      "to": "r1n1",
+      "label": "关联",
+      "variant": "default"
+    },
+    {
+      "id": "r1f1",
+      "from": "r1n1",
+      "to": "r1n2",
+      "label": "满足",
+      "variant": "security"
+    },
+    {
+      "id": "r1f2",
+      "from": "r1n2",
+      "to": "r1n3",
+      "label": "应用",
+      "variant": "emphasis"
+    },
+    {
+      "id": "r1f3",
+      "from": "r1n3",
+      "to": "r1n4",
+      "label": "核对",
+      "variant": "dashed"
+    },
+    {
+      "id": "r2f0",
+      "from": "r2n0",
+      "to": "r2n1",
+      "label": "查询",
+      "variant": "default"
+    },
+    {
+      "id": "r2f1",
+      "from": "r2n1",
+      "to": "r2n2",
+      "label": "评审",
+      "variant": "security"
+    },
+    {
+      "id": "r2f2",
+      "from": "r2n2",
+      "to": "r2n3",
+      "label": "形成",
+      "variant": "emphasis"
+    },
+    {
+      "id": "r2f3",
+      "from": "r2n3",
+      "to": "r2n4",
+      "label": "核对",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "三行展开同一配送闭环",
+      "items": [
+        "下发与接受、实物交接与位置应用、异常处理分别记录",
+        "WES、WCS 和车队系统为可选角色，不要求逐层独立部署"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "到站信号不能代替全部证据",
+      "items": [
+        "指定容器、物料数量及目标交接按配置核验",
+        "自动识别或人工确认均须关联可追溯来源"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "异常不重置实物历史",
+      "items": [
+        "回执超时先查询，不直接重新搬运同一容器",
+        "上层调度不替代设备现场保护与准入规则"
+      ]
+    }
+  ]
+}

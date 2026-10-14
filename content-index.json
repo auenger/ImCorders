@@ -1953,6 +1953,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/qms-lims-quality-release/index.md"
     },
     {
+      "id": "manufacturing/warehouse-automation-logistics-transport",
+      "kind": "manufacturing",
+      "title": "自动化仓储、厂内物流与运输协同",
+      "description": "沿用 60 件支架线边配送与 200 台风机整批交付，拆解 WMS、WES、WCS、车队系统和 TMS 的任务、容器、交接与回执，说明超时重派、途中库存、装车、签收差异和跨系统验收如何落实。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "WES",
+        "WCS",
+        "厂内物流",
+        "TMS"
+      ],
+      "publishedAt": "2026-10-14T00:00:00.000Z",
+      "updatedAt": "2026-10-14T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/warehouse-automation-logistics-transport/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/warehouse-automation-logistics-transport/index.md"
+    },
+    {
       "id": "manufacturing/wms-inventory-production-delivery",
       "kind": "manufacturing",
       "title": "WMS 中的库存、库位与生产配送",

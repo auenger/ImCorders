@@ -1,0 +1,330 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>自动化仓储、厂内物流与运输协同 | 制造业系统</title><meta name="description" content="沿用 60 件支架线边配送与 200 台风机整批交付，拆解 WMS、WES、WCS、车队系统和 TMS 的任务、容器、交接与回执，说明超时重派、途中库存、装车、签收差异和跨系统验收如何落实。"><link rel="canonical" href="https://imcoders.cn/manufacturing/warehouse-automation-logistics-transport/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/warehouse-automation-logistics-transport/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/warehouse-automation-logistics-transport/#article","headline":"自动化仓储、厂内物流与运输协同","description":"沿用 60 件支架线边配送与 200 台风机整批交付，拆解 WMS、WES、WCS、车队系统和 TMS 的任务、容器、交接与回执，说明超时重派、途中库存、装车、签收差异和跨系统验收如何落实。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/warehouse-automation-logistics-transport/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-14T00:00:00.000Z","dateModified":"2026-10-14T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"自动化仓储、厂内物流与运输协同","item":"https://imcoders.cn/manufacturing/warehouse-automation-logistics-transport/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-14T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-14T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="自动化仓储、厂内物流与运输协同 | 制造业系统"><meta property="og:description" content="沿用 60 件支架线边配送与 200 台风机整批交付，拆解 WMS、WES、WCS、车队系统和 TMS 的任务、容器、交接与回执，说明超时重派、途中库存、装车、签收差异和跨系统验收如何落实。"><meta property="og:url" content="https://imcoders.cn/manufacturing/warehouse-automation-logistics-transport/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="自动化仓储、厂内物流与运输协同 | 制造业系统"><meta name="twitter:description" content="沿用 60 件支架线边配送与 200 台风机整批交付，拆解 WMS、WES、WCS、车队系统和 TMS 的任务、容器、交接与回执，说明超时重派、途中库存、装车、签收差异和跨系统验收如何落实。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="自动化仓储、厂内物流与运输协同 | 制造业系统"><meta itemprop="description" content="沿用 60 件支架线边配送与 200 台风机整批交付，拆解 WMS、WES、WCS、车队系统和 TMS 的任务、容器、交接与回执，说明超时重派、途中库存、装车、签收差异和跨系统验收如何落实。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "自动化仓储、厂内物流与运输协同 | 制造业系统";
+const shareDesc = "沿用 60 件支架线边配送与 200 台风机整批交付，拆解 WMS、WES、WCS、车队系统和 TMS 的任务、容器、交接与回执，说明超时重派、途中库存、装车、签收差异和跨系统验收如何落实。";
+const shareLink = "https://imcoders.cn/manufacturing/warehouse-automation-logistics-transport/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>自动化仓储、厂内物流与运输协同</h1><p class="mfg-lead" data-astro-cid-767rrl5b>沿用 60 件支架线边配送与 200 台风机整批交付，拆解 WMS、WES、WCS、车队系统和 TMS 的任务、容器、交接与回执，说明超时重派、途中库存、装车、签收差异和跨系统验收如何落实。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/warehouse-automation-logistics-transport/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-14</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#先分清库存任务和设备任务" data-astro-cid-767rrl5b>先分清库存任务和设备任务</a></li><li data-astro-cid-767rrl5b><a href="#六十件支架怎样从仓库到达线边" data-astro-cid-767rrl5b>六十件支架怎样从仓库到达线边</a></li><li data-astro-cid-767rrl5b><a href="#超时和故障以后怎样恢复任务" data-astro-cid-767rrl5b>超时和故障以后怎样恢复任务</a></li><li data-astro-cid-767rrl5b><a href="#成品出厂以后怎样连接运输与签收" data-astro-cid-767rrl5b>成品出厂以后怎样连接运输与签收</a></li><li data-astro-cid-767rrl5b><a href="#用哪些结果验收整条物流链" data-astro-cid-767rrl5b>用哪些结果验收整条物流链</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>仓库任务已经下发，机器人也到了线边站点，车间却说没有收到指定容器。另一边，成品已经装车，运输平台显示车辆到达客户附近，订单仍然缺少有效签收证据。几套系统里的“完成”，指向的对象和边界并不相同。</p>
+<p>这一篇接着 <a href="/manufacturing/wms-inventory-production-delivery/">WMS 篇</a>的 60 件支架配送，另加一段假设的自动化搬运过程，再连接原订单 200 台风机的整批运输。设备、任务和容器编号均为模拟，不代表原案例实际部署了机器人或自动化仓库。</p>
+<h2 id="先分清库存任务和设备任务">先分清库存任务和设备任务</h2>
+<h3 id="wmswes-与-wcs-按实际职责衔接">WMS、WES 与 WCS 按实际职责衔接</h3>
+<p>WMS 管理库存对象、批次、位置与仓库业务任务。WES 常用于协调任务释放、优先级、人员和自动化资源；WCS 常用于设备间的物流控制、路由及执行协调。机器人车队系统则可以承担车辆任务与交通协调，设备控制器处理具体动作和现场状态。</p>
+<p>这些能力可能出现在同一套产品中，也可能分开部署，部分系统还会覆盖相邻职责。Honeywell 的<a href="https://automation.honeywell.com/gb/en/software/warehouse-automation">仓储自动化产品说明</a>就展示了 WES、WCS、设备控制和监控能力组合的实现。它说明的是一种产品组织方式，不能用来规定所有工厂都必须按相同层级逐层下发。</p>
+<p>实施时应逐项确定：谁选择库存，谁拆分任务，谁选择执行资源，谁确认实物交接，谁更新库存，谁向上游返回业务结果。只有这些责任清楚，才知道一个“任务失败”需要由仓库、调度还是设备岗位处理。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>记录或对象</th><th>本例示意</th><th>它表达的范围</th></tr></thead><tbody><tr><td>生产配送需求</td><td>MO-0160 请求 60 件 BKT-018</td><td>为什么需要配送、需要多少及送到哪里</td></tr><tr><td>WMS 业务任务</td><td>MOV-0060</td><td>指定库存与目标交付范围</td></tr><tr><td>容器与装载关系</td><td>LP-N01-060 装载 LOT-N01 的 60 件</td><td>此次搬运的实物身份与内容</td></tr><tr><td>执行尝试</td><td>EX-MOV0060-01</td><td>这一次由哪个执行系统和资源承接</td></tr><tr><td>中转站点</td><td>BUF-030</td><td>过程交接位置，不直接等于最终线边位</td></tr><tr><td>目标业务位置</td><td>LINE-030</td><td>仓库和车间确认的线边交付位置</td></tr><tr><td>库存动作与回执</td><td>指定任务的实际位置更新</td><td>哪份库存发生了什么变化、是否已应用</td></tr></tbody></table>
+<p>一项 WMS 配送任务可以拆成取货、转运和放置等多段执行任务；一台设备也可能连续承接多个业务任务。业务任务、任务段与执行尝试需要映射，不能把设备每次上报的任务号直接当成唯一库存事务号。</p>
+<h3 id="容器库位和设备站点分别映射">容器、库位和设备站点分别映射</h3>
+<p>容器号标识装载关系，批次标识追溯对象，WMS 库位和设备站点则可能采用不同粒度。一个站点可以服务多个业务位置，设备换站也未必表示库存已经进入最终业务库位。</p>
+<p>本例为 60 件支架设置模拟容器 <code>LP-N01-060</code>，从 <code>LOT-N01</code> 的 100 件中按批准规则分出，保留物料、数量、批次与装载关系。容器到站后仍需核对实际身份，不能仅用车辆位置推断它装载了指定批次。</p>
+<p>站点映射保存仓库、业务位置、设备站点、关系版本和适用时间。设备地图调整、位置改名或临时封闭后，历史交接仍应按当时关系解释。拆箱、并箱或更换容器时，维护实际装载变化，不能只改界面标签而丢失内容谱系。</p>
+<h3 id="任务下发不能越过库存与现场条件">任务下发不能越过库存与现场条件</h3>
+<p>WMS 先核对质量状态、适用批次、占用、源位置和目标需求。WES 或其他调度角色再核对资源能力、站点容量、目标就绪及未结执行。整箱搬运、拆零配送和混装容器，需要各自明确的执行条件。</p>
+<p>设备路线可行、通信正常与库存可发是不同条件。上层可以提出配送任务、暂停新任务释放或请求取消，但实际执行仍遵循设备与现场既有的保护和准入流程。一个业务批准记录不能替代这些条件。</p>
+<h2 id="六十件支架怎样从仓库到达线边">六十件支架怎样从仓库到达线边</h2>
+<h3 id="固定一次配送的对象范围">固定一次配送的对象范围</h3>
+<p>前文初始新料为 160 件：<code>LOT-N01</code> 100 件、<code>LOT-N02</code> 40 件已放行，<code>LOT-N03</code> 20 件仍待检。本次只从 <code>LOT-N01</code> 选择 60 件，从 <code>RM-A01</code> 送往 <code>LINE-030</code>，经过模拟中转站 <code>BUF-030</code>。其他物料与后续两件返工补料不混入本次配送。</p>
+<p>下面表示一项业务搬运意图，字段为本文自定义，不对应 WCS、机器人或标准协议的真实接口，也没有执行设备控制。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "movement_id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"MOV-0060"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "movement_revision"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "execution_attempt_id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"EX-MOV0060-01"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "production_order"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"MO-0160"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "plant"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"A"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "container_id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"LP-N01-060"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "contents"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">    { </span><span style="color:#79B8FF">"material"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"BKT-018"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">"lot"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"LOT-N01"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">"quantity"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">60</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">"unit"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"EA"</span><span style="color:#E1E4E8"> }</span></span>
+<span class="line"><span style="color:#E1E4E8">  ],</span></span>
+<span class="line"><span style="color:#79B8FF">  "source_location"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"RM-A01"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "handover_station"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"BUF-030"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "target_location"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"LINE-030"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "station_mapping_revision"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"STMAP-A-03"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "expected_inventory_revision"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"INV-LPN01-07"</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<p>完整契约还需需求与任务行身份、批准及限制依据、需要时间、执行资格、交接判定、状态版本和异常处理规则。调度系统可以据此产生多段设备任务，仍须保留同一业务任务的覆盖关系，不因拆段重复增加数量。</p>
+<h3 id="接受到站和交接各自留下证据">接受、到站和交接各自留下证据</h3>
+<p>任务发送后，接收方可能先返回已接收，再报告执行中、到站、卸载或交接结果。具体状态定义由实际接口决定，不应把任意名为 <code>FINISHED</code> 的字段直接映射成仓库和生产都已完成。</p>
+<p>Microsoft 的 <a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/mhax">MHAX 设备接口说明</a>展示了 WMS 发出工作事件、外部搬运系统回传工作确认或短拣等事件的实现。入站事件可能触发仓库业务动作，配置与数据语义需要逐项核对。仅证明消息已进入队列，不足以证明指定任务已完成业务处理。</p>
+<p>移动机器人采用的 <a href="https://www.vda.de/en/news/publications/publication/vda-5050">VDA 5050 接口说明</a>聚焦车队控制与机器人之间的任务和状态交换。这类接口可以支持执行协同，企业的容器身份、库存位置、线边接收与 ERP 过账仍需另外定义业务关联，不能靠采用某项协议自动补齐。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>可见结果</th><th>它能够提供的证据</th><th>仍需继续核对</th></tr></thead><tbody><tr><td>控制系统已接收任务</td><td>指定身份与版本已进入处理范围</td><td>是否实际开始、是否持有正确容器</td></tr><tr><td>车辆或输送对象到站</td><td>位置或段执行达到相应条件</td><td>是否卸载、容器是否匹配及站点是否正确</td></tr><tr><td>搬运动作完成</td><td>对应动作按设备定义结束</td><td>业务交接条件是否满足</td></tr><tr><td>站点交接确认</td><td>指定容器与交接范围有记录</td><td>WMS 是否已应用位置变化</td></tr><tr><td>WMS 业务回执成功</td><td>相应库存动作已按目标规则落实</td><td>生产需求是否全部满足、还有无其他限制</td></tr><tr><td>MES 后续领用或投料记录</td><td>指定工序实际接收或投入范围</td><td>是否采用了约定的耗用过账来源</td></tr></tbody></table>
+<p>这些证据可以来自自动识别、设备回报、受控人工扫码或其组合，取决于现场设计。Microsoft 的<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/configure-mobile-devices-warehouse">仓库移动设备配置</a>也列出了位置、数量等工作确认能力。需要多少次确认、由谁执行，应围绕实际风险和业务边界设置，不能把多扫几次码本身当成完整验证。</p>
+<h3 id="途中中转和线边库存只归到一处">途中、中转和线边库存只归到一处</h3>
+<p>为核对本次搬运，假设这些位置都在同一 WMS 管理范围内，途中物料也有明确的业务归属。这里暂不讨论其他领料，库存位置变化不产生耗用。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>检查点</th><th>存储及隔离位置</th><th>途中或中转范围</th><th>线边未耗用</th><th>范围库存合计</th></tr></thead><tbody><tr><td>配送前</td><td>160</td><td>0</td><td>0</td><td>160</td></tr><tr><td>60 件已从源位交出</td><td>100</td><td>60</td><td>0</td><td>160</td></tr><tr><td>60 件到 BUF-030，最终交接尚未完成</td><td>100</td><td>60</td><td>0</td><td>160</td></tr><tr><td>60 件已确认交至 LINE-030</td><td>100</td><td>0</td><td>60</td><td>160</td></tr></tbody></table>
+<p>途中或中转范围是本例用于对账的分类，具体产品可以采用在途位置、任务持载或其他模型。关键是同一份 60 件库存不能同时完整保留在源位、途中和目标位；位置尚不明确时，保留待核对身份和状态，不编造已到位事实。</p>
+<p>后续若其中 58 件投入并完成耗用确认，仓库存储及隔离位置仍为 100 件，线边剩余 2 件，库存合计 102 件，累计耗用 58 件，合计仍覆盖原 160 件。线边两件后来继续投入，本案例主线没有余料退回；最终额外补供两件后的 162 件净耗用沿用前文。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>厂内配送怎样区分任务、搬运与交付</strong><a href="/manufacturing/maps/logistics-movement-confirmation.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/logistics-movement-confirmation.html" title="MES WMS WES WCS 厂内配送设备执行容器交接库存回执与异常重派交互数据图" loading="lazy" allowfullscreen></iframe>
+<figcaption>三行分别展开任务下发与接受、实物交接与库存应用、异常核对与重派。WES、WCS 和车队系统表示可能承担的角色，不要求逐层独立部署。条件满足才进入对应动作，动画仅表达数据方向，不表示设备正在移动或真实控制时序。</figcaption>
+</figure>
+<h2 id="超时和故障以后怎样恢复任务">超时和故障以后怎样恢复任务</h2>
+<h3 id="先查原动作是否已经发生">先查原动作是否已经发生</h3>
+<p>收到超时不等于搬运失败。设备可能已经卸载，只是业务回执丢失；也可能已经取走容器，停在中转位置；还可能从未接受任务。恢复前查询原任务、执行尝试、容器当前位置、持载状态与交接证据，无法确定时保留未决并安排核实。</p>
+<p>相同身份与内容的重试，应返回已有结果或按原任务安全恢复，不创建第二次独立搬运。事件去重之外，还要检查业务任务与执行范围；设备生成了新的消息 ID，也不能让同一交接被再次扣减库存。</p>
+<p><a href="/manufacturing/master-data-events-reconciliation/">跨系统对账篇</a>讨论的原子标记、目标结果查询和版本冲突处理同样适用。物理搬运无法随数据库事务一起回滚，因此需要把未决结果与恢复依据保留到实际交接范围。</p>
+<h3 id="重派和取消保留已执行的任务段">重派和取消保留已执行的任务段</h3>
+<p>若确认尚未取货，可以按批准规则终止原执行尝试，再将允许范围交给另一资源。若已取货或已到中转站，则从核实后的实际位置安排后续交接，保留已完成段，不能把任务重新标成未开始就再次从源库位取同一个容器。</p>
+<p>原任务 60 件需要拆分交付时，父任务与子任务保存数量关系，未完成范围独立可查。拆成 40 件和 20 件只是一个验收分支，不能将两个子任务再加上原任务算成 120 件，也不能把部分成功显示为整笔完成。</p>
+<p>取消同样需要区分请求、接受、停止和后续物料处置。尚未执行的任务可以按规则撤回，已经持载或交接的物料则需要确认当前位置与批准去向。取消一条消息不会自动让实物回到原位，库存记录也不能直接复原为从未移动。</p>
+<h3 id="调度优化不改变物料资格">调度优化不改变物料资格</h3>
+<p>中转站满、拣选位缺货、车辆不可用或通道限制，可能让有库存的需求仍然无法立即配送。调度可以调整允许范围内的顺序与资源，必要时请求补货或人工处理，但不得为完成任务使用待检批次、其他订单占用或未经批准的替代物料。</p>
+<p>设备恢复以后，再核对任务版本与现场条件。<a href="/manufacturing/eam-equipment-downtime-analysis/">设备篇</a>里的维修完成、批准可用和实际恢复分别保存，不能因为车队系统重新在线就把全部未结任务无条件重发。</p>
+<h2 id="成品出厂以后怎样连接运输与签收">成品出厂以后怎样连接运输与签收</h2>
+<h3 id="包装装运与运输任务各有对象">包装、装运与运输任务各有对象</h3>
+<p>沿用原订单整批交付的设定，40 台旧配置合格品与 160 台新配置合格品共同覆盖 <code>SO-200</code> 的 200 台需求。这里不新增实际分批发运，也不将 162 次终检执行误当成 162 台新产品。</p>
+<p>WMS 组织成品拣选、包装、集货和装车时，保留产品、序列号、包装或装载单元、订单行及实际数量的关系。包装拆并、换箱和重新贴标，都要维护装载谱系；空托盘或包装数量不能直接当作整机数量。</p>
+<p>TMS（运输管理系统）可以组织装载、承运商与运输任务、线路及运输过程等业务。Microsoft 的<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/transportation/transportation-management-overview">运输管理概览</a>与<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/transportation/use-load-planning-workbench-plan-loads-shipments">装载规划说明</a>展示了装载、发运和运输安排的衔接。具体系统的装载、发运、运输单与运单可能多对多，需要保留明细映射。</p>
+<h3 id="装车出库与承运交接分别确认">装车、出库与承运交接分别确认</h3>
+<p>运输计划可先于实物齐备形成候选，承运商接受安排也不证明产品已经装上车辆。装车时核对实际产品或容器、装载范围、车辆或运输任务身份及交接要求；短装、换车或装错对象需要留下实际结果。</p>
+<p>WMS 与 ERP 应约定哪项事实触发一次出库或发运过账，TMS 的计划完成、车辆离场和承运交接再与它关联核对。不能让 WMS 发运接口与 TMS 出厂事件各自无条件扣减同一笔 200 台库存。</p>
+<p>厂内补货和生产配送也不自动触发销售出库。它们可能只改变 WMS 位置，是否同步 ERP 内部转移、由谁触发与怎样归集，按企业库存模型确定；不能把每一段设备动作都映射成独立经营事务。</p>
+<h3 id="轨迹到达和客户签收继续区分">轨迹到达和客户签收继续区分</h3>
+<p>在途事件保存来源、运输任务、实际节点、发生与接收时间，以及预计到达的计算依据。车辆进入客户附近或地理围栏，只能提供相应位置证据，不能自动证明指定产品已卸货并由客户接受。</p>
+<p>签收记录需要关联收货方、订单或运单明细、实收范围、时间与有效证据。承运平台回传的电子签收、客户确认和 ERP 履行更新，按业务流程核验并取得目标结果；图片附件存在也不等于内容与本订单一致。</p>
+<p>可以另设“发运 200 台、确认签收 198 台、2 台待核对”的异常验收分支。198 与 2 的范围要明确且不重复，不能把这两台直接写回仓库当成从未发出，也不能在没有退运实绩时增加退货库存。本分支不改写原案例的整批 200 台交付安排。</p>
+<p>签收差异、破损、拒收或退运各自保留原发运与后续处置关系。客户实际签收、订单履行状态与财务确认还可能采用不同规则，本篇不将任一物流事件直接当作财务确认的充分依据。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>出厂运输怎样衔接装运与签收</strong><a href="/manufacturing/maps/logistics-transport-handover.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/logistics-transport-handover.html" title="WMS 成品装运 ERP 出库 TMS 运输承运交接客户签收与差异核对交互数据图" loading="lazy" allowfullscreen></iframe>
+<figcaption>三行分别展开出库装车、运输过程和客户签收，不规定所有企业使用同一套单据或固定先后顺序。装运、出厂、到达和签收保留各自证据，实际交付与原承诺分别核对。点击节点或连线探索关系，动画不表示在线运输实况。</figcaption>
+</figure>
+<h2 id="用哪些结果验收整条物流链">用哪些结果验收整条物流链</h2>
+<h3 id="同时检查命令实物与业务台账">同时检查命令、实物与业务台账</h3>
+<p>以下用例用于验证系统交接设计。本站图表和 JSON 均为模拟，没有连接或控制真实物流设备。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>验收场景</th><th>需要核实的结果</th></tr></thead><tbody><tr><td>设备接受任务但未取货</td><td>保留已接受状态，不更新成已交到线边</td></tr><tr><td>车辆到站但容器或批次不匹配</td><td>交接未通过，指定物料不被错误确认</td></tr><tr><td>容器到 BUF-030、目标仍是 LINE-030</td><td>保留中转与剩余段，不提前完成最终交付</td></tr><tr><td>已卸载但 WMS 回执超时</td><td>查询原动作及当前位置，不重复搬运或扣账</td></tr><tr><td>同一完成事件串行或并发重传</td><td>业务交接与库存动作只落实约定的一次</td></tr><tr><td>取货后故障，需要换资源</td><td>从核实位置安排恢复，已完成段与持载历史保留</td></tr><tr><td>原 60 件任务拆成 40 与 20 件</td><td>子范围合计 60，部分完成不冒充整笔完成</td></tr><tr><td>发出取消后设备仍有持载</td><td>保留未决与处置依据，不直接还原原位置库存</td></tr><tr><td>运输中和中转位置也参加库存统计</td><td>同一份库存只归一处，初始范围合计仍为 160</td></tr><tr><td>60 件到线边后其中 58 件投入</td><td>库存 102 加耗用 58 仍覆盖 160，不重复消耗</td></tr><tr><td>WMS 与 TMS 都回传发运相关事件</td><td>同一业务出库只由约定来源触发一次</td></tr><tr><td>车辆到客户附近，但缺少有效签收</td><td>保存位置证据，不自动宣称全部交付</td></tr><tr><td>独立分支签收 198、2 台待核对</td><td>明细范围可查，不虚增退货或覆盖原发运数</td></tr><tr><td>站点映射、任务或库存版本变化</td><td>旧指令不覆盖新事实，冲突进入差异核对</td></tr></tbody></table>
+<p>看板可以分开显示待派发、已接受、实际执行、交接未确认、业务应用未决和客户签收差异。等待时长也沿这些节点计算，并标明所用时间与任务范围，避免只用消息传输耗时解释整段物流延误。</p>
+<h3 id="agent-先定位卡在哪个交接点">Agent 先定位卡在哪个交接点</h3>
+<p>面对“这 60 件为什么还没到”，Agent 可以按 <code>MOV-0060</code> 汇集 WMS 分配、执行尝试、设备回报、容器位置、站点确认和库存回执，列出已经成立的事实与仍需核对的范围。只查到车辆到站时，就说明还缺哪些交接证据，不能推断车间已收到指定物料。</p>
+<p>面对“这 200 台交付了吗”，继续核对成品明细、实际发运、承运交接和有效签收，并分别说明已取得的证据。预计到达、原客户承诺与实际签收分别展示，来源不明或证据缺失时保留未知。</p>
+<p>Agent 可以准备任务查询、差异材料和恢复建议，重派、取消、库存调整或设备控制仍通过各自已有权限与受控流程。写入前检查当前状态及对象版本，结果回到业务台账后再报告完成，不能由自然语言判断直接绕过现场条件。</p>
+<p>下一篇进入批次、配方、电子批记录与过程控制，继续看流程制造中物料、设备阶段和质量记录怎样共同定义一批产品的生产履历。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 
