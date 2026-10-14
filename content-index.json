@@ -1790,6 +1790,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/erp-order-material-cost/index.md"
     },
     {
+      "id": "manufacturing/mes-work-order-lifecycle",
+      "kind": "manufacturing",
+      "title": "MES 中一张工单的完整生命周期",
+      "description": "沿着一张风机工单，拆解 MES 的接单、准备、派工、开工、过站、报工、质量挂起、返工和完工，区分工单与单件状态，用动态图记录 ERP、WMS 和质量系统的交接，并给出异常恢复、追溯与 Agent 接入的验收范围。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "MES",
+        "工单管理",
+        "生产追溯",
+        "系统集成"
+      ],
+      "publishedAt": "2026-10-14T00:00:00.000Z",
+      "updatedAt": "2026-10-14T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/mes-work-order-lifecycle/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/mes-work-order-lifecycle/index.md"
+    },
+    {
       "id": "manufacturing/plm-engineering-change",
       "kind": "manufacturing",
       "title": "PLM 工程变更如何从设计进入生产",

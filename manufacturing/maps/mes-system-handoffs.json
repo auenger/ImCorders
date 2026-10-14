@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "MES 与订单、仓储及质量的业务交接",
+    "locale": "zh-CN",
+    "output": ".archify/lifecycle-mes-20261014-125821/mes-system-handoffs/mes-system-handoffs.html",
+    "quality_profile": "showcase",
+    "animation": "trace",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "legend": {
+      "entries": {
+        "default": {
+          "label": "业务数据"
+        },
+        "emphasis": {
+          "label": "授权执行"
+        },
+        "security": {
+          "label": "条件校验"
+        },
+        "dashed": {
+          "label": "结果与核对"
+        },
+        "database": {
+          "label": "执行证据"
+        }
+      }
+    }
+  },
+  "stages": [
+    {
+      "label": "业务来源"
+    },
+    {
+      "label": "接收与决定"
+    },
+    {
+      "label": "执行与依据"
+    },
+    {
+      "label": "目标业务记录"
+    },
+    {
+      "label": "证据与核对"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "order-0",
+      "type": "backend",
+      "label": "ERP 生产订单",
+      "sublabel": "订单、数量与适用版本",
+      "stage": 0,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "order-1",
+      "type": "security",
+      "label": "MES 接收校验",
+      "sublabel": "映射、依赖与消息版本",
+      "stage": 1,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "order-2",
+      "type": "backend",
+      "label": "MES 工序执行",
+      "sublabel": "派工、开工、用料与工时",
+      "stage": 2,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "order-3",
+      "type": "backend",
+      "label": "ERP 业务处理",
+      "sublabel": "接受、拒绝或过账结果",
+      "stage": 3,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "order-4",
+      "type": "database",
+      "label": "跨系统对账",
+      "sublabel": "订单与事件身份关联",
+      "stage": 4,
+      "row": 0,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "warehouse-0",
+      "type": "backend",
+      "label": "MES 备料请求",
+      "sublabel": "工单、物料与需要时间",
+      "stage": 0,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "warehouse-1",
+      "type": "security",
+      "label": "WMS 任务校验",
+      "sublabel": "可领状态、批次与数量",
+      "stage": 1,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "warehouse-2",
+      "type": "backend",
+      "label": "WMS 配送结果",
+      "sublabel": "批次、数量与到位信息",
+      "stage": 2,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "warehouse-3",
+      "type": "backend",
+      "label": "MES 用料记录",
+      "sublabel": "核验后绑定投入或拆换",
+      "stage": 3,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "warehouse-4",
+      "type": "database",
+      "label": "单件实际谱系",
+      "sublabel": "产品与批次、工序关联",
+      "stage": 4,
+      "row": 1,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "quality-0",
+      "type": "backend",
+      "label": "MES 异常记录",
+      "sublabel": "单件、工序与缺陷证据",
+      "stage": 0,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "quality-1",
+      "type": "security",
+      "label": "质量处置评审",
+      "sublabel": "权限、范围与技术依据",
+      "stage": 1,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "quality-2",
+      "type": "backend",
+      "label": "批准处置指令",
+      "sublabel": "本图展开批准返工路径",
+      "stage": 2,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "quality-3",
+      "type": "backend",
+      "label": "MES 返工再检",
+      "sublabel": "保留轮次与测量结果",
+      "stage": 3,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    },
+    {
+      "id": "quality-4",
+      "type": "database",
+      "label": "单件状态结果",
+      "sublabel": "待放行或再次挂起",
+      "stage": 4,
+      "row": 2,
+      "width": 152,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "id": "order-flow-0",
+      "from": "order-0",
+      "to": "order-1",
+      "label": "订单下达",
+      "variant": "default"
+    },
+    {
+      "id": "order-flow-1",
+      "from": "order-1",
+      "to": "order-2",
+      "label": "接收通过",
+      "variant": "default"
+    },
+    {
+      "id": "order-flow-2",
+      "from": "order-2",
+      "to": "order-3",
+      "label": "执行回传",
+      "variant": "dashed"
+    },
+    {
+      "id": "order-flow-3",
+      "from": "order-3",
+      "to": "order-4",
+      "label": "结果核对",
+      "variant": "dashed"
+    },
+    {
+      "id": "warehouse-flow-0",
+      "from": "warehouse-0",
+      "to": "warehouse-1",
+      "label": "请求数据",
+      "variant": "default"
+    },
+    {
+      "id": "warehouse-flow-1",
+      "from": "warehouse-1",
+      "to": "warehouse-2",
+      "label": "授权配送",
+      "variant": "emphasis"
+    },
+    {
+      "id": "warehouse-flow-2",
+      "from": "warehouse-2",
+      "to": "warehouse-3",
+      "label": "交接核验",
+      "variant": "default"
+    },
+    {
+      "id": "warehouse-flow-3",
+      "from": "warehouse-3",
+      "to": "warehouse-4",
+      "label": "记录关联",
+      "variant": "dashed"
+    },
+    {
+      "id": "quality-flow-0",
+      "from": "quality-0",
+      "to": "quality-1",
+      "label": "异常提交",
+      "variant": "default"
+    },
+    {
+      "id": "quality-flow-1",
+      "from": "quality-1",
+      "to": "quality-2",
+      "label": "批准处置",
+      "variant": "default"
+    },
+    {
+      "id": "quality-flow-2",
+      "from": "quality-2",
+      "to": "quality-3",
+      "label": "授权返工",
+      "variant": "emphasis"
+    },
+    {
+      "id": "quality-flow-3",
+      "from": "quality-3",
+      "to": "quality-4",
+      "label": "再检结果",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "每行展开一个交接视角",
+      "items": [
+        "三行共享同一订单和单件上下文，不表示顺次执行。",
+        "ERP 回传的目标结果还需在 MES 中关联原事件。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "仓储到位与实际投入分开",
+      "items": [
+        "WMS 配送结果经核验，MES 再记录实际投入与拆换。",
+        "图中省略退料与完工收货，过账来源须按接口约定唯一。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "处置权限属于批准岗位",
+      "items": [
+        "质量处置可由 QMS 或现有质量模块承接。",
+        "返工再检合格后才可申请放行，不合格继续挂起。",
+        "拒绝、重试、撤销及其他处置路径在正文另行说明。"
+      ]
+    }
+  ]
+}

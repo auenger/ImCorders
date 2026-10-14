@@ -1,0 +1,217 @@
+{
+  "schema_version": 2,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "单件产品的 MES 执行与异常恢复",
+    "locale": "zh-CN",
+    "output": ".archify/lifecycle-mes-20261014-125821/mes-unit-lifecycle/mes-unit-lifecycle.html",
+    "quality_profile": "showcase",
+    "animation": "trace"
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "单件主路径"
+    },
+    {
+      "id": "waiting",
+      "label": "暂停与质量挂起"
+    },
+    {
+      "id": "recovery",
+      "label": "批准的返工路径"
+    },
+    {
+      "id": "terminal",
+      "label": "未投产撤销与报废"
+    }
+  ],
+  "states": [
+    {
+      "id": "accepted",
+      "type": "start",
+      "label": "已接收",
+      "sublabel": "订单与单件身份已关联",
+      "lane": "main",
+      "col": 0
+    },
+    {
+      "id": "ready",
+      "type": "waiting",
+      "label": "可派工",
+      "sublabel": "适用定义与准备条件就绪",
+      "lane": "main",
+      "col": 1
+    },
+    {
+      "id": "running",
+      "type": "active",
+      "label": "执行中",
+      "sublabel": "逐工序留存用料与测量",
+      "lane": "main",
+      "col": 2
+    },
+    {
+      "id": "review",
+      "type": "decision",
+      "label": "待放行",
+      "sublabel": "规定路线完成后核对结果",
+      "lane": "main",
+      "col": 3
+    },
+    {
+      "id": "complete",
+      "type": "success",
+      "label": "执行完成",
+      "sublabel": "满足本例放行条件",
+      "lane": "main",
+      "col": 4
+    },
+    {
+      "id": "paused",
+      "type": "waiting",
+      "label": "执行暂停",
+      "sublabel": "保留工序与在制位置",
+      "lane": "waiting",
+      "col": 2
+    },
+    {
+      "id": "held",
+      "type": "waiting",
+      "label": "质量挂起",
+      "sublabel": "不合格记录与处置待定",
+      "lane": "waiting",
+      "col": 3
+    },
+    {
+      "id": "rework",
+      "type": "active",
+      "label": "返工执行",
+      "sublabel": "批准路线与范围单独记录",
+      "lane": "recovery",
+      "col": 3
+    },
+    {
+      "id": "cancelled",
+      "type": "failure",
+      "label": "投产前撤销",
+      "sublabel": "取消单件执行安排",
+      "lane": "terminal",
+      "col": 0
+    },
+    {
+      "id": "scrapped",
+      "type": "failure",
+      "label": "批准报废",
+      "sublabel": "保留处置与实物依据",
+      "lane": "terminal",
+      "col": 3
+    }
+  ],
+  "transitions": [
+    {
+      "id": "prepare",
+      "from": "accepted",
+      "to": "ready",
+      "label": "准备就绪",
+      "variant": "default"
+    },
+    {
+      "id": "start",
+      "from": "ready",
+      "to": "running",
+      "label": "开工复核",
+      "variant": "default"
+    },
+    {
+      "id": "route-finished",
+      "from": "running",
+      "to": "review",
+      "label": "路线完成",
+      "variant": "default"
+    },
+    {
+      "id": "release",
+      "from": "review",
+      "to": "complete",
+      "label": "满足放行",
+      "variant": "default"
+    },
+    {
+      "id": "pause",
+      "from": "running",
+      "to": "paused",
+      "label": "执行暂停",
+      "variant": "dashed"
+    },
+    {
+      "id": "resume",
+      "from": "paused",
+      "to": "running",
+      "label": "复核恢复",
+      "variant": "emphasis"
+    },
+    {
+      "id": "hold",
+      "from": "review",
+      "to": "held",
+      "label": "异常挂起",
+      "variant": "security"
+    },
+    {
+      "id": "authorize-rework",
+      "from": "held",
+      "to": "rework",
+      "label": "批准返工",
+      "variant": "emphasis"
+    },
+    {
+      "id": "retest",
+      "from": "rework",
+      "to": "review",
+      "label": "返工再检",
+      "variant": "default"
+    },
+    {
+      "id": "scrap",
+      "from": "held",
+      "to": "scrapped",
+      "label": "批准报废",
+      "variant": "security"
+    },
+    {
+      "id": "cancel",
+      "from": "accepted",
+      "to": "cancelled",
+      "label": "投产前撤销",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "只表示单件执行状态",
+      "items": [
+        "本例按序列号管理，工单数量由各单件结果汇总。",
+        "执行中包含各道工序，图中没有展开全部过站。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "恢复必须核对依据",
+      "items": [
+        "开工复核人员、物料、设备和受控文件。",
+        "暂停不删除已发生记录；恢复后沿原工序继续。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "异常与完工的边界",
+      "items": [
+        "返工再次检测，仍未满足条件时继续挂起并保留轮次。",
+        "执行完成不等于 WMS 已收货或 ERP 已结算。",
+        "本图省略让步接收等其他处置；动画不表示真实运行状态。"
+      ]
+    }
+  ]
+}
