@@ -1,0 +1,24 @@
+{
+  "illustrative": true,
+  "article": "/manufacturing/pharma-batch-review-release/",
+  "assumptions": [
+    "Packaging-stage quantities are illustrative; no actual drug or validated process.",
+    "Laboratory review is assumed passed; deviation remains open.",
+    "The arithmetic is not an acceptable-yield or compliance determination."
+  ],
+  "theoretical": 10000,
+  "packed": 9800,
+  "loss": 200,
+  "retained": 100,
+  "pendingStock": 9700,
+  "review": {
+    "executionComplete": true,
+    "labApproved": true,
+    "quantityReconciled": true,
+    "deviationClosed": false
+  },
+  "expected": {
+    "yieldPercent": "98",
+    "releaseAllowed": false
+  }
+}

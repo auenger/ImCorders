@@ -1,0 +1,400 @@
+{
+  "illustrative": true,
+  "article": "/manufacturing/medical-device-production-service-records/",
+  "assumptions": [
+    "All serials are teaching identities, not valid UDI codes.",
+    "Release and scrap evidence is assumed, not real validated records.",
+    "CB-A is only an investigation lead; scope is not a defect or recall conclusion."
+  ],
+  "devices": [
+    "D001",
+    "D002",
+    "D003",
+    "D004",
+    "D005",
+    "D006",
+    "D007",
+    "D008",
+    "D009",
+    "D010",
+    "D011",
+    "D012",
+    "D013",
+    "D014",
+    "D015",
+    "D016",
+    "D017",
+    "D018",
+    "D019",
+    "D020",
+    "D021",
+    "D022",
+    "D023",
+    "D024",
+    "D025",
+    "D026",
+    "D027",
+    "D028",
+    "D029",
+    "D030",
+    "D031",
+    "D032",
+    "D033",
+    "D034",
+    "D035",
+    "D036",
+    "D037",
+    "D038",
+    "D039",
+    "D040"
+  ],
+  "components": [
+    {
+      "serial": "D001",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D002",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D003",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D004",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D005",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D006",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D007",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D008",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D009",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D010",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D011",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D012",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D013",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D014",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D015",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D016",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D017",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D018",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D019",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D020",
+      "batch": "CB-A"
+    },
+    {
+      "serial": "D021",
+      "batch": "CB-B"
+    },
+    {
+      "serial": "D022",
+      "batch": "CB-B"
+    },
+    {
+      "serial": "D023",
+      "batch": "CB-B"
+    },
+    {
+      "serial": "D024",
+      "batch": "CB-B"
+    },
+    {
+      "serial": "D025",
+      "batch": "CB-B"
+    },
+    {
+      "serial": "D026",
+      "batch": "CB-B"
+    },
+    {
+      "serial": "D027",
+      "batch": "CB-B"
+    },
+    {
+      "serial": "D028",
+      "batch": "CB-B"
+    },
+    {
+      "serial": "D029",
+      "batch": "CB-B"
+    },
+    {
+      "serial": "D030",
+      "batch": "CB-B"
+    },
+    {
+      "serial": "D031",
+      "batch": "CB-B"
+    },
+    {
+      "serial": "D032",
+      "batch": "CB-B"
+    },
+    {
+      "serial": "D033",
+      "batch": "CB-B"
+    },
+    {
+      "serial": "D034",
+      "batch": "CB-B"
+    },
+    {
+      "serial": "D035",
+      "batch": "CB-B"
+    },
+    {
+      "serial": "D036",
+      "batch": "CB-B"
+    },
+    {
+      "serial": "D037",
+      "batch": "CB-B"
+    },
+    {
+      "serial": "D038",
+      "batch": "CB-B"
+    },
+    {
+      "serial": "D039",
+      "batch": "CB-B"
+    },
+    {
+      "serial": "D040",
+      "batch": "CB-B"
+    }
+  ],
+  "released": [
+    "D001",
+    "D002",
+    "D003",
+    "D004",
+    "D005",
+    "D006",
+    "D007",
+    "D008",
+    "D009",
+    "D010",
+    "D011",
+    "D012",
+    "D013",
+    "D014",
+    "D015",
+    "D016",
+    "D017",
+    "D018",
+    "D019",
+    "D020",
+    "D021",
+    "D022",
+    "D023",
+    "D024",
+    "D025",
+    "D026",
+    "D027",
+    "D028",
+    "D029",
+    "D030",
+    "D031",
+    "D032",
+    "D033",
+    "D034",
+    "D035",
+    "D036"
+  ],
+  "held": [
+    "D037",
+    "D038"
+  ],
+  "scrapped": [
+    "D039",
+    "D040"
+  ],
+  "shipments": [
+    {
+      "serial": "D001",
+      "customer": "X"
+    },
+    {
+      "serial": "D002",
+      "customer": "X"
+    },
+    {
+      "serial": "D003",
+      "customer": "X"
+    },
+    {
+      "serial": "D004",
+      "customer": "X"
+    },
+    {
+      "serial": "D005",
+      "customer": "X"
+    },
+    {
+      "serial": "D006",
+      "customer": "X"
+    },
+    {
+      "serial": "D007",
+      "customer": "X"
+    },
+    {
+      "serial": "D008",
+      "customer": "X"
+    },
+    {
+      "serial": "D009",
+      "customer": "X"
+    },
+    {
+      "serial": "D010",
+      "customer": "X"
+    },
+    {
+      "serial": "D011",
+      "customer": "X"
+    },
+    {
+      "serial": "D012",
+      "customer": "X"
+    },
+    {
+      "serial": "D013",
+      "customer": "X"
+    },
+    {
+      "serial": "D014",
+      "customer": "X"
+    },
+    {
+      "serial": "D015",
+      "customer": "X"
+    },
+    {
+      "serial": "D016",
+      "customer": "Y"
+    },
+    {
+      "serial": "D017",
+      "customer": "Y"
+    },
+    {
+      "serial": "D018",
+      "customer": "Y"
+    },
+    {
+      "serial": "D019",
+      "customer": "Y"
+    },
+    {
+      "serial": "D020",
+      "customer": "Y"
+    },
+    {
+      "serial": "D021",
+      "customer": "Y"
+    },
+    {
+      "serial": "D022",
+      "customer": "Y"
+    },
+    {
+      "serial": "D023",
+      "customer": "Y"
+    },
+    {
+      "serial": "D024",
+      "customer": "Y"
+    },
+    {
+      "serial": "D025",
+      "customer": "Y"
+    },
+    {
+      "serial": "D026",
+      "customer": "Y"
+    },
+    {
+      "serial": "D027",
+      "customer": "Y"
+    },
+    {
+      "serial": "D028",
+      "customer": "Y"
+    },
+    {
+      "serial": "D029",
+      "customer": "Y"
+    },
+    {
+      "serial": "D030",
+      "customer": "Y"
+    }
+  ],
+  "stock": [
+    "D031",
+    "D032",
+    "D033",
+    "D034",
+    "D035",
+    "D036"
+  ],
+  "complaint": {
+    "serial": "D005",
+    "candidateBatch": "CB-A"
+  },
+  "expected": {
+    "candidateCount": 20,
+    "byCustomer": {
+      "X": 15,
+      "Y": 5
+    }
+  }
+}

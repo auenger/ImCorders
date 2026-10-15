@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "超限观测怎样形成隔离与处置证据",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-automotive-nonconformance-20261015-143006/automotive-nonconformance.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "来源记录"
+    },
+    {
+      "label": "范围整理"
+    },
+    {
+      "label": "规则核对"
+    },
+    {
+      "label": "结果对象"
+    },
+    {
+      "label": "应用与回执"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "source",
+      "label": "五条测量记录",
+      "sublabel": "四区间内 一超限",
+      "stage": 0,
+      "row": 1,
+      "type": "database"
+    },
+    {
+      "id": "prepare",
+      "label": "区间判断",
+      "sublabel": "19.95至20.05毫米",
+      "stage": 1,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "rules",
+      "label": "教学反应规则",
+      "sublabel": "超限即暂停本批放行",
+      "stage": 2,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "evaluate",
+      "label": "反应范围评估",
+      "sublabel": "本例整批待评估",
+      "stage": 2,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "result",
+      "label": "不合格与隔离单",
+      "sublabel": "观测一件 影响一百件",
+      "stage": 3,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "consumer",
+      "label": "库存状态应用",
+      "sublabel": "待评估隔离",
+      "stage": 4,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "receipt",
+      "label": "应用回执",
+      "sublabel": "一百件状态与范围",
+      "stage": 4,
+      "row": 3,
+      "type": "database"
+    }
+  ],
+  "flows": [
+    {
+      "id": "source-prepare",
+      "from": "source",
+      "to": "prepare",
+      "label": "来源明细"
+    },
+    {
+      "id": "prepare-evaluate",
+      "from": "prepare",
+      "to": "evaluate",
+      "label": "核对输入"
+    },
+    {
+      "id": "rules-evaluate",
+      "from": "rules",
+      "to": "evaluate",
+      "label": "有效依据",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "evaluate-result",
+      "from": "evaluate",
+      "to": "result",
+      "label": "条件满足结果",
+      "variant": "emphasis"
+    },
+    {
+      "id": "result-consumer",
+      "from": "result",
+      "to": "consumer",
+      "label": "对象与版本"
+    },
+    {
+      "id": "consumer-receipt",
+      "from": "consumer",
+      "to": "receipt",
+      "label": "执行回执",
+      "fromSide": "bottom",
+      "toSide": "top"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "不能互换的数量",
+      "items": [
+        "95件未测，不登记为95件合格。",
+        "隔离100件不表示已证明100件均有缺陷。"
+      ]
+    }
+  ]
+}

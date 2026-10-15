@@ -1,0 +1,191 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>半导体制造的载具、晶圆与设备事件 | 制造业系统</title><meta name="description" content="从载具槽位、晶圆身份、工艺作业和设备事件出发，拆开半导体自动化中的通信确认、实际处理完成与质量状态，用五片晶圆样本核对重复事件、缺失完成记录和后续放行。"><link rel="canonical" href="https://imcoders.cn/manufacturing/semiconductor-carrier-wafer-events/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/semiconductor-carrier-wafer-events/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/semiconductor-carrier-wafer-events/#article","headline":"半导体制造的载具、晶圆与设备事件","description":"从载具槽位、晶圆身份、工艺作业和设备事件出发，拆开半导体自动化中的通信确认、实际处理完成与质量状态，用五片晶圆样本核对重复事件、缺失完成记录和后续放行。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/semiconductor-carrier-wafer-events/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-15T00:00:00.000Z","dateModified":"2026-10-15T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"半导体制造的载具、晶圆与设备事件","item":"https://imcoders.cn/manufacturing/semiconductor-carrier-wafer-events/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-15T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-15T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="半导体制造的载具、晶圆与设备事件 | 制造业系统"><meta property="og:description" content="从载具槽位、晶圆身份、工艺作业和设备事件出发，拆开半导体自动化中的通信确认、实际处理完成与质量状态，用五片晶圆样本核对重复事件、缺失完成记录和后续放行。"><meta property="og:url" content="https://imcoders.cn/manufacturing/semiconductor-carrier-wafer-events/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="半导体制造的载具、晶圆与设备事件 | 制造业系统"><meta name="twitter:description" content="从载具槽位、晶圆身份、工艺作业和设备事件出发，拆开半导体自动化中的通信确认、实际处理完成与质量状态，用五片晶圆样本核对重复事件、缺失完成记录和后续放行。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="半导体制造的载具、晶圆与设备事件 | 制造业系统"><meta itemprop="description" content="从载具槽位、晶圆身份、工艺作业和设备事件出发，拆开半导体自动化中的通信确认、实际处理完成与质量状态，用五片晶圆样本核对重复事件、缺失完成记录和后续放行。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "半导体制造的载具、晶圆与设备事件 | 制造业系统";
+const shareDesc = "从载具槽位、晶圆身份、工艺作业和设备事件出发，拆开半导体自动化中的通信确认、实际处理完成与质量状态，用五片晶圆样本核对重复事件、缺失完成记录和后续放行。";
+const shareLink = "https://imcoders.cn/manufacturing/semiconductor-carrier-wafer-events/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>半导体制造的载具、晶圆与设备事件</h1><p class="mfg-lead" data-astro-cid-767rrl5b>从载具槽位、晶圆身份、工艺作业和设备事件出发，拆开半导体自动化中的通信确认、实际处理完成与质量状态，用五片晶圆样本核对重复事件、缺失完成记录和后续放行。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/semiconductor-carrier-wafer-events/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-15</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#先把通信层和业务对象拆开" data-astro-cid-767rrl5b>先把通信层和业务对象拆开</a></li><li data-astro-cid-767rrl5b><a href="#载具槽位保存当时的实际映射" data-astro-cid-767rrl5b>载具槽位保存当时的实际映射</a></li><li data-astro-cid-767rrl5b><a href="#逐片事件证明到哪一步" data-astro-cid-767rrl5b>逐片事件证明到哪一步</a></li><li data-astro-cid-767rrl5b><a href="#处理完成与质量放行分别核对" data-astro-cid-767rrl5b>处理完成与质量放行分别核对</a></li><li data-astro-cid-767rrl5b><a href="#用事件与晶圆集合复算" data-astro-cid-767rrl5b>用事件与晶圆集合复算</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>载具已经从设备卸下，里面的每片晶圆是否都完成了本工序？一个作业状态和一条卸载消息，未必能解释漏片、重工或完成事件缺失。需要把载具、槽位、晶圆和工艺尝试分别识别。</p>
+<p>本篇展开 I07 的半导体部分，限定为晶圆制造中一次设备处理与结果核对。五片晶圆、槽位和事件均为教学模拟，不代表真实产线接口，也不提供工艺配方参数或完整 GEM300 实现。</p>
+<h2 id="先把通信层和业务对象拆开">先把通信层和业务对象拆开</h2>
+<p>SEMI 的<a href="https://www.semi.org/jp/blogs/semi-news/semi-tutorial-secs-gem-seminar">官方 SECS/GEM 入门说明</a>介绍了 E30 GEM、E5 SECS-II、E37 HSMS 及 GEM300 的相关职责。其公开概述支持区分设备通信、载具管理、处理作业和基板跟踪；详细状态、消息字段和实现一致性仍需所采用版本的标准及设备接口文件。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>层次或对象</th><th>本篇解释范围</th><th>不能直接推导的结论</th></tr></thead><tbody><tr><td>E5 / SECS-II</td><td>消息内容体系</td><td>任意厂商报告字段都完全相同</td></tr><tr><td>E30 / GEM</td><td>设备通信与控制的一般模型</td><td>每台设备均实现所有可选能力</td></tr><tr><td>E37 / HSMS</td><td>相关传输通信机制</td><td>连接存在就等于业务成功</td></tr><tr><td>E87 / Carrier</td><td>载具相关管理</td><td>载具身份能替代晶圆身份</td></tr><tr><td>E40 / Processing</td><td>工艺处理作业相关管理</td><td>指令接受就代表处理完成</td></tr><tr><td>E90 / Substrate</td><td>基板跟踪相关信息</td><td>事件缺失时仍可自动确认去向</td></tr></tbody></table>
+<p>表中的中文解释仅概述职责，标准原文仍需单独查阅。本文没有读取付费标准全文，因此不编造具体消息号、强制超时值或状态转换要求。</p>
+<h2 id="载具槽位保存当时的实际映射">载具槽位保存当时的实际映射</h2>
+<p>教学载具 <code>CARRIER-S01</code> 本次只装入五片晶圆，槽位 1—5 对应 W01—W05，属于 <code>LOT-S01</code>。载具是可复用容器，批次和晶圆身份另行保存。装入、槽位确认、设备接收与卸载分别留记录。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>槽位</th><th>晶圆</th><th>本次工序</th><th>处理尝试</th></tr></thead><tbody><tr><td>1</td><td>W01</td><td>OP-S10</td><td>ATT-W01-1</td></tr><tr><td>2</td><td>W02</td><td>OP-S10</td><td>ATT-W02-1</td></tr><tr><td>3</td><td>W03</td><td>OP-S10</td><td>ATT-W03-1</td></tr><tr><td>4</td><td>W04</td><td>OP-S10</td><td>ATT-W04-1</td></tr><tr><td>5</td><td>W05</td><td>OP-S10</td><td>ATT-W05-1</td></tr></tbody></table>
+<p>槽位映射如果经搬运变化，保存新映射的生效记录，不能用当前槽位回填过去的工艺事件。分批、合批与重入同一工序同样需要批次关系和新的尝试身份，避免把返工覆盖成首次处理。</p>
+<p>主机安排 <code>PJ-S01</code> 使用获准配方身份 <code>RECIPE-S / 3</code>，并核对设备、路径和晶圆适用性。配方名称相同不一定代表内容相同，需要设备允许的版本或内容确认机制。本文只保存身份，不提供真实配方内容。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>载具映射怎样进入晶圆处理作业</strong><a href="/manufacturing/maps/semiconductor-job-context.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/semiconductor-job-context.html" title="载具槽位和工艺依据经适用检查形成晶圆处理作业的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>载具、晶圆、工序及处理尝试各有身份；图示为教学关系模型，非设备协议抓包。</figcaption>
+</figure>
+<h2 id="逐片事件证明到哪一步">逐片事件证明到哪一步</h2>
+<p>事件日志对 W01—W04 各有一次开始和一次完成；W05 只有开始。另有 W04 完成消息的一次重发，保留相同来源事件身份。因此共十次送达，九条唯一事件。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>十次送达 = 九条唯一事件 + 一次重发</span></span>
+<span class="line"><span>九条唯一事件 = 五次开始 + 四次完成</span></span>
+<span class="line"><span>有完成证据的晶圆 = W01、W02、W03、W04</span></span>
+<span class="line"><span>W05 = 已开始，完成状态待确认</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>本样本通过稳定 <code>eventId</code> 去重，这个字段属于教学封装，不宣称所有 SECS/GEM 报文都提供同样的全局事件标识。真实接入要按设备日志、会话、报告与业务关联机制确定身份，防止重连、主机重启或序号复用产生碰撞。</p>
+<p>W05 的完成事件缺失可能是未完成、事件丢失或状态同步问题。需要查设备结果、当前物料位置与持久日志，不能直接记成报废，也不能因为载具卸下就补一条虚构的成功记录。PJ-S01 在本例验收中保持未全部确认。</p>
+<h2 id="处理完成与质量放行分别核对">处理完成与质量放行分别核对</h2>
+<p>后续量测结果使 W03 进入待评估隔离。W01、W02、W04 在本例所有所需质量条件均已确认后获准继续，W05 保持完成证据未知。实际量测方法、阈值和放行策略需要产品工程依据，本文没有设定通用良率标准。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>五片去向 = 获准继续3 + 质量隔离1 + 完成待确认1</span></span>
+<span class="line"><span>已完成处理4 = 获准继续3 + 质量隔离1</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>设备轨迹、过程监测、量测和 MES 状态应关联同一次工序尝试。处理完成时间不能自动当成质量放行时间。异常评估若影响同腔体、同配方或同时间窗口其他晶圆，应按证据建立候选集合，不能只按批次名粗略扩大或缩小。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>设备事件怎样进入晶圆状态核对</strong><a href="/manufacturing/maps/semiconductor-event-reconcile.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/semiconductor-event-reconcile.html" title="去重后的逐片事件结合质量结果形成完成隔离与未知清单的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>四片处理完成不等于四片获准继续，缺失完成证据与质量隔离分别登记。</figcaption>
+</figure>
+<h2 id="用事件与晶圆集合复算">用事件与晶圆集合复算</h2>
+<p><a href="/manufacturing/samples/semiconductor-events.json">晶圆事件 JSON</a>包含五个槽位、十次送达及质量状态；<a href="/manufacturing/samples/verify-completion-samples.py">校验程序</a>核对事件去重、处理完成集合及三种去向。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>依据</th><th>支持内容</th><th>限制</th></tr></thead><tbody><tr><td>SEMI 官方 SECS/GEM 入门说明</td><td>相关标准职责和对象区分</td><td>公开概述，不能代替标准全文与设备接口契约</td></tr><tr><td>本篇数据关系设计</td><td>晶圆、槽位、工序尝试和质量记录关联</td><td>非符合性认证或真实设备实现</td></tr><tr><td>JSON 与校验程序</td><td>10 次送达、4 片完成及 3/1/1 去向</td><td>不验证实际加工或晶圆性能</td></tr></tbody></table>
+<p>官方页面于 2026-10-15 核对。设备接入仍需获得接口版本、事件定义、配方确认和故障恢复证据；这些资料不足时，只能展示已知范围及待确认对象。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 

@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "极卷位置怎样追到单体隔离范围",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-battery-roll-cell-scope-20261015-143006/battery-roll-cell-scope.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "来源记录"
+    },
+    {
+      "label": "范围整理"
+    },
+    {
+      "label": "规则核对"
+    },
+    {
+      "label": "结果对象"
+    },
+    {
+      "label": "应用与回执"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "source",
+      "label": "卷材与缺陷记录",
+      "sublabel": "缺陷区间20至25米",
+      "stage": 0,
+      "row": 1,
+      "type": "database"
+    },
+    {
+      "id": "prepare",
+      "label": "坐标与转换核对",
+      "sublabel": "起点 接带 误差边界",
+      "stage": 1,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "rules",
+      "label": "单体消耗位置映射",
+      "sublabel": "100个独立区间",
+      "stage": 2,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "evaluate",
+      "label": "区间相交计算",
+      "sublabel": "本例每单体1米",
+      "stage": 2,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "result",
+      "label": "候选单体集合",
+      "sublabel": "C021至C025共5个",
+      "stage": 3,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "consumer",
+      "label": "隔离状态应用",
+      "sublabel": "待评估范围",
+      "stage": 4,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "receipt",
+      "label": "隔离应用回执",
+      "sublabel": "不直接判定报废",
+      "stage": 4,
+      "row": 3,
+      "type": "database"
+    }
+  ],
+  "flows": [
+    {
+      "id": "source-prepare",
+      "from": "source",
+      "to": "prepare",
+      "label": "来源明细"
+    },
+    {
+      "id": "prepare-evaluate",
+      "from": "prepare",
+      "to": "evaluate",
+      "label": "核对输入"
+    },
+    {
+      "id": "rules-evaluate",
+      "from": "rules",
+      "to": "evaluate",
+      "label": "有效依据",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "evaluate-result",
+      "from": "evaluate",
+      "to": "result",
+      "label": "条件满足结果",
+      "variant": "emphasis"
+    },
+    {
+      "id": "result-consumer",
+      "from": "result",
+      "to": "consumer",
+      "label": "对象与版本"
+    },
+    {
+      "id": "consumer-receipt",
+      "from": "consumer",
+      "to": "receipt",
+      "label": "执行回执",
+      "fromSide": "bottom",
+      "toSide": "top"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "位置为教学简化",
+      "items": [
+        "实际电芯需要幅宽、多极片和卷绕关系。",
+        "映射未知与定位误差不能自动解释为无风险。"
+      ]
+    }
+  ]
+}

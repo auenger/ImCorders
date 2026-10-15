@@ -1,0 +1,49 @@
+{
+  "illustrative": true,
+  "article": "/manufacturing/system-recovery-business-reconciliation/",
+  "assumptions": [
+    "One plant, material, location and unit; source log retained completely.",
+    "Target can query a stable business key and prevents duplicate posting.",
+    "No real database recovery or physical inventory test was run."
+  ],
+  "opening": 100,
+  "unit": "piece",
+  "source": [
+    {
+      "id": "RCV-01/10",
+      "quantity": 20
+    },
+    {
+      "id": "ISS-01/10",
+      "quantity": -6
+    },
+    {
+      "id": "RET-01/10",
+      "quantity": 2
+    }
+  ],
+  "restoredTarget": [
+    {
+      "sourceId": "RCV-01/10",
+      "transaction": "ERP-T01",
+      "quantity": 20
+    },
+    {
+      "sourceId": "ISS-01/10",
+      "transaction": "ERP-T02",
+      "quantity": -6
+    }
+  ],
+  "deliveries": [
+    "RCV-01/10",
+    "ISS-01/10",
+    "ISS-01/10",
+    "RET-01/10"
+  ],
+  "expected": {
+    "restoredBalance": 114,
+    "finalBalance": 116,
+    "newPostings": 1,
+    "uniqueActions": 3
+  }
+}

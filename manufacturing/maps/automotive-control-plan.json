@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "质量策划怎样进入现场检验依据",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-automotive-control-plan-20261015-143006/automotive-control-plan.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "来源记录"
+    },
+    {
+      "label": "范围整理"
+    },
+    {
+      "label": "规则核对"
+    },
+    {
+      "label": "结果对象"
+    },
+    {
+      "label": "应用与回执"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "source",
+      "label": "工程与策划文件",
+      "sublabel": "特征F10与各版本",
+      "stage": 0,
+      "row": 1,
+      "type": "database"
+    },
+    {
+      "id": "prepare",
+      "label": "特征身份关联",
+      "sublabel": "工序 风险 控制措施",
+      "stage": 1,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "rules",
+      "label": "生效范围与量具",
+      "sublabel": "CP-A / 2 和方法依据",
+      "stage": 2,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "evaluate",
+      "label": "适用版本核验",
+      "sublabel": "产品 批次 量测条件",
+      "stage": 2,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "result",
+      "label": "现场检验指令",
+      "sublabel": "特征 方法 反应规则",
+      "stage": 3,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "consumer",
+      "label": "实际量测",
+      "sublabel": "按对象记录结果",
+      "stage": 4,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "receipt",
+      "label": "测量原始记录",
+      "sublabel": "方法 设备 尝试",
+      "stage": 4,
+      "row": 3,
+      "type": "database"
+    }
+  ],
+  "flows": [
+    {
+      "id": "source-prepare",
+      "from": "source",
+      "to": "prepare",
+      "label": "来源明细"
+    },
+    {
+      "id": "prepare-evaluate",
+      "from": "prepare",
+      "to": "evaluate",
+      "label": "核对输入"
+    },
+    {
+      "id": "rules-evaluate",
+      "from": "rules",
+      "to": "evaluate",
+      "label": "有效依据",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "evaluate-result",
+      "from": "evaluate",
+      "to": "result",
+      "label": "条件满足结果",
+      "variant": "emphasis"
+    },
+    {
+      "id": "result-consumer",
+      "from": "result",
+      "to": "consumer",
+      "label": "对象与版本"
+    },
+    {
+      "id": "consumer-receipt",
+      "from": "consumer",
+      "to": "receipt",
+      "label": "执行回执",
+      "fromSide": "bottom",
+      "toSide": "top"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "资料范围",
+      "items": [
+        "AIAG 公开入口支持工具及版本信息，不代替付费手册。",
+        "本图为教学数据关系，不是客户批准或认证证明。"
+      ]
+    }
+  ]
+}

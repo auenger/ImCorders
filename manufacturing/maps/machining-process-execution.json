@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "工艺发布怎样进入机床执行证据",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-machining-process-execution-20261015-143006/machining-process-execution.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "来源记录"
+    },
+    {
+      "label": "范围整理"
+    },
+    {
+      "label": "规则核对"
+    },
+    {
+      "label": "结果对象"
+    },
+    {
+      "label": "应用与回执"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "source",
+      "label": "工程与工艺发布包",
+      "sublabel": "图纸 路线 程序版本",
+      "stage": 0,
+      "row": 1,
+      "type": "database"
+    },
+    {
+      "id": "prepare",
+      "label": "任务版本绑定",
+      "sublabel": "零件 工步 程序摘要",
+      "stage": 1,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "rules",
+      "label": "资源适用依据",
+      "sublabel": "刀具 夹具 量具资格",
+      "stage": 2,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "evaluate",
+      "label": "开工与执行核验",
+      "sublabel": "所用程序和资源条件",
+      "stage": 2,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "result",
+      "label": "加工证据",
+      "sublabel": "实物身份与执行尝试",
+      "stage": 3,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "consumer",
+      "label": "检验与报工",
+      "sublabel": "逐件判定数量",
+      "stage": 4,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "receipt",
+      "label": "原始执行记录",
+      "sublabel": "版本 时间 结果",
+      "stage": 4,
+      "row": 3,
+      "type": "database"
+    }
+  ],
+  "flows": [
+    {
+      "id": "source-prepare",
+      "from": "source",
+      "to": "prepare",
+      "label": "来源明细"
+    },
+    {
+      "id": "prepare-evaluate",
+      "from": "prepare",
+      "to": "evaluate",
+      "label": "核对输入"
+    },
+    {
+      "id": "rules-evaluate",
+      "from": "rules",
+      "to": "evaluate",
+      "label": "有效依据",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "evaluate-result",
+      "from": "evaluate",
+      "to": "result",
+      "label": "条件满足结果",
+      "variant": "emphasis"
+    },
+    {
+      "id": "result-consumer",
+      "from": "result",
+      "to": "consumer",
+      "label": "对象与版本"
+    },
+    {
+      "id": "consumer-receipt",
+      "from": "consumer",
+      "to": "receipt",
+      "label": "执行回执",
+      "fromSide": "bottom",
+      "toSide": "top"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "发布与执行",
+      "items": [
+        "下载成功不能单独证明机床执行了正确程序。",
+        "返工增加尝试，保留同一件实物身份。"
+      ]
+    }
+  ]
+}

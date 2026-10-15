@@ -1,0 +1,142 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>医疗器械怎样连接生产记录与售后线索 | 制造业系统</title><meta name="description" content="依据 FDA QMSR 与记录控制公开资料，建立医疗器械产品版本、组件批次、逐台生产检验、放行和投诉的证据关系，用四十台模拟对象复算状态与候选影响范围，并说明药品记录不能直接套用的边界。"><link rel="canonical" href="https://imcoders.cn/manufacturing/medical-device-production-service-records/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/medical-device-production-service-records/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/medical-device-production-service-records/#article","headline":"医疗器械怎样连接生产记录与售后线索","description":"依据 FDA QMSR 与记录控制公开资料，建立医疗器械产品版本、组件批次、逐台生产检验、放行和投诉的证据关系，用四十台模拟对象复算状态与候选影响范围，并说明药品记录不能直接套用的边界。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/medical-device-production-service-records/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-15T00:00:00.000Z","dateModified":"2026-10-15T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"医疗器械怎样连接生产记录与售后线索","item":"https://imcoders.cn/manufacturing/medical-device-production-service-records/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-15T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-15T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="医疗器械怎样连接生产记录与售后线索 | 制造业系统"><meta property="og:description" content="依据 FDA QMSR 与记录控制公开资料，建立医疗器械产品版本、组件批次、逐台生产检验、放行和投诉的证据关系，用四十台模拟对象复算状态与候选影响范围，并说明药品记录不能直接套用的边界。"><meta property="og:url" content="https://imcoders.cn/manufacturing/medical-device-production-service-records/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="医疗器械怎样连接生产记录与售后线索 | 制造业系统"><meta name="twitter:description" content="依据 FDA QMSR 与记录控制公开资料，建立医疗器械产品版本、组件批次、逐台生产检验、放行和投诉的证据关系，用四十台模拟对象复算状态与候选影响范围，并说明药品记录不能直接套用的边界。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="医疗器械怎样连接生产记录与售后线索 | 制造业系统"><meta itemprop="description" content="依据 FDA QMSR 与记录控制公开资料，建立医疗器械产品版本、组件批次、逐台生产检验、放行和投诉的证据关系，用四十台模拟对象复算状态与候选影响范围，并说明药品记录不能直接套用的边界。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "医疗器械怎样连接生产记录与售后线索 | 制造业系统";
+const shareDesc = "依据 FDA QMSR 与记录控制公开资料，建立医疗器械产品版本、组件批次、逐台生产检验、放行和投诉的证据关系，用四十台模拟对象复算状态与候选影响范围，并说明药品记录不能直接套用的边界。";
+const shareLink = "https://imcoders.cn/manufacturing/medical-device-production-service-records/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>医疗器械怎样连接生产记录与售后线索</h1><p class="mfg-lead" data-astro-cid-767rrl5b>依据 FDA QMSR 与记录控制公开资料，建立医疗器械产品版本、组件批次、逐台生产检验、放行和投诉的证据关系，用四十台模拟对象复算状态与候选影响范围，并说明药品记录不能直接套用的边界。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/medical-device-production-service-records/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-15</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#采用与当前时间相符的记录依据" data-astro-cid-767rrl5b>采用与当前时间相符的记录依据</a></li><li data-astro-cid-767rrl5b><a href="#产品身份连接到组件和执行版本" data-astro-cid-767rrl5b>产品身份连接到组件和执行版本</a></li><li data-astro-cid-767rrl5b><a href="#数量相等时仍保留不同状态" data-astro-cid-767rrl5b>数量相等时仍保留不同状态</a></li><li data-astro-cid-767rrl5b><a href="#投诉线索回查候选范围与客户去向" data-astro-cid-767rrl5b>投诉线索回查候选范围与客户去向</a></li><li data-astro-cid-767rrl5b><a href="#来源和复算结果分别归档" data-astro-cid-767rrl5b>来源和复算结果分别归档</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>一台器械的投诉需要回查所用部件，但仓库只保存产品批号，服务系统只保存客户资产号。把两套记录接起来之前，先要确认同一台实物的身份，以及当时采用的产品版本、生产与放行依据。</p>
+<p>本篇补充 I05 的医疗器械部分，以四十台产品的教学数据展示生产到售后的连接。美国监管信息仅作为明确限定的一组依据，不覆盖中国、欧盟或所有器械分类要求；不提供临床用途、检测阈值或合规认证结论。</p>
+<h2 id="采用与当前时间相符的记录依据">采用与当前时间相符的记录依据</h2>
+<p>FDA 的 <a href="https://www.fda.gov/medical-devices/postmarket-requirements-devices/quality-management-system-regulation-qmsr">QMSR 官方说明</a>指出，修订后的质量管理体系法规于 2026 年 2 月 2 日生效，并通过引用纳入 ISO 13485:2016。本文核对日期为 2026-10-15，因此不把旧版 Part 820 条款编号直接写成现行要求。</p>
+<p><a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820/subpart-B/section-820.35">21 CFR 820.35</a>包含相关记录控制要求，包括特定投诉复核、评估与调查记录。是否需要不良事件报告、现场纠正或其他行动，应按具体事实和适用要求另行判断，不能从一次投诉自动生成监管结论。</p>
+<p>药品篇引用的 Part 211 批记录要求不能直接替代器械质量体系。ISO 13485 的付费全文和项目适用要求未在本文逐条展开；下面的字段关系属于教学设计，不声称覆盖全部强制记录。</p>
+<h2 id="产品身份连接到组件和执行版本">产品身份连接到组件和执行版本</h2>
+<p>本例 <code>LOT-D01</code> 包含 D001—D040 四十个模拟序列号，采用产品配置 <code>DEV-D / B</code> 和作业依据 <code>WI-D / 3</code>。前二十台使用组件批 CB-A，后二十台使用 CB-B，实际安装关系逐台保存。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>对象</th><th>教学记录</th><th>如何回查</th></tr></thead><tbody><tr><td>产品定义</td><td>DEV-D / B</td><td>获准配置、文件及适用范围</td></tr><tr><td>单台身份</td><td>D001—D040</td><td>工厂、生产批与当前配置</td></tr><tr><td>组件来源</td><td>CB-A 或 CB-B</td><td>采购、供应商与安装关系</td></tr><tr><td>生产与测试</td><td>每台任务及测试尝试</td><td>方法版本、原始结果与人员</td></tr><tr><td>放行决定</td><td>获准范围与责任身份</td><td>复核内容和目标应用回执</td></tr></tbody></table>
+<p>实际 UDI 或标签标识应按所适用的标识制度建立，不能把本文的 D001 当成合法 UDI 编码。器械标识、序列号、生产批和服务资产可互相映射，但不应混成一个未说明范围的字符串。</p>
+<p>软件或固件若属于适用配置，也应保留所安装版本及变更。返修换件后保存新的配置生效记录，原始生产履历继续可查，避免当前状态覆盖历史证据。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>器械定义怎样接到逐台生产与放行</strong><a href="/manufacturing/maps/device-production-release.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/device-production-release.html" title="器械配置和组件来源经生产测试复核形成逐台状态与放行记录的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>教学身份与关系模型，未实现器械标签编码、验证系统或监管申报。</figcaption>
+</figure>
+<h2 id="数量相等时仍保留不同状态">数量相等时仍保留不同状态</h2>
+<p>本例逐台记录的最终状态为：D001—D036 已完成所需复核并批准放行，D037、D038 待评估隔离，D039、D040 已批准并实际报废。三组互不重叠，覆盖全部四十台。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>生产对象40 = 放行36 + 待评估2 + 报废2</span></span>
+<span class="line"><span>放行36 = 已发运30 + 在库6</span></span>
+<span class="line"><span>已发运30 = 客户X 15 + 客户Y 15</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>已测试、测试通过、质量复核、获准放行和实际发运需要分别保存。样本假定三十六台具备所有适用放行依据，但没有提供真实验证或测试报告，因此这些数据只能用于演示状态计算。</p>
+<p>检验重测增加新的尝试及采用依据，不能删除失败记录。隔离的两台保留问题、责任人和后续评估；报废两台保存实物处置与库存事务，避免它们再次进入发运候选。</p>
+<h2 id="投诉线索回查候选范围与客户去向">投诉线索回查候选范围与客户去向</h2>
+<p>客户反馈 D005 有异常现象，建立投诉 <code>CMP-D01</code>。现象本身不证明原因，先核对产品身份、使用条件、服务与生产记录。假定调查将 CB-A 列为待评估线索，则候选范围为 D001—D020，共二十台。</p>
+<p>其中 D001—D015 发给客户 X，D016—D020 属于客户 Y 的十五台发运对象之中。于是候选二十台的去向为 X 十五台、Y 五台。不能把客户 Y 收到的全部十五台都默认为同一组件批，也不能仅凭客户范围反推制造批次。</p>
+<p>这一步只产生候选影响集合。是否存在实质不合格、是否扩大到其他批次、采取何种沟通或纠正措施，仍需调查与授权。系统应保存决定、依据和实施回执，不能因为发出了通知就自动标记全部产品已经处理。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>投诉怎样回到组件与交付对象</strong><a href="/manufacturing/maps/device-complaint-scope.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/device-complaint-scope.html" title="单台投诉经组件安装谱系圈定候选范围并核对客户分布的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>CB-A 是待评估线索，二十台是候选范围；图示不代表召回、报告义务或根因已确定。</figcaption>
+</figure>
+<h2 id="来源和复算结果分别归档">来源和复算结果分别归档</h2>
+<p><a href="/manufacturing/samples/medical-device-records.json">器械记录 JSON</a>保存四十个身份、组件安装、放行与交付集合；<a href="/manufacturing/samples/verify-completion-samples.py">校验程序</a>验证状态守恒、候选谱系及十五加五的客户分布。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>依据</th><th>支持内容</th><th>范围</th></tr></thead><tbody><tr><td>FDA QMSR 官方说明</td><td>生效时间、引用标准与监管背景</td><td>不代表具体企业通过质量体系检查</td></tr><tr><td>21 CFR 820.35</td><td>对应的记录控制与投诉记录要求</td><td>不能独立替代完整适用法规评估</td></tr><tr><td>本篇 JSON</td><td>四十台状态和二十台候选对象的复算</td><td>全部为教学输入，非真实器械记录</td></tr></tbody></table>
+<p>官方网页于 2026-10-15 核对。实际接入需要产品分类、市场、适用法规、受控文件和验证依据；这些资料未提供的结论，本篇保持待确认。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 

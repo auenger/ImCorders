@@ -1,0 +1,38 @@
+{
+  "illustrative": true,
+  "article": "/manufacturing/equipment-downtime-customer-delivery/",
+  "assumptions": [
+    "Minutes after 08:00 on 2026-10-15 Asia/Shanghai; no breaks or transport.",
+    "Resources, materials, people and inspection slots are available as stated.",
+    "Alternative resource qualification is assumed approved; not a global optimization."
+  ],
+  "deadline": 240,
+  "inspectionMinutes": 60,
+  "plans": [
+    {
+      "id": "PLAN-0",
+      "available": 0,
+      "setup": 0,
+      "process": 120,
+      "expectedFinish": 180,
+      "expectedDelay": 0
+    },
+    {
+      "id": "PLAN-A",
+      "available": 180,
+      "setup": 0,
+      "process": 120,
+      "expectedFinish": 360,
+      "expectedDelay": 120
+    },
+    {
+      "id": "PLAN-B",
+      "available": 60,
+      "setup": 30,
+      "process": 150,
+      "expectedFinish": 300,
+      "expectedDelay": 60
+    }
+  ],
+  "expectedImprovement": 60
+}

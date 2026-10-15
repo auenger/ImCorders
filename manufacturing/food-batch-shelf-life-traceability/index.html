@@ -1,0 +1,175 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>食品饮料的批次、保质期与去向追踪 | 制造业系统</title><meta name="description" content="沿两批原料混合、包装、出库和异常追踪，拆开食品制造的配方、设备清洗、检验、保质期与批次谱系，复算原料到九百八十袋成品的去向，并注明追溯法规的适用范围。"><link rel="canonical" href="https://imcoders.cn/manufacturing/food-batch-shelf-life-traceability/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/food-batch-shelf-life-traceability/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/food-batch-shelf-life-traceability/#article","headline":"食品饮料的批次、保质期与去向追踪","description":"沿两批原料混合、包装、出库和异常追踪，拆开食品制造的配方、设备清洗、检验、保质期与批次谱系，复算原料到九百八十袋成品的去向，并注明追溯法规的适用范围。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/food-batch-shelf-life-traceability/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-15T00:00:00.000Z","dateModified":"2026-10-15T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"食品饮料的批次、保质期与去向追踪","item":"https://imcoders.cn/manufacturing/food-batch-shelf-life-traceability/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-15T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-15T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="食品饮料的批次、保质期与去向追踪 | 制造业系统"><meta property="og:description" content="沿两批原料混合、包装、出库和异常追踪，拆开食品制造的配方、设备清洗、检验、保质期与批次谱系，复算原料到九百八十袋成品的去向，并注明追溯法规的适用范围。"><meta property="og:url" content="https://imcoders.cn/manufacturing/food-batch-shelf-life-traceability/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="食品饮料的批次、保质期与去向追踪 | 制造业系统"><meta name="twitter:description" content="沿两批原料混合、包装、出库和异常追踪，拆开食品制造的配方、设备清洗、检验、保质期与批次谱系，复算原料到九百八十袋成品的去向，并注明追溯法规的适用范围。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="食品饮料的批次、保质期与去向追踪 | 制造业系统"><meta itemprop="description" content="沿两批原料混合、包装、出库和异常追踪，拆开食品制造的配方、设备清洗、检验、保质期与批次谱系，复算原料到九百八十袋成品的去向，并注明追溯法规的适用范围。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "食品饮料的批次、保质期与去向追踪 | 制造业系统";
+const shareDesc = "沿两批原料混合、包装、出库和异常追踪，拆开食品制造的配方、设备清洗、检验、保质期与批次谱系，复算原料到九百八十袋成品的去向，并注明追溯法规的适用范围。";
+const shareLink = "https://imcoders.cn/manufacturing/food-batch-shelf-life-traceability/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>食品饮料的批次、保质期与去向追踪</h1><p class="mfg-lead" data-astro-cid-767rrl5b>沿两批原料混合、包装、出库和异常追踪，拆开食品制造的配方、设备清洗、检验、保质期与批次谱系，复算原料到九百八十袋成品的去向，并注明追溯法规的适用范围。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/food-batch-shelf-life-traceability/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-15</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#配方原料状态和清洗确认共同进入开批" data-astro-cid-767rrl5b>配方、原料状态和清洗确认共同进入开批</a></li><li data-astro-cid-767rrl5b><a href="#混合与包装分别建立数量关系" data-astro-cid-767rrl5b>混合与包装分别建立数量关系</a></li><li data-astro-cid-767rrl5b><a href="#保质期与放行条件进入具体出库" data-astro-cid-767rrl5b>保质期与放行条件进入具体出库</a></li><li data-astro-cid-767rrl5b><a href="#异常追踪先圈对象再核对处置回执" data-astro-cid-767rrl5b>异常追踪先圈对象，再核对处置回执</a></li><li data-astro-cid-767rrl5b><a href="#复算样本保留哪些依据" data-astro-cid-767rrl5b>复算样本保留哪些依据</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>混合批次里有六成原料来自异常批，是否只追踪六成成品？如果两批原料已经混合，系统通常无法再给每袋产品指定某一批原料的独占来源。追溯需要保留混合关系，再按批准的风险评估确定处置范围。</p>
+<p>本篇展开 I04，用冷加工混合食品的独立教学样本连接配方、清洗确认、批生产、检验和客户去向。数据均为模拟；不提供加工杀菌参数、保质期建议或食用安全判断，也不宣称覆盖所有饮料及食品工艺。</p>
+<h2 id="配方原料状态和清洗确认共同进入开批">配方、原料状态和清洗确认共同进入开批</h2>
+<p>模拟批次 <code>FOOD-M01</code> 使用配方 <code>REC-F / 2</code>，投入原料批 A 为 600 千克、B 为 400 千克。原料身份、供应商、收货、检验状态和有效期分别保存。仓库有库存仍需核对放行与剩余有效期，不能仅按数量自动投料。</p>
+<p>设备清洗记录 <code>CLEAN-F01</code> 绑定混合设备、执行时间、程序版本和确认结果。食品安全计划若规定额外验证，应保存相应依据；“清洗完成”按钮不能自行证明清洗效果或过敏原风险已经解除。具体控制措施和限值需要来自获准的工艺及食品安全分析。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>系统记录</th><th>进入本例的内容</th><th>需要保留的关联</th></tr></thead><tbody><tr><td>配方与工艺</td><td>REC-F / 2</td><td>产品、版本、批量与批准</td></tr><tr><td>WMS 原料</td><td>A 600 千克、B 400 千克</td><td>批次、状态、单位与领退记录</td></tr><tr><td>清洗与设备</td><td>CLEAN-F01</td><td>设备、时间、程序与确认</td></tr><tr><td>MES 批记录</td><td>FOOD-M01</td><td>实际投入、工段与包装输出</td></tr><tr><td>QMS / LIMS</td><td>取样和检验记录</td><td>样品身份、方法、结果与放行决定</td></tr></tbody></table>
+<p>本例假定上述开批条件均已有确认记录。文章给出数据关系设计，不能把这些模拟字段当作已经执行的食品安全验证。</p>
+<h2 id="混合与包装分别建立数量关系">混合与包装分别建立数量关系</h2>
+<p>本批投入总量 1,000 千克，产出待包装食品 980 千克，另有 20 千克作为已登记的加工损耗。本文忽略水分变化，且损耗已计量，属于教学前提；真实蒸煮、干燥或碳酸化过程需另计质量变化与计量不确定性。</p>
+<p>所有 980 千克以每袋净含量 1 千克完成包装，共 980 袋，包装批 <code>PACK-F01</code>。这是简化的净量示例，不代替实际净含量计量、标签或法定检验要求。原料批 A、B 都指向混合批，再由混合批指向包装批。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>投入 = 600 + 400 = 1000 千克</span></span>
+<span class="line"><span>投入去向 = 包装食品980 + 加工损耗20 = 1000 千克</span></span>
+<span class="line"><span>包装数量 = 980千克 / 1千克每袋 = 980袋</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>FDA 的<a href="https://www.fda.gov/food/food-safety-modernization-act-fsma/fsma-final-rule-requirements-additional-traceability-records-certain-foods">食品追溯规则说明</a>介绍了关键追踪事件与关键数据元素，并将转换、收货和发运等事件纳入框架。该美国规则涉及 Food Traceability List 等适用条件和豁免，不能泛化为所有地区、所有食品均需执行同一规则；具体适用和现行时间安排需查看官方页面。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>原料混合怎样连接食品包装批</strong><a href="/manufacturing/maps/food-mixing-packaging.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/food-mixing-packaging.html" title="原料批次结合配方与开批依据进入混合批和包装谱系的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>两批原料共同指向混合批。损耗与包装量分别登记，无法按投入占比把成品随意切成独立来源。</figcaption>
+</figure>
+<h2 id="保质期与放行条件进入具体出库">保质期与放行条件进入具体出库</h2>
+<p>本例包装记录中保存一个演示到期日 <code>2026-10-20</code>。这个日期仅用于软件判断，未做稳定性或微生物验证，不构成任何产品的实际保质期依据。真实日期应根据适用产品、加工包装、储运条件和批准规则形成。</p>
+<p>QMS 的放行决定关联检验与批记录，WMS 按批次状态和客户所需剩余有效期选择库存。先到期先出可以减少过期风险，但不能越过隔离或客户限制。出库时保存标签身份、批次、数量和目的地。</p>
+<p>冷链温度如果是产品要求的一部分，需保留设备、校准、采样区间、缺口和异常评估。温度数据缺失时，不应自动填成合格；单个末端温度读数也不能证明整段运输一直满足条件。</p>
+<h2 id="异常追踪先圈对象再核对处置回执">异常追踪先圈对象，再核对处置回执</h2>
+<p>假设原料 A 收到一条待调查异常通知。按本例混合关系，候选影响对象为整个 PACK-F01 的 980 袋，先暂停未发运库存并列出客户去向。候选范围仍需质量评估，不能直接声称食品已受污染或召回已完成。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>包装批去向</th><th align="right">数量（袋）</th><th>后续证据</th></tr></thead><tbody><tr><td>客户 X</td><td align="right">600</td><td>发运及客户收取处置通知回执</td></tr><tr><td>客户 Y</td><td align="right">200</td><td>发运；本样本通知回执仍待取得</td></tr><tr><td>企业库存</td><td align="right">170</td><td>实际隔离应用回执</td></tr><tr><td>留样</td><td align="right">10</td><td>留样位置与保管记录</td></tr></tbody></table>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>980袋 = 已发运800 + 在库170 + 留样10</span></span>
+<span class="line"><span>已发运800 = 客户X 600 + 客户Y 200</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>查到发运数量不等于已经追回数量，客户收到通知也不等于完成实物隔离。需要继续记录在途、收货、客户库存、已使用和实际处置；未知去向保持待核实。是否实施召回及其程序，应按适用制度与授权决定。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>食品异常怎样追到库存和客户</strong><a href="/manufacturing/maps/food-scope-destination.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/food-scope-destination.html" title="原料异常经谱系圈定包装范围并核对库存客户去向和处置回执的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>追踪范围与实际控制结果分别记录，客户 Y 的通知回执在本样本中保持未决。</figcaption>
+</figure>
+<h2 id="复算样本保留哪些依据">复算样本保留哪些依据</h2>
+<p><a href="/manufacturing/samples/food-traceability.json">食品批次 JSON</a>保留原料投入、混合输出、损耗、包装及去向；<a href="/manufacturing/samples/verify-completion-samples.py">校验程序</a>检查质量和包装数量守恒、谱系范围与未决回执。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>依据</th><th>支持内容</th><th>边界</th></tr></thead><tbody><tr><td>FDA 食品追溯规则官方页面</td><td>美国特定食品的事件与数据框架、适用性入口</td><td>本文没有完成该产品的法律适用性判定</td></tr><tr><td>本篇谱系与处置设计</td><td>混合批到包装及去向的核对方法</td><td>属于教学建模，风险范围需专业评估</td></tr><tr><td>JSON 与校验程序</td><td>1000 千克和 980 袋的去向复算</td><td>不证明安全性、保质期或召回执行效果</td></tr></tbody></table>
+<p>官方页面于 2026-10-15 核对。真实项目还要取得食品安全计划、获准配方、标签、清洗验证、检验与储运依据；这些记录没有到齐时，页面应展示未决项。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 

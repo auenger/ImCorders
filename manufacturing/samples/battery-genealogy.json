@@ -1,0 +1,1458 @@
+{
+  "illustrative": true,
+  "article": "/manufacturing/battery-roll-cell-grading-genealogy/",
+  "assumptions": [
+    "One 1-m interval per cell; ignores width, winding and other electrodes.",
+    "No coordinate error or splices; real mappings require their own uncertainty.",
+    "Capacity values and grading thresholds are teaching data, not safety limits.",
+    "Module membership is not a full product release decision."
+  ],
+  "rollLengthM": 100,
+  "defect": {
+    "startM": 20,
+    "endM": 25
+  },
+  "cells": [
+    {
+      "id": "C001",
+      "startM": 0,
+      "endM": 1
+    },
+    {
+      "id": "C002",
+      "startM": 1,
+      "endM": 2
+    },
+    {
+      "id": "C003",
+      "startM": 2,
+      "endM": 3
+    },
+    {
+      "id": "C004",
+      "startM": 3,
+      "endM": 4
+    },
+    {
+      "id": "C005",
+      "startM": 4,
+      "endM": 5
+    },
+    {
+      "id": "C006",
+      "startM": 5,
+      "endM": 6
+    },
+    {
+      "id": "C007",
+      "startM": 6,
+      "endM": 7
+    },
+    {
+      "id": "C008",
+      "startM": 7,
+      "endM": 8
+    },
+    {
+      "id": "C009",
+      "startM": 8,
+      "endM": 9
+    },
+    {
+      "id": "C010",
+      "startM": 9,
+      "endM": 10
+    },
+    {
+      "id": "C011",
+      "startM": 10,
+      "endM": 11
+    },
+    {
+      "id": "C012",
+      "startM": 11,
+      "endM": 12
+    },
+    {
+      "id": "C013",
+      "startM": 12,
+      "endM": 13
+    },
+    {
+      "id": "C014",
+      "startM": 13,
+      "endM": 14
+    },
+    {
+      "id": "C015",
+      "startM": 14,
+      "endM": 15
+    },
+    {
+      "id": "C016",
+      "startM": 15,
+      "endM": 16
+    },
+    {
+      "id": "C017",
+      "startM": 16,
+      "endM": 17
+    },
+    {
+      "id": "C018",
+      "startM": 17,
+      "endM": 18
+    },
+    {
+      "id": "C019",
+      "startM": 18,
+      "endM": 19
+    },
+    {
+      "id": "C020",
+      "startM": 19,
+      "endM": 20
+    },
+    {
+      "id": "C021",
+      "startM": 20,
+      "endM": 21
+    },
+    {
+      "id": "C022",
+      "startM": 21,
+      "endM": 22
+    },
+    {
+      "id": "C023",
+      "startM": 22,
+      "endM": 23
+    },
+    {
+      "id": "C024",
+      "startM": 23,
+      "endM": 24
+    },
+    {
+      "id": "C025",
+      "startM": 24,
+      "endM": 25
+    },
+    {
+      "id": "C026",
+      "startM": 25,
+      "endM": 26
+    },
+    {
+      "id": "C027",
+      "startM": 26,
+      "endM": 27
+    },
+    {
+      "id": "C028",
+      "startM": 27,
+      "endM": 28
+    },
+    {
+      "id": "C029",
+      "startM": 28,
+      "endM": 29
+    },
+    {
+      "id": "C030",
+      "startM": 29,
+      "endM": 30
+    },
+    {
+      "id": "C031",
+      "startM": 30,
+      "endM": 31
+    },
+    {
+      "id": "C032",
+      "startM": 31,
+      "endM": 32
+    },
+    {
+      "id": "C033",
+      "startM": 32,
+      "endM": 33
+    },
+    {
+      "id": "C034",
+      "startM": 33,
+      "endM": 34
+    },
+    {
+      "id": "C035",
+      "startM": 34,
+      "endM": 35
+    },
+    {
+      "id": "C036",
+      "startM": 35,
+      "endM": 36
+    },
+    {
+      "id": "C037",
+      "startM": 36,
+      "endM": 37
+    },
+    {
+      "id": "C038",
+      "startM": 37,
+      "endM": 38
+    },
+    {
+      "id": "C039",
+      "startM": 38,
+      "endM": 39
+    },
+    {
+      "id": "C040",
+      "startM": 39,
+      "endM": 40
+    },
+    {
+      "id": "C041",
+      "startM": 40,
+      "endM": 41
+    },
+    {
+      "id": "C042",
+      "startM": 41,
+      "endM": 42
+    },
+    {
+      "id": "C043",
+      "startM": 42,
+      "endM": 43
+    },
+    {
+      "id": "C044",
+      "startM": 43,
+      "endM": 44
+    },
+    {
+      "id": "C045",
+      "startM": 44,
+      "endM": 45
+    },
+    {
+      "id": "C046",
+      "startM": 45,
+      "endM": 46
+    },
+    {
+      "id": "C047",
+      "startM": 46,
+      "endM": 47
+    },
+    {
+      "id": "C048",
+      "startM": 47,
+      "endM": 48
+    },
+    {
+      "id": "C049",
+      "startM": 48,
+      "endM": 49
+    },
+    {
+      "id": "C050",
+      "startM": 49,
+      "endM": 50
+    },
+    {
+      "id": "C051",
+      "startM": 50,
+      "endM": 51
+    },
+    {
+      "id": "C052",
+      "startM": 51,
+      "endM": 52
+    },
+    {
+      "id": "C053",
+      "startM": 52,
+      "endM": 53
+    },
+    {
+      "id": "C054",
+      "startM": 53,
+      "endM": 54
+    },
+    {
+      "id": "C055",
+      "startM": 54,
+      "endM": 55
+    },
+    {
+      "id": "C056",
+      "startM": 55,
+      "endM": 56
+    },
+    {
+      "id": "C057",
+      "startM": 56,
+      "endM": 57
+    },
+    {
+      "id": "C058",
+      "startM": 57,
+      "endM": 58
+    },
+    {
+      "id": "C059",
+      "startM": 58,
+      "endM": 59
+    },
+    {
+      "id": "C060",
+      "startM": 59,
+      "endM": 60
+    },
+    {
+      "id": "C061",
+      "startM": 60,
+      "endM": 61
+    },
+    {
+      "id": "C062",
+      "startM": 61,
+      "endM": 62
+    },
+    {
+      "id": "C063",
+      "startM": 62,
+      "endM": 63
+    },
+    {
+      "id": "C064",
+      "startM": 63,
+      "endM": 64
+    },
+    {
+      "id": "C065",
+      "startM": 64,
+      "endM": 65
+    },
+    {
+      "id": "C066",
+      "startM": 65,
+      "endM": 66
+    },
+    {
+      "id": "C067",
+      "startM": 66,
+      "endM": 67
+    },
+    {
+      "id": "C068",
+      "startM": 67,
+      "endM": 68
+    },
+    {
+      "id": "C069",
+      "startM": 68,
+      "endM": 69
+    },
+    {
+      "id": "C070",
+      "startM": 69,
+      "endM": 70
+    },
+    {
+      "id": "C071",
+      "startM": 70,
+      "endM": 71
+    },
+    {
+      "id": "C072",
+      "startM": 71,
+      "endM": 72
+    },
+    {
+      "id": "C073",
+      "startM": 72,
+      "endM": 73
+    },
+    {
+      "id": "C074",
+      "startM": 73,
+      "endM": 74
+    },
+    {
+      "id": "C075",
+      "startM": 74,
+      "endM": 75
+    },
+    {
+      "id": "C076",
+      "startM": 75,
+      "endM": 76
+    },
+    {
+      "id": "C077",
+      "startM": 76,
+      "endM": 77
+    },
+    {
+      "id": "C078",
+      "startM": 77,
+      "endM": 78
+    },
+    {
+      "id": "C079",
+      "startM": 78,
+      "endM": 79
+    },
+    {
+      "id": "C080",
+      "startM": 79,
+      "endM": 80
+    },
+    {
+      "id": "C081",
+      "startM": 80,
+      "endM": 81
+    },
+    {
+      "id": "C082",
+      "startM": 81,
+      "endM": 82
+    },
+    {
+      "id": "C083",
+      "startM": 82,
+      "endM": 83
+    },
+    {
+      "id": "C084",
+      "startM": 83,
+      "endM": 84
+    },
+    {
+      "id": "C085",
+      "startM": 84,
+      "endM": 85
+    },
+    {
+      "id": "C086",
+      "startM": 85,
+      "endM": 86
+    },
+    {
+      "id": "C087",
+      "startM": 86,
+      "endM": 87
+    },
+    {
+      "id": "C088",
+      "startM": 87,
+      "endM": 88
+    },
+    {
+      "id": "C089",
+      "startM": 88,
+      "endM": 89
+    },
+    {
+      "id": "C090",
+      "startM": 89,
+      "endM": 90
+    },
+    {
+      "id": "C091",
+      "startM": 90,
+      "endM": 91
+    },
+    {
+      "id": "C092",
+      "startM": 91,
+      "endM": 92
+    },
+    {
+      "id": "C093",
+      "startM": 92,
+      "endM": 93
+    },
+    {
+      "id": "C094",
+      "startM": 93,
+      "endM": 94
+    },
+    {
+      "id": "C095",
+      "startM": 94,
+      "endM": 95
+    },
+    {
+      "id": "C096",
+      "startM": 95,
+      "endM": 96
+    },
+    {
+      "id": "C097",
+      "startM": 96,
+      "endM": 97
+    },
+    {
+      "id": "C098",
+      "startM": 97,
+      "endM": 98
+    },
+    {
+      "id": "C099",
+      "startM": 98,
+      "endM": 99
+    },
+    {
+      "id": "C100",
+      "startM": 99,
+      "endM": 100
+    }
+  ],
+  "preheld": [
+    "C021",
+    "C022",
+    "C023",
+    "C024",
+    "C025"
+  ],
+  "tested": [
+    "C001",
+    "C002",
+    "C003",
+    "C004",
+    "C005",
+    "C006",
+    "C007",
+    "C008",
+    "C009",
+    "C010",
+    "C011",
+    "C012",
+    "C013",
+    "C014",
+    "C015",
+    "C016",
+    "C017",
+    "C018",
+    "C019",
+    "C020",
+    "C026",
+    "C027",
+    "C028",
+    "C029",
+    "C030",
+    "C031",
+    "C032",
+    "C033",
+    "C034",
+    "C035",
+    "C036",
+    "C037",
+    "C038",
+    "C039",
+    "C040",
+    "C041",
+    "C042",
+    "C043",
+    "C044",
+    "C045",
+    "C046",
+    "C047",
+    "C048",
+    "C049",
+    "C050",
+    "C051",
+    "C052",
+    "C053",
+    "C054",
+    "C055",
+    "C056",
+    "C057",
+    "C058",
+    "C059",
+    "C060",
+    "C061",
+    "C062",
+    "C063",
+    "C064",
+    "C065",
+    "C066",
+    "C067",
+    "C068",
+    "C069",
+    "C070",
+    "C071",
+    "C072",
+    "C073",
+    "C074",
+    "C075",
+    "C076",
+    "C077",
+    "C078",
+    "C079",
+    "C080",
+    "C081",
+    "C082",
+    "C083",
+    "C084",
+    "C085",
+    "C086",
+    "C087",
+    "C088",
+    "C089",
+    "C090",
+    "C091",
+    "C092",
+    "C093",
+    "C094",
+    "C095",
+    "C096",
+    "C097",
+    "C098",
+    "C099",
+    "C100"
+  ],
+  "passed": [
+    {
+      "id": "C001",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C002",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C003",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C004",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C005",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C006",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C007",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C008",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C009",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C010",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C011",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C012",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C013",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C014",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C015",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C016",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C017",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C018",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C019",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C020",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C026",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C027",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C028",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C029",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C030",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C031",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C032",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C033",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C034",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C035",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C036",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C037",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C038",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C039",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C040",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C041",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C042",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C043",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C044",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C045",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C046",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C047",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C048",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C049",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C050",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C051",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C052",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C053",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C054",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C055",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C056",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C057",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C058",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C059",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C060",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C061",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C062",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C063",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C064",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C065",
+      "capacityAh": "3.10"
+    },
+    {
+      "id": "C066",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C067",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C068",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C069",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C070",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C071",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C072",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C073",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C074",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C075",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C076",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C077",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C078",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C079",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C080",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C081",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C082",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C083",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C084",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C085",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C086",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C087",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C088",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C089",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C090",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C091",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C092",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C093",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C094",
+      "capacityAh": "3.00"
+    },
+    {
+      "id": "C095",
+      "capacityAh": "3.00"
+    }
+  ],
+  "pending": [
+    "C096",
+    "C097",
+    "C098"
+  ],
+  "scrapped": [
+    "C099",
+    "C100"
+  ],
+  "gradeRule": {
+    "version": "GRADE-B/1",
+    "minimumB": "2.95",
+    "minimumA": "3.05"
+  },
+  "installations": [
+    {
+      "cell": "C001",
+      "module": "MOD01",
+      "position": 1
+    },
+    {
+      "cell": "C002",
+      "module": "MOD01",
+      "position": 2
+    },
+    {
+      "cell": "C003",
+      "module": "MOD01",
+      "position": 3
+    },
+    {
+      "cell": "C004",
+      "module": "MOD01",
+      "position": 4
+    },
+    {
+      "cell": "C005",
+      "module": "MOD01",
+      "position": 5
+    },
+    {
+      "cell": "C006",
+      "module": "MOD01",
+      "position": 6
+    },
+    {
+      "cell": "C007",
+      "module": "MOD01",
+      "position": 7
+    },
+    {
+      "cell": "C008",
+      "module": "MOD01",
+      "position": 8
+    },
+    {
+      "cell": "C009",
+      "module": "MOD01",
+      "position": 9
+    },
+    {
+      "cell": "C010",
+      "module": "MOD01",
+      "position": 10
+    },
+    {
+      "cell": "C011",
+      "module": "MOD02",
+      "position": 1
+    },
+    {
+      "cell": "C012",
+      "module": "MOD02",
+      "position": 2
+    },
+    {
+      "cell": "C013",
+      "module": "MOD02",
+      "position": 3
+    },
+    {
+      "cell": "C014",
+      "module": "MOD02",
+      "position": 4
+    },
+    {
+      "cell": "C015",
+      "module": "MOD02",
+      "position": 5
+    },
+    {
+      "cell": "C016",
+      "module": "MOD02",
+      "position": 6
+    },
+    {
+      "cell": "C017",
+      "module": "MOD02",
+      "position": 7
+    },
+    {
+      "cell": "C018",
+      "module": "MOD02",
+      "position": 8
+    },
+    {
+      "cell": "C019",
+      "module": "MOD02",
+      "position": 9
+    },
+    {
+      "cell": "C020",
+      "module": "MOD02",
+      "position": 10
+    },
+    {
+      "cell": "C026",
+      "module": "MOD03",
+      "position": 1
+    },
+    {
+      "cell": "C027",
+      "module": "MOD03",
+      "position": 2
+    },
+    {
+      "cell": "C028",
+      "module": "MOD03",
+      "position": 3
+    },
+    {
+      "cell": "C029",
+      "module": "MOD03",
+      "position": 4
+    },
+    {
+      "cell": "C030",
+      "module": "MOD03",
+      "position": 5
+    },
+    {
+      "cell": "C031",
+      "module": "MOD03",
+      "position": 6
+    },
+    {
+      "cell": "C032",
+      "module": "MOD03",
+      "position": 7
+    },
+    {
+      "cell": "C033",
+      "module": "MOD03",
+      "position": 8
+    },
+    {
+      "cell": "C034",
+      "module": "MOD03",
+      "position": 9
+    },
+    {
+      "cell": "C035",
+      "module": "MOD03",
+      "position": 10
+    },
+    {
+      "cell": "C036",
+      "module": "MOD04",
+      "position": 1
+    },
+    {
+      "cell": "C037",
+      "module": "MOD04",
+      "position": 2
+    },
+    {
+      "cell": "C038",
+      "module": "MOD04",
+      "position": 3
+    },
+    {
+      "cell": "C039",
+      "module": "MOD04",
+      "position": 4
+    },
+    {
+      "cell": "C040",
+      "module": "MOD04",
+      "position": 5
+    },
+    {
+      "cell": "C041",
+      "module": "MOD04",
+      "position": 6
+    },
+    {
+      "cell": "C042",
+      "module": "MOD04",
+      "position": 7
+    },
+    {
+      "cell": "C043",
+      "module": "MOD04",
+      "position": 8
+    },
+    {
+      "cell": "C044",
+      "module": "MOD04",
+      "position": 9
+    },
+    {
+      "cell": "C045",
+      "module": "MOD04",
+      "position": 10
+    },
+    {
+      "cell": "C046",
+      "module": "MOD05",
+      "position": 1
+    },
+    {
+      "cell": "C047",
+      "module": "MOD05",
+      "position": 2
+    },
+    {
+      "cell": "C048",
+      "module": "MOD05",
+      "position": 3
+    },
+    {
+      "cell": "C049",
+      "module": "MOD05",
+      "position": 4
+    },
+    {
+      "cell": "C050",
+      "module": "MOD05",
+      "position": 5
+    },
+    {
+      "cell": "C051",
+      "module": "MOD05",
+      "position": 6
+    },
+    {
+      "cell": "C052",
+      "module": "MOD05",
+      "position": 7
+    },
+    {
+      "cell": "C053",
+      "module": "MOD05",
+      "position": 8
+    },
+    {
+      "cell": "C054",
+      "module": "MOD05",
+      "position": 9
+    },
+    {
+      "cell": "C055",
+      "module": "MOD05",
+      "position": 10
+    },
+    {
+      "cell": "C056",
+      "module": "MOD06",
+      "position": 1
+    },
+    {
+      "cell": "C057",
+      "module": "MOD06",
+      "position": 2
+    },
+    {
+      "cell": "C058",
+      "module": "MOD06",
+      "position": 3
+    },
+    {
+      "cell": "C059",
+      "module": "MOD06",
+      "position": 4
+    },
+    {
+      "cell": "C060",
+      "module": "MOD06",
+      "position": 5
+    },
+    {
+      "cell": "C061",
+      "module": "MOD06",
+      "position": 6
+    },
+    {
+      "cell": "C062",
+      "module": "MOD06",
+      "position": 7
+    },
+    {
+      "cell": "C063",
+      "module": "MOD06",
+      "position": 8
+    },
+    {
+      "cell": "C064",
+      "module": "MOD06",
+      "position": 9
+    },
+    {
+      "cell": "C065",
+      "module": "MOD06",
+      "position": 10
+    },
+    {
+      "cell": "C066",
+      "module": "MOD07",
+      "position": 1
+    },
+    {
+      "cell": "C067",
+      "module": "MOD07",
+      "position": 2
+    },
+    {
+      "cell": "C068",
+      "module": "MOD07",
+      "position": 3
+    },
+    {
+      "cell": "C069",
+      "module": "MOD07",
+      "position": 4
+    },
+    {
+      "cell": "C070",
+      "module": "MOD07",
+      "position": 5
+    },
+    {
+      "cell": "C071",
+      "module": "MOD07",
+      "position": 6
+    },
+    {
+      "cell": "C072",
+      "module": "MOD07",
+      "position": 7
+    },
+    {
+      "cell": "C073",
+      "module": "MOD07",
+      "position": 8
+    },
+    {
+      "cell": "C074",
+      "module": "MOD07",
+      "position": 9
+    },
+    {
+      "cell": "C075",
+      "module": "MOD07",
+      "position": 10
+    },
+    {
+      "cell": "C076",
+      "module": "MOD08",
+      "position": 1
+    },
+    {
+      "cell": "C077",
+      "module": "MOD08",
+      "position": 2
+    },
+    {
+      "cell": "C078",
+      "module": "MOD08",
+      "position": 3
+    },
+    {
+      "cell": "C079",
+      "module": "MOD08",
+      "position": 4
+    },
+    {
+      "cell": "C080",
+      "module": "MOD08",
+      "position": 5
+    },
+    {
+      "cell": "C081",
+      "module": "MOD08",
+      "position": 6
+    },
+    {
+      "cell": "C082",
+      "module": "MOD08",
+      "position": 7
+    },
+    {
+      "cell": "C083",
+      "module": "MOD08",
+      "position": 8
+    },
+    {
+      "cell": "C084",
+      "module": "MOD08",
+      "position": 9
+    },
+    {
+      "cell": "C085",
+      "module": "MOD08",
+      "position": 10
+    },
+    {
+      "cell": "C086",
+      "module": "MOD09",
+      "position": 1
+    },
+    {
+      "cell": "C087",
+      "module": "MOD09",
+      "position": 2
+    },
+    {
+      "cell": "C088",
+      "module": "MOD09",
+      "position": 3
+    },
+    {
+      "cell": "C089",
+      "module": "MOD09",
+      "position": 4
+    },
+    {
+      "cell": "C090",
+      "module": "MOD09",
+      "position": 5
+    },
+    {
+      "cell": "C091",
+      "module": "MOD09",
+      "position": 6
+    },
+    {
+      "cell": "C092",
+      "module": "MOD09",
+      "position": 7
+    },
+    {
+      "cell": "C093",
+      "module": "MOD09",
+      "position": 8
+    },
+    {
+      "cell": "C094",
+      "module": "MOD09",
+      "position": 9
+    },
+    {
+      "cell": "C095",
+      "module": "MOD09",
+      "position": 10
+    }
+  ],
+  "expected": {
+    "preheld": 5,
+    "passed": 90,
+    "pending": 3,
+    "scrapped": 2,
+    "gradeA": 60,
+    "gradeB": 30,
+    "modules": 9
+  }
+}

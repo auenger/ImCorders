@@ -129,24 +129,35 @@
 ## 制造业系统
 
 - [APS 如何处理物料、产能、换型和插单](https://imcoders.cn/manufacturing/aps-finite-capacity-rescheduling/index.md): 从风机尾批任务与一张急单出发，拆解 APS 的输入快照、有限产能、物料、日历、换型和冻结规则，比较三种排程方案，并记录候选评审、ERP 与 MES 发布回执、实绩重排和 Agent 接入的验收边界。
+- [汽车零部件的质量策划怎样进入生产](https://imcoders.cn/manufacturing/automotive-quality-planning-production/index.md): 把汽车零部件的过程流程、风险分析、控制计划、量测与生产记录接到同一特征身份，说明版本切换、抽样边界、不合格隔离和客户批准的证据关系，附百件批次的教学样本。
 - [批次、配方、电子批记录与过程控制](https://imcoders.cn/manufacturing/batch-recipe-record-process-control/index.md): 用一批独立的虚构混配记录，拆解用料配方、主配方、控制配方、批次订单、设备阶段与电子批记录的关系，核对实际投料、过程数据、物料平衡、质量放行和分装谱系，并记录异常恢复与集成验收边界。
+- [电池制造怎样连接极卷、单体与分档](https://imcoders.cn/manufacturing/battery-roll-cell-grading-genealogy/index.md): 用极卷区间到单体身份的模拟映射，连接缺陷定位、装配、化成测试、分档和模组组成，复算隔离与报废去向，说明位置谱系、测试尝试和电池护照之间的范围差异。
+- [化工连续过程怎样核对物料与事件](https://imcoders.cn/manufacturing/chemical-continuous-process-balance/index.md): 以连续混配与下游批次切换为模拟边界，连接 DCS、过程历史、实验室结果和物料去向，复算进出料与库存变化，说明计量缺口、过渡段、质量状态和批次归属的证据要求。
 - [客户配置、采购与供应链计划](https://imcoders.cn/manufacturing/customer-configuration-supply-planning/index.md): 沿用风机订单与新旧支架切换，拆解 CRM、CPQ、ERP、SRM 和计划系统之间的配置、转单、供需关联与供应商答复，说明采购版本、分批交付、在途、质量放行和客户承诺怎样分别核对。
 - [制造业系统数据地图](https://imcoders.cn/manufacturing/data-map/index.md): 用五张交互地图连接产品、订单、物料、质量、设备和组织数据，明确系统之间传递的对象、版本、状态与回执，作为制造业系统深度拆解的起点。
 - [EAM、现场状态与设备停机分析](https://imcoders.cn/manufacturing/eam-equipment-downtime-analysis/index.md): 从一台装配设备的独立停机样本出发，拆解 PLC、SCADA、MES、EAM 与 APS 的设备映射、时间质量、维修工单、复产条件和产能回执，计算停机与可用率，并记录跨系统接入的验收场景。
 - [电子制造与 SMT 的上料、检测和追溯](https://imcoders.cn/manufacturing/electronics-smt-material-test-traceability/index.md): 用 25 块四联拼板的教学样本，串起料卷、供料器、站位表、贴装程序、板级序列号与 SPI、AOI、ICT、FCT 记录，核对接料边界、返修复测和放行回执，解释电子制造中追溯精度如何形成。
 - [研发工程工具与工艺数据如何衔接](https://imcoders.cn/manufacturing/engineering-tools-process-data/index.md): 沿用风机支架工程变更，拆解 CAD、PDM、PLM 与 CAPP 的文件、零件、结构、工序和指导书关系，说明 CAE 与 CAM 的适用分支，以及版本基线、工艺分配、发布回执和现场偏差怎样受控衔接。
+- [一次设备停机怎样传到客户交期](https://imcoders.cn/manufacturing/equipment-downtime-customer-delivery/index.md): 把设备停机、维修验证、剩余工序、替代资源和客户承诺接到同一份排程样本，复算原资源恢复与替代加工两种方案的交付影响，并保留批准条件、计划版本和实际执行回执。
 - [ERP 怎样连接订单、物料、生产与成本](https://imcoders.cn/manufacturing/erp-order-material-cost/index.md): 沿着一张风机订单，拆解 ERP 中的销售需求、MRP、采购与生产订单、库存事务和成本核算，说明工程变更后怎样重算缺料、接收现场记录、处理接口重试，并用动态图与验收案例保留跨系统证据。
 - [从现场点位到业务事件](https://imcoders.cn/manufacturing/field-points-business-events/index.md): 沿一段跨工单的设备停机记录，拆开 PLC、DCS、HMI、SCADA、Historian 与边缘采集的职责，核对点位映射、时间戳、质量码、去重补传和业务事件修订，附动态数据流与可复算样本。
+- [食品饮料的批次、保质期与去向追踪](https://imcoders.cn/manufacturing/food-batch-shelf-life-traceability/index.md): 沿两批原料混合、包装、出库和异常追踪，拆开食品制造的配方、设备清洗、检验、保质期与批次谱系，复算原料到九百八十袋成品的去向，并注明追溯法规的适用范围。
 - [工业数据平台、数字孪生与 Agent 接入](https://imcoders.cn/manufacturing/industrial-data-platform-digital-twin-agents/index.md): 从一座可旋转的示意工厂出发，梳理工业数据平台如何保留原始事件、关联设备与工单、构建带时间的孪生视图，并说明 Agent 查询证据和执行业务动作的边界。
 - [库存有货为什么仍然缺料](https://imcoders.cn/manufacturing/inventory-shortage-material-readiness/index.md): 用一张工单的齐套样本，串起 ERP、WMS、QMS、MES 与采购计划，逐项核对冻结、预留、替代、线边余料和在途，算出当前能配多少套，并追踪从候选供给到实际配送的回执。
+- [机械加工与装备装配的工艺和交付数据](https://imcoders.cn/manufacturing/machining-assembly-process-delivery/index.md): 以轴类零件加工、委外热处理和装备装配为模拟链路，核对图纸与程序版本、刀具量具、委外在途、质量状态和项目交付，复算十二件毛坯怎样支持四套装备齐套。
 - [主数据、事件与跨系统对账](https://imcoders.cn/manufacturing/master-data-events-reconciliation/index.md): 沿用风机订单与补发支架案例，拆解制造业系统的主数据责任、编码映射、事件身份、可靠发送、幂等与乱序处理，并用两件补发料的独立差异样本说明数量守恒、业务回执、补偿和对账验收。
+- [医疗器械怎样连接生产记录与售后线索](https://imcoders.cn/manufacturing/medical-device-production-service-records/index.md): 依据 FDA QMSR 与记录控制公开资料，建立医疗器械产品版本、组件批次、逐台生产检验、放行和投诉的证据关系，用四十台模拟对象复算状态与候选影响范围，并说明药品记录不能直接套用的边界。
 - [MES 中一张工单的完整生命周期](https://imcoders.cn/manufacturing/mes-work-order-lifecycle/index.md): 沿着一张风机工单，拆解 MES 的接单、准备、派工、开工、过站、报工、质量挂起、返工和完工，区分工单与单件状态，用动态图记录 ERP、WMS 和质量系统的交接，并给出异常恢复、追溯与 Agent 接入的验收范围。
 - [用数据解释一张订单为什么延期](https://imcoders.cn/manufacturing/order-delivery-delay-analysis/index.md): 把 PLM、ERP、MES 与 WMS 的记录接到同一张风机订单，区分客户要求、确认承诺、计划版本和实际事件，用数量范围、并行条件及条件重算解释延期，避免把局部等待相加或将接口迟到误判为现场停工。
 - [人员资格、受控文件、售后与运行支撑](https://imcoders.cn/manufacturing/people-documents-service-operations/index.md): 沿着任务开工、产品交付和服务反馈，梳理人员资格、账号授权、受控文件、在役资产、服务工单与运行恢复的数据关系，用模拟记录说明历史依据、配置变更、离线补传和异常验收方法。
+- [药品批记录怎样支持复核与放行](https://imcoders.cn/manufacturing/pharma-batch-review-release/index.md): 以美国药品 CGMP 公开条文为依据，拆解主批记录、执行证据、实验室结果、偏差调查与质量复核的关系，用包装数量样本说明记录齐全和获准放行的区别，并限定法规适用范围。
 - [PLM 工程变更如何从设计进入生产](https://imcoders.cn/manufacturing/plm-engineering-change/index.md): 用一次风机支架变更拆解 PLM 的产品结构、EBOM 与 MBOM、版本和生效条件，追踪 ERP、MES、WMS 如何接收变更、处置旧料并保留执行证据，同时分析 Agent 的查询与操作边界。
 - [工单实际成本怎样回到原始记录](https://imcoders.cn/manufacturing/production-order-actual-cost-evidence/index.md): 用一张完成 100 件产品的工单，逐笔核对材料耗用、工时冲正、能源计量和制造费用分摊，复算成本差异与返工子集，并连接现场记录、计价版本、成本快照和 ERP 过账回执。
 - [QMS、LIMS 与质量放行的衔接](https://imcoders.cn/manufacturing/qms-lims-quality-release/index.md): 沿用风机订单中的 20 件待检支架与两台返工产品，拆解 QMS、LIMS、MES 和 WMS 之间的检验依据、样品范围、质量处置、放行授权、库存限制、复检记录与接口回执，并给出可执行的集成验收场景。
 - [一个质量异常怎样圈定影响范围](https://imcoders.cn/manufacturing/quality-incident-traceability-scope/index.md): 用一组包含分拆、合批、替代换件和发运记录的制造业样本，串起 QMS、MES、WMS 与交付数据，核对正反向谱系、受影响产品清单和隔离回执，并区分历史关联、当前风险与追溯未知项。
+- [产品返厂以后怎样接回制造履历](https://imcoders.cn/manufacturing/returned-product-manufacturing-history/index.md): 沿客户报修、返厂授权、实收检验、维修换件和重新交付，建立序列号与在役配置的证据链，核对部分到货、报废、质保与工程变更边界，附可复算的返厂处置样本。
+- [半导体制造的载具、晶圆与设备事件](https://imcoders.cn/manufacturing/semiconductor-carrier-wafer-events/index.md): 从载具槽位、晶圆身份、工艺作业和设备事件出发，拆开半导体自动化中的通信确认、实际处理完成与质量状态，用五片晶圆样本核对重复事件、缺失完成记录和后续放行。
+- [系统恢复以后怎样证明业务已对齐](https://imcoders.cn/manufacturing/system-recovery-business-reconciliation/index.md): 用独立的收料、发料与退料恢复样本，核对数据库恢复点、消息位置、目标事务、重复投递和业务余额，建立跨系统恢复顺序、差异清单及重新开放业务的验收依据。
 - [工装、计量、公用工程与能源环境数据](https://imcoders.cn/manufacturing/tooling-metrology-utilities-energy/index.md): 从生产任务的资源资格与使用履历出发，拆解工装寿命、计量适用性、公用工程条件、能源计量与环境监测的数据关系，用独立模拟账本核对总分表、任务归集与单耗，并整理异常追溯和集成验收方法。
 - [自动化仓储、厂内物流与运输协同](https://imcoders.cn/manufacturing/warehouse-automation-logistics-transport/index.md): 沿用 60 件支架线边配送与 200 台风机整批交付，拆解 WMS、WES、WCS、车队系统和 TMS 的任务、容器、交接与回执，说明超时重派、途中库存、装车、签收差异和跨系统验收如何落实。
 - [WMS 中的库存、库位与生产配送](https://imcoders.cn/manufacturing/wms-inventory-production-delivery/index.md): 沿着风机支架的收货、待检、上架、备料、配送和退料，拆解 WMS 的库存身份、质量状态、库位与任务占用，说明在库有货为何仍不可领，并用动态图、数量核对和接口样本记录 ERP、MES 与仓储现场的交接。

@@ -1,0 +1,94 @@
+{
+  "illustrative": true,
+  "article": "/manufacturing/returned-product-manufacturing-history/",
+  "assumptions": [
+    "Independent return case; root cause and engineering proposal remain unconfirmed.",
+    "Six repaired products have assumed approved test and release evidence.",
+    "Two scrapped products have assumed approval and execution receipts."
+  ],
+  "authorized": [
+    "SN01",
+    "SN02",
+    "SN03",
+    "SN04",
+    "SN05",
+    "SN06",
+    "SN07",
+    "SN08",
+    "SN09",
+    "SN10"
+  ],
+  "received": [
+    "SN01",
+    "SN02",
+    "SN03",
+    "SN04",
+    "SN05",
+    "SN06",
+    "SN07",
+    "SN08"
+  ],
+  "repaired": [
+    "SN01",
+    "SN02",
+    "SN03",
+    "SN04",
+    "SN05",
+    "SN06"
+  ],
+  "scrapped": [
+    "SN07",
+    "SN08"
+  ],
+  "redelivered": [
+    "SN01",
+    "SN02",
+    "SN03",
+    "SN04",
+    "SN05",
+    "SN06"
+  ],
+  "missing": [
+    "SN09",
+    "SN10"
+  ],
+  "replacements": [
+    {
+      "serial": "SN01",
+      "oldPart": "P01",
+      "newPart": "N01"
+    },
+    {
+      "serial": "SN02",
+      "oldPart": "P02",
+      "newPart": "N02"
+    },
+    {
+      "serial": "SN03",
+      "oldPart": "P03",
+      "newPart": "N03"
+    },
+    {
+      "serial": "SN04",
+      "oldPart": "P04",
+      "newPart": "N04"
+    },
+    {
+      "serial": "SN05",
+      "oldPart": "P05",
+      "newPart": "N05"
+    },
+    {
+      "serial": "SN06",
+      "oldPart": "P06",
+      "newPart": "N06"
+    }
+  ],
+  "expected": {
+    "authorized": 10,
+    "received": 8,
+    "repaired": 6,
+    "scrapped": 2,
+    "missing": 2
+  }
+}

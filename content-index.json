@@ -1772,6 +1772,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/aps-finite-capacity-rescheduling/index.md"
     },
     {
+      "id": "manufacturing/automotive-quality-planning-production",
+      "kind": "manufacturing",
+      "title": "汽车零部件的质量策划怎样进入生产",
+      "description": "把汽车零部件的过程流程、风险分析、控制计划、量测与生产记录接到同一特征身份，说明版本切换、抽样边界、不合格隔离和客户批准的证据关系，附百件批次的教学样本。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "汽车零部件",
+        "质量策划",
+        "控制计划",
+        "追溯"
+      ],
+      "publishedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/automotive-quality-planning-production/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/automotive-quality-planning-production/index.md"
+    },
+    {
       "id": "manufacturing/batch-recipe-record-process-control",
       "kind": "manufacturing",
       "title": "批次、配方、电子批记录与过程控制",
@@ -1788,6 +1806,42 @@
       "updatedAt": "2026-10-14T00:00:00.000Z",
       "url": "https://imcoders.cn/manufacturing/batch-recipe-record-process-control/",
       "markdownUrl": "https://imcoders.cn/manufacturing/batch-recipe-record-process-control/index.md"
+    },
+    {
+      "id": "manufacturing/battery-roll-cell-grading-genealogy",
+      "kind": "manufacturing",
+      "title": "电池制造怎样连接极卷、单体与分档",
+      "description": "用极卷区间到单体身份的模拟映射，连接缺陷定位、装配、化成测试、分档和模组组成，复算隔离与报废去向，说明位置谱系、测试尝试和电池护照之间的范围差异。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "电池制造",
+        "极卷追溯",
+        "单体分档",
+        "产品谱系"
+      ],
+      "publishedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/battery-roll-cell-grading-genealogy/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/battery-roll-cell-grading-genealogy/index.md"
+    },
+    {
+      "id": "manufacturing/chemical-continuous-process-balance",
+      "kind": "manufacturing",
+      "title": "化工连续过程怎样核对物料与事件",
+      "description": "以连续混配与下游批次切换为模拟边界，连接 DCS、过程历史、实验室结果和物料去向，复算进出料与库存变化，说明计量缺口、过渡段、质量状态和批次归属的证据要求。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "化工",
+        "连续过程",
+        "物料平衡",
+        "过程历史"
+      ],
+      "publishedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/chemical-continuous-process-balance/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/chemical-continuous-process-balance/index.md"
     },
     {
       "id": "manufacturing/customer-configuration-supply-planning",
@@ -1880,6 +1934,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/engineering-tools-process-data/index.md"
     },
     {
+      "id": "manufacturing/equipment-downtime-customer-delivery",
+      "kind": "manufacturing",
+      "title": "一次设备停机怎样传到客户交期",
+      "description": "把设备停机、维修验证、剩余工序、替代资源和客户承诺接到同一份排程样本，复算原资源恢复与替代加工两种方案的交付影响，并保留批准条件、计划版本和实际执行回执。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "设备停机",
+        "APS",
+        "交付分析",
+        "EAM"
+      ],
+      "publishedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/equipment-downtime-customer-delivery/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/equipment-downtime-customer-delivery/index.md"
+    },
+    {
       "id": "manufacturing/erp-order-material-cost",
       "kind": "manufacturing",
       "title": "ERP 怎样连接订单、物料、生产与成本",
@@ -1914,6 +1986,24 @@
       "updatedAt": "2026-10-15T00:00:00.000Z",
       "url": "https://imcoders.cn/manufacturing/field-points-business-events/",
       "markdownUrl": "https://imcoders.cn/manufacturing/field-points-business-events/index.md"
+    },
+    {
+      "id": "manufacturing/food-batch-shelf-life-traceability",
+      "kind": "manufacturing",
+      "title": "食品饮料的批次、保质期与去向追踪",
+      "description": "沿两批原料混合、包装、出库和异常追踪，拆开食品制造的配方、设备清洗、检验、保质期与批次谱系，复算原料到九百八十袋成品的去向，并注明追溯法规的适用范围。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "食品追溯",
+        "批次管理",
+        "保质期",
+        "质量放行"
+      ],
+      "publishedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/food-batch-shelf-life-traceability/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/food-batch-shelf-life-traceability/index.md"
     },
     {
       "id": "manufacturing/industrial-data-platform-digital-twin-agents",
@@ -1952,6 +2042,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/inventory-shortage-material-readiness/index.md"
     },
     {
+      "id": "manufacturing/machining-assembly-process-delivery",
+      "kind": "manufacturing",
+      "title": "机械加工与装备装配的工艺和交付数据",
+      "description": "以轴类零件加工、委外热处理和装备装配为模拟链路，核对图纸与程序版本、刀具量具、委外在途、质量状态和项目交付，复算十二件毛坯怎样支持四套装备齐套。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "机械加工",
+        "装备装配",
+        "委外加工",
+        "工艺数据"
+      ],
+      "publishedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/machining-assembly-process-delivery/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/machining-assembly-process-delivery/index.md"
+    },
+    {
       "id": "manufacturing/master-data-events-reconciliation",
       "kind": "manufacturing",
       "title": "主数据、事件与跨系统对账",
@@ -1968,6 +2076,24 @@
       "updatedAt": "2026-10-14T00:00:00.000Z",
       "url": "https://imcoders.cn/manufacturing/master-data-events-reconciliation/",
       "markdownUrl": "https://imcoders.cn/manufacturing/master-data-events-reconciliation/index.md"
+    },
+    {
+      "id": "manufacturing/medical-device-production-service-records",
+      "kind": "manufacturing",
+      "title": "医疗器械怎样连接生产记录与售后线索",
+      "description": "依据 FDA QMSR 与记录控制公开资料，建立医疗器械产品版本、组件批次、逐台生产检验、放行和投诉的证据关系，用四十台模拟对象复算状态与候选影响范围，并说明药品记录不能直接套用的边界。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "医疗器械",
+        "QMSR",
+        "产品追溯",
+        "投诉记录"
+      ],
+      "publishedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/medical-device-production-service-records/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/medical-device-production-service-records/index.md"
     },
     {
       "id": "manufacturing/mes-work-order-lifecycle",
@@ -2022,6 +2148,24 @@
       "updatedAt": "2026-10-15T00:00:00.000Z",
       "url": "https://imcoders.cn/manufacturing/people-documents-service-operations/",
       "markdownUrl": "https://imcoders.cn/manufacturing/people-documents-service-operations/index.md"
+    },
+    {
+      "id": "manufacturing/pharma-batch-review-release",
+      "kind": "manufacturing",
+      "title": "药品批记录怎样支持复核与放行",
+      "description": "以美国药品 CGMP 公开条文为依据，拆解主批记录、执行证据、实验室结果、偏差调查与质量复核的关系，用包装数量样本说明记录齐全和获准放行的区别，并限定法规适用范围。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "制药",
+        "电子批记录",
+        "数据完整性",
+        "质量放行"
+      ],
+      "publishedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/pharma-batch-review-release/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/pharma-batch-review-release/index.md"
     },
     {
       "id": "manufacturing/plm-engineering-change",
@@ -2095,6 +2239,60 @@
       "updatedAt": "2026-10-15T00:00:00.000Z",
       "url": "https://imcoders.cn/manufacturing/quality-incident-traceability-scope/",
       "markdownUrl": "https://imcoders.cn/manufacturing/quality-incident-traceability-scope/index.md"
+    },
+    {
+      "id": "manufacturing/returned-product-manufacturing-history",
+      "kind": "manufacturing",
+      "title": "产品返厂以后怎样接回制造履历",
+      "description": "沿客户报修、返厂授权、实收检验、维修换件和重新交付，建立序列号与在役配置的证据链，核对部分到货、报废、质保与工程变更边界，附可复算的返厂处置样本。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "售后返厂",
+        "产品履历",
+        "序列号",
+        "质量闭环"
+      ],
+      "publishedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/returned-product-manufacturing-history/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/returned-product-manufacturing-history/index.md"
+    },
+    {
+      "id": "manufacturing/semiconductor-carrier-wafer-events",
+      "kind": "manufacturing",
+      "title": "半导体制造的载具、晶圆与设备事件",
+      "description": "从载具槽位、晶圆身份、工艺作业和设备事件出发，拆开半导体自动化中的通信确认、实际处理完成与质量状态，用五片晶圆样本核对重复事件、缺失完成记录和后续放行。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "半导体",
+        "SECS GEM",
+        "晶圆追溯",
+        "设备自动化"
+      ],
+      "publishedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/semiconductor-carrier-wafer-events/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/semiconductor-carrier-wafer-events/index.md"
+    },
+    {
+      "id": "manufacturing/system-recovery-business-reconciliation",
+      "kind": "manufacturing",
+      "title": "系统恢复以后怎样证明业务已对齐",
+      "description": "用独立的收料、发料与退料恢复样本，核对数据库恢复点、消息位置、目标事务、重复投递和业务余额，建立跨系统恢复顺序、差异清单及重新开放业务的验收依据。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "系统恢复",
+        "业务对账",
+        "幂等",
+        "数据恢复"
+      ],
+      "publishedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/system-recovery-business-reconciliation/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/system-recovery-business-reconciliation/index.md"
     },
     {
       "id": "manufacturing/tooling-metrology-utilities-energy",

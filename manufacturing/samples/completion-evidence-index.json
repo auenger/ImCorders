@@ -1,0 +1,301 @@
+{
+  "scope": "S05/S07/S08 and I01/I03-I07; drug/device and semiconductor/battery split",
+  "articles": [
+    {
+      "order": 23,
+      "title": "系统恢复以后怎样证明业务已对齐",
+      "article": "/manufacturing/system-recovery-business-reconciliation/",
+      "checkedAt": "2026-10-15",
+      "sources": [
+        {
+          "url": "https://www.postgresql.org/docs/17/continuous-archiving.html",
+          "role": "Primary source inspected; claim scope and limits are in the article source table."
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/azure/architecture/databases/guide/transactional-out-box-cosmos",
+          "role": "Primary source inspected; claim scope and limits are in the article source table."
+        },
+        {
+          "url": "https://kafka.apache.org/32/design/design/",
+          "role": "Primary source inspected; claim scope and limits are in the article source table."
+        }
+      ],
+      "samples": [
+        {
+          "path": "/manufacturing/samples/system-recovery.json",
+          "sha256": "1ddeda95657079c5b6c0f257118d3402526649d14b06e5e437ae83796353cebd",
+          "illustrative": true
+        }
+      ],
+      "diagrams": [
+        "/manufacturing/maps/recovery-scope-replay.html",
+        "/manufacturing/maps/recovery-acceptance.html"
+      ],
+      "limits": "Teaching samples and proposed relationships are not real factory tests, standard conformance or regulatory certification."
+    },
+    {
+      "order": 24,
+      "title": "一次设备停机怎样传到客户交期",
+      "article": "/manufacturing/equipment-downtime-customer-delivery/",
+      "checkedAt": "2026-10-15",
+      "sources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/production-control/operations-resources",
+          "role": "Primary source inspected; claim scope and limits are in the article source table."
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/master-planning/delays",
+          "role": "Primary source inspected; claim scope and limits are in the article source table."
+        }
+      ],
+      "samples": [
+        {
+          "path": "/manufacturing/samples/downtime-delivery.json",
+          "sha256": "f1f93dec0630f70afc0211a9296a36c247e07b474c69633cec01907d4e8c44e1",
+          "illustrative": true
+        }
+      ],
+      "diagrams": [
+        "/manufacturing/maps/downtime-schedule-impact.html",
+        "/manufacturing/maps/downtime-plan-commitment.html"
+      ],
+      "limits": "Teaching samples and proposed relationships are not real factory tests, standard conformance or regulatory certification."
+    },
+    {
+      "order": 25,
+      "title": "产品返厂以后怎样接回制造履历",
+      "article": "/manufacturing/returned-product-manufacturing-history/",
+      "checkedAt": "2026-10-15",
+      "sources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/dynamics365/field-service/process-return",
+          "role": "Primary source inspected; claim scope and limits are in the article source table."
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/sales-marketing/sales-returns",
+          "role": "Primary source inspected; claim scope and limits are in the article source table."
+        }
+      ],
+      "samples": [
+        {
+          "path": "/manufacturing/samples/service-return.json",
+          "sha256": "8432adf15d32ceea1ccb754381632f501ab610a559a37f5c212118d5b73caec9",
+          "illustrative": true
+        }
+      ],
+      "diagrams": [
+        "/manufacturing/maps/service-return-evidence.html",
+        "/manufacturing/maps/service-disposition-change.html"
+      ],
+      "limits": "Teaching samples and proposed relationships are not real factory tests, standard conformance or regulatory certification."
+    },
+    {
+      "order": 26,
+      "title": "机械加工与装备装配的工艺和交付数据",
+      "article": "/manufacturing/machining-assembly-process-delivery/",
+      "checkedAt": "2026-10-15",
+      "sources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/production-control/routes-operations",
+          "role": "Primary source inspected; claim scope and limits are in the article source table."
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/production-control/manage-subcontract-work-production",
+          "role": "Primary source inspected; claim scope and limits are in the article source table."
+        }
+      ],
+      "samples": [
+        {
+          "path": "/manufacturing/samples/machining-assembly.json",
+          "sha256": "11b1a1e4362dd82d526b242763b3b76063735189289c0f5baddde98d8acf36a2",
+          "illustrative": true
+        }
+      ],
+      "diagrams": [
+        "/manufacturing/maps/machining-process-execution.html",
+        "/manufacturing/maps/machining-subcontract-assembly.html"
+      ],
+      "limits": "Teaching samples and proposed relationships are not real factory tests, standard conformance or regulatory certification."
+    },
+    {
+      "order": 27,
+      "title": "汽车零部件的质量策划怎样进入生产",
+      "article": "/manufacturing/automotive-quality-planning-production/",
+      "checkedAt": "2026-10-15",
+      "sources": [
+        {
+          "url": "https://go.aiag.org/apqp-cp",
+          "role": "Primary source inspected; claim scope and limits are in the article source table."
+        }
+      ],
+      "samples": [
+        {
+          "path": "/manufacturing/samples/automotive-quality.json",
+          "sha256": "6f37fec266689529d141d910a691808171036dc1c5726f920538402bfcd71d19",
+          "illustrative": true
+        }
+      ],
+      "diagrams": [
+        "/manufacturing/maps/automotive-control-plan.html",
+        "/manufacturing/maps/automotive-nonconformance.html"
+      ],
+      "limits": "Teaching samples and proposed relationships are not real factory tests, standard conformance or regulatory certification."
+    },
+    {
+      "order": 28,
+      "title": "食品饮料的批次、保质期与去向追踪",
+      "article": "/manufacturing/food-batch-shelf-life-traceability/",
+      "checkedAt": "2026-10-15",
+      "sources": [
+        {
+          "url": "https://www.fda.gov/food/food-safety-modernization-act-fsma/fsma-final-rule-requirements-additional-traceability-records-certain-foods",
+          "role": "Primary source inspected; claim scope and limits are in the article source table."
+        }
+      ],
+      "samples": [
+        {
+          "path": "/manufacturing/samples/food-traceability.json",
+          "sha256": "d166c7e41c3d907f8e663b3465d65dcd3b0db1fb05a50676aeb46992bf6bc1bd",
+          "illustrative": true
+        }
+      ],
+      "diagrams": [
+        "/manufacturing/maps/food-mixing-packaging.html",
+        "/manufacturing/maps/food-scope-destination.html"
+      ],
+      "limits": "Teaching samples and proposed relationships are not real factory tests, standard conformance or regulatory certification."
+    },
+    {
+      "order": 29,
+      "title": "药品批记录怎样支持复核与放行",
+      "article": "/manufacturing/pharma-batch-review-release/",
+      "checkedAt": "2026-10-15",
+      "sources": [
+        {
+          "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/subpart-J/section-211.188",
+          "role": "Primary source inspected; claim scope and limits are in the article source table."
+        },
+        {
+          "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/subpart-J/section-211.192",
+          "role": "Primary source inspected; claim scope and limits are in the article source table."
+        },
+        {
+          "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/data-integrity-and-compliance-drug-cgmp-questions-and-answers",
+          "role": "Primary source inspected; claim scope and limits are in the article source table."
+        }
+      ],
+      "samples": [
+        {
+          "path": "/manufacturing/samples/pharma-batch.json",
+          "sha256": "56e0765d320e0b2c658857f067585d229d9e4b66ccedb91f648130c7683666d9",
+          "illustrative": true
+        }
+      ],
+      "diagrams": [
+        "/manufacturing/maps/pharma-execution-evidence.html",
+        "/manufacturing/maps/pharma-review-release.html"
+      ],
+      "limits": "Teaching samples and proposed relationships are not real factory tests, standard conformance or regulatory certification."
+    },
+    {
+      "order": 30,
+      "title": "化工连续过程怎样核对物料与事件",
+      "article": "/manufacturing/chemical-continuous-process-balance/",
+      "checkedAt": "2026-10-15",
+      "sources": [
+        {
+          "url": "https://opcfoundation.org/markets-collaboration/pa-dim/",
+          "role": "Primary source inspected; claim scope and limits are in the article source table."
+        }
+      ],
+      "samples": [
+        {
+          "path": "/manufacturing/samples/chemical-balance.json",
+          "sha256": "be5eaf03319dcd0faee28866affd43eab36a5f52d5e6acd351b63a83cf8d1366",
+          "illustrative": true
+        }
+      ],
+      "diagrams": [
+        "/manufacturing/maps/chemical-window-balance.html",
+        "/manufacturing/maps/chemical-transition-quality.html"
+      ],
+      "limits": "Teaching samples and proposed relationships are not real factory tests, standard conformance or regulatory certification."
+    },
+    {
+      "order": 31,
+      "title": "半导体制造的载具、晶圆与设备事件",
+      "article": "/manufacturing/semiconductor-carrier-wafer-events/",
+      "checkedAt": "2026-10-15",
+      "sources": [
+        {
+          "url": "https://www.semi.org/jp/blogs/semi-news/semi-tutorial-secs-gem-seminar",
+          "role": "Primary source inspected; claim scope and limits are in the article source table."
+        }
+      ],
+      "samples": [
+        {
+          "path": "/manufacturing/samples/semiconductor-events.json",
+          "sha256": "85bd3fa0895ad67cd7c901c1248c0e6bacbe6cc3cc5d3c86d80e7c24cdc5ca4e",
+          "illustrative": true
+        }
+      ],
+      "diagrams": [
+        "/manufacturing/maps/semiconductor-job-context.html",
+        "/manufacturing/maps/semiconductor-event-reconcile.html"
+      ],
+      "limits": "Teaching samples and proposed relationships are not real factory tests, standard conformance or regulatory certification."
+    },
+    {
+      "order": 32,
+      "title": "电池制造怎样连接极卷、单体与分档",
+      "article": "/manufacturing/battery-roll-cell-grading-genealogy/",
+      "checkedAt": "2026-10-15",
+      "sources": [
+        {
+          "url": "https://www.ornl.gov/publications/identifying-degradation-mechanisms-in-lithium-ion-batteries-with-coating-defects-at-the-cathode/",
+          "role": "Primary source inspected; claim scope and limits are in the article source table."
+        }
+      ],
+      "samples": [
+        {
+          "path": "/manufacturing/samples/battery-genealogy.json",
+          "sha256": "8f295751c990f89fe7eb525332f1e81f3bdea4522da9b4e33b8135ad69896b4a",
+          "illustrative": true
+        }
+      ],
+      "diagrams": [
+        "/manufacturing/maps/battery-roll-cell-scope.html",
+        "/manufacturing/maps/battery-test-module-genealogy.html"
+      ],
+      "limits": "Teaching samples and proposed relationships are not real factory tests, standard conformance or regulatory certification."
+    },
+    {
+      "order": 33,
+      "title": "医疗器械怎样连接生产记录与售后线索",
+      "article": "/manufacturing/medical-device-production-service-records/",
+      "checkedAt": "2026-10-15",
+      "sources": [
+        {
+          "url": "https://www.fda.gov/medical-devices/postmarket-requirements-devices/quality-management-system-regulation-qmsr",
+          "role": "Primary source inspected; claim scope and limits are in the article source table."
+        },
+        {
+          "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-820/subpart-B/section-820.35",
+          "role": "Primary source inspected; claim scope and limits are in the article source table."
+        }
+      ],
+      "samples": [
+        {
+          "path": "/manufacturing/samples/medical-device-records.json",
+          "sha256": "1758a70929f1eb34cb88037e37676ac07b4a5851ab7a51ff09262e3aefd5e51d",
+          "illustrative": true
+        }
+      ],
+      "diagrams": [
+        "/manufacturing/maps/device-production-release.html",
+        "/manufacturing/maps/device-complaint-scope.html"
+      ],
+      "limits": "Teaching samples and proposed relationships are not real factory tests, standard conformance or regulatory certification."
+    }
+  ]
+}

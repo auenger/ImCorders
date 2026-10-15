@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "食品异常怎样追到库存和客户",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-food-scope-destination-20261015-143006/food-scope-destination.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "来源记录"
+    },
+    {
+      "label": "范围整理"
+    },
+    {
+      "label": "规则核对"
+    },
+    {
+      "label": "结果对象"
+    },
+    {
+      "label": "应用与回执"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "source",
+      "label": "原料异常与谱系",
+      "sublabel": "A关联整个混合批",
+      "stage": 0,
+      "row": 1,
+      "type": "database"
+    },
+    {
+      "id": "prepare",
+      "label": "候选范围计算",
+      "sublabel": "包装批980袋",
+      "stage": 1,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "rules",
+      "label": "包装批去向账",
+      "sublabel": "X600 Y200 在库170 留样10",
+      "stage": 2,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "evaluate",
+      "label": "库存客户去向核对",
+      "sublabel": "发运 在库 留样",
+      "stage": 2,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "result",
+      "label": "处置清单",
+      "sublabel": "对象 数量 待核实",
+      "stage": 3,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "consumer",
+      "label": "隔离与通知",
+      "sublabel": "按批准决定执行",
+      "stage": 4,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "receipt",
+      "label": "实际处置回执",
+      "sublabel": "客户Y通知仍未决",
+      "stage": 4,
+      "row": 3,
+      "type": "database"
+    }
+  ],
+  "flows": [
+    {
+      "id": "source-prepare",
+      "from": "source",
+      "to": "prepare",
+      "label": "来源明细"
+    },
+    {
+      "id": "prepare-evaluate",
+      "from": "prepare",
+      "to": "evaluate",
+      "label": "核对输入"
+    },
+    {
+      "id": "rules-evaluate",
+      "from": "rules",
+      "to": "evaluate",
+      "label": "有效依据",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "evaluate-result",
+      "from": "evaluate",
+      "to": "result",
+      "label": "条件满足结果",
+      "variant": "emphasis"
+    },
+    {
+      "id": "result-consumer",
+      "from": "result",
+      "to": "consumer",
+      "label": "对象与版本"
+    },
+    {
+      "id": "consumer-receipt",
+      "from": "consumer",
+      "to": "receipt",
+      "label": "执行回执",
+      "fromSide": "bottom",
+      "toSide": "top"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "去向与追回分开",
+      "items": [
+        "980 = 发运800 + 在库170 + 留样10。",
+        "查到去向不能单独证明客户隔离或召回完成。"
+      ]
+    }
+  ]
+}

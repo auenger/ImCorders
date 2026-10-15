@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "业务对账怎样形成重新开放依据",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-recovery-acceptance-20261015-141954/recovery-acceptance.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "双向来源"
+    },
+    {
+      "label": "逐项核对"
+    },
+    {
+      "label": "差异评估"
+    },
+    {
+      "label": "验收决定"
+    },
+    {
+      "label": "业务恢复"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "source",
+      "label": "来源清单",
+      "sublabel": "冻结范围内三项",
+      "stage": 0,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "target",
+      "label": "目标事务账",
+      "sublabel": "数量 单位 业务键",
+      "stage": 0,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "compare",
+      "label": "双向对账",
+      "sublabel": "缺项 多项 字段差异",
+      "stage": 1,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "physical",
+      "label": "现场核查",
+      "sublabel": "实物与离线作业",
+      "stage": 2,
+      "row": 3,
+      "type": "database"
+    },
+    {
+      "id": "resolve",
+      "label": "差异关闭",
+      "sublabel": "有依据纠错或待决",
+      "stage": 2,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "approve",
+      "label": "恢复验收",
+      "sublabel": "全部条件满足后批准",
+      "stage": 3,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "open",
+      "label": "开放业务",
+      "sublabel": "按批准范围恢复",
+      "stage": 4,
+      "row": 1,
+      "type": "backend"
+    }
+  ],
+  "flows": [
+    {
+      "id": "source-compare",
+      "from": "source",
+      "to": "compare",
+      "label": "应执行清单"
+    },
+    {
+      "id": "target-compare",
+      "from": "target",
+      "to": "compare",
+      "label": "实际目标"
+    },
+    {
+      "id": "compare-resolve",
+      "from": "compare",
+      "to": "resolve",
+      "label": "差异明细"
+    },
+    {
+      "id": "physical-resolve",
+      "from": "physical",
+      "to": "resolve",
+      "label": "现场证据",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "resolve-approve",
+      "from": "resolve",
+      "to": "approve",
+      "label": "已关闭与未决"
+    },
+    {
+      "id": "approve-open",
+      "from": "approve",
+      "to": "open",
+      "label": "批准范围",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "验收条件",
+      "items": [
+        "逻辑账相等不能单独证明实物一致。",
+        "未决项影响开放范围，真实灾备耗时需要另行实测。"
+      ]
+    }
+  ]
+}

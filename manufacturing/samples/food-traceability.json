@@ -1,0 +1,60 @@
+{
+  "illustrative": true,
+  "article": "/manufacturing/food-batch-shelf-life-traceability/",
+  "assumptions": [
+    "Simplified mass balance without water change; all 20 kg loss is recorded.",
+    "1 kg per bag is a teaching simplification, not a net-quantity conformity result.",
+    "Expiry date is demonstration data without shelf-life validation.",
+    "The whole mixed output is a candidate scope; no contamination finding is asserted."
+  ],
+  "inputs": [
+    {
+      "lot": "A",
+      "kg": 600
+    },
+    {
+      "lot": "B",
+      "kg": 400
+    }
+  ],
+  "mixedLot": "FOOD-M01",
+  "packLot": "PACK-F01",
+  "foodKg": 980,
+  "lossKg": 20,
+  "kgPerBag": 1,
+  "bags": 980,
+  "expiryDemo": "2026-10-20",
+  "destinations": [
+    {
+      "id": "X",
+      "bags": 600,
+      "kind": "shipped",
+      "notificationAcknowledged": true
+    },
+    {
+      "id": "Y",
+      "bags": 200,
+      "kind": "shipped",
+      "notificationAcknowledged": false
+    },
+    {
+      "id": "stock",
+      "bags": 170,
+      "kind": "stock",
+      "held": true
+    },
+    {
+      "id": "retained",
+      "bags": 10,
+      "kind": "sample"
+    }
+  ],
+  "expected": {
+    "inputKg": 1000,
+    "shipped": 800,
+    "candidateBags": 980,
+    "pendingAcknowledgment": [
+      "Y"
+    ]
+  }
+}

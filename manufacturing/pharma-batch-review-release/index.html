@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>药品批记录怎样支持复核与放行 | 制造业系统</title><meta name="description" content="以美国药品 CGMP 公开条文为依据，拆解主批记录、执行证据、实验室结果、偏差调查与质量复核的关系，用包装数量样本说明记录齐全和获准放行的区别，并限定法规适用范围。"><link rel="canonical" href="https://imcoders.cn/manufacturing/pharma-batch-review-release/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/pharma-batch-review-release/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/pharma-batch-review-release/#article","headline":"药品批记录怎样支持复核与放行","description":"以美国药品 CGMP 公开条文为依据，拆解主批记录、执行证据、实验室结果、偏差调查与质量复核的关系，用包装数量样本说明记录齐全和获准放行的区别，并限定法规适用范围。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/pharma-batch-review-release/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-15T00:00:00.000Z","dateModified":"2026-10-15T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"药品批记录怎样支持复核与放行","item":"https://imcoders.cn/manufacturing/pharma-batch-review-release/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-15T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-15T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="药品批记录怎样支持复核与放行 | 制造业系统"><meta property="og:description" content="以美国药品 CGMP 公开条文为依据，拆解主批记录、执行证据、实验室结果、偏差调查与质量复核的关系，用包装数量样本说明记录齐全和获准放行的区别，并限定法规适用范围。"><meta property="og:url" content="https://imcoders.cn/manufacturing/pharma-batch-review-release/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="药品批记录怎样支持复核与放行 | 制造业系统"><meta name="twitter:description" content="以美国药品 CGMP 公开条文为依据，拆解主批记录、执行证据、实验室结果、偏差调查与质量复核的关系，用包装数量样本说明记录齐全和获准放行的区别，并限定法规适用范围。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="药品批记录怎样支持复核与放行 | 制造业系统"><meta itemprop="description" content="以美国药品 CGMP 公开条文为依据，拆解主批记录、执行证据、实验室结果、偏差调查与质量复核的关系，用包装数量样本说明记录齐全和获准放行的区别，并限定法规适用范围。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "药品批记录怎样支持复核与放行 | 制造业系统";
+const shareDesc = "以美国药品 CGMP 公开条文为依据，拆解主批记录、执行证据、实验室结果、偏差调查与质量复核的关系，用包装数量样本说明记录齐全和获准放行的区别，并限定法规适用范围。";
+const shareLink = "https://imcoders.cn/manufacturing/pharma-batch-review-release/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>药品批记录怎样支持复核与放行</h1><p class="mfg-lead" data-astro-cid-767rrl5b>以美国药品 CGMP 公开条文为依据，拆解主批记录、执行证据、实验室结果、偏差调查与质量复核的关系，用包装数量样本说明记录齐全和获准放行的区别，并限定法规适用范围。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/pharma-batch-review-release/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-15</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#从适用条文确定需要回查的对象" data-astro-cid-767rrl5b>从适用条文确定需要回查的对象</a></li><li data-astro-cid-767rrl5b><a href="#执行记录保持版本和原始依据" data-astro-cid-767rrl5b>执行记录保持版本和原始依据</a></li><li data-astro-cid-767rrl5b><a href="#包装数量对平以后仍要解释偏差" data-astro-cid-767rrl5b>包装数量对平以后仍要解释偏差</a></li><li data-astro-cid-767rrl5b><a href="#调查复核和目标状态形成独立回执" data-astro-cid-767rrl5b>调查、复核和目标状态形成独立回执</a></li><li data-astro-cid-767rrl5b><a href="#来源与样本分别验收" data-astro-cid-767rrl5b>来源与样本分别验收</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>批记录每个字段都有值，实验室结果也显示通过，批次仍可能无法放行。一条尚未调查清楚的偏差、错误的标签版本，或无法回查的原始数据，都会让“完成率百分之百”失去实际意义。</p>
+<p>本篇展开 I05 的药品生产部分，依据美国 21 CFR Part 211 的公开条文讨论记录关系。它不覆盖医疗器械专属法规、中国药品 GMP、欧盟 GMP 或所有药品剂型，也不构成对具体工厂的合规认定。所有批次和数量均为教学模拟。</p>
+<h2 id="从适用条文确定需要回查的对象">从适用条文确定需要回查的对象</h2>
+<p><a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/subpart-J/section-211.188">21 CFR 211.188</a>要求为所生产的每批药品准备批生产及控制记录，并列出设备、组件批次、用量、过程及实验室控制、产率、人员与调查等记录内容。软件表单可据此建立检查项，但具体字段和实施方式需要结合工艺及适用要求。</p>
+<p><a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/subpart-J/section-211.192">21 CFR 211.192</a>涉及质量控制部门在放行或分销前对生产控制记录的复核批准，并要求调查无法解释的差异或不符合规格等情况。仅有某个检验结果通过，不能代替这一复核过程。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>对象</th><th>本例如何建立关联</th><th>需要回查的证据</th></tr></thead><tbody><tr><td>主批记录</td><td>MASTER-P / 3</td><td>适用产品、工艺、批准版本</td></tr><tr><td>执行批记录</td><td>BATCH-P01</td><td>所采用版本与实际步骤</td></tr><tr><td>物料与设备</td><td>来源批号、设备身份</td><td>状态、用量、时间及执行记录</td></tr><tr><td>样品与检验</td><td>SAMPLE-P01、TEST-P01</td><td>方法版本、原始数据与复核</td></tr><tr><td>偏差调查</td><td>DEV-P01</td><td>事实、影响评估、结论与批准</td></tr><tr><td>放行决定</td><td>RELEASE-P01</td><td>复核范围、决定及有权人员</td></tr></tbody></table>
+<p>这些示例字段由本文设计，法规要求仍以对应原文为依据。引用条文只能支持其实际覆盖的要求，不能据此声称电子签名、系统验证或无菌生产要求也已全部满足。</p>
+<h2 id="执行记录保持版本和原始依据">执行记录保持版本和原始依据</h2>
+<p>执行批次引用获准主记录，记录实际时间、操作者、所用组件、设备和过程结果。偏离预定步骤时保留原记录、变更原因与调查关联，不能在完成后把原始值改成计划值。</p>
+<p>FDA 的<a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/data-integrity-and-compliance-drug-cgmp-questions-and-answers">数据完整性最终指南</a>说明药品 CGMP 下的数据完整性关注，并讨论基于过程理解和风险的管理。指南与法规的性质不同；本篇用它说明资料背景，不把指南标题当成系统认证。</p>
+<p>电子记录需要能回查元数据、变更与审核。纸面签字扫描件也要有原始来源和适用关系，不能把上传附件自动视为原始电子数据完整保留。具体电子记录和签名要求需要另行确认适用制度及系统设计，本篇不虚构签名有效性结论。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>主批记录怎样连接实际执行与检验</strong><a href="/manufacturing/maps/pharma-execution-evidence.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/pharma-execution-evidence.html" title="主批记录版本关联物料设备执行与实验室结果形成复核资料的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>图示为记录关联模型，未实现验证过的电子批记录系统，也不证明法规符合性。</figcaption>
+</figure>
+<h2 id="包装数量对平以后仍要解释偏差">包装数量对平以后仍要解释偏差</h2>
+<p>本例只复算包装工段，假定进入包装的合格中间产品足以形成 10,000 瓶理论数量。实际取得 9,800 瓶完整包装，其中 100 瓶作为留样、9,700 瓶进入待放行库存；另有相当于 200 瓶的损失记录。所有数量和百分比均为教学设定。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>理论数量10000 = 完整包装9800 + 损失200</span></span>
+<span class="line"><span>完整包装9800 = 待放行库存9700 + 留样100</span></span>
+<span class="line"><span>完整包装产率 = 9800 / 10000 = 98%</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>98% 的算术结果不能独立证明产率可接受。实际允许范围应来自适用的获准记录和工艺依据。包装物料、标签领退、销毁、线清场与其他必要项目还需分别核对，不能因瓶数相等就自动关闭整批。</p>
+<p>样本另设 DEV-P01 为一条尚待完成调查的过程差异。实验室结果 TEST-P01 通过，但偏差状态仍为开放，因此 RELEASE-P01 保持待复核，9,700 瓶不能被界面标记为“已放行”。本文没有编造该偏差的临床风险或根因。</p>
+<h2 id="调查复核和目标状态形成独立回执">调查、复核和目标状态形成独立回执</h2>
+<p>偏差调查需要能查看事实、相关数据、影响对象、结论及后续行动。是否涉及其他批次，按调查证据核对。修正一个界面值不能替代调查，也不能删除原始超限或异常记录。</p>
+<p>本样本的复核条件包含执行资料、实验室复核、数量核对及偏差处理状态。只有授权决定形成后，才向目标库存提出相应状态应用；目标回执说明实际生效对象和范围。决定记录、目标限制解除和实际发运分别保存。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>偏差和记录复核怎样约束批次放行</strong><a href="/manufacturing/maps/pharma-review-release.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/pharma-review-release.html" title="批记录检验偏差与数量核对经质量复核后形成放行决定和库存回执的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>本例偏差开放，复核保持未通过。图中的批准路径描述满足条件时的流程，不表示本批已获准放行。</figcaption>
+</figure>
+<h2 id="来源与样本分别验收">来源与样本分别验收</h2>
+<p><a href="/manufacturing/samples/pharma-batch.json">药品批记录 JSON</a>保存包装数量和复核条件；<a href="/manufacturing/samples/verify-completion-samples.py">校验程序</a>复算数量，并验证开放偏差阻止本例放行。程序只体现样本规则，不执行真实质量决策。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>依据</th><th>支持内容</th><th>范围</th></tr></thead><tbody><tr><td>21 CFR 211.188</td><td>药品批生产控制记录的相关内容</td><td>美国相应药品 CGMP 条文</td></tr><tr><td>21 CFR 211.192</td><td>生产记录复核与差异调查</td><td>不代表所有地区法规</td></tr><tr><td>FDA 2018 最终指南</td><td>药品 CGMP 数据完整性背景</td><td>指南不提供认证结论</td></tr><tr><td>本篇 JSON</td><td>包装数量与待放行状态复算</td><td>阈值、工艺和验证均非实测</td></tr></tbody></table>
+<p>上述网页于 2026-10-15 核对。实际项目需要适用法规清单、获准工艺、验证材料和完整质量程序；本篇保留的数据模型不能据此直接用于药品放行。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 

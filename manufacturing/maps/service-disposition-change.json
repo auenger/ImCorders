@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "返厂处置怎样形成配置和改进记录",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-service-disposition-change-20261015-141954/service-disposition-change.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "检验依据"
+    },
+    {
+      "label": "批准处置"
+    },
+    {
+      "label": "执行验证"
+    },
+    {
+      "label": "结果记录"
+    },
+    {
+      "label": "后续使用"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "inspection",
+      "label": "检验记录",
+      "sublabel": "八台实际对象",
+      "stage": 0,
+      "row": 1,
+      "type": "database"
+    },
+    {
+      "id": "approve",
+      "label": "处置批准",
+      "sublabel": "六维修 两报废",
+      "stage": 1,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "repair",
+      "label": "维修与测试",
+      "sublabel": "六台换件后合格",
+      "stage": 2,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "scrap",
+      "label": "报废执行",
+      "sublabel": "两台实际处置",
+      "stage": 2,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "config",
+      "label": "在役配置履历",
+      "sublabel": "新旧件与测试依据",
+      "stage": 3,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "scraplog",
+      "label": "报废回执账",
+      "sublabel": "身份 数量 库存",
+      "stage": 3,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "release",
+      "label": "重新交付",
+      "sublabel": "六台批准交付",
+      "stage": 4,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "change",
+      "label": "工程评估",
+      "sublabel": "提议需验证与批准",
+      "stage": 4,
+      "row": 2,
+      "type": "backend"
+    }
+  ],
+  "flows": [
+    {
+      "id": "inspection-approve",
+      "from": "inspection",
+      "to": "approve",
+      "label": "对象与结论"
+    },
+    {
+      "id": "approve-repair",
+      "from": "approve",
+      "to": "repair",
+      "label": "批准维修"
+    },
+    {
+      "id": "approve-scrap",
+      "from": "approve",
+      "to": "scrap",
+      "label": "批准报废"
+    },
+    {
+      "id": "repair-config",
+      "from": "repair",
+      "to": "config",
+      "label": "换件与测试"
+    },
+    {
+      "id": "scrap-scraplog",
+      "from": "scrap",
+      "to": "scraplog",
+      "label": "执行结果"
+    },
+    {
+      "id": "config-release",
+      "from": "config",
+      "to": "release",
+      "label": "合格与放行"
+    },
+    {
+      "id": "inspection-change",
+      "from": "inspection",
+      "to": "change",
+      "label": "质量问题线索",
+      "route": "bottom-channel"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "状态和责任分开",
+      "items": [
+        "8台实收 = 6台维修交付 + 2台实际报废。",
+        "工程提议不自动发布新设计，出厂历史不被服务配置覆盖。"
+      ]
+    }
+  ]
+}

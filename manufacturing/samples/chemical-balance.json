@@ -1,0 +1,31 @@
+{
+  "illustrative": true,
+  "article": "/manufacturing/chemical-continuous-process-balance/",
+  "assumptions": [
+    "Nonreactive mixing with no unmetered loss; all quantities are net mass kg.",
+    "No residence-time model or precise source percentage per tank is claimed.",
+    "A nonzero residual is unexplained, not automatically a leak."
+  ],
+  "inputKg": [
+    700,
+    300
+  ],
+  "productKg": 900,
+  "transitionKg": 20,
+  "inventoryIncreaseKg": 80,
+  "alternativeInventoryIncreaseKg": 70,
+  "tanks": [
+    {
+      "id": "T1",
+      "kg": 500
+    },
+    {
+      "id": "T2",
+      "kg": 400
+    }
+  ],
+  "expected": {
+    "residualKg": 0,
+    "alternativeResidualKg": 10
+  }
+}

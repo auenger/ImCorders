@@ -1,0 +1,177 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>机械加工与装备装配的工艺和交付数据 | 制造业系统</title><meta name="description" content="以轴类零件加工、委外热处理和装备装配为模拟链路，核对图纸与程序版本、刀具量具、委外在途、质量状态和项目交付，复算十二件毛坯怎样支持四套装备齐套。"><link rel="canonical" href="https://imcoders.cn/manufacturing/machining-assembly-process-delivery/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/machining-assembly-process-delivery/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/machining-assembly-process-delivery/#article","headline":"机械加工与装备装配的工艺和交付数据","description":"以轴类零件加工、委外热处理和装备装配为模拟链路，核对图纸与程序版本、刀具量具、委外在途、质量状态和项目交付，复算十二件毛坯怎样支持四套装备齐套。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/machining-assembly-process-delivery/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-15T00:00:00.000Z","dateModified":"2026-10-15T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"机械加工与装备装配的工艺和交付数据","item":"https://imcoders.cn/manufacturing/machining-assembly-process-delivery/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-15T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-15T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="机械加工与装备装配的工艺和交付数据 | 制造业系统"><meta property="og:description" content="以轴类零件加工、委外热处理和装备装配为模拟链路，核对图纸与程序版本、刀具量具、委外在途、质量状态和项目交付，复算十二件毛坯怎样支持四套装备齐套。"><meta property="og:url" content="https://imcoders.cn/manufacturing/machining-assembly-process-delivery/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="机械加工与装备装配的工艺和交付数据 | 制造业系统"><meta name="twitter:description" content="以轴类零件加工、委外热处理和装备装配为模拟链路，核对图纸与程序版本、刀具量具、委外在途、质量状态和项目交付，复算十二件毛坯怎样支持四套装备齐套。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="机械加工与装备装配的工艺和交付数据 | 制造业系统"><meta itemprop="description" content="以轴类零件加工、委外热处理和装备装配为模拟链路，核对图纸与程序版本、刀具量具、委外在途、质量状态和项目交付，复算十二件毛坯怎样支持四套装备齐套。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "机械加工与装备装配的工艺和交付数据 | 制造业系统";
+const shareDesc = "以轴类零件加工、委外热处理和装备装配为模拟链路，核对图纸与程序版本、刀具量具、委外在途、质量状态和项目交付，复算十二件毛坯怎样支持四套装备齐套。";
+const shareLink = "https://imcoders.cn/manufacturing/machining-assembly-process-delivery/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>机械加工与装备装配的工艺和交付数据</h1><p class="mfg-lead" data-astro-cid-767rrl5b>以轴类零件加工、委外热处理和装备装配为模拟链路，核对图纸与程序版本、刀具量具、委外在途、质量状态和项目交付，复算十二件毛坯怎样支持四套装备齐套。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/machining-assembly-process-delivery/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-15</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#工艺发布要同时固定零件和程序" data-astro-cid-767rrl5b>工艺发布要同时固定零件和程序</a></li><li data-astro-cid-767rrl5b><a href="#机床观测接到具体工件和工步" data-astro-cid-767rrl5b>机床观测接到具体工件和工步</a></li><li data-astro-cid-767rrl5b><a href="#委外在途与回厂放行分别计数" data-astro-cid-767rrl5b>委外在途与回厂放行分别计数</a></li><li data-astro-cid-767rrl5b><a href="#装配齐套按套号和配置解释" data-astro-cid-767rrl5b>装配齐套按套号和配置解释</a></li><li data-astro-cid-767rrl5b><a href="#用数量和版本一起核对结果" data-astro-cid-767rrl5b>用数量和版本一起核对结果</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>加工车间显示十一件完工，装配现场却只够装四套设备。两件还在热处理供应商处，一件已经回厂但待判，八件才是目前获准装配的零件。只读一个“完工数”，无法解释这张装备订单还差什么。</p>
+<p>本篇展开 I01，覆盖轴件加工、委外热处理和按套装配的交接。<code>PRJ-M01</code> 等编号及数量均为独立教学模拟，具体材料、热处理参数和产品验收阈值留给真实工程依据，不在文章里臆造。</p>
+<h2 id="工艺发布要同时固定零件和程序">工艺发布要同时固定零件和程序</h2>
+<p>工程图 <code>DWG-M01 / B</code> 定义零件要求，工艺路线 <code>ROUTE-M01 / 3</code> 说明加工与检验顺序，CAM 程序 <code>NC-M01 / 5</code> 则关联所用机型、后处理器和适用工步。三个版本分别保存，不能用一个产品修订号替代所有执行依据。</p>
+<p>Dynamics 365 的<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/production-control/routes-operations">路线与工序说明</a>将工序顺序、资源、时间与路线版本分开建模。本篇在此基础上设计程序和证据关联，具体 CAM、DNC 与机床接口需要按实际产品确认。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>执行依据</th><th>样本记录</th><th>验证什么</th></tr></thead><tbody><tr><td>工程要求</td><td>DWG-M01 / B</td><td>物料、特征与适用范围</td></tr><tr><td>工艺路线</td><td>ROUTE-M01 / 3</td><td>工步、前后置和外协节点</td></tr><tr><td>数控程序</td><td>NC-M01 / 5，保留内容摘要</td><td>已批准程序及对应设备条件</td></tr><tr><td>刀具与夹具</td><td>TOOL-M01、FIX-M01</td><td>适用性、寿命与装夹确认</td></tr><tr><td>检验依据</td><td>INS-M01 / 2 与量具身份</td><td>特征、方法、结果和量具状态</td></tr></tbody></table>
+<p>DNC 下载回执只能证明约定的传输动作，实际执行还需要机床程序身份与任务关联。程序已经传到控制器，却选中了另一个任务时，不能自动形成“按正确版本加工”的记录。返修程序也要单独批准和关联原件身份。</p>
+<h2 id="机床观测接到具体工件和工步">机床观测接到具体工件和工步</h2>
+<p>MES 派工保存工单、工步、零件或容器身份；采集服务保存设备状态、程序标识与时间。两类记录按可验证的绑定区间关联。单凭设备在运行，不能推定十二件毛坯已经全部加工完成。</p>
+<p>刀具更换、补偿修改、首件检查和暂停重启都可能改变后续解释范围。记录应指向具体任务和生效时间。刀具寿命剩余、量具有效状态及操作者资格可以作为开工条件，但数据存在不等于现场已经启用拦截。</p>
+<p>返工保持同一个实物身份，新增加工或检验尝试，不能生成一件并不存在的新零件来增加完工数。工件报废后保留原材料消耗与实际处置，生产数量与成本处理按各自口径核对。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>工艺发布怎样进入机床执行证据</strong><a href="/manufacturing/maps/machining-process-execution.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/machining-process-execution.html" title="工程工艺与程序结合资源条件进入加工任务和执行记录的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>程序发布、下载和实际执行各有依据。图示为业务关系设计，未连接机床或 DNC。</figcaption>
+</figure>
+<h2 id="委外在途与回厂放行分别计数">委外在途与回厂放行分别计数</h2>
+<p>模拟工单投入毛坯十二件，加工后十一件进入热处理，一件已确认报废。外协发运记录列明十一件身份；供应商回报“完成”后，仓库实际收到九件，另两件仍在供应商处。九件中八件检验放行，一件隔离待判。</p>
+<p>Microsoft 的<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/production-control/manage-subcontract-work-production">生产委外说明</a>明确涉及供应商资源、服务采购和物流交接，其不同建模方式对半成品和成本的处理有差异。文章采用独立的实物身份台账，不假定所有 ERP 都会把每道半成品自动登记成库存物料。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>状态</th><th align="right">数量（件）</th><th>可以用于装配吗</th></tr></thead><tbody><tr><td>加工报废</td><td align="right">1</td><td>不可用</td></tr><tr><td>供应商处尚未回厂</td><td align="right">2</td><td>只能作为待到供给</td></tr><tr><td>回厂隔离待判</td><td align="right">1</td><td>暂不可用</td></tr><tr><td>已放行</td><td align="right">8</td><td>满足本例其余条件后可用</td></tr></tbody></table>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>十二件毛坯去向 = 报废1 + 供应商处2 + 待判1 + 放行8</span></span>
+<span class="line"><span>委外发出11 = 回厂9 + 供应商处2</span></span>
+<span class="line"><span>回厂9 = 放行8 + 待判1</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>服务采购收货、实物到货、检验放行和供应商结算可能分属不同记录。供应商证书需要关联具体批次与工艺依据；收到文件不能自动免除本企业规定的回厂核查。</p>
+<h2 id="装配齐套按套号和配置解释">装配齐套按套号和配置解释</h2>
+<p>项目 <code>PRJ-M01</code> 要交付五套装备，每套需要两根本例轴件。已放行八件分别装入 <code>UNIT01</code> 至 <code>UNIT04</code>，各两件，形成八条组件安装关系。<code>UNIT05</code> 尚缺两件，不能把供应商处的两件登记成已经装配。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>项目需求 = 5套 × 2件/套 = 10件</span></span>
+<span class="line"><span>当前已放行可用 = 8件 → 支持4套</span></span>
+<span class="line"><span>第五套缺口 = 2件</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>复杂装备还会有其他组件、软件、标定和客户专属配置。本样本假定前四套的其他齐套条件、装配与整机测试均有独立合格记录，才允许登记四套“可交付”。这是一项明确的模拟前提，八根轴件本身无法证明整机完成。</p>
+<p>项目验收还可能要求文件包、备件、培训和现场安装。本篇只统计制造端可交付套数，不把它等同于合同最终验收或收入确认。部分交付是否允许，也需要订单批准。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>委外零件怎样进入装备齐套与交付</strong><a href="/manufacturing/maps/machining-subcontract-assembly.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/machining-subcontract-assembly.html" title="委外发运实收检验状态结合装配需求形成套号和交付依据的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>供应商完成、实际回厂、检验放行和整机可交付分开计算，待到与待判保留去向。</figcaption>
+</figure>
+<h2 id="用数量和版本一起核对结果">用数量和版本一起核对结果</h2>
+<p><a href="/manufacturing/samples/machining-assembly.json">机械加工样本 JSON</a>逐件保存十二件去向、八条安装关系和五套需求；<a href="/manufacturing/samples/verify-completion-samples.py">校验程序</a>检查集合完整性、单件不重复安装和齐套数量。它不验证材料性能或机床加工能力。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>资料</th><th>支持的事实</th><th>本篇额外假设</th></tr></thead><tbody><tr><td>Microsoft 路线与工序文档</td><td>路线、工序属性及版本的产品建模</td><td>工程图、NC 程序和机床执行证据的具体连接</td></tr><tr><td>Microsoft 生产委外文档</td><td>委外涉及服务采购、供应商资源与物流</td><td>本例单件台账及回厂检验规则</td></tr><tr><td>JSON 与校验程序</td><td>十二件去向与四套装配的复算</td><td>前四套其他组件和测试已满足要求</td></tr></tbody></table>
+<p>网页于 2026-10-15 核对。真实实施还需取到图纸、工艺批准、程序内容、热处理记录、量具与整机测试结果，才能将这些字段填成实际履历。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 

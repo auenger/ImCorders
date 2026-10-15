@@ -1,0 +1,110 @@
+{
+  "illustrative": true,
+  "article": "/manufacturing/semiconductor-carrier-wafer-events/",
+  "assumptions": [
+    "Five occupied teaching slots; no real SECS/GEM messages or conformance test.",
+    "eventId is a custom stable identity used by this sample.",
+    "W03 has a quality hold; W05 lacks completion evidence."
+  ],
+  "slots": [
+    {
+      "slot": 1,
+      "wafer": "W01"
+    },
+    {
+      "slot": 2,
+      "wafer": "W02"
+    },
+    {
+      "slot": 3,
+      "wafer": "W03"
+    },
+    {
+      "slot": 4,
+      "wafer": "W04"
+    },
+    {
+      "slot": 5,
+      "wafer": "W05"
+    }
+  ],
+  "events": [
+    {
+      "eventId": "W01-start",
+      "wafer": "W01",
+      "state": "start",
+      "attempt": "W01-1"
+    },
+    {
+      "eventId": "W01-end",
+      "wafer": "W01",
+      "state": "end",
+      "attempt": "W01-1"
+    },
+    {
+      "eventId": "W02-start",
+      "wafer": "W02",
+      "state": "start",
+      "attempt": "W02-1"
+    },
+    {
+      "eventId": "W02-end",
+      "wafer": "W02",
+      "state": "end",
+      "attempt": "W02-1"
+    },
+    {
+      "eventId": "W03-start",
+      "wafer": "W03",
+      "state": "start",
+      "attempt": "W03-1"
+    },
+    {
+      "eventId": "W03-end",
+      "wafer": "W03",
+      "state": "end",
+      "attempt": "W03-1"
+    },
+    {
+      "eventId": "W04-start",
+      "wafer": "W04",
+      "state": "start",
+      "attempt": "W04-1"
+    },
+    {
+      "eventId": "W04-end",
+      "wafer": "W04",
+      "state": "end",
+      "attempt": "W04-1"
+    },
+    {
+      "eventId": "W04-end",
+      "wafer": "W04",
+      "state": "end",
+      "attempt": "W04-1"
+    },
+    {
+      "eventId": "W05-start",
+      "wafer": "W05",
+      "state": "start",
+      "attempt": "W05-1"
+    }
+  ],
+  "qualityHeld": [
+    "W03"
+  ],
+  "released": [
+    "W01",
+    "W02",
+    "W04"
+  ],
+  "expected": {
+    "deliveries": 10,
+    "uniqueEvents": 9,
+    "completed": 4,
+    "unknown": [
+      "W05"
+    ],
+    "released": 3
+  }
+}

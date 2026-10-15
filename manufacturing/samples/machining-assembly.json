@@ -1,0 +1,115 @@
+{
+  "illustrative": true,
+  "article": "/manufacturing/machining-assembly-process-delivery/",
+  "assumptions": [
+    "All identities and quantities are simulated.",
+    "Other components and whole-unit tests for UNIT01..04 are assumed complete.",
+    "No material properties or machining capability were tested."
+  ],
+  "parts": [
+    "SHAFT01",
+    "SHAFT02",
+    "SHAFT03",
+    "SHAFT04",
+    "SHAFT05",
+    "SHAFT06",
+    "SHAFT07",
+    "SHAFT08",
+    "SHAFT09",
+    "SHAFT10",
+    "SHAFT11",
+    "SHAFT12"
+  ],
+  "scrapped": [
+    "SHAFT01"
+  ],
+  "sentToVendor": [
+    "SHAFT02",
+    "SHAFT03",
+    "SHAFT04",
+    "SHAFT05",
+    "SHAFT06",
+    "SHAFT07",
+    "SHAFT08",
+    "SHAFT09",
+    "SHAFT10",
+    "SHAFT11",
+    "SHAFT12"
+  ],
+  "returned": [
+    "SHAFT02",
+    "SHAFT03",
+    "SHAFT04",
+    "SHAFT05",
+    "SHAFT06",
+    "SHAFT07",
+    "SHAFT08",
+    "SHAFT09",
+    "SHAFT10"
+  ],
+  "atVendor": [
+    "SHAFT11",
+    "SHAFT12"
+  ],
+  "held": [
+    "SHAFT10"
+  ],
+  "released": [
+    "SHAFT02",
+    "SHAFT03",
+    "SHAFT04",
+    "SHAFT05",
+    "SHAFT06",
+    "SHAFT07",
+    "SHAFT08",
+    "SHAFT09"
+  ],
+  "unitDemand": 5,
+  "partsPerUnit": 2,
+  "installations": [
+    {
+      "part": "SHAFT02",
+      "unit": "UNIT01",
+      "position": 1
+    },
+    {
+      "part": "SHAFT03",
+      "unit": "UNIT01",
+      "position": 2
+    },
+    {
+      "part": "SHAFT04",
+      "unit": "UNIT02",
+      "position": 1
+    },
+    {
+      "part": "SHAFT05",
+      "unit": "UNIT02",
+      "position": 2
+    },
+    {
+      "part": "SHAFT06",
+      "unit": "UNIT03",
+      "position": 1
+    },
+    {
+      "part": "SHAFT07",
+      "unit": "UNIT03",
+      "position": 2
+    },
+    {
+      "part": "SHAFT08",
+      "unit": "UNIT04",
+      "position": 1
+    },
+    {
+      "part": "SHAFT09",
+      "unit": "UNIT04",
+      "position": 2
+    }
+  ],
+  "expected": {
+    "readyUnits": 4,
+    "missingParts": 2
+  }
+}

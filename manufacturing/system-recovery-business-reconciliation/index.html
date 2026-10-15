@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>系统恢复以后怎样证明业务已对齐 | 制造业系统</title><meta name="description" content="用独立的收料、发料与退料恢复样本，核对数据库恢复点、消息位置、目标事务、重复投递和业务余额，建立跨系统恢复顺序、差异清单及重新开放业务的验收依据。"><link rel="canonical" href="https://imcoders.cn/manufacturing/system-recovery-business-reconciliation/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/system-recovery-business-reconciliation/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/system-recovery-business-reconciliation/#article","headline":"系统恢复以后怎样证明业务已对齐","description":"用独立的收料、发料与退料恢复样本，核对数据库恢复点、消息位置、目标事务、重复投递和业务余额，建立跨系统恢复顺序、差异清单及重新开放业务的验收依据。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/system-recovery-business-reconciliation/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-15T00:00:00.000Z","dateModified":"2026-10-15T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"系统恢复以后怎样证明业务已对齐","item":"https://imcoders.cn/manufacturing/system-recovery-business-reconciliation/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-15T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-15T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="系统恢复以后怎样证明业务已对齐 | 制造业系统"><meta property="og:description" content="用独立的收料、发料与退料恢复样本，核对数据库恢复点、消息位置、目标事务、重复投递和业务余额，建立跨系统恢复顺序、差异清单及重新开放业务的验收依据。"><meta property="og:url" content="https://imcoders.cn/manufacturing/system-recovery-business-reconciliation/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="系统恢复以后怎样证明业务已对齐 | 制造业系统"><meta name="twitter:description" content="用独立的收料、发料与退料恢复样本，核对数据库恢复点、消息位置、目标事务、重复投递和业务余额，建立跨系统恢复顺序、差异清单及重新开放业务的验收依据。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="系统恢复以后怎样证明业务已对齐 | 制造业系统"><meta itemprop="description" content="用独立的收料、发料与退料恢复样本，核对数据库恢复点、消息位置、目标事务、重复投递和业务余额，建立跨系统恢复顺序、差异清单及重新开放业务的验收依据。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "系统恢复以后怎样证明业务已对齐 | 制造业系统";
+const shareDesc = "用独立的收料、发料与退料恢复样本，核对数据库恢复点、消息位置、目标事务、重复投递和业务余额，建立跨系统恢复顺序、差异清单及重新开放业务的验收依据。";
+const shareLink = "https://imcoders.cn/manufacturing/system-recovery-business-reconciliation/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>系统恢复以后怎样证明业务已对齐</h1><p class="mfg-lead" data-astro-cid-767rrl5b>用独立的收料、发料与退料恢复样本，核对数据库恢复点、消息位置、目标事务、重复投递和业务余额，建立跨系统恢复顺序、差异清单及重新开放业务的验收依据。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/system-recovery-business-reconciliation/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-15</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#先留下恢复点和业务截止位置" data-astro-cid-767rrl5b>先留下恢复点和业务截止位置</a></li><li data-astro-cid-767rrl5b><a href="#恢复顺序沿依赖关系安排" data-astro-cid-767rrl5b>恢复顺序沿依赖关系安排</a></li><li data-astro-cid-767rrl5b><a href="#超时事务先查结果再决定补执行" data-astro-cid-767rrl5b>超时事务先查结果，再决定补执行</a></li><li data-astro-cid-767rrl5b><a href="#差异清单需要覆盖双向记录" data-astro-cid-767rrl5b>差异清单需要覆盖双向记录</a></li><li data-astro-cid-767rrl5b><a href="#把演练资料留下来复算" data-astro-cid-767rrl5b>把演练资料留下来复算</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>ERP 恢复后能登录，接口也重新连接，仓库仍不敢继续发料。故障前一笔扣料已经执行，但发送方没有收到回执；队列里还有退料消息。把积压消息重新发送一遍，可能补上缺失，也可能再扣一次库存。</p>
+<p>本篇完成 S08 的恢复演练。<code>REC-01</code> 是独立模拟样本，数量与故障条件均为教学设定，没有执行真实数据库恢复。样本校验用于验证账目和重放规则，不表示备份、网络或生产系统通过了灾备测试。</p>
+<h2 id="先留下恢复点和业务截止位置">先留下恢复点和业务截止位置</h2>
+<p>数据库备份完成时间、恢复到的事务位置、消息消费位置和业务单据截止范围需要分别登记。跨系统恢复到“上午十点”，无法单独证明各系统包含了相同业务事实。一个系统可能已经提交单据，另一个还在等待接口。</p>
+<p>PostgreSQL 17 文档说明，时间点恢复依赖基础备份与连续 WAL 记录，恢复目标及时间线影响实际恢复范围。它证明该数据库的恢复机制，不能据此承诺所有 ERP 都支持相同操作。<a href="https://www.postgresql.org/docs/17/continuous-archiving.html">连续归档与时间点恢复</a></p>
+<p>本样本冻结工厂 A、物料 MAT-R、库位 MAIN、单位件和三项事务。WMS 来源记录完整保留；ERP 恢复后的目标账和业务键索引一起检查，期初余额均为 100 件。现场实物盘点独立记录，本篇只先核对这组逻辑账。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>来源事务</th><th>来源动作</th><th>应进入 ERP 的变化</th><th>恢复后目标情况</th></tr></thead><tbody><tr><td>RCV-01 / 10</td><td>收料 20 件</td><td>+20</td><td>已有 ERP-T01</td></tr><tr><td>ISS-01 / 10</td><td>发料 6 件</td><td>−6</td><td>已有 ERP-T02，发送方回执丢失</td></tr><tr><td>RET-01 / 10</td><td>未耗用料退回 2 件</td><td>+2</td><td>尚无目标事务</td></tr></tbody></table>
+<p>期初与截止范围一起保存，禁止拿今天的实时库存与昨天的恢复快照直接相减。批次、库存状态、单位或所有权不同的记录，也不能为了让合计一致就合并。</p>
+<h2 id="恢复顺序沿依赖关系安排">恢复顺序沿依赖关系安排</h2>
+<p>演练先隔离外部写入，确认备份可读、恢复目标和身份权限，再恢复本样本所需的主数据、目标业务库和查询接口。随后检查来源日志、发送记录与消息位置，最后以受控批次开放重放。这是本样本的依赖顺序，实际系统应按运行架构和设备约束制定。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>阶段</th><th>保留的证据</th><th>进入下一步的条件</th></tr></thead><tbody><tr><td>控制入口</td><td>写入暂停记录、允许的只读操作</td><td>防止新旧写入混杂</td></tr><tr><td>恢复数据</td><td>备份身份、恢复日志、目标事务位置</td><td>能查询目标对象和来源键</td></tr><tr><td>固定范围</td><td>来源清单、目标快照、未决消息</td><td>明确本轮核对的截止边界</td></tr><tr><td>受控重放</td><td>同一业务键、执行结果、失败原因</td><td>每项动作能够查询与复核</td></tr><tr><td>重新开放</td><td>差异关闭、实物检查、责任人确认</td><td>满足业务方预定的恢复标准</td></tr></tbody></table>
+<p>备份“存在”和恢复“成功”都需要实际演练证据。恢复时间目标、可接受数据损失窗口及离线作业策略由企业确定，本篇不虚构通用的分钟数或可用性承诺。现场控制、安全联锁和业务平台的恢复也应分开验证。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>恢复点与来源清单进入重放核对</strong><a href="/manufacturing/maps/recovery-scope-replay.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/recovery-scope-replay.html" title="来源清单与恢复后目标账共同决定受控重放的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>模拟恢复依赖。查询目标事务后决定补执行或保留已执行结果，回执再进入差异核对。</figcaption>
+</figure>
+<h2 id="超时事务先查结果再决定补执行">超时事务先查结果，再决定补执行</h2>
+<p>本例为每行动作保存稳定业务键：工厂、来源系统、事务类型、单据和行号。ERP 能按这个键查到目标记录，并以唯一约束或等效机制防止同一动作重复过账。载荷摘要也要比较；同一键出现不同数量时进入冲突处理，不能静默接受。</p>
+<p>恢复后重送顺序为收料、发料、发料重发、退料。前两项查询命中原事务，第二次发料仍命中 ERP-T02，最后一项才新增 ERP-T03。网络确认丢失没有改变原有发料事实。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>来源应有余额 = 100 + 20 − 6 + 2 = 116 件</span></span>
+<span class="line"><span>ERP 恢复后余额 = 100 + 20 − 6 = 114 件</span></span>
+<span class="line"><span>本轮新增过账 = 退料 +2 件</span></span>
+<span class="line"><span>恢复后最终余额 = 114 + 2 = 116 件</span></span>
+<span class="line"><span>4 次送达 → 3 个唯一动作 → 1 项新增过账</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>发送端可以在同一事务范围内保存业务变化和 Outbox 事件，再由工作进程发送。Microsoft 的示例明确介绍了这一原子范围；Cosmos DB 的具体实现还有逻辑分区限制。它支持可靠发布设计，不能替代目标 ERP 的幂等执行和恢复验证。<a href="https://learn.microsoft.com/en-us/azure/architecture/databases/guide/transactional-out-box-cosmos">Transactional Outbox 示例</a></p>
+<p>Kafka 的设计文档也区分了系统内事务与外部目标的协作。消费位置提交成功，不能独立证明 ERP 账目已更新。<a href="https://kafka.apache.org/32/design/design/">Kafka 消息交付语义</a>提供机制背景；这里的业务键和库存规则由样本自行定义。</p>
+<p>如果目标系统不支持按来源键查询，也无法阻止重复写入，应暂停自动补执行，建立人工核实队列。若恢复时业务库与去重记录落在不同位置，需要重新核对二者；一个“已经处理”标记不能压过实际目标事务缺失的证据。</p>
+<h2 id="差异清单需要覆盖双向记录">差异清单需要覆盖双向记录</h2>
+<p>只从来源向目标查找，容易漏掉目标多出的动作。本例同时从 ERP-T01 至 ERP-T03 回查来源，要求每行能映射到三项授权动作之一。接口重试日志保留送达次数，但不计入库存事务数。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>检查</th><th>本样本验收结果</th><th>无法满足时的处理</th></tr></thead><tbody><tr><td>来源覆盖</td><td>三项动作均有目标事务</td><td>缺项保持未决并补执行或说明</td></tr><tr><td>目标反查</td><td>三项目标均有来源</td><td>多项进入来源调查或授权纠错</td></tr><tr><td>数量与单位</td><td>+20、−6、+2，单位均为件</td><td>比较字段与转换依据</td></tr><tr><td>余额</td><td>双方 116 件</td><td>继续核对期初、范围与库存维度</td></tr><tr><td>执行重复</td><td>四次送达只对应三个动作</td><td>查询重复目标并走纠错流程</td></tr><tr><td>现场状态</td><td>另有实物及离线作业核查</td><td>逻辑账相等仍不能关闭现场差异</td></tr></tbody></table>
+<p>恢复期间纸面发料、移动端离线确认或其他旁路动作要登记到同一截止范围。找不到出处的 2 件差额不能通过一笔无依据调整自动消掉。授权调整也应保留原因、原始差异、审批和目标事务。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>业务对账怎样形成重新开放依据</strong><a href="/manufacturing/maps/recovery-acceptance.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/recovery-acceptance.html" title="来源目标双向核对结合现场检查和差异关闭形成恢复验收的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>接口通畅、账目一致和现场恢复分别留证。验收通过后才开放本轮范围内的业务写入。</figcaption>
+</figure>
+<h2 id="把演练资料留下来复算">把演练资料留下来复算</h2>
+<p><a href="/manufacturing/samples/system-recovery.json">恢复演练 JSON</a>保留期初、来源事务、恢复后目标、送达顺序和预期结果；<a href="/manufacturing/samples/verify-completion-samples.py">样本校验程序</a>核对重复投递、金额以外的数量守恒和目标反查。程序只运行本地教学数据，不连接数据库。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>依据</th><th>支持的内容</th><th>适用边界</th></tr></thead><tbody><tr><td>PostgreSQL 17 官方文档</td><td>备份、WAL、恢复目标与时间线</td><td>限于对应数据库机制</td></tr><tr><td>Microsoft Outbox 示例</td><td>业务变化与待发送事件共同提交</td><td>具体事务和分区约束需另核对</td></tr><tr><td>Kafka 3.2 设计文档</td><td>消息交付语义及外部系统协作边界</td><td>不证明 ERP 具有幂等接口</td></tr><tr><td>本篇 JSON 与校验程序</td><td>116 件余额与三个动作的复算</td><td>模拟输入，非灾备实测报告</td></tr></tbody></table>
+<p>上述网页于 2026-10-15 核对。上线演练还需记录真实版本、日志位置、耗时、失败注入方式和责任人签署；本篇样本可以作为验收表的起稿，不能填入实际演练结果一栏。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 
