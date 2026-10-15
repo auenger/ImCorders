@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "现场观测怎样形成业务事件",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-point-business-event-20261015-135901/point-business-event.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "现场来源"
+    },
+    {
+      "label": "边缘接入"
+    },
+    {
+      "label": "语义关联"
+    },
+    {
+      "label": "业务事件"
+    },
+    {
+      "label": "使用结果"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "plc",
+      "label": "PLC 与设备",
+      "sublabel": "运行状态与时间",
+      "stage": 0,
+      "row": 1,
+      "type": "external"
+    },
+    {
+      "id": "edge",
+      "label": "边缘接入",
+      "sublabel": "保留原值与身份",
+      "stage": 1,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "raw",
+      "label": "原始观测库",
+      "sublabel": "含质量与收取时间",
+      "stage": 1,
+      "row": 3,
+      "type": "database"
+    },
+    {
+      "id": "mapping",
+      "label": "点位映射表",
+      "sublabel": "单位 枚举 生效期",
+      "stage": 2,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "derive",
+      "label": "状态事件计算",
+      "sublabel": "质量 去重 时间排序",
+      "stage": 2,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "context",
+      "label": "MES 工单区间",
+      "sublabel": "设备绑定与生效期",
+      "stage": 2,
+      "row": 3,
+      "type": "database"
+    },
+    {
+      "id": "event",
+      "label": "停机事件",
+      "sublabel": "起止 证据 规则版本",
+      "stage": 3,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "attribute",
+      "label": "工单时间关联",
+      "sublabel": "按区间求交集",
+      "stage": 3,
+      "row": 3,
+      "type": "backend"
+    },
+    {
+      "id": "review",
+      "label": "原因确认",
+      "sublabel": "待解释或人工确认",
+      "stage": 4,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "analysis",
+      "label": "业务分析",
+      "sublabel": "保留未知与覆盖范围",
+      "stage": 4,
+      "row": 3,
+      "type": "backend"
+    }
+  ],
+  "flows": [
+    {
+      "id": "plc-edge",
+      "from": "plc",
+      "to": "edge",
+      "label": "只读观测"
+    },
+    {
+      "id": "edge-derive",
+      "from": "edge",
+      "to": "derive",
+      "label": "原始观测"
+    },
+    {
+      "id": "edge-raw",
+      "from": "edge",
+      "to": "raw",
+      "label": "原样留存",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "mapping-derive",
+      "from": "mapping",
+      "to": "derive",
+      "label": "语义版本",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "derive-event",
+      "from": "derive",
+      "to": "event",
+      "label": "有效转换",
+      "variant": "emphasis"
+    },
+    {
+      "id": "context-attribute",
+      "from": "context",
+      "to": "attribute",
+      "label": "工单有效区间"
+    },
+    {
+      "id": "event-attribute",
+      "from": "event",
+      "to": "attribute",
+      "label": "事件起止",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "event-review",
+      "from": "event",
+      "to": "review",
+      "label": "待解释事件"
+    },
+    {
+      "id": "attribute-analysis",
+      "from": "attribute",
+      "to": "analysis",
+      "label": "工单关联时长"
+    },
+    {
+      "id": "review-analysis",
+      "from": "review",
+      "to": "analysis",
+      "label": "原因与确认状态",
+      "fromSide": "bottom",
+      "toSide": "top"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "教学分析链路",
+      "items": [
+        "PLC 执行现场控制；此图只描绘读出与业务分析。",
+        "HMI、SCADA 与 Historian 可按现场部署提供操作界面、监视和历史记录，不要求逐层串联。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "输入分别保留",
+      "items": [
+        "点位观测、映射版本、MES 工单区间来自不同来源。",
+        "状态转换可生成停机事件；运行位不能独立证明产量、合格或故障原因。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "样本结果",
+      "items": [
+        "一个事件持续 30 秒，工单 A 关联 20 秒、B 关联 10 秒。",
+        "两条关联共享同一事件身份，不重复增加停机事件数。"
+      ]
+    }
+  ]
+}

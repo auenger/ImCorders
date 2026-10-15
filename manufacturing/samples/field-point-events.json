@@ -1,0 +1,122 @@
+{
+  "illustrative": true,
+  "timeZoneForDisplay": "Asia/Shanghai",
+  "assumptions": [
+    "Transition retention is complete in this window; no sampling or queue gaps.",
+    "Validated source clock error is at most 100 ms.",
+    "Sequence is unique within source and boot; replay preserves identity."
+  ],
+  "rule": {
+    "version": "RULE-03",
+    "stoppedValue": 0,
+    "runningValue": 1,
+    "confirmationSeconds": 3,
+    "startPolicy": "first observed stopped time",
+    "endPolicy": "first observed running time after confirmation"
+  },
+  "observations": [
+    {
+      "sourceId": "EDGE-01",
+      "bootId": "B07",
+      "sourceSeq": 100,
+      "assetId": "PRESS-01",
+      "pointId": "RunState",
+      "value": 1,
+      "quality": "Good",
+      "sourceTime": "2026-10-15T01:00:00Z",
+      "receivedTime": "2026-10-15T01:00:00.100Z",
+      "mappingVersion": "MAP-07"
+    },
+    {
+      "sourceId": "EDGE-01",
+      "bootId": "B07",
+      "sourceSeq": 101,
+      "assetId": "PRESS-01",
+      "pointId": "RunState",
+      "value": 0,
+      "quality": "Good",
+      "sourceTime": "2026-10-15T01:00:10Z",
+      "receivedTime": "2026-10-15T01:00:10.100Z",
+      "mappingVersion": "MAP-07"
+    },
+    {
+      "sourceId": "EDGE-01",
+      "bootId": "B07",
+      "sourceSeq": 101,
+      "assetId": "PRESS-01",
+      "pointId": "RunState",
+      "value": 0,
+      "quality": "Good",
+      "sourceTime": "2026-10-15T01:00:10Z",
+      "receivedTime": "2026-10-15T01:00:11.000Z",
+      "mappingVersion": "MAP-07"
+    },
+    {
+      "sourceId": "EDGE-01",
+      "bootId": "B07",
+      "sourceSeq": 102,
+      "assetId": "PRESS-01",
+      "pointId": "RunState",
+      "value": 0,
+      "quality": "Good",
+      "sourceTime": "2026-10-15T01:00:13Z",
+      "receivedTime": "2026-10-15T01:00:13.100Z",
+      "mappingVersion": "MAP-07"
+    },
+    {
+      "sourceId": "EDGE-01",
+      "bootId": "B07",
+      "sourceSeq": 103,
+      "assetId": "PRESS-01",
+      "pointId": "Temperature",
+      "value": null,
+      "quality": "Bad",
+      "sourceTime": "2026-10-15T01:00:20Z",
+      "receivedTime": "2026-10-15T01:00:20.100Z",
+      "mappingVersion": "MAP-07"
+    },
+    {
+      "sourceId": "EDGE-01",
+      "bootId": "B07",
+      "sourceSeq": 104,
+      "assetId": "PRESS-01",
+      "pointId": "RunState",
+      "value": 1,
+      "quality": "Good",
+      "sourceTime": "2026-10-15T01:00:40Z",
+      "receivedTime": "2026-10-15T01:00:50.000Z",
+      "mappingVersion": "MAP-07"
+    }
+  ],
+  "workOrderIntervals": [
+    {
+      "id": "A",
+      "start": "2026-10-15T01:00:00Z",
+      "end": "2026-10-15T01:00:30Z"
+    },
+    {
+      "id": "B",
+      "start": "2026-10-15T01:00:30Z",
+      "end": "2026-10-15T01:01:00Z"
+    }
+  ],
+  "expected": {
+    "deliveries": 6,
+    "uniqueObservations": 5,
+    "duplicates": 1,
+    "validRunObservations": 4,
+    "badTemperatureObservations": 1,
+    "eventId": "STOP-01",
+    "eventCount": 1,
+    "start": "2026-10-15T01:00:10Z",
+    "confirmedAt": "2026-10-15T01:00:13Z",
+    "end": "2026-10-15T01:00:40Z",
+    "durationSeconds": 30,
+    "attributionSeconds": {
+      "A": 20,
+      "B": 10
+    },
+    "finalEventVersion": 2,
+    "reasonStatus": "unconfirmed"
+  }
+}

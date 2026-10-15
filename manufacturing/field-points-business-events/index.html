@@ -1,0 +1,239 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>从现场点位到业务事件 | 制造业系统</title><meta name="description" content="沿一段跨工单的设备停机记录，拆开 PLC、DCS、HMI、SCADA、Historian 与边缘采集的职责，核对点位映射、时间戳、质量码、去重补传和业务事件修订，附动态数据流与可复算样本。"><link rel="canonical" href="https://imcoders.cn/manufacturing/field-points-business-events/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/field-points-business-events/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/field-points-business-events/#article","headline":"从现场点位到业务事件","description":"沿一段跨工单的设备停机记录，拆开 PLC、DCS、HMI、SCADA、Historian 与边缘采集的职责，核对点位映射、时间戳、质量码、去重补传和业务事件修订，附动态数据流与可复算样本。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/field-points-business-events/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-15T00:00:00.000Z","dateModified":"2026-10-15T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"从现场点位到业务事件","item":"https://imcoders.cn/manufacturing/field-points-business-events/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-15T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-15T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="从现场点位到业务事件 | 制造业系统"><meta property="og:description" content="沿一段跨工单的设备停机记录，拆开 PLC、DCS、HMI、SCADA、Historian 与边缘采集的职责，核对点位映射、时间戳、质量码、去重补传和业务事件修订，附动态数据流与可复算样本。"><meta property="og:url" content="https://imcoders.cn/manufacturing/field-points-business-events/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="从现场点位到业务事件 | 制造业系统"><meta name="twitter:description" content="沿一段跨工单的设备停机记录，拆开 PLC、DCS、HMI、SCADA、Historian 与边缘采集的职责，核对点位映射、时间戳、质量码、去重补传和业务事件修订，附动态数据流与可复算样本。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="从现场点位到业务事件 | 制造业系统"><meta itemprop="description" content="沿一段跨工单的设备停机记录，拆开 PLC、DCS、HMI、SCADA、Historian 与边缘采集的职责，核对点位映射、时间戳、质量码、去重补传和业务事件修订，附动态数据流与可复算样本。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "从现场点位到业务事件 | 制造业系统";
+const shareDesc = "沿一段跨工单的设备停机记录，拆开 PLC、DCS、HMI、SCADA、Historian 与边缘采集的职责，核对点位映射、时间戳、质量码、去重补传和业务事件修订，附动态数据流与可复算样本。";
+const shareLink = "https://imcoders.cn/manufacturing/field-points-business-events/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>从现场点位到业务事件</h1><p class="mfg-lead" data-astro-cid-767rrl5b>沿一段跨工单的设备停机记录，拆开 PLC、DCS、HMI、SCADA、Historian 与边缘采集的职责，核对点位映射、时间戳、质量码、去重补传和业务事件修订，附动态数据流与可复算样本。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/field-points-business-events/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-15</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#现场这些系统各管哪一段" data-astro-cid-767rrl5b>现场这些系统各管哪一段</a></li><li data-astro-cid-767rrl5b><a href="#点位记录需要带上可解释的上下文" data-astro-cid-767rrl5b>点位记录需要带上可解释的上下文</a></li><li data-astro-cid-767rrl5b><a href="#用一段停机记录核对时间与归属" data-astro-cid-767rrl5b>用一段停机记录核对时间与归属</a></li><li data-astro-cid-767rrl5b><a href="#补传以后还要修订业务结果" data-astro-cid-767rrl5b>补传以后还要修订业务结果</a></li><li data-astro-cid-767rrl5b><a href="#把验收落到唯一记录和最终结果" data-astro-cid-767rrl5b>把验收落到唯一记录和最终结果</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>设备画面显示停了 30 秒，MES 却给两张工单各记了一次停机。接口日志里还有一条重发消息，以及断网后迟到的恢复信号。只看最终报表，很难分清是现场多停了一次，还是同一段记录被重复解释。</p>
+<p><a href="/manufacturing/master-data-events-reconciliation/">主数据与事件专题</a>讨论过跨系统身份与对账。本篇沿 M07、M09 继续往现场走，用一个模拟样本核对点位、设备状态和业务事件。设备名、工单、时刻与规则均为教学设定，不代表真实工厂运行数据。</p>
+<h2 id="现场这些系统各管哪一段">现场这些系统各管哪一段</h2>
+<p>一台设备可能带着自己的 PLC 和操作屏，车间另有 SCADA，集团又建设了历史数据库和工业数据平台。这些系统可能共用采集服务，也可能由设备厂商分别提供。画接线关系之前，需要先确认谁控制设备、谁解释信号、谁保存记录。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>系统或能力</th><th>主要职责</th><th>接入业务分析时需要核对</th></tr></thead><tbody><tr><td>PLC</td><td>执行设备逻辑、顺序控制与现场 I/O 处理</td><td>点位含义、扫描与采样条件、复位行为、程序版本</td></tr><tr><td>DCS</td><td>组织过程控制、操作与工程配置，常用于连续或批过程</td><td>控制回路、过程单元、模式及批阶段语义</td></tr><tr><td>HMI</td><td>提供设备或过程的人机操作界面</td><td>画面值从哪里读，操作权限与反馈如何记录</td></tr><tr><td>SCADA</td><td>对现场设备或过程进行监视、告警、数据采集及配置范围内的操作</td><td>告警、事件和趋势是否来自同一时间与质量口径</td></tr><tr><td>Historian</td><td>保存工业时序记录并提供历史查询</td><td>原始值、压缩与插值、时间精度、保存期限</td></tr><tr><td>边缘网关或采集服务</td><td>接协议、转换数据、缓冲与转发，可承载明确部署的计算</td><td>本地存储、序号、断连行为、配置版本与可观测性</td></tr><tr><td>工业数据平台</td><td>管理数据模型、共享接口、事件加工与分析</td><td>设备身份、业务上下文、版本、权限与消费回执</td></tr></tbody></table>
+<p>这张表按职责拆开能力，具体产品常覆盖多个位置。PLC 与 DCS 的工程选型也不能只靠“离散制造”和“流程制造”两个词决定。SCADA、Historian 和网关之间没有固定串联顺序，业务平台可以从受支持的接口读取所需数据。</p>
+<p>本篇只读现场观测，讨论业务分析。参数下发、启停和配方写入另有控制权限、联锁、时效和工程验证要求；安全仪表功能也需要独立确认。业务事件处理失败不应阻断设备本地控制。</p>
+<h2 id="点位记录需要带上可解释的上下文">点位记录需要带上可解释的上下文</h2>
+<p>样本设备为 <code>PRESS-01</code>，点位 <code>RunState</code> 约定 <code>1</code> 为运行、<code>0</code> 为停止。这个约定来自映射版本 <code>MAP-07</code>。另一个厂商可能用 <code>0</code> 表示空闲，或者在自动模式以外保持旧值，同名点位不能直接套用同一规则。</p>
+<p>映射表至少记录设备身份、来源地址、数据类型、单位或枚举、采样方式、时间来源与生效区间。地址变更保留历史版本；历史消息按当时有效的映射解释。温度倍率、计数器回卷、设备重启后的清零也要在各自规则中说明。</p>
+<p>OPC UA 的 <code>DataValue</code> 同时包含值、状态码、源时间戳和服务器时间戳。规范用状态码表达值的可用性，并要求客户端至少检查严重程度；源时间和服务器时间各有含义。<a href="https://reference.opcfoundation.org/specs/OPC-10000-4/7.11">OPC Foundation 的 DataValue 定义</a>可作为字段设计依据。</p>
+<p>平台还应保存自己的收取时间。三种时间可以同时存在：设备或数据源报告的发生时间、服务器处理时间、平台收到消息的时间。不能把最后一种统一覆盖成“设备发生时间”。源时间缺失时，需要写明替代时间的来源与精度。</p>
+<p>本样本使用 UTC 存储，正文按北京时间显示。所有来源已校时，经验证偏差不超过 100 毫秒；这是样本前提，实际项目需要保留校时健康记录。一个教学封装如下，<code>sourceSeq</code> 与 <code>bootId</code> 由本样本采集端提供，属于教学封装字段。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "sourceId"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"EDGE-01"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "bootId"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"B07"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "sourceSeq"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">101</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "assetId"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"PRESS-01"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "pointId"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"RunState"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "value"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "quality"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Good"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "sourceTime"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"2026-10-15T01:00:10Z"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "receivedTime"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"2026-10-15T01:00:10.100Z"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "mappingVersion"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"MAP-07"</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<p><code>Good</code> 只说明这条观测的质量状态，还不能证明工单绑定正确或设备没有故障。温度点位的 <code>Bad</code> 值在本样本中记为 <code>null</code> 并排除出温度计算；它也不会自动推翻另一条有效运行状态记录。质量需要按点位判断。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>现场观测怎样形成业务事件</strong><a href="/manufacturing/maps/point-business-event.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/point-business-event.html" title="现场观测结合点位映射和工单区间生成设备事件与业务关联的动态数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>教学分析链路。点位映射和 MES 工单区间分别输入计算，点击节点查看来源与去向，动态播放可在查看器中暂停。</figcaption>
+</figure>
+<h2 id="用一段停机记录核对时间与归属">用一段停机记录核对时间与归属</h2>
+<p><code>RULE-03</code> 约定，运行状态从 <code>1</code> 变成 <code>0</code> 后，需要持续 3 秒并得到有效确认观测，才发布停机事件。事件开始时间回溯到首次观察到 <code>0</code> 的时刻。恢复为 <code>1</code> 时关闭事件。这套业务去抖规则由样本应用实现。</p>
+<p>采集端在此窗口保留状态转换，无队列溢出或漏采，并提供覆盖检查结果。普通低频轮询只能观察采样时刻，可能漏掉中间变化，无法直接沿用这个完整性前提。此处的起止仍指已观测转换时刻，精度受现场采集条件限制。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>送达记录</th><th>源时刻（北京时间）</th><th>点位与值</th><th>处理结果</th></tr></thead><tbody><tr><td>B07 / 100</td><td>09:00:00</td><td>RunState = 1，Good</td><td>确立已知运行状态</td></tr><tr><td>B07 / 101</td><td>09:00:10</td><td>RunState = 0，Good</td><td>建立待确认的停止起点</td></tr><tr><td>B07 / 101 重发</td><td>09:00:10</td><td>与原消息相同</td><td>去重，不创建新转换</td></tr><tr><td>B07 / 102</td><td>09:00:13</td><td>RunState = 0，Good</td><td>满足 3 秒确认，事件起点保留为 09:00:10</td></tr><tr><td>B07 / 103</td><td>09:00:20</td><td>Temperature = null，Bad</td><td>记录温度质量异常，不参与运行状态计算</td></tr><tr><td>B07 / 104</td><td>09:00:40</td><td>RunState = 1，Good</td><td>09:00:50 才收到；按源时间关闭同一事件</td></tr></tbody></table>
+<p>在 09:00:50 前，平台的停机事件仍为开放状态，设备实际是否已恢复尚待新证据。收到补传后，事件 <code>STOP-01</code> 的观测区间确定为 <code>[09:00:10, 09:00:40)</code>，持续 30 秒。这里不能把最后收取时间 09:00:50 当成停机结束时间。</p>
+<p>MES 提供两条有效绑定：工单 A 在 <code>[09:00:00, 09:00:30)</code> 绑定设备，工单 B 从 09:00:30 起绑定。这里使用半开区间，交界时刻只属于后一个区间。绑定须能回查来源记录与版本，不能从“当前工单”字段倒填整段历史。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>停机事件时长 = 09:00:40 − 09:00:10 = 30 秒</span></span>
+<span class="line"><span>工单 A 关联时长 = [09:00:10, 09:00:30) = 20 秒</span></span>
+<span class="line"><span>工单 B 关联时长 = [09:00:30, 09:00:40) = 10 秒</span></span>
+<span class="line"><span>关联时长核对 = 20 + 10 = 30 秒</span></span>
+<span class="line"><span>唯一停机事件数 = 1</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>工单换单发生在设备停止期间，关联结果允许跨单。两条工单关联共享 <code>STOP-01</code>，统计设备事件数时按事件身份去重。若绑定存在空档，未分配时长单独列出；若两张工单重叠绑定，先标记冲突，不能把重叠时长各算一遍后再宣称已对平。</p>
+<h3 id="停止故障和产出还要分别确认">停止、故障和产出还要分别确认</h3>
+<p><code>RunState = 0</code> 能支持本规则下的停止事件。它可能对应换型、缺料、等待检验、故障或计划停机。原因保持待解释，后续通过告警、操作记录或责任人确认补充，保留证据和确认时间。相关业务路径见<a href="/manufacturing/eam-equipment-downtime-analysis/">设备停机分析</a>。</p>
+<p>同样，<code>RunState = 1</code> 不能独立生成合格品完工。设备计数还可能包含空循环、试机和返工。需要结合计数器口径、产品身份、工序、检测与 MES 报工约束，才能解释产量。<a href="/manufacturing/mes-work-order-lifecycle/">MES 工单专题</a>保留这些业务状态的定义。</p>
+<h2 id="补传以后还要修订业务结果">补传以后还要修订业务结果</h2>
+<p>样本用 <code>(sourceId, bootId, sourceSeq)</code> 作为观测身份，假定序号在同一启动代次内不复用。重发保留原身份。设备或采集服务重启时变更 <code>bootId</code>，避免新旧序号碰撞。实际接入可能需要协议消息标识、源事务号或持久日志位置，不能只按“点位加时间”去重。</p>
+<p>这个键用于本样本的一条记录；一个报文携带多条指标时，还需要稳定的指标身份。MQTT 的传输交付等级也不能单独证明 MES 业务已经正确应用。若使用 Sparkplug，还应实现对应的出生、死亡与会话状态管理，并按所用规范解释序列信息。可参考 <a href="https://sparkplug.eclipse.org/about/faq/">Eclipse 对 Sparkplug 的说明</a>；本文的 <code>B07 / 101</code> 封装不等同于 Sparkplug 的序号契约。</p>
+<p>断连期间，边缘端将记录写入持久队列，并记录容量、最早可补传位置与丢失范围。恢复后可以批量补传，原始记录保留源时间，补上实际收取时间。服务按设备和点位维护状态，处理迟到消息时重新核对受影响区间。</p>
+<p><code>STOP-01</code> 初次确认时保存开放版本，恢复记录到达后保存关闭版本。下游若已展示暂计时长，必须按同一事件的新版本替换或应用差额，同时保留应用回执。重复投递关闭版本时，聚合结果保持不变。原始观测、事件修订和报表聚合因此能够分别核对。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>断线补传以后怎样核对业务结果</strong><a href="/manufacturing/maps/point-replay-reconciliation.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/point-replay-reconciliation.html" title="持久队列补传、记录去重、事件区间重算和业务消费回执对账的动态数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>补传只完成输入恢复。事件版本、工单关联和消费回执还需核对，无法恢复的区间保留未知状态。</figcaption>
+</figure>
+<h3 id="断线和缺口要有自己的状态">断线和缺口要有自己的状态</h3>
+<p>连接静默可能来自网络、采集服务或设备，不能直接生成设备停机。若队列溢出，丢失区间不能用最后一个值填满后当成连续事实。平台应保留通信中断、观测缺口与设备状态三个维度，并给统计结果标记覆盖范围。</p>
+<p>Historian 的插值或压缩查询也要明确用途。用于画趋势的插值点，不宜直接当作原始转换证据。需要回放事件时，应核对保存策略能否提供所需精度；保存能力不足的部分进入未知清单。</p>
+<h2 id="把验收落到唯一记录和最终结果">把验收落到唯一记录和最终结果</h2>
+<p><a href="/manufacturing/samples/field-point-events.json">下载点位到业务事件的 JSON 样本</a>可以复算本篇的身份去重、有效转换和工单关联。它保存模拟观测、工单区间、规则版本及预期结果；不包含现场连接配置。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>验收项</th><th>本样本应得到的结果</th></tr></thead><tbody><tr><td>送达与唯一观测</td><td>6 次送达，5 条唯一观测，重复 1 次</td></tr><tr><td>质量与点位</td><td>4 条有效运行状态观测，1 条 Bad 温度观测</td></tr><tr><td>事件身份</td><td>STOP-01 一条事件，迟到恢复关闭原事件</td></tr><tr><td>起止与时长</td><td>09:00:10 至 09:00:40，共 30 秒</td></tr><tr><td>工单关联</td><td>A 为 20 秒，B 为 10 秒，共用一个事件</td></tr><tr><td>重复消费</td><td>同一关闭版本再次投递，事件数与累计时长不增加</td></tr><tr><td>未知项</td><td>本样本覆盖完整；真实缺口、绑定冲突与原因待确认分别列示</td></tr></tbody></table>
+<p>实施时，我会再安排几组故障输入：重启后序号从头开始、工单绑定迟到、点位枚举修改、源时钟漂移、队列溢出。每组都需要写出哪些结果应修订、哪些仍无法判断，以及谁来关闭未决项。下一篇<a href="/blog/2026-10-14-manufacturing-systems-map/">规划中的系统恢复演练</a>会把这套核对扩展到多个业务系统，记录恢复顺序、事务回执和最终验收结果。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 

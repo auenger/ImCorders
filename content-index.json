@@ -1898,6 +1898,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/erp-order-material-cost/index.md"
     },
     {
+      "id": "manufacturing/field-points-business-events",
+      "kind": "manufacturing",
+      "title": "从现场点位到业务事件",
+      "description": "沿一段跨工单的设备停机记录，拆开 PLC、DCS、HMI、SCADA、Historian 与边缘采集的职责，核对点位映射、时间戳、质量码、去重补传和业务事件修订，附动态数据流与可复算样本。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "工业数据采集",
+        "设备事件",
+        "OPC UA",
+        "边缘计算"
+      ],
+      "publishedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/field-points-business-events/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/field-points-business-events/index.md"
+    },
+    {
       "id": "manufacturing/industrial-data-platform-digital-twin-agents",
       "kind": "manufacturing",
       "title": "工业数据平台、数字孪生与 Agent 接入",

@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "断线补传以后怎样核对业务结果",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-point-replay-reconciliation-20261015-135901/point-replay-reconciliation.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "输入记录"
+    },
+    {
+      "label": "恢复处理"
+    },
+    {
+      "label": "重算条件"
+    },
+    {
+      "label": "输出版本"
+    },
+    {
+      "label": "业务核对"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "buffer",
+      "label": "边缘持久队列",
+      "sublabel": "原记录身份与时间",
+      "stage": 0,
+      "row": 1,
+      "type": "database"
+    },
+    {
+      "id": "ingest",
+      "label": "接收与去重",
+      "sublabel": "重放保留同一身份",
+      "stage": 1,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "coverage",
+      "label": "序列与缺口账",
+      "sublabel": "启动代次 丢失范围",
+      "stage": 1,
+      "row": 3,
+      "type": "database"
+    },
+    {
+      "id": "rules",
+      "label": "规则与上下文",
+      "sublabel": "映射 工单 规则版本",
+      "stage": 2,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "recompute",
+      "label": "区间重算",
+      "sublabel": "缺口标记与迟到修订",
+      "stage": 2,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "revisions",
+      "label": "事件版本库",
+      "sublabel": "旧版与新版证据",
+      "stage": 3,
+      "row": 1,
+      "type": "database"
+    },
+    {
+      "id": "expected",
+      "label": "预期结果清单",
+      "sublabel": "唯一事件与工单关联",
+      "stage": 3,
+      "row": 3,
+      "type": "database"
+    },
+    {
+      "id": "consume",
+      "label": "业务消费",
+      "sublabel": "幂等应用版本差额",
+      "stage": 4,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "check",
+      "label": "结果对账",
+      "sublabel": "事件 时长 未决项",
+      "stage": 4,
+      "row": 3,
+      "type": "backend"
+    }
+  ],
+  "flows": [
+    {
+      "id": "buffer-ingest",
+      "from": "buffer",
+      "to": "ingest",
+      "label": "断线后补传",
+      "variant": "dashed"
+    },
+    {
+      "id": "ingest-coverage",
+      "from": "ingest",
+      "to": "coverage",
+      "label": "覆盖与缺口",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "ingest-recompute",
+      "from": "ingest",
+      "to": "recompute",
+      "label": "唯一观测"
+    },
+    {
+      "id": "coverage-recompute",
+      "from": "coverage",
+      "to": "recompute",
+      "label": "完整性状态"
+    },
+    {
+      "id": "rules-recompute",
+      "from": "rules",
+      "to": "recompute",
+      "label": "有效版本",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "recompute-revisions",
+      "from": "recompute",
+      "to": "revisions",
+      "label": "修订结果",
+      "variant": "emphasis"
+    },
+    {
+      "id": "revisions-consume",
+      "from": "revisions",
+      "to": "consume",
+      "label": "可应用版本"
+    },
+    {
+      "id": "expected-check",
+      "from": "expected",
+      "to": "check",
+      "label": "样本预期"
+    },
+    {
+      "id": "consume-check",
+      "from": "consume",
+      "to": "check",
+      "label": "应用回执",
+      "fromSide": "bottom",
+      "toSide": "top"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "补传保留观测身份",
+      "items": [
+        "本样本用来源、启动代次、序号标识记录，属于教学封装。",
+        "MQTT 确认与连接恢复不能单独证明 MES 已正确应用。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "缺失不能自动补成停机",
+      "items": [
+        "队列溢出或时钟无法关联时，保留未知区间并等待核实。",
+        "短暂静默只代表暂未收到新数据，不能独立证明设备停止。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "复算与验收",
+      "items": [
+        "6 次送达对应 5 条唯一观测，重复记录不生成新事件。",
+        "迟到恢复信号关闭原事件；已有聚合按版本修订并核对回执。"
+      ]
+    }
+  ]
+}

@@ -136,6 +136,7 @@
 - [电子制造与 SMT 的上料、检测和追溯](https://imcoders.cn/manufacturing/electronics-smt-material-test-traceability/index.md): 用 25 块四联拼板的教学样本，串起料卷、供料器、站位表、贴装程序、板级序列号与 SPI、AOI、ICT、FCT 记录，核对接料边界、返修复测和放行回执，解释电子制造中追溯精度如何形成。
 - [研发工程工具与工艺数据如何衔接](https://imcoders.cn/manufacturing/engineering-tools-process-data/index.md): 沿用风机支架工程变更，拆解 CAD、PDM、PLM 与 CAPP 的文件、零件、结构、工序和指导书关系，说明 CAE 与 CAM 的适用分支，以及版本基线、工艺分配、发布回执和现场偏差怎样受控衔接。
 - [ERP 怎样连接订单、物料、生产与成本](https://imcoders.cn/manufacturing/erp-order-material-cost/index.md): 沿着一张风机订单，拆解 ERP 中的销售需求、MRP、采购与生产订单、库存事务和成本核算，说明工程变更后怎样重算缺料、接收现场记录、处理接口重试，并用动态图与验收案例保留跨系统证据。
+- [从现场点位到业务事件](https://imcoders.cn/manufacturing/field-points-business-events/index.md): 沿一段跨工单的设备停机记录，拆开 PLC、DCS、HMI、SCADA、Historian 与边缘采集的职责，核对点位映射、时间戳、质量码、去重补传和业务事件修订，附动态数据流与可复算样本。
 - [工业数据平台、数字孪生与 Agent 接入](https://imcoders.cn/manufacturing/industrial-data-platform-digital-twin-agents/index.md): 从一座可旋转的示意工厂出发，梳理工业数据平台如何保留原始事件、关联设备与工单、构建带时间的孪生视图，并说明 Agent 查询证据和执行业务动作的边界。
 - [库存有货为什么仍然缺料](https://imcoders.cn/manufacturing/inventory-shortage-material-readiness/index.md): 用一张工单的齐套样本，串起 ERP、WMS、QMS、MES 与采购计划，逐项核对冻结、预留、替代、线边余料和在途，算出当前能配多少套，并追踪从候选供给到实际配送的回执。
 - [主数据、事件与跨系统对账](https://imcoders.cn/manufacturing/master-data-events-reconciliation/index.md): 沿用风机订单与补发支架案例，拆解制造业系统的主数据责任、编码映射、事件身份、可靠发送、幂等与乱序处理，并用两件补发料的独立差异样本说明数量守恒、业务回执、补偿和对账验收。
