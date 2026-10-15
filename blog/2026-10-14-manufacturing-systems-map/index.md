@@ -14,7 +14,7 @@
 
 我在个人站持续拆解制造业系统。这篇记录研究范围、已发布文章和仍待补齐的问题，作为可以回查的总目录。主要面向进入制造现场的 AI 工程师、FDE、产品经理和技术负责人，也供我自己安排选题、补资料和记录进度。
 
-截至 2026 年 10 月 15 日，[制造业系统模块](/manufacturing/)已有 20 篇内容，包含 1 篇总地图与 19 篇专题。M01 至 M10 十个领域均有文章涉及，首轮系统专题已发布；细分能力、完整业务场景和行业差异仍需继续补充。文末分别登记已发布内容和下一轮选题。
+截至 2026 年 10 月 15 日，[制造业系统模块](/manufacturing/)已有 21 篇内容，包含 1 篇总地图与 20 篇专题。M01 至 M10 十个领域均有文章涉及，首轮系统专题已发布；细分能力、完整业务场景和行业差异仍需继续补充。文末分别登记已发布内容和下一轮选题。
 
 [制造业系统数据地图](/manufacturing/data-map/)保留五张 Archify 数据流图，并已在页面顶部嵌入 [Factory Systems Atlas 空间图谱](/manufacturing/systems-atlas/)。空间图谱可切换五个业务视图、浏览九个区域和关系契约。它帮助定位系统与数据交接，布局与动画均为示意，未接入真实工厂数据。
 
@@ -234,7 +234,7 @@ OPC UA、MQTT、Modbus、工业以太网，以及行业专用通信接口，会�
 | S03 | 库存有货为什么还会缺料 | 已有专篇[库存有货为什么仍然缺料](/manufacturing/inventory-shortage-material-readiness/) | 用同一工单复算冻结、预留、替代、线边与在途，区分候选齐套、锁定和实收；复杂共享替代分配仍需深化 |
 | S04 | 一个质量异常能追到哪里 | 已有专篇[一个质量异常怎样圈定影响范围](/manufacturing/quality-incident-traceability-scope/) | 已补分拆、合批、替代返工与交付清单，保留单件来源未知项；行业异常机制与召回执行仍需深化 |
 | S05 | 设备停机怎样影响交付 | [EAM 停机分析](/manufacturing/eam-equipment-downtime-analysis/)已覆盖维修与产能恢复；[APS](/manufacturing/aps-finite-capacity-rescheduling/)覆盖重排 | 待补同一停机事件如何传到剩余工序、重排方案与客户承诺 |
-| S06 | 工单成本为什么偏离预算 | [ERP](/manufacturing/erp-order-material-cost/)介绍成本记录；[能源专题](/manufacturing/tooling-metrology-utilities-energy/)补充计量边界 | 待写可复算案例：材料、人工、报废、返工、能源及在制品归属 |
+| S06 | 工单成本为什么偏离预算 | 已有专篇[工单实际成本怎样回到原始记录](/manufacturing/production-order-actual-cost-evidence/) | 已补四项成本、返工子集、分摊与差异复算；复杂在制分配及具体成本方法后续深化 |
 | S07 | 产品出厂以后怎样继续追踪 | [物流协同](/manufacturing/warehouse-automation-logistics-transport/)覆盖签收；[人员文件与服务支撑](/manufacturing/people-documents-service-operations/)覆盖在役配置与服务反馈 | 待补从客户故障、返厂检验到质量处置和工程变更的完整案例 |
 | S08 | 系统断连以后怎样恢复 | [主数据、事件与对账](/manufacturing/master-data-events-reconciliation/)及[运行支撑](/manufacturing/people-documents-service-operations/)已覆盖补传与业务核对 | 待补跨系统恢复演练：恢复顺序、截止位置、重复记录、差异关闭与验收结果 |
 
@@ -277,7 +277,7 @@ Agent 部分从证据查询开始。订单交期分析至少要保留来源系�
 
 ### 已发布文章清单
 
-当前共 20 篇制造业内容。本篇博客承担规划与索引职责，不计入这 20 篇；三维图谱和工厂模型是展示资源，也不另计为文章。“对应目录”表示文章涉及的范围，不能据此判断该领域所有细分能力都已写完。
+当前共 21 篇制造业内容。本篇博客承担规划与索引职责，不计入这 21 篇；三维图谱和工厂模型是展示资源，也不另计为文章。“对应目录”表示文章涉及的范围，不能据此判断该领域所有细分能力都已写完。
 
 | 顺序 | 已发布文章 | 对应目录 |
 | --- | --- | --- |
@@ -301,6 +301,7 @@ Agent 部分从证据查询开始。订单交期分析至少要保留来源系�
 | 18 | [库存有货为什么仍然缺料](/manufacturing/inventory-shortage-material-readiness/) | S03；M02、M03、M04、M05 |
 | 19 | [一个质量异常怎样圈定影响范围](/manufacturing/quality-incident-traceability-scope/) | S04；M03、M04、M05 |
 | 20 | [电子制造与 SMT 的上料、检测和追溯](/manufacturing/electronics-smt-material-test-traceability/) | I02；M01、M03、M04、M05、M07 |
+| 21 | [工单实际成本怎样回到原始记录](/manufacturing/production-order-actual-cost-evidence/) | S06；M02、M03、M08、M09 |
 
 ### 十个领域覆盖到哪里
 
@@ -330,10 +331,10 @@ Agent 部分从证据查询开始。订单交期分析至少要保留来源系�
 | 1 | 库存有货为什么仍然缺料 | S03 | 已补齐工单需求与供给快照、可复算样本及预留配送回执 | [已发布](/manufacturing/inventory-shortage-material-readiness/) |
 | 2 | 一个质量异常怎样圈定影响范围 | S04 | 已补正反向谱系、可复算影响范围、未知项与隔离回执 | [已发布](/manufacturing/quality-incident-traceability-scope/) |
 | 3 | 电子制造与 SMT 的上料、检测和追溯 | I02 | 已补接料边界、拼板与单板映射、检测尝试及放行样本 | [已发布](/manufacturing/electronics-smt-material-test-traceability/) |
-| 4 | 工单实际成本怎样回到原始记录 | S06 | 提供可复算的耗料、工时、报废返工和分摊明细，区分数量差异与计价差异 | 待写作 |
+| 4 | 工单实际成本怎样回到原始记录 | S06 | 已补耗用、工时冲正、能源与分摊明细，复算数量和计价影响 | [已发布](/manufacturing/production-order-actual-cost-evidence/) |
 | 5 | 从现场点位到业务事件 | M07、M09 | 拆开控制、监视、历史存储与边缘采集，说明点位映射、时间、质量和断连恢复 | 待写作 |
 | 6 | 系统恢复以后怎样证明业务已对齐 | S08 | 给出恢复演练样本与验收清单，核对补传、幂等、未决事务和人工处理结果 | 待写作 |
 
 其余行业沿 I01、I03 至 I07 继续补充；I07 下的半导体与电池分别成篇，保留共同目录编号。食品、制药、化工的文章需要各自的工段、业务对象与适用依据，不能把通用批次文章改几个名词就作为行业案例。
 
-发布新文章后，在已发布清单中追加条目，同时更新对应的场景或行业状态。S03、S04 与 I02 已补齐齐套、质量影响范围和 SMT 板级记录样本，下一篇推进 S06，核对材料耗用、工时、返修和分摊怎样形成可复算的工单实际成本。
+发布新文章后，在已发布清单中追加条目，同时更新对应的场景或行业状态。S03、S04、S06 与 I02 已补齐齐套、质量追溯、工单成本和 SMT 板级记录样本，下一篇推进 M07、M09，核对现场点位、设备状态与业务事件之间的语义、时间和质量信息。

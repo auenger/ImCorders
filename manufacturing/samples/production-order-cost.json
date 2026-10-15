@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "illustrative": true,
+  "order": "MO-C100",
+  "currency": "CNY",
+  "scope": "四项管理分析，非完整产品成本或财务入库价值",
+  "good_output": 100,
+  "finished_scrap": 0,
+  "ending_wip": 0,
+  "baseline_id": "BASE-01",
+  "rate_version": "RATE-02",
+  "snapshot": "COST-v1",
+  "baseline": {
+    "material": {
+      "quantity": "200",
+      "rate": "10",
+      "unit": "件"
+    },
+    "labor": {
+      "quantity": "20",
+      "rate": "50",
+      "unit": "人时"
+    },
+    "overhead": {
+      "quantity": "10",
+      "rate": "50",
+      "unit": "机时"
+    },
+    "energy": {
+      "quantity": "100",
+      "rate": "0.80",
+      "unit": "kWh"
+    }
+  },
+  "actual_rates": {
+    "material": "11",
+    "labor": "55",
+    "energy": "0.90"
+  },
+  "material_records": [
+    {
+      "id": "WMS-MOVE-01",
+      "kind": "transfer_to_line",
+      "quantity": 212
+    },
+    {
+      "id": "WMS-RETURN-01",
+      "kind": "unconsumed_return",
+      "quantity": 4
+    },
+    {
+      "id": "WMS-BAL-01",
+      "kind": "ending_raw_stock",
+      "quantity": 2
+    },
+    {
+      "id": "MES-CONS-01",
+      "kind": "consumption",
+      "quantity": 200,
+      "reason": "normal"
+    },
+    {
+      "id": "MES-CONS-02",
+      "kind": "consumption",
+      "quantity": 6,
+      "reason": "rework",
+      "rework_order": "RW-C100"
+    },
+    {
+      "id": "QMS-SCRAP-01",
+      "kind": "already_consumed_scrap",
+      "quantity": 6,
+      "note": "已计入耗用，不再追加成本"
+    }
+  ],
+  "labor_records": [
+    {
+      "id": "TIME-01",
+      "hours": "21",
+      "reason": "normal"
+    },
+    {
+      "id": "TIME-02",
+      "hours": "2",
+      "reason": "rework",
+      "rework_order": "RW-C100"
+    },
+    {
+      "id": "TIME-03",
+      "hours": "-1",
+      "reason": "normal",
+      "corrects": "TIME-01"
+    }
+  ],
+  "machine_records": [
+    {
+      "id": "MACHINE-01",
+      "hours": "11",
+      "reason": "normal"
+    },
+    {
+      "id": "MACHINE-02",
+      "hours": "1",
+      "reason": "rework",
+      "rework_order": "RW-C100"
+    }
+  ],
+  "energy": {
+    "id": "METER-01",
+    "start_kwh": "1000",
+    "end_kwh": "1120",
+    "exclusive_order_window": true,
+    "classified_rework_kwh": "20",
+    "classification_reference": "ENERGY-RW-01"
+  },
+  "pool": {
+    "id": "POOL-01",
+    "amount": "5500",
+    "basis": "machine_hours",
+    "total_basis": "100",
+    "other_orders_basis": "88",
+    "excludes": [
+      "direct_material",
+      "direct_labor",
+      "direct_energy"
+    ],
+    "note": "本次受控分析窗口，分母包括本工单及其他工单"
+  },
+  "expected": {
+    "actual_quantities": {
+      "material": "206",
+      "labor": "22",
+      "overhead": "12",
+      "energy": "120"
+    },
+    "amounts": {
+      "material": "2266",
+      "labor": "1210",
+      "overhead": "660",
+      "energy": "108"
+    },
+    "baseline_total": "3580",
+    "actual_total": "4244",
+    "variance_total": "664",
+    "quantity_effect": "276",
+    "rate_effect": "388",
+    "rework_subset": "249",
+    "other_orders_allocation": "4840",
+    "unit_selected_cost": "42.44",
+    "material_rate_12_total": "4450",
+    "late_one_labor_hour_total": "4299"
+  }
+}

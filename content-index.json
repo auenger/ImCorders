@@ -2025,6 +2025,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/plm-engineering-change/index.md"
     },
     {
+      "id": "manufacturing/production-order-actual-cost-evidence",
+      "kind": "manufacturing",
+      "title": "工单实际成本怎样回到原始记录",
+      "description": "用一张完成 100 件产品的工单，逐笔核对材料耗用、工时冲正、能源计量和制造费用分摊，复算成本差异与返工子集，并连接现场记录、计价版本、成本快照和 ERP 过账回执。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "工单成本",
+        "ERP",
+        "成本差异",
+        "数据对账"
+      ],
+      "publishedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/production-order-actual-cost-evidence/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/production-order-actual-cost-evidence/index.md"
+    },
+    {
       "id": "manufacturing/qms-lims-quality-release",
       "kind": "manufacturing",
       "title": "QMS、LIMS 与质量放行的衔接",

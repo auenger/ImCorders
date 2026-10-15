@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "成本快照与过账回执怎样核对",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-order-cost-reconciliation-20261015-134414/order-cost-reconciliation.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "核对输入"
+    },
+    {
+      "label": "完整性判断"
+    },
+    {
+      "label": "审核与执行"
+    },
+    {
+      "label": "目标记录"
+    },
+    {
+      "label": "结果对账"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "snapshot",
+      "label": "成本快照",
+      "sublabel": "数量 金额 来源版本",
+      "stage": 0,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "coverage",
+      "label": "来源完整性",
+      "sublabel": "迟到 重复 未知项",
+      "stage": 0,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "check",
+      "label": "业务核对",
+      "sublabel": "工单 期间 计价",
+      "stage": 1,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "policy",
+      "label": "受控核算规则",
+      "sublabel": "成本方法 期间权限",
+      "stage": 1,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "approval",
+      "label": "财务审核",
+      "sublabel": "通过后生成指令",
+      "stage": 2,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "adjust",
+      "label": "调整记录",
+      "sublabel": "冲销与追加依据",
+      "stage": 2,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "posting",
+      "label": "ERP 执行",
+      "sublabel": "校验后过账或拒绝",
+      "stage": 3,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "receipt",
+      "label": "ERP 回执",
+      "sublabel": "事务号 金额 失败原因",
+      "stage": 3,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "result",
+      "label": "双向对账",
+      "sublabel": "已匹配与未决项",
+      "stage": 4,
+      "row": 0,
+      "type": "backend"
+    }
+  ],
+  "flows": [
+    {
+      "id": "snapshot-check",
+      "from": "snapshot",
+      "to": "check",
+      "label": "分析明细"
+    },
+    {
+      "id": "coverage-check",
+      "from": "coverage",
+      "to": "check",
+      "label": "来源水位"
+    },
+    {
+      "id": "policy-check",
+      "from": "policy",
+      "to": "check",
+      "label": "核算条件",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "check-approval",
+      "from": "check",
+      "to": "approval",
+      "label": "通过的核对单"
+    },
+    {
+      "id": "adjust-approval",
+      "from": "adjust",
+      "to": "approval",
+      "label": "调整依据",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "approval-posting",
+      "from": "approval",
+      "to": "posting",
+      "label": "批准指令"
+    },
+    {
+      "id": "posting-receipt",
+      "from": "posting",
+      "to": "receipt",
+      "label": "执行结果",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "approval-result",
+      "from": "approval",
+      "to": "result",
+      "label": "应执行清单",
+      "route": "top-channel"
+    },
+    {
+      "id": "receipt-result",
+      "from": "receipt",
+      "to": "result",
+      "label": "实际目标记录",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "不同阶段分别显示",
+      "items": [
+        "现场已发生、分析已计价、ERP 已过账、已完成结算分别核对。",
+        "四项管理分析不直接替代企业实际采用的财务计价方式。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "差异保持可解释",
+      "items": [
+        "迟到记录产生新的快照版本，保留与原快照之间的差额。",
+        "关账或已结束工单按授权流程处理，不自动改业务日期。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "回执必须对应明细",
+      "items": [
+        "超时先查目标事务，使用同一幂等键避免重复记账。",
+        "一对多或多对一过账保留桥接关系，未匹配项不能默认相等。"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,373 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>工单实际成本怎样回到原始记录 | 制造业系统</title><meta name="description" content="用一张完成 100 件产品的工单，逐笔核对材料耗用、工时冲正、能源计量和制造费用分摊，复算成本差异与返工子集，并连接现场记录、计价版本、成本快照和 ERP 过账回执。"><link rel="canonical" href="https://imcoders.cn/manufacturing/production-order-actual-cost-evidence/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/production-order-actual-cost-evidence/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/production-order-actual-cost-evidence/#article","headline":"工单实际成本怎样回到原始记录","description":"用一张完成 100 件产品的工单，逐笔核对材料耗用、工时冲正、能源计量和制造费用分摊，复算成本差异与返工子集，并连接现场记录、计价版本、成本快照和 ERP 过账回执。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/production-order-actual-cost-evidence/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-15T00:00:00.000Z","dateModified":"2026-10-15T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"工单实际成本怎样回到原始记录","item":"https://imcoders.cn/manufacturing/production-order-actual-cost-evidence/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-15T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-15T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="工单实际成本怎样回到原始记录 | 制造业系统"><meta property="og:description" content="用一张完成 100 件产品的工单，逐笔核对材料耗用、工时冲正、能源计量和制造费用分摊，复算成本差异与返工子集，并连接现场记录、计价版本、成本快照和 ERP 过账回执。"><meta property="og:url" content="https://imcoders.cn/manufacturing/production-order-actual-cost-evidence/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="工单实际成本怎样回到原始记录 | 制造业系统"><meta name="twitter:description" content="用一张完成 100 件产品的工单，逐笔核对材料耗用、工时冲正、能源计量和制造费用分摊，复算成本差异与返工子集，并连接现场记录、计价版本、成本快照和 ERP 过账回执。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="工单实际成本怎样回到原始记录 | 制造业系统"><meta itemprop="description" content="用一张完成 100 件产品的工单，逐笔核对材料耗用、工时冲正、能源计量和制造费用分摊，复算成本差异与返工子集，并连接现场记录、计价版本、成本快照和 ERP 过账回执。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "工单实际成本怎样回到原始记录 | 制造业系统";
+const shareDesc = "用一张完成 100 件产品的工单，逐笔核对材料耗用、工时冲正、能源计量和制造费用分摊，复算成本差异与返工子集，并连接现场记录、计价版本、成本快照和 ERP 过账回执。";
+const shareLink = "https://imcoders.cn/manufacturing/production-order-actual-cost-evidence/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>工单实际成本怎样回到原始记录</h1><p class="mfg-lead" data-astro-cid-767rrl5b>用一张完成 100 件产品的工单，逐笔核对材料耗用、工时冲正、能源计量和制造费用分摊，复算成本差异与返工子集，并连接现场记录、计价版本、成本快照和 ERP 过账回执。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/production-order-actual-cost-evidence/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-15</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#先固定工单产出和比较基准" data-astro-cid-767rrl5b>先固定工单、产出和比较基准</a></li><li data-astro-cid-767rrl5b><a href="#先把数量对平再把价格接进来" data-astro-cid-767rrl5b>先把数量对平，再把价格接进来</a></li><li data-astro-cid-767rrl5b><a href="#把增加的-664-元拆到可复算的因素" data-astro-cid-767rrl5b>把增加的 664 元拆到可复算的因素</a></li><li data-astro-cid-767rrl5b><a href="#成本快照还要和-erp-的目标记录对账" data-astro-cid-767rrl5b>成本快照还要和 ERP 的目标记录对账</a></li><li data-astro-cid-767rrl5b><a href="#用来源明细验收成本核对接口" data-astro-cid-767rrl5b>用来源明细验收成本核对接口</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>工单已经完工，成本表却比计划多了 664 元。车间说有返工，采购说材料涨了价，财务还在等一笔工时冲正。把这些解释并排写在备注里，仍然无法判断每个数字有没有被重复计算。</p>
+<p><a href="/manufacturing/erp-order-material-cost/">ERP 篇</a>介绍过成本记录的来源，本篇落实 S06，用独立教学样本逐行复算。所有金额均为模拟人民币数据，采用选定四项的管理分析口径；不直接推导产成品财务入库价值，也不包含税费、汇率与完整产品成本。</p>
+<h2 id="先固定工单产出和比较基准">先固定工单、产出和比较基准</h2>
+<p>工单 <code>MO-C100</code> 完成 100 件合格产品，没有成品报废，截止时点也没有未完工在制品。每件产品按计划需要 2 件支架。生产中有 6 件已投入的支架损坏并报废，补换 6 件后，最终产品仍装有 200 件支架。</p>
+<p>本文选择材料、直接人工、按机时分摊的制造费用、直接能源四项。计划基准 <code>BASE-01</code> 对应同样的 100 件合格产出，未预留额外材料损耗和返工。基准一旦用于比较就保留版本，不能在实际数量到齐后静默改掉原计划。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>成本项</th><th>计划数量</th><th>计划单价或费率</th><th>计划金额</th></tr></thead><tbody><tr><td>支架材料</td><td>200 件</td><td>10 元/件</td><td>2,000 元</td></tr><tr><td>直接人工</td><td>20 人时</td><td>50 元/人时</td><td>1,000 元</td></tr><tr><td>制造费用分摊</td><td>10 机时</td><td>50 元/机时</td><td>500 元</td></tr><tr><td>直接能源</td><td>100 kWh</td><td>0.80 元/kWh</td><td>80 元</td></tr><tr><td>四项小计</td><td>同一工单、同一产出</td><td>BASE-01</td><td>3,580 元</td></tr></tbody></table>
+<p>实际分析价来自受控版本 <code>RATE-02</code>：材料耗用计价 11 元/件，直接人工分析费率 55 元/人时，直接能源分析价 0.90 元/kWh。人工费率用于本次成本分析，不表示某位员工的小时工资；材料计价也需要从企业认可的成本来源取得，不能直接拿最新采购报价代入历史耗用。</p>
+<p>制造费用按后文的分摊批次另算。所选费用池已排除材料、直接人工和本篇单列的直接能源，避免同一费用既直接计入，又通过分摊进入工单。</p>
+<h3 id="报表上的实际需要说明到哪个阶段">报表上的“实际”需要说明到哪个阶段</h3>
+<p>现场已经发生、分析已经计价、ERP 已过账、成本已结算，是不同状态。本篇先以实际执行数量和明确的计价版本生成分析快照，再说明如何核对 ERP 回执。</p>
+<p>Dynamics 365 的生产成本分析文档将材料、路线操作和间接费用分别展示，并指出生产订单实际成本依赖已报告的耗用记录。它同时说明，产品标准成本差异报告的比较基准与工单估计成本不同。项目中应先确认读的是哪一种报表。<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/cost-management/production-order-cost-analysis">生产订单成本分析</a></p>
+<h2 id="先把数量对平再把价格接进来">先把数量对平，再把价格接进来</h2>
+<p>工单没有期末在制品，不代表线边没有未耗用的原料。仓库给线边配送了 212 件支架，其中 4 件退回主仓、2 件仍在线边，MES 登记实际耗用 206 件。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>来源记录</th><th>内容</th><th>如何进入本次成本</th></tr></thead><tbody><tr><td>WMS-MOVE-01</td><td>主仓转线边 212 件</td><td>位置转移，用于数量对账，不另计耗用</td></tr><tr><td>WMS-RETURN-01</td><td>线边退回 4 件</td><td>未耗用退回，核对库存去向</td></tr><tr><td>WMS-BAL-01</td><td>截止时点线边余料 2 件</td><td>保留为原料库存，不计入工单耗用</td></tr><tr><td>MES-CONS-01</td><td>正常装配耗用 200 件</td><td>进入材料成本</td></tr><tr><td>MES-CONS-02</td><td>返工补换耗用 6 件</td><td>进入材料成本，标记返工原因</td></tr><tr><td>QMS-SCRAP-01</td><td>6 件已投入支架损坏报废</td><td>关联耗用与损失原因，不再追加一笔材料耗用</td></tr></tbody></table>
+<p>数量关系可以从两个方向核对：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>线边收发：配送 212 − 退回 4 − 结存 2 = 实际耗用 206 件</span></span>
+<span class="line"><span>耗用去向：最终产品内 200 + 损坏报废 6 = 206 件</span></span>
+<span class="line"><span>材料成本：206 × 11 = 2266 元</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>本样本选择 MES 实际耗用作为工单材料计量来源。若 ERP 同时按 BOM 倒冲，必须明确两类记录的替代或核对关系；不能让两套接口各记一次 200 件。仓储直接按工单领料记耗用的企业，则需要用领退料与余料调整形成适合自身配置的口径。</p>
+<h3 id="工时冲正要保留原记录的关联">工时冲正要保留原记录的关联</h3>
+<p>正常工时最初上报 21 人时，经核对多记了 1 人时，以关联冲正记录减少 1 人时；返工另用 2 人时。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>记录</th><th>数量</th><th>归属与关联</th></tr></thead><tbody><tr><td>TIME-01</td><td>21 人时</td><td>正常生产原记录</td></tr><tr><td>TIME-02</td><td>2 人时</td><td>返工单 RW-C100</td></tr><tr><td>TIME-03</td><td>−1 人时</td><td>冲正 TIME-01，归属正常生产</td></tr><tr><td>净工时</td><td>22 人时</td><td>正常 20，返工 2</td></tr></tbody></table>
+<p>人工金额为 <code>22 × 55 = 1210</code> 元。冲正记录保留原因、审批和原始记录 ID，不把旧记录直接删除。若目标系统采用整笔冲销再重报，接口应转换为等价的业务记录，并保存对应关系。</p>
+<p>人时与机时也要分开。一名员工同时照看两台设备时，设备各自运行一小时，不代表员工发生了两个人时；多人共同作业时则需要按实际人员投入计量。本文两种计量已经分别核实，不能相互代替。</p>
+<h3 id="直接计量和分摊使用不同依据">直接计量和分摊使用不同依据</h3>
+<p>直接能源使用一只在本次计量窗口内仅覆盖该工单的电表，起读 1000 kWh，止读 1120 kWh，得到 120 kWh。按 RATE-02 计价为 <code>120 × 0.90 = 108</code> 元。其间 20 kWh 通过对齐工单与返工时间窗口的计量记录归属于返工，其余 100 kWh 为正常生产。</p>
+<p>若一只表同时覆盖多张工单，必须另有分配依据。缺少这个依据时，只能报告区域能耗与待分配量，不能把区域总表差值全部记给某张工单。表计复位、倍率、跨窗口和数据缺口也需要在计算前核对，相关边界可参看<a href="/manufacturing/tooling-metrology-utilities-energy/">能源与资源专题</a>。</p>
+<p>本次制造费用池 <code>POOL-01</code> 为 5,500 元，覆盖同一分析窗口和资源范围；已核对的总分摊基础为 100 机时。本工单占 12 机时，其中正常生产 11、返工 1，其他工单共 88 机时。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>分摊费率 = 5500 / 100 = 55 元/机时</span></span>
+<span class="line"><span>本工单分摊 = 12 × 55 = 660 元</span></span>
+<span class="line"><span>其他工单分摊 = 88 × 55 = 4840 元</span></span>
+<span class="line"><span>分摊核对 = 660 + 4840 = 5500 元</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>这是一种明确约定的教学分摊规则。费用池范围、分配基础及闲置产能等处理应按企业批准政策确定；本样本不能直接替代企业财务核算规则。分母数据不完整时，费率应标记待确认，不能把暂时读到的 12 机时当成总分母。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>从原始执行记录算到工单成本</strong><a href="/manufacturing/maps/order-cost-lineage.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/order-cost-lineage.html" title="材料、工时、计量和制造费用经受控计价汇总为工单成本的动态数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>四项管理分析样本。原始数量、计价版本、费用池和计划基准分别输入计算，点击节点可查看关联路径并切换动态播放。</figcaption>
+</figure>
+<h2 id="把增加的-664-元拆到可复算的因素">把增加的 664 元拆到可复算的因素</h2>
+<p>在同一产出和同一成本范围下，实际口径合计为 4,244 元。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>成本项</th><th>实际数量 × 计价</th><th>实际金额</th><th>计划金额</th><th>差额</th></tr></thead><tbody><tr><td>材料</td><td>206 × 11</td><td>2,266 元</td><td>2,000 元</td><td>+266 元</td></tr><tr><td>人工</td><td>22 × 55</td><td>1,210 元</td><td>1,000 元</td><td>+210 元</td></tr><tr><td>制造费用</td><td>12 × 55</td><td>660 元</td><td>500 元</td><td>+160 元</td></tr><tr><td>直接能源</td><td>120 × 0.90</td><td>108 元</td><td>80 元</td><td>+28 元</td></tr><tr><td>合计</td><td>四项管理口径</td><td>4,244 元</td><td>3,580 元</td><td>+664 元</td></tr></tbody></table>
+<p>本篇选择“先按计划价解释数量变化，再按实际数量解释价格变化”的分解顺序：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>数量影响 = (实际数量 − 计划数量) × 计划单价</span></span>
+<span class="line"><span>价格或费率影响 = 实际数量 × (实际单价 − 计划单价)</span></span>
+<span class="line"><span>两项相加 = 实际金额 − 计划金额</span></span>
+<span class="line"><span></span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>成本项</th><th>数量影响</th><th>价格或费率影响</th><th>核对差额</th></tr></thead><tbody><tr><td>材料</td><td>(206 − 200) × 10 = 60</td><td>206 × (11 − 10) = 206</td><td>266 元</td></tr><tr><td>人工</td><td>(22 − 20) × 50 = 100</td><td>22 × (55 − 50) = 110</td><td>210 元</td></tr><tr><td>制造费用</td><td>(12 − 10) × 50 = 100</td><td>12 × (55 − 50) = 60</td><td>160 元</td></tr><tr><td>直接能源</td><td>(120 − 100) × 0.80 = 16</td><td>120 × (0.90 − 0.80) = 12</td><td>28 元</td></tr><tr><td>合计</td><td>276 元</td><td>388 元</td><td>664 元</td></tr></tbody></table>
+<p>若采用另一种分解顺序，交叉项会分到另一类，分类金额也会变化。分析报告应保留算法版本，不能把不同口径的“价格差异”直接放在同一列比较。这里的四类管理差额也不直接对应 ERP 中的标准成本差异科目。</p>
+<h3 id="返工成本是另一种分类不能再叠加">返工成本是另一种分类，不能再叠加</h3>
+<p>返工单 RW-C100 关联补换材料 6 件、人工 2 人时、设备 1 机时和直接能源 20 kWh。按本次实际计价，返工增量成本为：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>补换材料 6 × 11 + 人工 2 × 55 + 分摊费用 1 × 55 + 能源 20 × 0.90</span></span>
+<span class="line"><span>= 66 + 110 + 55 + 18</span></span>
+<span class="line"><span>= 249 元</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>249 元已经包含在 4,244 元中，是按返工原因从原明细筛出的子集。它包含分摊金额，也不表示企业会因避免这次返工而立即减少同额现金支出。若要评估可避免成本，还要确认哪些费用随作业变化。</p>
+<p>6 件损坏支架的 66 元可以在损失分析中单列展示，但同样已在 206 件耗用成本里。把“材料耗用”“报废损失”和“返工补料”三张报表的总额直接相加，会重复计算。</p>
+<p>机时数量多出 2 小时，其中只有 1 小时有返工归因。剩余正常生产机时增加，以及费率变化，还需要沿设备记录、费用池与计价版本继续解释。不能因为发现了返工单，就把整个 664 元差异都归给返工。</p>
+<h2 id="成本快照还要和-erp-的目标记录对账">成本快照还要和 ERP 的目标记录对账</h2>
+<p>每一条分析明细建议保留工厂、工单、成本项、数量单位、业务日期、来源事务 ID、原记录与冲正关系、计价版本、分摊批次以及快照版本。ERP 回执再补充目标事务号、凭证或日志引用、金额和处理状态。</p>
+<p>例如材料的 2,266 元能够回到 MES-CONS-01、MES-CONS-02 和 RATE-02；制造费用的 660 元能够回到本工单的 12 机时、POOL-01 的 5,500 元以及全部受益对象的 100 机时。只挂一张工单号，仍然不足以解释具体金额。</p>
+<p>Microsoft 的生产过账文档分别讨论材料耗用、时间耗用、完工报告和订单结束，并说明标准成本方法会影响最终交易及差异处理。因此完工回执、订单结算与分析金额之间，需要按实际配置建立桥接关系。<a href="https://learn.microsoft.com/en-us/dynamics365/finance/general-ledger/production-posting">生产过账说明</a></p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>成本快照与过账回执怎样核对</strong><a href="/manufacturing/maps/order-cost-reconciliation.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/order-cost-reconciliation.html" title="成本快照经业务审核连接 ERP 执行、调整和双向对账的动态数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>接口设计示意。分析完成、审核批准和目标过账分别保留状态；实际项目按成本方法及权限决定是否生成相应指令。</figcaption>
+</figure>
+<p>一条来源事务可能拆成多条财务记录，多条耗用也可能汇总为一条目标记录。桥接表要保存来源集合、目标集合、币种、数量与金额口径，并标记舍入或调整原因。核对时先按成本项及币种汇总，再查未匹配明细。</p>
+<h3 id="迟到记录产生新版本不抹掉旧解释">迟到记录产生新版本，不抹掉旧解释</h3>
+<p>假设快照 COST-v1 已形成 4,244 元，随后补到一笔确属本工单的正常人工 1 人时。若 RATE-02 仍适用，且本次修订不影响机时、能源和费用池，COST-v2 增加 55 元，变为 4,299 元。两个版本保留同一业务截止范围，注明新记录的发生时间、接收时间和修订原因。</p>
+<p>目标 ERP 是否允许追加，仍要看工单状态和业务期间。已关闭期间或已结束工单进入授权调整流程，不由接口自动把日期改为今天。网络超时则先按幂等键查询目标事务，不能简单重发一笔新的成本。</p>
+<h3 id="有在制品时不能直接除以完工数">有在制品时不能直接除以完工数</h3>
+<p>本样本没有期末在制，4,244 元除以 100 得到的 42.44 元，只是四项选定成本的单位分析值。它不等于完整产品单位成本。</p>
+<p>如果截止时点只有 80 件完工、20 件仍在制，应先按批准方法确定材料和加工费用的完工与在制归属。不能把整张工单累计耗用全部除以 80，再把剩下 20 件当成零成本。正常与异常损失、报废回收或残值等处理也需要单独确认，本文不从简化样本推导这些规则。</p>
+<h2 id="用来源明细验收成本核对接口">用来源明细验收成本核对接口</h2>
+<p>可下载<a href="/manufacturing/samples/production-order-cost.json">工单成本核对 JSON 样本</a>，其中包含数量记录、冲正、分析费率、费用池、返工分类及预期结果。金额可以按相同公式重新计算，示例未包含真实财务数据。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>独立验收变化</th><th>应得到的结果</th></tr></thead><tbody><tr><td>完整基准样本</td><td>四项 4,244 元，对比 BASE-01 增加 664 元</td></tr><tr><td>用配送 212 件替代实际耗用</td><td>检出未扣除退回 4 件和线边余料 2 件，拒绝直接作为耗用数量</td></tr><tr><td>TIME-03 冲正尚未到达</td><td>显示正常工时待核对；若展示暂算数，标明 23 人时及暂算状态，不冒充完整结果</td></tr><tr><td>重复上传 MES-CONS-02</td><td>材料仍为 206 件，不增加到 212 件</td></tr><tr><td>查询 RW-C100 成本</td><td>返回 249 元子集，总成本仍为 4,244 元</td></tr><tr><td>其他工单的 88 机时来源缺失</td><td>分摊分母不完整，不能把整个 5,500 元归给本工单</td></tr><tr><td>费用池发现含有已单列的直接能源</td><td>报告费用范围重叠，核对池构成后重新计算</td></tr><tr><td>只修改材料分析价为 12 元/件</td><td>数量仍为 206 件，四项变为 4,450 元，保留新计价版本</td></tr><tr><td>追加 1 人时，其他依据不变</td><td>新快照 4,299 元，旧快照继续可查</td></tr><tr><td>ERP 执行超时但已成功过账</td><td>根据幂等键取得原事务回执，不再生成第二笔</td></tr></tbody></table>
+<p>检查缺失记录时，需要利用来源水位、待传队列或现场对账发现差异。单凭现有明细无法证明没有迟报。报告可以保留暂算结果，但要把未确认范围和计算时间一起给出。</p>
+<p>这次样本将 206 件耗用、22 人时、12 机时和 120 kWh 接到了同一份四项成本明细。下一篇进入 M07 与 M09 的交界，拆开现场点位、设备状态和业务事件，核对这些执行数量如何从采集端得到可靠的时间与质量信息。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 

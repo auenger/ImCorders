@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "从原始执行记录算到工单成本",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-order-cost-lineage-20261015-134414/order-cost-lineage.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "业务来源"
+    },
+    {
+      "label": "数量核对"
+    },
+    {
+      "label": "受控计价"
+    },
+    {
+      "label": "成本汇总"
+    },
+    {
+      "label": "差异解释"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "material",
+      "label": "领退与耗用",
+      "sublabel": "配送 212 / 耗用 206",
+      "stage": 0,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "labor",
+      "label": "工时记录",
+      "sublabel": "21 + 2 − 1 小时",
+      "stage": 0,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "energy",
+      "label": "计量与机时",
+      "sublabel": "120 kWh / 12 小时",
+      "stage": 0,
+      "row": 4,
+      "type": "database"
+    },
+    {
+      "id": "normalize",
+      "label": "数量归一",
+      "sublabel": "单位 去重 冲正",
+      "stage": 1,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "rates",
+      "label": "计价版本",
+      "sublabel": "材料 人工 能源",
+      "stage": 2,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "pool",
+      "label": "制造费用分摊",
+      "sublabel": "5500 元 / 100 机时",
+      "stage": 2,
+      "row": 4,
+      "type": "database"
+    },
+    {
+      "id": "value",
+      "label": "成本计算",
+      "sublabel": "数量乘价与分摊",
+      "stage": 2,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "total",
+      "label": "工单明细",
+      "sublabel": "四项合计 4244 元",
+      "stage": 3,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "baseline",
+      "label": "计划基准",
+      "sublabel": "同产出 3580 元",
+      "stage": 3,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "variance",
+      "label": "差异分解",
+      "sublabel": "合计增加 664 元",
+      "stage": 4,
+      "row": 0,
+      "type": "backend"
+    }
+  ],
+  "flows": [
+    {
+      "id": "material-normalize",
+      "from": "material",
+      "to": "normalize",
+      "label": "耗用与余料"
+    },
+    {
+      "id": "labor-normalize",
+      "from": "labor",
+      "to": "normalize",
+      "label": "含冲正工时"
+    },
+    {
+      "id": "energy-normalize",
+      "from": "energy",
+      "to": "normalize",
+      "label": "计量与机时"
+    },
+    {
+      "id": "normalize-value",
+      "from": "normalize",
+      "to": "value",
+      "label": "净执行数量"
+    },
+    {
+      "id": "rates-value",
+      "from": "rates",
+      "to": "value",
+      "label": "计价依据",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "pool-value",
+      "from": "pool",
+      "to": "value",
+      "label": "分摊规则",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "value-total",
+      "from": "value",
+      "to": "total",
+      "label": "逐项金额",
+      "variant": "emphasis"
+    },
+    {
+      "id": "baseline-variance",
+      "from": "baseline",
+      "to": "variance",
+      "label": "冻结基准"
+    },
+    {
+      "id": "total-variance",
+      "from": "total",
+      "to": "variance",
+      "label": "实际口径"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "四项管理分析",
+      "items": [
+        "材料 2266、人工 1210、制造费用 660、直接能源 108 元。",
+        "仅覆盖选定四项；无期末在制，未直接推导财务入库价值。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "避免重复计价",
+      "items": [
+        "线边配送与实际耗用不能各记一次材料成本。",
+        "制造费用池不含已单列的直接人工和直接能源。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "每行都有出处",
+      "items": [
+        "保留原始事务、冲正关联、单位、计价版本与分摊批次。",
+        "返工成本 249 元是四项明细的子集，不能再次加到总额。"
+      ]
+    }
+  ]
+}
