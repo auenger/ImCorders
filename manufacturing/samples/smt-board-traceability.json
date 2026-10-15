@@ -1,0 +1,4410 @@
+{
+  "schema_version": 1,
+  "illustrative": true,
+  "order": "MO-SMT-100",
+  "product": "CTRL-C",
+  "assumptions": [
+    "四联拼板，全部子板有效，仅展开顶面 U7",
+    "两卷均无质量异常，P013 因谱系不完整挂起",
+    "SPI 及其他前序要求已满足，未在尝试列表逐项展开",
+    "挂起检查位于最终流转关口，此前允许受控测试",
+    "所有板均未发运，检测尝试仅表示本例结果，不含完整量测日志"
+  ],
+  "release_package": {
+    "bom": "BOM-C",
+    "route": "ROUTE-C",
+    "placement_program": "PLACE-C.3",
+    "machine": "M1",
+    "feeder": "F17",
+    "slot": "S17",
+    "material": "IC-7"
+  },
+  "reels": [
+    {
+      "reel": "R-A",
+      "manufacturer_lot": "LOT-A",
+      "material": "IC-7"
+    },
+    {
+      "reel": "R-B",
+      "manufacturer_lot": "LOT-B",
+      "material": "IC-7"
+    }
+  ],
+  "panels": [
+    {
+      "panel_id": "P001",
+      "boards": [
+        "P001-1",
+        "P001-2",
+        "P001-3",
+        "P001-4"
+      ]
+    },
+    {
+      "panel_id": "P002",
+      "boards": [
+        "P002-1",
+        "P002-2",
+        "P002-3",
+        "P002-4"
+      ]
+    },
+    {
+      "panel_id": "P003",
+      "boards": [
+        "P003-1",
+        "P003-2",
+        "P003-3",
+        "P003-4"
+      ]
+    },
+    {
+      "panel_id": "P004",
+      "boards": [
+        "P004-1",
+        "P004-2",
+        "P004-3",
+        "P004-4"
+      ]
+    },
+    {
+      "panel_id": "P005",
+      "boards": [
+        "P005-1",
+        "P005-2",
+        "P005-3",
+        "P005-4"
+      ]
+    },
+    {
+      "panel_id": "P006",
+      "boards": [
+        "P006-1",
+        "P006-2",
+        "P006-3",
+        "P006-4"
+      ]
+    },
+    {
+      "panel_id": "P007",
+      "boards": [
+        "P007-1",
+        "P007-2",
+        "P007-3",
+        "P007-4"
+      ]
+    },
+    {
+      "panel_id": "P008",
+      "boards": [
+        "P008-1",
+        "P008-2",
+        "P008-3",
+        "P008-4"
+      ]
+    },
+    {
+      "panel_id": "P009",
+      "boards": [
+        "P009-1",
+        "P009-2",
+        "P009-3",
+        "P009-4"
+      ]
+    },
+    {
+      "panel_id": "P010",
+      "boards": [
+        "P010-1",
+        "P010-2",
+        "P010-3",
+        "P010-4"
+      ]
+    },
+    {
+      "panel_id": "P011",
+      "boards": [
+        "P011-1",
+        "P011-2",
+        "P011-3",
+        "P011-4"
+      ]
+    },
+    {
+      "panel_id": "P012",
+      "boards": [
+        "P012-1",
+        "P012-2",
+        "P012-3",
+        "P012-4"
+      ]
+    },
+    {
+      "panel_id": "P013",
+      "boards": [
+        "P013-1",
+        "P013-2",
+        "P013-3",
+        "P013-4"
+      ]
+    },
+    {
+      "panel_id": "P014",
+      "boards": [
+        "P014-1",
+        "P014-2",
+        "P014-3",
+        "P014-4"
+      ]
+    },
+    {
+      "panel_id": "P015",
+      "boards": [
+        "P015-1",
+        "P015-2",
+        "P015-3",
+        "P015-4"
+      ]
+    },
+    {
+      "panel_id": "P016",
+      "boards": [
+        "P016-1",
+        "P016-2",
+        "P016-3",
+        "P016-4"
+      ]
+    },
+    {
+      "panel_id": "P017",
+      "boards": [
+        "P017-1",
+        "P017-2",
+        "P017-3",
+        "P017-4"
+      ]
+    },
+    {
+      "panel_id": "P018",
+      "boards": [
+        "P018-1",
+        "P018-2",
+        "P018-3",
+        "P018-4"
+      ]
+    },
+    {
+      "panel_id": "P019",
+      "boards": [
+        "P019-1",
+        "P019-2",
+        "P019-3",
+        "P019-4"
+      ]
+    },
+    {
+      "panel_id": "P020",
+      "boards": [
+        "P020-1",
+        "P020-2",
+        "P020-3",
+        "P020-4"
+      ]
+    },
+    {
+      "panel_id": "P021",
+      "boards": [
+        "P021-1",
+        "P021-2",
+        "P021-3",
+        "P021-4"
+      ]
+    },
+    {
+      "panel_id": "P022",
+      "boards": [
+        "P022-1",
+        "P022-2",
+        "P022-3",
+        "P022-4"
+      ]
+    },
+    {
+      "panel_id": "P023",
+      "boards": [
+        "P023-1",
+        "P023-2",
+        "P023-3",
+        "P023-4"
+      ]
+    },
+    {
+      "panel_id": "P024",
+      "boards": [
+        "P024-1",
+        "P024-2",
+        "P024-3",
+        "P024-4"
+      ]
+    },
+    {
+      "panel_id": "P025",
+      "boards": [
+        "P025-1",
+        "P025-2",
+        "P025-3",
+        "P025-4"
+      ]
+    }
+  ],
+  "boards": [
+    {
+      "board": "P001-1",
+      "panel": "P001",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P001-1"
+    },
+    {
+      "board": "P001-2",
+      "panel": "P001",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P001-2"
+    },
+    {
+      "board": "P001-3",
+      "panel": "P001",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P001-3"
+    },
+    {
+      "board": "P001-4",
+      "panel": "P001",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P001-4"
+    },
+    {
+      "board": "P002-1",
+      "panel": "P002",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P002-1"
+    },
+    {
+      "board": "P002-2",
+      "panel": "P002",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P002-2"
+    },
+    {
+      "board": "P002-3",
+      "panel": "P002",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P002-3"
+    },
+    {
+      "board": "P002-4",
+      "panel": "P002",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P002-4"
+    },
+    {
+      "board": "P003-1",
+      "panel": "P003",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P003-1"
+    },
+    {
+      "board": "P003-2",
+      "panel": "P003",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P003-2"
+    },
+    {
+      "board": "P003-3",
+      "panel": "P003",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P003-3"
+    },
+    {
+      "board": "P003-4",
+      "panel": "P003",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P003-4"
+    },
+    {
+      "board": "P004-1",
+      "panel": "P004",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P004-1"
+    },
+    {
+      "board": "P004-2",
+      "panel": "P004",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P004-2"
+    },
+    {
+      "board": "P004-3",
+      "panel": "P004",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P004-3"
+    },
+    {
+      "board": "P004-4",
+      "panel": "P004",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P004-4"
+    },
+    {
+      "board": "P005-1",
+      "panel": "P005",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P005-1"
+    },
+    {
+      "board": "P005-2",
+      "panel": "P005",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P005-2"
+    },
+    {
+      "board": "P005-3",
+      "panel": "P005",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P005-3"
+    },
+    {
+      "board": "P005-4",
+      "panel": "P005",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P005-4"
+    },
+    {
+      "board": "P006-1",
+      "panel": "P006",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P006-1"
+    },
+    {
+      "board": "P006-2",
+      "panel": "P006",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P006-2"
+    },
+    {
+      "board": "P006-3",
+      "panel": "P006",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P006-3"
+    },
+    {
+      "board": "P006-4",
+      "panel": "P006",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P006-4"
+    },
+    {
+      "board": "P007-1",
+      "panel": "P007",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P007-1"
+    },
+    {
+      "board": "P007-2",
+      "panel": "P007",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P007-2"
+    },
+    {
+      "board": "P007-3",
+      "panel": "P007",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P007-3"
+    },
+    {
+      "board": "P007-4",
+      "panel": "P007",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P007-4"
+    },
+    {
+      "board": "P008-1",
+      "panel": "P008",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P008-1"
+    },
+    {
+      "board": "P008-2",
+      "panel": "P008",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P008-2"
+    },
+    {
+      "board": "P008-3",
+      "panel": "P008",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P008-3"
+    },
+    {
+      "board": "P008-4",
+      "panel": "P008",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P008-4"
+    },
+    {
+      "board": "P009-1",
+      "panel": "P009",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P009-1"
+    },
+    {
+      "board": "P009-2",
+      "panel": "P009",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P009-2"
+    },
+    {
+      "board": "P009-3",
+      "panel": "P009",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P009-3"
+    },
+    {
+      "board": "P009-4",
+      "panel": "P009",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P009-4"
+    },
+    {
+      "board": "P010-1",
+      "panel": "P010",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P010-1"
+    },
+    {
+      "board": "P010-2",
+      "panel": "P010",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P010-2"
+    },
+    {
+      "board": "P010-3",
+      "panel": "P010",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P010-3"
+    },
+    {
+      "board": "P010-4",
+      "panel": "P010",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P010-4"
+    },
+    {
+      "board": "P011-1",
+      "panel": "P011",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P011-1"
+    },
+    {
+      "board": "P011-2",
+      "panel": "P011",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P011-2"
+    },
+    {
+      "board": "P011-3",
+      "panel": "P011",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P011-3"
+    },
+    {
+      "board": "P011-4",
+      "panel": "P011",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P011-4"
+    },
+    {
+      "board": "P012-1",
+      "panel": "P012",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P012-1"
+    },
+    {
+      "board": "P012-2",
+      "panel": "P012",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P012-2"
+    },
+    {
+      "board": "P012-3",
+      "panel": "P012",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P012-3"
+    },
+    {
+      "board": "P012-4",
+      "panel": "P012",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P012-4"
+    },
+    {
+      "board": "P013-1",
+      "panel": "P013",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A",
+        "R-B"
+      ],
+      "certainty": "boundary_unknown",
+      "current_state": "lineage_hold",
+      "release_receipt": null
+    },
+    {
+      "board": "P013-2",
+      "panel": "P013",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A",
+        "R-B"
+      ],
+      "certainty": "boundary_unknown",
+      "current_state": "lineage_hold",
+      "release_receipt": null
+    },
+    {
+      "board": "P013-3",
+      "panel": "P013",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A",
+        "R-B"
+      ],
+      "certainty": "boundary_unknown",
+      "current_state": "lineage_hold",
+      "release_receipt": null
+    },
+    {
+      "board": "P013-4",
+      "panel": "P013",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-A",
+        "R-B"
+      ],
+      "certainty": "boundary_unknown",
+      "current_state": "lineage_hold",
+      "release_receipt": null
+    },
+    {
+      "board": "P014-1",
+      "panel": "P014",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P014-1"
+    },
+    {
+      "board": "P014-2",
+      "panel": "P014",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P014-2"
+    },
+    {
+      "board": "P014-3",
+      "panel": "P014",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P014-3"
+    },
+    {
+      "board": "P014-4",
+      "panel": "P014",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P014-4"
+    },
+    {
+      "board": "P015-1",
+      "panel": "P015",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P015-1"
+    },
+    {
+      "board": "P015-2",
+      "panel": "P015",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P015-2"
+    },
+    {
+      "board": "P015-3",
+      "panel": "P015",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P015-3"
+    },
+    {
+      "board": "P015-4",
+      "panel": "P015",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P015-4"
+    },
+    {
+      "board": "P016-1",
+      "panel": "P016",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P016-1"
+    },
+    {
+      "board": "P016-2",
+      "panel": "P016",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P016-2"
+    },
+    {
+      "board": "P016-3",
+      "panel": "P016",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P016-3"
+    },
+    {
+      "board": "P016-4",
+      "panel": "P016",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P016-4"
+    },
+    {
+      "board": "P017-1",
+      "panel": "P017",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P017-1"
+    },
+    {
+      "board": "P017-2",
+      "panel": "P017",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P017-2"
+    },
+    {
+      "board": "P017-3",
+      "panel": "P017",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P017-3"
+    },
+    {
+      "board": "P017-4",
+      "panel": "P017",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P017-4"
+    },
+    {
+      "board": "P018-1",
+      "panel": "P018",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P018-1"
+    },
+    {
+      "board": "P018-2",
+      "panel": "P018",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P018-2"
+    },
+    {
+      "board": "P018-3",
+      "panel": "P018",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P018-3"
+    },
+    {
+      "board": "P018-4",
+      "panel": "P018",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "ict_pending",
+      "release_receipt": null
+    },
+    {
+      "board": "P019-1",
+      "panel": "P019",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P019-1"
+    },
+    {
+      "board": "P019-2",
+      "panel": "P019",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P019-2"
+    },
+    {
+      "board": "P019-3",
+      "panel": "P019",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P019-3"
+    },
+    {
+      "board": "P019-4",
+      "panel": "P019",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P019-4"
+    },
+    {
+      "board": "P020-1",
+      "panel": "P020",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "fct_pending",
+      "release_receipt": null
+    },
+    {
+      "board": "P020-2",
+      "panel": "P020",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P020-2"
+    },
+    {
+      "board": "P020-3",
+      "panel": "P020",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P020-3"
+    },
+    {
+      "board": "P020-4",
+      "panel": "P020",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P020-4"
+    },
+    {
+      "board": "P021-1",
+      "panel": "P021",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P021-1"
+    },
+    {
+      "board": "P021-2",
+      "panel": "P021",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P021-2"
+    },
+    {
+      "board": "P021-3",
+      "panel": "P021",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P021-3"
+    },
+    {
+      "board": "P021-4",
+      "panel": "P021",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P021-4"
+    },
+    {
+      "board": "P022-1",
+      "panel": "P022",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "aoi_repair_pending",
+      "release_receipt": null
+    },
+    {
+      "board": "P022-2",
+      "panel": "P022",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P022-2"
+    },
+    {
+      "board": "P022-3",
+      "panel": "P022",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P022-3"
+    },
+    {
+      "board": "P022-4",
+      "panel": "P022",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P022-4"
+    },
+    {
+      "board": "P023-1",
+      "panel": "P023",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P023-1"
+    },
+    {
+      "board": "P023-2",
+      "panel": "P023",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P023-2"
+    },
+    {
+      "board": "P023-3",
+      "panel": "P023",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P023-3"
+    },
+    {
+      "board": "P023-4",
+      "panel": "P023",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P023-4"
+    },
+    {
+      "board": "P024-1",
+      "panel": "P024",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P024-1"
+    },
+    {
+      "board": "P024-2",
+      "panel": "P024",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P024-2"
+    },
+    {
+      "board": "P024-3",
+      "panel": "P024",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P024-3"
+    },
+    {
+      "board": "P024-4",
+      "panel": "P024",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P024-4"
+    },
+    {
+      "board": "P025-1",
+      "panel": "P025",
+      "position": 1,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P025-1"
+    },
+    {
+      "board": "P025-2",
+      "panel": "P025",
+      "position": 2,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P025-2"
+    },
+    {
+      "board": "P025-3",
+      "panel": "P025",
+      "position": 3,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P025-3"
+    },
+    {
+      "board": "P025-4",
+      "panel": "P025",
+      "position": 4,
+      "side": "TOP",
+      "refdes": "U7",
+      "program": "PLACE-C.3",
+      "candidate_reels": [
+        "R-B"
+      ],
+      "certainty": "exact",
+      "current_state": "released",
+      "release_receipt": "REL-P025-4"
+    }
+  ],
+  "repairs": [
+    {
+      "id": "RW-P006-2",
+      "board": "P006-2",
+      "refdes": "R12",
+      "action": "焊点维修",
+      "U7_changed": false
+    },
+    {
+      "id": "RW-P013-3",
+      "board": "P013-3",
+      "refdes": "R18",
+      "action": "焊点维修",
+      "U7_changed": false
+    }
+  ],
+  "test_attempts": [
+    {
+      "event_id": "aoi-first-P001-1",
+      "attempt_id": "aoi-first-P001-1",
+      "board": "P001-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P001-1",
+      "attempt_id": "ict-first-P001-1",
+      "board": "P001-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P001-1",
+      "attempt_id": "fct-first-P001-1",
+      "board": "P001-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P001-2",
+      "attempt_id": "aoi-first-P001-2",
+      "board": "P001-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P001-2",
+      "attempt_id": "ict-first-P001-2",
+      "board": "P001-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P001-2",
+      "attempt_id": "fct-first-P001-2",
+      "board": "P001-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P001-3",
+      "attempt_id": "aoi-first-P001-3",
+      "board": "P001-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P001-3",
+      "attempt_id": "ict-first-P001-3",
+      "board": "P001-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P001-3",
+      "attempt_id": "fct-first-P001-3",
+      "board": "P001-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P001-4",
+      "attempt_id": "aoi-first-P001-4",
+      "board": "P001-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P001-4",
+      "attempt_id": "ict-first-P001-4",
+      "board": "P001-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P001-4",
+      "attempt_id": "fct-first-P001-4",
+      "board": "P001-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P002-1",
+      "attempt_id": "aoi-first-P002-1",
+      "board": "P002-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P002-1",
+      "attempt_id": "ict-first-P002-1",
+      "board": "P002-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P002-1",
+      "attempt_id": "fct-first-P002-1",
+      "board": "P002-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P002-2",
+      "attempt_id": "aoi-first-P002-2",
+      "board": "P002-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P002-2",
+      "attempt_id": "ict-first-P002-2",
+      "board": "P002-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P002-2",
+      "attempt_id": "fct-first-P002-2",
+      "board": "P002-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P002-3",
+      "attempt_id": "aoi-first-P002-3",
+      "board": "P002-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P002-3",
+      "attempt_id": "ict-first-P002-3",
+      "board": "P002-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P002-3",
+      "attempt_id": "fct-first-P002-3",
+      "board": "P002-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P002-4",
+      "attempt_id": "aoi-first-P002-4",
+      "board": "P002-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P002-4",
+      "attempt_id": "ict-first-P002-4",
+      "board": "P002-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P002-4",
+      "attempt_id": "fct-first-P002-4",
+      "board": "P002-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P003-1",
+      "attempt_id": "aoi-first-P003-1",
+      "board": "P003-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P003-1",
+      "attempt_id": "ict-first-P003-1",
+      "board": "P003-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P003-1",
+      "attempt_id": "fct-first-P003-1",
+      "board": "P003-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P003-2",
+      "attempt_id": "aoi-first-P003-2",
+      "board": "P003-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P003-2",
+      "attempt_id": "ict-first-P003-2",
+      "board": "P003-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P003-2",
+      "attempt_id": "fct-first-P003-2",
+      "board": "P003-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P003-3",
+      "attempt_id": "aoi-first-P003-3",
+      "board": "P003-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P003-3",
+      "attempt_id": "ict-first-P003-3",
+      "board": "P003-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P003-3",
+      "attempt_id": "fct-first-P003-3",
+      "board": "P003-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P003-4",
+      "attempt_id": "aoi-first-P003-4",
+      "board": "P003-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P003-4",
+      "attempt_id": "ict-first-P003-4",
+      "board": "P003-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P003-4",
+      "attempt_id": "fct-first-P003-4",
+      "board": "P003-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P004-1",
+      "attempt_id": "aoi-first-P004-1",
+      "board": "P004-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P004-1",
+      "attempt_id": "ict-first-P004-1",
+      "board": "P004-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P004-1",
+      "attempt_id": "fct-first-P004-1",
+      "board": "P004-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P004-2",
+      "attempt_id": "aoi-first-P004-2",
+      "board": "P004-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P004-2",
+      "attempt_id": "ict-first-P004-2",
+      "board": "P004-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P004-2",
+      "attempt_id": "fct-first-P004-2",
+      "board": "P004-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P004-3",
+      "attempt_id": "aoi-first-P004-3",
+      "board": "P004-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P004-3",
+      "attempt_id": "ict-first-P004-3",
+      "board": "P004-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P004-3",
+      "attempt_id": "fct-first-P004-3",
+      "board": "P004-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P004-4",
+      "attempt_id": "aoi-first-P004-4",
+      "board": "P004-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P004-4",
+      "attempt_id": "ict-first-P004-4",
+      "board": "P004-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P004-4",
+      "attempt_id": "fct-first-P004-4",
+      "board": "P004-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P005-1",
+      "attempt_id": "aoi-first-P005-1",
+      "board": "P005-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P005-1",
+      "attempt_id": "ict-first-P005-1",
+      "board": "P005-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P005-1",
+      "attempt_id": "fct-first-P005-1",
+      "board": "P005-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P005-2",
+      "attempt_id": "aoi-first-P005-2",
+      "board": "P005-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P005-2",
+      "attempt_id": "ict-first-P005-2",
+      "board": "P005-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P005-2",
+      "attempt_id": "fct-first-P005-2",
+      "board": "P005-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P005-3",
+      "attempt_id": "aoi-first-P005-3",
+      "board": "P005-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P005-3",
+      "attempt_id": "ict-first-P005-3",
+      "board": "P005-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P005-3",
+      "attempt_id": "fct-first-P005-3",
+      "board": "P005-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P005-4",
+      "attempt_id": "aoi-first-P005-4",
+      "board": "P005-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P005-4",
+      "attempt_id": "ict-first-P005-4",
+      "board": "P005-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P005-4",
+      "attempt_id": "fct-first-P005-4",
+      "board": "P005-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P006-1",
+      "attempt_id": "aoi-first-P006-1",
+      "board": "P006-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P006-1",
+      "attempt_id": "ict-first-P006-1",
+      "board": "P006-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P006-1",
+      "attempt_id": "fct-first-P006-1",
+      "board": "P006-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P006-2",
+      "attempt_id": "aoi-first-P006-2",
+      "board": "P006-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "FAIL"
+    },
+    {
+      "event_id": "aoi-retest-P006-2",
+      "attempt_id": "aoi-retest-P006-2",
+      "board": "P006-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 2,
+      "result": "PASS",
+      "repair_id": "RW-P006-2"
+    },
+    {
+      "event_id": "ict-first-P006-2",
+      "attempt_id": "ict-first-P006-2",
+      "board": "P006-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P006-2",
+      "attempt_id": "fct-first-P006-2",
+      "board": "P006-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P006-3",
+      "attempt_id": "aoi-first-P006-3",
+      "board": "P006-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P006-3",
+      "attempt_id": "ict-first-P006-3",
+      "board": "P006-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P006-3",
+      "attempt_id": "fct-first-P006-3",
+      "board": "P006-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P006-4",
+      "attempt_id": "aoi-first-P006-4",
+      "board": "P006-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P006-4",
+      "attempt_id": "ict-first-P006-4",
+      "board": "P006-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P006-4",
+      "attempt_id": "fct-first-P006-4",
+      "board": "P006-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P007-1",
+      "attempt_id": "aoi-first-P007-1",
+      "board": "P007-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P007-1",
+      "attempt_id": "ict-first-P007-1",
+      "board": "P007-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P007-1",
+      "attempt_id": "fct-first-P007-1",
+      "board": "P007-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P007-2",
+      "attempt_id": "aoi-first-P007-2",
+      "board": "P007-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P007-2",
+      "attempt_id": "ict-first-P007-2",
+      "board": "P007-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P007-2",
+      "attempt_id": "fct-first-P007-2",
+      "board": "P007-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P007-3",
+      "attempt_id": "aoi-first-P007-3",
+      "board": "P007-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P007-3",
+      "attempt_id": "ict-first-P007-3",
+      "board": "P007-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P007-3",
+      "attempt_id": "fct-first-P007-3",
+      "board": "P007-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P007-4",
+      "attempt_id": "aoi-first-P007-4",
+      "board": "P007-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P007-4",
+      "attempt_id": "ict-first-P007-4",
+      "board": "P007-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P007-4",
+      "attempt_id": "fct-first-P007-4",
+      "board": "P007-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P008-1",
+      "attempt_id": "aoi-first-P008-1",
+      "board": "P008-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P008-1",
+      "attempt_id": "ict-first-P008-1",
+      "board": "P008-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P008-1",
+      "attempt_id": "fct-first-P008-1",
+      "board": "P008-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P008-2",
+      "attempt_id": "aoi-first-P008-2",
+      "board": "P008-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P008-2",
+      "attempt_id": "ict-first-P008-2",
+      "board": "P008-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P008-2",
+      "attempt_id": "fct-first-P008-2",
+      "board": "P008-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P008-3",
+      "attempt_id": "aoi-first-P008-3",
+      "board": "P008-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P008-3",
+      "attempt_id": "ict-first-P008-3",
+      "board": "P008-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P008-3",
+      "attempt_id": "fct-first-P008-3",
+      "board": "P008-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P008-4",
+      "attempt_id": "aoi-first-P008-4",
+      "board": "P008-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P008-4",
+      "attempt_id": "ict-first-P008-4",
+      "board": "P008-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P008-4",
+      "attempt_id": "fct-first-P008-4",
+      "board": "P008-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P009-1",
+      "attempt_id": "aoi-first-P009-1",
+      "board": "P009-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P009-1",
+      "attempt_id": "ict-first-P009-1",
+      "board": "P009-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P009-1",
+      "attempt_id": "fct-first-P009-1",
+      "board": "P009-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P009-2",
+      "attempt_id": "aoi-first-P009-2",
+      "board": "P009-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P009-2",
+      "attempt_id": "ict-first-P009-2",
+      "board": "P009-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P009-2",
+      "attempt_id": "fct-first-P009-2",
+      "board": "P009-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P009-3",
+      "attempt_id": "aoi-first-P009-3",
+      "board": "P009-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P009-3",
+      "attempt_id": "ict-first-P009-3",
+      "board": "P009-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P009-3",
+      "attempt_id": "fct-first-P009-3",
+      "board": "P009-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P009-4",
+      "attempt_id": "aoi-first-P009-4",
+      "board": "P009-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P009-4",
+      "attempt_id": "ict-first-P009-4",
+      "board": "P009-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P009-4",
+      "attempt_id": "fct-first-P009-4",
+      "board": "P009-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P010-1",
+      "attempt_id": "aoi-first-P010-1",
+      "board": "P010-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P010-1",
+      "attempt_id": "ict-first-P010-1",
+      "board": "P010-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P010-1",
+      "attempt_id": "fct-first-P010-1",
+      "board": "P010-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P010-2",
+      "attempt_id": "aoi-first-P010-2",
+      "board": "P010-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P010-2",
+      "attempt_id": "ict-first-P010-2",
+      "board": "P010-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P010-2",
+      "attempt_id": "fct-first-P010-2",
+      "board": "P010-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P010-3",
+      "attempt_id": "aoi-first-P010-3",
+      "board": "P010-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P010-3",
+      "attempt_id": "ict-first-P010-3",
+      "board": "P010-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P010-3",
+      "attempt_id": "fct-first-P010-3",
+      "board": "P010-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P010-4",
+      "attempt_id": "aoi-first-P010-4",
+      "board": "P010-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P010-4",
+      "attempt_id": "ict-first-P010-4",
+      "board": "P010-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P010-4",
+      "attempt_id": "fct-first-P010-4",
+      "board": "P010-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P011-1",
+      "attempt_id": "aoi-first-P011-1",
+      "board": "P011-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P011-1",
+      "attempt_id": "ict-first-P011-1",
+      "board": "P011-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P011-1",
+      "attempt_id": "fct-first-P011-1",
+      "board": "P011-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P011-2",
+      "attempt_id": "aoi-first-P011-2",
+      "board": "P011-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P011-2",
+      "attempt_id": "ict-first-P011-2",
+      "board": "P011-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P011-2",
+      "attempt_id": "fct-first-P011-2",
+      "board": "P011-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P011-3",
+      "attempt_id": "aoi-first-P011-3",
+      "board": "P011-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P011-3",
+      "attempt_id": "ict-first-P011-3",
+      "board": "P011-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P011-3",
+      "attempt_id": "fct-first-P011-3",
+      "board": "P011-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P011-4",
+      "attempt_id": "aoi-first-P011-4",
+      "board": "P011-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P011-4",
+      "attempt_id": "ict-first-P011-4",
+      "board": "P011-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P011-4",
+      "attempt_id": "fct-first-P011-4",
+      "board": "P011-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P012-1",
+      "attempt_id": "aoi-first-P012-1",
+      "board": "P012-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P012-1",
+      "attempt_id": "ict-first-P012-1",
+      "board": "P012-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P012-1",
+      "attempt_id": "fct-first-P012-1",
+      "board": "P012-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P012-2",
+      "attempt_id": "aoi-first-P012-2",
+      "board": "P012-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P012-2",
+      "attempt_id": "ict-first-P012-2",
+      "board": "P012-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P012-2",
+      "attempt_id": "fct-first-P012-2",
+      "board": "P012-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P012-3",
+      "attempt_id": "aoi-first-P012-3",
+      "board": "P012-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P012-3",
+      "attempt_id": "ict-first-P012-3",
+      "board": "P012-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P012-3",
+      "attempt_id": "fct-first-P012-3",
+      "board": "P012-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P012-4",
+      "attempt_id": "aoi-first-P012-4",
+      "board": "P012-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P012-4",
+      "attempt_id": "ict-first-P012-4",
+      "board": "P012-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P012-4",
+      "attempt_id": "fct-first-P012-4",
+      "board": "P012-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P013-1",
+      "attempt_id": "aoi-first-P013-1",
+      "board": "P013-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P013-1",
+      "attempt_id": "ict-first-P013-1",
+      "board": "P013-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P013-1",
+      "attempt_id": "fct-first-P013-1",
+      "board": "P013-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P013-2",
+      "attempt_id": "aoi-first-P013-2",
+      "board": "P013-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P013-2",
+      "attempt_id": "ict-first-P013-2",
+      "board": "P013-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P013-2",
+      "attempt_id": "fct-first-P013-2",
+      "board": "P013-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P013-3",
+      "attempt_id": "aoi-first-P013-3",
+      "board": "P013-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "FAIL"
+    },
+    {
+      "event_id": "aoi-retest-P013-3",
+      "attempt_id": "aoi-retest-P013-3",
+      "board": "P013-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 2,
+      "result": "PASS",
+      "repair_id": "RW-P013-3"
+    },
+    {
+      "event_id": "ict-first-P013-3",
+      "attempt_id": "ict-first-P013-3",
+      "board": "P013-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P013-3",
+      "attempt_id": "fct-first-P013-3",
+      "board": "P013-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P013-4",
+      "attempt_id": "aoi-first-P013-4",
+      "board": "P013-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P013-4",
+      "attempt_id": "ict-first-P013-4",
+      "board": "P013-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P013-4",
+      "attempt_id": "fct-first-P013-4",
+      "board": "P013-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P014-1",
+      "attempt_id": "aoi-first-P014-1",
+      "board": "P014-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P014-1",
+      "attempt_id": "ict-first-P014-1",
+      "board": "P014-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P014-1",
+      "attempt_id": "fct-first-P014-1",
+      "board": "P014-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P014-2",
+      "attempt_id": "aoi-first-P014-2",
+      "board": "P014-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P014-2",
+      "attempt_id": "ict-first-P014-2",
+      "board": "P014-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P014-2",
+      "attempt_id": "fct-first-P014-2",
+      "board": "P014-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P014-3",
+      "attempt_id": "aoi-first-P014-3",
+      "board": "P014-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P014-3",
+      "attempt_id": "ict-first-P014-3",
+      "board": "P014-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P014-3",
+      "attempt_id": "fct-first-P014-3",
+      "board": "P014-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P014-4",
+      "attempt_id": "aoi-first-P014-4",
+      "board": "P014-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P014-4",
+      "attempt_id": "ict-first-P014-4",
+      "board": "P014-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P014-4",
+      "attempt_id": "fct-first-P014-4",
+      "board": "P014-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P015-1",
+      "attempt_id": "aoi-first-P015-1",
+      "board": "P015-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P015-1",
+      "attempt_id": "ict-first-P015-1",
+      "board": "P015-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P015-1",
+      "attempt_id": "fct-first-P015-1",
+      "board": "P015-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P015-2",
+      "attempt_id": "aoi-first-P015-2",
+      "board": "P015-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P015-2",
+      "attempt_id": "ict-first-P015-2",
+      "board": "P015-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P015-2",
+      "attempt_id": "fct-first-P015-2",
+      "board": "P015-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P015-3",
+      "attempt_id": "aoi-first-P015-3",
+      "board": "P015-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P015-3",
+      "attempt_id": "ict-first-P015-3",
+      "board": "P015-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P015-3",
+      "attempt_id": "fct-first-P015-3",
+      "board": "P015-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P015-4",
+      "attempt_id": "aoi-first-P015-4",
+      "board": "P015-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P015-4",
+      "attempt_id": "ict-first-P015-4",
+      "board": "P015-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P015-4",
+      "attempt_id": "fct-first-P015-4",
+      "board": "P015-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P016-1",
+      "attempt_id": "aoi-first-P016-1",
+      "board": "P016-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P016-1",
+      "attempt_id": "ict-first-P016-1",
+      "board": "P016-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P016-1",
+      "attempt_id": "fct-first-P016-1",
+      "board": "P016-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P016-2",
+      "attempt_id": "aoi-first-P016-2",
+      "board": "P016-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P016-2",
+      "attempt_id": "ict-first-P016-2",
+      "board": "P016-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P016-2",
+      "attempt_id": "fct-first-P016-2",
+      "board": "P016-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P016-3",
+      "attempt_id": "aoi-first-P016-3",
+      "board": "P016-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P016-3",
+      "attempt_id": "ict-first-P016-3",
+      "board": "P016-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P016-3",
+      "attempt_id": "fct-first-P016-3",
+      "board": "P016-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P016-4",
+      "attempt_id": "aoi-first-P016-4",
+      "board": "P016-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P016-4",
+      "attempt_id": "ict-first-P016-4",
+      "board": "P016-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P016-4",
+      "attempt_id": "fct-first-P016-4",
+      "board": "P016-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P017-1",
+      "attempt_id": "aoi-first-P017-1",
+      "board": "P017-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P017-1",
+      "attempt_id": "ict-first-P017-1",
+      "board": "P017-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P017-1",
+      "attempt_id": "fct-first-P017-1",
+      "board": "P017-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P017-2",
+      "attempt_id": "aoi-first-P017-2",
+      "board": "P017-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P017-2",
+      "attempt_id": "ict-first-P017-2",
+      "board": "P017-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P017-2",
+      "attempt_id": "fct-first-P017-2",
+      "board": "P017-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P017-3",
+      "attempt_id": "aoi-first-P017-3",
+      "board": "P017-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P017-3",
+      "attempt_id": "ict-first-P017-3",
+      "board": "P017-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P017-3",
+      "attempt_id": "fct-first-P017-3",
+      "board": "P017-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P017-4",
+      "attempt_id": "aoi-first-P017-4",
+      "board": "P017-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P017-4",
+      "attempt_id": "ict-first-P017-4",
+      "board": "P017-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P017-4",
+      "attempt_id": "fct-first-P017-4",
+      "board": "P017-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P018-1",
+      "attempt_id": "aoi-first-P018-1",
+      "board": "P018-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P018-1",
+      "attempt_id": "ict-first-P018-1",
+      "board": "P018-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P018-1",
+      "attempt_id": "fct-first-P018-1",
+      "board": "P018-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P018-2",
+      "attempt_id": "aoi-first-P018-2",
+      "board": "P018-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P018-2",
+      "attempt_id": "ict-first-P018-2",
+      "board": "P018-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P018-2",
+      "attempt_id": "fct-first-P018-2",
+      "board": "P018-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P018-3",
+      "attempt_id": "aoi-first-P018-3",
+      "board": "P018-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P018-3",
+      "attempt_id": "ict-first-P018-3",
+      "board": "P018-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P018-3",
+      "attempt_id": "fct-first-P018-3",
+      "board": "P018-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P018-4",
+      "attempt_id": "aoi-first-P018-4",
+      "board": "P018-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P018-4",
+      "attempt_id": "ict-first-P018-4",
+      "board": "P018-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "FAIL"
+    },
+    {
+      "event_id": "aoi-first-P019-1",
+      "attempt_id": "aoi-first-P019-1",
+      "board": "P019-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P019-1",
+      "attempt_id": "ict-first-P019-1",
+      "board": "P019-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P019-1",
+      "attempt_id": "fct-first-P019-1",
+      "board": "P019-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P019-2",
+      "attempt_id": "aoi-first-P019-2",
+      "board": "P019-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P019-2",
+      "attempt_id": "ict-first-P019-2",
+      "board": "P019-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P019-2",
+      "attempt_id": "fct-first-P019-2",
+      "board": "P019-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P019-3",
+      "attempt_id": "aoi-first-P019-3",
+      "board": "P019-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P019-3",
+      "attempt_id": "ict-first-P019-3",
+      "board": "P019-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P019-3",
+      "attempt_id": "fct-first-P019-3",
+      "board": "P019-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P019-4",
+      "attempt_id": "aoi-first-P019-4",
+      "board": "P019-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P019-4",
+      "attempt_id": "ict-first-P019-4",
+      "board": "P019-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P019-4",
+      "attempt_id": "fct-first-P019-4",
+      "board": "P019-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P020-1",
+      "attempt_id": "aoi-first-P020-1",
+      "board": "P020-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P020-1",
+      "attempt_id": "ict-first-P020-1",
+      "board": "P020-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P020-1",
+      "attempt_id": "fct-first-P020-1",
+      "board": "P020-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "FAIL"
+    },
+    {
+      "event_id": "aoi-first-P020-2",
+      "attempt_id": "aoi-first-P020-2",
+      "board": "P020-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P020-2",
+      "attempt_id": "ict-first-P020-2",
+      "board": "P020-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P020-2",
+      "attempt_id": "fct-first-P020-2",
+      "board": "P020-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P020-3",
+      "attempt_id": "aoi-first-P020-3",
+      "board": "P020-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P020-3",
+      "attempt_id": "ict-first-P020-3",
+      "board": "P020-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P020-3",
+      "attempt_id": "fct-first-P020-3",
+      "board": "P020-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P020-4",
+      "attempt_id": "aoi-first-P020-4",
+      "board": "P020-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P020-4",
+      "attempt_id": "ict-first-P020-4",
+      "board": "P020-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P020-4",
+      "attempt_id": "fct-first-P020-4",
+      "board": "P020-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P021-1",
+      "attempt_id": "aoi-first-P021-1",
+      "board": "P021-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P021-1",
+      "attempt_id": "ict-first-P021-1",
+      "board": "P021-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P021-1",
+      "attempt_id": "fct-first-P021-1",
+      "board": "P021-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P021-2",
+      "attempt_id": "aoi-first-P021-2",
+      "board": "P021-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P021-2",
+      "attempt_id": "ict-first-P021-2",
+      "board": "P021-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P021-2",
+      "attempt_id": "fct-first-P021-2",
+      "board": "P021-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P021-3",
+      "attempt_id": "aoi-first-P021-3",
+      "board": "P021-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P021-3",
+      "attempt_id": "ict-first-P021-3",
+      "board": "P021-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P021-3",
+      "attempt_id": "fct-first-P021-3",
+      "board": "P021-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P021-4",
+      "attempt_id": "aoi-first-P021-4",
+      "board": "P021-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P021-4",
+      "attempt_id": "ict-first-P021-4",
+      "board": "P021-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P021-4",
+      "attempt_id": "fct-first-P021-4",
+      "board": "P021-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P022-1",
+      "attempt_id": "aoi-first-P022-1",
+      "board": "P022-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "FAIL"
+    },
+    {
+      "event_id": "aoi-first-P022-2",
+      "attempt_id": "aoi-first-P022-2",
+      "board": "P022-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P022-2",
+      "attempt_id": "ict-first-P022-2",
+      "board": "P022-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P022-2",
+      "attempt_id": "fct-first-P022-2",
+      "board": "P022-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P022-3",
+      "attempt_id": "aoi-first-P022-3",
+      "board": "P022-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P022-3",
+      "attempt_id": "ict-first-P022-3",
+      "board": "P022-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P022-3",
+      "attempt_id": "fct-first-P022-3",
+      "board": "P022-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P022-4",
+      "attempt_id": "aoi-first-P022-4",
+      "board": "P022-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P022-4",
+      "attempt_id": "ict-first-P022-4",
+      "board": "P022-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P022-4",
+      "attempt_id": "fct-first-P022-4",
+      "board": "P022-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P023-1",
+      "attempt_id": "aoi-first-P023-1",
+      "board": "P023-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P023-1",
+      "attempt_id": "ict-first-P023-1",
+      "board": "P023-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P023-1",
+      "attempt_id": "fct-first-P023-1",
+      "board": "P023-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P023-2",
+      "attempt_id": "aoi-first-P023-2",
+      "board": "P023-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P023-2",
+      "attempt_id": "ict-first-P023-2",
+      "board": "P023-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P023-2",
+      "attempt_id": "fct-first-P023-2",
+      "board": "P023-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P023-3",
+      "attempt_id": "aoi-first-P023-3",
+      "board": "P023-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P023-3",
+      "attempt_id": "ict-first-P023-3",
+      "board": "P023-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P023-3",
+      "attempt_id": "fct-first-P023-3",
+      "board": "P023-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P023-4",
+      "attempt_id": "aoi-first-P023-4",
+      "board": "P023-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P023-4",
+      "attempt_id": "ict-first-P023-4",
+      "board": "P023-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P023-4",
+      "attempt_id": "fct-first-P023-4",
+      "board": "P023-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P024-1",
+      "attempt_id": "aoi-first-P024-1",
+      "board": "P024-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P024-1",
+      "attempt_id": "ict-first-P024-1",
+      "board": "P024-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P024-1",
+      "attempt_id": "fct-first-P024-1",
+      "board": "P024-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P024-2",
+      "attempt_id": "aoi-first-P024-2",
+      "board": "P024-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P024-2",
+      "attempt_id": "ict-first-P024-2",
+      "board": "P024-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P024-2",
+      "attempt_id": "fct-first-P024-2",
+      "board": "P024-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P024-3",
+      "attempt_id": "aoi-first-P024-3",
+      "board": "P024-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P024-3",
+      "attempt_id": "ict-first-P024-3",
+      "board": "P024-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P024-3",
+      "attempt_id": "fct-first-P024-3",
+      "board": "P024-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P024-4",
+      "attempt_id": "aoi-first-P024-4",
+      "board": "P024-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P024-4",
+      "attempt_id": "ict-first-P024-4",
+      "board": "P024-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P024-4",
+      "attempt_id": "fct-first-P024-4",
+      "board": "P024-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P025-1",
+      "attempt_id": "aoi-first-P025-1",
+      "board": "P025-1",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P025-1",
+      "attempt_id": "ict-first-P025-1",
+      "board": "P025-1",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P025-1",
+      "attempt_id": "fct-first-P025-1",
+      "board": "P025-1",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P025-2",
+      "attempt_id": "aoi-first-P025-2",
+      "board": "P025-2",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P025-2",
+      "attempt_id": "ict-first-P025-2",
+      "board": "P025-2",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P025-2",
+      "attempt_id": "fct-first-P025-2",
+      "board": "P025-2",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P025-3",
+      "attempt_id": "aoi-first-P025-3",
+      "board": "P025-3",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P025-3",
+      "attempt_id": "ict-first-P025-3",
+      "board": "P025-3",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P025-3",
+      "attempt_id": "fct-first-P025-3",
+      "board": "P025-3",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "aoi-first-P025-4",
+      "attempt_id": "aoi-first-P025-4",
+      "board": "P025-4",
+      "station": "AOI",
+      "program": "AOI-C.2",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "ict-first-P025-4",
+      "attempt_id": "ict-first-P025-4",
+      "board": "P025-4",
+      "station": "ICT",
+      "program": "ICT-C.4",
+      "attempt": 1,
+      "result": "PASS"
+    },
+    {
+      "event_id": "fct-first-P025-4",
+      "attempt_id": "fct-first-P025-4",
+      "board": "P025-4",
+      "station": "FCT",
+      "program": "FCT-C.6",
+      "attempt": 1,
+      "result": "PASS"
+    }
+  ],
+  "expected": {
+    "boards": 100,
+    "reel_A_exact": 48,
+    "reel_B_exact": 48,
+    "boundary_unknown": 4,
+    "each_reel_candidates": 52,
+    "union_candidates": 100,
+    "AOI_first": {
+      "entered": 100,
+      "pass": 97,
+      "fail": 3
+    },
+    "AOI_attempts": 102,
+    "AOI_final_pass": 99,
+    "ICT_first": {
+      "entered": 99,
+      "pass": 98,
+      "fail": 1
+    },
+    "FCT_first": {
+      "entered": 98,
+      "pass": 97,
+      "fail": 1
+    },
+    "current_states": {
+      "released": 93,
+      "lineage_hold": 4,
+      "aoi_repair_pending": 1,
+      "ict_pending": 1,
+      "fct_pending": 1
+    }
+  }
+}

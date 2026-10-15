@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "从料卷与站位记录建立板级谱系",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-smt-reel-board-lineage-20261015-132858/smt-reel-board-lineage.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "受控输入"
+    },
+    {
+      "label": "执行记录"
+    },
+    {
+      "label": "身份关联"
+    },
+    {
+      "label": "谱系生成"
+    },
+    {
+      "label": "查询结果"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "release",
+      "label": "工程发布包",
+      "sublabel": "BOM 站位 程序",
+      "stage": 0,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "setup",
+      "label": "上料校验",
+      "sublabel": "批准料与实际装载",
+      "stage": 1,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "reel",
+      "label": "WMS 料卷",
+      "sublabel": "卷号 批号 质量",
+      "stage": 0,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "events",
+      "label": "设备执行记录",
+      "sublabel": "进板 贴装 接料",
+      "stage": 1,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "binding",
+      "label": "执行关联",
+      "sublabel": "板次 站位 程序",
+      "stage": 2,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "panel",
+      "label": "MES 拼板映射",
+      "sublabel": "25 拼板 / 100 单板",
+      "stage": 2,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "lineage",
+      "label": "板级谱系",
+      "sublabel": "单板 位号 来源",
+      "stage": 3,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "bounds",
+      "label": "接料边界判定",
+      "sublabel": "P013 四板待核实",
+      "stage": 3,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "answer",
+      "label": "范围查询",
+      "sublabel": "确定与可能分列",
+      "stage": 4,
+      "row": 0,
+      "type": "backend"
+    }
+  ],
+  "flows": [
+    {
+      "id": "release-setup",
+      "from": "release",
+      "to": "setup",
+      "label": "发布依据"
+    },
+    {
+      "id": "reel-setup",
+      "from": "reel",
+      "to": "setup",
+      "label": "实际料卷"
+    },
+    {
+      "id": "setup-binding",
+      "from": "setup",
+      "to": "binding",
+      "label": "校验与装载"
+    },
+    {
+      "id": "events-binding",
+      "from": "events",
+      "to": "binding",
+      "label": "实际执行"
+    },
+    {
+      "id": "panel-binding",
+      "from": "panel",
+      "to": "binding",
+      "label": "子板身份",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "binding-lineage",
+      "from": "binding",
+      "to": "lineage",
+      "label": "执行关联"
+    },
+    {
+      "id": "binding-bounds",
+      "from": "binding",
+      "to": "bounds",
+      "label": "边界证据"
+    },
+    {
+      "id": "lineage-answer",
+      "from": "lineage",
+      "to": "answer",
+      "label": "确定关系"
+    },
+    {
+      "id": "bounds-answer",
+      "from": "bounds",
+      "to": "answer",
+      "label": "不确定范围"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "独立样本",
+      "items": [
+        "P001—P012 的 48 块板确定使用 R-A；P014—P025 的 48 块确定使用 R-B。",
+        "P013 的四块板处于接料边界，不能凭接料扫码时间逐块分配来源。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "上料与用料分别记录",
+      "items": [
+        "上料校验通过不代表每个元件已经贴到对应板上。",
+        "谱系要关联实际板次、板面、位号、站位和有效程序版本。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "查询保留精度",
+      "items": [
+        "R-A 正向查询为确定 48 块、可能再涉及 4 块，去重候选 52 块。",
+        "同料号不同批次、同批次不同料卷均保留独立身份。"
+      ]
+    }
+  ]
+}

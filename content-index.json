@@ -1844,6 +1844,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/eam-equipment-downtime-analysis/index.md"
     },
     {
+      "id": "manufacturing/electronics-smt-material-test-traceability",
+      "kind": "manufacturing",
+      "title": "电子制造与 SMT 的上料、检测和追溯",
+      "description": "用 25 块四联拼板的教学样本，串起料卷、供料器、站位表、贴装程序、板级序列号与 SPI、AOI、ICT、FCT 记录，核对接料边界、返修复测和放行回执，解释电子制造中追溯精度如何形成。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "SMT",
+        "电子制造",
+        "板级追溯",
+        "MES"
+      ],
+      "publishedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/electronics-smt-material-test-traceability/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/electronics-smt-material-test-traceability/index.md"
+    },
+    {
       "id": "manufacturing/engineering-tools-process-data",
       "kind": "manufacturing",
       "title": "研发工程工具与工艺数据如何衔接",

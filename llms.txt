@@ -133,6 +133,7 @@
 - [客户配置、采购与供应链计划](https://imcoders.cn/manufacturing/customer-configuration-supply-planning/index.md): 沿用风机订单与新旧支架切换，拆解 CRM、CPQ、ERP、SRM 和计划系统之间的配置、转单、供需关联与供应商答复，说明采购版本、分批交付、在途、质量放行和客户承诺怎样分别核对。
 - [制造业系统数据地图](https://imcoders.cn/manufacturing/data-map/index.md): 用五张交互地图连接产品、订单、物料、质量、设备和组织数据，明确系统之间传递的对象、版本、状态与回执，作为制造业系统深度拆解的起点。
 - [EAM、现场状态与设备停机分析](https://imcoders.cn/manufacturing/eam-equipment-downtime-analysis/index.md): 从一台装配设备的独立停机样本出发，拆解 PLC、SCADA、MES、EAM 与 APS 的设备映射、时间质量、维修工单、复产条件和产能回执，计算停机与可用率，并记录跨系统接入的验收场景。
+- [电子制造与 SMT 的上料、检测和追溯](https://imcoders.cn/manufacturing/electronics-smt-material-test-traceability/index.md): 用 25 块四联拼板的教学样本，串起料卷、供料器、站位表、贴装程序、板级序列号与 SPI、AOI、ICT、FCT 记录，核对接料边界、返修复测和放行回执，解释电子制造中追溯精度如何形成。
 - [研发工程工具与工艺数据如何衔接](https://imcoders.cn/manufacturing/engineering-tools-process-data/index.md): 沿用风机支架工程变更，拆解 CAD、PDM、PLM 与 CAPP 的文件、零件、结构、工序和指导书关系，说明 CAE 与 CAM 的适用分支，以及版本基线、工艺分配、发布回执和现场偏差怎样受控衔接。
 - [ERP 怎样连接订单、物料、生产与成本](https://imcoders.cn/manufacturing/erp-order-material-cost/index.md): 沿着一张风机订单，拆解 ERP 中的销售需求、MRP、采购与生产订单、库存事务和成本核算，说明工程变更后怎样重算缺料、接收现场记录、处理接口重试，并用动态图与验收案例保留跨系统证据。
 - [工业数据平台、数字孪生与 Agent 接入](https://imcoders.cn/manufacturing/industrial-data-platform-digital-twin-agents/index.md): 从一座可旋转的示意工厂出发，梳理工业数据平台如何保留原始事件、关联设备与工单、构建带时间的孪生视图，并说明 Agent 查询证据和执行业务动作的边界。

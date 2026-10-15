@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "检测、返修与放行证据如何汇合",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-smt-test-release-evidence-20261015-132858/smt-test-release-evidence.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "原始结果"
+    },
+    {
+      "label": "记录归一"
+    },
+    {
+      "label": "工艺判定"
+    },
+    {
+      "label": "放行复核"
+    },
+    {
+      "label": "执行回执"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "tests",
+      "label": "检测设备记录",
+      "sublabel": "SPI AOI ICT FCT",
+      "stage": 0,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "history",
+      "label": "检测履历",
+      "sublabel": "保留各次尝试",
+      "stage": 1,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "identity",
+      "label": "单板与程序",
+      "sublabel": "序列号 程序版本",
+      "stage": 0,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "repair",
+      "label": "维修与复测",
+      "sublabel": "缺陷 措施 复测",
+      "stage": 1,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "route",
+      "label": "必经工序核对",
+      "sublabel": "按批准路线检查",
+      "stage": 2,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "plan",
+      "label": "工艺与检验要求",
+      "sublabel": "生效路线与限值",
+      "stage": 2,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "gate",
+      "label": "放行资格复核",
+      "sublabel": "测试通过且无挂起",
+      "stage": 3,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "holds",
+      "label": "QMS 与谱系",
+      "sublabel": "质量限制与未知项",
+      "stage": 3,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "result",
+      "label": "MES 放行回执",
+      "sublabel": "93 可流转 / 7 挂起",
+      "stage": 4,
+      "row": 0,
+      "type": "backend"
+    }
+  ],
+  "flows": [
+    {
+      "id": "tests-history",
+      "from": "tests",
+      "to": "history",
+      "label": "原始结果"
+    },
+    {
+      "id": "identity-history",
+      "from": "identity",
+      "to": "history",
+      "label": "身份与版本"
+    },
+    {
+      "id": "history-route",
+      "from": "history",
+      "to": "route",
+      "label": "全部尝试"
+    },
+    {
+      "id": "repair-route",
+      "from": "repair",
+      "to": "route",
+      "label": "批准返修复测"
+    },
+    {
+      "id": "plan-route",
+      "from": "plan",
+      "to": "route",
+      "label": "必经要求",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "route-gate",
+      "from": "route",
+      "to": "gate",
+      "label": "检测结论"
+    },
+    {
+      "id": "holds-gate",
+      "from": "holds",
+      "to": "gate",
+      "label": "有效限制",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "gate-result",
+      "from": "gate",
+      "to": "result",
+      "label": "执行确认后",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "样本数量",
+      "items": [
+        "100 块首次 AOI：97 通过、3 失败；2 块维修复测通过。",
+        "99 块进入 ICT、98 块通过；98 块进入 FCT、97 块通过。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "测试与流转分开",
+      "items": [
+        "测试通过的 97 块中，P013 四块仍因谱系不完整挂起。",
+        "其余 93 块取得流转回执；另 3 块分别留在 AOI、ICT、FCT 异常。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "复测保留历史",
+      "items": [
+        "返修后的通过不覆盖首次失败；误报复判也单独记录。",
+        "图为教学集成设计，未连接真实设备或企业系统。"
+      ]
+    }
+  ]
+}
