@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "从影响清单到隔离执行回执",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-quality-containment-receipts-20261015-130150/quality-containment-receipts.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "异常与证据"
+    },
+    {
+      "label": "圈定范围"
+    },
+    {
+      "label": "处置批准"
+    },
+    {
+      "label": "分系统执行"
+    },
+    {
+      "label": "核对结果"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "incident",
+      "label": "QMS 异常",
+      "sublabel": "疑似批次与版本",
+      "stage": 0,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "history",
+      "label": "MES 谱系",
+      "sublabel": "投料 返工 复检",
+      "stage": 0,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "scope",
+      "label": "范围计算",
+      "sublabel": "去重与未知项",
+      "stage": 1,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "location",
+      "label": "WMS 与发运",
+      "sublabel": "库位 发运行 客户",
+      "stage": 1,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "decision",
+      "label": "质量处置",
+      "sublabel": "批准动作与范围",
+      "stage": 2,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "rules",
+      "label": "处置依据",
+      "sublabel": "异常机制与排除证据",
+      "stage": 2,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "dispatch",
+      "label": "下发任务",
+      "sublabel": "库存 在制 在途 客户",
+      "stage": 3,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "receipts",
+      "label": "执行回执",
+      "sublabel": "成功 失败 待确认",
+      "stage": 3,
+      "row": 2,
+      "type": "messagebus"
+    },
+    {
+      "id": "verified",
+      "label": "执行核对",
+      "sublabel": "已隔离与未落实",
+      "stage": 4,
+      "row": 0,
+      "type": "backend"
+    }
+  ],
+  "flows": [
+    {
+      "id": "incident-scope",
+      "from": "incident",
+      "to": "scope",
+      "label": "异常种子"
+    },
+    {
+      "id": "history-scope",
+      "from": "history",
+      "to": "scope",
+      "label": "谱系记录"
+    },
+    {
+      "id": "location-scope",
+      "from": "location",
+      "to": "scope",
+      "label": "当前位置",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "scope-decision",
+      "from": "scope",
+      "to": "decision",
+      "label": "候选清单"
+    },
+    {
+      "id": "rules-decision",
+      "from": "rules",
+      "to": "decision",
+      "label": "处置依据",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "decision-dispatch",
+      "from": "decision",
+      "to": "dispatch",
+      "label": "批准任务",
+      "variant": "emphasis"
+    },
+    {
+      "id": "dispatch-receipts",
+      "from": "dispatch",
+      "to": "receipts",
+      "label": "任务与对象",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "dispatch-verified",
+      "from": "dispatch",
+      "to": "verified",
+      "label": "应执行清单"
+    },
+    {
+      "id": "receipts-verified",
+      "from": "receipts",
+      "to": "verified",
+      "label": "实际回执",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "不同对象分别处置",
+      "items": [
+        "库存由 WMS 限制领用与发运；在制由 MES 挂起后续工序。",
+        "已发运对象核对承运和客户接收状态，再落实停止使用等处置。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "范围版本有记录",
+      "items": [
+        "迟到发运、返工或投料记录触发新范围版本，保留新增和移出原因。",
+        "缺少关键谱系时显示未知项，并由质量人员决定是否扩大临时隔离。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "收到指令不等于完成",
+      "items": [
+        "API 接收、业务冻结、现场隔离分别记录，逐对象核对。",
+        "失败及部分成功持续留在待办；本图未连接真实企业系统。"
+      ]
+    }
+  ]
+}

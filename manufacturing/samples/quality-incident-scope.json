@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "illustrative": true,
+  "incident": "QN-019",
+  "snapshot_at": "2026-10-15T10:00:00+08:00",
+  "assumptions": [
+    "每台安装一件连接器",
+    "无额外损耗或未记账退料",
+    "B 批只有批级用料关联",
+    "10:20 只有范围评审变化，无其他实物移动"
+  ],
+  "materials": [
+    {
+      "batch": "R",
+      "item": "CON-A",
+      "received": 100,
+      "unit": "件",
+      "suspect": true
+    },
+    {
+      "batch": "G",
+      "item": "CON-A",
+      "used_in_B": 20,
+      "unit": "件",
+      "suspect": false
+    },
+    {
+      "batch": "H",
+      "item": "CON-X",
+      "replacement_used": 5,
+      "unit": "件",
+      "approved_ratio": "1:1"
+    }
+  ],
+  "events": [
+    {
+      "id": "E01",
+      "type": "receipt",
+      "batch": "R",
+      "quantity": 100,
+      "unit": "件"
+    },
+    {
+      "id": "E02",
+      "type": "split",
+      "batch": "R",
+      "destinations": {
+        "A": 50,
+        "B": 30,
+        "raw_stock": 20
+      },
+      "unit": "件"
+    },
+    {
+      "id": "E03",
+      "type": "installation",
+      "order": "A",
+      "serial_from": "A001",
+      "serial_to": "A050",
+      "batch": "R",
+      "quantity": 50,
+      "binding": "serial"
+    },
+    {
+      "id": "E04",
+      "type": "mixed_installation",
+      "order": "B",
+      "serial_from": "B001",
+      "serial_to": "B050",
+      "inputs": {
+        "R": 30,
+        "G": 20
+      },
+      "binding": "batch_only"
+    },
+    {
+      "id": "E05",
+      "type": "replacement",
+      "serial_from": "A046",
+      "serial_to": "A050",
+      "removed_batch": "R",
+      "installed_batch": "H",
+      "quantity": 5,
+      "removed_container": "BIN-R5",
+      "replacement_approval": "ENG-H-05",
+      "retest": "RT-05"
+    },
+    {
+      "id": "QR-019-02",
+      "type": "scope_exclusion_approval",
+      "at": "2026-10-15T10:20:00+08:00",
+      "incident": "QN-019",
+      "serial_from": "A046",
+      "serial_to": "A050",
+      "evidence": [
+        "E05",
+        "ENG-H-05",
+        "RT-05"
+      ],
+      "assumed_finding": "批准换件及复检已消除本异常影响"
+    }
+  ],
+  "product_locations": [
+    {
+      "serial_from": "A001",
+      "serial_to": "A030",
+      "quantity": 30,
+      "state": "shipped",
+      "reference": "SH-A",
+      "customer": "客户甲"
+    },
+    {
+      "serial_from": "A031",
+      "serial_to": "A045",
+      "quantity": 15,
+      "state": "finished_stock",
+      "location": "FG-A"
+    },
+    {
+      "serial_from": "A046",
+      "serial_to": "A050",
+      "quantity": 5,
+      "state": "finished_stock",
+      "location": "FG-A"
+    },
+    {
+      "serial_from": "B001",
+      "serial_to": "B020",
+      "quantity": 20,
+      "state": "shipped",
+      "reference": "SH-B",
+      "customer": "客户乙"
+    },
+    {
+      "serial_from": "B021",
+      "serial_to": "B040",
+      "quantity": 20,
+      "state": "finished_stock",
+      "location": "FG-B"
+    },
+    {
+      "serial_from": "B041",
+      "serial_to": "B050",
+      "quantity": 10,
+      "state": "wip",
+      "location": "AS-B"
+    }
+  ],
+  "expected": {
+    "R_parts_balance": {
+      "raw_stock": 20,
+      "installed_A": 45,
+      "installed_B": 30,
+      "removed_isolated": 5,
+      "total": 100
+    },
+    "v1": {
+      "historical_products": 100,
+      "current_products": 100
+    },
+    "v2": {
+      "historical_products": 100,
+      "current_products": 95,
+      "excluded_products": 5,
+      "shipped": 50,
+      "finished_stock": 35,
+      "wip": 10
+    },
+    "uncertain_serials": "B001-B050",
+    "separate_material_controls": {
+      "raw_R": 20,
+      "removed_R": 5
+    }
+  }
+}

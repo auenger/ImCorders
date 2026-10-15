@@ -2025,6 +2025,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/qms-lims-quality-release/index.md"
     },
     {
+      "id": "manufacturing/quality-incident-traceability-scope",
+      "kind": "manufacturing",
+      "title": "一个质量异常怎样圈定影响范围",
+      "description": "用一组包含分拆、合批、替代换件和发运记录的制造业样本，串起 QMS、MES、WMS 与交付数据，核对正反向谱系、受影响产品清单和隔离回执，并区分历史关联、当前风险与追溯未知项。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "质量追溯",
+        "批次谱系",
+        "QMS",
+        "隔离处置"
+      ],
+      "publishedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/quality-incident-traceability-scope/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/quality-incident-traceability-scope/index.md"
+    },
+    {
       "id": "manufacturing/tooling-metrology-utilities-energy",
       "kind": "manufacturing",
       "title": "工装、计量、公用工程与能源环境数据",

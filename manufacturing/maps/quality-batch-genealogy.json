@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "分拆、合批与返工后的追溯范围",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-quality-batch-genealogy-20261015-130150/quality-batch-genealogy.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "来源批次"
+    },
+    {
+      "label": "分拆记录"
+    },
+    {
+      "label": "投料关联"
+    },
+    {
+      "label": "历史与返工"
+    },
+    {
+      "label": "当前范围"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "suspect",
+      "label": "疑似批 R",
+      "sublabel": "收货 100 件",
+      "stage": 0,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "split",
+      "label": "分拆记录",
+      "sublabel": "A 50 / B 30 / 余20",
+      "stage": 1,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "raw",
+      "label": "原料余额",
+      "sublabel": "20 件未投料",
+      "stage": 1,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "a-use",
+      "label": "A 工单投料",
+      "sublabel": "50 件逐台绑定",
+      "stage": 2,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "a-history",
+      "label": "A 历史谱系",
+      "sublabel": "A001—A050",
+      "stage": 3,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "a-current",
+      "label": "A 当前范围",
+      "sublabel": "45 台仍装 R",
+      "stage": 4,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "replacement",
+      "label": "替代批 H",
+      "sublabel": "5 件批准换装",
+      "stage": 2,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "rework",
+      "label": "返工记录",
+      "sublabel": "拆件 换装 复检",
+      "stage": 3,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "review",
+      "label": "评审后排除",
+      "sublabel": "5 台保留历史",
+      "stage": 4,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "good",
+      "label": "正常批 G",
+      "sublabel": "20 件参与合批",
+      "stage": 0,
+      "row": 4,
+      "type": "database"
+    },
+    {
+      "id": "mix",
+      "label": "B 合批投料",
+      "sublabel": "R 30 + G 20",
+      "stage": 2,
+      "row": 4,
+      "type": "database"
+    },
+    {
+      "id": "b-history",
+      "label": "B 产品谱系",
+      "sublabel": "50 台无单件对应",
+      "stage": 3,
+      "row": 4,
+      "type": "backend"
+    },
+    {
+      "id": "b-current",
+      "label": "B 待核实范围",
+      "sublabel": "50 台全部纳入",
+      "stage": 4,
+      "row": 4,
+      "type": "backend"
+    }
+  ],
+  "flows": [
+    {
+      "id": "suspect-split",
+      "from": "suspect",
+      "to": "split",
+      "label": "批次身份"
+    },
+    {
+      "id": "split-a-use",
+      "from": "split",
+      "to": "a-use",
+      "label": "分出 50 件"
+    },
+    {
+      "id": "split-raw",
+      "from": "split",
+      "to": "raw",
+      "label": "余料 20 件",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "split-mix",
+      "from": "split",
+      "to": "mix",
+      "label": "分出 30 件"
+    },
+    {
+      "id": "good-mix",
+      "from": "good",
+      "to": "mix",
+      "label": "正常料 20 件"
+    },
+    {
+      "id": "a-use-a-history",
+      "from": "a-use",
+      "to": "a-history",
+      "label": "单件绑定"
+    },
+    {
+      "id": "a-history-a-current",
+      "from": "a-history",
+      "to": "a-current",
+      "label": "历史集合"
+    },
+    {
+      "id": "a-history-rework",
+      "from": "a-history",
+      "to": "rework",
+      "label": "其中 5 台",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "replacement-rework",
+      "from": "replacement",
+      "to": "rework",
+      "label": "换入 5 件"
+    },
+    {
+      "id": "review-a-current",
+      "from": "review",
+      "to": "a-current",
+      "label": "批准排除 5 台",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "rework-review",
+      "from": "rework",
+      "to": "review",
+      "label": "批准排除后"
+    },
+    {
+      "id": "mix-b-history",
+      "from": "mix",
+      "to": "b-history",
+      "label": "批级关联"
+    },
+    {
+      "id": "b-history-b-current",
+      "from": "b-history",
+      "to": "b-current",
+      "label": "保守范围",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "独立教学样本",
+      "items": [
+        "R 批共 100 件：未投料 20、仍装 A 45、进入 B 30、拆下隔离 5。",
+        "A 历史 50 台与 B 候选 50 台去重后，共 100 台历史关联产品。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "合批证据的限制",
+      "items": [
+        "B 的 30 件疑似料无法映射到具体序列号，50 台全部待核实。",
+        "合批按离散零件混放理解；这里只展示谱系，位置另查发运与库存。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "返工不删除历史",
+      "items": [
+        "5 台换件后，须完成复检及针对本异常的范围评审才可排除。",
+        "排除后当前待处置产品 95 台，另有原料 20 件和拆下件 5 件。"
+      ]
+    }
+  ]
+}

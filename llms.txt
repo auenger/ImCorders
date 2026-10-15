@@ -143,6 +143,7 @@
 - [人员资格、受控文件、售后与运行支撑](https://imcoders.cn/manufacturing/people-documents-service-operations/index.md): 沿着任务开工、产品交付和服务反馈，梳理人员资格、账号授权、受控文件、在役资产、服务工单与运行恢复的数据关系，用模拟记录说明历史依据、配置变更、离线补传和异常验收方法。
 - [PLM 工程变更如何从设计进入生产](https://imcoders.cn/manufacturing/plm-engineering-change/index.md): 用一次风机支架变更拆解 PLM 的产品结构、EBOM 与 MBOM、版本和生效条件，追踪 ERP、MES、WMS 如何接收变更、处置旧料并保留执行证据，同时分析 Agent 的查询与操作边界。
 - [QMS、LIMS 与质量放行的衔接](https://imcoders.cn/manufacturing/qms-lims-quality-release/index.md): 沿用风机订单中的 20 件待检支架与两台返工产品，拆解 QMS、LIMS、MES 和 WMS 之间的检验依据、样品范围、质量处置、放行授权、库存限制、复检记录与接口回执，并给出可执行的集成验收场景。
+- [一个质量异常怎样圈定影响范围](https://imcoders.cn/manufacturing/quality-incident-traceability-scope/index.md): 用一组包含分拆、合批、替代换件和发运记录的制造业样本，串起 QMS、MES、WMS 与交付数据，核对正反向谱系、受影响产品清单和隔离回执，并区分历史关联、当前风险与追溯未知项。
 - [工装、计量、公用工程与能源环境数据](https://imcoders.cn/manufacturing/tooling-metrology-utilities-energy/index.md): 从生产任务的资源资格与使用履历出发，拆解工装寿命、计量适用性、公用工程条件、能源计量与环境监测的数据关系，用独立模拟账本核对总分表、任务归集与单耗，并整理异常追溯和集成验收方法。
 - [自动化仓储、厂内物流与运输协同](https://imcoders.cn/manufacturing/warehouse-automation-logistics-transport/index.md): 沿用 60 件支架线边配送与 200 台风机整批交付，拆解 WMS、WES、WCS、车队系统和 TMS 的任务、容器、交接与回执，说明超时重派、途中库存、装车、签收差异和跨系统验收如何落实。
 - [WMS 中的库存、库位与生产配送](https://imcoders.cn/manufacturing/wms-inventory-production-delivery/index.md): 沿着风机支架的收货、待检、上架、备料、配送和退料，拆解 WMS 的库存身份、质量状态、库位与任务占用，说明在库有货为何仍不可领，并用动态图、数量核对和接口样本记录 ERP、MES 与仓储现场的交接。
