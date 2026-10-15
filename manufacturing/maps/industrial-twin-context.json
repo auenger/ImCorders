@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "现场数据怎样进入孪生视图",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-twin-20261015-100354/industrial-twin-context/industrial-twin-context.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "数据来源"
+    },
+    {
+      "label": "原始留存"
+    },
+    {
+      "label": "身份与时间"
+    },
+    {
+      "label": "业务投影"
+    },
+    {
+      "label": "读取展示"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "signal",
+      "type": "external",
+      "label": "设备采集",
+      "sublabel": "值、时间、质量码",
+      "stage": 0,
+      "row": 0
+    },
+    {
+      "id": "raw",
+      "type": "database",
+      "label": "原始事件库",
+      "sublabel": "来源与接收时间",
+      "stage": 1,
+      "row": 0
+    },
+    {
+      "id": "join",
+      "type": "backend",
+      "label": "事件关联",
+      "sublabel": "映射版本与有效期",
+      "stage": 2,
+      "row": 0
+    },
+    {
+      "id": "projection",
+      "type": "database",
+      "label": "孪生投影库",
+      "sublabel": "带时间的对象状态",
+      "stage": 3,
+      "row": 0
+    },
+    {
+      "id": "view",
+      "type": "frontend",
+      "label": "区域视图",
+      "sublabel": "状态与证据入口",
+      "stage": 4,
+      "row": 0
+    },
+    {
+      "id": "business",
+      "type": "external",
+      "label": "业务系统",
+      "sublabel": "工单、设备与区域",
+      "stage": 0,
+      "row": 2
+    },
+    {
+      "id": "history",
+      "type": "database",
+      "label": "业务历史库",
+      "sublabel": "版本与关联有效期",
+      "stage": 1,
+      "row": 2
+    },
+    {
+      "id": "context",
+      "type": "backend",
+      "label": "上下文解析",
+      "sublabel": "对象映射与任务区间",
+      "stage": 2,
+      "row": 2
+    },
+    {
+      "id": "geometry",
+      "type": "database",
+      "label": "空间模型库",
+      "sublabel": "模型版本与对象 ID",
+      "stage": 4,
+      "row": 2
+    }
+  ],
+  "flows": [
+    {
+      "id": "f0",
+      "from": "signal",
+      "to": "raw",
+      "label": "原始事件",
+      "variant": "emphasis"
+    },
+    {
+      "id": "f1",
+      "from": "raw",
+      "to": "join",
+      "label": "事件记录",
+      "variant": "emphasis"
+    },
+    {
+      "id": "f2",
+      "from": "join",
+      "to": "projection",
+      "label": "关联结果",
+      "variant": "emphasis"
+    },
+    {
+      "id": "f3",
+      "from": "projection",
+      "to": "view",
+      "label": "状态快照",
+      "variant": "emphasis"
+    },
+    {
+      "id": "f4",
+      "from": "business",
+      "to": "history",
+      "label": "业务变更",
+      "variant": "default"
+    },
+    {
+      "id": "f5",
+      "from": "history",
+      "to": "context",
+      "label": "历史依据",
+      "variant": "default"
+    },
+    {
+      "id": "f6",
+      "from": "context",
+      "to": "join",
+      "label": "有效映射",
+      "variant": "default",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "f7",
+      "from": "geometry",
+      "to": "view",
+      "label": "布局与标识",
+      "variant": "default",
+      "fromSide": "top",
+      "toSide": "bottom"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "业务系统保留责任",
+      "items": [
+        "MES、WMS、QMS 等仍负责原始业务记录与状态变更。",
+        "孪生投影可重建；迟到事件按发生时间处理。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "本页展示范围",
+      "items": [
+        "工厂模型只展示静态区域与示意设备。",
+        "数据接入链路为设计示例，本页未连接业务系统。"
+      ]
+    }
+  ]
+}

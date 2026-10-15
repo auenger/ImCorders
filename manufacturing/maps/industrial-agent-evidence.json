@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "Agent 查询与受控动作的数据边界",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-twin-20261015-100354/industrial-agent-evidence/industrial-agent-evidence.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "请求与身份"
+    },
+    {
+      "label": "范围核验"
+    },
+    {
+      "label": "证据与建议"
+    },
+    {
+      "label": "动作核验"
+    },
+    {
+      "label": "业务执行"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "request",
+      "type": "external",
+      "label": "人员请求",
+      "sublabel": "问题、身份与工厂",
+      "stage": 0,
+      "row": 1
+    },
+    {
+      "id": "scope",
+      "type": "security",
+      "label": "查询授权",
+      "sublabel": "租户、区域与字段",
+      "stage": 1,
+      "row": 1
+    },
+    {
+      "id": "query",
+      "type": "backend",
+      "label": "证据查询",
+      "sublabel": "仅在授权范围读取",
+      "stage": 2,
+      "row": 1
+    },
+    {
+      "id": "proposal",
+      "type": "backend",
+      "label": "动作建议",
+      "sublabel": "对象、版本与理由",
+      "stage": 3,
+      "row": 1
+    },
+    {
+      "id": "gate",
+      "type": "security",
+      "label": "执行核验",
+      "sublabel": "权限、审批与现态",
+      "stage": 4,
+      "row": 1
+    },
+    {
+      "id": "evidence",
+      "type": "database",
+      "label": "可追溯数据",
+      "sublabel": "原记录与状态投影",
+      "stage": 2,
+      "row": 3
+    },
+    {
+      "id": "result",
+      "type": "backend",
+      "label": "解释结果",
+      "sublabel": "来源与数据时效",
+      "stage": 2,
+      "row": 0
+    },
+    {
+      "id": "approval",
+      "type": "external",
+      "label": "审批记录",
+      "sublabel": "适用动作与有效期",
+      "stage": 4,
+      "row": 0
+    },
+    {
+      "id": "execute",
+      "type": "backend",
+      "label": "业务命令入口",
+      "sublabel": "幂等执行与回执",
+      "stage": 4,
+      "row": 3
+    }
+  ],
+  "flows": [
+    {
+      "id": "f0",
+      "from": "request",
+      "to": "scope",
+      "label": "查询请求",
+      "variant": "default"
+    },
+    {
+      "id": "f1",
+      "from": "scope",
+      "to": "query",
+      "label": "授权范围",
+      "variant": "security"
+    },
+    {
+      "id": "f2",
+      "from": "evidence",
+      "to": "query",
+      "label": "授权后读取",
+      "variant": "default",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "f3",
+      "from": "query",
+      "to": "result",
+      "label": "证据与结论",
+      "variant": "default",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "f4",
+      "from": "query",
+      "to": "proposal",
+      "label": "证据与对象",
+      "variant": "default"
+    },
+    {
+      "id": "f5",
+      "from": "proposal",
+      "to": "gate",
+      "label": "待核验建议",
+      "variant": "default"
+    },
+    {
+      "id": "f6",
+      "from": "approval",
+      "to": "gate",
+      "label": "有效审批",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "f7",
+      "from": "gate",
+      "to": "execute",
+      "label": "校验通过",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "top"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "拒绝路径",
+      "items": [
+        "越权查询不返回数据；权限、审批或对象版本不满足时拒绝执行。",
+        "模型输出不能代替业务系统的执行前校验。"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "动作与结果分开",
+      "items": [
+        "业务命令入口记录请求 ID、预期版本、执行结果与审计证据。",
+        "超时先查回执；无确定结果时标记待核对，不宣称执行成功。"
+      ]
+    }
+  ]
+}

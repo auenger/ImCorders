@@ -1880,6 +1880,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/erp-order-material-cost/index.md"
     },
     {
+      "id": "manufacturing/industrial-data-platform-digital-twin-agents",
+      "kind": "manufacturing",
+      "title": "工业数据平台、数字孪生与 Agent 接入",
+      "description": "从一座可旋转的示意工厂出发，梳理工业数据平台如何保留原始事件、关联设备与工单、构建带时间的孪生视图，并说明 Agent 查询证据和执行业务动作的边界。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "工业数据平台",
+        "数字孪生",
+        "Agent",
+        "Three.js"
+      ],
+      "publishedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/industrial-data-platform-digital-twin-agents/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/industrial-data-platform-digital-twin-agents/index.md"
+    },
+    {
       "id": "manufacturing/master-data-events-reconciliation",
       "kind": "manufacturing",
       "title": "主数据、事件与跨系统对账",

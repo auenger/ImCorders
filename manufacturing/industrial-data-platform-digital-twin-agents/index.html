@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>工业数据平台、数字孪生与 Agent 接入 | 制造业系统</title><meta name="description" content="从一座可旋转的示意工厂出发，梳理工业数据平台如何保留原始事件、关联设备与工单、构建带时间的孪生视图，并说明 Agent 查询证据和执行业务动作的边界。"><link rel="canonical" href="https://imcoders.cn/manufacturing/industrial-data-platform-digital-twin-agents/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/industrial-data-platform-digital-twin-agents/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/industrial-data-platform-digital-twin-agents/#article","headline":"工业数据平台、数字孪生与 Agent 接入","description":"从一座可旋转的示意工厂出发，梳理工业数据平台如何保留原始事件、关联设备与工单、构建带时间的孪生视图，并说明 Agent 查询证据和执行业务动作的边界。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/industrial-data-platform-digital-twin-agents/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-15T00:00:00.000Z","dateModified":"2026-10-15T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"工业数据平台、数字孪生与 Agent 接入","item":"https://imcoders.cn/manufacturing/industrial-data-platform-digital-twin-agents/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-15T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-15T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="工业数据平台、数字孪生与 Agent 接入 | 制造业系统"><meta property="og:description" content="从一座可旋转的示意工厂出发，梳理工业数据平台如何保留原始事件、关联设备与工单、构建带时间的孪生视图，并说明 Agent 查询证据和执行业务动作的边界。"><meta property="og:url" content="https://imcoders.cn/manufacturing/industrial-data-platform-digital-twin-agents/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="工业数据平台、数字孪生与 Agent 接入 | 制造业系统"><meta name="twitter:description" content="从一座可旋转的示意工厂出发，梳理工业数据平台如何保留原始事件、关联设备与工单、构建带时间的孪生视图，并说明 Agent 查询证据和执行业务动作的边界。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="工业数据平台、数字孪生与 Agent 接入 | 制造业系统"><meta itemprop="description" content="从一座可旋转的示意工厂出发，梳理工业数据平台如何保留原始事件、关联设备与工单、构建带时间的孪生视图，并说明 Agent 查询证据和执行业务动作的边界。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "工业数据平台、数字孪生与 Agent 接入 | 制造业系统";
+const shareDesc = "从一座可旋转的示意工厂出发，梳理工业数据平台如何保留原始事件、关联设备与工单、构建带时间的孪生视图，并说明 Agent 查询证据和执行业务动作的边界。";
+const shareLink = "https://imcoders.cn/manufacturing/industrial-data-platform-digital-twin-agents/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>工业数据平台、数字孪生与 Agent 接入</h1><p class="mfg-lead" data-astro-cid-767rrl5b>从一座可旋转的示意工厂出发，梳理工业数据平台如何保留原始事件、关联设备与工单、构建带时间的孪生视图，并说明 Agent 查询证据和执行业务动作的边界。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/industrial-data-platform-digital-twin-agents/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-15</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#从工厂区域找到业务对象" data-astro-cid-767rrl5b>从工厂区域找到业务对象</a></li><li data-astro-cid-767rrl5b><a href="#原始事件进入平台以后怎样保真" data-astro-cid-767rrl5b>原始事件进入平台以后怎样保真</a></li><li data-astro-cid-767rrl5b><a href="#孪生视图如何关联生产上下文" data-astro-cid-767rrl5b>孪生视图如何关联生产上下文</a></li><li data-astro-cid-767rrl5b><a href="#agent-沿着证据查询与提出动作" data-astro-cid-767rrl5b>Agent 沿着证据查询与提出动作</a></li><li data-astro-cid-767rrl5b><a href="#从一个区域验证整条链路" data-astro-cid-767rrl5b>从一个区域验证整条链路</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>打开工厂三维页面，点中一台机床，看见“运行中”。接着追问：它正在加工哪个工单？刚才的停机影响了哪些在制品？旁边那批料能不能投产？画面上的绿色，很快就不够用了。</p>
+<p><a href="/manufacturing/people-documents-service-operations/">上一篇</a>补齐了人员、文件和服务记录。本篇把前面各系统的数据接到同一组工厂对象上，讨论工业数据平台如何保存和解释这些记录，以及 Agent 可以怎样使用它们。先从下面这座小工厂看起。布局、设备、编号和后文事件均为教学示意，页面没有连接现场系统。</p>
+<h2 id="从工厂区域找到业务对象">从工厂区域找到业务对象</h2>
+<p>这座工厂分为收货、仓储、加工、装配、质检、包装发运和公用工程七个区域。选择区域可以查看对应系统和业务对象；拖动可旋转，滚轮可缩放，也可以切到俯视布局。手机上可直接使用区域按钮阅读说明。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>示意工厂的七个区域</strong><a href="/manufacturing/factory-view/" target="_blank" rel="noopener noreferrer">独立窗口浏览 ↗</a></div>
+<iframe src="/manufacturing/factory-view/" title="只读工厂模型与区域说明" loading="lazy" style="width:100%;height:880px;border:0;"></iframe>
+<figcaption>参考本地 Factory Twin 2.0 的设备几何与布局表达制作。只提供浏览和区域选择，未接入实时状态；设备模型沿用 MIT 许可。</figcaption>
+</figure>
+<h3 id="区域提供入口单据解释发生了什么">区域提供入口，单据解释发生了什么</h3>
+<p>模型中的收货区标识为 <code>RCV</code>，加工区为 <code>MCH</code>。这些标识让区域按钮、地面色块和说明指向同一个对象。实际接入时，还需要把空间对象映射到企业已有的工厂、车间、工作中心、库位和设备主数据。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>区域</th><th>需要关联的对象</th><th>需要回到原系统确认的问题</th></tr></thead><tbody><tr><td>收货</td><td>到货单、物料批次、来料检验单</td><td>到货是否登记，是否允许入可用库存</td></tr><tr><td>仓储</td><td>库位、容器、库存状态</td><td>物料是否冻结，是否已被任务占用</td></tr><tr><td>加工</td><td>设备、工单、工序、采集点</td><td>当时执行什么任务，停机属于哪个区间</td></tr><tr><td>装配</td><td>序列号、组件批次、BOM 版本</td><td>实际投入哪些组件，采用什么执行依据</td></tr><tr><td>质检</td><td>样品、检验任务、结果、量具</td><td>结果是否有效，是否已经完成处置或放行</td></tr><tr><td>包装发运</td><td>包装单元、发运单、运单</td><td>是否装车，是否交接，是否签收</td></tr><tr><td>公用工程</td><td>设备、供能回路、计量点</td><td>服务哪些区域，能耗按什么边界计量</td></tr></tbody></table>
+<p>空间模型适合展示位置、邻近关系和区域归属。业务关系还包括“这批料投入了哪个序列号”“这个工单采用哪个工艺版本”。它们需要单独的数据记录，不能靠设备放得近、输送线画得相连来推断。</p>
+<p>微软的 <a href="https://learn.microsoft.com/en-us/azure/digital-twins/concepts-twins-graph">Azure Digital Twins 对象图说明</a>把孪生对象及其关系组织成图。这里借用对象与关系的表达方式；本站的小模型只做区域浏览，尚未实现状态同步、历史回放或工厂仿真。</p>
+<h3 id="模型版本和对象身份分开维护">模型版本和对象身份分开维护</h3>
+<p>假设设备 <code>EQ-CNC-01</code> 从加工区西侧搬到东侧。设备身份保持不变，位置关系从搬迁生效时刻开始变化。查询搬迁前的工单时，应能找到当时的区域和位置。</p>
+<p>反过来，同一个模型位置换了新设备，也不能沿用旧设备的维修历史。空间网格、渲染节点名、设备资产号和采集点地址各有用途。映射表至少记录对象 ID、来源系统、来源键、关系类型、生效区间和映射版本；不能把三维引擎自动生成的节点编号直接当作企业设备编码。</p>
+<h2 id="原始事件进入平台以后怎样保真">原始事件进入平台以后怎样保真</h2>
+<p>工业数据平台通常要处理设备采样、报警、业务变更、文件和历史批量数据。它们的粒度和时效不同：温度测点每秒可能产生多条记录，质量处置可能几小时才发生一次，工艺文件还带着批准版本和适用范围。</p>
+<h3 id="接收时间不能覆盖发生时间">接收时间不能覆盖发生时间</h3>
+<p>设一个独立模拟事件：<code>EQ-CNC-01</code> 在 09:12:04 报告停机，边缘网络中断，平台到 09:14:20 才收到。若按接收时间关联工单，就可能把停机算到下一项任务。</p>
+<p>原始记录应保留源事件 ID、来源标识、源时间、接收时间、值、单位、质量码和载荷版本。设备时钟是否可靠也需要记录；没有可信源时间时，可以采用明确的替代规则并标注不确定性，不能悄悄补出一个看似精确的发生时刻。</p>
+<p>OPC UA 的 <a href="https://reference.opcfoundation.org/specs/OPC-10000-4/7.11.3">SourceTimestamp 定义</a>说明了源侧时间戳的含义，并要求转发相同数据值时保留原源时间。具体接入仍要确认设备、网关和连接器实际提供了哪些字段。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>数据层</th><th>保留内容</th><th>修正方式</th></tr></thead><tbody><tr><td>原始事件</td><td>源载荷、来源、接收信息、质量标记</td><td>保留原记录，追加修正依据</td></tr><tr><td>标准化数据</td><td>单位换算、字段映射、时间处理结果</td><td>保存处理规则版本，可从原始数据重算</td></tr><tr><td>业务关联结果</td><td>设备、工单、工序、批次及关联区间</td><td>映射变更后重建受影响范围</td></tr><tr><td>展示投影</td><td>区域当前状态、摘要、异常提示</td><td>可重新生成，保留数据截止时间</td></tr></tbody></table>
+<p>“当前没有新值”与“设备已经停止”是两种情况。读数过期时，页面应显示数据截至何时、是否失联或质量不确定；上一条正常读数不能无限期显示为当前正常。质量码异常的值也不能不加区分地参加业务指标计算。</p>
+<h3 id="重复乱序和补传要有处理规则">重复、乱序和补传要有处理规则</h3>
+<p>边缘补传和消费者重试会带来重复记录。可优先用来源与源事件 ID 去重；没有稳定 ID 的采样源，需要结合来源序列号等字段设计策略。简单地按“设备加时间”去重，可能吞掉同一时刻的不同事件。</p>
+<p>乱序事件进入后，当前状态更新和历史区间重算要分开。09:12 的停机迟到，不能覆盖 09:20 已经确认的开机状态，但它可能改变 09:12 至 09:20 的历史停机区间。衍生指标需标明本次计算的截止时间和规则版本，让后续修正有迹可查。</p>
+<p>时序库适合保存和查询采样序列，事件库保留业务变化，文件或对象存储承载文档与大载荷。平台可以组合这些存储能力；是否需要数据湖、流计算或图数据库，要由查询量、数据规模、历史重算和关系查询需求决定。</p>
+<h2 id="孪生视图如何关联生产上下文">孪生视图如何关联生产上下文</h2>
+<p>同一条停机信号，要回答“影响哪张工单”，至少还要知道设备身份、任务执行区间和当时有效的映射。原始信号与上下文是两路输入，任何一路缺失都应在结果中体现。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>现场事件与生产上下文</strong><a href="/manufacturing/maps/industrial-twin-context.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/industrial-twin-context.html" title="现场数据进入孪生视图的数据流" loading="lazy"></iframe>
+<figcaption>点击节点查看关联路径；使用动态按钮播放数据流。该图为接入设计示例，工厂模型尚未连接这些数据。</figcaption>
+</figure>
+<h3 id="按发生时刻关联任务">按发生时刻关联任务</h3>
+<p>继续使用上述模拟事件。MES 记录设备在 09:00 至 09:13 执行 <code>WO-TWIN-001 / OP020</code>，09:13 后切到另一项任务。平台拿 09:12:04 的源时间去匹配执行区间，再检查设备映射在该时刻有效，才能把这次停机列入第一项任务的影响分析。</p>
+<p>如果 MES 的两项任务区间重叠，关联结果应标成冲突；如果设备时钟偏差大到跨过换单边界，则标成待核对。自动挑一张工单虽然能让报表变得整齐，却会把数据问题转成错误的生产结论。</p>
+<p>这里得到的是停机与任务的时间关联。是否造成产品缺陷，还需要工艺条件、物料暴露区间、质量结果和处置判断。不能仅凭停机发生在加工期间，就自动把整张工单判为不合格。</p>
+<h3 id="投影负责读原系统负责业务状态">投影负责读，原系统负责业务状态</h3>
+<p>孪生视图可以把设备、工单、区域和质量提示合成一个查询结果，同时保存每项信息的来源、版本和更新时间。读者点开异常时，应能追到 MES 执行记录、QMS 处置依据或 EAM 维修工单。</p>
+<p>微软的<a href="https://learn.microsoft.com/en-us/azure/digital-twins/concepts-data-ingress-egress">数据进出说明</a>也将外部事件接入、孪生更新与向外部服务传递数据分开处理。三维页面只是其中一个消费者；分析报表和 Agent 可以读取同一套有来源的业务投影。</p>
+<p>当 QMS 将某批料冻结，平台可以更新相关区域和库存的提示。解除冻结仍需经 QMS 的业务入口完成。直接改三维对象上的 <code>status</code>，最多改变显示属性，不能据此宣称质量业务已经完成变更。</p>
+<h2 id="agent-沿着证据查询与提出动作">Agent 沿着证据查询与提出动作</h2>
+<p>一个适合先接入的问题是：“加工区刚才的停机可能影响了哪些工单？有哪些记录还需要核对？”查询目标明确，结果可以由人检查，也能暴露平台在身份映射、时间和证据完整性上的缺口。</p>
+<h3 id="查询结果同时带回出处和时效">查询结果同时带回出处和时效</h3>
+<p>Agent 接收问题后先确定用户身份、工厂和数据范围，再调用受限查询工具。工具返回结构化对象、证据链接、时间区间、数据质量和缺失项。即使检索到了文档，也要检查它的版本和适用范围。</p>
+<p>一次回答可以分成三部分：已查到的关联记录、根据这些记录作出的推断、仍然缺失的依据。例如“停机事件与工单时间区间重合”属于查询结果，“该工单可能延迟”属于推断，“尚缺本班次剩余产能”属于缺失条件。不要把三者揉成一个确定结论。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>Agent 的证据与动作入口</strong><a href="/manufacturing/maps/industrial-agent-evidence.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/industrial-agent-evidence.html" title="Agent 授权查询与业务执行数据流" loading="lazy"></iframe>
+<figcaption>普通查询返回证据与解释。涉及状态变更的建议需要经过独立执行核验，拒绝条件和回执处理见图中说明。</figcaption>
+</figure>
+<h3 id="查询权限不自动延伸到执行权限">查询权限不自动延伸到执行权限</h3>
+<p>读取维修记录和创建维修工单是不同动作。若希望 Agent 提交维修申请，应通过业务系统提供的受控命令入口，明确目标设备、理由、请求 ID、预期对象版本，以及该动作要求的审批依据。</p>
+<p>执行前再核对一次权限与当前状态。模型生成建议之后，设备可能已恢复，工单可能已关闭，原授权也可能失效。业务入口应在这些条件不满足时拒绝请求，并返回可解释原因。</p>
+<p>对存在审批要求的动作，审批记录要覆盖本次对象、动作和有效期；不能把聊天中的一句泛化认可当成所有后续动作的授权。查询工具也应在服务端限制工厂、字段和租户范围，不能把过滤完全交给模型。</p>
+<p>执行超时后先按请求 ID 查询回执。只有确认未执行且重试条件满足时才重试；使用幂等机制防止重复创建。没有回执就说明结果待核对，避免将“工具调用已发出”写成“业务已完成”。生产控制和设备安全联锁继续由其专用控制链路承担，本篇的 Agent 接入范围是业务查询和经核验的业务命令。</p>
+<h2 id="从一个区域验证整条链路">从一个区域验证整条链路</h2>
+<p>落地时可以先选加工区的一台设备、一类停机事件和一项查询。先把身份、时间、质量码、工单区间及证据入口接通，再扩大到库存、质量和能耗。首轮验收用已知结果的模拟记录和受控样本，比只看三维页面是否会变色更容易定位问题。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>验收场景</th><th>应看到的结果</th></tr></thead><tbody><tr><td>相同源事件重传两次</td><td>原始接收可追踪，业务结果不重复计数</td></tr><tr><td>停机消息晚于恢复消息到达</td><td>当前状态保持恢复，历史停机区间补齐</td></tr><tr><td>设备跨区域搬迁</td><td>当前视图使用新位置，历史任务仍可追到旧归属</td></tr><tr><td>工单执行区间重叠</td><td>关联结果提示冲突，不静默任选一条</td></tr><tr><td>源时间不可信或读数过期</td><td>显示质量与时效问题，不继续显示确定的正常状态</td></tr><tr><td>用户查询权限不足</td><td>工具层拒绝越权范围，不把数据交给模型后再过滤</td></tr><tr><td>建议提交后对象版本变化</td><td>执行前核验拒绝，要求重新评估</td></tr><tr><td>执行超时并重复提交</td><td>按请求 ID 查回执，幂等处理，未知结果明确标识</td></tr></tbody></table>
+<p>本页现有的区域 ID 和设备模型，可以作为后续接入的小样本。下一步若加入状态展示，先为一个对象补上来源、时间和质量信息；随后再让区域说明链接到可核对的业务记录。每增加一种颜色或一个指标，都应能回答它依据哪条记录、何时有效、由哪个系统负责。</p>
+<p>系列入口：<a href="/manufacturing/data-map/">制造业系统数据地图</a> · <a href="/blog/2026-10-14-manufacturing-systems-map/">全部文章与规划</a></p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 
