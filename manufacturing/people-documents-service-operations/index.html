@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>人员资格、受控文件、售后与运行支撑 | 制造业系统</title><meta name="description" content="沿着任务开工、产品交付和服务反馈，梳理人员资格、账号授权、受控文件、在役资产、服务工单与运行恢复的数据关系，用模拟记录说明历史依据、配置变更、离线补传和异常验收方法。"><link rel="canonical" href="https://imcoders.cn/manufacturing/people-documents-service-operations/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/people-documents-service-operations/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/people-documents-service-operations/#article","headline":"人员资格、受控文件、售后与运行支撑","description":"沿着任务开工、产品交付和服务反馈，梳理人员资格、账号授权、受控文件、在役资产、服务工单与运行恢复的数据关系，用模拟记录说明历史依据、配置变更、离线补传和异常验收方法。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/people-documents-service-operations/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-15T00:00:00.000Z","dateModified":"2026-10-15T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"人员资格、受控文件、售后与运行支撑","item":"https://imcoders.cn/manufacturing/people-documents-service-operations/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-15T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-15T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="人员资格、受控文件、售后与运行支撑 | 制造业系统"><meta property="og:description" content="沿着任务开工、产品交付和服务反馈，梳理人员资格、账号授权、受控文件、在役资产、服务工单与运行恢复的数据关系，用模拟记录说明历史依据、配置变更、离线补传和异常验收方法。"><meta property="og:url" content="https://imcoders.cn/manufacturing/people-documents-service-operations/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="人员资格、受控文件、售后与运行支撑 | 制造业系统"><meta name="twitter:description" content="沿着任务开工、产品交付和服务反馈，梳理人员资格、账号授权、受控文件、在役资产、服务工单与运行恢复的数据关系，用模拟记录说明历史依据、配置变更、离线补传和异常验收方法。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="人员资格、受控文件、售后与运行支撑 | 制造业系统"><meta itemprop="description" content="沿着任务开工、产品交付和服务反馈，梳理人员资格、账号授权、受控文件、在役资产、服务工单与运行恢复的数据关系，用模拟记录说明历史依据、配置变更、离线补传和异常验收方法。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "人员资格、受控文件、售后与运行支撑 | 制造业系统";
+const shareDesc = "沿着任务开工、产品交付和服务反馈，梳理人员资格、账号授权、受控文件、在役资产、服务工单与运行恢复的数据关系，用模拟记录说明历史依据、配置变更、离线补传和异常验收方法。";
+const shareLink = "https://imcoders.cn/manufacturing/people-documents-service-operations/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>人员资格、受控文件、售后与运行支撑</h1><p class="mfg-lead" data-astro-cid-767rrl5b>沿着任务开工、产品交付和服务反馈，梳理人员资格、账号授权、受控文件、在役资产、服务工单与运行恢复的数据关系，用模拟记录说明历史依据、配置变更、离线补传和异常验收方法。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/people-documents-service-operations/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-15</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#人员资格怎样约束具体操作" data-astro-cid-767rrl5b>人员资格怎样约束具体操作</a></li><li data-astro-cid-767rrl5b><a href="#受控文件怎样进入执行基线" data-astro-cid-767rrl5b>受控文件怎样进入执行基线</a></li><li data-astro-cid-767rrl5b><a href="#交付后的产品怎样继续留下履历" data-astro-cid-767rrl5b>交付后的产品怎样继续留下履历</a></li><li data-astro-cid-767rrl5b><a href="#运行支撑怎样恢复可核对的业务" data-astro-cid-767rrl5b>运行支撑怎样恢复可核对的业务</a></li><li data-astro-cid-767rrl5b><a href="#接口与-agent-怎样验收" data-astro-cid-767rrl5b>接口与 Agent 怎样验收</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p><a href="/manufacturing/tooling-metrology-utilities-energy/">上一篇</a>补了工装、量具和公用工程条件。现场还会遇到另一类问题：操作员能登录，却没有这项操作的有效资格；终端打开了文件，却拿不出本次采用的版本；产品已经交付，服务人员查到的仍是出厂时的配置。</p>
+<p>这些问题横跨 HR、学习管理、IAM、DMS、MES 和售后服务系统。本文把人员与文件接到具体动作，再沿序列号追踪服务记录，最后讨论断网和系统恢复后的业务核对。文中编号、日期与事件均为独立模拟，不代表真实员工、客户或工厂要求。</p>
+<h2 id="人员资格怎样约束具体操作">人员资格怎样约束具体操作</h2>
+<h3 id="身份权限资格与在岗情况分别核对">身份、权限、资格与在岗情况分别核对</h3>
+<p>身份回答操作者是谁，账号权限决定其能够发起哪些系统动作。岗位资格记录其满足哪些工作要求，在岗与派工记录说明当前安排。四类记录可以互相关联，但不能只用一个“人员有效”字段代替。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>数据责任</th><th>典型来源</th><th>进入生产任务时要核对的内容</th></tr></thead><tbody><tr><td>人员身份与组织</td><td>HR、承包商名册</td><td>人员编号、组织、任职或合作状态</td></tr><tr><td>账号与授权</td><td>IAM、业务权限配置</td><td>账号映射、动作权限、授权范围</td></tr><tr><td>学习与能力确认</td><td>LMS、资格管理、业务考核</td><td>要求版本、考核依据、适用范围与有效期</td></tr><tr><td>班次与派工</td><td>排班、MES、APS</td><td>当前任务、班次、冲突与交接</td></tr><tr><td>实际执行身份</td><td>MES、服务移动端</td><td>谁执行、谁复核、何时发生及来源终端</td></tr></tbody></table>
+<p>LMS 中课程完成，可以作为资格评定的一项证据。某项工作是否还需要实操考核、监督或额外批准，按企业已经确定的要求记录。系统角色叫“操作员”，也不能据此推断它满足所有工序要求。</p>
+<p>SAP 的<a href="https://learning.sap.com/courses/configuring-sap-digital-manufacturing-for-execution-basic-data-and-configuration/controlling-the-production-process-with-user-certifications">用户资格校验课程</a>给出一个具体产品例子：可针对物料、工序活动和资源设置资格要求，在生产动作发生时检查用户已分配的资格；缺失或过期时阻止开工。该能力需要配置检查过程，不能仅凭系统存了资格记录就假定现场已经启用控制。</p>
+<h3 id="核验依据包含任务范围与发生时间">核验依据包含任务范围与发生时间</h3>
+<p>本篇设任务 <code>TASK-SUP-001</code>，采用工序 <code>OP030 / 3</code> 和作业文件 <code>WI030 / E</code>。操作员 <code>EMP-017</code> 的账号映射到相应人员，具备本次动作权限，资格依据 <code>COMP030 / 2</code> 覆盖工厂 A 与该工序，管理有效期至 2026 年 11 月 1 日。</p>
+<p>这些是教学条件，不能推导为任意工厂的资格规则。08:30 发起操作时，系统核对人员、动作、工厂、工序、资格范围和文件依据，再保存核验结果。结果应绑定本次动作；一次开工核验不能成为后续所有返工、复核或其他工位操作的长期通行记录。</p>
+<p>人员临时换岗或由另一位人员接续作业时，记录真实接手身份和交接范围，重新核对其所需条件。主管代录要区分录入者与实际执行者，保留代录依据，不能把代录者自动登记成实际操作者。审批或签署动作同样保留其身份、权限、对象版本与发生时间；法律效力等要求应另按实际适用制度确定，本文只讨论记录关系。</p>
+<h3 id="迟到的撤销消息需要回查历史">迟到的撤销消息需要回查历史</h3>
+<p>再设一条独立变化：资格撤销在 09:30 生效，消息于 10:00 才进入 MES。接收方要保留生效时间、接收时间、来源版本和理由，限制后续相应动作，并筛出本样本 09:30 至 10:00 之间可能受影响的使用记录。</p>
+<p>若 09:40 有一次操作，系统将其列为待评估，不能因为消息晚到就认定当时必然有效。08:30 的原核验快照也不能被当前状态覆盖。具体历史影响、产品处置和继续作业条件，由负责人员结合事实与适用程序确定；消息到达不自动撤销全部历史生产记录。</p>
+<h2 id="受控文件怎样进入执行基线">受控文件怎样进入执行基线</h2>
+<h3 id="文件身份版本与生效范围一同传递">文件身份、版本与生效范围一同传递</h3>
+<p>受控文件需要稳定的文件身份、版本、批准状态、生效范围和历史记录。工艺定义中的作业要求、DMS 中的发布文件和 MES 中的任务引用之间要有明确映射。一个可访问的下载链接，无法单独证明内容适用于当前任务。</p>
+<p>Microsoft 的<a href="https://learn.microsoft.com/en-us/sharepoint/dev/business-apps/power-automate/guidance/require-doc-approval">SharePoint 文档审批说明</a>展示了库中文档的批准流程及状态。制造场景在此之外，还需自行定义产品、工厂、工序和任务的适用范围；一般内容审批完成，不会自动产生这些业务约束。</p>
+<p>沿用本篇任务，假设 <code>WI030 / F</code> 已经批准，但从 10 月 16 日起只对指定的新任务生效。10 月 15 日的 <code>TASK-SUP-001</code> 继续引用适用的 E 版。终端不能将“版本号最大”或“最近上传”当成选择依据；确需改变当前任务时，记录变更范围、批准结果及新的执行依据。</p>
+<h3 id="阅读确认与资格评定分别留痕">阅读确认与资格评定分别留痕</h3>
+<p>文件下发、终端成功下载、人员打开、阅读确认和要求的能力考核分别记录。终端自动回执只证明约定的传输或打开动作，不能生成一条不存在的人员确认。文件变更是否触发重新培训、确认或资格评定，也要有明确的影响判定。</p>
+<p>执行记录可以保存文件 ID、版本、内容摘要校验值、发布依据和访问或确认回执。摘要值帮助确认取到的字节是否一致，不能单独证明文件已经批准或适用。历史查询按任务当时采用的版本打开，避免服务人员点开旧记录时被统一跳转到最新内容。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>人员资格与受控文件进入任务</strong><a href="/manufacturing/maps/person-document-execution.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/person-document-execution.html" title="人员资格与受控文件进入任务动态数据流图" loading="lazy" allowfullscreen></iframe>
+<figcaption>使用 Archify 3.1 绘制。任务范围分别参与资格和文件版本匹配，再与当前身份权限汇合到动作核验。图中通过仅指所示条件，其余开工条件另行核对。点击动态按钮可播放数据流，节点可展开，支持明暗主题；窄屏可进入独立窗口探索。动效不表示实时授权。</figcaption>
+</figure>
+<h3 id="缓存和打印件需要可追踪的使用范围">缓存和打印件需要可追踪的使用范围</h3>
+<p>离线终端缓存应保存内容、版本、适用范围、取得时间和失效规则。失联后能否继续某项动作，按事先批准的离线运行策略决定；无法确认条件时，保留未决，不把缓存存在直接等同于获准执行。涉及关键条件时，策略可以规定必须在线核验。</p>
+<p>纸质文件可以登记受控副本号、版本、发放对象与回收状态。打印出来并不天然失去控制，但也不能假定通知已发出就完成旧副本回收。后续修订保留实际换版和确认记录；历史执行仍引用当时依据，不能为了让界面看起来统一而批量改成新版本。</p>
+<h2 id="交付后的产品怎样继续留下履历">交付后的产品怎样继续留下履历</h2>
+<h3 id="出厂配置与当前配置分开保存">出厂配置与当前配置分开保存</h3>
+<p>产品出厂履历保留装配、测试与放行时的配置。客户现场的在役档案记录当前位置、当前组成件、服务状态和已发生的改装。两个视图按稳定产品身份关联；一次现场更换不能抹掉原始装配记录。</p>
+<p>本篇另设产品序列号 <code>SN-SVC-001</code> 与在役资产 <code>ASSET-SVC-001</code>，对应模拟产品 <code>FAN-100</code>。这套服务样本独立于前文风机订单，不表示先前订单已经交付或发生了售后故障。初始配置含部件实例 <code>PART-SVC-01</code>，服务后可能换成 <code>PART-SVC-02</code>。</p>
+<p>资产还需要区分所有者、实际使用方、服务账户与安装位置。Microsoft 的<a href="https://learn.microsoft.com/en-us/dynamics365/field-service/functional-locations">功能位置说明</a>展示了客户地点中的位置层级，以及客户资产、工单与位置的关联。位置标识帮助找到服务对象，无法替代产品序列号；产品搬迁或转售后，也要保留位置与责任关系的历史变化。</p>
+<h3 id="客户报修与现场处置形成不同对象">客户报修与现场处置形成不同对象</h3>
+<p>客户问题记录保存其描述、时间、现象和附件。服务案例管理受理与协作，服务工单组织需要执行的工作，调度和预约再安排人员、时间、地点与资源。同一案例可能拆成多张工单，多次上门也不能简单覆盖为一条“维修完成”。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>对象</th><th>本例身份</th><th>需要保留的依据</th></tr></thead><tbody><tr><td>产品与在役资产</td><td>SN-SVC-001、ASSET-SVC-001</td><td>出厂关联、位置与当前配置</td></tr><tr><td>客户问题</td><td>REPORT-SVC-001</td><td>客户原话、现象、时间与附件</td></tr><tr><td>服务案例</td><td>CASE-SVC-001</td><td>身份核对、受理范围与责任人</td></tr><tr><td>服务工单</td><td>WO-SVC-001</td><td>工作范围、批准依据与所需条件</td></tr><tr><td>调度或预约</td><td>VISIT-SVC-001</td><td>人员、资格、地点和时段</td></tr><tr><td>实际执行事件</td><td>EXEC-SVC-001</td><td>实际人员、动作、部件与测试</td></tr><tr><td>配置变更记录</td><td>CFG-SVC-001</td><td>拆出件、装入件、时刻和证据</td></tr></tbody></table>
+<p>保修或服务合同需要核对实际对象、覆盖范围与期间。本文不规定保修期限、收费或责任归属；是否免费处理不能只凭序列号存在或工单关闭来判断。安排现场工作时，还需核对人员资格、适用文件、备件状态和所需许可。</p>
+<h3 id="更换部件同时核对库存与配置">更换部件同时核对库存与配置</h3>
+<p>假设本样本一次批准的服务动作拆下 <code>PART-SVC-01</code>，装入 <code>PART-SVC-02</code>，并完成要求的测试记录。事件保存实际发生时间、部件身份和安装位置。只有存在足够执行证据，才更新当前配置视图；预约中写了新部件，不能提前改变在役资产。</p>
+<p>假设服务车库存最初有 3 件可用备件，本次实际领用安装 1 件，没有其他收发或退回，则车库存剩 2 件。重复上传同一个执行事件不会再次扣减备件，也不会生成第二次安装。拆下的旧件另记去向，例如待检、返修或批准处置，不能默认为一件可用库存。</p>
+<p>库存与资产更新可能分别成功。系统保存每项处理回执与待核对差异，重试失败的一项，避免把整份报告再执行一遍。发现扫描身份或实物不符时保持待处理，不能用工单计划用量补出一条实际安装成功。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>在役产品、服务执行与工程反馈</strong><a href="/manufacturing/maps/service-asset-feedback.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/service-asset-feedback.html" title="在役产品、服务执行与工程反馈动态数据流图" loading="lazy" allowfullscreen></iframe>
+<figcaption>使用 Archify 3.1 绘制，聚焦在役查证、服务执行证据和质量工程反馈。下排从右向左读取，变更通过批准后才形成新的适用基线；库存结算与当前资产配置更新在正文中分别对账。可播放或暂停动态效果、点击节点及切换主题，窄屏可独立查看。示例关系不代表实际部署或已发生的故障。</figcaption>
+</figure>
+<h3 id="服务问题经评估进入质量与工程变更">服务问题经评估进入质量与工程变更</h3>
+<p>现场现象、推测原因、验证后的根因和处置效果分别保存。服务人员提交报告，不应直接生成一个已经验证的根因。QMS 可关联同类问题与相关生产履历，判断是否需要进一步调查或处置；工程团队再评审候选改进、验证依据和适用范围。</p>
+<p>确需变更时，按<a href="/manufacturing/plm-engineering-change/">PLM 工程变更一篇</a>的规则形成批准记录。新的产品定义、文件或服务方案明确适用于哪些新生产任务或在役产品，不能自动覆盖全部已交付产品的历史配置。现场维修完成、客户确认、费用结算和质量问题关闭也可能发生在不同时间，各自保留状态。</p>
+<h2 id="运行支撑怎样恢复可核对的业务">运行支撑怎样恢复可核对的业务</h2>
+<h3 id="应用恢复与生产恢复分别确认">应用恢复与生产恢复分别确认</h3>
+<p>ITSM 记录故障、影响范围、责任人、处置与恢复证据。监控发现应用可访问，只说明某项技术检查通过；MES、WMS 或服务系统能否继续处理任务，还要检查业务状态和依赖。恢复过程中保留当前授权、资格、文件发布与业务锁定状态，不能从旧备份里恢复出已经撤销的资格后直接放行。</p>
+<p>备份范围需要覆盖数据库、附件、版本文件、映射配置、消息处理位置及必要的安全配置，并采用适用的恢复保护措施。恢复点目标与恢复时间目标是计划目标，实际是否达到要由演练或故障恢复的测量证据确认。本文不设通用分钟数，也不把一次数据库还原视为整个制造业务已经恢复。</p>
+<p>例如 MES 还原到 09:00，而仓库保留到 09:20 的实际出库。恢复后需核对这段期间的事件、库存回执和现场实物，识别已完成但 MES 暂缺的动作。不能将工单回到旧状态后再次发起全部领料，也不能为了对齐时间而撤销真实发生的出库。</p>
+<h3 id="离线记录保留业务时间与上传时间">离线记录保留业务时间与上传时间</h3>
+<p>移动服务端或车间终端离线时，按批准范围记录实际动作、身份、文件基线、来源设备及本地事件序号。上传时间单独保存，不能替代实际发生时间。设备时钟不可靠时记录其质量，并将相关先后关系列为待核查。</p>
+<p>网络恢复后按稳定业务事件去重，再核对服务工单、物料、配置和资格历史。若服务器期间已经撤销工单或变更配置，离线事件保留事实与冲突，由相应责任人处置；不能使用“最后上传覆盖”让较旧的现场记录抹掉已确认的新状态。</p>
+<p>恢复演练除了确认能登录，还应挑一组跨系统样本，核对订单、任务、领料、执行、测试、库存和回执是否一致。演练结果记录缺口、补偿动作及批准范围，正式继续运行前再完成所需确认。</p>
+<h3 id="业务系统分别保有自己的决定权">业务系统分别保有自己的决定权</h3>
+<p>BPM 可以组织审批，但一次流程结束不自动等于 MES 已获准开工、QMS 已放行或 ERP 已结算。审批对象、版本、决定内容、适用范围与下游执行回执需要逐项关联。文件后来改变或任务发生实质变化时，确认原批准是否仍适用。</p>
+<p>HR 保存组织与身份依据，资格管理保存能力确认，IAM 管理访问控制，DMS 保存受控文件，MES 和 FSM 记录实际执行，ITSM 管理运行故障。企业可以由同一产品承载多项职责，集成时仍应明确谁有权改变哪项业务状态，以及其他系统读到的是原始决定还是派生视图。</p>
+<h2 id="接口与-agent-怎样验收">接口与 Agent 怎样验收</h2>
+<h3 id="一条动作记录能回到当时的依据">一条动作记录能回到当时的依据</h3>
+<p>接口共用稳定身份与映射，保留来源系统、对象编号、业务时间、接收时间、版本和处理结果。人员资格、文件发布、服务配置和执行结果各有自己的版本，不应压成单一“最新状态”。同一个动作涉及多项写入时，逐项留回执和差异，按业务事件识别重复。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>样本</th><th>预期核对结果</th></tr></thead><tbody><tr><td>有账号权限但缺岗位资格</td><td>本次受限动作不通过，说明缺失依据</td></tr><tr><td>任务仍适用 E 版，新 F 版未来生效</td><td>保留 E 版引用，不按最大版本号替换</td></tr><tr><td>09:30 生效的撤销到 10:00 才收到</td><td>圈定相关时段和范围，09:40 使用列为待评估</td></tr><tr><td>终端下载成功但无人员确认</td><td>只记传输回执，不补出阅读或培训完成</td></tr><tr><td>同一安装事件重传三次</td><td>仅一次备件消耗和安装关联，保留处理回执</td></tr><tr><td>备件扣减成功、资产更新失败</td><td>显示部分完成与差异，只重试未完成动作</td></tr><tr><td>旧部件拆下后未检验</td><td>保留去向与限制，不自动增加可用库存</td></tr><tr><td>服务工单完成但根因未验证</td><td>服务事实保留，质量问题继续待评估</td></tr><tr><td>恢复备份时有后续实物出库</td><td>先对账，不重复发料或改写实际发生时间</td></tr><tr><td>服务器已取消任务，离线记录随后上传</td><td>保留原事实和冲突，按权限评估后续处置</td></tr></tbody></table>
+<p>这些样本用于接口与流程验收设计，不表示本文站点实现了相应业务系统。上线前还需结合实际产品配置、现场角色、数据粒度和适用规则执行验证。</p>
+<h3 id="agent-可以查差异和整理处置草稿">Agent 可以查差异和整理处置草稿</h3>
+<p>Agent 可按任务整理人员资格与文件依据，说明某次核验采用了哪条记录；按序列号列出出厂与当前在役配置差异；汇总服务问题与质量调查证据；恢复后列出需要人工核对的缺失回执。回答同时带上来源、时段、版本与未知项。</p>
+<p>资格授予、权限调整、文件发布、在役配置修订和业务恢复批准分别使用相应的授权流程。Agent 检索到一份文档或归纳出一条建议，不能据此生成批准结果。人员和客户资料也按实际访问范围查询，不因跨系统汇总而扩大可见权限。</p>
+<p>本篇补上了任务前的人员与文件依据，以及交付后的服务和运行恢复记录。下一篇进入工业数据平台、数字孪生与 Agent 接入，继续讨论这些分散记录怎样形成可查询、可验证的数据关系。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 

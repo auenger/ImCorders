@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "人员资格与受控文件进入任务",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-support-20261015-090329/person-document-execution/person-document-execution.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "来源与定义"
+    },
+    {
+      "label": "范围与匹配"
+    },
+    {
+      "label": "业务依据"
+    },
+    {
+      "label": "核对与处理"
+    },
+    {
+      "label": "动作与留痕"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "learning",
+      "type": "database",
+      "label": "人员与学习记录",
+      "sublabel": "身份、资格与期限",
+      "stage": 0,
+      "row": 0
+    },
+    {
+      "id": "qualification",
+      "type": "backend",
+      "label": "资格范围匹配",
+      "sublabel": "工厂、工序与版本",
+      "stage": 1,
+      "row": 0
+    },
+    {
+      "id": "q-evidence",
+      "type": "database",
+      "label": "资格依据快照",
+      "sublabel": "记录编号与核验时间",
+      "stage": 2,
+      "row": 0
+    },
+    {
+      "id": "task",
+      "type": "database",
+      "label": "生产任务",
+      "sublabel": "任务基线与操作者",
+      "stage": 0,
+      "row": 1
+    },
+    {
+      "id": "identity",
+      "type": "security",
+      "label": "身份与权限核对",
+      "sublabel": "当前操作者与动作",
+      "stage": 1,
+      "row": 1
+    },
+    {
+      "id": "joint",
+      "type": "security",
+      "label": "任务条件核验",
+      "sublabel": "权限、资格与文件",
+      "stage": 2,
+      "row": 1
+    },
+    {
+      "id": "execution",
+      "type": "backend",
+      "label": "获准执行动作",
+      "sublabel": "仅在所需条件通过后",
+      "stage": 3,
+      "row": 1
+    },
+    {
+      "id": "history",
+      "type": "database",
+      "label": "执行履历",
+      "sublabel": "人员、基线与结果",
+      "stage": 4,
+      "row": 1
+    },
+    {
+      "id": "dms",
+      "type": "database",
+      "label": "受控文件库",
+      "sublabel": "批准版本与生效范围",
+      "stage": 0,
+      "row": 2
+    },
+    {
+      "id": "baseline",
+      "type": "backend",
+      "label": "适用版本匹配",
+      "sublabel": "按任务基线选择",
+      "stage": 1,
+      "row": 2
+    },
+    {
+      "id": "d-evidence",
+      "type": "database",
+      "label": "文件依据快照",
+      "sublabel": "版本与所需确认",
+      "stage": 2,
+      "row": 2
+    }
+  ],
+  "flows": [
+    {
+      "id": "flow-0",
+      "to": "qualification",
+      "label": "资格记录",
+      "variant": "default",
+      "from": "learning"
+    },
+    {
+      "id": "flow-1",
+      "to": "q-evidence",
+      "label": "匹配结果",
+      "variant": "default",
+      "from": "qualification"
+    },
+    {
+      "id": "flow-2",
+      "to": "identity",
+      "label": "任务与操作者",
+      "variant": "default",
+      "from": "task"
+    },
+    {
+      "id": "flow-3",
+      "to": "joint",
+      "label": "权限结果",
+      "variant": "default",
+      "from": "identity"
+    },
+    {
+      "id": "flow-4",
+      "to": "joint",
+      "label": "资格依据",
+      "variant": "default",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "from": "q-evidence"
+    },
+    {
+      "id": "flow-5",
+      "to": "baseline",
+      "label": "批准版本",
+      "variant": "default",
+      "from": "dms"
+    },
+    {
+      "id": "flow-6",
+      "to": "d-evidence",
+      "label": "适用依据",
+      "variant": "default",
+      "from": "baseline"
+    },
+    {
+      "id": "flow-7",
+      "to": "joint",
+      "label": "文件依据",
+      "variant": "default",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "from": "d-evidence"
+    },
+    {
+      "id": "flow-8",
+      "to": "execution",
+      "label": "核验通过",
+      "variant": "security",
+      "from": "joint"
+    },
+    {
+      "id": "flow-9",
+      "to": "history",
+      "label": "执行结果",
+      "variant": "emphasis",
+      "from": "execution"
+    },
+    {
+      "id": "task-qualification",
+      "from": "task",
+      "to": "qualification",
+      "label": "任务范围",
+      "variant": "default",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "task-document",
+      "from": "task",
+      "to": "baseline",
+      "label": "任务基线",
+      "variant": "default",
+      "fromSide": "bottom",
+      "toSide": "top"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "汇合到具体动作",
+      "items": [
+        "三条输入分别提供权限、资格与文件依据",
+        "动作前核对任务范围，失败或未知保持未决",
+        "这里只展示人员与文件条件，其余开工条件另行核验"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "基线与当前状态",
+      "items": [
+        "读过文件不等于具备岗位资格",
+        "采用任务适用版本，不能按最新文件名替换",
+        "历史快照保留当时的依据与实际人员"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "迟到与失效",
+      "items": [
+        "资格撤销按业务生效时间圈定待评估记录",
+        "离线操作按批准范围留痕，联网后核对冲突",
+        "动态效果表达数据方向，不表示实时授权"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "在役产品、服务执行与工程反馈",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-support-20261015-090329/service-asset-feedback/service-asset-feedback.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "来源与定义"
+    },
+    {
+      "label": "范围与匹配"
+    },
+    {
+      "label": "业务依据"
+    },
+    {
+      "label": "核对与处理"
+    },
+    {
+      "label": "动作与留痕"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "asbuilt",
+      "type": "database",
+      "label": "出厂履历",
+      "sublabel": "序列号与装配基线",
+      "stage": 0,
+      "row": 0
+    },
+    {
+      "id": "delivery",
+      "type": "backend",
+      "label": "交付登记",
+      "sublabel": "交付对象与证据",
+      "stage": 1,
+      "row": 0
+    },
+    {
+      "id": "asset",
+      "type": "database",
+      "label": "在役资产档案",
+      "sublabel": "位置与当前配置",
+      "stage": 2,
+      "row": 0
+    },
+    {
+      "id": "context",
+      "type": "backend",
+      "label": "服务上下文",
+      "sublabel": "身份、合同与历史",
+      "stage": 3,
+      "row": 0
+    },
+    {
+      "id": "report",
+      "type": "external",
+      "label": "客户问题记录",
+      "sublabel": "现象、时间与证据",
+      "stage": 0,
+      "row": 1
+    },
+    {
+      "id": "match",
+      "type": "backend",
+      "label": "产品身份核对",
+      "sublabel": "序列号与服务地点",
+      "stage": 1,
+      "row": 1
+    },
+    {
+      "id": "case",
+      "type": "database",
+      "label": "服务案例",
+      "sublabel": "问题记录与责任人",
+      "stage": 2,
+      "row": 1
+    },
+    {
+      "id": "work",
+      "type": "backend",
+      "label": "服务工单",
+      "sublabel": "核定范围与所需条件",
+      "stage": 3,
+      "row": 1
+    },
+    {
+      "id": "execute",
+      "type": "backend",
+      "label": "服务执行",
+      "sublabel": "批准后核对实际动作",
+      "stage": 4,
+      "row": 1
+    },
+    {
+      "id": "newbase",
+      "type": "database",
+      "label": "发布的新基线",
+      "sublabel": "未来适用范围",
+      "stage": 0,
+      "row": 2
+    },
+    {
+      "id": "approve",
+      "type": "security",
+      "label": "变更批准核验",
+      "sublabel": "验证结果与适用范围",
+      "stage": 1,
+      "row": 2
+    },
+    {
+      "id": "proposal",
+      "type": "backend",
+      "label": "工程变更评审",
+      "sublabel": "候选方案与验证依据",
+      "stage": 2,
+      "row": 2
+    },
+    {
+      "id": "quality",
+      "type": "backend",
+      "label": "质量问题评估",
+      "sublabel": "证据关联与原因分析",
+      "stage": 3,
+      "row": 2
+    },
+    {
+      "id": "evidence",
+      "type": "database",
+      "label": "服务事实与回执",
+      "sublabel": "更换件、测试与时间",
+      "stage": 4,
+      "row": 2
+    }
+  ],
+  "flows": [
+    {
+      "id": "flow-0",
+      "to": "delivery",
+      "label": "交付基线",
+      "variant": "default",
+      "from": "asbuilt"
+    },
+    {
+      "id": "flow-1",
+      "to": "asset",
+      "label": "身份登记",
+      "variant": "default",
+      "from": "delivery"
+    },
+    {
+      "id": "flow-2",
+      "to": "context",
+      "label": "在役履历",
+      "variant": "default",
+      "from": "asset"
+    },
+    {
+      "id": "flow-3",
+      "to": "match",
+      "label": "问题与身份",
+      "variant": "default",
+      "from": "report"
+    },
+    {
+      "id": "flow-4",
+      "to": "case",
+      "label": "核对结果",
+      "variant": "default",
+      "from": "match"
+    },
+    {
+      "id": "flow-5",
+      "to": "work",
+      "label": "任务需求",
+      "variant": "default",
+      "from": "case"
+    },
+    {
+      "id": "flow-6",
+      "to": "work",
+      "label": "服务依据",
+      "variant": "default",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "from": "context"
+    },
+    {
+      "id": "flow-7",
+      "to": "execute",
+      "label": "批准且条件通过",
+      "variant": "security",
+      "from": "work"
+    },
+    {
+      "id": "flow-8",
+      "to": "evidence",
+      "label": "实际结果",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "from": "execute"
+    },
+    {
+      "id": "flow-9",
+      "to": "quality",
+      "label": "问题证据",
+      "variant": "default",
+      "from": "evidence"
+    },
+    {
+      "id": "flow-10",
+      "to": "proposal",
+      "label": "评审需求",
+      "variant": "default",
+      "from": "quality"
+    },
+    {
+      "id": "flow-11",
+      "to": "approve",
+      "label": "变更与验证",
+      "variant": "default",
+      "from": "proposal"
+    },
+    {
+      "id": "flow-12",
+      "to": "newbase",
+      "label": "批准后发布",
+      "variant": "security",
+      "from": "approve"
+    },
+    {
+      "id": "delivery-identity-lookup",
+      "from": "delivery",
+      "to": "match",
+      "label": "交付身份",
+      "variant": "default",
+      "fromSide": "bottom",
+      "toSide": "top"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "生产延伸到服务",
+      "items": [
+        "出厂履历和在役档案分别保存，不覆盖历史",
+        "工单核对资产、服务范围、人员与适用文件",
+        "服务事实是更换、测试和时间等实际证据"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "问题反馈有审批",
+      "items": [
+        "服务报告不直接改写 BOM 或在制工单",
+        "工程评审和批准后才形成新的适用基线",
+        "问题、处置完成和根因验证分别记录"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "图的范围",
+      "items": [
+        "图展示查证与反馈，库存结算与资产更新另行对账",
+        "回执与实物结果存在差异时保留待核查",
+        "动态效果仅展示数据方向，案例为模拟"
+      ]
+    }
+  ]
+}

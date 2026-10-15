@@ -167,7 +167,7 @@
         "AI Agent"
       ],
       "publishedAt": "2026-10-14T00:00:00.000Z",
-      "updatedAt": "2026-10-14T00:00:00.000Z",
+      "updatedAt": "2026-10-15T00:00:00.000Z",
       "url": "https://imcoders.cn/blog/2026-10-14-manufacturing-systems-map/",
       "markdownUrl": "https://imcoders.cn/blog/2026-10-14-manufacturing-systems-map/index.md"
     },
@@ -1932,6 +1932,24 @@
       "updatedAt": "2026-10-14T00:00:00.000Z",
       "url": "https://imcoders.cn/manufacturing/order-delivery-delay-analysis/",
       "markdownUrl": "https://imcoders.cn/manufacturing/order-delivery-delay-analysis/index.md"
+    },
+    {
+      "id": "manufacturing/people-documents-service-operations",
+      "kind": "manufacturing",
+      "title": "人员资格、受控文件、售后与运行支撑",
+      "description": "沿着任务开工、产品交付和服务反馈，梳理人员资格、账号授权、受控文件、在役资产、服务工单与运行恢复的数据关系，用模拟记录说明历史依据、配置变更、离线补传和异常验收方法。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "人员资格",
+        "受控文件",
+        "售后服务",
+        "运行支撑"
+      ],
+      "publishedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/people-documents-service-operations/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/people-documents-service-operations/index.md"
     },
     {
       "id": "manufacturing/plm-engineering-change",
