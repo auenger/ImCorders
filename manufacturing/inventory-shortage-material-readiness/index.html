@@ -1,0 +1,301 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>库存有货为什么仍然缺料 | 制造业系统</title><meta name="description" content="用一张工单的齐套样本，串起 ERP、WMS、QMS、MES 与采购计划，逐项核对冻结、预留、替代、线边余料和在途，算出当前能配多少套，并追踪从候选供给到实际配送的回执。"><link rel="canonical" href="https://imcoders.cn/manufacturing/inventory-shortage-material-readiness/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/inventory-shortage-material-readiness/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/inventory-shortage-material-readiness/#article","headline":"库存有货为什么仍然缺料","description":"用一张工单的齐套样本，串起 ERP、WMS、QMS、MES 与采购计划，逐项核对冻结、预留、替代、线边余料和在途，算出当前能配多少套，并追踪从候选供给到实际配送的回执。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/inventory-shortage-material-readiness/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-15T00:00:00.000Z","dateModified":"2026-10-15T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"库存有货为什么仍然缺料","item":"https://imcoders.cn/manufacturing/inventory-shortage-material-readiness/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-15T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-15T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="库存有货为什么仍然缺料 | 制造业系统"><meta property="og:description" content="用一张工单的齐套样本，串起 ERP、WMS、QMS、MES 与采购计划，逐项核对冻结、预留、替代、线边余料和在途，算出当前能配多少套，并追踪从候选供给到实际配送的回执。"><meta property="og:url" content="https://imcoders.cn/manufacturing/inventory-shortage-material-readiness/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="库存有货为什么仍然缺料 | 制造业系统"><meta name="twitter:description" content="用一张工单的齐套样本，串起 ERP、WMS、QMS、MES 与采购计划，逐项核对冻结、预留、替代、线边余料和在途，算出当前能配多少套，并追踪从候选供给到实际配送的回执。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="库存有货为什么仍然缺料 | 制造业系统"><meta itemprop="description" content="用一张工单的齐套样本，串起 ERP、WMS、QMS、MES 与采购计划，逐项核对冻结、预留、替代、线边余料和在途，算出当前能配多少套，并追踪从候选供给到实际配送的回执。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "库存有货为什么仍然缺料 | 制造业系统";
+const shareDesc = "用一张工单的齐套样本，串起 ERP、WMS、QMS、MES 与采购计划，逐项核对冻结、预留、替代、线边余料和在途，算出当前能配多少套，并追踪从候选供给到实际配送的回执。";
+const shareLink = "https://imcoders.cn/manufacturing/inventory-shortage-material-readiness/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>库存有货为什么仍然缺料</h1><p class="mfg-lead" data-astro-cid-767rrl5b>用一张工单的齐套样本，串起 ERP、WMS、QMS、MES 与采购计划，逐项核对冻结、预留、替代、线边余料和在途，算出当前能配多少套，并追踪从候选供给到实际配送的回执。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/inventory-shortage-material-readiness/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-15</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#先确定这次要回答哪一个缺料问题" data-astro-cid-767rrl5b>先确定这次要回答哪一个缺料问题</a></li><li data-astro-cid-767rrl5b><a href="#把-150-件库存拆到能判断的粒度" data-astro-cid-767rrl5b>把 150 件库存拆到能判断的粒度</a></li><li data-astro-cid-767rrl5b><a href="#算出-100-套以后还要说明哪-100-套" data-astro-cid-767rrl5b>算出 100 套以后，还要说明哪 100 套</a></li><li data-astro-cid-767rrl5b><a href="#让每一次补料都有可核对的回执" data-astro-cid-767rrl5b>让每一次补料都有可核对的回执</a></li><li data-astro-cid-767rrl5b><a href="#用这份样本验收一次跨系统齐套" data-astro-cid-767rrl5b>用这份样本验收一次跨系统齐套</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>仓库说连接器还有 150 件，生产说下午剩下 120 套装不起来。采购补了一句，路上还有 40 件。三个数字都可能准确，现场也确实可能缺料。</p>
+<p>前面的 <a href="/manufacturing/wms-inventory-production-delivery/">WMS</a>、<a href="/manufacturing/qms-lims-quality-release/">QMS / LIMS</a>和<a href="/manufacturing/customer-configuration-supply-planning/">供给计划</a>分别讲过这些记录。本篇把它们放进同一张工单，落实总目录的 S03 场景。以下工单、数量和时间均为独立教学样本，与前文案例不共用台账，也未连接真实工厂。</p>
+<h2 id="先确定这次要回答哪一个缺料问题">先确定这次要回答哪一个缺料问题</h2>
+<p>工单 <code>MO-K120</code> 计划生产 150 套组件，每套需要连接器 <code>CON-A</code> 1 件、卡扣 <code>CLP-B</code> 2 件。10:00 时已经完成 30 套，对应净耗用分别是 30 件和 60 件；没有在制半成品、报废补料或退料待记账。剩下 120 套安排在当天 14:00 投产。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>物料</th><th>单套用量</th><th>工单总需求</th><th>截至 10:00 净耗用</th><th>剩余需求</th></tr></thead><tbody><tr><td>CON-A 连接器</td><td>1 件</td><td>150 件</td><td>30 件</td><td>120 件</td></tr><tr><td>CLP-B 卡扣</td><td>2 件</td><td>300 件</td><td>60 件</td><td>240 件</td></tr></tbody></table>
+<p>这组简化条件很重要。实际工厂若已有半成品进入下一工序，不能用“剩余成品数量 × 全部 BOM”重新生成整套需求；需要按工序确认哪些材料已经投入。报废后的补料、领用冲销和退料，也要进入需求修订或净耗用记录。</p>
+<p>下午是否开工，可以拆成三个问题。当前合格库存能覆盖多少套？其中多少已经锁定给本工单？14:00 前有多少能送到指定工位？这三项分别对应候选供给、预留承诺和线边实收，页面需要分别显示。</p>
+<p>ERP 提供工单与生效 BOM，MES 提供耗用与工序进度，WMS 提供库存位置和预留，QMS 提供质量处置，采购与计划提供预计到货和时间安排。这个样本约定 WMS 管理线边库位；MES 读取线边库存并登记耗用，不再创建另一份可以相加的线边余额。</p>
+<h2 id="把-150-件库存拆到能判断的粒度">把 150 件库存拆到能判断的粒度</h2>
+<p>10:00 的连接器库存如下。表中每行是互不重叠的数量分组；同一批货若一部分已预留，必须拆成不同明细，不能让整批数量同时出现在两行。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>明细</th><th>数量</th><th>状态与归属</th><th>本工单当前候选供给</th></tr></thead><tbody><tr><td>A01 主仓自由库存</td><td>60 件</td><td>CON-A，已放行、未预留</td><td>60 件</td></tr><tr><td>A02 主仓本单预留</td><td>20 件</td><td>CON-A，已放行、预留给 MO-K120</td><td>20 件</td></tr><tr><td>A03 主仓其他工单预留</td><td>30 件</td><td>CON-A，已放行、归其他工单</td><td>0 件</td></tr><tr><td>A04 待验区</td><td>25 件</td><td>CON-A，质量冻结</td><td>0 件</td></tr><tr><td>A05 线边未耗用余料</td><td>15 件</td><td>CON-A，已放行、本单专用</td><td>15 件</td></tr><tr><td>CON-A 实物库存合计</td><td>150 件</td><td>包含冻结和已预留数量</td><td>95 件</td></tr><tr><td>X01 替代连接器</td><td>5 件</td><td>CON-X，已放行、未预留；本单批准 1:1 替代</td><td>5 件</td></tr><tr><td>PO-440 在途</td><td>40 件</td><td>CON-A，预计 12:30 到厂，尚未收货验收</td><td>0 件</td></tr></tbody></table>
+<p>两种连接器在本样本中均为本公司货权、适用当前 BOM 版本、在有效期内。替代批准只允许 <code>CON-X</code> 用于本工单，最多 5 件，无需换装或增加工序。撤掉这些条件，最后的 5 件就不能直接加入计算。</p>
+<p>卡扣的实物库存为 300 件，均已放行；40 件预留给其他工单，剩余 260 件在主仓自由可用。卡扣尚未预留给本工单，线边也没有卡扣。</p>
+<p>库存系统本身通常就区分实物数量、实物预留和可用数量。Dynamics 365 的文档还明确区分预计收货上的预留：这类数量不能直接拣货配送。查看汇总表时，筛选维度与展示维度也会影响结果。<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/inventory/inventory-on-hand-list">库存现有量说明</a></p>
+<p>冻结数量同样可能留在实物库存里。Dynamics 365 将被阻止使用的库存计入实物库存，同时限制其用于生产、销售、转移等业务。文章里的 A04 采用这一类处理方式，具体项目仍要核对本地配置。<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/inventory/inventory-statuses">库存状态说明</a></p>
+<h3 id="先筛选明细再汇总数量">先筛选明细，再汇总数量</h3>
+<p>我会让齐套接口至少保留物料、版本、批次、库位、货权、基础单位、质量状态、预留对象和来源记录 ID。资格判断通过后，才按需求行汇总。</p>
+<p>如果冻结的 25 件里有 10 件也处于预留状态，直接拿“实物库存减冻结再减全部预留”会重复扣减。另一种错误是先取系统已经算好的自由可用量，再扣一遍预留。接口必须说明输出的是原始余额还是扣减后的结果。</p>
+<p>线边的 15 件仍然是未耗用库存，已经包含在 150 件中，不能再加一次；已耗用的 30 件已经减少了需求，也不能作为库存供给。中央仓移到线边只是换了位置，只有实际耗用或其他出库业务才改变对应的库存余额。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>同一工单的齐套数据从哪里来</strong><a href="/manufacturing/maps/material-readiness.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/material-readiness.html" title="工单需求、库存、质量与替代规则汇合的动态数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>教学数据流。点击节点查看关联路径，可切换动态播放；BOM、耗用、质量和库存分别保留来源，计算节点输出齐套快照。</figcaption>
+</figure>
+<h2 id="算出-100-套以后还要说明哪-100-套">算出 100 套以后，还要说明哪 100 套</h2>
+<p>连接器候选供给为 <code>60 + 20 + 15 + 5 = 100</code> 件，卡扣为 <code>300 - 40 = 260</code> 件。剩余需求分别是 120 件和 240 件，因此连接器缺 20 件，卡扣候选供给有 20 件余量。</p>
+<p>本样本每一套使用相同物料组合、无额外损耗，且替代数量已经按批准比例换算，可以直接按短板计算：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>连接器可覆盖套数 = floor(100 / 1) = 100</span></span>
+<span class="line"><span>卡扣可覆盖套数   = floor(260 / 2) = 130</span></span>
+<span class="line"><span>当前候选齐套数   = min(剩余 120 套, 100 套, 130 套) = 100 套</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>100 套是这个时点的供给能力判断。连接器中的 60 件自由库存和 5 件替代料仍可能被其他请求占用；卡扣的 260 件也尚未锁定。当前连接器本单已占用数量为 35 件，卡扣为 0 件，所以按已锁定材料计算，完整齐套承诺为 0 套。线边只有 15 件连接器，线边实收齐套也为 0 套。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>判断口径</th><th>10:00 的结果</th><th>可以支持的操作</th></tr></thead><tbody><tr><td>当前候选供给</td><td>可覆盖 100 套，连接器缺 20 件</td><td>生成分配方案、定位缺口</td></tr><tr><td>本工单已锁定</td><td>完整配套 0 套</td><td>查看连接器已占用 35 件，继续申请其他物料</td></tr><tr><td>线边合格实收</td><td>完整配套 0 套</td><td>等待配料配送与现场确认</td></tr><tr><td>14:00 预计供给</td><td>条件满足时可覆盖剩余 120 套</td><td>形成带前提的计划情景</td></tr></tbody></table>
+<h3 id="预计齐套必须把前提写出来">预计齐套必须把前提写出来</h3>
+<p>质量人员预计 11:30 可完成 A04 中 20 件的放行。若处置确实完成、WMS 已应用新状态，并且该数量成功分配给本工单，候选连接器就从 100 件增加到 120 件。余下 5 件继续冻结，不能随同整批变成可用。</p>
+<p>另一条路径是 PO-440 的 40 件在途。预计 12:30 到厂，还需要收货、检验或适用的免检确认、入账以及配送。计划假设这些步骤能够在 14:00 前完成，才可以把它作为预计供给。采购回报“已发货”时，当前齐套数仍然是 100 套。</p>
+<p>若两条路径都满足条件，候选连接器达到 <code>100 + 20 + 40 = 160</code> 件，最终只需为剩余 120 套分配 120 件。新增的 20 件来自原冻结库存状态变更，新增的 40 件来自采购收货，两者不是同一批供给。现场应选定分配方案，避免为了同一个 20 件缺口同时锁住全部 60 件。</p>
+<p>这套 <code>min(floor(...))</code> 算法只适用于本文的固定组合。多产品共享替代料、某个替代件同时满足两个需求行、批次必须成组使用时，需要先完成受约束的分配，再汇总覆盖套数。把同一批替代料分别加入多个需求行，会得出无法执行的齐套结果。</p>
+<h2 id="让每一次补料都有可核对的回执">让每一次补料都有可核对的回执</h2>
+<p>计划员可以先为 100 套生成方案：连接器使用线边 15 件、本单已预留 20 件、自由库存 60 件和替代料 5 件；卡扣申请 200 件。这样新增预留是连接器 65 件、卡扣 200 件。仓库需配送连接器 85 件和卡扣 200 件，线边已有的 15 件无需重复配送。</p>
+<p>上述动作全部成功后，已锁定材料才能覆盖 100 套。实收无差异且质量资格仍有效，线边齐套才能变成 100 套。若要一次备齐剩余 120 套，还需落实额外 20 件连接器，并再预留、配送 40 件卡扣。</p>
+<h3 id="查询通过以后提交时仍要复核">查询通过以后，提交时仍要复核</h3>
+<p>10:00:00 查询显示自由库存 60 件，10:00:02 另一张工单可能抢先锁走 10 件。分配请求应带上需求版本、候选库存标识、预留版本和幂等键，由权威库存系统在提交时检查剩余可用数量。失败时返回冲突明细，计划端读取新状态重新计算。</p>
+<p>一个仓库系统内可以用事务或条件更新保障预留；跨 WMS、QMS 和 MES 时，需要明确各系统接受哪一个状态版本。如果质量冻结与预留同时发生，单纯检查库存数量还不够。质量变更必须能够阻止后续拣货或消费，并让已经生成的配送任务进入复核。</p>
+<p>部分成功也需要明确记录。连接器锁定成功、卡扣锁定失败时，页面应显示部分完成，并按约定保留或释放连接器预留。网络超时不能直接当作失败重做；使用原幂等键查询执行结果，避免重复占用。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>从候选供给到线边齐套回执</strong><a href="/manufacturing/maps/material-commit.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/material-commit.html" title="候选物料分配、权威预留、仓库配送与现场实收的动态数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>接口设计示意。只有预留成功才能生成对应配送任务；最终结果同时核对分配清单和现场实收，失败与差异进入异常记录。</figcaption>
+</figure>
+<h3 id="一份结果要能回到原始记录">一份结果要能回到原始记录</h3>
+<p>齐套快照建议包含 <code>snapshot_id</code>、工单与需求版本、计算时间、目标用料时间，以及每个来源的更新时间或处理水位。水位表示该来源的事件处理到哪里，不能用页面刷新时间代替。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>结果字段</th><th>本样本应能回答的问题</th></tr></thead><tbody><tr><td>需求行与基础单位</td><td>120 件连接器、240 件卡扣如何得到</td></tr><tr><td>纳入的库存明细及数量</td><td>为什么 A01 计入 60 件，A05 只计入一次</td></tr><tr><td>排除原因</td><td>A03 被谁占用，A04 依据哪次质量处置冻结</td></tr><tr><td>替代批准 ID 与适用范围</td><td>X01 为什么允许抵扣 5 件 CON-A</td></tr><tr><td>预计供给及条件</td><td>20 件待放行和 40 件在途各依赖什么完成事件</td></tr><tr><td>分配、预留与实收回执</td><td>哪些只是候选，哪些已锁定，哪些已到工位</td></tr><tr><td>未知项与数据延迟</td><td>是否缺少耗用、质量或预留的最新记录</td></tr></tbody></table>
+<p>例如 QMS 已在 11:30 放行 20 件，但 WMS 的状态应用水位仍停在 11:28，页面可以显示“已作出放行决定，库存状态待同步”。只有看到可用于执行的状态回执，才把它推进到可预留供给。来源缺失或超出约定时效时，返回“待核实”，并保留最近一次有效快照的时间。</p>
+<h2 id="用这份样本验收一次跨系统齐套">用这份样本验收一次跨系统齐套</h2>
+<p>我会先让实现团队跑通这一份小样本，再接真实库存。下面这些变化每次单独施加，并从 10:00 基准快照开始，避免上一项的状态污染下一项。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>验收变化</th><th>应看到的结果</th></tr></thead><tbody><tr><td>原始样本，不做写操作</td><td>候选 100 套；完整锁定与线边实收均为 0 套</td></tr><tr><td>删除本单替代批准</td><td>连接器候选降为 95 件，缺口升为 25 件</td></tr><tr><td>只收到 PO-440 的发货通知</td><td>当前候选仍为 100 套；预计供给记录变化</td></tr><tr><td>A04 中 20 件放行且 WMS 应用成功</td><td>候选连接器 120 件，可覆盖剩余 120 套</td></tr><tr><td>重复接收同一个放行事件</td><td>仍为 120 件，不累加第二次 20 件</td></tr><tr><td>查询后 A01 被其他工单占用 10 件</td><td>旧预留请求失败或返回部分结果；重算候选 90 套</td></tr><tr><td>线边 15 件同时出现在 WMS 和 MES 接口</td><td>识别同一库存归属，只计入一次；不能变成 115 套</td></tr><tr><td>为 100 套成功锁定并配送，但卡扣只实收 198 件</td><td>已锁定可覆盖 100 套；线边按实收最多覆盖 99 套，差异 2 件待处理</td></tr><tr><td>MES 耗用来源不可用或明显滞后</td><td>显示需求待核实，不把未知耗用当作 0</td></tr></tbody></table>
+<p>最后一项会决定这张看板能否用于实际调度。如果缺少 MES 记录，却把总需求 150 件与当前库存比较，系统可能把已完成的 30 套再次算成缺料；如果继续使用旧的预留状态，又可能把其他工单已经占用的材料分出去。</p>
+<p>本篇留下的是一份可以逐行复算的齐套样本，以及需求、库存、质量、分配和实收之间的证据关系。后续 S04 会沿用这种按记录核对的方法，进一步追查一次质量异常究竟影响了哪些库存、在制品和已发运批次。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 

@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "同一工单的齐套数据从哪里来",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-material-readiness-20261015-180000/material-readiness.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "原始记录"
+    },
+    {
+      "label": "口径对齐"
+    },
+    {
+      "label": "业务约束"
+    },
+    {
+      "label": "计算与执行"
+    },
+    {
+      "label": "结果证据"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "bom",
+      "label": "工单与 BOM",
+      "sublabel": "版本与单位用量",
+      "stage": 0,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "consumed",
+      "label": "MES 耗用",
+      "sublabel": "已耗用与冲销",
+      "stage": 0,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "remaining",
+      "label": "剩余需求",
+      "sublabel": "120 件与 240 件",
+      "stage": 1,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "stock",
+      "label": "WMS 明细",
+      "sublabel": "批次 库位 预留",
+      "stage": 1,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "quality",
+      "label": "QMS 决策",
+      "sublabel": "批次放行版本",
+      "stage": 1,
+      "row": 4,
+      "type": "database"
+    },
+    {
+      "id": "eligible",
+      "label": "供给筛选",
+      "sublabel": "适用且未重复占用",
+      "stage": 2,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "rules",
+      "label": "适用规则",
+      "sublabel": "版本 替代 货权",
+      "stage": 2,
+      "row": 4,
+      "type": "database"
+    },
+    {
+      "id": "kits",
+      "label": "逐料配套",
+      "sublabel": "短板限制套数",
+      "stage": 3,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "answer",
+      "label": "齐套快照",
+      "sublabel": "当前 100 套",
+      "stage": 4,
+      "row": 0,
+      "type": "backend"
+    }
+  ],
+  "flows": [
+    {
+      "id": "bom-remaining",
+      "from": "bom",
+      "to": "remaining",
+      "label": "总需求"
+    },
+    {
+      "id": "consumed-remaining",
+      "from": "consumed",
+      "to": "remaining",
+      "label": "净耗用"
+    },
+    {
+      "id": "stock-eligible",
+      "from": "stock",
+      "to": "eligible",
+      "label": "库存与预留"
+    },
+    {
+      "id": "quality-eligible",
+      "from": "quality",
+      "to": "eligible",
+      "label": "放行状态"
+    },
+    {
+      "id": "rules-eligible",
+      "from": "rules",
+      "to": "eligible",
+      "label": "批准范围",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "remaining-kits",
+      "from": "remaining",
+      "to": "kits",
+      "label": "剩余需求"
+    },
+    {
+      "id": "eligible-kits",
+      "from": "eligible",
+      "to": "kits",
+      "label": "合格供给"
+    },
+    {
+      "id": "kits-answer",
+      "from": "kits",
+      "to": "answer",
+      "label": "缺口与证据",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "本篇独立演示样本",
+      "items": [
+        "MO-K120 剩余 120 套：连接器 120 件、卡扣 240 件。",
+        "连接器当前候选 100 件；卡扣 260 件，限制为 100 套。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "计算边界",
+      "items": [
+        "当前快照不加入待验和在途；预计供给单独形成情景。",
+        "候选数量尚未全部锁定，套数不等于线边已备齐数量。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "保留追溯",
+      "items": [
+        "库存、质量、耗用、BOM 与替代规则均保留来源版本。",
+        "跨系统延迟时标记待核实，不静默当成零。"
+      ]
+    }
+  ]
+}

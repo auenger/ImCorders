@@ -1898,6 +1898,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/industrial-data-platform-digital-twin-agents/index.md"
     },
     {
+      "id": "manufacturing/inventory-shortage-material-readiness",
+      "kind": "manufacturing",
+      "title": "库存有货为什么仍然缺料",
+      "description": "用一张工单的齐套样本，串起 ERP、WMS、QMS、MES 与采购计划，逐项核对冻结、预留、替代、线边余料和在途，算出当前能配多少套，并追踪从候选供给到实际配送的回执。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "物料齐套",
+        "库存",
+        "WMS",
+        "跨系统协同"
+      ],
+      "publishedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/inventory-shortage-material-readiness/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/inventory-shortage-material-readiness/index.md"
+    },
+    {
       "id": "manufacturing/master-data-events-reconciliation",
       "kind": "manufacturing",
       "title": "主数据、事件与跨系统对账",

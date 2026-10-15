@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "从候选供给到线边齐套回执",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-material-commit-20261015-180000/material-commit.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "原始记录"
+    },
+    {
+      "label": "口径对齐"
+    },
+    {
+      "label": "业务约束"
+    },
+    {
+      "label": "计算与执行"
+    },
+    {
+      "label": "结果证据"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "snapshot",
+      "label": "候选快照",
+      "sublabel": "需求与供给明细",
+      "stage": 0,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "approval",
+      "label": "业务批准",
+      "sublabel": "替代与调拨范围",
+      "stage": 0,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "proposal",
+      "label": "分配方案",
+      "sublabel": "批次 数量 工单",
+      "stage": 1,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "reserve",
+      "label": "权威预留",
+      "sublabel": "校验后原子提交",
+      "stage": 2,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "latest",
+      "label": "当前权威状态",
+      "sublabel": "库存 质量 版本",
+      "stage": 2,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "dispatch",
+      "label": "仓库配送",
+      "sublabel": "锁定成功才下发",
+      "stage": 3,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "receipt",
+      "label": "现场回执",
+      "sublabel": "实收 差异 拒收",
+      "stage": 3,
+      "row": 2,
+      "type": "messagebus"
+    },
+    {
+      "id": "result",
+      "label": "齐套重算",
+      "sublabel": "实收与剩余需求",
+      "stage": 4,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "conflict",
+      "label": "异常记录",
+      "sublabel": "冲突或部分完成",
+      "stage": 1,
+      "row": 2,
+      "type": "database"
+    }
+  ],
+  "flows": [
+    {
+      "id": "snapshot-proposal",
+      "from": "snapshot",
+      "to": "proposal",
+      "label": "候选供给"
+    },
+    {
+      "id": "approval-proposal",
+      "from": "approval",
+      "to": "proposal",
+      "label": "批准条件"
+    },
+    {
+      "id": "proposal-reserve",
+      "from": "proposal",
+      "to": "reserve",
+      "label": "分配请求"
+    },
+    {
+      "id": "latest-reserve",
+      "from": "latest",
+      "to": "reserve",
+      "label": "提交前复核",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "reserve-dispatch",
+      "from": "reserve",
+      "to": "dispatch",
+      "label": "成功回执",
+      "variant": "emphasis"
+    },
+    {
+      "id": "dispatch-receipt",
+      "from": "dispatch",
+      "to": "receipt",
+      "label": "配送任务",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "dispatch-result",
+      "from": "dispatch",
+      "to": "result",
+      "label": "已锁定清单"
+    },
+    {
+      "id": "receipt-result",
+      "from": "receipt",
+      "to": "result",
+      "label": "实收证据",
+      "variant": "emphasis"
+    },
+    {
+      "id": "reserve-conflict",
+      "from": "reserve",
+      "to": "conflict",
+      "label": "失败与差异",
+      "fromSide": "bottom",
+      "toSide": "right"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "状态逐步推进",
+      "items": [
+        "候选供给 → 已锁定 → 已配送 → 线边实收，分别显示。",
+        "计算用同一工单需求；只把本工单合格实收计入线边齐套。"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "竞态处理",
+      "items": [
+        "库存或质量版本变化时拒绝旧方案，读取新快照重算。",
+        "重复请求使用幂等键；跨系统部分成功保留待处理记录。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "人工处置入口",
+      "items": [
+        "替代超批准范围、冻结撤销和抢占其他工单均需要业务处置。",
+        "图示为接口设计建议，未连接真实 WMS 或 MES。"
+      ]
+    }
+  ]
+}
