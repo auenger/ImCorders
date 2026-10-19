@@ -1,4 +1,4 @@
-# 在制品为什么没过期也不能继续生产
+# 物料还没过期，为什么到了产线却不能用
 
 作者：杨正武
 来源：https://imcoders.cn/manufacturing/wip-hold-time-expiry-controls/

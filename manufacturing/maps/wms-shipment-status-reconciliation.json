@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "发运事实怎样进入下游并完成对账",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-wms-shipment-status-reconciliation-20261019-135620/wms-shipment-status-reconciliation.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "仓储事实"
+    },
+    {
+      "label": "可靠待发"
+    },
+    {
+      "label": "幂等应用"
+    },
+    {
+      "label": "结果与修复"
+    },
+    {
+      "label": "双向核对"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "fact",
+      "type": "backend",
+      "label": "实际发运确认",
+      "sublabel": "原需求与执行身份",
+      "stage": 0,
+      "row": 0
+    },
+    {
+      "id": "outbox",
+      "type": "database",
+      "label": "待发送事件记录",
+      "sublabel": "与仓储提交一致",
+      "stage": 1,
+      "row": 0
+    },
+    {
+      "id": "apply",
+      "type": "backend",
+      "label": "核对身份与版本",
+      "sublabel": "同身份内容须一致",
+      "stage": 2,
+      "row": 0
+    },
+    {
+      "id": "business",
+      "type": "database",
+      "label": "已提交业务事务",
+      "sublabel": "去重结果同机制提交",
+      "stage": 3,
+      "row": 0
+    },
+    {
+      "id": "reconcile",
+      "type": "backend",
+      "label": "业务明细对账",
+      "sublabel": "源目标逐行核对",
+      "stage": 4,
+      "row": 0
+    },
+    {
+      "id": "mapping",
+      "type": "database",
+      "label": "主数据与状态映射",
+      "sublabel": "单位仓库批次规则",
+      "stage": 1,
+      "row": 2
+    },
+    {
+      "id": "conflict",
+      "type": "backend",
+      "label": "冲突与未知结果",
+      "sublabel": "先查询不得盲重做",
+      "stage": 2,
+      "row": 2
+    },
+    {
+      "id": "repair",
+      "type": "backend",
+      "label": "查证与授权更正",
+      "sublabel": "保留原事务关系",
+      "stage": 3,
+      "row": 2
+    }
+  ],
+  "flows": [
+    {
+      "id": "fact-outbox",
+      "from": "fact",
+      "to": "outbox",
+      "label": "实际结果",
+      "variant": "emphasis"
+    },
+    {
+      "id": "outbox-apply",
+      "from": "outbox",
+      "to": "apply",
+      "label": "原身份事件",
+      "variant": "emphasis"
+    },
+    {
+      "id": "mapping-apply",
+      "from": "mapping",
+      "to": "apply",
+      "label": "口径映射",
+      "variant": "default"
+    },
+    {
+      "id": "apply-business",
+      "from": "apply",
+      "to": "business",
+      "label": "通过后应用",
+      "variant": "emphasis"
+    },
+    {
+      "id": "business-reconcile",
+      "from": "business",
+      "to": "reconcile",
+      "label": "事务回执",
+      "variant": "emphasis"
+    },
+    {
+      "id": "apply-conflict",
+      "from": "apply",
+      "to": "conflict",
+      "label": "冲突明细",
+      "variant": "default"
+    },
+    {
+      "id": "conflict-repair",
+      "from": "conflict",
+      "to": "repair",
+      "label": "待核实项",
+      "variant": "default"
+    },
+    {
+      "id": "repair-reconcile",
+      "from": "repair",
+      "to": "reconcile",
+      "label": "修复证据",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "教学设计边界",
+      "items": [
+        "教学接口契约，不对应厂商API。",
+        "消息接收与业务提交分开，原请求重传只产生一次效果。",
+        "目标未提交或源未送达的单据也须纳入对账，不只统计已发消息。"
+      ]
+    }
+  ]
+}

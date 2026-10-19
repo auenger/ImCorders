@@ -2331,9 +2331,99 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/warehouse-automation-logistics-transport/index.md"
     },
     {
+      "id": "manufacturing/warehouse-exceptions-performance-metrics",
+      "kind": "manufacturing",
+      "title": "仓库忙了一整天，效率到底怎么样",
+      "description": "从仓库异常积压与绩效争议切入，区分库存准确率、拣货差错、作业效率、周转和呆滞指标的统计边界，用可复算样本说明异常闭环、未完成积压与明细证据怎样进入同一张管理报表。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "WMS",
+        "仓库绩效",
+        "异常闭环",
+        "库存周转"
+      ],
+      "publishedAt": "2026-10-19T00:00:00.000Z",
+      "updatedAt": "2026-10-19T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/warehouse-exceptions-performance-metrics/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/warehouse-exceptions-performance-metrics/index.md"
+    },
+    {
+      "id": "manufacturing/warehouse-picking-production-issue-controls",
+      "kind": "manufacturing",
+      "title": "仓库发错料、生产缺料，问题出在哪",
+      "description": "沿一张工单的备料、扫码、线边接收、补领和退料，分析仓库错发、多发与缺料怎样发生，说明 WMS 波次、库位推荐、限额领料的适用条件，用数量记录区分配送、耗用与未结占用。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "WMS",
+        "拣货防错",
+        "限额领料",
+        "生产配送"
+      ],
+      "publishedAt": "2026-10-19T00:00:00.000Z",
+      "updatedAt": "2026-10-19T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/warehouse-picking-production-issue-controls/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/warehouse-picking-production-issue-controls/index.md"
+    },
+    {
+      "id": "manufacturing/warehouse-quality-containment-traceability",
+      "kind": "manufacturing",
+      "title": "一批物料出了问题，能查清影响了哪些产品吗",
+      "description": "从供应商异常批次出发，分析仓库余料、线边、在制品和已发产品怎样分别追查，说明 WMS 的批次身份、临期预警、隔离冻结与 QMS、MES 的职责，重点核对隔离是否实际生效及未知去向。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "WMS",
+        "质量追溯",
+        "批次管理",
+        "隔离冻结"
+      ],
+      "publishedAt": "2026-10-19T00:00:00.000Z",
+      "updatedAt": "2026-10-19T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/warehouse-quality-containment-traceability/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/warehouse-quality-containment-traceability/index.md"
+    },
+    {
+      "id": "manufacturing/warehouse-stock-location-counting",
+      "kind": "manufacturing",
+      "title": "账上有料，仓库为什么找不到",
+      "description": "从账上有料却找不到实物的仓库问题出发，拆解 WMS 库位、批次、容器、质量与预留的管理边界，用移库漏回执和循环盘点样本说明怎样定位差异、复核改账，并验收库存准确率。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "WMS",
+        "库存准确率",
+        "库位管理",
+        "循环盘点"
+      ],
+      "publishedAt": "2026-10-19T00:00:00.000Z",
+      "updatedAt": "2026-10-19T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/warehouse-stock-location-counting/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/warehouse-stock-location-counting/index.md"
+    },
+    {
+      "id": "manufacturing/warehouse-system-status-reconciliation",
+      "kind": "manufacturing",
+      "title": "仓库已经发货，为什么系统还显示没发",
+      "description": "用一次发运回执丢失的案例，分析 ERP、WMS、MES 与 TMS 的状态差异，区分消息接收与业务完成，说明重复重传、版本冲突、数量对账和异常重试怎样避免重复出库与漏单。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "WMS",
+        "ERP",
+        "系统对账",
+        "接口集成"
+      ],
+      "publishedAt": "2026-10-19T00:00:00.000Z",
+      "updatedAt": "2026-10-19T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/warehouse-system-status-reconciliation/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/warehouse-system-status-reconciliation/index.md"
+    },
+    {
       "id": "manufacturing/wip-hold-time-expiry-controls",
       "kind": "manufacturing",
-      "title": "在制品为什么没过期也不能继续生产",
+      "title": "物料还没过期，为什么到了产线却不能用",
       "description": "把物料到期、工序等待、开封后期限与累计暴露时间分别接到在制品，复算下一工序的开始和完成条件，说明分装、退库、暂停、迟到记录与超时评审如何保留原始时钟和跨系统回执。",
       "author": "杨正武",
       "tags": [
@@ -2351,7 +2441,7 @@
     {
       "id": "manufacturing/wms-fifo-fefo-batch-selection",
       "kind": "manufacturing",
-      "title": "WMS 怎样按 FIFO 与 FEFO 选择批次",
+      "title": "旧料没用完，新料又拆了，仓库该先发哪一批",
       "description": "用五批库存和七十件需求，拆开质量与有效期筛选、FIFO 与 FEFO 排序、批次预留和扫码复核，复算可分配数量，记录跳批、改期、退料与人工换批的依据，并连接实际用料追溯。",
       "author": "杨正武",
       "tags": [
@@ -2369,7 +2459,7 @@
     {
       "id": "manufacturing/wms-inventory-production-delivery",
       "kind": "manufacturing",
-      "title": "WMS 中的库存、库位与生产配送",
+      "title": "仓库里的料，怎样才能按时送到产线",
       "description": "沿着风机支架的收货、待检、上架、备料、配送和退料，拆解 WMS 的库存身份、质量状态、库位与任务占用，说明质量、预留、FIFO、FEFO 与时间约束如何决定库存能否领用，并用动态图和数量样本记录 ERP、MES 与仓储现场交接。",
       "author": "杨正武",
       "tags": [

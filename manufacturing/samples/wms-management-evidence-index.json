@@ -1,0 +1,78 @@
+{
+  "checkedAt": "2026-10-19",
+  "simulated": true,
+  "sources": [
+    {
+      "id": "cycle-counting",
+      "title": "循环盘点",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/cycle-counting",
+      "supports": "创建、计数与差异复核分开；盘点工作不必然阻断出库。"
+    },
+    {
+      "id": "inventory-statuses",
+      "title": "库存状态",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/inventory/inventory-statuses",
+      "supports": "库存状态和受阻实物库存的产品实例，不定义本文全部预留与呆滞口径。"
+    },
+    {
+      "id": "wave-processing",
+      "title": "波次处理",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/wave-processing",
+      "supports": "生产、发运和看板波次，以及模板、处理、释放与日志。"
+    },
+    {
+      "id": "flushing-principles",
+      "title": "生产耗用",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/production-control/flushing-principles",
+      "supports": "材料移动到投入位置和材料耗用，以及不同扣料策略。"
+    },
+    {
+      "id": "item-tracing",
+      "title": "物料追溯",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/inventory/trace-items-raw-materials-inventory-production-sales",
+      "supports": "跟踪维度、历史交易、查询快照和功能范围限制。"
+    },
+    {
+      "id": "wms-exchange",
+      "title": "仓储数据交换",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/wms-only-mode-exchange-data",
+      "supports": "主数据、单据和进度交换；具体幂等与对账教学契约自行声明。"
+    },
+    {
+      "id": "epcis",
+      "title": "GS1 EPCIS",
+      "url": "https://www.gs1.org/standards/epcis",
+      "supports": "对象、时间、地点和业务背景等可见性维度；不证明样本实施或符合EPCIS。"
+    }
+  ],
+  "sample": "/manufacturing/samples/wms-management-cases.json",
+  "verifier": "/manufacturing/samples/verify-wms-management-cases.py",
+  "limits": [
+    "五个独立教学案例不互相累计，不来自现场测量。",
+    "限额、审批、阈值、KPI及时间窗口是本文约定，需企业批准与现场验收。",
+    "关联不等于已判缺陷，消息接收不等于业务提交，系统冻结不等于现场隔离。",
+    "管理周转指标按期间领用成本和同范围平均库存定义，不等于所有企业财务周转口径。"
+  ],
+  "articles": [
+    {
+      "slug": "warehouse-exceptions-performance-metrics",
+      "title": "仓库忙了一整天，效率到底怎么样"
+    },
+    {
+      "slug": "warehouse-picking-production-issue-controls",
+      "title": "仓库发错料、生产缺料，问题出在哪"
+    },
+    {
+      "slug": "warehouse-quality-containment-traceability",
+      "title": "一批物料出了问题，能查清影响了哪些产品吗"
+    },
+    {
+      "slug": "warehouse-stock-location-counting",
+      "title": "账上有料，仓库为什么找不到"
+    },
+    {
+      "slug": "warehouse-system-status-reconciliation",
+      "title": "仓库已经发货，为什么系统还显示没发"
+    }
+  ]
+}

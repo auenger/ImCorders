@@ -1,0 +1,134 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>一批物料出了问题，能查清影响了哪些产品吗 | 制造业系统</title><meta name="description" content="从供应商异常批次出发，分析仓库余料、线边、在制品和已发产品怎样分别追查，说明 WMS 的批次身份、临期预警、隔离冻结与 QMS、MES 的职责，重点核对隔离是否实际生效及未知去向。"><link rel="canonical" href="https://imcoders.cn/manufacturing/warehouse-quality-containment-traceability/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/warehouse-quality-containment-traceability/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/warehouse-quality-containment-traceability/#article","headline":"一批物料出了问题，能查清影响了哪些产品吗","description":"从供应商异常批次出发，分析仓库余料、线边、在制品和已发产品怎样分别追查，说明 WMS 的批次身份、临期预警、隔离冻结与 QMS、MES 的职责，重点核对隔离是否实际生效及未知去向。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/warehouse-quality-containment-traceability/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-19T00:00:00.000Z","dateModified":"2026-10-19T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"一批物料出了问题，能查清影响了哪些产品吗","item":"https://imcoders.cn/manufacturing/warehouse-quality-containment-traceability/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-19T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-19T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="一批物料出了问题，能查清影响了哪些产品吗 | 制造业系统"><meta property="og:description" content="从供应商异常批次出发，分析仓库余料、线边、在制品和已发产品怎样分别追查，说明 WMS 的批次身份、临期预警、隔离冻结与 QMS、MES 的职责，重点核对隔离是否实际生效及未知去向。"><meta property="og:url" content="https://imcoders.cn/manufacturing/warehouse-quality-containment-traceability/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="一批物料出了问题，能查清影响了哪些产品吗 | 制造业系统"><meta name="twitter:description" content="从供应商异常批次出发，分析仓库余料、线边、在制品和已发产品怎样分别追查，说明 WMS 的批次身份、临期预警、隔离冻结与 QMS、MES 的职责，重点核对隔离是否实际生效及未知去向。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="一批物料出了问题，能查清影响了哪些产品吗 | 制造业系统"><meta itemprop="description" content="从供应商异常批次出发，分析仓库余料、线边、在制品和已发产品怎样分别追查，说明 WMS 的批次身份、临期预警、隔离冻结与 QMS、MES 的职责，重点核对隔离是否实际生效及未知去向。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "一批物料出了问题，能查清影响了哪些产品吗 | 制造业系统";
+const shareDesc = "从供应商异常批次出发，分析仓库余料、线边、在制品和已发产品怎样分别追查，说明 WMS 的批次身份、临期预警、隔离冻结与 QMS、MES 的职责，重点核对隔离是否实际生效及未知去向。";
+const shareLink = "https://imcoders.cn/manufacturing/warehouse-quality-containment-traceability/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>一批物料出了问题，能查清影响了哪些产品吗</h1><p class="mfg-lead" data-astro-cid-767rrl5b>从供应商异常批次出发，分析仓库余料、线边、在制品和已发产品怎样分别追查，说明 WMS 的批次身份、临期预警、隔离冻结与 QMS、MES 的职责，重点核对隔离是否实际生效及未知去向。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/warehouse-quality-containment-traceability/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-19</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#来料批次先与供应商的通知对上" data-astro-cid-767rrl5b>来料批次先与供应商的通知对上</a></li><li data-astro-cid-767rrl5b><a href="#同一批料可能同时在四个地方" data-astro-cid-767rrl5b>同一批料可能同时在四个地方</a></li><li data-astro-cid-767rrl5b><a href="#冻结指令发出去还要查有没有拦住" data-astro-cid-767rrl5b>冻结指令发出去，还要查有没有拦住</a></li><li data-astro-cid-767rrl5b><a href="#临期预警应连到可执行的安排" data-astro-cid-767rrl5b>临期预警应连到可执行的安排</a></li><li data-astro-cid-767rrl5b><a href="#追溯验收要包含查不到的情况" data-astro-cid-767rrl5b>追溯验收要包含查不到的情况</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>供应商通知一批料存在风险，仓库很快给这批料加了冻结标记。十分钟以后，车间仍从线边拿走了一箱，另一部分成品早已装车。管理会上说“已经冻结”，现场究竟拦住了什么，往往还要逐项核实。</p>
+<p>这篇从仓库执行角度展开追溯和隔离，与<a href="/manufacturing/quality-incident-traceability-scope/">质量影响范围篇</a>相互衔接。后者详细计算分拆、合批和返工后的候选产品，这里重点检查身份是否连续、限制是否生效、已经离库的对象由谁跟进。以下为独立教学样本。</p>
+<h2 id="来料批次先与供应商的通知对上">来料批次先与供应商的通知对上</h2>
+<p>供应商批号可能对应多个内部收货批次，同名批号也可能出现在不同供应商或料号下。检索条件应保留供应商、物料、内部批次、收货行、工厂与货主，不能只搜索标签上的一串字符。</p>
+<p>收货、分箱、并托、移库、线边接收、投入和包装都需保留身份关系。GS1 的 <a href="https://www.gs1.org/standards/epcis">EPCIS 介绍</a>将可见性信息组织为对象、时间、地点和业务背景等维度，适合作为跨系统记录设计的参考；贴了条码并不自动产生完整履历，也不证明采用了该标准。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>记录粒度</th><th>可以回答</th><th>仍然需要的证据</th></tr></thead><tbody><tr><td>原料批次配送到工单</td><td>哪些工单接收过这一批</td><td>是否实际投入、剩余料在哪</td></tr><tr><td>批次耗用到产品生产批</td><td>哪些生产批可能关联</td><td>能否进一步定位具体单件</td></tr><tr><td>原料绑定产品序列号</td><td>哪些单件实际用了这一批</td><td>后续返工拆换与当前配置</td></tr><tr><td>成品装箱和发运绑定</td><td>关联产品发到哪里</td><td>承运、签收和当前持有方确认</td></tr></tbody></table>
+<p>仅记录“R 批送给工单”时，不能承诺逐台精准召回。批级混料且缺少单件对应，需要保留候选范围与未知项。Microsoft 的<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/inventory/trace-items-raw-materials-inventory-production-sales">物料追溯文档</a>也明确跟踪维度、查询快照和功能边界，产品选型时要以实际覆盖范围验收。</p>
+<h2 id="同一批料可能同时在四个地方">同一批料可能同时在四个地方</h2>
+<p>本例共收到 R 批零件 100 件，每台产品使用 1 件，无损耗、返工或混批。09:00 的完整快照显示，原料仓还有 20 件，线边未投入 10 件，已投入且仍在制 30 件，另有 40 件装入已发运的 40 台产品。实际用料与序列号一一对应。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>零件去向 = 原料仓20 + 线边未投10 + 在制已投30 + 已发产品内40 = 100件</span></span>
+<span class="line"><span>当前关联产品 = 在制30台 + 已发40台 = 70台</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>100 件零件和 70 台产品单位不同，不能合计成“170 个受影响对象”再当作产品数量。若某来源截至 08:30，其他来源截至 09:00，就不能声称已完成 09:00 的完整去向核对，应标注未覆盖区间。</p>
+<p>质量人员根据异常范围和风险作出处置，WMS 对仓内对象限制移动或出库，MES 对在制对象限制后续动作。ERP、MES 内置质量模块也可能承担部分职责，需要指定权威来源。仓库把物料搬入隔离区，不能代替质量放行或报废批准。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>异常范围怎样落实到隔离与跟进</strong><a href="/manufacturing/maps/wms-quality-hold-followup.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/wms-quality-hold-followup.html" title="异常通知结合实际谱系和位置形成批准范围后分流库存限制及已发产品跟进的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>仅表达教学职责与回执关系。已发运对象需要另行核实当前去向，内部冻结无法让外部产品自动隔离。</figcaption>
+</figure>
+<h2 id="冻结指令发出去还要查有没有拦住">冻结指令发出去，还要查有没有拦住</h2>
+<p>09:05，批准限制原料 20 件和线边未投 10 件，挂起在制 30 台，并对已发 40 台启动后续核实。WMS 返回“请求已接收”，只能证明消息到达。库存资格已阻断、未完成任务已复核、现场隔离已确认，要分别留下结果。</p>
+<p>本例仓内 20 件已完成限制和现场核对，线边 10 件只确认了系统限制，现场尚未复核。MES 30 台中有 28 台挂起成功，2 台返回状态冲突。已发 40 台均尚未取得外部处置确认。因此，按对象落实情况展示为：仓内 20 件已确认、线边 10 件待现场核实、在制 28 台已挂起和 2 台待处理、已发 40 台待跟进，不能显示“全部隔离完成”。</p>
+<p>如果一笔发运与冻结同时发生，执行端核对最新版本。已经发走的，返回发运行并转交后续处置；尚可拦截的，取消或调整未结拣配。把已发数量强行改回仓库，会制造不存在的实物。</p>
+<p>这里的后续处置由质量与相关业务岗位依据适用要求决定，本文不判定缺陷或规定召回范围。追溯查到关联，仍需要针对异常机制作风险评审。</p>
+<h2 id="临期预警应连到可执行的安排">临期预警应连到可执行的安排</h2>
+<p>临期提醒至少带上日期依据、剩余可用期、库存位置、相关需求与处置负责人。收到提醒后，可能优先安排合格需求、暂停不满足客户剩余期的出库、退供或进入评审。不同动作采用不同批准流程，不能为了消耗临期料而改到期日或绕过质量限制。</p>
+<p>FIFO／FEFO 参与合格库存的选择，具体见<a href="/manufacturing/wms-fifo-fefo-batch-selection/">先发哪一批</a>。开封、工序等待或环境暴露可能形成更早的限制，见<a href="/manufacturing/wip-hold-time-expiry-controls/">物料没过期却不能用的情况</a>。临期、已到期、质量冻结和过程超时要保留各自依据。</p>
+<h2 id="追溯验收要包含查不到的情况">追溯验收要包含查不到的情况</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>场景</th><th>合格的结果</th></tr></thead><tbody><tr><td>查询完整基准</td><td>100 件去向闭合，关联产品 70 台，单位分别展示</td></tr><tr><td>删除一段实际用料关系</td><td>返回缺失和待核实范围，不补造单件对应</td></tr><tr><td>重复发送同一冻结任务</td><td>返回原结果，不重复累计落实数量</td></tr><tr><td>在制 2 台挂起失败</td><td>仍显示 2 台未落实，任务保持开放</td></tr><tr><td>同批新增晚到的发运记录</td><td>形成修订范围，保留旧版本及新跟进对象</td></tr></tbody></table>
+<p><a href="/manufacturing/samples/wms-management-cases.json">管理场景样本</a>保留本例数量与未完成项。验收时应从异常通知查到每个对象，再从对象反查实际证据和处置结果。公开资料核对于 2026-10-19，示例不接入真实供应商、产品或客户。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 

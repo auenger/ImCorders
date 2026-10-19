@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "盘点差异怎样回到移动与调整依据",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-wms-count-difference-resolution-20261019-135620/wms-count-difference-resolution.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "库存依据"
+    },
+    {
+      "label": "时点对齐"
+    },
+    {
+      "label": "数量比较"
+    },
+    {
+      "label": "复核差异"
+    },
+    {
+      "label": "批准后回查"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "ledger",
+      "type": "database",
+      "label": "库存账快照",
+      "sublabel": "范围与读取时刻",
+      "stage": 0,
+      "row": 0
+    },
+    {
+      "id": "align",
+      "type": "backend",
+      "label": "重建同一时点",
+      "sublabel": "纳入已核实移动",
+      "stage": 1,
+      "row": 0
+    },
+    {
+      "id": "compare",
+      "type": "backend",
+      "label": "比较盘点实数",
+      "sublabel": "按库位批次单位",
+      "stage": 2,
+      "row": 0
+    },
+    {
+      "id": "case",
+      "type": "backend",
+      "label": "差异复核单",
+      "sublabel": "查移库与未结任务",
+      "stage": 3,
+      "row": 0
+    },
+    {
+      "id": "post",
+      "type": "backend",
+      "label": "批准调整与回查",
+      "sublabel": "仅处理剩余差异",
+      "stage": 4,
+      "row": 0
+    },
+    {
+      "id": "moves",
+      "type": "database",
+      "label": "移动交接记录",
+      "sublabel": "原任务与实际落位",
+      "stage": 0,
+      "row": 2
+    },
+    {
+      "id": "count",
+      "type": "database",
+      "label": "盘点与复盘",
+      "sublabel": "原始实数不覆盖",
+      "stage": 1,
+      "row": 2
+    },
+    {
+      "id": "approval",
+      "type": "backend",
+      "label": "差异批准依据",
+      "sublabel": "原因数量与权限",
+      "stage": 3,
+      "row": 2
+    }
+  ],
+  "flows": [
+    {
+      "id": "ledger-align",
+      "from": "ledger",
+      "to": "align",
+      "label": "账面快照",
+      "variant": "emphasis"
+    },
+    {
+      "id": "moves-align",
+      "from": "moves",
+      "to": "align",
+      "label": "移动证据",
+      "variant": "default"
+    },
+    {
+      "id": "align-compare",
+      "from": "align",
+      "to": "compare",
+      "label": "同口径账面",
+      "variant": "emphasis"
+    },
+    {
+      "id": "count-compare",
+      "from": "count",
+      "to": "compare",
+      "label": "盘点实数",
+      "variant": "default"
+    },
+    {
+      "id": "compare-case",
+      "from": "compare",
+      "to": "case",
+      "label": "差异明细",
+      "variant": "emphasis"
+    },
+    {
+      "id": "case-post",
+      "from": "case",
+      "to": "post",
+      "label": "核实后差量",
+      "variant": "emphasis"
+    },
+    {
+      "id": "approval-post",
+      "from": "approval",
+      "to": "post",
+      "label": "批准范围",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "教学设计边界",
+      "items": [
+        "模拟A01与B01移库，不代表现场数据。",
+        "补齐原移库只应用一次；缺少证据保持待核实。",
+        "盘点调整另需批准，不直接把首次差额自动过账。"
+      ]
+    }
+  ]
+}

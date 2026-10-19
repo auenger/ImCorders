@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "仓库指标怎样回到事实与开放异常",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-wms-exception-performance-evidence-20261019-135620/wms-exception-performance-evidence.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "业务记录"
+    },
+    {
+      "label": "清理与归属"
+    },
+    {
+      "label": "指标计算"
+    },
+    {
+      "label": "结果留档"
+    },
+    {
+      "label": "管理回查"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "facts",
+      "type": "database",
+      "label": "作业与异常事实",
+      "sublabel": "任务行时点与状态",
+      "stage": 0,
+      "row": 0
+    },
+    {
+      "id": "dedupe",
+      "type": "backend",
+      "label": "去重与期间归属",
+      "sublabel": "保留迟到和修订",
+      "stage": 1,
+      "row": 0
+    },
+    {
+      "id": "calculate",
+      "type": "backend",
+      "label": "按口径计算",
+      "sublabel": "空分母缺失另显",
+      "stage": 2,
+      "row": 0
+    },
+    {
+      "id": "report",
+      "type": "database",
+      "label": "指标版本与快照",
+      "sublabel": "统计截止覆盖范围",
+      "stage": 3,
+      "row": 0
+    },
+    {
+      "id": "drill",
+      "type": "backend",
+      "label": "回到业务明细",
+      "sublabel": "任务差异与未结项",
+      "stage": 4,
+      "row": 0
+    },
+    {
+      "id": "policy",
+      "type": "backend",
+      "label": "指标口径版本",
+      "sublabel": "粒度分母范围",
+      "stage": 1,
+      "row": 2
+    },
+    {
+      "id": "valuation",
+      "type": "database",
+      "label": "库存估值快照",
+      "sublabel": "同范围成本与均值",
+      "stage": 0,
+      "row": 2
+    },
+    {
+      "id": "open",
+      "type": "database",
+      "label": "开放异常清单",
+      "sublabel": "账龄超时与责任",
+      "stage": 3,
+      "row": 2
+    }
+  ],
+  "flows": [
+    {
+      "id": "facts-dedupe",
+      "from": "facts",
+      "to": "dedupe",
+      "label": "原始记录",
+      "variant": "emphasis"
+    },
+    {
+      "id": "dedupe-calculate",
+      "from": "dedupe",
+      "to": "calculate",
+      "label": "去重事实",
+      "variant": "emphasis"
+    },
+    {
+      "id": "policy-calculate",
+      "from": "policy",
+      "to": "calculate",
+      "label": "统计定义",
+      "variant": "default"
+    },
+    {
+      "id": "valuation-calculate",
+      "from": "valuation",
+      "to": "calculate",
+      "label": "估值依据",
+      "variant": "default"
+    },
+    {
+      "id": "calculate-report",
+      "from": "calculate",
+      "to": "report",
+      "label": "结果与覆盖",
+      "variant": "emphasis"
+    },
+    {
+      "id": "report-drill",
+      "from": "report",
+      "to": "drill",
+      "label": "指标明细",
+      "variant": "emphasis"
+    },
+    {
+      "id": "open-drill",
+      "from": "open",
+      "to": "drill",
+      "label": "未结对象",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "教学设计边界",
+      "items": [
+        "样本指标是自行声明的管理口径，不是行业考核基准。",
+        "拦截次数与实际出库差错行分开，多个错误按出库行去重。",
+        "周转需要估值来源；开放异常不能被已关闭指标隐藏。",
+        "开放异常清单是异常台账的查询视图，与作业事实按业务对象关联。"
+      ]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-# WMS 怎样按 FIFO 与 FEFO 选择批次
+# 旧料没用完，新料又拆了，仓库该先发哪一批
 
 作者：杨正武
 来源：https://imcoders.cn/manufacturing/wms-fifo-fefo-batch-selection/

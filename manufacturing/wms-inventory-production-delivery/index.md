@@ -1,4 +1,4 @@
-# WMS 中的库存、库位与生产配送
+# 仓库里的料，怎样才能按时送到产线
 
 作者：杨正武
 来源：https://imcoders.cn/manufacturing/wms-inventory-production-delivery/
@@ -13,6 +13,16 @@
 [MES 篇](/manufacturing/mes-work-order-lifecycle/)里，新配置风机先生产了 140 台，另外 20 台等待支架放行。仓库确实收到了 160 件新支架，车间却不能一次领齐。要解释这个差别，需要把库存继续拆到批次、质量状态、库位和任务。
 
 这一篇沿着 `BKT-018` 支架进入 WMS（仓储管理系统），从采购到货一直看到线边配送和库存核对。仍采用模拟的 A 工厂离散装配场景，单号、位置与数量用于说明业务关系，不对应真实客户或厂商 API。
+
+从管理问题进入，可以继续阅读下面五篇。每篇保留独立样本，分别核对位置、作业、质量、系统交接和管理结果；本文仍负责串起 WMS 的基础对象与生产配送。
+
+| 当前最关心的问题 | 场景文章 |
+| --- | --- |
+| 库存账实不符、找货和盘点困难 | [账上有料，仓库为什么找不到](/manufacturing/warehouse-stock-location-counting/) |
+| 错发、超领和交接说不清 | [仓库发错料、生产缺料，问题出在哪](/manufacturing/warehouse-picking-production-issue-controls/) |
+| 异常批次去向与隔离落实 | [一批物料出了问题，能查清影响了哪些产品吗](/manufacturing/warehouse-quality-containment-traceability/) |
+| 单据漏同步、重发又重复扣账 | [仓库已经发货，为什么系统还显示没发](/manufacturing/warehouse-system-status-reconciliation/) |
+| 异常积压、效率和呆滞缺少统一口径 | [仓库忙了一整天，效率到底怎么样](/manufacturing/warehouse-exceptions-performance-metrics/) |
 
 ## 一个库存数背后有哪些对象
 

@@ -14,7 +14,7 @@
 
 我在个人站持续拆解制造业系统。这篇记录研究范围、已发布文章和仍待补齐的问题，作为可以回查的总目录。主要面向进入制造现场的 AI 工程师、FDE、产品经理和技术负责人，也供我自己安排选题、补资料和记录进度。
 
-截至 2026 年 10 月 19 日，[制造业系统模块](/manufacturing/)已有 35 篇内容，包含 1 篇总地图与 34 篇专题。M01 至 M10 十个领域均有文章涉及，首轮系统专题已发布；细分能力、完整业务场景和行业差异仍需继续补充。文末分别登记已发布内容和下一轮选题。
+截至 2026 年 10 月 19 日，[制造业系统模块](/manufacturing/)已有 40 篇内容，包含 1 篇总地图与 39 篇专题。M01 至 M10 十个领域均有文章涉及，首轮系统专题已发布；细分能力、完整业务场景和行业差异仍需继续补充。文末分别登记已发布内容和下一轮选题。
 
 [制造业系统数据地图](/manufacturing/data-map/)保留五张 Archify 数据流图，并已在页面顶部嵌入 [Factory Systems Atlas 空间图谱](/manufacturing/systems-atlas/)。空间图谱可切换五个业务视图、浏览九个区域和关系契约。它帮助定位系统与数据交接，布局与动画均为示意，未接入真实工厂数据。
 
@@ -118,6 +118,8 @@ MOM 在本文中作为制造运营的较宽范围使用，不预设企业必须�
 WCS、WES 和车队调度产品存在功能交叉，后续按任务分配、设备控制和完成确认来拆边界。仓储和运输的基本范围分别参考 [SAP WMS](https://www.sap.com/india/products/scm/extended-warehouse-management/what-is-a-wms.html) 与 [SAP TMS](https://www.sap.com/resources/what-is-a-transportation-management-system-tms)。
 
 [FIFO／FEFO 专题](/manufacturing/wms-fifo-fefo-batch-selection/)已补候选资格、最低剩余期、跳批和实际扫码依据；[在制品时间专题](/manufacturing/wip-hold-time-expiry-controls/)继续核对工序等待、开封、暴露及分装传承。两篇与 WMS 主文和质量追溯互相衔接，规则与数据均声明适用范围。
+
+仓储管理问题另有五个入口：[账实与找货](/manufacturing/warehouse-stock-location-counting/)、[错发与超领](/manufacturing/warehouse-picking-production-issue-controls/)、[质量隔离落实](/manufacturing/warehouse-quality-containment-traceability/)、[发运状态对账](/manufacturing/warehouse-system-status-reconciliation/)及[异常与绩效](/manufacturing/warehouse-exceptions-performance-metrics/)。它们分别补充循环盘点、扫码交接、逐对象回执、漏单重试和指标口径，避免把“接上系统”直接等同于问题已经解决。
 
 <a id="m05"></a>
 
@@ -281,7 +283,7 @@ Agent 部分从证据查询开始。订单交期分析至少要保留来源系�
 
 ### 已发布文章清单
 
-当前共 35 篇制造业内容。本篇博客承担规划与索引职责，不计入这 35 篇；三维图谱和工厂模型是展示资源，也不另计为文章。“对应目录”表示文章涉及的范围，不能据此判断该领域所有细分能力都已写完。
+当前共 40 篇制造业内容。本篇博客承担规划与索引职责，不计入这 40 篇；三维图谱和工厂模型是展示资源，也不另计为文章。“对应目录”表示文章涉及的范围，不能据此判断该领域所有细分能力都已写完。
 
 | 顺序 | 已发布文章 | 对应目录 |
 | --- | --- | --- |
@@ -289,7 +291,7 @@ Agent 部分从证据查询开始。订单交期分析至少要保留来源系�
 | 02 | [PLM 工程变更如何从设计进入生产](/manufacturing/plm-engineering-change/) | M01、S01 |
 | 03 | [ERP 怎样连接订单、物料、生产与成本](/manufacturing/erp-order-material-cost/) | M02；涉及 S06 |
 | 04 | [MES 中一张工单的完整生命周期](/manufacturing/mes-work-order-lifecycle/) | M03；离散制造示例 |
-| 05 | [WMS 中的库存、库位与生产配送](/manufacturing/wms-inventory-production-delivery/) | M04；涉及 S03 |
+| 05 | [仓库里的料，怎样才能按时送到产线](/manufacturing/wms-inventory-production-delivery/) | M04；涉及 S03 |
 | 06 | [用数据解释一张订单为什么延期](/manufacturing/order-delivery-delay-analysis/) | S02 |
 | 07 | [APS 如何处理物料、产能、换型和插单](/manufacturing/aps-finite-capacity-rescheduling/) | M03 |
 | 08 | [QMS、LIMS 与质量放行的衔接](/manufacturing/qms-lims-quality-release/) | M05；涉及 S04 |
@@ -318,8 +320,13 @@ Agent 部分从证据查询开始。订单交期分析至少要保留来源系�
 | 31 | [半导体制造的载具、晶圆与设备事件](/manufacturing/semiconductor-carrier-wafer-events/) | I07；晶圆与设备事件 |
 | 32 | [电池制造怎样连接极卷、单体与分档](/manufacturing/battery-roll-cell-grading-genealogy/) | I07；极卷、单体与模组 |
 | 33 | [医疗器械怎样连接生产记录与售后线索](/manufacturing/medical-device-production-service-records/) | I05；医疗器械生产与投诉 |
-| 34 | [WMS 怎样按 FIFO 与 FEFO 选择批次](/manufacturing/wms-fifo-fefo-batch-selection/) | M04；资格、剩余期、排序与执行追溯 |
-| 35 | [在制品为什么没过期也不能继续生产](/manufacturing/wip-hold-time-expiry-controls/) | M03、M04、M05；等待、开封与暴露时钟 |
+| 34 | [旧料没用完，新料又拆了，仓库该先发哪一批](/manufacturing/wms-fifo-fefo-batch-selection/) | M04；资格、剩余期、排序与执行追溯 |
+| 35 | [物料还没过期，为什么到了产线却不能用](/manufacturing/wip-hold-time-expiry-controls/) | M03、M04、M05；等待、开封与暴露时钟 |
+| 36 | [账上有料，仓库为什么找不到](/manufacturing/warehouse-stock-location-counting/) | M04、M09；位置、移库与循环盘点 |
+| 37 | [仓库发错料、生产缺料，问题出在哪](/manufacturing/warehouse-picking-production-issue-controls/) | M03、M04；波次、扫码、限额与交接 |
+| 38 | [一批物料出了问题，能查清影响了哪些产品吗](/manufacturing/warehouse-quality-containment-traceability/) | M03、M04、M05；身份、隔离与逐对象回执 |
+| 39 | [仓库已经发货，为什么系统还显示没发](/manufacturing/warehouse-system-status-reconciliation/) | M02、M03、M04、M09；漏单、重试与双向对账 |
+| 40 | [仓库忙了一整天，效率到底怎么样](/manufacturing/warehouse-exceptions-performance-metrics/) | M02、M04、M09；异常闭环、绩效与呆滞口径 |
 
 ### 十个领域覆盖到哪里
 
@@ -330,7 +337,7 @@ Agent 部分从证据查询开始。订单交期分析至少要保留来源系�
 | M01 研发与产品 | PLM 变更、工程文件、制造结构、工艺发布包 | CAE 结果回传、CAM / DNC 程序发布、虚拟调试的验证过程 |
 | M02 经营与供给 | ERP 订单物料成本、配置报价、采购承诺 | 供应商准入与绩效、EPM 与订单盈利差异 |
 | M03 计划与执行 | MES 生命周期、APS 重排、批次配方与记录 | S&OP / IBP 的中长期供需协调、Andon 响应与升级、行业专用执行规则 |
-| M04 仓储与物流 | 库存身份、FIFO／FEFO、剩余有效期、时间约束、配送与发运 | 多仓齐套、委外往返、复杂园区与运输异常案例 |
+| M04 仓储与物流 | 库存身份、FIFO／FEFO、时间约束、循环盘点、限额拣配、隔离落实与绩效 | 多仓齐套、委外往返、复杂园区与运输异常案例 |
 | M05 质量与追溯 | 检验、返工、放行、跨批次谱系与影响范围样本 | SPC、APQP / FMEA / MSA 与控制计划的关联；行业异常机制与召回执行 |
 | M06 设备与资源 | EAM 停机、维护窗口、工装寿命、量具校准 | APM / 预测性维护从模型告警到维修验证的完整过程 |
 | M07 控制与采集 | 设备事件、质量码、批阶段、时间关联与补传 | 控制系统部署与工程配置、协议接入实测、历史压缩对业务判断的影响 |
@@ -356,5 +363,7 @@ Agent 部分从证据查询开始。订单交期分析至少要保留来源系�
 本轮已覆盖八个业务场景和七组行业目录的首篇或明确工段专题。模拟数量只能证明样本内部一致，不能当作现场实测、产品性能或合规证明。实际实施所缺的原始资料与验证结果在各篇保留为待确认。
 
 10 月 19 日新增两篇仓储时间与追溯专题，同时补强 WMS 主文和质量追溯篇。可下载[本次来源与样本索引](/manufacturing/samples/wms-time-evidence-index.json)及[校验程序](/manufacturing/samples/verify-wms-time-samples.py)，复算 160 件库存的候选筛选和在制品多时钟边界。
+
+随后新增五篇仓储管理场景，标题直接提出业务问题，配套五张 Archify 3.2.0 动态图。[管理场景样本](/manufacturing/samples/wms-management-cases.json)与[校验程序](/manufacturing/samples/verify-wms-management-cases.py)可复算盘点、领料、隔离、同步和绩效，公开资料及支持边界保留在[来源索引](/manufacturing/samples/wms-management-evidence-index.json)。原 WMS、FIFO／FEFO 与在制品时间篇同步调整标题，已发布 URL 保持不变。
 
 M01 至 M10 表中列出的进一步研究方向仍保留，不因这轮目录补齐就标记为全部完成。后续根据实际资料展开控制工程、计量不确定性、完整优化、行业专属工艺与验证；取得真实来源后再形成新的选题。

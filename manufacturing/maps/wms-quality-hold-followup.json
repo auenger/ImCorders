@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "质量异常怎样落实隔离与已发跟进",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-wms-quality-hold-followup-20261019-135620/wms-quality-hold-followup.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "异常与事实"
+    },
+    {
+      "label": "圈定范围"
+    },
+    {
+      "label": "批准处置"
+    },
+    {
+      "label": "分流执行"
+    },
+    {
+      "label": "逐项回执"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "notice",
+      "type": "backend",
+      "label": "质量异常通知",
+      "sublabel": "供应商物料批号",
+      "stage": 0,
+      "row": 0
+    },
+    {
+      "id": "scope",
+      "type": "backend",
+      "label": "关联范围计算",
+      "sublabel": "保留未知去向",
+      "stage": 1,
+      "row": 0
+    },
+    {
+      "id": "approval",
+      "type": "backend",
+      "label": "质量处置批准",
+      "sublabel": "对象动作范围版本",
+      "stage": 2,
+      "row": 0
+    },
+    {
+      "id": "execute",
+      "type": "backend",
+      "label": "库存与在制限制",
+      "sublabel": "核对未结作业",
+      "stage": 3,
+      "row": 0
+    },
+    {
+      "id": "receipt",
+      "type": "database",
+      "label": "系统现场回执",
+      "sublabel": "失败与待核实保留",
+      "stage": 4,
+      "row": 0
+    },
+    {
+      "id": "evidence",
+      "type": "database",
+      "label": "实际谱系与位置",
+      "sublabel": "截止时点和源覆盖",
+      "stage": 0,
+      "row": 2
+    },
+    {
+      "id": "shipped",
+      "type": "backend",
+      "label": "已发对象转交",
+      "sublabel": "内部冻结无法拦回",
+      "stage": 3,
+      "row": 2
+    },
+    {
+      "id": "followup",
+      "type": "backend",
+      "label": "外部处置跟进",
+      "sublabel": "按批准方案取确认",
+      "stage": 4,
+      "row": 2
+    }
+  ],
+  "flows": [
+    {
+      "id": "notice-scope",
+      "from": "notice",
+      "to": "scope",
+      "label": "异常条件",
+      "variant": "emphasis"
+    },
+    {
+      "id": "evidence-scope",
+      "from": "evidence",
+      "to": "scope",
+      "label": "关系与位置",
+      "variant": "default"
+    },
+    {
+      "id": "scope-approval",
+      "from": "scope",
+      "to": "approval",
+      "label": "候选与未知",
+      "variant": "emphasis"
+    },
+    {
+      "id": "approval-execute",
+      "from": "approval",
+      "to": "execute",
+      "label": "批准范围",
+      "variant": "emphasis"
+    },
+    {
+      "id": "execute-receipt",
+      "from": "execute",
+      "to": "receipt",
+      "label": "限制结果",
+      "variant": "emphasis"
+    },
+    {
+      "id": "execute-shipped",
+      "from": "execute",
+      "to": "shipped",
+      "label": "已发分支",
+      "variant": "default"
+    },
+    {
+      "id": "shipped-followup",
+      "from": "shipped",
+      "to": "followup",
+      "label": "发运依据",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "教学设计边界",
+      "items": [
+        "示例100件零件的去向与70台关联产品分别计数。",
+        "范围关联不等于已判定缺陷，质量决定处置。",
+        "请求接收不等于现场隔离，已发对象另取跟进回执。"
+      ]
+    }
+  ]
+}

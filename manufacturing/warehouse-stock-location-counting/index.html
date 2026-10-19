@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>账上有料，仓库为什么找不到 | 制造业系统</title><meta name="description" content="从账上有料却找不到实物的仓库问题出发，拆解 WMS 库位、批次、容器、质量与预留的管理边界，用移库漏回执和循环盘点样本说明怎样定位差异、复核改账，并验收库存准确率。"><link rel="canonical" href="https://imcoders.cn/manufacturing/warehouse-stock-location-counting/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/warehouse-stock-location-counting/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/warehouse-stock-location-counting/#article","headline":"账上有料，仓库为什么找不到","description":"从账上有料却找不到实物的仓库问题出发，拆解 WMS 库位、批次、容器、质量与预留的管理边界，用移库漏回执和循环盘点样本说明怎样定位差异、复核改账，并验收库存准确率。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/warehouse-stock-location-counting/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-19T00:00:00.000Z","dateModified":"2026-10-19T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"账上有料，仓库为什么找不到","item":"https://imcoders.cn/manufacturing/warehouse-stock-location-counting/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-19T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-19T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="账上有料，仓库为什么找不到 | 制造业系统"><meta property="og:description" content="从账上有料却找不到实物的仓库问题出发，拆解 WMS 库位、批次、容器、质量与预留的管理边界，用移库漏回执和循环盘点样本说明怎样定位差异、复核改账，并验收库存准确率。"><meta property="og:url" content="https://imcoders.cn/manufacturing/warehouse-stock-location-counting/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="账上有料，仓库为什么找不到 | 制造业系统"><meta name="twitter:description" content="从账上有料却找不到实物的仓库问题出发，拆解 WMS 库位、批次、容器、质量与预留的管理边界，用移库漏回执和循环盘点样本说明怎样定位差异、复核改账，并验收库存准确率。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="账上有料，仓库为什么找不到 | 制造业系统"><meta itemprop="description" content="从账上有料却找不到实物的仓库问题出发，拆解 WMS 库位、批次、容器、质量与预留的管理边界，用移库漏回执和循环盘点样本说明怎样定位差异、复核改账，并验收库存准确率。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "账上有料，仓库为什么找不到 | 制造业系统";
+const shareDesc = "从账上有料却找不到实物的仓库问题出发，拆解 WMS 库位、批次、容器、质量与预留的管理边界，用移库漏回执和循环盘点样本说明怎样定位差异、复核改账，并验收库存准确率。";
+const shareLink = "https://imcoders.cn/manufacturing/warehouse-stock-location-counting/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>账上有料，仓库为什么找不到</h1><p class="mfg-lead" data-astro-cid-767rrl5b>从账上有料却找不到实物的仓库问题出发，拆解 WMS 库位、批次、容器、质量与预留的管理边界，用移库漏回执和循环盘点样本说明怎样定位差异、复核改账，并验收库存准确率。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/warehouse-stock-location-counting/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-19</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#总数对得上位置仍然可能全错" data-astro-cid-767rrl5b>总数对得上，位置仍然可能全错</a></li><li data-astro-cid-767rrl5b><a href="#两个库位的差异可能来自同一次移库" data-astro-cid-767rrl5b>两个库位的差异，可能来自同一次移库</a></li><li data-astro-cid-767rrl5b><a href="#循环盘点要追到差异处理结束" data-astro-cid-767rrl5b>循环盘点要追到差异处理结束</a></li><li data-astro-cid-767rrl5b><a href="#准确率不能只看仓库合计" data-astro-cid-767rrl5b>准确率不能只看仓库合计</a></li><li data-astro-cid-767rrl5b><a href="#用四种现场情况验收找货能力" data-astro-cid-767rrl5b>用四种现场情况验收找货能力</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>生产催着要料，系统显示还有一百件。仓管员在原库位翻了半天，只找到六十件。最后有人想起来，上午搬走过两箱，扫码枪当时断了网。这种找货靠问人的情况，即使仓库总数碰巧正确，也会拖慢备料和交付。</p>
+<p>管理者需要知道找不到的数量、卡住的工单，以及差异有没有查明。WMS 要把这些问题接到具体的物料、位置和作业记录上。本篇用独立模拟样本说明，数字不延续<a href="/manufacturing/wms-inventory-production-delivery/">WMS 基础篇</a>的支架工单，也不代表现场实测。</p>
+<h2 id="总数对得上位置仍然可能全错">总数对得上，位置仍然可能全错</h2>
+<p>不能笼统地说 ERP 只有账面数。部分 ERP 已包含库位、批次、序列号和质量管理，实际缺口取决于启用了什么、现场有没有及时登记。引入独立 WMS 前，应先确认谁维护实物位置、谁登记耗用、谁负责财务库存，避免多建一套互相解释不清的账。</p>
+<p>同一种物料的一百件，可能分在两个库位、三个托盘和多个质量状态中。一次查找至少带上工厂、仓库、货主、物料、批次或序列号、容器、库位、状态和单位。批次追踪同一来源的一组货，序列号识别单件，容器号识别一次装载关系，三者不能互相替代。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>管理者问什么</th><th>需要看到的明细</th><th>现场必须完成的动作</th></tr></thead><tbody><tr><td>货究竟在哪</td><td>当前库位、容器、最近一次确认时间</td><td>拣取和落位分别确认</td></tr><tr><td>这批能不能用</td><td>质量、用途、效期与限制依据</td><td>执行动作前复核资格</td></tr><tr><td>有没有答应给别人</td><td>需求预留、任务分配及剩余数量</td><td>并发分配时防止超占</td></tr><tr><td>为什么一直没动</td><td>库龄、近期需求、限制与处置状态</td><td>按企业口径评审呆滞风险</td></tr></tbody></table>
+<p>冻结、预留和呆滞不能做成三个互斥的库存桶。某批料可以同时质量冻结、被需求预留，又超过企业约定的无耗用天数。冻结通常约束动作，预留表达需求占用，呆滞是需要另定口径的经营分类。相加会重复，依次相减也可能错误。<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/inventory/inventory-statuses">Microsoft 库存状态说明</a>提供了受阻库存仍属实物库存的产品例子，具体可操作范围仍需验收配置。</p>
+<h2 id="两个库位的差异可能来自同一次移库">两个库位的差异，可能来自同一次移库</h2>
+<p>09:00，A01 账面有 100 件、B01 为 0。09:10，仓库把同一批次的 40 件从 A01 搬到 B01，现场交接完成，但落位回执尚未进入库存账。09:30 的首次盘点得到 A01 60 件、B01 40 件，库内没有其他收发。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>库位</th><th align="right">09:00 账面</th><th align="right">09:30 实数</th><th align="right">未对齐时直接相减</th></tr></thead><tbody><tr><td>A01</td><td align="right">100</td><td align="right">60</td><td align="right">-40</td></tr><tr><td>B01</td><td align="right">0</td><td align="right">40</td><td align="right">+40</td></tr><tr><td>合计</td><td align="right">100</td><td align="right">100</td><td align="right">0</td></tr></tbody></table>
+<p>总数没有差异，两行位置都错了。若主管分别批准盘亏 40 和盘盈 40，库存可能暂时对上，却掩盖了移库漏回执。原移库消息随后补到，还会把位置再改错一次。</p>
+<p>这时应核对原任务、容器和两端交接证据，按原业务身份补齐移库记录，得到 A01 60、B01 40，再与同一截止时间的实数比较。同一移库回执重复到达，数量不能再移动一次。找不到交接证据时，就保留待核实，不能凭两边差额相等直接认定是一笔移库。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>从盘点差异查回原始移动</strong><a href="/manufacturing/maps/wms-count-difference-resolution.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/wms-count-difference-resolution.html" title="盘点实数与统一时点库存比较后复核移动证据并按批准处理差异的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>教学数据流。移动补记和盘点调整分别引用原依据；只有复核后仍存在的差异才进入授权调整。</figcaption>
+</figure>
+<h2 id="循环盘点要追到差异处理结束">循环盘点要追到差异处理结束</h2>
+<p>循环盘点把核查拆到日常，可以优先覆盖高频出入、易混批、曾有差异或高风险的库位。计划、计数、复盘与调整各自保留记录，不能把“完成扫码”作为整个盘点已完成的标志。<a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/cycle-counting">Microsoft 循环盘点文档</a>也将创建任务、录入实数和解决差异分开；其示例配置下，存在盘点工作并不自动阻止预留和出库。</p>
+<p>项目应明确计数时是否暂停移动，以及未暂停时如何记录计数前后的收发。首次数量不要被复盘结果覆盖；可以采用盲盘、不同人员复盘和分级审批，具体范围由仓库确定。箱与件、拆零与整托也必须换到统一单位。</p>
+<p>补齐前述移库以后，独立的复盘场景又在 A01 确认少了 2 件：截止 10:00，账面 A01 60、B01 40，实数 A01 58、B01 40，无其他移动。经复核批准盘亏 2 件，调整后总数为 98。这次确实需要调整，调整单关联盘点、复盘、原因与审批；原因尚不明时，应如实标记，继续调查。</p>
+<h2 id="准确率不能只看仓库合计">准确率不能只看仓库合计</h2>
+<p>本例首次盘点两行均不一致，按“库位、物料、批次、状态、单位完全匹配的明细行”计算，准确率为 0/2；按仓库合计数量比较却完全相等。这两个结果回答的问题不同。管理报表应同时保留位置明细准确情况、数量差异和待复核规模，避免用总数掩盖找货困难。</p>
+<p>呆滞库存同样需要定义。可以按指定范围内连续无生产或销售耗用的天数识别候选，同时保留工程变更、冻结、备件储备和未来需求等原因。普通移库不应为了刷新库龄而让它退出候选；是否处置还要经过需求与质量评审。</p>
+<h2 id="用四种现场情况验收找货能力">用四种现场情况验收找货能力</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>情况</th><th>应当留下的结果</th></tr></thead><tbody><tr><td>A01 少 40、B01 多 40</td><td>先查原移库证据，未查明前不直接批准两笔调整</td></tr><tr><td>原移库回执重复到达</td><td>返回原结果，库位数量不重复变化</td></tr><tr><td>复盘仍确认少 2 件</td><td>保留首盘、复盘、审批及调整后回查</td></tr><tr><td>托盘拆箱或换标</td><td>原批次、容器装载关系及新位置连续可查</td></tr></tbody></table>
+<p>本篇的<a href="/manufacturing/samples/wms-management-cases.json">盘点样本</a>保留两个时点和独立的复盘分支，可用<a href="/manufacturing/samples/verify-wms-management-cases.py">校验程序</a>复算。下一步可沿<a href="/manufacturing/warehouse-picking-production-issue-controls/">拣配与超领场景</a>检查现场动作怎样及时写回，减少下一次找货时的未知范围。资料核对日期为 2026-10-19，例中的审批与指标口径均为教学约定。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 

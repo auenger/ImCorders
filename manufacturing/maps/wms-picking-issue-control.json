@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "生产领料怎样经过扫码与交接控制",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-wms-picking-issue-control-20261019-135620/wms-picking-issue-control.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "批准需求"
+    },
+    {
+      "label": "库存分配"
+    },
+    {
+      "label": "现场复核"
+    },
+    {
+      "label": "交接与处理"
+    },
+    {
+      "label": "结果留存"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "demand",
+      "type": "backend",
+      "label": "工单需求行",
+      "sublabel": "物料版本与目标",
+      "stage": 0,
+      "row": 0
+    },
+    {
+      "id": "assign",
+      "type": "backend",
+      "label": "分配与任务",
+      "sublabel": "资格排序并发控制",
+      "stage": 1,
+      "row": 0
+    },
+    {
+      "id": "scan",
+      "type": "backend",
+      "label": "实物扫码校验",
+      "sublabel": "库位批次数量复核",
+      "stage": 2,
+      "row": 0
+    },
+    {
+      "id": "receive",
+      "type": "backend",
+      "label": "线边实际接收",
+      "sublabel": "通过后确认实收",
+      "stage": 3,
+      "row": 0
+    },
+    {
+      "id": "record",
+      "type": "database",
+      "label": "配送交接记录",
+      "sublabel": "耗用由生产另记",
+      "stage": 4,
+      "row": 0
+    },
+    {
+      "id": "limit",
+      "type": "backend",
+      "label": "批准领料限额",
+      "sublabel": "净领用未结占用",
+      "stage": 0,
+      "row": 2
+    },
+    {
+      "id": "identity",
+      "type": "database",
+      "label": "任务与标签映射",
+      "sublabel": "物料容器单位",
+      "stage": 1,
+      "row": 2
+    },
+    {
+      "id": "exception",
+      "type": "backend",
+      "label": "未通过项目",
+      "sublabel": "错批短拣或超额",
+      "stage": 2,
+      "row": 2
+    },
+    {
+      "id": "review",
+      "type": "backend",
+      "label": "异常评审改派",
+      "sublabel": "保留未完成与依据",
+      "stage": 3,
+      "row": 2
+    }
+  ],
+  "flows": [
+    {
+      "id": "demand-assign",
+      "from": "demand",
+      "to": "assign",
+      "label": "有效需求",
+      "variant": "emphasis"
+    },
+    {
+      "id": "limit-assign",
+      "from": "limit",
+      "to": "assign",
+      "label": "限额依据",
+      "variant": "default"
+    },
+    {
+      "id": "assign-scan",
+      "from": "assign",
+      "to": "scan",
+      "label": "待执行任务",
+      "variant": "emphasis"
+    },
+    {
+      "id": "identity-scan",
+      "from": "identity",
+      "to": "scan",
+      "label": "身份映射",
+      "variant": "default"
+    },
+    {
+      "id": "scan-receive",
+      "from": "scan",
+      "to": "receive",
+      "label": "通过明细",
+      "variant": "emphasis"
+    },
+    {
+      "id": "receive-record",
+      "from": "receive",
+      "to": "record",
+      "label": "实收回执",
+      "variant": "emphasis"
+    },
+    {
+      "id": "scan-exception",
+      "from": "scan",
+      "to": "exception",
+      "label": "失败明细",
+      "variant": "default"
+    },
+    {
+      "id": "exception-review",
+      "from": "exception",
+      "to": "review",
+      "label": "异常依据",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "教学设计边界",
+      "items": [
+        "波次归组不改变质量资格与批准用量。",
+        "扫码结果和实际接收分别留证；失败时不得自动完成。",
+        "评审后生成受控改派，重新检查资格与额度。"
+      ]
+    }
+  ]
+}

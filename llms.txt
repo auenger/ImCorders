@@ -160,6 +160,11 @@
 - [系统恢复以后怎样证明业务已对齐](https://imcoders.cn/manufacturing/system-recovery-business-reconciliation/index.md): 用独立的收料、发料与退料恢复样本，核对数据库恢复点、消息位置、目标事务、重复投递和业务余额，建立跨系统恢复顺序、差异清单及重新开放业务的验收依据。
 - [工装、计量、公用工程与能源环境数据](https://imcoders.cn/manufacturing/tooling-metrology-utilities-energy/index.md): 从生产任务的资源资格与使用履历出发，拆解工装寿命、计量适用性、公用工程条件、能源计量与环境监测的数据关系，用独立模拟账本核对总分表、任务归集与单耗，并整理异常追溯和集成验收方法。
 - [自动化仓储、厂内物流与运输协同](https://imcoders.cn/manufacturing/warehouse-automation-logistics-transport/index.md): 沿用 60 件支架线边配送与 200 台风机整批交付，拆解 WMS、WES、WCS、车队系统和 TMS 的任务、容器、交接与回执，说明超时重派、途中库存、装车、签收差异和跨系统验收如何落实。
-- [在制品为什么没过期也不能继续生产](https://imcoders.cn/manufacturing/wip-hold-time-expiry-controls/index.md): 把物料到期、工序等待、开封后期限与累计暴露时间分别接到在制品，复算下一工序的开始和完成条件，说明分装、退库、暂停、迟到记录与超时评审如何保留原始时钟和跨系统回执。
-- [WMS 怎样按 FIFO 与 FEFO 选择批次](https://imcoders.cn/manufacturing/wms-fifo-fefo-batch-selection/index.md): 用五批库存和七十件需求，拆开质量与有效期筛选、FIFO 与 FEFO 排序、批次预留和扫码复核，复算可分配数量，记录跳批、改期、退料与人工换批的依据，并连接实际用料追溯。
-- [WMS 中的库存、库位与生产配送](https://imcoders.cn/manufacturing/wms-inventory-production-delivery/index.md): 沿着风机支架的收货、待检、上架、备料、配送和退料，拆解 WMS 的库存身份、质量状态、库位与任务占用，说明质量、预留、FIFO、FEFO 与时间约束如何决定库存能否领用，并用动态图和数量样本记录 ERP、MES 与仓储现场交接。
+- [仓库忙了一整天，效率到底怎么样](https://imcoders.cn/manufacturing/warehouse-exceptions-performance-metrics/index.md): 从仓库异常积压与绩效争议切入，区分库存准确率、拣货差错、作业效率、周转和呆滞指标的统计边界，用可复算样本说明异常闭环、未完成积压与明细证据怎样进入同一张管理报表。
+- [仓库发错料、生产缺料，问题出在哪](https://imcoders.cn/manufacturing/warehouse-picking-production-issue-controls/index.md): 沿一张工单的备料、扫码、线边接收、补领和退料，分析仓库错发、多发与缺料怎样发生，说明 WMS 波次、库位推荐、限额领料的适用条件，用数量记录区分配送、耗用与未结占用。
+- [一批物料出了问题，能查清影响了哪些产品吗](https://imcoders.cn/manufacturing/warehouse-quality-containment-traceability/index.md): 从供应商异常批次出发，分析仓库余料、线边、在制品和已发产品怎样分别追查，说明 WMS 的批次身份、临期预警、隔离冻结与 QMS、MES 的职责，重点核对隔离是否实际生效及未知去向。
+- [账上有料，仓库为什么找不到](https://imcoders.cn/manufacturing/warehouse-stock-location-counting/index.md): 从账上有料却找不到实物的仓库问题出发，拆解 WMS 库位、批次、容器、质量与预留的管理边界，用移库漏回执和循环盘点样本说明怎样定位差异、复核改账，并验收库存准确率。
+- [仓库已经发货，为什么系统还显示没发](https://imcoders.cn/manufacturing/warehouse-system-status-reconciliation/index.md): 用一次发运回执丢失的案例，分析 ERP、WMS、MES 与 TMS 的状态差异，区分消息接收与业务完成，说明重复重传、版本冲突、数量对账和异常重试怎样避免重复出库与漏单。
+- [物料还没过期，为什么到了产线却不能用](https://imcoders.cn/manufacturing/wip-hold-time-expiry-controls/index.md): 把物料到期、工序等待、开封后期限与累计暴露时间分别接到在制品，复算下一工序的开始和完成条件，说明分装、退库、暂停、迟到记录与超时评审如何保留原始时钟和跨系统回执。
+- [旧料没用完，新料又拆了，仓库该先发哪一批](https://imcoders.cn/manufacturing/wms-fifo-fefo-batch-selection/index.md): 用五批库存和七十件需求，拆开质量与有效期筛选、FIFO 与 FEFO 排序、批次预留和扫码复核，复算可分配数量，记录跳批、改期、退料与人工换批的依据，并连接实际用料追溯。
+- [仓库里的料，怎样才能按时送到产线](https://imcoders.cn/manufacturing/wms-inventory-production-delivery/index.md): 沿着风机支架的收货、待检、上架、备料、配送和退料，拆解 WMS 的库存身份、质量状态、库位与任务占用，说明质量、预留、FIFO、FEFO 与时间约束如何决定库存能否领用，并用动态图和数量样本记录 ERP、MES 与仓储现场交接。
