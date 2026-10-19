@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "在制品时钟怎样形成工序资格",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "output": ".archify/dataflow-wip-time-window-check-20261019-121400/wip-time-window-check.html"
+  },
+  "stages": [
+    {
+      "label": "事件证据"
+    },
+    {
+      "label": "分开计时"
+    },
+    {
+      "label": "动作判断"
+    },
+    {
+      "label": "条件结果"
+    },
+    {
+      "label": "执行核验"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "events",
+      "label": "工序开封环境记录",
+      "sublabel": "08点完成 09点开封",
+      "stage": 0,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "rules",
+      "label": "适用时限版本",
+      "sublabel": "等待4时 暴露120分",
+      "stage": 1,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "clocks",
+      "label": "多时钟计算",
+      "sublabel": "等待 开封 到期 暴露",
+      "stage": 1,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "action",
+      "label": "动作与计划区间",
+      "sublabel": "开始11:45 完成12:15",
+      "stage": 2,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "gate",
+      "label": "开始与完成核对",
+      "sublabel": "按各规则作用点判断",
+      "stage": 2,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "result",
+      "label": "时间条件结果",
+      "sublabel": "开始225分 暴露115分",
+      "stage": 3,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "actual",
+      "label": "实际动作再核验",
+      "sublabel": "版本变化与实时时钟",
+      "stage": 4,
+      "row": 2,
+      "type": "backend"
+    }
+  ],
+  "flows": [
+    {
+      "id": "events-clocks",
+      "from": "events",
+      "to": "clocks",
+      "label": "源时间与区间"
+    },
+    {
+      "id": "rules-clocks",
+      "from": "rules",
+      "to": "clocks",
+      "label": "限值与暂停规则",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "clocks-gate",
+      "from": "clocks",
+      "to": "gate",
+      "label": "时钟与完整性"
+    },
+    {
+      "id": "action-gate",
+      "from": "action",
+      "to": "gate",
+      "label": "动作时点",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "gate-result",
+      "from": "gate",
+      "to": "result",
+      "label": "逐项通过或原因",
+      "variant": "emphasis"
+    },
+    {
+      "id": "result-actual",
+      "from": "result",
+      "to": "actual",
+      "label": "仅限本次范围"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "教学规则",
+      "items": [
+        "物料到期为两天后，等待截止为当日12:00，开封完成截止为15:00。",
+        "11:30已暴露70分钟；若一直暴露，12:20达到120分钟。"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "开始和完成分开",
+      "items": [
+        "11:45开工可满足开始条件，但预计12:25完成会超过暴露额度。",
+        "12:05仍未开工时，等待已超时；其他未到期不能覆盖它。"
+      ]
+    }
+  ]
+}

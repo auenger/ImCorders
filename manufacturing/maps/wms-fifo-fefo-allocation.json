@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "库存资格怎样进入 FIFO 与 FEFO 分配",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "output": ".archify/dataflow-wms-fifo-fefo-allocation-20261019-121400/wms-fifo-fefo-allocation.html"
+  },
+  "stages": [
+    {
+      "label": "来源范围"
+    },
+    {
+      "label": "资格筛选"
+    },
+    {
+      "label": "策略排序"
+    },
+    {
+      "label": "独立方案"
+    },
+    {
+      "label": "核对结果"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "stock",
+      "label": "库存快照",
+      "sublabel": "五批共160件",
+      "stage": 0,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "need",
+      "label": "需求与资格依据",
+      "sublabel": "到货时间 剩余7天",
+      "stage": 0,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "filter",
+      "label": "逐项资格筛选",
+      "sublabel": "质量 日期 预留",
+      "stage": 1,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "strategy",
+      "label": "轮转策略规则",
+      "sublabel": "FIFO与FEFO版本",
+      "stage": 2,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "sort",
+      "label": "候选排序",
+      "sublabel": "F1五十 F2四十",
+      "stage": 2,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "fifo",
+      "label": "FIFO方案",
+      "sublabel": "F1五十 F2二十",
+      "stage": 3,
+      "row": 1,
+      "type": "backend"
+    },
+    {
+      "id": "fefo",
+      "label": "FEFO方案",
+      "sublabel": "F2四十 F1三十",
+      "stage": 3,
+      "row": 3,
+      "type": "backend"
+    },
+    {
+      "id": "compare",
+      "label": "方案数量核对",
+      "sublabel": "各70 余量各20",
+      "stage": 4,
+      "row": 2,
+      "type": "backend"
+    }
+  ],
+  "flows": [
+    {
+      "id": "stock-filter",
+      "from": "stock",
+      "to": "filter",
+      "label": "明细与占用"
+    },
+    {
+      "id": "need-filter",
+      "from": "need",
+      "to": "filter",
+      "label": "时间与条件"
+    },
+    {
+      "id": "filter-sort",
+      "from": "filter",
+      "to": "sort",
+      "label": "候选90件"
+    },
+    {
+      "id": "strategy-sort",
+      "from": "strategy",
+      "to": "sort",
+      "label": "排序与并列键",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "sort-fifo",
+      "from": "sort",
+      "to": "fifo",
+      "label": "先入排序"
+    },
+    {
+      "id": "sort-fefo",
+      "from": "sort",
+      "to": "fefo",
+      "label": "先到期排序",
+      "variant": "emphasis"
+    },
+    {
+      "id": "fifo-compare",
+      "from": "fifo",
+      "to": "compare",
+      "label": "独立方案A"
+    },
+    {
+      "id": "fefo-compare",
+      "from": "fefo",
+      "to": "compare",
+      "label": "独立方案B"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "规则先筛选再排序",
+      "items": [
+        "F0剩余期不足、F3冻结、F4日期未知；F1另有10件被占用。",
+        "两种方案用于比较，不同时预留两遍库存。"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "需求时间改变会重算",
+      "items": [
+        "到货改为10月24日，门槛改到10月31日，候选只剩50件。",
+        "日期精度、含等号边界和排序键均由教学规则显式定义。"
+      ]
+    }
+  ]
+}

@@ -167,7 +167,7 @@
         "AI Agent"
       ],
       "publishedAt": "2026-10-14T00:00:00.000Z",
-      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-19T00:00:00.000Z",
       "url": "https://imcoders.cn/blog/2026-10-14-manufacturing-systems-map/",
       "markdownUrl": "https://imcoders.cn/blog/2026-10-14-manufacturing-systems-map/index.md"
     },
@@ -2236,7 +2236,7 @@
         "隔离处置"
       ],
       "publishedAt": "2026-10-15T00:00:00.000Z",
-      "updatedAt": "2026-10-15T00:00:00.000Z",
+      "updatedAt": "2026-10-19T00:00:00.000Z",
       "url": "https://imcoders.cn/manufacturing/quality-incident-traceability-scope/",
       "markdownUrl": "https://imcoders.cn/manufacturing/quality-incident-traceability-scope/index.md"
     },
@@ -2331,10 +2331,46 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/warehouse-automation-logistics-transport/index.md"
     },
     {
+      "id": "manufacturing/wip-hold-time-expiry-controls",
+      "kind": "manufacturing",
+      "title": "在制品为什么没过期也不能继续生产",
+      "description": "把物料到期、工序等待、开封后期限与累计暴露时间分别接到在制品，复算下一工序的开始和完成条件，说明分装、退库、暂停、迟到记录与超时评审如何保留原始时钟和跨系统回执。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "在制品",
+        "有效期",
+        "工序等待",
+        "批次追溯"
+      ],
+      "publishedAt": "2026-10-19T00:00:00.000Z",
+      "updatedAt": "2026-10-19T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/wip-hold-time-expiry-controls/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/wip-hold-time-expiry-controls/index.md"
+    },
+    {
+      "id": "manufacturing/wms-fifo-fefo-batch-selection",
+      "kind": "manufacturing",
+      "title": "WMS 怎样按 FIFO 与 FEFO 选择批次",
+      "description": "用五批库存和七十件需求，拆开质量与有效期筛选、FIFO 与 FEFO 排序、批次预留和扫码复核，复算可分配数量，记录跳批、改期、退料与人工换批的依据，并连接实际用料追溯。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "WMS",
+        "FIFO",
+        "FEFO",
+        "批次追溯"
+      ],
+      "publishedAt": "2026-10-19T00:00:00.000Z",
+      "updatedAt": "2026-10-19T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/wms-fifo-fefo-batch-selection/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/wms-fifo-fefo-batch-selection/index.md"
+    },
+    {
       "id": "manufacturing/wms-inventory-production-delivery",
       "kind": "manufacturing",
       "title": "WMS 中的库存、库位与生产配送",
-      "description": "沿着风机支架的收货、待检、上架、备料、配送和退料，拆解 WMS 的库存身份、质量状态、库位与任务占用，说明在库有货为何仍不可领，并用动态图、数量核对和接口样本记录 ERP、MES 与仓储现场的交接。",
+      "description": "沿着风机支架的收货、待检、上架、备料、配送和退料，拆解 WMS 的库存身份、质量状态、库位与任务占用，说明质量、预留、FIFO、FEFO 与时间约束如何决定库存能否领用，并用动态图和数量样本记录 ERP、MES 与仓储现场交接。",
       "author": "杨正武",
       "tags": [
         "制造业",
@@ -2344,7 +2380,7 @@
         "系统集成"
       ],
       "publishedAt": "2026-10-14T00:00:00.000Z",
-      "updatedAt": "2026-10-14T00:00:00.000Z",
+      "updatedAt": "2026-10-19T00:00:00.000Z",
       "url": "https://imcoders.cn/manufacturing/wms-inventory-production-delivery/",
       "markdownUrl": "https://imcoders.cn/manufacturing/wms-inventory-production-delivery/index.md"
     }

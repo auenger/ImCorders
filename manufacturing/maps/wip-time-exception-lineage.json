@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "分装与超时怎样留下评审和执行结果",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "output": ".archify/dataflow-wip-time-exception-lineage-20261019-121400/wip-time-exception-lineage.html"
+  },
+  "stages": [
+    {
+      "label": "历史与对象"
+    },
+    {
+      "label": "继承与核对"
+    },
+    {
+      "label": "超时处理"
+    },
+    {
+      "label": "评审决定"
+    },
+    {
+      "label": "应用回执"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "history",
+      "label": "父批历史与分装账",
+      "sublabel": "100千克分为60和40",
+      "stage": 0,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "rules",
+      "label": "继承与时间规则",
+      "sublabel": "原时钟 不因退库重置",
+      "stage": 1,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "inherit",
+      "label": "子容器时钟核对",
+      "sublabel": "共同历史后独立计时",
+      "stage": 1,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "request",
+      "label": "实际动作证据",
+      "sublabel": "12:05开工请求",
+      "stage": 2,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "hold",
+      "label": "时间条件拦截",
+      "sublabel": "等待超时 保留数量",
+      "stage": 2,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "evidence",
+      "label": "评审与授权依据",
+      "sublabel": "原始记录 未决问题",
+      "stage": 3,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "decision",
+      "label": "受限范围评审",
+      "sublabel": "批准后才形成处置",
+      "stage": 3,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "execute",
+      "label": "限定动作执行",
+      "sublabel": "未批准继续受限",
+      "stage": 4,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "receipt",
+      "label": "实际结果回执",
+      "sublabel": "对象 版本 未完成项",
+      "stage": 4,
+      "row": 4,
+      "type": "database"
+    }
+  ],
+  "flows": [
+    {
+      "id": "history-inherit",
+      "from": "history",
+      "to": "inherit",
+      "label": "谱系与原时钟"
+    },
+    {
+      "id": "rules-inherit",
+      "from": "rules",
+      "to": "inherit",
+      "label": "继承条件",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "inherit-hold",
+      "from": "inherit",
+      "to": "hold",
+      "label": "子容器依据"
+    },
+    {
+      "id": "request-hold",
+      "from": "request",
+      "to": "hold",
+      "label": "动作与源时间",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "hold-decision",
+      "from": "hold",
+      "to": "decision",
+      "label": "受限与原因"
+    },
+    {
+      "id": "evidence-decision",
+      "from": "evidence",
+      "to": "decision",
+      "label": "核实与批准",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "decision-execute",
+      "from": "decision",
+      "to": "execute",
+      "label": "获准动作范围",
+      "variant": "emphasis"
+    },
+    {
+      "id": "execute-receipt",
+      "from": "execute",
+      "to": "receipt",
+      "label": "执行结果",
+      "fromSide": "bottom",
+      "toSide": "top"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "数量和身份传承",
+      "items": [
+        "父容器结束装载，当前只合计C1的60和C2的40千克。",
+        "分装、换标签和退库均不自动延长时限，超时也不直接报废。"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "迟到证据",
+      "items": [
+        "实际11:50开工、12:10收到，应回查可信源时间与当时条件。",
+        "缺少源时间证据保持未知，不能补造提前开工。"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "从批次选择核对到实际拣选与用料",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "output": ".archify/dataflow-wms-selection-execution-trace-20261019-121400/wms-selection-execution-trace.html"
+  },
+  "stages": [
+    {
+      "label": "选择与执行"
+    },
+    {
+      "label": "动作复核"
+    },
+    {
+      "label": "真实回执"
+    },
+    {
+      "label": "数量核对"
+    },
+    {
+      "label": "追溯连接"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "plan",
+      "label": "原分配记录",
+      "sublabel": "F2四十 F1三十",
+      "stage": 0,
+      "row": 1,
+      "type": "database"
+    },
+    {
+      "id": "scan",
+      "label": "实际扫码",
+      "sublabel": "批次 容器 动作",
+      "stage": 0,
+      "row": 3,
+      "type": "backend"
+    },
+    {
+      "id": "current",
+      "label": "当前库存与规则",
+      "sublabel": "质量 时间 版本",
+      "stage": 1,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "check",
+      "label": "执行资格复核",
+      "sublabel": "满足条件再确认",
+      "stage": 1,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "receipt",
+      "label": "实际拣选回执",
+      "sublabel": "F2三十八 F1三十",
+      "stage": 2,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "demand",
+      "label": "需求与事件身份",
+      "sublabel": "70件 重发同身份",
+      "stage": 3,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "reconcile",
+      "label": "去重数量核对",
+      "sublabel": "实拣68 未完成2",
+      "stage": 3,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "trace",
+      "label": "选择与实物流向",
+      "sublabel": "保留差异和证据",
+      "stage": 4,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "consume",
+      "label": "实际接收耗用",
+      "sublabel": "独立来源与产品绑定",
+      "stage": 4,
+      "row": 4,
+      "type": "database"
+    }
+  ],
+  "flows": [
+    {
+      "id": "plan-check",
+      "from": "plan",
+      "to": "check",
+      "label": "计划批次"
+    },
+    {
+      "id": "scan-check",
+      "from": "scan",
+      "to": "check",
+      "label": "实际身份"
+    },
+    {
+      "id": "current-check",
+      "from": "current",
+      "to": "check",
+      "label": "最新条件",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "check-receipt",
+      "from": "check",
+      "to": "receipt",
+      "label": "通过后回执"
+    },
+    {
+      "id": "receipt-reconcile",
+      "from": "receipt",
+      "to": "reconcile",
+      "label": "实际数量"
+    },
+    {
+      "id": "demand-reconcile",
+      "from": "demand",
+      "to": "reconcile",
+      "label": "需求与幂等键",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "reconcile-trace",
+      "from": "reconcile",
+      "to": "trace",
+      "label": "执行与差异",
+      "variant": "emphasis"
+    },
+    {
+      "id": "consume-trace",
+      "from": "consume",
+      "to": "trace",
+      "label": "实际用料关系",
+      "fromSide": "top",
+      "toSide": "bottom"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "计划不替代事实",
+      "items": [
+        "实际拣选68件，未完成2件；短拣不自动认定实物损失。",
+        "实际接收耗用由后续来源提供，本样本没有虚构生产完成。"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "保留选择依据",
+      "items": [
+        "需求、快照、跳过原因、规则版本与人工换批依据可以回查。",
+        "重复回执沿原身份处理，不重复累计。"
+      ]
+    }
+  ]
+}

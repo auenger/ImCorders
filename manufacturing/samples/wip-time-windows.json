@@ -1,0 +1,111 @@
+{
+  "illustrative": true,
+  "article": "/manufacturing/wip-hold-time-expiry-controls/",
+  "assumptions": [
+    "All times, limits, storage conditions and product quantities are teaching assumptions.",
+    "Source clocks and coverage are assumed complete; this is not a hold-time study.",
+    "The qualified sealed period pauses exposure only; hold and open-use clocks continue.",
+    "All hard boundaries are exclusive; hold applies to OP20 start, open-use applies to completion.",
+    "The next operation remains exposed for its entire duration in these scenarios."
+  ],
+  "batch": {
+    "id": "WIP-T01",
+    "quantityKg": 100,
+    "previousOperationCompletedAt": "2026-10-19T08:00:00+08:00",
+    "expiresAt": "2026-10-21T08:00:00+08:00",
+    "openedAt": "2026-10-19T09:00:00+08:00"
+  },
+  "rules": {
+    "version": "TIME-T/1",
+    "maximumWaitMinutes": 240,
+    "openUseMinutes": 360,
+    "maximumExposureMinutes": 120
+  },
+  "asOf": "2026-10-19T11:30:00+08:00",
+  "exposureIntervals": [
+    {
+      "start": "2026-10-19T09:00:00+08:00",
+      "end": "2026-10-19T09:40:00+08:00"
+    },
+    {
+      "start": "2026-10-19T11:00:00+08:00",
+      "end": null
+    }
+  ],
+  "qualifiedPause": {
+    "start": "2026-10-19T09:40:00+08:00",
+    "end": "2026-10-19T11:00:00+08:00"
+  },
+  "coverageComplete": true,
+  "split": {
+    "at": "2026-10-19T10:30:00+08:00",
+    "parentCurrent": false,
+    "children": [
+      {
+        "id": "C1",
+        "quantityKg": 60,
+        "inheritsFrom": "WIP-T01"
+      },
+      {
+        "id": "C2",
+        "quantityKg": 40,
+        "inheritsFrom": "WIP-T01"
+      }
+    ]
+  },
+  "returnEvent": {
+    "container": "C1",
+    "at": "2026-10-19T12:10:00+08:00",
+    "resetsClocks": false
+  },
+  "lateStartEvent": {
+    "occurredAt": "2026-10-19T11:50:00+08:00",
+    "receivedAt": "2026-10-19T12:10:00+08:00",
+    "trustedSourceTime": true
+  },
+  "scenarios": [
+    {
+      "id": "on-time",
+      "start": "2026-10-19T11:45:00+08:00",
+      "end": "2026-10-19T12:15:00+08:00",
+      "expectedStartAllowed": true,
+      "expectedRouteAllowed": true,
+      "expectedStartExposure": 85,
+      "expectedEndExposure": 115
+    },
+    {
+      "id": "exact-hold-limit",
+      "start": "2026-10-19T12:00:00+08:00",
+      "end": null,
+      "expectedStartAllowed": false,
+      "expectedRouteAllowed": false,
+      "expectedStartExposure": 100
+    },
+    {
+      "id": "delayed",
+      "start": "2026-10-19T12:05:00+08:00",
+      "end": null,
+      "expectedStartAllowed": false,
+      "expectedRouteAllowed": false,
+      "expectedStartExposure": 105
+    },
+    {
+      "id": "long-operation",
+      "start": "2026-10-19T11:45:00+08:00",
+      "end": "2026-10-19T12:25:00+08:00",
+      "expectedStartAllowed": true,
+      "expectedRouteAllowed": false,
+      "expectedStartExposure": 85,
+      "expectedEndExposure": 125
+    }
+  ],
+  "expected": {
+    "exposureAtAsOf": 70,
+    "remainingExposure": 50,
+    "waitDeadline": "2026-10-19T12:00:00+08:00",
+    "openUseDeadline": "2026-10-19T15:00:00+08:00",
+    "continuousExposureDeadline": "2026-10-19T12:20:00+08:00",
+    "earliestStartBoundary": "2026-10-19T12:00:00+08:00",
+    "lateTrustedStartAllowed": true
+  }
+}

@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>在制品为什么没过期也不能继续生产 | 制造业系统</title><meta name="description" content="把物料到期、工序等待、开封后期限与累计暴露时间分别接到在制品，复算下一工序的开始和完成条件，说明分装、退库、暂停、迟到记录与超时评审如何保留原始时钟和跨系统回执。"><link rel="canonical" href="https://imcoders.cn/manufacturing/wip-hold-time-expiry-controls/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/wip-hold-time-expiry-controls/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/wip-hold-time-expiry-controls/#article","headline":"在制品为什么没过期也不能继续生产","description":"把物料到期、工序等待、开封后期限与累计暴露时间分别接到在制品，复算下一工序的开始和完成条件，说明分装、退库、暂停、迟到记录与超时评审如何保留原始时钟和跨系统回执。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/wip-hold-time-expiry-controls/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-19T00:00:00.000Z","dateModified":"2026-10-19T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"在制品为什么没过期也不能继续生产","item":"https://imcoders.cn/manufacturing/wip-hold-time-expiry-controls/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-19T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-19T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="在制品为什么没过期也不能继续生产 | 制造业系统"><meta property="og:description" content="把物料到期、工序等待、开封后期限与累计暴露时间分别接到在制品，复算下一工序的开始和完成条件，说明分装、退库、暂停、迟到记录与超时评审如何保留原始时钟和跨系统回执。"><meta property="og:url" content="https://imcoders.cn/manufacturing/wip-hold-time-expiry-controls/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="在制品为什么没过期也不能继续生产 | 制造业系统"><meta name="twitter:description" content="把物料到期、工序等待、开封后期限与累计暴露时间分别接到在制品，复算下一工序的开始和完成条件，说明分装、退库、暂停、迟到记录与超时评审如何保留原始时钟和跨系统回执。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="在制品为什么没过期也不能继续生产 | 制造业系统"><meta itemprop="description" content="把物料到期、工序等待、开封后期限与累计暴露时间分别接到在制品，复算下一工序的开始和完成条件，说明分装、退库、暂停、迟到记录与超时评审如何保留原始时钟和跨系统回执。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "在制品为什么没过期也不能继续生产 | 制造业系统";
+const shareDesc = "把物料到期、工序等待、开封后期限与累计暴露时间分别接到在制品，复算下一工序的开始和完成条件，说明分装、退库、暂停、迟到记录与超时评审如何保留原始时钟和跨系统回执。";
+const shareLink = "https://imcoders.cn/manufacturing/wip-hold-time-expiry-controls/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.Bfly6kcX.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>在制品为什么没过期也不能继续生产</h1><p class="mfg-lead" data-astro-cid-767rrl5b>把物料到期、工序等待、开封后期限与累计暴露时间分别接到在制品，复算下一工序的开始和完成条件，说明分装、退库、暂停、迟到记录与超时评审如何保留原始时钟和跨系统回执。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/wip-hold-time-expiry-controls/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-19</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b> <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#先区分物料有效期和过程时限" data-astro-cid-767rrl5b>先区分物料有效期和过程时限</a></li><li data-astro-cid-767rrl5b><a href="#把四个时钟接到同一个在制批" data-astro-cid-767rrl5b>把四个时钟接到同一个在制批</a></li><li data-astro-cid-767rrl5b><a href="#计划赶得上执行时也要再查一次" data-astro-cid-767rrl5b>计划赶得上，执行时也要再查一次</a></li><li data-astro-cid-767rrl5b><a href="#分装退回和超时评审保留原始时钟" data-astro-cid-767rrl5b>分装、退回和超时评审保留原始时钟</a></li><li data-astro-cid-767rrl5b><a href="#用可复算记录检查时间和数量边界" data-astro-cid-767rrl5b>用可复算记录检查时间和数量边界</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>半成品标签上写着两天后到期，车间却无法启动下一道工序。前一道工序结束后只允许等待四小时，这个窗口已经错过。把标签到期日作为唯一判断条件，会漏掉生产过程里的其他时间约束。</p>
+<p>本篇与 <a href="/manufacturing/wms-fifo-fefo-batch-selection/">FIFO／FEFO 批次选择</a>配套，讨论在制品从仓储交接到下一步生产时如何计时。<code>WIP-T01</code>、全部时刻与限值均为独立教学设定，不对应真实产品、保持时间研究或已验证工艺。</p>
+<h2 id="先区分物料有效期和过程时限">先区分物料有效期和过程时限</h2>
+<p>线边未耗用原料仍属于原料库存，已经加工形成的中间品则需要自己的工序状态与履历。企业可以把中间品登记为半成品库存，也可能在 MES 中管理工序在制，具体账务模型应另行确认，不能重复增加两份可用量。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>时间约束</th><th>起点与判断对象</th><th>到达条件时要核对什么</th></tr></thead><tbody><tr><td>物料或半成品到期</td><td>适用批次及批准的计算依据</td><td>实际使用动作是否仍在适用期限内</td></tr><tr><td>工序间最大等待</td><td>指定上一步完成至指定下一步开始</td><td>起止工序、允许区间与实际开始证据</td></tr><tr><td>某阶段最长完成时间</td><td>该阶段开始至完成</td><td>完成时刻，不能只核对开工时刻</td></tr><tr><td>开封后使用期限</td><td>指定包装首次开封事件</td><td>适用容器、是否持续计时及后续动作</td></tr><tr><td>累计暴露限制</td><td>规定环境之外的多段时间</td><td>各段开始结束、累计量与观测完整性</td></tr><tr><td>建议复验时间</td><td>质量程序规定的检查节点</td><td>复验要求和批准，不能直接等同于失效</td></tr></tbody></table>
+<p>本文用这些维度设计系统记录，不主张所有物料都需要全部时钟。哪些条件适用、如何计时与处置，应引用产品和工艺批准依据。原料的到期日也不能机械复制为加工后半成品的期限；后者需要适用的质量与工艺定义。</p>
+<p>美国药品 <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/subpart-F/section-211.111">21 CFR 211.111</a>涉及适当情况下的生产阶段时间限制，并说明偏离需要依据与记录。WHO 的<a href="https://www.who.int/publications/m/item/general-guidance-on-hold-time-studies">保持时间研究指导</a>主要面向非无菌固体制剂，强调保持期需要数据支持。两者提供药品领域依据，不能据此为其他行业设定通用的四小时或六小时限值。</p>
+<h2 id="把四个时钟接到同一个在制批">把四个时钟接到同一个在制批</h2>
+<p>本例半成品 WIP-T01 共 100 千克，2026 年 10 月 19 日 08:00 完成 OP10，等待进入 OP20。假定批次和环境记录完整、来源时钟一致。统一按北京时间计算，所有硬截止采用严格早于边界的规则。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>规则</th><th>教学条件</th><th>得到的边界</th></tr></thead><tbody><tr><td>半成品到期</td><td>已确认到期时刻</td><td>10 月 21 日 08:00</td></tr><tr><td>工序等待</td><td>OP10 完成后，OP20 必须在 4 小时内开始</td><td>10 月 19 日 12:00 前开始</td></tr><tr><td>开封后期限</td><td>09:00 首次开封后 6 小时内完成使用</td><td>当日 15:00 前完成</td></tr><tr><td>累计暴露</td><td>规定环境之外累计少于 120 分钟</td><td>根据实际区间持续计算</td></tr></tbody></table>
+<p>环境日志显示，09:00—09:40 在规定环境之外；09:40—11:00 已满足本例确认的封闭保存条件，暴露计时暂停；11:00 起再次暴露。这里暂停的是累计暴露，工序等待和开封后期限持续计时。封闭保存与暂停资格是教学前提，实际产品应有对应依据。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>11:30 已累计暴露 = 09:00至09:40的40分钟 + 11:00至11:30的30分钟 = 70分钟</span></span>
+<span class="line"><span>剩余暴露额度 = 120 − 70 = 50分钟</span></span>
+<span class="line"><span>如果继续暴露，额度将在12:20达到上限</span></span>
+<span class="line"><span>下一工序开始的适用边界 = min(物料到期、等待截止、开封截止、暴露边界)</span></span>
+<span class="line"><span>本例最早边界 = 当日12:00</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>上面的最早边界只用于本例下一工序的开始判断。另有“必须完成”的限制时，还要继续核对预计与实际完成时刻。复验提醒、缺失记录和质量冻结也不能通过一个最早日期字段被悄悄丢掉。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>在制品时钟怎样形成工序资格</strong><a href="/manufacturing/maps/wip-time-window-check.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/wip-time-window-check.html" title="工序开封环境记录结合适用时限分别核对下一工序开始与完成条件的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>四个时钟分别保存。工序等待适用于开始，开封与暴露还需覆盖本例的完成动作；所有限值均为教学设定。</figcaption>
+</figure>
+<h2 id="计划赶得上执行时也要再查一次">计划赶得上，执行时也要再查一次</h2>
+<p>11:30 的计划拟定 OP20 在 11:45 开始，12:15 完成，并假定这段作业持续暴露。开始前已暴露 85 分钟，完成时累计 115 分钟；开始早于 12:00，完成也早于开封和物料期限，因此通过本例时间条件。</p>
+<p>如果设备临时停机，OP20 改到 12:05 才准备开始，即使到期日仍是两天后，工序等待已经达到 245 分钟，超过本例窗口。系统应返回“等待超时”，并指向 OP10 完成事件和规则版本，而非泛化成一条“物料无效”。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>独立情景</th><th>开始条件</th><th>完成或暴露条件</th><th>时间判定</th></tr></thead><tbody><tr><td>11:45 开始、12:15 完成</td><td>等待 225 分钟，尚在窗口内</td><td>完成时累计暴露 115 分钟</td><td>通过本例时间条件</td></tr><tr><td>12:00 准备开始</td><td>达到本例严格截止</td><td>即使其他期限尚未到达</td><td>不允许直接开工</td></tr><tr><td>12:05 准备开始</td><td>等待 245 分钟</td><td>开始时暴露 105 分钟，物料未到期</td><td>等待超时，转评审</td></tr><tr><td>11:45 开始、预计 12:25 完成</td><td>开始条件满足</td><td>完成时预计暴露 125 分钟</td><td>计划整体不通过</td></tr><tr><td>环境记录有无法确认的缺口</td><td>不足以重建适用条件</td><td>不能默认缺口内一直处于合规环境</td><td>保留未知并按批准策略处理</td></tr></tbody></table>
+<p>这些是对同一基准的替代情景，不表示同一批已经执行了多次 OP20。通过时间条件也只完成一类核验，设备、人员、物料状态和其他开工条件仍要分别检查。</p>
+<h3 id="谁提供时钟谁执行拦截">谁提供时钟，谁执行拦截</h3>
+<p>MES 保存工序完成、实际开工和在制身份；WMS 保存容器、位置、交接和适用的库存限制；环境采集提供观测区间；质量与工艺管理提供规则、研究或批准依据。任务接口为具体动作汇总这些依据，WMS 与 MES 分别保存各自负责的执行结果。</p>
+<p>预留、配送到线边与开始投料可能发生在不同时间。每个会受期限影响的动作需要重新读取相关状态或验证仍有效的判断凭据。数据源失联、版本变化和并发冻结，应按既定策略返回冲突或待核实，不能沿用早晨的一次“通过”结果到全天。</p>
+<h2 id="分装退回和超时评审保留原始时钟">分装、退回和超时评审保留原始时钟</h2>
+<p>假设 10:30 将 WIP-T01 分装为 C1 的 60 千克与 C2 的 40 千克。本例规定两者继承父批此前的工序、开封和共同环境历史；从分装时刻以后各记自己的环境事件。父容器结束当前装载关系，当前数量只汇总两个子容器。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>当前在制数量100千克 = C1的60 + C2的40</span></span>
+<span class="line"><span>分装不把OP10完成时间改成10:30</span></span>
+<span class="line"><span>分装不把09:00开封时间改成10:30</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>本例假定分装后两者经历相同环境，所以当前截止均为 12:00；实际环境不同时应分别计算。并批、返工或重新密封也需要适用规则和批准依据，不能直接生成更晚的到期日。退回仓库仅改变交接与位置，不能让超时在制品自动恢复可用。</p>
+<p>12:05 对 C1 的开工请求若被拦截，可以建立时间偏差评审，引用规则、原始事件、数量及当前位置。评审后允许继续、追加检验、返工或报废，都需要相应决定与执行回执。通过复验也不能无依据地重置原始时钟。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>分装与超时怎样留下评审和执行结果</strong><a href="/manufacturing/maps/wip-time-exception-lineage.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/wip-time-exception-lineage.html" title="分装继承的时间依据和超时记录经评审形成限定处置并核对跨系统回执的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>分装保持数量与历史关联。超时先形成受限对象和未决任务，图中处置路径不表示已经批准继续使用。</figcaption>
+</figure>
+<p>来源时间与接收时间也要分开。假设实际开工发生在 11:50，但消息在 12:10 才收到，应按可信的实际事件和当时条件回查，保留迟到记录；不能改用 12:10 一概认定实际开工超时，更不能补造 11:50 来绕过检查。缺少实际时间证据时，结果保持未知。</p>
+<h2 id="用可复算记录检查时间和数量边界">用可复算记录检查时间和数量边界</h2>
+<p><a href="/manufacturing/samples/wip-time-windows.json">在制时钟 JSON</a>保存规则、环境区间、分装关系及替代情景；<a href="/manufacturing/samples/verify-wms-time-samples.py">校验程序</a>复算 70／85／115 分钟、12:00 边界与 60+40 千克，同时检查退库不重置和迟到事件判断。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>依据</th><th>支持内容</th><th>适用限制</th></tr></thead><tbody><tr><td>21 CFR 211.111</td><td>美国药品生产阶段时间限制及偏离的记录依据</td><td>不直接适用于全部制造业，不提供本例限值</td></tr><tr><td>WHO TRS 992 Annex 4</td><td>保持时间研究、规定条件与数据支持的思路</td><td>主要面向非无菌固体制剂，不覆盖所有工艺</td></tr><tr><td>本篇 JSON 与关系设计</td><td>多时钟、开始／完成判断、分装传承与数量核对</td><td>教学模拟；保持时间研究和现场验证需要另有实际资料</td></tr></tbody></table>
+<p>资料于 2026-10-19 核对。实际接入仍需批准的时限及研究资料、可信事件时间、容器谱系和环境完整性记录。无法重建的区间应作为具体未决项进入<a href="/manufacturing/quality-incident-traceability-scope/">质量追溯</a>与处置清单。</p></div><nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 

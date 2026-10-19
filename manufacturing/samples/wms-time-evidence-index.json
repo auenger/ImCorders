@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-10-19",
+  "scope": "Two new articles, WMS overview and quality-tracing additions; no actual factory integration or validated process.",
+  "sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/create-location-directive",
+      "supports": "FEFO batch reservation and location aging FIFO are separate product strategies; configuration and scope apply."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/cost-management/fifo-physical-value-marking",
+      "supports": "FIFO inventory costing/settlement mechanism; does not prove physical picking sequence."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/dynamics365/supply-chain/master-planning/planning-optimization/shelf-life",
+      "supports": "Shelf-life dates and customer sellable days related to requested or confirmed receipt date; product-specific behavior."
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211/subpart-F/section-211.111",
+      "supports": "US drug production phase time limits when appropriate; deviation justification and documentation; not generic manufacturing thresholds."
+    },
+    {
+      "url": "https://www.who.int/publications/m/item/general-guidance-on-hold-time-studies",
+      "supports": "WHO TRS992 Annex4 primarily concerns non-sterile solid dosage forms and data-supported hold-time studies, not the sample values."
+    }
+  ],
+  "samples": [
+    {
+      "path": "/manufacturing/samples/wms-fifo-fefo.json",
+      "sha256": "2b1b109472bbd152cc1b0eb530976e9edf0fbd65d667c434f81c905b7ca5361b",
+      "illustrative": true
+    },
+    {
+      "path": "/manufacturing/samples/wip-time-windows.json",
+      "sha256": "780b02d7376551797f801e070cfcc96856999e35e630bf158667a6a0ed5df2f0",
+      "illustrative": true
+    }
+  ],
+  "articles": [
+    {
+      "path": "/manufacturing/wms-fifo-fefo-batch-selection/",
+      "diagrams": [
+        "/manufacturing/maps/wms-fifo-fefo-allocation.html",
+        "/manufacturing/maps/wms-selection-execution-trace.html"
+      ]
+    },
+    {
+      "path": "/manufacturing/wip-hold-time-expiry-controls/",
+      "diagrams": [
+        "/manufacturing/maps/wip-time-window-check.html",
+        "/manufacturing/maps/wip-time-exception-lineage.html"
+      ]
+    }
+  ],
+  "verifier": "/manufacturing/samples/verify-wms-time-samples.py"
+}

@@ -1,0 +1,125 @@
+{
+  "illustrative": true,
+  "article": "/manufacturing/wms-fifo-fefo-batch-selection/",
+  "assumptions": [
+    "One plant, owner, item, version and unit; no overlapping stock rows.",
+    "Split picking is allowed; full-day means 24 hours.",
+    "FIFO uses original receipt time; this is not a vendor API or financial costing rule.",
+    "Expiration is exclusive, minimum remaining duration accepts equality."
+  ],
+  "snapshotAt": "2026-10-19T08:00:00+08:00",
+  "unit": "piece",
+  "ruleVersion": "RULE-F/1",
+  "demand": {
+    "id": "SO-F70",
+    "quantity": 70,
+    "arrivalAt": "2026-10-22T08:00:00+08:00",
+    "minimumRemainingDays": 7
+  },
+  "stock": [
+    {
+      "id": "F0",
+      "receivedAt": "2026-09-29T08:00:00+08:00",
+      "expiresAt": "2026-10-21T08:00:00+08:00",
+      "quantity": 20,
+      "reservedOther": 0,
+      "qualityReleased": true
+    },
+    {
+      "id": "F1",
+      "receivedAt": "2026-10-01T08:00:00+08:00",
+      "expiresAt": "2026-11-02T08:00:00+08:00",
+      "quantity": 60,
+      "reservedOther": 10,
+      "qualityReleased": true
+    },
+    {
+      "id": "F2",
+      "receivedAt": "2026-10-10T08:00:00+08:00",
+      "expiresAt": "2026-10-30T08:00:00+08:00",
+      "quantity": 40,
+      "reservedOther": 0,
+      "qualityReleased": true
+    },
+    {
+      "id": "F3",
+      "receivedAt": "2026-10-05T08:00:00+08:00",
+      "expiresAt": "2026-10-29T08:00:00+08:00",
+      "quantity": 30,
+      "reservedOther": 0,
+      "qualityReleased": false
+    },
+    {
+      "id": "F4",
+      "receivedAt": "2026-10-12T08:00:00+08:00",
+      "expiresAt": null,
+      "quantity": 10,
+      "reservedOther": 0,
+      "qualityReleased": true
+    }
+  ],
+  "delayedArrivalAt": "2026-10-24T08:00:00+08:00",
+  "shortPickReceipts": [
+    {
+      "eventId": "PICK-F2",
+      "lot": "F2",
+      "quantity": 38
+    },
+    {
+      "eventId": "PICK-F1",
+      "lot": "F1",
+      "quantity": 30
+    },
+    {
+      "eventId": "PICK-F2",
+      "lot": "F2",
+      "quantity": 38
+    }
+  ],
+  "move": {
+    "lot": "F2",
+    "movedAt": "2026-10-19T09:00:00+08:00",
+    "originalReceiptAt": "2026-10-10T08:00:00+08:00",
+    "expiresAt": "2026-10-30T08:00:00+08:00"
+  },
+  "expected": {
+    "physical": 160,
+    "candidate": 90,
+    "thresholdAt": "2026-10-29T08:00:00+08:00",
+    "fifo": [
+      {
+        "lot": "F1",
+        "quantity": 50
+      },
+      {
+        "lot": "F2",
+        "quantity": 20
+      }
+    ],
+    "fefo": [
+      {
+        "lot": "F2",
+        "quantity": 40
+      },
+      {
+        "lot": "F1",
+        "quantity": 30
+      }
+    ],
+    "excluded": {
+      "F0": [
+        "insufficient_remaining"
+      ],
+      "F3": [
+        "quality_hold"
+      ],
+      "F4": [
+        "expiry_unknown"
+      ]
+    },
+    "delayedCandidate": 50,
+    "delayedShortage": 20,
+    "picked": 68,
+    "incomplete": 2
+  }
+}
