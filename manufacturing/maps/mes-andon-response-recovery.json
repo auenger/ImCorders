@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "产线异常怎样从呼叫走到复产核对",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-mes-andon-response-recovery-20261020-120457/mes-andon-response-recovery.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "原始事件"
+    },
+    {
+      "label": "归并与责任"
+    },
+    {
+      "label": "响应与实绩"
+    },
+    {
+      "label": "超时及恢复"
+    },
+    {
+      "label": "结果回查"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "signals",
+      "label": "现场异常原始记录",
+      "sublabel": "保留两次报警身份",
+      "stage": 0,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "assign",
+      "label": "核对归并并派单",
+      "sublabel": "接单独立于报警确认",
+      "stage": 1,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "track",
+      "label": "响应进度与计时",
+      "sublabel": "按业务时钟算超时",
+      "stage": 2,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "gate",
+      "label": "复产与结案核对",
+      "sublabel": "批准实绩分别留证",
+      "stage": 3,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "result",
+      "label": "事件结果与指标",
+      "sublabel": "停线28分钟另算",
+      "stage": 4,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "rules",
+      "label": "归并响应与恢复规则",
+      "sublabel": "责任班表及规则版本",
+      "stage": 1,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "facts",
+      "label": "现场处置与执行记录",
+      "sublabel": "接单到场验证及复产",
+      "stage": 2,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "escalate",
+      "label": "按规则升级并回查",
+      "sublabel": "仅超时触发且防重",
+      "stage": 3,
+      "row": 2,
+      "type": "backend"
+    }
+  ],
+  "flows": [
+    {
+      "id": "signals-assign",
+      "from": "signals",
+      "to": "assign",
+      "label": "原始身份",
+      "variant": "emphasis"
+    },
+    {
+      "id": "rules-assign",
+      "from": "rules",
+      "to": "assign",
+      "label": "规则与责任",
+      "variant": "default"
+    },
+    {
+      "id": "assign-track",
+      "from": "assign",
+      "to": "track",
+      "label": "工单与规则",
+      "variant": "emphasis"
+    },
+    {
+      "id": "facts-track",
+      "from": "facts",
+      "to": "track",
+      "label": "实际记录",
+      "variant": "default"
+    },
+    {
+      "id": "track-gate",
+      "from": "track",
+      "to": "gate",
+      "label": "处置恢复证据",
+      "variant": "emphasis"
+    },
+    {
+      "id": "gate-result",
+      "from": "gate",
+      "to": "result",
+      "label": "条件满足后更新",
+      "variant": "emphasis"
+    },
+    {
+      "id": "track-escalate",
+      "from": "track",
+      "to": "escalate",
+      "label": "超时明细",
+      "variant": "default"
+    },
+    {
+      "id": "escalate-result",
+      "from": "escalate",
+      "to": "result",
+      "label": "升级回执",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "教学样本与范围",
+      "items": [
+        "09:00呼叫、09:06接单、09:09到场；两个报警事件经批准关联一个业务事件。",
+        "接单超5分钟、停线未恢复超20分钟分别升级；时限为自定义教学规则。",
+        "09:02停线、09:30实际复产；09:40结案不改变28分钟停线。"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "状态分别核对",
+      "items": [
+        "报警确认与报警消除不等于业务接单、问题解决或复产批准。",
+        "复产批准、实际执行和结案依据分别保存；升级回执只更新升级记录。",
+        "图示为数据责任关系，不执行设备控制，也不代表真实厂商接口。"
+      ]
+    }
+  ]
+}

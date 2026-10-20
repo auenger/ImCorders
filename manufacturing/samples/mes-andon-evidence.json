@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-10-20",
+  "simulated": true,
+  "article": "mes-andon-response-escalation",
+  "sources": [
+    {
+      "url": "https://www.lean.org/lexicon-terms/andon/",
+      "supports": "Andon visualizes abnormalities and summons a response; does not define our SLA or software workflow."
+    },
+    {
+      "url": "https://docs.inductiveautomation.com/docs/8.3/platform/alarming",
+      "supports": "Ignition 8.3 alarm active/cleared and acknowledged conditions, rosters and notification escalation examples; not a MES recovery authorization model."
+    },
+    {
+      "url": "https://www.docs.inductiveautomation.com/docs/8.3/ignition-modules/alarm-notification/adding-pipelines-to-tags",
+      "supports": "Ignition 8.3 default pipeline dropout on acknowledgement, clearing or shelving, with per-event configuration differences."
+    }
+  ],
+  "sampleScope": "One independent incident; same shift, calibrated clocks, no breaks or simultaneous production stops; custom rules, not an industry SLA or vendor implementation."
+}

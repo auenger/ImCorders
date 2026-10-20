@@ -155,6 +155,7 @@
 - [机械加工与装备装配的工艺和交付数据](https://imcoders.cn/manufacturing/machining-assembly-process-delivery/index.md): 以轴类零件加工、委外热处理和装备装配为模拟链路，核对图纸与程序版本、刀具量具、委外在途、质量状态和项目交付，复算十二件毛坯怎样支持四套装备齐套。
 - [主数据、事件与跨系统对账](https://imcoders.cn/manufacturing/master-data-events-reconciliation/index.md): 沿用风机订单与补发支架案例，拆解制造业系统的主数据责任、编码映射、事件身份、可靠发送、幂等与乱序处理，并用两件补发料的独立差异样本说明数量守恒、业务回执、补偿和对账验收。
 - [医疗器械怎样连接生产记录与售后线索](https://imcoders.cn/manufacturing/medical-device-production-service-records/index.md): 依据 FDA QMSR 与记录控制公开资料，建立医疗器械产品版本、组件批次、逐台生产检验、放行和投诉的证据关系，用四十台模拟对象复算状态与候选影响范围，并说明药品记录不能直接套用的边界。
+- [产线出了异常，为什么总要等人来处理](https://imcoders.cn/manufacturing/mes-andon-response-escalation/index.md): 从产线呼叫后无人接单、接单后迟迟未复产的问题出发，拆解 MES 与 Andon 的责任派单、超时升级和恢复验证，用独立时间样本复算响应与停线时长，区分重复报警、实际复产和管理结案。
 - [MES 中一张工单的完整生命周期](https://imcoders.cn/manufacturing/mes-work-order-lifecycle/index.md): 沿着一张风机工单，拆解 MES 的接单、准备、派工、开工、过站、报工、质量挂起、返工和完工，区分工单与单件状态，用动态图记录 ERP、WMS 和质量系统的交接，并给出异常恢复、追溯与 Agent 接入的验收范围。
 - [用数据解释一张订单为什么延期](https://imcoders.cn/manufacturing/order-delivery-delay-analysis/index.md): 把 PLM、ERP、MES 与 WMS 的记录接到同一张风机订单，区分客户要求、确认承诺、计划版本和实际事件，用数量范围、并行条件及条件重算解释延期，避免把局部等待相加或将接口迟到误判为现场停工。
 - [人员资格、受控文件、售后与运行支撑](https://imcoders.cn/manufacturing/people-documents-service-operations/index.md): 沿着任务开工、产品交付和服务反馈，梳理人员资格、账号授权、受控文件、在役资产、服务工单与运行恢复的数据关系，用模拟记录说明历史依据、配置变更、离线补传和异常验收方法。

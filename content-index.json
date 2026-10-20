@@ -2240,6 +2240,24 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/medical-device-production-service-records/index.md"
     },
     {
+      "id": "manufacturing/mes-andon-response-escalation",
+      "kind": "manufacturing",
+      "title": "产线出了异常，为什么总要等人来处理",
+      "description": "从产线呼叫后无人接单、接单后迟迟未复产的问题出发，拆解 MES 与 Andon 的责任派单、超时升级和恢复验证，用独立时间样本复算响应与停线时长，区分重复报警、实际复产和管理结案。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "MES",
+        "Andon",
+        "异常响应",
+        "停线分析"
+      ],
+      "publishedAt": "2026-10-20T00:00:00.000Z",
+      "updatedAt": "2026-10-20T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/mes-andon-response-escalation/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/mes-andon-response-escalation/index.md"
+    },
+    {
       "id": "manufacturing/mes-work-order-lifecycle",
       "kind": "manufacturing",
       "title": "MES 中一张工单的完整生命周期",

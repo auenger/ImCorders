@@ -1,0 +1,112 @@
+{
+  "simulated": true,
+  "caseId": "ANDON-A01",
+  "assetId": "ASM-A01",
+  "ruleVersion": "AR-01",
+  "asOf": "2026-10-20T09:40:00+08:00",
+  "rules": {
+    "acceptMinutes": 5,
+    "restoreMinutes": 20
+  },
+  "timeline": {
+    "raised": "2026-10-20T09:00:00+08:00",
+    "alarmAcknowledged": "2026-10-20T09:01:00+08:00",
+    "stopped": "2026-10-20T09:02:00+08:00",
+    "accepted": "2026-10-20T09:06:00+08:00",
+    "arrived": "2026-10-20T09:09:00+08:00",
+    "handled": "2026-10-20T09:20:00+08:00",
+    "verified": "2026-10-20T09:24:00+08:00",
+    "approved": "2026-10-20T09:26:00+08:00",
+    "resumed": "2026-10-20T09:30:00+08:00",
+    "closed": "2026-10-20T09:40:00+08:00"
+  },
+  "acceptedBy": "LEADER-A",
+  "verificationRef": "VERIFY-A01",
+  "approvalRef": "APPROVAL-A01",
+  "resumeRef": "MES-START-A01",
+  "closeRef": "CLOSE-A01",
+  "alarms": [
+    {
+      "id": "AL-A01",
+      "assetId": "ASM-A01",
+      "activeAt": "2026-10-20T09:00:00+08:00",
+      "clearedAt": "2026-10-20T09:03:00+08:00"
+    },
+    {
+      "id": "AL-A02",
+      "assetId": "ASM-A01",
+      "activeAt": "2026-10-20T09:04:00+08:00",
+      "clearedAt": "2026-10-20T09:18:00+08:00"
+    }
+  ],
+  "deliveries": [
+    {
+      "messageId": "MSG-1",
+      "alarmId": "AL-A01",
+      "assetId": "ASM-A01",
+      "activeAt": "2026-10-20T09:00:00+08:00"
+    },
+    {
+      "messageId": "MSG-1-RETRY",
+      "alarmId": "AL-A01",
+      "assetId": "ASM-A01",
+      "activeAt": "2026-10-20T09:00:00+08:00"
+    },
+    {
+      "messageId": "MSG-2",
+      "alarmId": "AL-A02",
+      "assetId": "ASM-A01",
+      "activeAt": "2026-10-20T09:04:00+08:00"
+    }
+  ],
+  "approvedAlarmLinks": [
+    {
+      "alarmId": "AL-A01",
+      "basis": "initial report"
+    },
+    {
+      "alarmId": "AL-A02",
+      "basis": "REVIEW-A01: approved same unresolved incident, original event retained"
+    }
+  ],
+  "escalations": [
+    {
+      "rule": "accept",
+      "dueAt": "2026-10-20T09:05:00+08:00",
+      "ruleVersion": "AR-01",
+      "resultRef": "NOTICE-ACCEPT"
+    },
+    {
+      "rule": "accept",
+      "dueAt": "2026-10-20T09:05:00+08:00",
+      "ruleVersion": "AR-01",
+      "resultRef": "NOTICE-ACCEPT"
+    },
+    {
+      "rule": "restore",
+      "dueAt": "2026-10-20T09:22:00+08:00",
+      "ruleVersion": "AR-01",
+      "resultRef": "NOTICE-RESTORE"
+    }
+  ],
+  "expected": {
+    "acceptMinutes": 6,
+    "arrivalMinutes": 9,
+    "responsePhasesMinutes": [
+      6,
+      3,
+      11,
+      4,
+      2,
+      4
+    ],
+    "callToResumeMinutes": 30,
+    "downtimeMinutes": 28,
+    "administrativeMinutes": 10,
+    "caseMinutes": 40,
+    "deliveryCount": 3,
+    "alarmEventCount": 2,
+    "businessCaseCount": 1,
+    "uniqueEscalations": 2
+  }
+}
