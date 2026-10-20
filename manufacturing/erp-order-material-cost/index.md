@@ -3,7 +3,7 @@
 作者：杨正武
 来源：https://imcoders.cn/manufacturing/erp-order-material-cost/
 发布：2026-10-14T00:00:00.000Z
-更新：2026-10-14T00:00:00.000Z
+更新：2026-10-20T00:00:00.000Z
 
 沿着一张风机订单，拆解 ERP 中的销售需求、MRP、采购与生产订单、库存事务和成本核算，说明工程变更后怎样重算缺料、接收现场记录、处理接口重试，并用动态图与验收案例保留跨系统证据。
 
@@ -15,6 +15,21 @@
 这些记录进入 ERP 后，计划员要重新计算供给，采购要拿到供应商答复，生产要确认什么时候能开工。等现场报回耗料和工时，财务还要查清订单上的成本从哪里来。沿着这张订单看下去，ERP 的对象和系统边界会具体得多。
 
 本文继续使用模拟的 A 工厂离散装配场景。数量、单号和金额均为教学设定，不对应客户部署或厂商 API。本文讨论制造相关的经营记录；税务、收入确认及完整财务制度另有业务规则，不在本篇展开。
+
+ERP 是系统类别，SAP 是厂商及其产品生态。SAP S/4HANA 属于 ERP 产品，HANA 是数据库，Fiori 是用户界面体系。SAP 的[产品层次与部署说明](https://learning.sap.com/courses/exploring-sap-cloud-erp/describing-the-technical-layers-and-deployment-variants-of-sap-s-4hana_b81ddd87-646f-4c28-89e0-e29815cb59d5)还区分营销名称、技术产品名称与部署方式。使用具体功能资料时，要记录产品、发布版本、启用范围和配置，不能把不同版本的操作直接混用。
+
+从管理问题进入，新增八篇 ERP 与 SAP 专题可按下表查阅。各篇使用独立教学样本，不改变本文风机订单的数量和成本。
+
+| 当前问题 | 深入阅读 |
+| --- | --- |
+| 收货了却不能付款 | [货已经收到了，为什么供应商的款还付不了](/manufacturing/erp-purchase-receipt-invoice-payment/) |
+| 发货了却没有回款 | [产品已经发走了，为什么钱还没收回来](/manufacturing/erp-sales-delivery-billing-collection/) |
+| 完工后成本仍在变化 | [产品已经做完，为什么订单成本还在变](/manufacturing/erp-production-cost-wip-settlement/) |
+| 产品换厂后无法执行 | [同一款产品，为什么换个工厂就做不出来](/manufacturing/erp-plant-master-data-production-readiness/) |
+| 增加采购仍然缺料 | [库存越买越多，生产为什么还在缺料](/manufacturing/erp-mrp-stock-shortage-replenishment/) |
+| 接单以后无法承诺交期 | [订单接下来了，交期为什么还不敢承诺](/manufacturing/erp-order-promise-availability/) |
+| ERP 与仓库库存不一致 | [ERP 和仓库都有库存，到底该看哪一个](/manufacturing/erp-ewm-inventory-production-supply/) |
+| 报工成功但库存成本未对齐 | [车间已经报完工，ERP 为什么还没对上账](/manufacturing/erp-mes-completion-reconciliation/) |
 
 ## 一张客户订单会形成哪些 ERP 记录
 

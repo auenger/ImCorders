@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "同一产品怎样检查工厂生产就绪",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-erp-plant-master-data-20261020-112906/erp-plant-master-data.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "需求与定义"
+    },
+    {
+      "label": "选择适用组合"
+    },
+    {
+      "label": "就绪检查"
+    },
+    {
+      "label": "批准执行"
+    },
+    {
+      "label": "读回缺口"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "demand",
+      "label": "工厂生产需求",
+      "sublabel": "P100或P200各100台",
+      "stage": 0,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "select",
+      "label": "选择生产版本",
+      "sublabel": "日期批量路线适用",
+      "stage": 1,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "ready",
+      "label": "定义与物料检查",
+      "sublabel": "缺失条件分别返回",
+      "stage": 2,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "release",
+      "label": "批准后建立执行",
+      "sublabel": "状态与授权再校验",
+      "stage": 3,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "readback",
+      "label": "对象与阻断回查",
+      "sublabel": "不以复制成功放行",
+      "stage": 4,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "master",
+      "label": "工厂生产主数据",
+      "sublabel": "物料BOM路线资源",
+      "stage": 0,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "stock",
+      "label": "本单库存快照",
+      "sublabel": "单位状态组织范围",
+      "stage": 1,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "missing",
+      "label": "未满足条件",
+      "sublabel": "P200缺版本缺140件",
+      "stage": 2,
+      "row": 2,
+      "type": "backend"
+    }
+  ],
+  "flows": [
+    {
+      "id": "demand-select",
+      "from": "demand",
+      "to": "select",
+      "label": "工厂需求",
+      "variant": "emphasis"
+    },
+    {
+      "id": "master-select",
+      "from": "master",
+      "to": "select",
+      "label": "定义与适用",
+      "variant": "default"
+    },
+    {
+      "id": "select-ready",
+      "from": "select",
+      "to": "ready",
+      "label": "适用组合",
+      "variant": "emphasis"
+    },
+    {
+      "id": "stock-ready",
+      "from": "stock",
+      "to": "ready",
+      "label": "候选库存",
+      "variant": "default"
+    },
+    {
+      "id": "ready-release",
+      "from": "ready",
+      "to": "release",
+      "label": "满足后提交",
+      "variant": "emphasis"
+    },
+    {
+      "id": "ready-missing",
+      "from": "ready",
+      "to": "missing",
+      "label": "阻断明细",
+      "variant": "default"
+    },
+    {
+      "id": "release-readback",
+      "from": "release",
+      "to": "readback",
+      "label": "目标结果",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "范围与教学约定",
+      "items": [
+        "两厂同一公司代码，数量全部按EA；模拟条件不穷尽生产就绪。",
+        "生产版本与PLM修订分别维护，不能凭同名认定一致。",
+        "P200补齐获准版本仅解决定义问题，140件缺口仍需真实供给。"
+      ]
+    }
+  ]
+}

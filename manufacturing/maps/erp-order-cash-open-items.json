@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "订单交付怎样回到应收与到账应用",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-erp-order-cash-open-items-20261020-112906/erp-order-cash-open-items.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "订单与实物"
+    },
+    {
+      "label": "范围核对"
+    },
+    {
+      "label": "财务依据"
+    },
+    {
+      "label": "收款应用"
+    },
+    {
+      "label": "未完成清单"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "order",
+      "label": "销售订单记录",
+      "sublabel": "100台单价100",
+      "stage": 0,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "scope",
+      "label": "交付范围核对",
+      "sublabel": "未发与已发分开",
+      "stage": 1,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "receivable",
+      "label": "出账应收核对",
+      "sublabel": "50台应收5000",
+      "stage": 2,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "allocate",
+      "label": "到账应用核对",
+      "sublabel": "来源对象与批准",
+      "stage": 3,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "open",
+      "label": "应收未匹配清单",
+      "sublabel": "未清与未知分别列",
+      "stage": 4,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "delivery",
+      "label": "实际发运记录",
+      "sublabel": "已发60未发40",
+      "stage": 0,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "billing",
+      "label": "出账财务记录",
+      "sublabel": "单据及过账状态",
+      "stage": 1,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "bank",
+      "label": "到账与应用记录",
+      "sublabel": "4500到账应用4000",
+      "stage": 2,
+      "row": 2,
+      "type": "database"
+    }
+  ],
+  "flows": [
+    {
+      "id": "order-scope",
+      "from": "order",
+      "to": "scope",
+      "label": "订单范围",
+      "variant": "emphasis"
+    },
+    {
+      "id": "delivery-scope",
+      "from": "delivery",
+      "to": "scope",
+      "label": "发运事实",
+      "variant": "default"
+    },
+    {
+      "id": "scope-receivable",
+      "from": "scope",
+      "to": "receivable",
+      "label": "已发待核对",
+      "variant": "emphasis"
+    },
+    {
+      "id": "billing-receivable",
+      "from": "billing",
+      "to": "receivable",
+      "label": "出账凭证",
+      "variant": "default"
+    },
+    {
+      "id": "receivable-allocate",
+      "from": "receivable",
+      "to": "allocate",
+      "label": "应收明细",
+      "variant": "emphasis"
+    },
+    {
+      "id": "bank-allocate",
+      "from": "bank",
+      "to": "allocate",
+      "label": "到账关系",
+      "variant": "default"
+    },
+    {
+      "id": "allocate-open",
+      "from": "allocate",
+      "to": "open",
+      "label": "应用结果",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "范围与教学约定",
+      "items": [
+        "订单范围价值不直接等于应收或已确认会计收入。",
+        "发运60台中10台未出账，财务成功50台形成5000元应收。",
+        "未分配500元不自动抵扣本单1000元未清，价格贷项另留更正。"
+      ]
+    }
+  ]
+}

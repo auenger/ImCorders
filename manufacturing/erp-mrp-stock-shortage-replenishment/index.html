@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>库存越买越多，生产为什么还在缺料 | 制造业系统</title><meta name="description" content="从过量采购和产线缺料同时发生的问题出发，结合 SAP S/4HANA MRP 研究预测消耗、库存资格、时间分桶和批量规则，用一百二十台需求复算补货建议与晚到库存，区分计划建议和真实供给。"><link rel="canonical" href="https://imcoders.cn/manufacturing/erp-mrp-stock-shortage-replenishment/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/erp-mrp-stock-shortage-replenishment/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/erp-mrp-stock-shortage-replenishment/#article","headline":"库存越买越多，生产为什么还在缺料","description":"从过量采购和产线缺料同时发生的问题出发，结合 SAP S/4HANA MRP 研究预测消耗、库存资格、时间分桶和批量规则，用一百二十台需求复算补货建议与晚到库存，区分计划建议和真实供给。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/erp-mrp-stock-shortage-replenishment/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-20T00:00:00.000Z","dateModified":"2026-10-20T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"库存越买越多，生产为什么还在缺料","item":"https://imcoders.cn/manufacturing/erp-mrp-stock-shortage-replenishment/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-20T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-20T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="库存越买越多，生产为什么还在缺料 | 制造业系统"><meta property="og:description" content="从过量采购和产线缺料同时发生的问题出发，结合 SAP S/4HANA MRP 研究预测消耗、库存资格、时间分桶和批量规则，用一百二十台需求复算补货建议与晚到库存，区分计划建议和真实供给。"><meta property="og:url" content="https://imcoders.cn/manufacturing/erp-mrp-stock-shortage-replenishment/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="库存越买越多，生产为什么还在缺料 | 制造业系统"><meta name="twitter:description" content="从过量采购和产线缺料同时发生的问题出发，结合 SAP S/4HANA MRP 研究预测消耗、库存资格、时间分桶和批量规则，用一百二十台需求复算补货建议与晚到库存，区分计划建议和真实供给。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="库存越买越多，生产为什么还在缺料 | 制造业系统"><meta itemprop="description" content="从过量采购和产线缺料同时发生的问题出发，结合 SAP S/4HANA MRP 研究预测消耗、库存资格、时间分桶和批量规则，用一百二十台需求复算补货建议与晚到库存，区分计划建议和真实供给。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "库存越买越多，生产为什么还在缺料 | 制造业系统";
+const shareDesc = "从过量采购和产线缺料同时发生的问题出发，结合 SAP S/4HANA MRP 研究预测消耗、库存资格、时间分桶和批量规则，用一百二十台需求复算补货建议与晚到库存，区分计划建议和真实供给。";
+const shareLink = "https://imcoders.cn/manufacturing/erp-mrp-stock-shortage-replenishment/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.CNEh5eXl.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>库存越买越多，生产为什么还在缺料</h1><p class="mfg-lead" data-astro-cid-767rrl5b>从过量采购和产线缺料同时发生的问题出发，结合 SAP S/4HANA MRP 研究预测消耗、库存资格、时间分桶和批量规则，用一百二十台需求复算补货建议与晚到库存，区分计划建议和真实供给。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/erp-mrp-stock-shortage-replenishment/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-20</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b>  <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#先确认到底需要生产多少" data-astro-cid-767rrl5b>先确认到底需要生产多少</a></li><li data-astro-cid-767rrl5b><a href="#库存二百件为什么只有一百一十件参加本单" data-astro-cid-767rrl5b>库存二百件，为什么只有一百一十件参加本单</a></li><li data-astro-cid-767rrl5b><a href="#净缺八十件补货建议可能是一百件" data-astro-cid-767rrl5b>净缺八十件，补货建议可能是一百件</a></li><li data-astro-cid-767rrl5b><a href="#一份计划要能解释输入和后续变化" data-astro-cid-767rrl5b>一份计划要能解释输入和后续变化</a></li><li data-astro-cid-767rrl5b><a href="#用输入变化检验计划解释能力" data-astro-cid-767rrl5b>用输入变化检验计划解释能力</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>采购按缺料表下了单，过几天计划又出一张新缺料表。仓库里的料越来越多，急着上线的那一批仍然不够。检查记录后，有的采购还没到可用日，有的预测和客户订单重复算了，原建议转成采购单以后也没有从计划里退出。</p>
+<p>这篇接着<a href="/manufacturing/inventory-shortage-material-readiness/">库存齐套场景</a>往计划来源追。SAP 参考为 S/4HANA MRP 课程中的需求、净需求、批量和日期计算。本篇采用独立教学规则，未运行 SAP 计划引擎，不将它解释成所有产品配置下的固定结果。</p>
+<h2 id="先确认到底需要生产多少">先确认到底需要生产多少</h2>
+<p>MRP 计算需要什么、多少和何时补充。SAP 的 <a href="https://learning.sap.com/courses/exploring-production-planning-in-sap-s-4hana/understanding-mrp-in-sap-s-4hana">MRP 课程</a>同时介绍依需求和基于消耗的计划方式；物料采用哪种方式，受主数据和计划策略影响。</p>
+<p>模拟产品在 D5 需要交给生产 120 台需求，另有同一范围和期间的预测 100 台。本例选用“销售订单消耗预测”的简化规则：120 台销售需求完全消耗 100 台预测，剩余预测为零，需求总数为 120 台。若企业采用不同生产策略、消耗窗口或需求类别，应重新确认算法，不能无条件套用。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>未消耗预测 = max(预测100 − 消耗100, 0) = 0台</span></span>
+<span class="line"><span>本例毛需求 = 销售120 + 未消耗预测0 = 120台</span></span>
+<span class="line"><span>每台支架2件，支架需求 = 120 × 2 = 240件</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>把预测和销售直接加成 220 台，会形成 440 件支架需求。本例由此多算 200 件，后续补货即使执行得很快，也会扩大不需要的库存。先核对需求来源与消耗关系，比只盯着最后一列缺口更有用。</p>
+<h2 id="库存二百件为什么只有一百一十件参加本单">库存二百件，为什么只有一百一十件参加本单</h2>
+<p>固定 D1 的快照，支架在库 200 件，其中待检 60 件、已为其他需求占用 30 件，两部分互不重叠。当前没有批准释放或转用依据，本单候选为 110 件。D4 有已确认并在本例可用的未收供给 50 件，D8 另有 100 件，均与现货、其他采购不重复。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>来源</th><th align="right">数量</th><th>本例可用时间</th><th>对 D5 需求的作用</th></tr></thead><tbody><tr><td>当前合格且未占用库存</td><td align="right">110</td><td>D1</td><td>参加覆盖</td></tr><tr><td>第一笔未收供给</td><td align="right">50</td><td>D4</td><td>假设按时具备使用资格，参加覆盖</td></tr><tr><td>第二笔未收供给</td><td align="right">100</td><td>D8</td><td>晚于需要时间，不补 D5 缺口</td></tr></tbody></table>
+<p>在上述资格条件下，D5 可覆盖 160 件，缺口为 80 件。待检是否参加更远期间的供给，需要质量与预计可用日期依据；本文只排除它对本次 D5 的覆盖。冻结、预留相互重叠时，也不能照抄本例的依次扣减。</p>
+<p>MRP 还要考虑 BOM 和工厂范围，见<a href="/manufacturing/erp-plant-master-data-production-readiness/">转厂主数据篇</a>。原料、版本或单位不适用时，不能因为集团总量足够就抵扣这笔需求。</p>
+<h2 id="净缺八十件补货建议可能是一百件">净缺八十件，补货建议可能是一百件</h2>
+<p>本例另规定最小采购批量为 100 件，本次以 100 件的整数倍补充，且新增供给可以在 D5 使用。80 件净缺口因此形成 100 件建议，D5 使用后留下 20 件。没有后续需求或变化时，D8 的原供给再到 100 件，候选余量会成为 120 件。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>D5 缺口 = 240 − 110 − 50 = 80件</span></span>
+<span class="line"><span>按本例批量建议 = 向上取100的整数倍 = 100件</span></span>
+<span class="line"><span>D5 使用后的候选余量 = 110 + 50 + 100 − 240 = 20件</span></span>
+<span class="line"><span>D8 再到100且无新需求 = 120件</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>这个结果提示计划核查原 D8 供给能否提前、取消或另有需求覆盖，不能一边保留原单，一边只靠新增采购解决眼前问题。提前仍是候选措施，供应商接受及实际可用证据到来前，不把它当成已经完成。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>需求、可用时间和批量怎样共同形成补货建议</strong><a href="/manufacturing/maps/erp-mrp-demand-supply.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/erp-mrp-demand-supply.html" title="销售预测和库存供给结合计划规则形成分期净需求经批量处理转为授权供给的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>教学模型将需求去重、时间覆盖和批量计算分开。建议转成正式供给后关联原记录，后续重算避免再次算成独立的一笔。</figcaption>
+</figure>
+<h2 id="一份计划要能解释输入和后续变化">一份计划要能解释输入和后续变化</h2>
+<p>结果保留计划版本、组织、需求来源、BOM、库存快照、采购余量、资格与可用日期、日历和批量规则。对比新旧计划时，才能判断缺口来自新增订单、晚交、冻结、参数变化，还是来源消息丢失。</p>
+<p>SAP 的<a href="https://learning.sap.com/courses/manage-production-orders-in-sap-s-4hana-manufacturing/analyzing-master-data-selection">生产主数据选择课程</a>说明计划转生产订单时的生产版本衔接与一致性检查。采购方向也应保存建议与正式采购的转化关系：建议已经被 100 件采购覆盖，不能在下一轮继续以“建议 100 加采购 100”计成 200。</p>
+<p>MRP 物料结果不单独证明有限产能、运输、检验和线边交接可行。日期字段要标明是发运、到货还是具备使用资格。本文 D1、D4、D5、D8 是模型时间桶，未模拟真实节假日、排程或供应商履约能力。</p>
+<h2 id="用输入变化检验计划解释能力">用输入变化检验计划解释能力</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>输入变化</th><th>应得到的结果</th></tr></thead><tbody><tr><td>本例完整快照</td><td>需求 240 件，D5 净缺 80，建议补 100</td></tr><tr><td>把已消耗预测再次加入</td><td>检出重复需求，不能接受 440 件作为本例正确毛需求</td></tr><tr><td>D4 的 50 件推迟到 D6</td><td>D5 净缺变 130，本例批量建议为 200</td></tr><tr><td>100 件建议已经转正式采购</td><td>原建议与正式单关联，只覆盖一次</td></tr><tr><td>某仓库或供应来源读取失败</td><td>返回未知范围，不能直接输出完整净缺口</td></tr></tbody></table>
+<p><a href="/manufacturing/samples/erp-sap-cases.json">本轮样本</a>与<a href="/manufacturing/samples/verify-erp-sap-cases.py">校验程序</a>可复算需求、供给时间和批量。公开资料核对于 2026-10-20；取得计划建议以后，还要沿<a href="/manufacturing/erp-order-promise-availability/">交期承诺篇</a>核对对客户究竟能确认多少、什么时候确认。</p></div>  <nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 

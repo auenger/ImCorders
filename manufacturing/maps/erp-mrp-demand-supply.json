@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "需求与供给怎样形成补货建议",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-erp-mrp-demand-supply-20261020-112906/erp-mrp-demand-supply.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "需求与库存"
+    },
+    {
+      "label": "分期净需求"
+    },
+    {
+      "label": "批量建议"
+    },
+    {
+      "label": "供给落实"
+    },
+    {
+      "label": "重算与解释"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "demand",
+      "label": "销售预测快照",
+      "sublabel": "销售120预测100",
+      "stage": 0,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "net",
+      "label": "需求消耗与净算",
+      "sublabel": "资格和日期分桶",
+      "stage": 1,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "proposal",
+      "label": "按批量形成建议",
+      "sublabel": "缺80建议补100",
+      "stage": 2,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "firm",
+      "label": "授权落实供给",
+      "sublabel": "原建议与正式单关联",
+      "stage": 3,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "replan",
+      "label": "新版本重算核对",
+      "sublabel": "日期余量原因可查",
+      "stage": 4,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "supply",
+      "label": "库存与采购快照",
+      "sublabel": "D4供50D8供100",
+      "stage": 0,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "rules",
+      "label": "计划规则版本",
+      "sublabel": "BOM消耗及批量",
+      "stage": 1,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "formal",
+      "label": "正式供给记录",
+      "sublabel": "原建议覆盖关系",
+      "stage": 2,
+      "row": 2,
+      "type": "database"
+    }
+  ],
+  "flows": [
+    {
+      "id": "demand-net",
+      "from": "demand",
+      "to": "net",
+      "label": "原始需求",
+      "variant": "emphasis"
+    },
+    {
+      "id": "supply-net",
+      "from": "supply",
+      "to": "net",
+      "label": "日期资格",
+      "variant": "default"
+    },
+    {
+      "id": "rules-net",
+      "from": "rules",
+      "to": "net",
+      "label": "需求规则",
+      "variant": "default"
+    },
+    {
+      "id": "net-proposal",
+      "from": "net",
+      "to": "proposal",
+      "label": "分期缺口",
+      "variant": "emphasis"
+    },
+    {
+      "id": "rules-proposal",
+      "from": "rules",
+      "to": "proposal",
+      "label": "批量依据",
+      "variant": "default"
+    },
+    {
+      "id": "proposal-firm",
+      "from": "proposal",
+      "to": "firm",
+      "label": "补货建议",
+      "variant": "emphasis"
+    },
+    {
+      "id": "formal-firm",
+      "from": "formal",
+      "to": "firm",
+      "label": "已落实范围",
+      "variant": "default"
+    },
+    {
+      "id": "firm-replan",
+      "from": "firm",
+      "to": "replan",
+      "label": "真实供给",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "范围与教学约定",
+      "items": [
+        "本例销售消耗同范围预测，毛需求120台对应支架240件。",
+        "晚到D8供给不抵D5缺口；批量100会留下20件早期余量。",
+        "MRP结果不证明有限产能和运输可行，转单后不得双计建议与正式单。"
+      ]
+    }
+  ]
+}

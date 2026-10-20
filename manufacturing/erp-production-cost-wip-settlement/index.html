@@ -1,0 +1,169 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>产品已经做完，为什么订单成本还在变 | 制造业系统</title><meta name="description" content="用部分完工、最终完工和迟到成本三个快照，分析 ERP 生产订单中的实际投入、标准收货价值、在制成本和差异，结合 SAP S/4HANA Cloud Public Edition 事件式生产会计说明结算与更正。"><link rel="canonical" href="https://imcoders.cn/manufacturing/erp-production-cost-wip-settlement/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/erp-production-cost-wip-settlement/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/erp-production-cost-wip-settlement/#article","headline":"产品已经做完，为什么订单成本还在变","description":"用部分完工、最终完工和迟到成本三个快照，分析 ERP 生产订单中的实际投入、标准收货价值、在制成本和差异，结合 SAP S/4HANA Cloud Public Edition 事件式生产会计说明结算与更正。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/erp-production-cost-wip-settlement/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-20T00:00:00.000Z","dateModified":"2026-10-20T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"产品已经做完，为什么订单成本还在变","item":"https://imcoders.cn/manufacturing/erp-production-cost-wip-settlement/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-20T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-20T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="产品已经做完，为什么订单成本还在变 | 制造业系统"><meta property="og:description" content="用部分完工、最终完工和迟到成本三个快照，分析 ERP 生产订单中的实际投入、标准收货价值、在制成本和差异，结合 SAP S/4HANA Cloud Public Edition 事件式生产会计说明结算与更正。"><meta property="og:url" content="https://imcoders.cn/manufacturing/erp-production-cost-wip-settlement/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="产品已经做完，为什么订单成本还在变 | 制造业系统"><meta name="twitter:description" content="用部分完工、最终完工和迟到成本三个快照，分析 ERP 生产订单中的实际投入、标准收货价值、在制成本和差异，结合 SAP S/4HANA Cloud Public Edition 事件式生产会计说明结算与更正。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="产品已经做完，为什么订单成本还在变 | 制造业系统"><meta itemprop="description" content="用部分完工、最终完工和迟到成本三个快照，分析 ERP 生产订单中的实际投入、标准收货价值、在制成本和差异，结合 SAP S/4HANA Cloud Public Edition 事件式生产会计说明结算与更正。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "产品已经做完，为什么订单成本还在变 | 制造业系统";
+const shareDesc = "用部分完工、最终完工和迟到成本三个快照，分析 ERP 生产订单中的实际投入、标准收货价值、在制成本和差异，结合 SAP S/4HANA Cloud Public Edition 事件式生产会计说明结算与更正。";
+const shareLink = "https://imcoders.cn/manufacturing/erp-production-cost-wip-settlement/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.CNEh5eXl.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>产品已经做完，为什么订单成本还在变</h1><p class="mfg-lead" data-astro-cid-767rrl5b>用部分完工、最终完工和迟到成本三个快照，分析 ERP 生产订单中的实际投入、标准收货价值、在制成本和差异，结合 SAP S/4HANA Cloud Public Edition 事件式生产会计说明结算与更正。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/erp-production-cost-wip-settlement/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-20</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b>  <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#投入入库价值和差异各看什么" data-astro-cid-767rrl5b>投入、入库价值和差异各看什么</a></li><li data-astro-cid-767rrl5b><a href="#八十台完工时先保留在制范围" data-astro-cid-767rrl5b>八十台完工时，先保留在制范围</a></li><li data-astro-cid-767rrl5b><a href="#一百台全部完成后再解释五百元差异" data-astro-cid-767rrl5b>一百台全部完成后再解释五百元差异</a></li><li data-astro-cid-767rrl5b><a href="#迟到的一百元保留原来的解释" data-astro-cid-767rrl5b>迟到的一百元保留原来的解释</a></li><li data-astro-cid-767rrl5b><a href="#验收时把状态和金额同时改一次" data-astro-cid-767rrl5b>验收时把状态和金额同时改一次</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>生产说一百台已经做完，仓库也入库了，月底订单上又多出一笔费用。经理看到单位成本上涨，想知道是车间多用了料，还是财务后来才拿到价格和工时记录。</p>
+<p>原来的<a href="/manufacturing/production-order-actual-cost-evidence/">工单成本篇</a>已经复算实际耗用与费用来源。本篇进一步研究这些投入如何对应成品收货、在制与结算。SAP 参考限定为 S/4HANA Cloud Public Edition 的事件式生产会计课程，不将它套到所有 ECC、私有云或本地部署；数值及分配规则为独立模拟。</p>
+<h2 id="投入入库价值和差异各看什么">投入、入库价值和差异各看什么</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>金额</th><th>主要依据</th><th>管理者用它回答什么</th></tr></thead><tbody><tr><td>订单实际借方投入</td><td>已过账材料、作业和费用</td><td>为这张订单记入了哪些成本</td></tr><tr><td>成品收货贷方</td><td>收货数量与适用估价</td><td>有多少价值转出订单进入库存等对象</td></tr><tr><td>在制成本</td><td>尚在生产范围及适用核算规则</td><td>还有多少投入需要继续归属</td></tr><tr><td>生产差异</td><td>完成状态、目标成本与结算规则</td><td>投入与已吸收价值为何不一致</td></tr></tbody></table>
+<p>标准成本与实际投入可以同时存在。用实际投入除以完工数量得到的分析值，不能自动覆盖库存标准估价。账上还需要区分计划、目标、实际和结算记录，并保存币种、期间和估价版本。</p>
+<p>SAP 的<a href="https://learning.sap.com/courses/detailing-production-accounting-by-order/analyzing-the-settlement-of-a-finally-delivered-production-order_e8549802-97b8-4d4d-aacc-27ba25f561ce">最终交付订单结算课程</a>介绍事件式在制与差异处理，以及材料价格、数量和资源等差异类别。具体启用方式与差异拆分依赖配置，本文不把界面上的一个差额字段当作所有会计处理已经结束。</p>
+<h2 id="八十台完工时先保留在制范围">八十台完工时，先保留在制范围</h2>
+<p>独立订单 <code>MO-K100</code> 计划生产 100 台，每台标准收货价值 50 元。在快照 K1，累计实际投入 4,500 元，已完成并收货 80 台，收货贷方为 4,000 元，尚有 20 台在生产。</p>
+<p>本文选择的简化事件式模型将这时订单尚未吸收的 500 元作为在制。它是声明条件下的残余金额，不表示二十台的完整最终成本只有五百元。实际在制方法、报废、联副产品和不允许资本化项目都可能改变结果，本例均未设置。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>K1 实际投入4,500 − 已收货80×50 = 在制500元</span></span>
+<span class="line"><span>尚在生产100−80 = 20台</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>若直接把 4,500 元全部除以 80 台，再把在制二十台当作零成本，会把不同阶段的金额混在一起。报表应展示订单状态和在制范围，允许回查这五百元来自哪些投入与收货。</p>
+<h2 id="一百台全部完成后再解释五百元差异">一百台全部完成后再解释五百元差异</h2>
+<p>快照 K2 中，一百台全部成为合格品并收货，没有报废、返工和其他产出。标准收货贷方合计 5,000 元，实际投入增加到 5,500 元。按本篇约定，最终交付后在制清零，形成 500 元生产差异。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>项目</th><th align="right">本例基准</th><th align="right">实际投入</th><th align="right">差额</th></tr></thead><tbody><tr><td>材料</td><td align="right">200 件 × 10 元 = 2,000</td><td align="right">210 件 × 10 元 = 2,100</td><td align="right">100</td></tr><tr><td>人工作业</td><td align="right">50 人时 × 40 元 = 2,000</td><td align="right">60 人时 × 40 元 = 2,400</td><td align="right">400</td></tr><tr><td>选定制造费用</td><td align="right">1,000</td><td align="right">1,000</td><td align="right">0</td></tr><tr><td>合计</td><td align="right">5,000</td><td align="right">5,500</td><td align="right">500</td></tr></tbody></table>
+<p>这张表按本例计划基准拆分差额，未复现 SAP 完整差异分类算法。额外十件材料与十个人时需要继续查领退料、工时和原因；不能在没有异常记录时认定都由返工造成。</p>
+<p>结算记录将差异按适用规则转出，订单余额清零并不意味着工厂没有多发生五百元成本。成品也仍按本例标准价值 5,000 元入库，不能把 5,500 元直接当作已经重估的库存价值。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>订单投入怎样连接在制、收货与差异</strong><a href="/manufacturing/maps/erp-production-cost-settlement.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/erp-production-cost-settlement.html" title="实际投入与收货估价结合订单状态和核算规则形成在制及差异并经结算回查的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>仅表达本文事件式教学模型。状态、估价和成本事实分别输入，计算结果仍需关联实际结算与错误处理记录。</figcaption>
+</figure>
+<h2 id="迟到的一百元保留原来的解释">迟到的一百元保留原来的解释</h2>
+<p>随后收到一笔此前未计入、确认属于本订单的 100 元费用。本文单设 K3：期间允许、依据完整且已获准追加，最终实际投入变为 5,600 元，标准收货仍为 5,000 元，净差异更新为 600 元。原 K2 的 500 元解释继续保存，新版本注明迟到费用及相应结算调整。</p>
+<p>这里不假设追加动作在任何状态下都会自动成功。期间已关闭、订单不允许过账或核算失败时，应保留待处理项目并走授权流程，不能自行换日期、重开订单或删掉原结算。技术完成、最终交付、核算成功与关闭也要按所用产品的状态规则分别核对。</p>
+<p>SAP 的<a href="https://learning.sap.com/courses/detailing-production-accounting-by-order">事件式生产会计课程</a>将领料、作业确认、分次收货、最终收货和错误处理分开研究。接入 MES 时，应记录哪类事件触发哪类成本，避免现场实际耗用与自动倒冲重复过账。</p>
+<h2 id="验收时把状态和金额同时改一次">验收时把状态和金额同时改一次</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>变化</th><th>应得到的结果</th></tr></thead><tbody><tr><td>K1 只有 80 台收货</td><td>本模型保留 20 台在制与 500 元在制金额</td></tr><tr><td>K2 全部交付且投入完整</td><td>收货价值 5,000、差异 500、在制零</td></tr><tr><td>结算失败或回执未知</td><td>展示失败或待核实，不能仅按余额计算宣布已结算</td></tr><tr><td>K3 获准追加费用 100</td><td>新差异 600，K2 快照及更正关系保留</td></tr><tr><td>同一投入或调整重传</td><td>只应用一次，订单与目标结算均能回查</td></tr></tbody></table>
+<p><a href="/manufacturing/samples/erp-sap-cases.json">场景样本</a>包含三个快照、数量和金额关系，另附<a href="/manufacturing/samples/verify-erp-sap-cases.py">校验程序</a>。公开资料核对于 2026-10-20；企业完整产品成本、利润与财务报表还需纳入本篇未覆盖的费用、估价和期间规则。</p></div>  <nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 

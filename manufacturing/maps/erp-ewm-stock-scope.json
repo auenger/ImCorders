@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "生产供料怎样对应ERP与EWM库存",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-erp-ewm-stock-scope-20261020-112906/erp-ewm-stock-scope.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "生产需求"
+    },
+    {
+      "label": "仓储任务"
+    },
+    {
+      "label": "供料区实收"
+    },
+    {
+      "label": "耗用与归属"
+    },
+    {
+      "label": "范围对账"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "pmr",
+      "label": "生产物料请求",
+      "sublabel": "本单需要100件",
+      "stage": 0,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "task",
+      "label": "创建执行仓储任务",
+      "sublabel": "来源目标与身份",
+      "stage": 1,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "psa",
+      "label": "供料区实收记录",
+      "sublabel": "BULK100与PSA100",
+      "stage": 2,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "consume",
+      "label": "耗用与余量核对",
+      "sublabel": "耗用90余量110",
+      "stage": 3,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "compare",
+      "label": "同范围库存对账",
+      "sublabel": "BULK100加PSA10",
+      "stage": 4,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "mapping",
+      "label": "组织与PSA映射",
+      "sublabel": "同一存储地点模型",
+      "stage": 0,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "execution",
+      "label": "实际耗用记录",
+      "sublabel": "原批次与动作身份",
+      "stage": 2,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "erp",
+      "label": "ERP库存事务",
+      "sublabel": "对应原料总数110",
+      "stage": 3,
+      "row": 2,
+      "type": "database"
+    }
+  ],
+  "flows": [
+    {
+      "id": "pmr-task",
+      "from": "pmr",
+      "to": "task",
+      "label": "生产需求",
+      "variant": "emphasis"
+    },
+    {
+      "id": "mapping-task",
+      "from": "mapping",
+      "to": "task",
+      "label": "位置与范围",
+      "variant": "default"
+    },
+    {
+      "id": "task-psa",
+      "from": "task",
+      "to": "psa",
+      "label": "实际交接",
+      "variant": "emphasis"
+    },
+    {
+      "id": "psa-consume",
+      "from": "psa",
+      "to": "consume",
+      "label": "备料与范围",
+      "variant": "emphasis"
+    },
+    {
+      "id": "execution-consume",
+      "from": "execution",
+      "to": "consume",
+      "label": "实际投入",
+      "variant": "default"
+    },
+    {
+      "id": "consume-compare",
+      "from": "consume",
+      "to": "compare",
+      "label": "同口径余量",
+      "variant": "emphasis"
+    },
+    {
+      "id": "erp-compare",
+      "from": "erp",
+      "to": "compare",
+      "label": "库存结果",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "范围与教学约定",
+      "items": [
+        "限定同一EWM管理存储地点包含BULK与PSA的教学模型。",
+        "交货模式与PMR模式择适用方案，不能重复创建同一需求。",
+        "十件未耗用余料回BULK只改变位置，ERP原料总数仍110。"
+      ]
+    }
+  ]
+}

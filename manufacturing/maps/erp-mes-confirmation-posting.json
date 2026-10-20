@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "车间完工怎样逐项核对到ERP结果",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-erp-mes-confirmation-posting-20261020-112906/erp-mes-confirmation-posting.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "现场与规则"
+    },
+    {
+      "label": "身份核对"
+    },
+    {
+      "label": "分项应用"
+    },
+    {
+      "label": "回执与恢复"
+    },
+    {
+      "label": "业务对账"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "execution",
+      "label": "现场执行事实",
+      "sublabel": "工序产出及耗用",
+      "stage": 0,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "identity",
+      "label": "核对业务动作身份",
+      "sublabel": "版本映射与原凭据",
+      "stage": 1,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "apply",
+      "label": "确认耗用收货应用",
+      "sublabel": "按契约分项提交",
+      "stage": 2,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "receipt",
+      "label": "各项事务回执",
+      "sublabel": "提交结果与目标号",
+      "stage": 3,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "reconcile",
+      "label": "数量状态完整核对",
+      "sublabel": "确认不等于全部完成",
+      "stage": 4,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "rules",
+      "label": "触发及过账规则",
+      "sublabel": "期间权限与自动动作",
+      "stage": 0,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "failure",
+      "label": "失败与未知项目",
+      "sublabel": "仅耗用102未应用",
+      "stage": 2,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "recover",
+      "label": "查原结果再恢复",
+      "sublabel": "原动作安全重试",
+      "stage": 3,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "warehouse",
+      "label": "仓库接收记录",
+      "sublabel": "关联同一100台收货",
+      "stage": 4,
+      "row": 2,
+      "type": "database"
+    }
+  ],
+  "flows": [
+    {
+      "id": "execution-identity",
+      "from": "execution",
+      "to": "identity",
+      "label": "执行事实",
+      "variant": "emphasis"
+    },
+    {
+      "id": "rules-identity",
+      "from": "rules",
+      "to": "identity",
+      "label": "状态与触发",
+      "variant": "default"
+    },
+    {
+      "id": "identity-apply",
+      "from": "identity",
+      "to": "apply",
+      "label": "有效动作",
+      "variant": "emphasis"
+    },
+    {
+      "id": "apply-receipt",
+      "from": "apply",
+      "to": "receipt",
+      "label": "成功回执",
+      "variant": "emphasis"
+    },
+    {
+      "id": "apply-failure",
+      "from": "apply",
+      "to": "failure",
+      "label": "未完成明细",
+      "variant": "default"
+    },
+    {
+      "id": "failure-recover",
+      "from": "failure",
+      "to": "recover",
+      "label": "查证依据",
+      "variant": "default"
+    },
+    {
+      "id": "recover-reconcile",
+      "from": "recover",
+      "to": "reconcile",
+      "label": "恢复回执",
+      "variant": "default"
+    },
+    {
+      "id": "receipt-reconcile",
+      "from": "receipt",
+      "to": "reconcile",
+      "label": "事务结果",
+      "variant": "emphasis"
+    },
+    {
+      "id": "warehouse-reconcile",
+      "from": "warehouse",
+      "to": "reconcile",
+      "label": "同一交接",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "范围与教学约定",
+      "items": [
+        "模型允许分项提交，不声称所有SAP接口有相同事务边界。",
+        "最终合格100报废2耗料102；工序通过102加100不代表202台产出。",
+        "ERP入库与WMS接收桥接同一事实，重复消息不能再增加100台。"
+      ]
+    }
+  ]
+}

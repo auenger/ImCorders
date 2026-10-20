@@ -13,7 +13,7 @@
 <url><loc>https://imcoders.cn/blog/2026-09-28-alibaba-ai-native-handbook/</loc><lastmod>2026-09-28T00:00:00.000Z</lastmod></url>
 <url><loc>https://imcoders.cn/blog/2026-10-09-ai-workflows-after-stronger-models/</loc><lastmod>2026-10-09T00:00:00.000Z</lastmod></url>
 <url><loc>https://imcoders.cn/blog/2026-10-09-sysfactory/</loc><lastmod>2026-10-09T00:00:00.000Z</lastmod></url>
-<url><loc>https://imcoders.cn/blog/2026-10-14-manufacturing-systems-map/</loc><lastmod>2026-10-19T00:00:00.000Z</lastmod></url>
+<url><loc>https://imcoders.cn/blog/2026-10-14-manufacturing-systems-map/</loc><lastmod>2026-10-20T00:00:00.000Z</lastmod></url>
 <url><loc>https://imcoders.cn/blog/agent-technical-reflux/</loc><lastmod>2026-08-30T00:00:00.000Z</lastmod></url>
 <url><loc>https://imcoders.cn/blog/agentszone/</loc><lastmod>2026-05-07T00:00:00.000Z</lastmod></url>
 <url><loc>https://imcoders.cn/blog/ai-agent-engineering/</loc><lastmod>2026-03-13T00:00:00.000Z</lastmod></url>
@@ -124,7 +124,15 @@
 <url><loc>https://imcoders.cn/manufacturing/electronics-smt-material-test-traceability/</loc><lastmod>2026-10-15T00:00:00.000Z</lastmod></url>
 <url><loc>https://imcoders.cn/manufacturing/engineering-tools-process-data/</loc><lastmod>2026-10-14T00:00:00.000Z</lastmod></url>
 <url><loc>https://imcoders.cn/manufacturing/equipment-downtime-customer-delivery/</loc><lastmod>2026-10-15T00:00:00.000Z</lastmod></url>
-<url><loc>https://imcoders.cn/manufacturing/erp-order-material-cost/</loc><lastmod>2026-10-14T00:00:00.000Z</lastmod></url>
+<url><loc>https://imcoders.cn/manufacturing/erp-ewm-inventory-production-supply/</loc><lastmod>2026-10-20T00:00:00.000Z</lastmod></url>
+<url><loc>https://imcoders.cn/manufacturing/erp-mes-completion-reconciliation/</loc><lastmod>2026-10-20T00:00:00.000Z</lastmod></url>
+<url><loc>https://imcoders.cn/manufacturing/erp-mrp-stock-shortage-replenishment/</loc><lastmod>2026-10-20T00:00:00.000Z</lastmod></url>
+<url><loc>https://imcoders.cn/manufacturing/erp-order-material-cost/</loc><lastmod>2026-10-20T00:00:00.000Z</lastmod></url>
+<url><loc>https://imcoders.cn/manufacturing/erp-order-promise-availability/</loc><lastmod>2026-10-20T00:00:00.000Z</lastmod></url>
+<url><loc>https://imcoders.cn/manufacturing/erp-plant-master-data-production-readiness/</loc><lastmod>2026-10-20T00:00:00.000Z</lastmod></url>
+<url><loc>https://imcoders.cn/manufacturing/erp-production-cost-wip-settlement/</loc><lastmod>2026-10-20T00:00:00.000Z</lastmod></url>
+<url><loc>https://imcoders.cn/manufacturing/erp-purchase-receipt-invoice-payment/</loc><lastmod>2026-10-20T00:00:00.000Z</lastmod></url>
+<url><loc>https://imcoders.cn/manufacturing/erp-sales-delivery-billing-collection/</loc><lastmod>2026-10-20T00:00:00.000Z</lastmod></url>
 <url><loc>https://imcoders.cn/manufacturing/field-points-business-events/</loc><lastmod>2026-10-15T00:00:00.000Z</lastmod></url>
 <url><loc>https://imcoders.cn/manufacturing/food-batch-shelf-life-traceability/</loc><lastmod>2026-10-15T00:00:00.000Z</lastmod></url>
 <url><loc>https://imcoders.cn/manufacturing/industrial-data-platform-digital-twin-agents/</loc><lastmod>2026-10-15T00:00:00.000Z</lastmod></url>

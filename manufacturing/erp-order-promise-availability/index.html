@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>订单接下来了，交期为什么还不敢承诺 | 制造业系统</title><meta name="description" content="从客户要求日期与工厂可交日期的差异切入，结合 SAP S/4HANA 可承诺量研究库存、既有确认、未来供给和欠交重检，用分期确认样本说明供给延迟后怎样保留原承诺与未确认数量。"><link rel="canonical" href="https://imcoders.cn/manufacturing/erp-order-promise-availability/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/erp-order-promise-availability/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/erp-order-promise-availability/#article","headline":"订单接下来了，交期为什么还不敢承诺","description":"从客户要求日期与工厂可交日期的差异切入，结合 SAP S/4HANA 可承诺量研究库存、既有确认、未来供给和欠交重检，用分期确认样本说明供给延迟后怎样保留原承诺与未确认数量。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/erp-order-promise-availability/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-20T00:00:00.000Z","dateModified":"2026-10-20T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"订单接下来了，交期为什么还不敢承诺","item":"https://imcoders.cn/manufacturing/erp-order-promise-availability/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-20T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-20T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="订单接下来了，交期为什么还不敢承诺 | 制造业系统"><meta property="og:description" content="从客户要求日期与工厂可交日期的差异切入，结合 SAP S/4HANA 可承诺量研究库存、既有确认、未来供给和欠交重检，用分期确认样本说明供给延迟后怎样保留原承诺与未确认数量。"><meta property="og:url" content="https://imcoders.cn/manufacturing/erp-order-promise-availability/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="订单接下来了，交期为什么还不敢承诺 | 制造业系统"><meta name="twitter:description" content="从客户要求日期与工厂可交日期的差异切入，结合 SAP S/4HANA 可承诺量研究库存、既有确认、未来供给和欠交重检，用分期确认样本说明供给延迟后怎样保留原承诺与未确认数量。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="订单接下来了，交期为什么还不敢承诺 | 制造业系统"><meta itemprop="description" content="从客户要求日期与工厂可交日期的差异切入，结合 SAP S/4HANA 可承诺量研究库存、既有确认、未来供给和欠交重检，用分期确认样本说明供给延迟后怎样保留原承诺与未确认数量。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "订单接下来了，交期为什么还不敢承诺 | 制造业系统";
+const shareDesc = "从客户要求日期与工厂可交日期的差异切入，结合 SAP S/4HANA 可承诺量研究库存、既有确认、未来供给和欠交重检，用分期确认样本说明供给延迟后怎样保留原承诺与未确认数量。";
+const shareLink = "https://imcoders.cn/manufacturing/erp-order-promise-availability/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.CNEh5eXl.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>订单接下来了，交期为什么还不敢承诺</h1><p class="mfg-lead" data-astro-cid-767rrl5b>从客户要求日期与工厂可交日期的差异切入，结合 SAP S/4HANA 可承诺量研究库存、既有确认、未来供给和欠交重检，用分期确认样本说明供给延迟后怎样保留原承诺与未确认数量。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/erp-order-promise-availability/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-20</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b>  <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#客户要求日期和系统确认日期分别保留" data-astro-cid-767rrl5b>客户要求日期和系统确认日期分别保留</a></li><li data-astro-cid-767rrl5b><a href="#一百台需求怎样拆成两个确认批次" data-astro-cid-767rrl5b>一百台需求怎样拆成两个确认批次</a></li><li data-astro-cid-767rrl5b><a href="#供给少了二十台原确认不能继续冒充有效" data-astro-cid-767rrl5b>供给少了二十台，原确认不能继续冒充有效</a></li><li data-astro-cid-767rrl5b><a href="#数量确认还要接到执行条件" data-astro-cid-767rrl5b>数量确认还要接到执行条件</a></li><li data-astro-cid-767rrl5b><a href="#用四个分支验收承诺可信度" data-astro-cid-767rrl5b>用四个分支验收承诺可信度</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>客户要求第三天交一百台，销售看到库存七十台，另有六十台即将入库，觉得承诺整单没有问题。计划员却发现，其中三十台已经确认给其他订单，未来六十台也要第五天才能使用。</p>
+<p>接单、确认日期和实际履约需要分别管理。本篇参考 SAP S/4HANA Cloud Public Edition 的 Basic Available-to-Promise 课程，以及 S/4HANA aATP 的欠交处理说明。只使用其中的业务概念，不默认所有版本启用同一能力或相同配置；以下为独立教学分配模型。</p>
+<h2 id="客户要求日期和系统确认日期分别保留">客户要求日期和系统确认日期分别保留</h2>
+<p>ATP 通常译为可承诺量，用于回答按设定检查范围和规则，某需求可以获得多少数量、什么时间。SAP 的<a href="https://learning.sap.com/courses/optimizing-advanced-logistics-and-analytics-in-sap-s-4hana-cloud-public-edition/introducing-basic-available-to-promise-2ln-_ce76d642-05b2-4759-8fdc-57d46ac0b5eb">基础可承诺量课程</a>介绍产品可用性检查和欠交处理。实际检查会受范围、供需元素与启用功能影响。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>日期或数量</th><th>表达什么</th><th>后续应保留什么</th></tr></thead><tbody><tr><td>客户要求</td><td>客户想要的数量和到达节点</td><td>原始要求及后续变更</td></tr><tr><td>候选可用计划</td><td>检查规则下的供应能力</td><td>来源、约束及未验证条件</td></tr><tr><td>系统确认</td><td>已写入需求的确认数量和日期</td><td>确认版本和覆盖关系</td></tr><tr><td>对外承诺</td><td>业务批准并与客户约定的交付</td><td>通知、接受或仍待协商的状态</td></tr><tr><td>实际履约</td><td>发货、运输和接收发生了什么</td><td>实物及交接证据</td></tr></tbody></table>
+<p>本文统一把模型日期解释为本例指定交付节点的可用日，不额外叠加运输和装卸。现实项目需要把需求日、物料可用日、装运日和客户到达日换算清楚。只知道“第五天完工”，不足以证明第五天客户能收货。</p>
+<h2 id="一百台需求怎样拆成两个确认批次">一百台需求怎样拆成两个确认批次</h2>
+<p>在 D1 的快照中，成品库存 70 台，已有其他订单确认占用 30 台。本文不允许抢占这三十台，所以本次可用 40 台。另有 60 台合格成品供给在 D5 可用，无其他需求或限制。</p>
+<p>客户本次需要 100 台，要求 D3。在允许分批的教学规则下，本次可确认 D3 交 40 台、D5 交 60 台。D3 的完整交付缺口为 60 台，不能因为跨日期合计足够就确认全部一百台在 D3 完成。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>当前可给本单 = 库存70 − 既有确认30 = 40台</span></span>
+<span class="line"><span>确认v1 = D3交40 + D5交60 = 100台</span></span>
+<span class="line"><span>D3不能满足的部分 = 100 − 40 = 60台</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>若客户不接受分批，可以形成 D5 整单交付的候选方案，但要继续取得业务批准与客户接受。本例并不推断一条系统确认已经完成所有对外承诺手续。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>可用供给怎样形成并重新检查交期确认</strong><a href="/manufacturing/maps/erp-atp-confirmation-recheck.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/erp-atp-confirmation-recheck.html" title="客户需求与供需快照结合检查范围生成分期确认并在供给变化后重新评估的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>教学分配与确认关系。原确认保留版本，重新评估后的数量差异需要进入承诺变更和业务跟进。</figcaption>
+</figure>
+<h2 id="供给少了二十台原确认不能继续冒充有效">供给少了二十台，原确认不能继续冒充有效</h2>
+<p>在尚未履行本单的 D2，新证据表明 D5 的供给只有 40 台。本例继续保护其他订单的原三十台，并保持本单原来的库存四十台分配，重新评估得到 D3 40 台、D5 40 台，另外 20 台尚未确认。</p>
+<p>SAP 的 <a href="https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/f132c385e0234fe68ae9ff35b2da178c/73a1a457ef816b10e10000000a441470.html">Backorder Processing 说明</a>讨论供需变化后重新检查既有确认是否仍然现实。不同确认策略可能重新分配订单优先级，本文的保护规则只是教学选择，不代表所有 SAP 欠交处理都会保持原分配。</p>
+<p>新版本 v2 保留 v1 的确认、变化来源、差二十台的对象和下一步负责人。加班、改厂、替代供给或重新协商可以作为候选措施；得到批准与有效供给前，未知的二十台不能随手补成一个看似合理的日期。</p>
+<h2 id="数量确认还要接到执行条件">数量确认还要接到执行条件</h2>
+<p>可承诺检查、库存预留和仓库分配承担不同职责，接入时应核对检查结果是否产生实际占用，以及占用到哪个粒度。两个请求同时看到剩余四十台时，要由业务系统按规则提交，不能让 Agent 先查后写而重复承诺。</p>
+<p>本例只检查成品数量和时间，没有进行完整材料与有限产能排程。若实际按未来生产能力承诺，需要继续检查物料、资源、路线、日历、质量与交付路径。ATP、aATP、CTP 等名称不能单独证明这些条件全部进入模型。</p>
+<p>发运岗位最终读取适用确认与交货范围，再按最新质量及库存资格执行；已确认批次后来被冻结，应返回阻断和影响范围。客户状态同步也要带版本，晚到的旧确认不应覆盖新的协商结果。</p>
+<h2 id="用四个分支验收承诺可信度">用四个分支验收承诺可信度</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>场景</th><th>应得到的结果</th></tr></thead><tbody><tr><td>供给快照完整且允许分批</td><td>v1 为 D3 40、D5 60，保留 D3 缺口</td></tr><tr><td>客户要求整单 D3</td><td>不接受全部确认，返回不能满足的数量与候选安排</td></tr><tr><td>D5 供给从 60 降到 40</td><td>v2 为 40 加 40，未确认 20，v1 可查</td></tr><tr><td>系统返回确认成功但客户未接受改期</td><td>分开显示内部确认与对外协商状态</td></tr></tbody></table>
+<p><a href="/manufacturing/samples/erp-sap-cases.json">样本</a>保存两个快照和分期结果，可由<a href="/manufacturing/samples/verify-erp-sap-cases.py">校验程序</a>复算。公开资料核对于 2026-10-20；后续实际交付与回款继续见<a href="/manufacturing/erp-sales-delivery-billing-collection/">销售到收款篇</a>。</p></div>  <nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 

@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "供需变化后怎样重新核对交期确认",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-erp-atp-confirmation-recheck-20261020-112906/erp-atp-confirmation-recheck.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "客户与供需"
+    },
+    {
+      "label": "可承诺检查"
+    },
+    {
+      "label": "保留确认"
+    },
+    {
+      "label": "变化重检"
+    },
+    {
+      "label": "承诺与跟进"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "request",
+      "label": "客户数量日期",
+      "sublabel": "100台要求D3",
+      "stage": 0,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "check",
+      "label": "按范围检查",
+      "sublabel": "既有确认优先保留",
+      "stage": 1,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "v1",
+      "label": "原确认快照",
+      "sublabel": "D3四十D5六十",
+      "stage": 2,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "recheck",
+      "label": "重新评估确认",
+      "sublabel": "按变化与原规则",
+      "stage": 3,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "v2",
+      "label": "确认变更与回查",
+      "sublabel": "v2及未确认20台",
+      "stage": 4,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "supply",
+      "label": "库存与未来供给",
+      "sublabel": "库存70已有确认30",
+      "stage": 0,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "rules",
+      "label": "确认检查规则",
+      "sublabel": "日期资格与分配",
+      "stage": 1,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "change",
+      "label": "供给变化证据",
+      "sublabel": "D5改为40台",
+      "stage": 2,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "approval",
+      "label": "变更批准依据",
+      "sublabel": "对外接受状态另查",
+      "stage": 3,
+      "row": 2,
+      "type": "database"
+    }
+  ],
+  "flows": [
+    {
+      "id": "request-check",
+      "from": "request",
+      "to": "check",
+      "label": "要求与范围",
+      "variant": "emphasis"
+    },
+    {
+      "id": "supply-check",
+      "from": "supply",
+      "to": "check",
+      "label": "供给快照",
+      "variant": "default"
+    },
+    {
+      "id": "rules-check",
+      "from": "rules",
+      "to": "check",
+      "label": "检查条件",
+      "variant": "default"
+    },
+    {
+      "id": "check-v1",
+      "from": "check",
+      "to": "v1",
+      "label": "确认v1",
+      "variant": "emphasis"
+    },
+    {
+      "id": "v1-recheck",
+      "from": "v1",
+      "to": "recheck",
+      "label": "原确认依据",
+      "variant": "emphasis"
+    },
+    {
+      "id": "change-recheck",
+      "from": "change",
+      "to": "recheck",
+      "label": "变化事实",
+      "variant": "default"
+    },
+    {
+      "id": "recheck-v2",
+      "from": "recheck",
+      "to": "v2",
+      "label": "候选v2",
+      "variant": "emphasis"
+    },
+    {
+      "id": "approval-v2",
+      "from": "approval",
+      "to": "v2",
+      "label": "批准范围",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "范围与教学约定",
+      "items": [
+        "示例数量分配不是SAP ATP完整算法，功能取决于版本及配置。",
+        "保护其他订单30台为本例规则；v2为D3四十加D5四十。",
+        "原确认可查，内部批准不等于客户接受，未确认部分不编造日期。"
+      ]
+    }
+  ]
+}

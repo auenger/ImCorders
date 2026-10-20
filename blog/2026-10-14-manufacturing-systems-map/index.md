@@ -3,7 +3,7 @@
 作者：杨正武
 来源：https://imcoders.cn/blog/2026-10-14-manufacturing-systems-map/
 发布：2026-10-14T00:00:00.000Z
-更新：2026-10-19T00:00:00.000Z
+更新：2026-10-20T00:00:00.000Z
 
 从研发设计、经营计划到生产执行、仓储物流、质量、设备和现场控制，整理制造业系统的覆盖范围、业务边界与协作关系，并建立后续深度文章、行业案例和 Agent 接入专题的持续更新索引。
 
@@ -14,7 +14,7 @@
 
 我在个人站持续拆解制造业系统。这篇记录研究范围、已发布文章和仍待补齐的问题，作为可以回查的总目录。主要面向进入制造现场的 AI 工程师、FDE、产品经理和技术负责人，也供我自己安排选题、补资料和记录进度。
 
-截至 2026 年 10 月 19 日，[制造业系统模块](/manufacturing/)已有 40 篇内容，包含 1 篇总地图与 39 篇专题。M01 至 M10 十个领域均有文章涉及，首轮系统专题已发布；细分能力、完整业务场景和行业差异仍需继续补充。文末分别登记已发布内容和下一轮选题。
+截至 2026 年 10 月 20 日，[制造业系统模块](/manufacturing/)已有 48 篇内容，包含 1 篇总地图与 47 篇专题。M01 至 M10 十个领域均有文章涉及，首轮系统专题已发布；细分能力、完整业务场景和行业差异仍需继续补充。文末分别登记已发布内容和下一轮选题。
 
 [制造业系统数据地图](/manufacturing/data-map/)保留五张 Archify 数据流图，并已在页面顶部嵌入 [Factory Systems Atlas 空间图谱](/manufacturing/systems-atlas/)。空间图谱可切换五个业务视图、浏览九个区域和关系契约。它帮助定位系统与数据交接，布局与动画均为示意，未接入真实工厂数据。
 
@@ -78,6 +78,8 @@
 | EPM 与经营分析 | 预算、预测、盈利和经营绩效 | 订单毛利如何受到良率、返工和实际耗料影响？ |
 
 SCM（供应链管理）覆盖的范围很宽，在具体企业里可能由多个系统共同承接。ERP 也可能带有仓储、质量或设备模块。[SAP 对 ERP 的介绍](https://www.sap.com/sea/resources/what-is-erp)强调跨业务流程的集成；后续拆解会落实到企业启用了哪些模块、哪些记录仍在外部系统。
+
+ERP 进一步按[采购付款](/manufacturing/erp-purchase-receipt-invoice-payment/)、[销售回款](/manufacturing/erp-sales-delivery-billing-collection/)、[成本结算](/manufacturing/erp-production-cost-wip-settlement/)和主数据、MRP、承诺、EWM、MES八条线展开。具体入口集中在[ERP 主文](/manufacturing/erp-order-material-cost/)，分别说明SAP参考范围、独立教学数据和验收条件。
 
 <a id="m03"></a>
 
@@ -283,7 +285,7 @@ Agent 部分从证据查询开始。订单交期分析至少要保留来源系�
 
 ### 已发布文章清单
 
-当前共 40 篇制造业内容。本篇博客承担规划与索引职责，不计入这 40 篇；三维图谱和工厂模型是展示资源，也不另计为文章。“对应目录”表示文章涉及的范围，不能据此判断该领域所有细分能力都已写完。
+当前共 48 篇制造业内容。本篇博客承担规划与索引职责，不计入这 48 篇；三维图谱和工厂模型是展示资源，也不另计为文章。“对应目录”表示文章涉及的范围，不能据此判断该领域所有细分能力都已写完。
 
 | 顺序 | 已发布文章 | 对应目录 |
 | --- | --- | --- |
@@ -328,6 +330,15 @@ Agent 部分从证据查询开始。订单交期分析至少要保留来源系�
 | 39 | [仓库已经发货，为什么系统还显示没发](/manufacturing/warehouse-system-status-reconciliation/) | M02、M03、M04、M09；漏单、重试与双向对账 |
 | 40 | [仓库忙了一整天，效率到底怎么样](/manufacturing/warehouse-exceptions-performance-metrics/) | M02、M04、M09；异常闭环、绩效与呆滞口径 |
 
+| 41 | [货已经收到了，为什么供应商的款还付不了](/manufacturing/erp-purchase-receipt-invoice-payment/) | M02、M04、M09；采购收货、GR/IR与付款 |
+| 42 | [产品已经发走了，为什么钱还没收回来](/manufacturing/erp-sales-delivery-billing-collection/) | M02、M04、M09；出账、应收与到账应用 |
+| 43 | [产品已经做完，为什么订单成本还在变](/manufacturing/erp-production-cost-wip-settlement/) | M02、M03、M09；在制、生产差异与结算 |
+| 44 | [同一款产品，为什么换个工厂就做不出来](/manufacturing/erp-plant-master-data-production-readiness/) | M01、M02、M03、M09；组织、主数据与生产版本 |
+| 45 | [库存越买越多，生产为什么还在缺料](/manufacturing/erp-mrp-stock-shortage-replenishment/) | M02、M03、M04；预测消耗、分期净需求与批量 |
+| 46 | [订单接下来了，交期为什么还不敢承诺](/manufacturing/erp-order-promise-availability/) | M02、M03、M04；ATP、分期确认与欠交重检 |
+| 47 | [ERP 和仓库都有库存，到底该看哪一个](/manufacturing/erp-ewm-inventory-production-supply/) | M02、M03、M04、M09；EWM供料、PSA与范围对账 |
+| 48 | [车间已经报完工，ERP 为什么还没对上账](/manufacturing/erp-mes-completion-reconciliation/) | M02、M03、M04、M09；分项过账、恢复与完整性 |
+
 ### 十个领域覆盖到哪里
 
 这一轮已经把主要系统接到了业务对象和交接记录上。下面列出各领域的继续写作方向，供后续安排选题时逐项核对。
@@ -335,7 +346,7 @@ Agent 部分从证据查询开始。订单交期分析至少要保留来源系�
 | 领域 | 已有基础 | 仍值得单独展开的内容 |
 | --- | --- | --- |
 | M01 研发与产品 | PLM 变更、工程文件、制造结构、工艺发布包 | CAE 结果回传、CAM / DNC 程序发布、虚拟调试的验证过程 |
-| M02 经营与供给 | ERP 订单物料成本、配置报价、采购承诺 | 供应商准入与绩效、EPM 与订单盈利差异 |
+| M02 经营与供给 | ERP 订单、采购应付、销售应收、工厂主数据、MRP承诺与SAP事件式生产会计 | 供应商准入与绩效、EPM 与订单盈利差异 |
 | M03 计划与执行 | MES 生命周期、APS 重排、批次配方与记录 | S&OP / IBP 的中长期供需协调、Andon 响应与升级、行业专用执行规则 |
 | M04 仓储与物流 | 库存身份、FIFO／FEFO、时间约束、循环盘点、限额拣配、隔离落实与绩效 | 多仓齐套、委外往返、复杂园区与运输异常案例 |
 | M05 质量与追溯 | 检验、返工、放行、跨批次谱系与影响范围样本 | SPC、APQP / FMEA / MSA 与控制计划的关联；行业异常机制与召回执行 |
@@ -365,5 +376,7 @@ Agent 部分从证据查询开始。订单交期分析至少要保留来源系�
 10 月 19 日新增两篇仓储时间与追溯专题，同时补强 WMS 主文和质量追溯篇。可下载[本次来源与样本索引](/manufacturing/samples/wms-time-evidence-index.json)及[校验程序](/manufacturing/samples/verify-wms-time-samples.py)，复算 160 件库存的候选筛选和在制品多时钟边界。
 
 随后新增五篇仓储管理场景，标题直接提出业务问题，配套五张 Archify 3.2.0 动态图。[管理场景样本](/manufacturing/samples/wms-management-cases.json)与[校验程序](/manufacturing/samples/verify-wms-management-cases.py)可复算盘点、领料、隔离、同步和绩效，公开资料及支持边界保留在[来源索引](/manufacturing/samples/wms-management-evidence-index.json)。原 WMS、FIFO／FEFO 与在制品时间篇同步调整标题，已发布 URL 保持不变。
+
+10 月 20 日按八条研究线新增 ERP 与 SAP 场景，补充采购到付款、销售到回款、生产成本结算、工厂主数据、MRP补货、交期确认、EWM供料和MES分项过账。每篇配一张 Archify 3.2.0 动态图；可下载[八组独立样本](/manufacturing/samples/erp-sap-cases.json)、[复算程序](/manufacturing/samples/verify-erp-sap-cases.py)和[官方来源索引](/manufacturing/samples/erp-sap-evidence-index.json)。范围限于各篇已声明的业务模型，未执行真实SAP配置或财务过账。
 
 M01 至 M10 表中列出的进一步研究方向仍保留，不因这轮目录补齐就标记为全部完成。后续根据实际资料展开控制工程、计量不确定性、完整优化、行业专属工艺与验证；取得真实来源后再形成新的选题。

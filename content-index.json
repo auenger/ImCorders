@@ -167,7 +167,7 @@
         "AI Agent"
       ],
       "publishedAt": "2026-10-14T00:00:00.000Z",
-      "updatedAt": "2026-10-19T00:00:00.000Z",
+      "updatedAt": "2026-10-20T00:00:00.000Z",
       "url": "https://imcoders.cn/blog/2026-10-14-manufacturing-systems-map/",
       "markdownUrl": "https://imcoders.cn/blog/2026-10-14-manufacturing-systems-map/index.md"
     },
@@ -1952,6 +1952,60 @@
       "markdownUrl": "https://imcoders.cn/manufacturing/equipment-downtime-customer-delivery/index.md"
     },
     {
+      "id": "manufacturing/erp-ewm-inventory-production-supply",
+      "kind": "manufacturing",
+      "title": "ERP 和仓库都有库存，到底该看哪一个",
+      "description": "用 SAP S/4HANA 与 EWM 的生产供料场景，区分存储地点、库位、生产供料区和实际耗用，复算备料与投料后的库存，说明交货模式、PMR 模式、范围映射和回执怎样避免重复计数与错误调账。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "ERP",
+        "SAP EWM",
+        "库存对账",
+        "生产供料"
+      ],
+      "publishedAt": "2026-10-20T00:00:00.000Z",
+      "updatedAt": "2026-10-20T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/erp-ewm-inventory-production-supply/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/erp-ewm-inventory-production-supply/index.md"
+    },
+    {
+      "id": "manufacturing/erp-mes-completion-reconciliation",
+      "kind": "manufacturing",
+      "title": "车间已经报完工，ERP 为什么还没对上账",
+      "description": "沿生产订单、工序确认、材料耗用和成品收货，研究 SAP S/4HANA 与 Digital Manufacturing 的交接，用一百台合格品和分项失败样本说明报工成功、库存过账和成本完整性为何需要分别核对。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "ERP",
+        "SAP",
+        "MES",
+        "业务对账"
+      ],
+      "publishedAt": "2026-10-20T00:00:00.000Z",
+      "updatedAt": "2026-10-20T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/erp-mes-completion-reconciliation/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/erp-mes-completion-reconciliation/index.md"
+    },
+    {
+      "id": "manufacturing/erp-mrp-stock-shortage-replenishment",
+      "kind": "manufacturing",
+      "title": "库存越买越多，生产为什么还在缺料",
+      "description": "从过量采购和产线缺料同时发生的问题出发，结合 SAP S/4HANA MRP 研究预测消耗、库存资格、时间分桶和批量规则，用一百二十台需求复算补货建议与晚到库存，区分计划建议和真实供给。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "ERP",
+        "SAP",
+        "MRP",
+        "供需计划"
+      ],
+      "publishedAt": "2026-10-20T00:00:00.000Z",
+      "updatedAt": "2026-10-20T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/erp-mrp-stock-shortage-replenishment/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/erp-mrp-stock-shortage-replenishment/index.md"
+    },
+    {
       "id": "manufacturing/erp-order-material-cost",
       "kind": "manufacturing",
       "title": "ERP 怎样连接订单、物料、生产与成本",
@@ -1965,9 +2019,99 @@
         "系统集成"
       ],
       "publishedAt": "2026-10-14T00:00:00.000Z",
-      "updatedAt": "2026-10-14T00:00:00.000Z",
+      "updatedAt": "2026-10-20T00:00:00.000Z",
       "url": "https://imcoders.cn/manufacturing/erp-order-material-cost/",
       "markdownUrl": "https://imcoders.cn/manufacturing/erp-order-material-cost/index.md"
+    },
+    {
+      "id": "manufacturing/erp-order-promise-availability",
+      "kind": "manufacturing",
+      "title": "订单接下来了，交期为什么还不敢承诺",
+      "description": "从客户要求日期与工厂可交日期的差异切入，结合 SAP S/4HANA 可承诺量研究库存、既有确认、未来供给和欠交重检，用分期确认样本说明供给延迟后怎样保留原承诺与未确认数量。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "ERP",
+        "SAP",
+        "ATP",
+        "交期承诺"
+      ],
+      "publishedAt": "2026-10-20T00:00:00.000Z",
+      "updatedAt": "2026-10-20T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/erp-order-promise-availability/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/erp-order-promise-availability/index.md"
+    },
+    {
+      "id": "manufacturing/erp-plant-master-data-production-readiness",
+      "kind": "manufacturing",
+      "title": "同一款产品，为什么换个工厂就做不出来",
+      "description": "从产品转厂后无法开工的问题出发，拆解 SAP S/4HANA 的组织范围、物料、BOM、工艺路线、工作中心与生产版本，用两厂库存和版本模拟数据区分定义就绪、物料齐套与实际可生产。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "ERP",
+        "SAP",
+        "主数据",
+        "生产版本"
+      ],
+      "publishedAt": "2026-10-20T00:00:00.000Z",
+      "updatedAt": "2026-10-20T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/erp-plant-master-data-production-readiness/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/erp-plant-master-data-production-readiness/index.md"
+    },
+    {
+      "id": "manufacturing/erp-production-cost-wip-settlement",
+      "kind": "manufacturing",
+      "title": "产品已经做完，为什么订单成本还在变",
+      "description": "用部分完工、最终完工和迟到成本三个快照，分析 ERP 生产订单中的实际投入、标准收货价值、在制成本和差异，结合 SAP S/4HANA Cloud Public Edition 事件式生产会计说明结算与更正。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "ERP",
+        "SAP",
+        "生产成本",
+        "在制结算"
+      ],
+      "publishedAt": "2026-10-20T00:00:00.000Z",
+      "updatedAt": "2026-10-20T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/erp-production-cost-wip-settlement/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/erp-production-cost-wip-settlement/index.md"
+    },
+    {
+      "id": "manufacturing/erp-purchase-receipt-invoice-payment",
+      "kind": "manufacturing",
+      "title": "货已经收到了，为什么供应商的款还付不了",
+      "description": "沿一笔采购的订单、部分收货、供应商发票、差异处理和付款，拆解 SAP S/4HANA 中物流与应付的交接，用八十件收货和一百件开票的模拟案例复算 GR/IR、付款冻结与更正后的余额。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "ERP",
+        "SAP",
+        "采购付款",
+        "单据对账"
+      ],
+      "publishedAt": "2026-10-20T00:00:00.000Z",
+      "updatedAt": "2026-10-20T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/erp-purchase-receipt-invoice-payment/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/erp-purchase-receipt-invoice-payment/index.md"
+    },
+    {
+      "id": "manufacturing/erp-sales-delivery-billing-collection",
+      "kind": "manufacturing",
+      "title": "产品已经发走了，为什么钱还没收回来",
+      "description": "沿销售订单、交货、发货过账、出账和收款清账，拆解 ERP 与 SAP 销售财务的状态边界，用部分发运和部分开票案例区分未发、已发未出账、应收未清与银行未匹配款项。",
+      "author": "杨正武",
+      "tags": [
+        "制造业",
+        "ERP",
+        "SAP",
+        "销售回款",
+        "应收对账"
+      ],
+      "publishedAt": "2026-10-20T00:00:00.000Z",
+      "updatedAt": "2026-10-20T00:00:00.000Z",
+      "url": "https://imcoders.cn/manufacturing/erp-sales-delivery-billing-collection/",
+      "markdownUrl": "https://imcoders.cn/manufacturing/erp-sales-delivery-billing-collection/index.md"
     },
     {
       "id": "manufacturing/field-points-business-events",

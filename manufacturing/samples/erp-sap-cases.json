@@ -1,0 +1,392 @@
+{
+  "schemaVersion": 1,
+  "simulated": true,
+  "checkedAt": "2026-10-20",
+  "scope": "Eight independent simplified business models. No live SAP execution, tax, currency conversion or vendor API contract.",
+  "procurePay": {
+    "unit": "EA",
+    "currency": "CNY",
+    "order": "PO-P80",
+    "ordered": 100,
+    "received": 80,
+    "unitPrice": 20,
+    "invoiced": 100,
+    "invoiceStatus": "posted-payment-blocked",
+    "approvedCreditQuantity": 20,
+    "approvedCancelledQuantity": 20,
+    "paymentEligibleAfterReview": true,
+    "paidAndApplied": 1600,
+    "postings": [
+      {
+        "id": "GR-P80",
+        "phase": "receipt",
+        "lines": {
+          "inventory": 1600,
+          "grir": -1600
+        }
+      },
+      {
+        "id": "INV-P100",
+        "phase": "invoice",
+        "lines": {
+          "grir": 2000,
+          "payable": -2000
+        }
+      },
+      {
+        "id": "CM-P20",
+        "phase": "credit",
+        "original": "INV-P100",
+        "lines": {
+          "grir": -400,
+          "payable": 400
+        }
+      },
+      {
+        "id": "PAY-P80",
+        "phase": "payment",
+        "lines": {
+          "payable": 1600,
+          "cash": -1600
+        }
+      }
+    ],
+    "expected": {
+      "orderValue": 2000,
+      "receiptValue": 1600,
+      "invoiceValue": 2000,
+      "grirBeforeCredit": 400,
+      "payableBeforeCredit": 2000,
+      "grirAfterCredit": 0,
+      "payableAfterCredit": 1600,
+      "payableAfterPayment": 0
+    }
+  },
+  "orderCash": {
+    "unit": "EA",
+    "currency": "CNY",
+    "order": "SO-C100",
+    "ordered": 100,
+    "unitPrice": 100,
+    "shipped": 60,
+    "billedAndPosted": 50,
+    "bankReceipts": [
+      {
+        "id": "BANK-4K",
+        "amount": 4000,
+        "applied": 4000
+      },
+      {
+        "id": "BANK-500",
+        "amount": 500,
+        "applied": 0
+      }
+    ],
+    "invoiceDate": "2026-09-15",
+    "dueDate": "2026-10-15",
+    "asOf": "2026-10-20",
+    "independentPriceCredit": 100,
+    "expected": {
+      "orderValue": 10000,
+      "unshippedValue": 4000,
+      "shippedUnbilledValue": 1000,
+      "billedValue": 5000,
+      "bankTotal": 4500,
+      "applied": 4000,
+      "unallocated": 500,
+      "openReceivable": 1000,
+      "overdueDays": 5,
+      "netBilledAfterCredit": 4900,
+      "openAfterCredit": 900
+    }
+  },
+  "costSettlement": {
+    "scope": "SAP S/4HANA Cloud Public Edition event-based production accounting concept; simplified residual model only",
+    "currency": "CNY",
+    "order": "MO-K100",
+    "plannedGood": 100,
+    "standardPerGood": 50,
+    "costItems": [
+      {
+        "item": "material",
+        "plannedQuantity": 200,
+        "actualQuantity": 210,
+        "rate": 10
+      },
+      {
+        "item": "labor",
+        "plannedQuantity": 50,
+        "actualQuantity": 60,
+        "rate": 40
+      },
+      {
+        "item": "overhead",
+        "plannedQuantity": 1,
+        "actualQuantity": 1,
+        "rate": 1000
+      }
+    ],
+    "snapshots": [
+      {
+        "id": "K1",
+        "state": "in-process",
+        "receivedGood": 80,
+        "actual": 4500,
+        "expectedWip": 500,
+        "expectedVariance": 0
+      },
+      {
+        "id": "K2",
+        "state": "finally-delivered",
+        "receivedGood": 100,
+        "actual": 5500,
+        "expectedWip": 0,
+        "expectedVariance": 500
+      },
+      {
+        "id": "K3",
+        "state": "finally-delivered",
+        "receivedGood": 100,
+        "actual": 5600,
+        "expectedWip": 0,
+        "expectedVariance": 600
+      }
+    ],
+    "approvedLateCost": 100,
+    "expected": {
+      "standardTotal": 5000,
+      "actualFinalBeforeLate": 5500,
+      "materialDelta": 100,
+      "laborDelta": 400,
+      "overheadDelta": 0
+    }
+  },
+  "plantMaster": {
+    "companyCode": "C100",
+    "unit": "EA",
+    "productionDate": "2026-10-20",
+    "orderGood": 100,
+    "componentPerGood": 2,
+    "plants": [
+      {
+        "id": "P100",
+        "physical": 240,
+        "restricted": 40,
+        "version": {
+          "id": "PV-A",
+          "plant": "P100",
+          "from": "2026-10-01",
+          "through": "2026-12-31",
+          "minLot": 1,
+          "maxLot": 200,
+          "approved": true,
+          "consistent": true
+        },
+        "expectedEligible": 200,
+        "expectedShortage": 0,
+        "expectedDefinitionReady": true
+      },
+      {
+        "id": "P200",
+        "physical": 80,
+        "restricted": 20,
+        "version": null,
+        "expectedEligible": 60,
+        "expectedShortage": 140,
+        "expectedDefinitionReady": false
+      }
+    ],
+    "approvedP200Version": {
+      "id": "PV-B",
+      "plant": "P200",
+      "from": "2026-10-01",
+      "through": "2026-12-31",
+      "minLot": 1,
+      "maxLot": 200,
+      "approved": true,
+      "consistent": true
+    },
+    "expectedAfterFix": {
+      "definitionReady": true,
+      "shortage": 140
+    }
+  },
+  "mrp": {
+    "scope": "Sales consumes forecast within the same planning scope; D1/D4/D5/D8 are teaching time buckets",
+    "unit": "EA",
+    "salesGood": 120,
+    "forecastGood": 100,
+    "consumedForecast": 100,
+    "componentPerGood": 2,
+    "neededDay": 5,
+    "physical": 200,
+    "qualityRestricted": 60,
+    "otherDemandReserved": 30,
+    "restrictionsDisjoint": true,
+    "openSupply": [
+      {
+        "id": "PO-D4",
+        "quantity": 50,
+        "usableDay": 4
+      },
+      {
+        "id": "PO-D8",
+        "quantity": 100,
+        "usableDay": 8
+      }
+    ],
+    "minimumLotAndMultiple": 100,
+    "expected": {
+      "grossGood": 120,
+      "componentDemand": 240,
+      "eligibleStock": 110,
+      "supplyByNeed": 50,
+      "netShortage": 80,
+      "proposal": 100,
+      "surplusAfterNeed": 20,
+      "surplusD8": 120,
+      "delayedD4Shortage": 130,
+      "delayedD4Proposal": 200
+    }
+  },
+  "atp": {
+    "scope": "Protect existing30; split shipment allowed; quantities only, not full capacity or transport promise",
+    "unit": "EA",
+    "requested": 100,
+    "requestedDay": 3,
+    "physical": 70,
+    "existingProtected": 30,
+    "supplyDay": 5,
+    "originalSupply": 60,
+    "revisedSupply": 40,
+    "confirmations": [
+      {
+        "id": "v1",
+        "atDay3": 40,
+        "atDay5": 60,
+        "unconfirmed": 0
+      },
+      {
+        "id": "v2",
+        "atDay3": 40,
+        "atDay5": 40,
+        "unconfirmed": 20
+      }
+    ],
+    "expected": {
+      "freeStock": 40,
+      "requestedDayShortage": 60
+    }
+  },
+  "ewm": {
+    "scope": "One EWM-managed ERP storage location covers both BULK and PSA; PMR teaching scenario",
+    "plant": "P100",
+    "storageLocation": "S001",
+    "unit": "EA",
+    "initial": 200,
+    "staged": 100,
+    "consumed": 90,
+    "returnedUnused": 10,
+    "snapshots": [
+      {
+        "id": "initial",
+        "bulk": 200,
+        "psa": 0,
+        "erp": 200
+      },
+      {
+        "id": "staged",
+        "bulk": 100,
+        "psa": 100,
+        "erp": 200
+      },
+      {
+        "id": "consumed",
+        "bulk": 100,
+        "psa": 10,
+        "erp": 110
+      },
+      {
+        "id": "returned",
+        "bulk": 110,
+        "psa": 0,
+        "erp": 110
+      }
+    ],
+    "expected": {
+      "apparentBulkOnlyDifference": 10,
+      "finalTotal": 110
+    }
+  },
+  "mes": {
+    "scope": "Independently committed actions; WMS receipt evidence references the same finished-goods receipt, never creates a second posting",
+    "order": "MO-X100",
+    "unit": "EA",
+    "initialMaterial": 200,
+    "operations": [
+      {
+        "operation": "10",
+        "yield": 102,
+        "scrap": 0,
+        "final": false
+      },
+      {
+        "operation": "20",
+        "yield": 100,
+        "scrap": 2,
+        "final": true
+      }
+    ],
+    "events": [
+      {
+        "messageId": "M1",
+        "businessId": "MO-X100/CONF-20",
+        "kind": "confirmation",
+        "quantity": 100
+      },
+      {
+        "messageId": "M2",
+        "businessId": "MO-X100/ISSUE-1",
+        "kind": "issue",
+        "quantity": 102
+      },
+      {
+        "messageId": "M3",
+        "businessId": "MO-X100/RECEIPT-1",
+        "kind": "receipt",
+        "quantity": 100
+      },
+      {
+        "messageId": "M3-RETRY",
+        "businessId": "MO-X100/RECEIPT-1",
+        "kind": "receipt",
+        "quantity": 100
+      }
+    ],
+    "warehouseEvidence": {
+      "source": "WMS_A",
+      "refersTo": "MO-X100/RECEIPT-1",
+      "quantity": 100
+    },
+    "failedState": {
+      "confirmation": "applied",
+      "issue": "failed",
+      "receipt": "applied"
+    },
+    "recoveredState": {
+      "confirmation": "applied",
+      "issue": "applied",
+      "receipt": "applied"
+    },
+    "expected": {
+      "finalGood": 100,
+      "scrap": 2,
+      "consumption": 102,
+      "sumOperationYields": 202,
+      "materialBalance": 98,
+      "finishedReceipt": 100,
+      "failedComplete": false,
+      "recoveredComplete": true
+    }
+  }
+}

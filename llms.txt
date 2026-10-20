@@ -139,7 +139,15 @@
 - [电子制造与 SMT 的上料、检测和追溯](https://imcoders.cn/manufacturing/electronics-smt-material-test-traceability/index.md): 用 25 块四联拼板的教学样本，串起料卷、供料器、站位表、贴装程序、板级序列号与 SPI、AOI、ICT、FCT 记录，核对接料边界、返修复测和放行回执，解释电子制造中追溯精度如何形成。
 - [研发工程工具与工艺数据如何衔接](https://imcoders.cn/manufacturing/engineering-tools-process-data/index.md): 沿用风机支架工程变更，拆解 CAD、PDM、PLM 与 CAPP 的文件、零件、结构、工序和指导书关系，说明 CAE 与 CAM 的适用分支，以及版本基线、工艺分配、发布回执和现场偏差怎样受控衔接。
 - [一次设备停机怎样传到客户交期](https://imcoders.cn/manufacturing/equipment-downtime-customer-delivery/index.md): 把设备停机、维修验证、剩余工序、替代资源和客户承诺接到同一份排程样本，复算原资源恢复与替代加工两种方案的交付影响，并保留批准条件、计划版本和实际执行回执。
+- [ERP 和仓库都有库存，到底该看哪一个](https://imcoders.cn/manufacturing/erp-ewm-inventory-production-supply/index.md): 用 SAP S/4HANA 与 EWM 的生产供料场景，区分存储地点、库位、生产供料区和实际耗用，复算备料与投料后的库存，说明交货模式、PMR 模式、范围映射和回执怎样避免重复计数与错误调账。
+- [车间已经报完工，ERP 为什么还没对上账](https://imcoders.cn/manufacturing/erp-mes-completion-reconciliation/index.md): 沿生产订单、工序确认、材料耗用和成品收货，研究 SAP S/4HANA 与 Digital Manufacturing 的交接，用一百台合格品和分项失败样本说明报工成功、库存过账和成本完整性为何需要分别核对。
+- [库存越买越多，生产为什么还在缺料](https://imcoders.cn/manufacturing/erp-mrp-stock-shortage-replenishment/index.md): 从过量采购和产线缺料同时发生的问题出发，结合 SAP S/4HANA MRP 研究预测消耗、库存资格、时间分桶和批量规则，用一百二十台需求复算补货建议与晚到库存，区分计划建议和真实供给。
 - [ERP 怎样连接订单、物料、生产与成本](https://imcoders.cn/manufacturing/erp-order-material-cost/index.md): 沿着一张风机订单，拆解 ERP 中的销售需求、MRP、采购与生产订单、库存事务和成本核算，说明工程变更后怎样重算缺料、接收现场记录、处理接口重试，并用动态图与验收案例保留跨系统证据。
+- [订单接下来了，交期为什么还不敢承诺](https://imcoders.cn/manufacturing/erp-order-promise-availability/index.md): 从客户要求日期与工厂可交日期的差异切入，结合 SAP S/4HANA 可承诺量研究库存、既有确认、未来供给和欠交重检，用分期确认样本说明供给延迟后怎样保留原承诺与未确认数量。
+- [同一款产品，为什么换个工厂就做不出来](https://imcoders.cn/manufacturing/erp-plant-master-data-production-readiness/index.md): 从产品转厂后无法开工的问题出发，拆解 SAP S/4HANA 的组织范围、物料、BOM、工艺路线、工作中心与生产版本，用两厂库存和版本模拟数据区分定义就绪、物料齐套与实际可生产。
+- [产品已经做完，为什么订单成本还在变](https://imcoders.cn/manufacturing/erp-production-cost-wip-settlement/index.md): 用部分完工、最终完工和迟到成本三个快照，分析 ERP 生产订单中的实际投入、标准收货价值、在制成本和差异，结合 SAP S/4HANA Cloud Public Edition 事件式生产会计说明结算与更正。
+- [货已经收到了，为什么供应商的款还付不了](https://imcoders.cn/manufacturing/erp-purchase-receipt-invoice-payment/index.md): 沿一笔采购的订单、部分收货、供应商发票、差异处理和付款，拆解 SAP S/4HANA 中物流与应付的交接，用八十件收货和一百件开票的模拟案例复算 GR/IR、付款冻结与更正后的余额。
+- [产品已经发走了，为什么钱还没收回来](https://imcoders.cn/manufacturing/erp-sales-delivery-billing-collection/index.md): 沿销售订单、交货、发货过账、出账和收款清账，拆解 ERP 与 SAP 销售财务的状态边界，用部分发运和部分开票案例区分未发、已发未出账、应收未清与银行未匹配款项。
 - [从现场点位到业务事件](https://imcoders.cn/manufacturing/field-points-business-events/index.md): 沿一段跨工单的设备停机记录，拆开 PLC、DCS、HMI、SCADA、Historian 与边缘采集的职责，核对点位映射、时间戳、质量码、去重补传和业务事件修订，附动态数据流与可复算样本。
 - [食品饮料的批次、保质期与去向追踪](https://imcoders.cn/manufacturing/food-batch-shelf-life-traceability/index.md): 沿两批原料混合、包装、出库和异常追踪，拆开食品制造的配方、设备清洗、检验、保质期与批次谱系，复算原料到九百八十袋成品的去向，并注明追溯法规的适用范围。
 - [工业数据平台、数字孪生与 Agent 接入](https://imcoders.cn/manufacturing/industrial-data-platform-digital-twin-agents/index.md): 从一座可旋转的示意工厂出发，梳理工业数据平台如何保留原始事件、关联设备与工单、构建带时间的孪生视图，并说明 Agent 查询证据和执行业务动作的边界。

@@ -1,0 +1,142 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>货已经收到了，为什么供应商的款还付不了 | 制造业系统</title><meta name="description" content="沿一笔采购的订单、部分收货、供应商发票、差异处理和付款，拆解 SAP S/4HANA 中物流与应付的交接，用八十件收货和一百件开票的模拟案例复算 GR/IR、付款冻结与更正后的余额。"><link rel="canonical" href="https://imcoders.cn/manufacturing/erp-purchase-receipt-invoice-payment/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/erp-purchase-receipt-invoice-payment/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/erp-purchase-receipt-invoice-payment/#article","headline":"货已经收到了，为什么供应商的款还付不了","description":"沿一笔采购的订单、部分收货、供应商发票、差异处理和付款，拆解 SAP S/4HANA 中物流与应付的交接，用八十件收货和一百件开票的模拟案例复算 GR/IR、付款冻结与更正后的余额。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/erp-purchase-receipt-invoice-payment/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-20T00:00:00.000Z","dateModified":"2026-10-20T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"货已经收到了，为什么供应商的款还付不了","item":"https://imcoders.cn/manufacturing/erp-purchase-receipt-invoice-payment/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-20T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-20T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="货已经收到了，为什么供应商的款还付不了 | 制造业系统"><meta property="og:description" content="沿一笔采购的订单、部分收货、供应商发票、差异处理和付款，拆解 SAP S/4HANA 中物流与应付的交接，用八十件收货和一百件开票的模拟案例复算 GR/IR、付款冻结与更正后的余额。"><meta property="og:url" content="https://imcoders.cn/manufacturing/erp-purchase-receipt-invoice-payment/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="货已经收到了，为什么供应商的款还付不了 | 制造业系统"><meta name="twitter:description" content="沿一笔采购的订单、部分收货、供应商发票、差异处理和付款，拆解 SAP S/4HANA 中物流与应付的交接，用八十件收货和一百件开票的模拟案例复算 GR/IR、付款冻结与更正后的余额。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="货已经收到了，为什么供应商的款还付不了 | 制造业系统"><meta itemprop="description" content="沿一笔采购的订单、部分收货、供应商发票、差异处理和付款，拆解 SAP S/4HANA 中物流与应付的交接，用八十件收货和一百件开票的模拟案例复算 GR/IR、付款冻结与更正后的余额。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "货已经收到了，为什么供应商的款还付不了 | 制造业系统";
+const shareDesc = "沿一笔采购的订单、部分收货、供应商发票、差异处理和付款，拆解 SAP S/4HANA 中物流与应付的交接，用八十件收货和一百件开票的模拟案例复算 GR/IR、付款冻结与更正后的余额。";
+const shareLink = "https://imcoders.cn/manufacturing/erp-purchase-receipt-invoice-payment/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.CNEh5eXl.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>货已经收到了，为什么供应商的款还付不了</h1><p class="mfg-lead" data-astro-cid-767rrl5b>沿一笔采购的订单、部分收货、供应商发票、差异处理和付款，拆解 SAP S/4HANA 中物流与应付的交接，用八十件收货和一百件开票的模拟案例复算 GR/IR、付款冻结与更正后的余额。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/erp-purchase-receipt-invoice-payment/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-20</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b>  <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#收货开票和付款分别确认什么" data-astro-cid-767rrl5b>收货、开票和付款分别确认什么</a></li><li data-astro-cid-767rrl5b><a href="#八十件实收怎样对上一百件发票" data-astro-cid-767rrl5b>八十件实收怎样对上一百件发票</a></li><li data-astro-cid-767rrl5b><a href="#差异处理要回到原单据" data-astro-cid-767rrl5b>差异处理要回到原单据</a></li><li data-astro-cid-767rrl5b><a href="#系统交接中保留哪些身份" data-astro-cid-767rrl5b>系统交接中保留哪些身份</a></li><li data-astro-cid-767rrl5b><a href="#用一笔采购验收到付款结果" data-astro-cid-767rrl5b>用一笔采购验收到付款结果</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>供应商说货已经送了，仓库也确认收到，付款申请却卡在财务。采购拿出一百件的订单，仓库只有八十件收货，供应商发票仍按一百件开。几个部门说的“完成”，对应着不同的数量和单据。</p>
+<p>这篇从<a href="/manufacturing/erp-order-material-cost/">ERP 主文</a>继续往应付展开。SAP 对照采用 S/4HANA 采购与应付课程的业务对象，不绑定某个发布版本的界面或接口。单号、数量、价格与处理规则均为独立教学模拟，未包含税、运费、汇率和预付款。</p>
+<h2 id="收货开票和付款分别确认什么">收货、开票和付款分别确认什么</h2>
+<p>采购到付款通常称为 Procure-to-Pay。需要买什么、采购承诺、实收、发票和付款分别留下依据。SAP 的<a href="https://learning.sap.com/courses/explaining-payables-invoice-processing/exploring-the-procure-to-pay-process_d7a4061e-3d6a-44ff-bab5-e548bc258dfc">采购到付款课程</a>将物料管理与应付连接起来，并通过采购单、收货与发票核对解释 GR/IR 清算关系。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>对象</th><th>这份记录确认什么</th><th>仍要继续查什么</th></tr></thead><tbody><tr><td>采购订单行</td><td>约定物料、数量、价格与交付</td><td>供应商是否接受，是否实际送达</td></tr><tr><td>收货记录</td><td>按既定规则登记收到多少</td><td>质量资格、差异和是否重复登记</td></tr><tr><td>供应商发票</td><td>请求结算的数量与金额</td><td>发票状态、匹配差异和付款限制</td></tr><tr><td>应付未清项</td><td>已过账但尚未清偿的负债</td><td>到期日、付款批准与清账情况</td></tr><tr><td>付款与清账记录</td><td>已支付金额如何应用到应付</td><td>银行执行结果、未匹配款项</td></tr></tbody></table>
+<p>三单匹配核对采购、实收与发票，但容差、收货基础发票校验、服务采购和非估价收货会改变处理方式。本文只用普通估价物料采购讲解数量和金额桥接。收货已登记也不等于物料已经质量放行，库存能否领用仍见<a href="/manufacturing/wms-inventory-production-delivery/">WMS 生产配送篇</a>。</p>
+<h2 id="八十件实收怎样对上一百件发票">八十件实收怎样对上一百件发票</h2>
+<p>模拟采购单 <code>PO-P80</code> 订购 100 件，单价 20 元，订单价值 2,000 元。仓库实收 80 件并完成本例估价收货，收货价值为 1,600 元。其余 20 件未到，没有退货或其他收发。</p>
+<p>GR/IR 是货物收货与发票收取之间的清算账户。对本例普通估价采购，收货形成 1,600 元库存借方与 GR/IR 贷方。随后供应商按 100 件开票，本文选择“发票已过账、但因差异被付款冻结”的教学状态，发票形成 GR/IR 借方 2,000 元和应付贷方 2,000 元。挂起、暂存或被拒绝且未过账的发票，不会形成同样的已过账结果。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>订单价值 = 100 × 20 = 2,000元</span></span>
+<span class="line"><span>已收价值 = 80 × 20 = 1,600元</span></span>
+<span class="line"><span>已过账发票 = 100 × 20 = 2,000元</span></span>
+<span class="line"><span>GR/IR净额 = 借2,000 − 贷1,600 = 借方400元</span></span>
+<span class="line"><span>数量待核对 = 已开票100 − 已收80 = 20件</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>400 元表达本例发票与收货的未匹配价值，不能直接当作盘亏。应付 2,000 元也不表示这笔款现在就满足支付条件。主管需要看到差异明细、限制原因和负责人，不能只看到采购单头上一个“已收货”。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>采购实收怎样连接发票、差异与付款</strong><a href="/manufacturing/maps/erp-procure-pay-match.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/erp-procure-pay-match.html" title="采购收货与发票经匹配检查形成应付状态差异处理及批准付款的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>教学控制关系。图中的付款只接收匹配处理完成并满足支付条件的项目；批准修正不等于银行已经执行。</figcaption>
+</figure>
+<h2 id="差异处理要回到原单据">差异处理要回到原单据</h2>
+<p>先查仓库有没有漏登收货，供应商有没有错开票，运输是否短交，以及价格或单位是否发生修订。复核证据是 80 件确实收到、另外 20 件不再交付时，采购与供应商确认取消剩余 20 件，供应商另提供经核准的 400 元贷项。本例据此更正已过账应付，不直接改写原发票。</p>
+<p>贷项在本例冲减应付 400 元，并形成 GR/IR 贷方 400 元。于是应付净额 1,600 元，GR/IR 为零，订单数量为已收 80 加已批准取消 20。贷项与采购余量取消各自有依据，一个动作不能自动代替另一个。</p>
+<p>SAP 的 <a href="https://learning.sap.com/courses/invoice-verification-in-sap-s-4hana/using-fiori-apps-for-gr-ir-reconciliation">GR/IR 对账课程</a>提供了从差异概览进入采购明细核查的产品示例。实际处理还可能涉及补收、退货、价格差异或其他调整，应按原因选择，不能为了清零就统一核销。</p>
+<p>数量与金额匹配之后，继续检查付款冻结是否按授权解除、款项是否到期、供应商和付款方式是否有效、审批是否完成。本文另假设这些条件满足，批准支付 1,600 元并取得执行和清账结果，才把本例应付未清余额记为零。</p>
+<h2 id="系统交接中保留哪些身份">系统交接中保留哪些身份</h2>
+<p>收货消息至少关联采购单行、收货业务身份、物料、工厂、数量与单位，目标回执补充物料凭证及相关记录。发票和贷项另有各自身份，再回到原采购与收货范围。一个采购行有多次收货或开票时，需要保存分次关系，不能仅按订单号粗略匹配。</p>
+<p>WMS 重传同一收货，不得再增加 80 件。应付服务收到同一贷项重传，也不能再冲减一次。已过账但回执丢失时，按原身份查询结果；同身份带来不同数量进入冲突核对。关闭期间的更正由有权限的岗位处理，接口不自动改成当天日期。</p>
+<p>Agent 可以生成待核对的采购行、缺失单据和匹配计算。批准取消采购、解除冻结、发起付款与清账属于不同动作，需要各自授权，执行后留下目标结果。一次调用返回成功不能替代银行与应付台账的核查。</p>
+<h2 id="用一笔采购验收到付款结果">用一笔采购验收到付款结果</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>验收变化</th><th>应保留的结果</th></tr></thead><tbody><tr><td>只收到 80 件、发票已过账 100 件</td><td>展示借方 400 元 GR/IR 差量与付款限制</td></tr><tr><td>发票仅暂存、尚未过账</td><td>与本例已过账应付分开，不输出虚构负债</td></tr><tr><td>批准 400 元贷项并取消采购余量</td><td>应付净额 1,600、GR/IR 零，原记录及更正仍可查</td></tr><tr><td>同一收货或贷项重传</td><td>数量与金额不重复变化</td></tr><tr><td>匹配完成但付款仍受阻</td><td>保留具体原因，不自动标为已支付</td></tr></tbody></table>
+<p>可下载<a href="/manufacturing/samples/erp-sap-cases.json">ERP 与 SAP 场景样本</a>及<a href="/manufacturing/samples/verify-erp-sap-cases.py">校验程序</a>，复算这条采购的数量和余额。公开资料核对于 2026-10-20；账务方向服务于本文已声明的简化条件，企业实施仍需按实际账户配置、业务状态和财务制度核对。</p></div>  <nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 

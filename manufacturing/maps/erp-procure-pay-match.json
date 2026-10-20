@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "采购实收怎样连接发票与批准付款",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-erp-procure-pay-match-20261020-112906/erp-procure-pay-match.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "业务依据"
+    },
+    {
+      "label": "匹配检查"
+    },
+    {
+      "label": "应付与差异"
+    },
+    {
+      "label": "支付条件"
+    },
+    {
+      "label": "执行结果"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "purchase",
+      "label": "采购收货记录",
+      "sublabel": "订单100实收80",
+      "stage": 0,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "match",
+      "label": "三单范围匹配",
+      "sublabel": "数量价格单位",
+      "stage": 1,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "balance",
+      "label": "应付与冻结视图",
+      "sublabel": "未匹配价值400",
+      "stage": 2,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "paycheck",
+      "label": "更正与支付复核",
+      "sublabel": "到期权限冻结检查",
+      "stage": 3,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "payment",
+      "label": "付款执行回查",
+      "sublabel": "支付清账分别确认",
+      "stage": 4,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "invoice",
+      "label": "已过账发票",
+      "sublabel": "100件共2000元",
+      "stage": 0,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "policy",
+      "label": "匹配支付规则",
+      "sublabel": "本例状态与容差",
+      "stage": 1,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "difference",
+      "label": "差异处理单",
+      "sublabel": "查短交或错开票",
+      "stage": 2,
+      "row": 2,
+      "type": "backend"
+    },
+    {
+      "id": "correction",
+      "label": "获准更正过账",
+      "sublabel": "贷项取消另留据",
+      "stage": 3,
+      "row": 2,
+      "type": "backend"
+    }
+  ],
+  "flows": [
+    {
+      "id": "purchase-match",
+      "from": "purchase",
+      "to": "match",
+      "label": "订单实收",
+      "variant": "emphasis"
+    },
+    {
+      "id": "invoice-match",
+      "from": "invoice",
+      "to": "match",
+      "label": "发票依据",
+      "variant": "default"
+    },
+    {
+      "id": "policy-match",
+      "from": "policy",
+      "to": "match",
+      "label": "匹配条件",
+      "variant": "default"
+    },
+    {
+      "id": "match-balance",
+      "from": "match",
+      "to": "balance",
+      "label": "匹配结果",
+      "variant": "emphasis"
+    },
+    {
+      "id": "balance-paycheck",
+      "from": "balance",
+      "to": "paycheck",
+      "label": "应付状态",
+      "variant": "emphasis"
+    },
+    {
+      "id": "match-difference",
+      "from": "match",
+      "to": "difference",
+      "label": "差异明细",
+      "variant": "default"
+    },
+    {
+      "id": "difference-correction",
+      "from": "difference",
+      "to": "correction",
+      "label": "批准后更正",
+      "variant": "default"
+    },
+    {
+      "id": "correction-paycheck",
+      "from": "correction",
+      "to": "paycheck",
+      "label": "更正回执",
+      "variant": "default"
+    },
+    {
+      "id": "paycheck-payment",
+      "from": "paycheck",
+      "to": "payment",
+      "label": "条件满足后",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "范围与教学约定",
+      "items": [
+        "独立采购教学场景，无税费汇率，不是SAP接口定义。",
+        "差异未处理时付款受阻；更正后继续查到期、冻结与批准。",
+        "银行支付、应付应用与清账各自读回，回执未知不重复支付。"
+      ]
+    }
+  ]
+}

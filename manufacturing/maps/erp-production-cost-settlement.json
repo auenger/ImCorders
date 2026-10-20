@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "生产订单怎样核对在制与结算差异",
+    "locale": "zh-CN",
+    "output": ".archify/dataflow-erp-production-cost-settlement-20261020-112906/erp-production-cost-settlement.html",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "数量金额事实"
+    },
+    {
+      "label": "形成快照"
+    },
+    {
+      "label": "状态与归属"
+    },
+    {
+      "label": "结算处理"
+    },
+    {
+      "label": "结果回查"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "actual",
+      "label": "订单实际投入",
+      "sublabel": "材料作业及费用",
+      "stage": 0,
+      "row": 0,
+      "type": "database"
+    },
+    {
+      "id": "snapshot",
+      "label": "投入收货快照",
+      "sublabel": "数量金额同一截止",
+      "stage": 1,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "classify",
+      "label": "在制差异计算",
+      "sublabel": "按状态估价口径",
+      "stage": 2,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "settle",
+      "label": "授权结算处理",
+      "sublabel": "处理成功失败分项",
+      "stage": 3,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "result",
+      "label": "结算与凭证回查",
+      "sublabel": "K1K2K3版本保留",
+      "stage": 4,
+      "row": 0,
+      "type": "backend"
+    },
+    {
+      "id": "goods",
+      "label": "成品收货记录",
+      "sublabel": "数量与标准估价",
+      "stage": 0,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "policy",
+      "label": "状态与核算规则",
+      "sublabel": "事件式教学模型",
+      "stage": 1,
+      "row": 2,
+      "type": "database"
+    },
+    {
+      "id": "late",
+      "label": "获准追加记录",
+      "sublabel": "原事件及期间依据",
+      "stage": 2,
+      "row": 2,
+      "type": "database"
+    }
+  ],
+  "flows": [
+    {
+      "id": "actual-snapshot",
+      "from": "actual",
+      "to": "snapshot",
+      "label": "实际投入",
+      "variant": "emphasis"
+    },
+    {
+      "id": "goods-snapshot",
+      "from": "goods",
+      "to": "snapshot",
+      "label": "收货估价",
+      "variant": "default"
+    },
+    {
+      "id": "snapshot-classify",
+      "from": "snapshot",
+      "to": "classify",
+      "label": "金额快照",
+      "variant": "emphasis"
+    },
+    {
+      "id": "policy-classify",
+      "from": "policy",
+      "to": "classify",
+      "label": "核算依据",
+      "variant": "default"
+    },
+    {
+      "id": "late-classify",
+      "from": "late",
+      "to": "classify",
+      "label": "追加事实",
+      "variant": "default"
+    },
+    {
+      "id": "classify-settle",
+      "from": "classify",
+      "to": "settle",
+      "label": "在制及差异",
+      "variant": "emphasis"
+    },
+    {
+      "id": "settle-result",
+      "from": "settle",
+      "to": "result",
+      "label": "结算回执",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "范围与教学约定",
+      "items": [
+        "对照SAP公有云事件式生产会计，非所有ERP统一算法。",
+        "K1在制500；K2最终差异500；获准追加100后K3差异600。",
+        "标准收货5000不因实际投入增加就自动重估，失败与未知单独保留。"
+      ]
+    }
+  ]
+}

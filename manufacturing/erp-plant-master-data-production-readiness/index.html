@@ -1,0 +1,165 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>同一款产品，为什么换个工厂就做不出来 | 制造业系统</title><meta name="description" content="从产品转厂后无法开工的问题出发，拆解 SAP S/4HANA 的组织范围、物料、BOM、工艺路线、工作中心与生产版本，用两厂库存和版本模拟数据区分定义就绪、物料齐套与实际可生产。"><link rel="canonical" href="https://imcoders.cn/manufacturing/erp-plant-master-data-production-readiness/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/manufacturing/erp-plant-master-data-production-readiness/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/manufacturing/erp-plant-master-data-production-readiness/#article","headline":"同一款产品，为什么换个工厂就做不出来","description":"从产品转厂后无法开工的问题出发，拆解 SAP S/4HANA 的组织范围、物料、BOM、工艺路线、工作中心与生产版本，用两厂库存和版本模拟数据区分定义就绪、物料齐套与实际可生产。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/manufacturing/erp-plant-master-data-production-readiness/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-10-20T00:00:00.000Z","dateModified":"2026-10-20T00:00:00.000Z","articleSection":"制造业系统"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"制造业系统","item":"https://imcoders.cn/manufacturing/"},{"@type":"ListItem","position":3,"name":"同一款产品，为什么换个工厂就做不出来","item":"https://imcoders.cn/manufacturing/erp-plant-master-data-production-readiness/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-20T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-20T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="同一款产品，为什么换个工厂就做不出来 | 制造业系统"><meta property="og:description" content="从产品转厂后无法开工的问题出发，拆解 SAP S/4HANA 的组织范围、物料、BOM、工艺路线、工作中心与生产版本，用两厂库存和版本模拟数据区分定义就绪、物料齐套与实际可生产。"><meta property="og:url" content="https://imcoders.cn/manufacturing/erp-plant-master-data-production-readiness/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="同一款产品，为什么换个工厂就做不出来 | 制造业系统"><meta name="twitter:description" content="从产品转厂后无法开工的问题出发，拆解 SAP S/4HANA 的组织范围、物料、BOM、工艺路线、工作中心与生产版本，用两厂库存和版本模拟数据区分定义就绪、物料齐套与实际可生产。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="同一款产品，为什么换个工厂就做不出来 | 制造业系统"><meta itemprop="description" content="从产品转厂后无法开工的问题出发，拆解 SAP S/4HANA 的组织范围、物料、BOM、工艺路线、工作中心与生产版本，用两厂库存和版本模拟数据区分定义就绪、物料齐套与实际可生产。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "同一款产品，为什么换个工厂就做不出来 | 制造业系统";
+const shareDesc = "从产品转厂后无法开工的问题出发，拆解 SAP S/4HANA 的组织范围、物料、BOM、工艺路线、工作中心与生产版本，用两厂库存和版本模拟数据区分定义就绪、物料齐套与实际可生产。";
+const shareLink = "https://imcoders.cn/manufacturing/erp-plant-master-data-production-readiness/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.CNEh5eXl.css">
+<link rel="stylesheet" href="/_astro/_slug_.CyXx-BIR.css"><script type="module" src="/_astro/hoisted.JG20DWC4.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/" aria-current="page">制造业系统</a></li> <li><a href="/blog">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <article class="manufacturing" data-astro-cid-767rrl5b> <header class="mfg-hero" data-astro-cid-767rrl5b><div class="mfg-wrap" data-astro-cid-767rrl5b><a href="/manufacturing/" class="mfg-kicker" data-astro-cid-767rrl5b>← 制造业系统 / 系统拆解</a><h1 data-astro-cid-767rrl5b>同一款产品，为什么换个工厂就做不出来</h1><p class="mfg-lead" data-astro-cid-767rrl5b>从产品转厂后无法开工的问题出发，拆解 SAP S/4HANA 的组织范围、物料、BOM、工艺路线、工作中心与生产版本，用两厂库存和版本模拟数据区分定义就绪、物料齐套与实际可生产。</p><div class="mfg-actions" data-astro-cid-767rrl5b><a class="mfg-action primary" href="#article-content" data-astro-cid-767rrl5b>阅读文章 ↓</a><a class="mfg-action" href="https://imcoders.cn/manufacturing/erp-plant-master-data-production-readiness/index.md" data-astro-cid-767rrl5b>Markdown 原文 ↗</a></div><p class="article-date" data-astro-cid-767rrl5b>杨正武 · 发布于 2026-10-20</p></div></header>  <div class="mfg-wrap mfg-reader" id="article-content" data-astro-cid-767rrl5b>  <nav class="article-contents" aria-label="文章目录" data-astro-cid-767rrl5b><div data-astro-cid-767rrl5b>本文内容</div><ol data-astro-cid-767rrl5b><li data-astro-cid-767rrl5b><a href="#先确定这张订单属于哪个组织范围" data-astro-cid-767rrl5b>先确定这张订单属于哪个组织范围</a></li><li data-astro-cid-767rrl5b><a href="#bom-和工艺路线要通过生产版本组合起来" data-astro-cid-767rrl5b>BOM 和工艺路线要通过生产版本组合起来</a></li><li data-astro-cid-767rrl5b><a href="#主数据补齐以后二厂仍可能缺一百四十件" data-astro-cid-767rrl5b>主数据补齐以后，二厂仍可能缺一百四十件</a></li><li data-astro-cid-767rrl5b><a href="#转厂前做一份有责任人的准备清单" data-astro-cid-767rrl5b>转厂前做一份有责任人的准备清单</a></li><li data-astro-cid-767rrl5b><a href="#用两厂场景核对是否存在误放行" data-astro-cid-767rrl5b>用两厂场景核对是否存在误放行</a></li></ol></nav> <div class="mfg-prose" data-astro-cid-767rrl5b><p>同一款风机在一厂已经量产，订单转到二厂，系统却建不出可执行的生产安排。图纸和物料号都有，计划员继续查，才发现二厂没有适用的生产版本，工作中心和物料供应也没有准备齐。</p>
+<p>产品身份相同，并不说明各工厂都具备相同的执行条件。本篇以 SAP S/4HANA 生产订单的组织与主数据为参考，使用独立教学工厂和数量，不复制真实客户配置，也不绑定具体发布版本的界面步骤。</p>
+<h2 id="先确定这张订单属于哪个组织范围">先确定这张订单属于哪个组织范围</h2>
+<p>SAP 的<a href="https://learning.sap.com/courses/exploring-end-to-end-business-processes-in-sap/explaining-the-impact-of-enterprise-structures-to-master-data-and-documents_a541b8fe-074d-4379-b54b-d7d6c803716b">组织、主数据与业务单据课程</a>说明组织结构如何影响主数据和单据。查询时需要从公司代码、工厂等范围继续往下定位，不能只传一个集团通用料号。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>范围或对象</th><th>本篇需要核对什么</th><th>常见误读</th></tr></thead><tbody><tr><td>公司代码</td><td>财务归属与适用账务环境</td><td>同集团就可以不分归属合并金额</td></tr><tr><td>工厂</td><td>计划、生产与相应物料数据</td><td>一厂维护的生产条件自动适用于二厂</td></tr><tr><td>存储地点</td><td>工厂内的库存组织范围</td><td>等同于每个实际货架库位</td></tr><tr><td>物料相关数据</td><td>单位、采购、计划及估价等适用数据</td><td>一个基本描述完整就代表各业务视图齐全</td></tr><tr><td>工作中心与路线</td><td>由哪些资源执行工序，采用哪些参数</td><td>工序名称相同就能任意换资源</td></tr></tbody></table>
+<p>本例 P100、P200 均属于同一公司代码 C100，统一按件计量，不涉及跨公司采购或利润抵销。若实际属于不同公司代码，还要补充相应业务链，不能沿用本例的简单移库逻辑。</p>
+<h2 id="bom-和工艺路线要通过生产版本组合起来">BOM 和工艺路线要通过生产版本组合起来</h2>
+<p>产品 <code>FAN-M100</code> 每台需要两件支架。两个工厂都能看到批准的产品定义，但要建立生产订单，还要选到适用的工厂生产数据。SAP 的<a href="https://learning.sap.com/courses/manage-production-orders-in-sap-s-4hana-manufacturing/analyzing-the-master-data-relevant-to-create-production-orders">生产订单主数据课程</a>列出物料、BOM、路线、工作中心、工装与生产版本，并解释生产版本与 BOM、路线的组合关系。</p>
+<p>教学模型里，P100 的版本 PV-A 组合 BOM-A 和路线 R-A，工作中心 WC-100 可用；适用日期为 10 月 1 日至 12 月 31 日，批量为 1 至 200 台，本例有效区间均含首尾。10 月 20 日生产 100 台，满足这些模型条件。P200 还没有获准且一致的对应组合，不能只凭图纸存在就自动套用 PV-A。</p>
+<p>生产版本与 PLM 图纸版本分别表达不同对象。它们需要有批准和适用映射，不能直接把两个系统里都写着“A”的版本号认作同一版本。日期、批量、BOM 用途、替代路线和有效状态等条件，应以实际产品配置检查；本文范围不代表完整 SAP 选择算法。</p>
+<figure class="archify-embed">
+<div class="archify-embed-heading"><strong>产品定义怎样成为工厂可执行的生产依据</strong><a href="/manufacturing/maps/erp-plant-master-data.html" target="_blank" rel="noopener noreferrer">独立窗口查看 ↗</a></div>
+<iframe src="/manufacturing/maps/erp-plant-master-data.html" title="订单工厂与产品定义分别进入生产版本选择并结合库存条件检查形成就绪结果的数据流" loading="lazy" allowfullscreen></iframe>
+<figcaption>教学检查关系。主数据通过和物料就绪分别检查，缺失的工厂条件保留为阻断，不自动复制其他工厂数据。</figcaption>
+</figure>
+<h2 id="主数据补齐以后二厂仍可能缺一百四十件">主数据补齐以后，二厂仍可能缺一百四十件</h2>
+<p>两个工厂分别考虑一张 100 台需求，每台两件支架，各自需要 200 件。下面为同一截止时点的独立工厂明细，没有其他供给和占用，受限数量均包含在账面总量中。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>工厂</th><th align="right">支架在库</th><th align="right">其中受限</th><th align="right">本单候选</th><th align="right">数量缺口</th><th>生产定义</th></tr></thead><tbody><tr><td>P100</td><td align="right">240</td><td align="right">40</td><td align="right">200</td><td align="right">0</td><td>PV-A 在本例适用</td></tr><tr><td>P200</td><td align="right">80</td><td align="right">20</td><td align="right">60</td><td align="right">140</td><td>缺少获准生产组合</td></tr></tbody></table>
+<p>P200 同时有主数据阻断和 140 件供给缺口。批准建立其生产版本 PV-B，并核对 BOM、路线、资源后，只解决定义问题，库存候选仍然只有 60 件。P100 多出来的数量能否调过去，还需核对其自有需求、限制、运输和接收结果，不能把集团库存直接当成 P200 现货。</p>
+<p>定义就绪、物料齐套和实际可生产要分别返回。即使数量缺口清零，产能日历、人员工装与现场质量也可能尚未就绪；不要用一个“可生产”布尔值隐藏未经检查的条件。</p>
+<h2 id="转厂前做一份有责任人的准备清单">转厂前做一份有责任人的准备清单</h2>
+<p>工程确认产品与工艺适用，主数据岗位建立和检查工厂数据，计划核对供给与时间，现场确认资源和执行条件。每个缺口有对象、负责人、证据及复查结果，复制成功只代表数据写入，尚未证明可以开工。</p>
+<p>例如箱与件的换算缺失，应返回单位待核实，不把十箱直接记成十件。路线指向不存在的工作中心时，保留错误，不能把它改到名字最接近的资源。受限库存的原因也应由原责任系统处理，不由转厂脚本顺手解除。</p>
+<p>Agent 可以比较两厂数据、列出缺少的映射和批准项。创建版本、改变替代关系、调整估价和释放订单仍各有授权，执行后要读回保存的对象与适用条件。</p>
+<h2 id="用两厂场景核对是否存在误放行">用两厂场景核对是否存在误放行</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>变化</th><th>应得到的结果</th></tr></thead><tbody><tr><td>P100 100 台且日期、批量适用</td><td>本例主数据与候选数量检查通过，其他现场条件另查</td></tr><tr><td>P200 没有生产版本</td><td>返回定义缺口及 140 件数量缺口，不复用 PV-A</td></tr><tr><td>P200 的 PV-B 获准且一致</td><td>定义就绪，数量缺口仍为 140 件</td></tr><tr><td>生产日期超出模型有效区间</td><td>当前组合不适用，不能仅因版本已存在就放行</td></tr><tr><td>单位换算或来源查询缺失</td><td>数量资格待核实，不输出零缺口</td></tr></tbody></table>
+<p><a href="/manufacturing/samples/erp-sap-cases.json">本轮样本</a>保存组织、版本、日期和两厂数量；<a href="/manufacturing/erp-mrp-stock-shortage-replenishment/">MRP 专题</a>继续分析这些条件怎样进入供给计算。公开资料核对于 2026-10-20，样本检查通过仅说明声明条件内部一致，不能代替真实转厂验证。</p></div>  <nav class="article-bottom" aria-label="继续阅读" data-astro-cid-767rrl5b><a href="/manufacturing/" data-astro-cid-767rrl5b>← 返回制造业系统</a><a href="/blog/2026-10-14-manufacturing-systems-map/" data-astro-cid-767rrl5b>完整研究目录 →</a></nav> </div> </article> </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html> 

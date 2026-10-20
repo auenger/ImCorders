@@ -1,0 +1,188 @@
+{
+  "checkedAt": "2026-10-20",
+  "simulated": true,
+  "articles": [
+    {
+      "slug": "erp-purchase-receipt-invoice-payment",
+      "title": "货已经收到了，为什么供应商的款还付不了",
+      "order": 41,
+      "maps": [
+        "erp-procure-pay-match"
+      ],
+      "productScope": "S/4HANA procurement/payables concepts; posted and payment-blocked invoice model, ordinary valuated goods; no tax or FX.",
+      "sourceUrls": [
+        "https://learning.sap.com/courses/explaining-payables-invoice-processing/exploring-the-procure-to-pay-process_d7a4061e-3d6a-44ff-bab5-e548bc258dfc",
+        "https://learning.sap.com/courses/invoice-verification-in-sap-s-4hana/using-fiori-apps-for-gr-ir-reconciliation"
+      ]
+    },
+    {
+      "slug": "erp-sales-delivery-billing-collection",
+      "title": "产品已经发走了，为什么钱还没收回来",
+      "order": 42,
+      "maps": [
+        "erp-order-cash-open-items"
+      ],
+      "productScope": "S/4HANA sales and finance concepts; physical delivery, commercial billing and receivable application are separate; no revenue recognition model.",
+      "sourceUrls": [
+        "https://learning.sap.com/courses/exploring-sap-s-4hana-sales-essentials/describing-the-order-to-cash-process_e4256fc4-3382-4545-a18e-465b69737b5f",
+        "https://learning.sap.com/courses/exploring-sap-s-4hana-sales-essentials/executing-the-billing-process-and-the-integration-to-sap-s-4hana-finance_e2dd5db3-73c3-4cda-8ad5-1e7f39f04fba"
+      ]
+    },
+    {
+      "slug": "erp-production-cost-wip-settlement",
+      "title": "产品已经做完，为什么订单成本还在变",
+      "order": 43,
+      "maps": [
+        "erp-production-cost-settlement"
+      ],
+      "productScope": "S/4HANA Cloud Public Edition event-based production accounting course; own residual WIP model and independently declared costs.",
+      "sourceUrls": [
+        "https://learning.sap.com/courses/detailing-production-accounting-by-order/analyzing-the-settlement-of-a-finally-delivered-production-order_e8549802-97b8-4d4d-aacc-27ba25f561ce",
+        "https://learning.sap.com/courses/detailing-production-accounting-by-order"
+      ]
+    },
+    {
+      "slug": "erp-plant-master-data-production-readiness",
+      "title": "同一款产品，为什么换个工厂就做不出来",
+      "order": 44,
+      "maps": [
+        "erp-plant-master-data"
+      ],
+      "productScope": "S/4HANA manufacturing master data concepts; one company code, two plants, inclusive teaching date/lot bounds.",
+      "sourceUrls": [
+        "https://learning.sap.com/courses/exploring-end-to-end-business-processes-in-sap/explaining-the-impact-of-enterprise-structures-to-master-data-and-documents_a541b8fe-074d-4379-b54b-d7d6c803716b",
+        "https://learning.sap.com/courses/manage-production-orders-in-sap-s-4hana-manufacturing/analyzing-the-master-data-relevant-to-create-production-orders"
+      ]
+    },
+    {
+      "slug": "erp-mrp-stock-shortage-replenishment",
+      "title": "库存越买越多，生产为什么还在缺料",
+      "order": 45,
+      "maps": [
+        "erp-mrp-demand-supply"
+      ],
+      "productScope": "S/4HANA MRP concepts; own sales-consumes-forecast, disjoint exclusions, time buckets and batch policy.",
+      "sourceUrls": [
+        "https://learning.sap.com/courses/exploring-production-planning-in-sap-s-4hana/understanding-mrp-in-sap-s-4hana",
+        "https://learning.sap.com/courses/manage-production-orders-in-sap-s-4hana-manufacturing/analyzing-master-data-selection"
+      ]
+    },
+    {
+      "slug": "erp-order-promise-availability",
+      "title": "订单接下来了，交期为什么还不敢承诺",
+      "order": 46,
+      "maps": [
+        "erp-atp-confirmation-recheck"
+      ],
+      "productScope": "Public Edition Basic ATP course plus S/4HANA aATP BOP reference; own protected allocation, not the full SAP algorithm.",
+      "sourceUrls": [
+        "https://learning.sap.com/courses/optimizing-advanced-logistics-and-analytics-in-sap-s-4hana-cloud-public-edition/introducing-basic-available-to-promise-2ln-_ce76d642-05b2-4759-8fdc-57d46ac0b5eb",
+        "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/f132c385e0234fe68ae9ff35b2da178c/73a1a457ef816b10e10000000a441470.html"
+      ]
+    },
+    {
+      "slug": "erp-ewm-inventory-production-supply",
+      "title": "ERP 和仓库都有库存，到底该看哪一个",
+      "order": 47,
+      "maps": [
+        "erp-ewm-stock-scope"
+      ],
+      "productScope": "S/4HANA EWM production supply; own PMR scenario with one EWM-managed storage location covering BULK and PSA; not a claim about all cloud warehouse products.",
+      "sourceUrls": [
+        "https://learning.sap.com/courses/processes-in-sap-s-4hana-ewm/executing-the-production-supply-process",
+        "https://learning.sap.com/courses/basic-customizing-in-sap-s-4hana-ewm/outlining-the-basics-of-sap-ewm"
+      ]
+    },
+    {
+      "slug": "erp-mes-completion-reconciliation",
+      "title": "车间已经报完工，ERP 为什么还没对上账",
+      "order": 48,
+      "maps": [
+        "erp-mes-confirmation-posting"
+      ],
+      "productScope": "S/4HANA and Digital Manufacturing integration concepts; own separately committed actions and canonical business receipt identity.",
+      "sourceUrls": [
+        "https://learning.sap.com/courses/discovering-sap-digital-manufacturing/exploring-the-integration-of-sap-digital-manufacturing-with-sap-s-4hana_b2ffd41c-64b9-4f73-a802-8528562e2cb7",
+        "https://learning.sap.com/courses/exploring-end-to-end-business-processes-in-sap/production-order-processing_b61dc067-bab8-461e-aa8a-2331d7d04bf4"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/f132c385e0234fe68ae9ff35b2da178c/73a1a457ef816b10e10000000a441470.html",
+      "kind": "SAP official learning reference"
+    },
+    {
+      "url": "https://learning.sap.com/courses/basic-customizing-in-sap-s-4hana-ewm/outlining-the-basics-of-sap-ewm",
+      "kind": "SAP official learning reference"
+    },
+    {
+      "url": "https://learning.sap.com/courses/detailing-production-accounting-by-order",
+      "kind": "SAP official learning reference"
+    },
+    {
+      "url": "https://learning.sap.com/courses/detailing-production-accounting-by-order/analyzing-the-settlement-of-a-finally-delivered-production-order_e8549802-97b8-4d4d-aacc-27ba25f561ce",
+      "kind": "SAP official learning reference"
+    },
+    {
+      "url": "https://learning.sap.com/courses/discovering-sap-digital-manufacturing/exploring-the-integration-of-sap-digital-manufacturing-with-sap-s-4hana_b2ffd41c-64b9-4f73-a802-8528562e2cb7",
+      "kind": "SAP official learning reference"
+    },
+    {
+      "url": "https://learning.sap.com/courses/explaining-payables-invoice-processing/exploring-the-procure-to-pay-process_d7a4061e-3d6a-44ff-bab5-e548bc258dfc",
+      "kind": "SAP official learning reference"
+    },
+    {
+      "url": "https://learning.sap.com/courses/exploring-end-to-end-business-processes-in-sap/explaining-the-impact-of-enterprise-structures-to-master-data-and-documents_a541b8fe-074d-4379-b54b-d7d6c803716b",
+      "kind": "SAP official learning reference"
+    },
+    {
+      "url": "https://learning.sap.com/courses/exploring-end-to-end-business-processes-in-sap/production-order-processing_b61dc067-bab8-461e-aa8a-2331d7d04bf4",
+      "kind": "SAP official learning reference"
+    },
+    {
+      "url": "https://learning.sap.com/courses/exploring-production-planning-in-sap-s-4hana/understanding-mrp-in-sap-s-4hana",
+      "kind": "SAP official learning reference"
+    },
+    {
+      "url": "https://learning.sap.com/courses/exploring-sap-s-4hana-sales-essentials/describing-the-order-to-cash-process_e4256fc4-3382-4545-a18e-465b69737b5f",
+      "kind": "SAP official learning reference"
+    },
+    {
+      "url": "https://learning.sap.com/courses/exploring-sap-s-4hana-sales-essentials/executing-the-billing-process-and-the-integration-to-sap-s-4hana-finance_e2dd5db3-73c3-4cda-8ad5-1e7f39f04fba",
+      "kind": "SAP official learning reference"
+    },
+    {
+      "url": "https://learning.sap.com/courses/invoice-verification-in-sap-s-4hana/using-fiori-apps-for-gr-ir-reconciliation",
+      "kind": "SAP official learning reference"
+    },
+    {
+      "url": "https://learning.sap.com/courses/manage-production-orders-in-sap-s-4hana-manufacturing/analyzing-master-data-selection",
+      "kind": "SAP official learning reference"
+    },
+    {
+      "url": "https://learning.sap.com/courses/manage-production-orders-in-sap-s-4hana-manufacturing/analyzing-the-master-data-relevant-to-create-production-orders",
+      "kind": "SAP official learning reference"
+    },
+    {
+      "url": "https://learning.sap.com/courses/optimizing-advanced-logistics-and-analytics-in-sap-s-4hana-cloud-public-edition/introducing-basic-available-to-promise-2ln-_ce76d642-05b2-4759-8fdc-57d46ac0b5eb",
+      "kind": "SAP official learning reference"
+    },
+    {
+      "url": "https://learning.sap.com/courses/processes-in-sap-s-4hana-ewm/executing-the-production-supply-process",
+      "kind": "SAP official learning reference"
+    },
+    {
+      "url": "https://learning.sap.com/courses/exploring-sap-cloud-erp/describing-the-technical-layers-and-deployment-variants-of-sap-s-4hana_b81ddd87-646f-4c28-89e0-e29815cb59d5",
+      "kind": "SAP official product/deployment terminology; ERP entry article"
+    }
+  ],
+  "sample": "/manufacturing/samples/erp-sap-cases.json",
+  "verifier": "/manufacturing/samples/verify-erp-sap-cases.py",
+  "scope": [
+    "Eight independent teaching models, no shared physical or financial totals.",
+    "SAP logical objects and product scenarios only; no release-pinned UI, API or live tenant verification.",
+    "Cost reference is Public Edition event-based accounting; EWM example fixes one storage-location model and PMR.",
+    "Forecast consumption, batch size, allocation, payment review and all numbers are declared teaching choices."
+  ]
+}
