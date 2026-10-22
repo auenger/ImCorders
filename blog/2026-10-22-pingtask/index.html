@@ -1,0 +1,313 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>做了个 PingTask，把想做的事 Ping 一下 - 杨正武</title><meta name="description" content="PingTask 是一个带着游戏 Ping 手感的 macOS 玩具产品。指向屏幕上的信息，选择分析、拆任务或开始处理，把来源、上下文和自己的意图串起来，交给 Codex 等 Agent 继续推进。"><link rel="canonical" href="https://imcoders.cn/blog/2026-10-22-pingtask/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/blog/2026-10-22-pingtask/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/blog/2026-10-22-pingtask/#article","headline":"做了个 PingTask，把想做的事 Ping 一下","description":"PingTask 是一个带着游戏 Ping 手感的 macOS 玩具产品。指向屏幕上的信息，选择分析、拆任务或开始处理，把来源、上下文和自己的意图串起来，交给 Codex 等 Agent 继续推进。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/blog/2026-10-22-pingtask/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/blog-images/pingtask/hero-ping-to-agent.png","datePublished":"2026-10-22T00:00:00.000Z","dateModified":"2026-10-22T00:00:00.000Z","articleSection":"技术博客"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"博客","item":"https://imcoders.cn/blog/"},{"@type":"ListItem","position":3,"name":"做了个 PingTask，把想做的事 Ping 一下","item":"https://imcoders.cn/blog/2026-10-22-pingtask/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-22T00:00:00.000Z"><meta property="article:modified_time" content="2026-10-22T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="做了个 PingTask，把想做的事 Ping 一下 - 杨正武"><meta property="og:description" content="PingTask 是一个带着游戏 Ping 手感的 macOS 玩具产品。指向屏幕上的信息，选择分析、拆任务或开始处理，把来源、上下文和自己的意图串起来，交给 Codex 等 Agent 继续推进。"><meta property="og:url" content="https://imcoders.cn/blog/2026-10-22-pingtask/"><meta property="og:image" content="https://imcoders.cn/blog-images/pingtask/hero-ping-to-agent.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="做了个 PingTask，把想做的事 Ping 一下 - 杨正武"><meta name="twitter:description" content="PingTask 是一个带着游戏 Ping 手感的 macOS 玩具产品。指向屏幕上的信息，选择分析、拆任务或开始处理，把来源、上下文和自己的意图串起来，交给 Codex 等 Agent 继续推进。"><meta name="twitter:image" content="https://imcoders.cn/blog-images/pingtask/hero-ping-to-agent.png"><meta itemprop="name" content="做了个 PingTask，把想做的事 Ping 一下 - 杨正武"><meta itemprop="description" content="PingTask 是一个带着游戏 Ping 手感的 macOS 玩具产品。指向屏幕上的信息，选择分析、拆任务或开始处理，把来源、上下文和自己的意图串起来，交给 Codex 等 Agent 继续推进。"><meta itemprop="image" content="https://imcoders.cn/blog-images/pingtask/hero-ping-to-agent.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "做了个 PingTask，把想做的事 Ping 一下 - 杨正武";
+const shareDesc = "PingTask 是一个带着游戏 Ping 手感的 macOS 玩具产品。指向屏幕上的信息，选择分析、拆任务或开始处理，把来源、上下文和自己的意图串起来，交给 Codex 等 Agent 继续推进。";
+const shareLink = "https://imcoders.cn/blog/2026-10-22-pingtask/";
+const shareImg = "https://imcoders.cn/blog-images/pingtask/hero-ping-to-agent.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.DUPo9LDV.css"><script type="module" src="/_astro/hoisted.D20CsQCG.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/">制造业系统</a></li> <li><a href="/blog" aria-current="page">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <script>(function(){const shareText = "PingTask 是一个带着游戏 Ping 手感的 macOS 玩具产品。指向屏幕上的信息，选择分析...\n\nhttps://imcoders.cn/blog/2026-10-22-pingtask/";
+const shareUrl = "https://imcoders.cn/blog/2026-10-22-pingtask/";
+const wechatTitle = "做了个 PingTask，把想做的事 Ping 一下";
+const wechatDescription = "PingTask 是一个带着游戏 Ping 手感的 macOS 玩具产品。指向屏幕上的信息，选择分析、拆任务或开始处理，把来源、上下文和自己的意图串起来，交给 Codex 等 Agent 继续推进。";
+const wechatAuthor = "杨正武";
+const wechatDate = "2026年10月22日";
+
+    window.shareArticle = async function () {
+      const button = document.querySelector('button.share-button');
+      try {
+        await navigator.clipboard.writeText(shareText);
+        if (!button) return;
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> 已复制';
+        button.classList.add('copied');
+        window.setTimeout(() => {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+      } catch (error) {
+        console.error('复制失败', error);
+        window.prompt('请复制下面的分享内容', shareText);
+      }
+    };
+
+    const wechatCopiedProperties = [
+      'color', 'background-color', 'font-family', 'font-size', 'font-weight', 'font-style',
+      'line-height', 'letter-spacing', 'text-align', 'text-decoration', 'text-indent',
+      'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
+      'padding-top', 'padding-right', 'padding-bottom', 'padding-left',
+      'border-top', 'border-right', 'border-bottom', 'border-left', 'border-radius',
+      'display', 'vertical-align',
+      'white-space', 'list-style-type', 'border-collapse', 'overflow-wrap', 'word-break'
+    ];
+
+    const canonicalizeWechatUrl = function (value) {
+      if (!value) return value;
+      try {
+        return new URL(value, shareUrl).href;
+      } catch {
+        return value;
+      }
+    };
+
+    window.buildWechatRichText = function () {
+      const article = document.querySelector('.article-content');
+      if (!article) throw new Error('article content not found');
+
+      const clone = article.cloneNode(true);
+      const sourceNodes = [article, ...article.querySelectorAll('*')];
+      const cloneNodes = [clone, ...clone.querySelectorAll('*')];
+
+      sourceNodes.forEach((sourceNode, index) => {
+        const targetNode = cloneNodes[index];
+        if (!(sourceNode instanceof Element) || !(targetNode instanceof Element)) return;
+
+        const computed = getComputedStyle(sourceNode);
+        const inlineStyles = wechatCopiedProperties
+          .map((property) => `${property}:${computed.getPropertyValue(property)};`)
+          .join('');
+
+        targetNode.setAttribute('style', inlineStyles);
+        targetNode.removeAttribute('id');
+        targetNode.removeAttribute('class');
+        [...targetNode.attributes].forEach((attribute) => {
+          if (attribute.name.startsWith('data-') || attribute.name.startsWith('aria-')) {
+            targetNode.removeAttribute(attribute.name);
+          }
+        });
+
+        if (sourceNode instanceof HTMLImageElement && targetNode instanceof HTMLImageElement) {
+          const rawSource = sourceNode.getAttribute('src') || sourceNode.currentSrc || sourceNode.src;
+          targetNode.setAttribute('src', canonicalizeWechatUrl(rawSource));
+          targetNode.removeAttribute('srcset');
+          targetNode.removeAttribute('sizes');
+          targetNode.removeAttribute('loading');
+          targetNode.removeAttribute('decoding');
+          targetNode.setAttribute('style', `${inlineStyles}display:block;width:100%;max-width:100%;height:auto;margin-left:auto;margin-right:auto;`);
+        }
+
+        if (sourceNode instanceof HTMLAnchorElement && targetNode instanceof HTMLAnchorElement) {
+          targetNode.setAttribute('href', canonicalizeWechatUrl(sourceNode.getAttribute('href') || sourceNode.href));
+          targetNode.removeAttribute('target');
+          targetNode.removeAttribute('rel');
+        }
+      });
+
+      clone.querySelectorAll('script, style, iframe, button, form, input, textarea, select').forEach((node) => node.remove());
+
+      // 微信编辑器的内容栏比桌面文章窄。不要保留桌面布局计算出的固定宽高，
+      // 否则图片缩小后父元素仍会占据原高度，文字换行后也可能互相覆盖。
+      clone.querySelectorAll('p').forEach((paragraph) => {
+        const onlyChild = paragraph.children.length === 1 ? paragraph.firstElementChild : null;
+        if (onlyChild instanceof HTMLImageElement && !paragraph.textContent?.trim()) {
+          paragraph.setAttribute('style', 'margin:24px 0 12px;padding:0;line-height:0;');
+        }
+      });
+
+      clone.querySelectorAll('img').forEach((image) => {
+        image.style.display = 'block';
+        image.style.width = '100%';
+        image.style.maxWidth = '100%';
+        image.style.height = 'auto';
+        image.style.marginLeft = 'auto';
+        image.style.marginRight = 'auto';
+      });
+
+      clone.querySelectorAll('pre').forEach((pre) => {
+        pre.style.display = 'block';
+        pre.style.width = 'auto';
+        pre.style.maxWidth = '100%';
+        pre.style.whiteSpace = 'pre-wrap';
+        pre.style.wordBreak = 'break-word';
+        pre.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('pre code').forEach((code) => {
+        code.style.whiteSpace = 'pre-wrap';
+        code.style.wordBreak = 'break-word';
+        code.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('table').forEach((table) => {
+        table.style.display = 'table';
+        table.style.width = '100%';
+        table.style.maxWidth = '100%';
+        table.style.tableLayout = 'fixed';
+        table.style.borderCollapse = 'collapse';
+      });
+
+      clone.querySelectorAll('th, td').forEach((cell) => {
+        cell.style.minWidth = '0';
+        cell.style.wordBreak = 'break-word';
+        cell.style.overflowWrap = 'anywhere';
+        cell.style.verticalAlign = 'top';
+      });
+
+      const wrapper = document.createElement('section');
+      wrapper.setAttribute('style', 'box-sizing:border-box;width:100%;max-width:100%;margin:0;padding:32px 26px;background-color:#111016;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+
+      const header = document.createElement('header');
+      header.setAttribute('style', 'margin:0 0 34px;padding:0 0 24px;border-bottom:2px solid #e23c3e;');
+
+      const title = document.createElement('h1');
+      title.textContent = wechatTitle;
+      title.setAttribute('style', 'margin:0 0 18px;color:#f1ece2;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:30px;font-weight:800;line-height:1.25;letter-spacing:-0.5px;');
+
+      const description = document.createElement('p');
+      description.textContent = wechatDescription;
+      description.setAttribute('style', 'margin:0 0 16px;color:#a9a3a8;font-size:16px;line-height:1.75;');
+
+      const meta = document.createElement('p');
+      meta.textContent = `${wechatAuthor} · ${wechatDate}`;
+      meta.setAttribute('style', 'margin:0;color:#e23c3e;font-size:13px;font-weight:700;line-height:1.6;letter-spacing:0.5px;');
+
+      header.append(title, description, meta);
+      clone.setAttribute('style', 'width:auto;max-width:100%;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+      wrapper.append(header, clone);
+
+      return {
+        html: wrapper.outerHTML,
+        text: `${wechatTitle}\n\n${wechatDescription}\n\n${wechatAuthor} · ${wechatDate}\n\n${article.innerText}`
+      };
+    };
+
+    const setWechatCopyFeedback = function (button, message, isError = false) {
+      if (!button) return;
+      const original = button.dataset.originalHtml || button.innerHTML;
+      button.dataset.originalHtml = original;
+      button.innerHTML = isError
+        ? `<i class="fas fa-exclamation-circle" aria-hidden="true"></i> ${message}`
+        : `<i class="fas fa-check" aria-hidden="true"></i> ${message}`;
+      button.classList.toggle('copy-error', isError);
+      button.classList.toggle('copied', !isError);
+      window.setTimeout(() => {
+        button.innerHTML = original;
+        button.classList.remove('copied', 'copy-error');
+      }, 2600);
+    };
+
+    window.copyArticleToWechat = async function () {
+      const button = document.querySelector('.wechat-copy-button');
+      try {
+        const payload = window.buildWechatRichText();
+        if (navigator.clipboard?.write && window.ClipboardItem && window.isSecureContext) {
+          await navigator.clipboard.write([new ClipboardItem({
+            'text/html': new Blob([payload.html], { type: 'text/html' }),
+            'text/plain': new Blob([payload.text], { type: 'text/plain' })
+          })]);
+        } else {
+          const holder = document.createElement('div');
+          holder.contentEditable = 'true';
+          holder.style.position = 'fixed';
+          holder.style.left = '-99999px';
+          holder.style.top = '0';
+          holder.innerHTML = payload.html;
+          document.body.appendChild(holder);
+
+          const range = document.createRange();
+          range.selectNodeContents(holder);
+          const selection = window.getSelection();
+          selection?.removeAllRanges();
+          selection?.addRange(range);
+          const copied = document.execCommand('copy');
+          selection?.removeAllRanges();
+          holder.remove();
+          if (!copied) throw new Error('copy command failed');
+        }
+        setWechatCopyFeedback(button, '已复制到公众号');
+      } catch (error) {
+        console.error('复制公众号富文本失败', error);
+        setWechatCopyFeedback(button, '复制失败', true);
+      }
+    };
+  })();</script>  <article class="article-page" data-astro-cid-4sn4zg3r> <header class="article-hero" data-astro-cid-4sn4zg3r> <div class="article-hero-grid" data-astro-cid-4sn4zg3r> <div class="article-kind" data-astro-cid-4sn4zg3r>TECHNICAL ARTICLE</div> <div class="article-heading" data-astro-cid-4sn4zg3r> <h1 class="article-title" data-astro-cid-4sn4zg3r>做了个 PingTask，把想做的事 Ping 一下</h1> <p class="article-description" data-astro-cid-4sn4zg3r>PingTask 是一个带着游戏 Ping 手感的 macOS 玩具产品。指向屏幕上的信息，选择分析、拆任务或开始处理，把来源、上下文和自己的意图串起来，交给 Codex 等 Agent 继续推进。</p> </div> </div> </header> <div class="reader-grid" data-astro-cid-4sn4zg3r> <aside class="article-meta" aria-label="文章信息" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>文章信息</h2> <dl class="meta-list" data-astro-cid-4sn4zg3r> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>发布日期</dt> <dd data-astro-cid-4sn4zg3r><time datetime="2026-10-22T00:00:00.000Z" data-astro-cid-4sn4zg3r>2026年10月22日</time></dd> </div> <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>作者</dt><dd data-astro-cid-4sn4zg3r>杨正武</dd></div>  <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>预计阅读</dt><dd data-astro-cid-4sn4zg3r>7 分钟</dd></div> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>标签</dt> <dd class="article-tags" data-astro-cid-4sn4zg3r><span class="article-tag" data-astro-cid-4sn4zg3r>PingTask</span><span class="article-tag" data-astro-cid-4sn4zg3r>AI Agent</span><span class="article-tag" data-astro-cid-4sn4zg3r>意图交互</span><span class="article-tag" data-astro-cid-4sn4zg3r>macOS</span><span class="article-tag" data-astro-cid-4sn4zg3r>玩具产品</span></dd> </div> </dl> <div class="article-actions" data-astro-cid-4sn4zg3r> <a class="share-button" href="https://imcoders.cn/blog/2026-10-22-pingtask/index.md" data-astro-cid-4sn4zg3r>阅读 Markdown</a> <button class="wechat-copy-button" type="button" onclick="copyArticleToWechat()" data-astro-cid-4sn4zg3r> <i class="fab fa-weixin" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 复制到公众号
+</button> <button class="share-button" type="button" onclick="shareArticle()" data-astro-cid-4sn4zg3r> <i class="fas fa-share-alt" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 分享文章
+</button> </div> </aside> <main class="article-content" data-astro-cid-4sn4zg3r> <p>最近做了一个 macOS 小工具，叫 PingTask。可以先把它当成一个玩具产品。</p>
+<p>我想在电脑上也能像打游戏一样，看到一件事，指过去，Ping 一下。</p>
+<p>群里有人发来一个问题，我想让 Agent 分析；一段讨论终于说清了，我想把它拆成任务；需求已经明确，我想直接开始处理。这些念头都发生在看信息的当下，但要交给 Agent，往往还得复制原文、补上下文、切换窗口，再解释一遍自己想干什么。</p>
+<p>PingTask 想把这段交接缩短。指着信息，选一个意图，把眼前的内容和想做的事一起交出去。</p>
+<p><img src="/_content-images/4a4a264e9a0276aba30f-1600.webp" alt="纸艺概念插画：鼠标指向一条消息，通过意图轮盘将消息与处理要求一起交给 Agent" loading="eager" decoding="async" fetchpriority="high" width="1672" height="941" srcset="/_content-images/4a4a264e9a0276aba30f-640.webp 640w, /_content-images/4a4a264e9a0276aba30f-960.webp 960w, /_content-images/4a4a264e9a0276aba30f-1600.webp 1600w" sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1200px) 75vw, 900px"></p>
+<p><em>概念插画。选中的消息和处理意图一起进入 Agent 的工作过程。</em></p>
+<h2 id="把游戏里的-ping-搬到桌面上">把游戏里的 Ping 搬到桌面上</h2>
+<p>游戏里的 Ping 很省话。一个位置，加上一个标记，就能表达“看这里”“我在路上”或者“这里有危险”。对方能理解，是因为位置、场景和动作一起传了过去。</p>
+<p>在电脑上处理事情，也经常有这种情况。我已经看着一条消息，鼠标也停在那里，心里想的是“帮我看一下这个问题”。但聊天框并不知道“这个”指什么，我还要重新组织一份输入。</p>
+<p>所以我给 PingTask 做了一个全局轮盘。按住 Option 或 Ctrl，移动鼠标选一个方向，松手触发；也可以配置成鼠标右键拖动，或者自己的组合键。回到中心、按 Esc 都能取消。</p>
+<p>默认放了四个动作：分析一下、拆成任务、开始处理、继续推进。松手时，对应的图标会在原地弹出，带着一圈扩散和淡出。视觉参考了 lolPing，保留了问号、旗子这些很有游戏感的标记。</p>
+<p>我挺喜欢这种手感。一个临时冒出来的念头，有了一个随手能做的动作。</p>
+<p><img src="/_content-images/3314da1cd14406633fa0-1600.webp" alt="PingTask 的四方向轮盘、选中状态、八方向配置和空轮盘预览" loading="lazy" decoding="async" width="1600" height="1720" srcset="/_content-images/3314da1cd14406633fa0-640.webp 640w, /_content-images/3314da1cd14406633fa0-960.webp 960w, /_content-images/3314da1cd14406633fa0-1600.webp 1600w" sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1200px) 75vw, 900px"></p>
+<p><em>轮盘与下文的配置界面图来自项目的原生界面离屏渲染，使用演示配置和虚构内容。</em></p>
+<h2 id="常用意图可以提前放好">常用意图可以提前放好</h2>
+<p>我想串起来的，是散落在日常工作里的各种“我想让它做点什么”。</p>
+<p>同一条消息，可以先分析，也可以整理成待办，还可以交给 Agent 实施。信息相同，意图不同，后面的工作就不同。轮盘上的每个方向，相当于提前存好了一种处理方式。</p>
+<p><img src="/_content-images/7af6912401591d9390c6-1600.webp" alt="纸艺概念插画：消息、文档和截图进入四方向意图轮盘，常用处理方式保存为可复用卡片" loading="lazy" decoding="async" width="1672" height="941" srcset="/_content-images/7af6912401591d9390c6-640.webp 640w, /_content-images/7af6912401591d9390c6-960.webp 960w, /_content-images/7af6912401591d9390c6-1600.webp 1600w" sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1200px) 75vw, 900px"></p>
+<p>比如“分析一下”的默认提示词，会要求区分已知事实、推断和待确认问题，给出下一步。“拆成任务”会整理目标、依赖和验收条件。“开始处理”则要求根据明确需求推进实现，并报告改动和验证结果。</p>
+<p>这些都能自己改。意图有自己的名称、图片、提示词和执行器，可以新增、排序，也可以只留在库里。轮盘最多同时显示八个，放自己经常用的几个就好。</p>
+<p><img src="/_content-images/33bff99e1fe4dddd76dc-1600.webp" alt="PingTask 意图配置页，可编辑图标、提示词、执行器以及自动上下文和提交选项" loading="lazy" decoding="async" width="2560" height="1720" srcset="/_content-images/33bff99e1fe4dddd76dc-640.webp 640w, /_content-images/33bff99e1fe4dddd76dc-960.webp 960w, /_content-images/33bff99e1fe4dddd76dc-1600.webp 1600w" sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1200px) 75vw, 900px"></p>
+<p>如果每天都要做相似的事，就可以把自己的习惯放进去。例如配置一个“整理待回复事项”，要求从确认的讨论材料中提取问题、已知结论和还缺的信息。下次遇到同类讨论，就不用重新输入这一整段要求。</p>
+<p><strong>Ping 一下带过去的，是“这份信息，按我的这套方式处理”。</strong> 临时变化的要求，仍然可以在草稿里补。</p>
+<p>也可以给一个意图只配置特效。松手弹个问号，什么任务都不创建，连截图和 OCR 都不运行。做成玩具，也该留一点纯粹好玩的部分。</p>
+<h2 id="从一条消息走到-agent">从一条消息走到 Agent</h2>
+<p>拿项目里的一个虚构例子来说，群里有人发了一句：“导出按钮点了没反应，Safari 上可以稳定复现，帮忙看一下。”</p>
+<p>我指着这句话，选择“分析一下”。PingTask 会捕获目标窗口，保留原始指针位置，再用 OCR 提取线索。如果来源是微信，并且本机已经配置了 wxview，就继续查找对应会话和真实消息，把附近的上下文拿出来核对。</p>
+<p>这一步很有必要。单看一句“导出失败”，不知道它是在什么条件下失败，也可能漏掉前面已经说过的复现步骤。截图能帮助找到位置，真实消息和附近讨论则能补上处理问题需要的材料。</p>
+<p>默认流程里，我会先看到来源和草稿，核对后再提交。找不到唯一消息时保留候选，也可以主动选择只使用截图。交给 Codex 的截图会带上原始 Ping 坐标，让它知道我指的是哪里。</p>
+<p>接下来，把确认的来源、上下文、意图提示词和补充说明一起交给已经配置好的执行器。Codex 使用设置中的工作目录和权限处理任务，PingTask 保存任务记录，并展示首次执行的状态与返回内容。需要深入讨论时，可以打开关联的 Codex CLI 会话接着聊。</p>
+<p>这样就接上了一条路径：眼前的信息，选中的意图，确认的材料，Agent 的执行，再到可以回看的结果。中间需要补什么，产品尽量帮忙带上。</p>
+<p><img src="/_content-images/e6344118e9a17ab26728-1600.webp" alt="纸艺流程插画：选中消息、收集附近上下文、人工核对草稿，再交给 Agent 并保留结果" loading="lazy" decoding="async" width="1672" height="941" srcset="/_content-images/e6344118e9a17ab26728-640.webp 640w, /_content-images/e6344118e9a17ab26728-960.webp 960w, /_content-images/e6344118e9a17ab26728-1600.webp 1600w" sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1200px) 75vw, 900px"></p>
+<p><em>默认交接过程示意。来源与附近上下文先组成材料，经人核对后，再交给 Agent 处理。</em></p>
+<h2 id="只要-ping-一下要有条件地成立">“只要 Ping 一下”要有条件地成立</h2>
+<p>我希望常用动作最终能短到只剩一次 Ping。当前已经能针对单个意图开启自动上下文和自动提交，这两个开关默认关闭。</p>
+<p>在微信来源上，用户预先开启后，也要找到唯一可靠的会话和消息，核对指针文字与真实原文，并拿到未截断的上下文，才会自动交接。来源有歧义，就停在草稿里等人确认。</p>
+<p>我愿意把常用要求提前配置好，让下一次少做几步。但屏幕上几个相似的字，还不足以说明 Agent 找对了处理对象。</p>
+<p>重复 Ping 也需要有交代。同一来源、同一意图和执行器再次触发，会打开已有记录，保留已经编辑过的内容。已经在执行的提交，不该因为多点了一次又跑一遍。</p>
+<p>“继续推进”是这条链上还需要补齐的一段。轮盘里已经有这个可配置意图，但自动识别新消息属于哪个旧任务、把不同消息归到一起，还没有做完。目前真实 Codex 任务的后续推进，要打开原来的 CLI 会话继续；PingTask 也还没有同步外部续聊的全部状态。</p>
+<p>我想要的后续体验，是一件事有了新材料以后，仍然能沿着原来的记录往前走。这部分需要明确的任务关联，才能让下一次 Ping 接得稳。</p>
+<h2 id="先把这个小入口做顺手">先把这个小入口做顺手</h2>
+<p>PingTask 目前是用 SwiftUI 和 AppKit 写的原生 macOS 应用。全局轮盘、窗口捕获、OCR、微信来源检索、本地记录，以及 tmux 加 Codex CLI 的初次执行交接，都已经有了实现。WorkBuddy 也加入了实验适配。</p>
+<p>渠道接入还不齐。飞书已有人工确认来源的流程，真实读取仍待验收；钉钉目前识别窗口，消息查询尚未启用。多屏手势、系统权限和真实微信定位效果，也还需要继续做实机验证。这里介绍的是当前代码与产品设计，配图没有证明这些流程已经全部跑通。</p>
+<p>PingTask 负责把信息和意图送到已有的 Agent 手里，具体推理与执行继续由 Codex、WorkBuddy 承担。空闲时不持续录屏，也不轮询聊天；主动提交后，确认的材料会交给对应执行器及其配置的服务处理。</p>
+<p>我暂时想把它保留成一个小入口，先看看自己每天愿意把哪几个动作留在轮盘上，哪些场景还要反复补话。把这些地方用顺手了，再继续补任务之间的关联。</p>
+<p>代码放在 <a href="https://github.com/auenger/PingTask">PingTask 项目仓库</a>。交互和图片素材的来源记录在项目的 <a href="https://github.com/auenger/PingTask/blob/main/THIRD_PARTY_NOTICES.md">第三方说明</a>里。</p> </main> <aside class="page-toc" aria-label="页面目录" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>页面目录</h2> <ol class="toc-list" data-astro-cid-4sn4zg3r> <li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#把游戏里的-ping-搬到桌面上" data-astro-cid-4sn4zg3r>把游戏里的 Ping 搬到桌面上</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#常用意图可以提前放好" data-astro-cid-4sn4zg3r>常用意图可以提前放好</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#从一条消息走到-agent" data-astro-cid-4sn4zg3r>从一条消息走到 Agent</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#只要-ping-一下要有条件地成立" data-astro-cid-4sn4zg3r>“只要 Ping 一下”要有条件地成立</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#先把这个小入口做顺手" data-astro-cid-4sn4zg3r>先把这个小入口做顺手</a></li> </ol> <a class="toc-back" href="/blog" data-astro-cid-4sn4zg3r><i class="fas fa-arrow-left" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 返回博客</a> </aside> <nav class="article-navigation single" aria-label="相邻文章" data-astro-cid-4sn4zg3r>  <a class="article-nav-link" href="/blog/2026-10-14-manufacturing-systems-map" data-astro-cid-4sn4zg3r> <span class="nav-direction" data-astro-cid-4sn4zg3r>较早文章</span> <span class="nav-title" data-astro-cid-4sn4zg3r>制造业系统全景与深度拆解目录</span> </a> </nav> </div> </article> <div class="selection-share" data-selection-share data-content-selector=".article-content" data-title="做了个 PingTask，把想做的事 Ping 一下" data-author="杨正武" data-section="IMCODERS BLOG" data-url="https://imcoders.cn/blog/2026-10-22-pingtask/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>   </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

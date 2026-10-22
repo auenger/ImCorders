@@ -172,6 +172,25 @@
       "markdownUrl": "https://imcoders.cn/blog/2026-10-14-manufacturing-systems-map/index.md"
     },
     {
+      "id": "blog/2026-10-22-pingtask",
+      "kind": "blog",
+      "title": "做了个 PingTask，把想做的事 Ping 一下",
+      "description": "PingTask 是一个带着游戏 Ping 手感的 macOS 玩具产品。指向屏幕上的信息，选择分析、拆任务或开始处理，把来源、上下文和自己的意图串起来，交给 Codex 等 Agent 继续推进。",
+      "author": "杨正武",
+      "tags": [
+        "PingTask",
+        "AI Agent",
+        "意图交互",
+        "macOS",
+        "玩具产品"
+      ],
+      "publishedAt": "2026-10-22T00:00:00.000Z",
+      "updatedAt": "2026-10-22T00:00:00.000Z",
+      "url": "https://imcoders.cn/blog/2026-10-22-pingtask/",
+      "image": "/blog-images/pingtask/hero-ping-to-agent.png",
+      "markdownUrl": "https://imcoders.cn/blog/2026-10-22-pingtask/index.md"
+    },
+    {
       "id": "blog/agent-technical-reflux",
       "kind": "blog",
       "title": "工程师拥抱 Agent，普通人却重新开始开发软件",
