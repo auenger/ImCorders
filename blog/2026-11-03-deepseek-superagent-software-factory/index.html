@@ -1,0 +1,384 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>理解 DSH Super-Agent 的编排思想 - 杨正武</title><meta name="description" content="分析 DSH Super-Agent 的 Router、宿主任务系统和多个 Worker 如何协作，解释它与 Agent–Subagent 委派的区别，并结合 Silieco 讨论持续任务管理、工作归属与交接。"><link rel="canonical" href="https://imcoders.cn/blog/2026-11-03-deepseek-superagent-software-factory/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/blog/2026-11-03-deepseek-superagent-software-factory/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/blog/2026-11-03-deepseek-superagent-software-factory/#article","headline":"理解 DSH Super-Agent 的编排思想","description":"分析 DSH Super-Agent 的 Router、宿主任务系统和多个 Worker 如何协作，解释它与 Agent–Subagent 委派的区别，并结合 Silieco 讨论持续任务管理、工作归属与交接。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/blog/2026-11-03-deepseek-superagent-software-factory/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/og-default.png","datePublished":"2026-11-03T00:00:00.000Z","dateModified":"2026-11-03T00:00:00.000Z","articleSection":"技术博客"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"博客","item":"https://imcoders.cn/blog/"},{"@type":"ListItem","position":3,"name":"理解 DSH Super-Agent 的编排思想","item":"https://imcoders.cn/blog/2026-11-03-deepseek-superagent-software-factory/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-11-03T00:00:00.000Z"><meta property="article:modified_time" content="2026-11-03T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="理解 DSH Super-Agent 的编排思想 - 杨正武"><meta property="og:description" content="分析 DSH Super-Agent 的 Router、宿主任务系统和多个 Worker 如何协作，解释它与 Agent–Subagent 委派的区别，并结合 Silieco 讨论持续任务管理、工作归属与交接。"><meta property="og:url" content="https://imcoders.cn/blog/2026-11-03-deepseek-superagent-software-factory/"><meta property="og:image" content="https://imcoders.cn/og-default.png"><meta property="og:image:width" content="720"><meta property="og:image:height" content="720"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="理解 DSH Super-Agent 的编排思想 - 杨正武"><meta name="twitter:description" content="分析 DSH Super-Agent 的 Router、宿主任务系统和多个 Worker 如何协作，解释它与 Agent–Subagent 委派的区别，并结合 Silieco 讨论持续任务管理、工作归属与交接。"><meta name="twitter:image" content="https://imcoders.cn/og-default.png"><meta itemprop="name" content="理解 DSH Super-Agent 的编排思想 - 杨正武"><meta itemprop="description" content="分析 DSH Super-Agent 的 Router、宿主任务系统和多个 Worker 如何协作，解释它与 Agent–Subagent 委派的区别，并结合 Silieco 讨论持续任务管理、工作归属与交接。"><meta itemprop="image" content="https://imcoders.cn/og-default.png"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "理解 DSH Super-Agent 的编排思想 - 杨正武";
+const shareDesc = "分析 DSH Super-Agent 的 Router、宿主任务系统和多个 Worker 如何协作，解释它与 Agent–Subagent 委派的区别，并结合 Silieco 讨论持续任务管理、工作归属与交接。";
+const shareLink = "https://imcoders.cn/blog/2026-11-03-deepseek-superagent-software-factory/";
+const shareImg = "https://imcoders.cn/og-default.png";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.DUPo9LDV.css"><script type="module" src="/_astro/hoisted.D20CsQCG.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/">制造业系统</a></li> <li><a href="/blog" aria-current="page">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <script>(function(){const shareText = "分析 DSH Super-Agent 的 Router、宿主任务系统和多个 Worker 如何协作，...\n\nhttps://imcoders.cn/blog/2026-11-03-deepseek-superagent-software-factory/";
+const shareUrl = "https://imcoders.cn/blog/2026-11-03-deepseek-superagent-software-factory/";
+const wechatTitle = "理解 DSH Super-Agent 的编排思想";
+const wechatDescription = "分析 DSH Super-Agent 的 Router、宿主任务系统和多个 Worker 如何协作，解释它与 Agent–Subagent 委派的区别，并结合 Silieco 讨论持续任务管理、工作归属与交接。";
+const wechatAuthor = "杨正武";
+const wechatDate = "2026年11月3日";
+
+    window.shareArticle = async function () {
+      const button = document.querySelector('button.share-button');
+      try {
+        await navigator.clipboard.writeText(shareText);
+        if (!button) return;
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> 已复制';
+        button.classList.add('copied');
+        window.setTimeout(() => {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+      } catch (error) {
+        console.error('复制失败', error);
+        window.prompt('请复制下面的分享内容', shareText);
+      }
+    };
+
+    const wechatCopiedProperties = [
+      'color', 'background-color', 'font-family', 'font-size', 'font-weight', 'font-style',
+      'line-height', 'letter-spacing', 'text-align', 'text-decoration', 'text-indent',
+      'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
+      'padding-top', 'padding-right', 'padding-bottom', 'padding-left',
+      'border-top', 'border-right', 'border-bottom', 'border-left', 'border-radius',
+      'display', 'vertical-align',
+      'white-space', 'list-style-type', 'border-collapse', 'overflow-wrap', 'word-break'
+    ];
+
+    const canonicalizeWechatUrl = function (value) {
+      if (!value) return value;
+      try {
+        return new URL(value, shareUrl).href;
+      } catch {
+        return value;
+      }
+    };
+
+    window.buildWechatRichText = function () {
+      const article = document.querySelector('.article-content');
+      if (!article) throw new Error('article content not found');
+
+      const clone = article.cloneNode(true);
+      const sourceNodes = [article, ...article.querySelectorAll('*')];
+      const cloneNodes = [clone, ...clone.querySelectorAll('*')];
+
+      sourceNodes.forEach((sourceNode, index) => {
+        const targetNode = cloneNodes[index];
+        if (!(sourceNode instanceof Element) || !(targetNode instanceof Element)) return;
+
+        const computed = getComputedStyle(sourceNode);
+        const inlineStyles = wechatCopiedProperties
+          .map((property) => `${property}:${computed.getPropertyValue(property)};`)
+          .join('');
+
+        targetNode.setAttribute('style', inlineStyles);
+        targetNode.removeAttribute('id');
+        targetNode.removeAttribute('class');
+        [...targetNode.attributes].forEach((attribute) => {
+          if (attribute.name.startsWith('data-') || attribute.name.startsWith('aria-')) {
+            targetNode.removeAttribute(attribute.name);
+          }
+        });
+
+        if (sourceNode instanceof HTMLImageElement && targetNode instanceof HTMLImageElement) {
+          const rawSource = sourceNode.getAttribute('src') || sourceNode.currentSrc || sourceNode.src;
+          targetNode.setAttribute('src', canonicalizeWechatUrl(rawSource));
+          targetNode.removeAttribute('srcset');
+          targetNode.removeAttribute('sizes');
+          targetNode.removeAttribute('loading');
+          targetNode.removeAttribute('decoding');
+          targetNode.setAttribute('style', `${inlineStyles}display:block;width:100%;max-width:100%;height:auto;margin-left:auto;margin-right:auto;`);
+        }
+
+        if (sourceNode instanceof HTMLAnchorElement && targetNode instanceof HTMLAnchorElement) {
+          targetNode.setAttribute('href', canonicalizeWechatUrl(sourceNode.getAttribute('href') || sourceNode.href));
+          targetNode.removeAttribute('target');
+          targetNode.removeAttribute('rel');
+        }
+      });
+
+      clone.querySelectorAll('script, style, iframe, button, form, input, textarea, select').forEach((node) => node.remove());
+
+      // 微信编辑器的内容栏比桌面文章窄。不要保留桌面布局计算出的固定宽高，
+      // 否则图片缩小后父元素仍会占据原高度，文字换行后也可能互相覆盖。
+      clone.querySelectorAll('p').forEach((paragraph) => {
+        const onlyChild = paragraph.children.length === 1 ? paragraph.firstElementChild : null;
+        if (onlyChild instanceof HTMLImageElement && !paragraph.textContent?.trim()) {
+          paragraph.setAttribute('style', 'margin:24px 0 12px;padding:0;line-height:0;');
+        }
+      });
+
+      clone.querySelectorAll('img').forEach((image) => {
+        image.style.display = 'block';
+        image.style.width = '100%';
+        image.style.maxWidth = '100%';
+        image.style.height = 'auto';
+        image.style.marginLeft = 'auto';
+        image.style.marginRight = 'auto';
+      });
+
+      clone.querySelectorAll('pre').forEach((pre) => {
+        pre.style.display = 'block';
+        pre.style.width = 'auto';
+        pre.style.maxWidth = '100%';
+        pre.style.whiteSpace = 'pre-wrap';
+        pre.style.wordBreak = 'break-word';
+        pre.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('pre code').forEach((code) => {
+        code.style.whiteSpace = 'pre-wrap';
+        code.style.wordBreak = 'break-word';
+        code.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('table').forEach((table) => {
+        table.style.display = 'table';
+        table.style.width = '100%';
+        table.style.maxWidth = '100%';
+        table.style.tableLayout = 'fixed';
+        table.style.borderCollapse = 'collapse';
+      });
+
+      clone.querySelectorAll('th, td').forEach((cell) => {
+        cell.style.minWidth = '0';
+        cell.style.wordBreak = 'break-word';
+        cell.style.overflowWrap = 'anywhere';
+        cell.style.verticalAlign = 'top';
+      });
+
+      const wrapper = document.createElement('section');
+      wrapper.setAttribute('style', 'box-sizing:border-box;width:100%;max-width:100%;margin:0;padding:32px 26px;background-color:#111016;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+
+      const header = document.createElement('header');
+      header.setAttribute('style', 'margin:0 0 34px;padding:0 0 24px;border-bottom:2px solid #e23c3e;');
+
+      const title = document.createElement('h1');
+      title.textContent = wechatTitle;
+      title.setAttribute('style', 'margin:0 0 18px;color:#f1ece2;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:30px;font-weight:800;line-height:1.25;letter-spacing:-0.5px;');
+
+      const description = document.createElement('p');
+      description.textContent = wechatDescription;
+      description.setAttribute('style', 'margin:0 0 16px;color:#a9a3a8;font-size:16px;line-height:1.75;');
+
+      const meta = document.createElement('p');
+      meta.textContent = `${wechatAuthor} · ${wechatDate}`;
+      meta.setAttribute('style', 'margin:0;color:#e23c3e;font-size:13px;font-weight:700;line-height:1.6;letter-spacing:0.5px;');
+
+      header.append(title, description, meta);
+      clone.setAttribute('style', 'width:auto;max-width:100%;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+      wrapper.append(header, clone);
+
+      return {
+        html: wrapper.outerHTML,
+        text: `${wechatTitle}\n\n${wechatDescription}\n\n${wechatAuthor} · ${wechatDate}\n\n${article.innerText}`
+      };
+    };
+
+    const setWechatCopyFeedback = function (button, message, isError = false) {
+      if (!button) return;
+      const original = button.dataset.originalHtml || button.innerHTML;
+      button.dataset.originalHtml = original;
+      button.innerHTML = isError
+        ? `<i class="fas fa-exclamation-circle" aria-hidden="true"></i> ${message}`
+        : `<i class="fas fa-check" aria-hidden="true"></i> ${message}`;
+      button.classList.toggle('copy-error', isError);
+      button.classList.toggle('copied', !isError);
+      window.setTimeout(() => {
+        button.innerHTML = original;
+        button.classList.remove('copied', 'copy-error');
+      }, 2600);
+    };
+
+    window.copyArticleToWechat = async function () {
+      const button = document.querySelector('.wechat-copy-button');
+      try {
+        const payload = window.buildWechatRichText();
+        if (navigator.clipboard?.write && window.ClipboardItem && window.isSecureContext) {
+          await navigator.clipboard.write([new ClipboardItem({
+            'text/html': new Blob([payload.html], { type: 'text/html' }),
+            'text/plain': new Blob([payload.text], { type: 'text/plain' })
+          })]);
+        } else {
+          const holder = document.createElement('div');
+          holder.contentEditable = 'true';
+          holder.style.position = 'fixed';
+          holder.style.left = '-99999px';
+          holder.style.top = '0';
+          holder.innerHTML = payload.html;
+          document.body.appendChild(holder);
+
+          const range = document.createRange();
+          range.selectNodeContents(holder);
+          const selection = window.getSelection();
+          selection?.removeAllRanges();
+          selection?.addRange(range);
+          const copied = document.execCommand('copy');
+          selection?.removeAllRanges();
+          holder.remove();
+          if (!copied) throw new Error('copy command failed');
+        }
+        setWechatCopyFeedback(button, '已复制到公众号');
+      } catch (error) {
+        console.error('复制公众号富文本失败', error);
+        setWechatCopyFeedback(button, '复制失败', true);
+      }
+    };
+  })();</script>  <article class="article-page" data-astro-cid-4sn4zg3r> <header class="article-hero" data-astro-cid-4sn4zg3r> <div class="article-hero-grid" data-astro-cid-4sn4zg3r> <div class="article-kind" data-astro-cid-4sn4zg3r>TECHNICAL ARTICLE</div> <div class="article-heading" data-astro-cid-4sn4zg3r> <h1 class="article-title" data-astro-cid-4sn4zg3r>理解 DSH Super-Agent 的编排思想</h1> <p class="article-description" data-astro-cid-4sn4zg3r>分析 DSH Super-Agent 的 Router、宿主任务系统和多个 Worker 如何协作，解释它与 Agent–Subagent 委派的区别，并结合 Silieco 讨论持续任务管理、工作归属与交接。</p> </div> </div> </header> <div class="reader-grid" data-astro-cid-4sn4zg3r> <aside class="article-meta" aria-label="文章信息" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>文章信息</h2> <dl class="meta-list" data-astro-cid-4sn4zg3r> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>发布日期</dt> <dd data-astro-cid-4sn4zg3r><time datetime="2026-11-03T00:00:00.000Z" data-astro-cid-4sn4zg3r>2026年11月3日</time></dd> </div> <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>作者</dt><dd data-astro-cid-4sn4zg3r>杨正武</dd></div>  <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>预计阅读</dt><dd data-astro-cid-4sn4zg3r>14 分钟</dd></div> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>标签</dt> <dd class="article-tags" data-astro-cid-4sn4zg3r><span class="article-tag" data-astro-cid-4sn4zg3r>DeepSeek</span><span class="article-tag" data-astro-cid-4sn4zg3r>Agent 编排</span><span class="article-tag" data-astro-cid-4sn4zg3r>Harness</span><span class="article-tag" data-astro-cid-4sn4zg3r>Silieco</span></dd> </div> </dl> <div class="article-actions" data-astro-cid-4sn4zg3r> <a class="share-button" href="https://imcoders.cn/blog/2026-11-03-deepseek-superagent-software-factory/index.md" data-astro-cid-4sn4zg3r>阅读 Markdown</a> <button class="wechat-copy-button" type="button" onclick="copyArticleToWechat()" data-astro-cid-4sn4zg3r> <i class="fab fa-weixin" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 复制到公众号
+</button> <button class="share-button" type="button" onclick="shareArticle()" data-astro-cid-4sn4zg3r> <i class="fas fa-share-alt" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 分享文章
+</button> </div> </aside> <main class="article-content" data-astro-cid-4sn4zg3r> <p>一个 Agent 正在修复问题时，团队又提出了新的需求，评审意见和 CI 消息也陆续到来。这些事情应该继续排在同一个对话里，还是分别交给不同的执行者？谁来判断它们属于已有任务，还是需要另开一项工作？</p>
+<p>DSH Super-Agent 最值得关注的一条设计主线，就是把持续接收和分配工作的 Router，与具体推进任务的多个 Worker 分开。入口继续处理新消息，各个执行会话围绕自己的任务工作，问题和结果再回到协作现场。但只看“一个调度者带多个执行者”，很容易把它理解成普通的 Agent 调用 Subagent。要看清差别，还需要把负责保存任务、安排执行和恢复工作的宿主系统放进来。</p>
+<p>本文讨论公开原型的设计思想，依据截至 2026 年 11 月 3 日的项目说明、设计文档与关键调用路径核对，没有实际运行效果或性能测试数据。<a href="https://github.com/deepseek-ai/dsh-superagent-prototype">项目 README</a>明确说明，它是研究原型，非正式 DeepSeek 产品，公开版本与内部实现及文章描述存在差异。</p>
+<h2 id="router-接住持续到来的工作">Router 接住持续到来的工作</h2>
+<p>Super-Agent 运行在 DeepSeek Harness 上，面向一个 GitHub 仓库，可选连接飞书。Harness 提供会话和工具等运行能力，Super-Agent 在其上组织常驻的任务处理。<a href="https://github.com/deepseek-ai/dsh-superagent-prototype">项目说明</a></p>
+<p>Router 是负责路由的主会话。它面对的是不断变化的工作现场：有人直接提出请求，有人补充已有需求，还有一些消息只是讨论或执行背景。</p>
+<p>它需要判断几个问题：这条消息是否值得启动工作？有没有已经负责这件事的任务？应该创建新任务，还是附加给原来的执行者？遇到停止请求，应该影响哪项工作？这些判断发生在具体编码之前，也会贯穿后续跟进。<a href="https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/002-authorization.md">授权与路由设计</a></p>
+<p>假设三个互相独立的请求先后到来：修复导出错误、补充另一组接口测试、更新使用文档。Router 可以分别作出接受决定，宿主系统据此建立三个 Ticket，再启动对应的 Worker 会话。修复任务耗时较长，不必让另外两件事一直等在同一个执行对话后面。</p>
+<p>下面的图把这条主线展开：Router 提交路由决定，宿主管理任务和派工，多个 Worker 独立推进；Worker 还可以在自己的任务内部委派 Subagent。三个任务只是示例，实际运行数量受并发上限控制。</p>
+<iframe src="/blog-assets/dsh-superagent/flow.html" title="Router 分配任务与多 Worker 并行执行流程图" width="100%" height="760" loading="lazy" style="border: 1px solid #8884; border-radius: 12px;"></iframe>
+<p><a href="/blog-assets/dsh-superagent/flow.html">单独打开交互流程图</a>，可放大查看 Router、宿主任务系统、Worker 与 Subagent 的关系。</p>
+<h2 id="多个-worker-围绕各自的任务推进">多个 Worker 围绕各自的任务推进</h2>
+<p>每个 Ticket 都有自己的执行会话和工作目录。Worker 读取任务上下文，调用工具，推进工作，并报告进展、问题或结果。系统通过并发槽位管理执行，容量不足时任务排队；一个任务准备环境较慢，也不会要求其他任务的准备过程跟着停下。<a href="https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/003-execution.md">执行设计</a></p>
+<p>独立会话让不同任务可以保留各自的工作上下文。修复导出问题的 Worker 不需要持续消化文档任务的所有细节，负责接口测试的 Worker 也不必等待另一个会话完成推理。各自的状态仍由共同的任务系统跟踪。</p>
+<p>Worker A、B、C 也不代表预先固定好的开发、测试、文档岗位。公开原型按 Ticket 组织执行会话。图中的岗位内容只是便于理解的例子，不能据此推断系统已经具备按专业能力自动匹配人员的机制。</p>
+<p>这种并行还保留着现实约束。不同 Worker 修改同一仓库时，仍可能发生代码冲突或需求冲突。独立目录有助于分别开展工作，但不会自动解决最终集成，也不构成操作系统层面的安全隔离。</p>
+<h2 id="routerworker-与-agentsubagent-处于不同层次">Router–Worker 与 Agent–Subagent 处于不同层次</h2>
+<p>两种结构都可以表现为一个 Agent 协调多个 Agent，都可以并行执行，也都可能拥有独立的上下文。并行数量和会话数量不足以区分它们。</p>
+<p>Router–Worker 描述的是工作如何被组织：不断到来的请求归到哪项任务，谁负责推进，后续消息应该送给谁。Agent–Subagent 描述的是执行者如何委派：一个 Agent 为完成当前工作，把一部分研究或执行交给另一个 Agent。两种关系可以在同一系统里同时存在。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>观察角度</th><th>Super-Agent 的 Router–Worker</th><th>DSH 的 Agent–Subagent</th></tr></thead><tbody><tr><td>工作从哪里来</td><td>外部消息经过准入和路由，形成 Ticket</td><td>父 Agent 发起委派，给出执行要求</td></tr><tr><td>执行者归谁管理</td><td>宿主按 Ticket 创建或恢复 Worker</td><td>Subagent 服务维护父子会话关系</td></tr><tr><td>工作身份</td><td>Ticket 独立于某一轮执行存在</td><td>子会话具有自己的身份，并与父会话关联</td></tr><tr><td>后续消息</td><td>任务订阅、人工跟进和宿主通知</td><td>父 Agent 或受控的子会话消息入口</td></tr><tr><td>完成后还要做什么</td><td>跟进交付、评审和任务状态</td><td>返回委派结果，必要时接受继续执行</td></tr></tbody></table>
+<p>这张表描述的是当前 DSH 和 Super-Agent 的职责划分。其他框架完全可以在 Subagent 机制上增加工单、授权和恢复能力，名称本身不构成限制。</p>
+<h3 id="worker-由宿主创建并不挂在-router-的父子会话树下">Worker 由宿主创建，并不挂在 Router 的父子会话树下</h3>
+<p>公开原型接受任务之后，会建立 Ticket、授权依据和第一轮 Assignment，再由 Executor 启动工作。Worker 会话使用与 Ticket 对应的稳定标识；需要继续执行时，系统可以找到或恢复这个会话。这条创建路径没有把 Router 设置为 Worker 的父会话。<a href="https://github.com/deepseek-ai/dsh-superagent-prototype/blob/6337fc823ce20251c8de8085948165c81aaa701e/src/core/tickets.ts#L37">任务创建与派工</a>、<a href="https://github.com/deepseek-ai/dsh-superagent-prototype/blob/6337fc823ce20251c8de8085948165c81aaa701e/src/app/sessions.ts#L138">Worker 会话创建</a></p>
+<p>这意味着“Router 分配任务”包含两部分动作。模型判断工作归属并提交路由决定；宿主检查规则、保存状态、安排执行。Worker 何时获得槽位、重启后如何恢复，不需要 Router 在对话里逐项记住并手动兑现。</p>
+<p>Router 自身也被要求保持轻量。它负责评估和路由，Worker 负责调查和实施；没有待处理事项时，Router 应结束当前轮次，等待消息到来，避免用轮询和长时间等待占住入口。<a href="https://github.com/deepseek-ai/dsh-superagent-prototype/blob/6337fc823ce20251c8de8085948165c81aaa701e/prompts/orchestrator.md">Router 的职责约定</a></p>
+<p>这使它与常见的“主 Agent 拆解一道题，等待多个子 Agent，最后汇总答案”有所区别。Router 面对持续变化的任务集合，通常不承担每一项任务的完整解题和汇总过程。</p>
+<h3 id="worker-内部仍然可以委派-subagent">Worker 内部仍然可以委派 Subagent</h3>
+<p>修复导出错误的 Worker，可以请一个 Subagent 检查解析逻辑，再请另一个分析测试缺口。两个子 Agent 返回的信息用于推进原来的修复工作。它们不会因为被创建，就自动获得独立 Ticket 或独立的外部请求授权。</p>
+<p>Super-Agent 会沿子会话的父子关系识别所属 Worker，把其工具使用约束到对应 Ticket；执行轮次结束时，也会清理相应的后台子 Agent 工作。<a href="https://github.com/deepseek-ai/dsh-superagent-prototype/blob/6337fc823ce20251c8de8085948165c81aaa701e/src/app/sessions.ts#L299">子会话归属与工具限制</a>、<a href="https://github.com/deepseek-ai/dsh-superagent-prototype/blob/6337fc823ce20251c8de8085948165c81aaa701e/src/executor/background.ts">后台执行管理</a></p>
+<p>于是，系统里同时存在两层协作：宿主围绕多个 Ticket 组织 Worker；每个 Worker 再决定怎样完成自己的工作，包括是否委派子 Agent。外层维护工作归属，内层分担执行过程。</p>
+<h3 id="长期运行并非-worker-独有的能力">长期运行并非 Worker 独有的能力</h3>
+<p>不能把这两层关系简化成“Worker 长期存在，Subagent 用完即走”。DSH 的子 Agent 支持单次执行，也支持可继续的会话；它可以后台运行、接收后续消息，并保留自己的会话记录。<a href="https://github.com/deepseek-ai/deepseek-harness/blob/main/docs/subsystems/subagent.md">DSH Subagent 设计</a></p>
+<p>独立上下文也不构成充分区别。子 Agent 可以从新的上下文开始，也可以按提供方的机制继承父上下文。一个子 Agent 即使持续运行很久，仍可能只是在父 Agent 的委派关系下推进工作。</p>
+<p>更有解释力的问题是：这项工作在系统中有没有独立的任务身份？外部消息能否持续找到它？谁决定它的授权、暂停、恢复和完成？Super-Agent 把这些责任交给了围绕 Ticket 运转的宿主机制。持久化会话解决“对话能否继续”，任务管理还要解决“这件工作应该怎样继续”。</p>
+<h2 id="任务分配之后还要持续跟进">任务分配之后，还要持续跟进</h2>
+<p>Router 将任务交出去，只完成了工作关系的建立。接下来会出现新的评论、测试失败、补充要求和人工回答，系统还得把这些信息送到合适的位置。</p>
+<p>对于已有任务负责的跟进消息，原型通常让对应 Worker 先判断是否属于自己的范围。属于原任务，就继续处理；超出范围，再交回路由。这能减少同一条消息同时被多个执行者当成新需求的情况。<a href="https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/002-authorization.md">消息归属设计</a></p>
+<p>例如，修复导出错误的 PR 收到“空数据时仍然失败”的评论，这条反馈应该回到负责修复的 Worker。如果评论又提出“顺便重做整个导出页面”，就需要重新判断范围。让执行者保留连续的任务上下文，同时允许它把新工作交回 Router，比每条消息都重新创建任务更符合实际协作。</p>
+<p>反馈也有不同含义。Worker 可能正在执行，可能等待外部消息，可能提出问题需要人回答，也可能已经交付 PR，等待评审。<code>ready</code> 表示结果已准备好时，工作仍可能没有结束。<a href="https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/003-execution.md">任务阶段设计</a></p>
+<p>多 Worker 编排包含分配、执行和跟进三个连续环节。 如果只画出 Router 向多个 Agent 发出指令，就看不到长期任务里很重要的那一半：谁接住问题，谁继续处理反馈，以及什么时候才算交付完成。</p>
+<h2 id="授权与状态支撑这套分工持续运行">授权与状态支撑这套分工持续运行</h2>
+<p>Router 能不断分配任务，就需要明确哪些请求可以进入。DSH 区分明确请求和从消息中推断出的候选工作。推断候选默认处于 <code>observe</code> 模式，只记录判断；切换到 <code>auto</code> 后，匹配已启用规则的候选才可能被接受。明确请求在这些模式下仍可处理，所以 <code>observe</code> 不能理解为整个系统停止执行。<a href="https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/002-authorization.md">准入设计</a></p>
+<p>授权回答的是工作为什么可以开始，状态记录则让系统知道工作已经走到哪里。Ticket 保存工作身份，Assignment 表示一轮执行，Mandate 保留授权依据。一个会话中断后，任务本身仍然存在，系统可以依据保存的状态继续跟进，而不必把它当成全新的需求。<a href="https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/001-domain.md">领域模型</a></p>
+<p>从编排思想看，这些机制服务于同一条主线：Router 持续接任务，Worker 可以独立运行，执行暂停或失败之后，双方仍然找得到原来的工作关系。持久化和权限边界让这种分工有机会长期运转，但它们本身不等于外部操作永不重复，也不等于执行过程已经完全隔离。</p>
+<h2 id="与-silieco-的协作思想互相印证">与 Silieco 的协作思想互相印证</h2>
+<p>此前讨论 <a href="/blog/human-agent-collaboration-work-os/">Silieco 的人机协作思想</a>时，我关注的是把人和 Agent 放进同一个工作系统：任务有负责人，复杂工作按 SOP 推进，遇到关键决定交给合适的人，产物和讨论留在共同的上下文里。</p>
+<p>DSH Super-Agent 给这套思考提供了一个更聚焦的场景。面对仓库里持续到来的工作，它把路由和执行分开，让多个 Worker 各自负责具体任务。Silieco 关注的范围则延伸到团队协作：哪些工作交给 Agent，哪些交给人，前一阶段的结果如何成为下一阶段的输入。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>设计问题</th><th>DSH Super-Agent 的侧重点</th><th>Silieco 的侧重点</th></tr></thead><tbody><tr><td>工作交给谁</td><td>Router 判断任务归属，组织独立 Worker 执行</td><td>任务可以分配给人或 Agent，并进入团队流程</td></tr><tr><td>怎样同时推进多件事</td><td>不同 Ticket 由不同执行会话处理</td><td>不同负责人围绕各自任务协作，必要时按阶段交接</td></tr><tr><td>遇到新情况怎么办</td><td>跟进消息回到原 Worker，超范围交回路由</td><td>在任务上下文中补充信息，通过流程与人工判断调整工作</td></tr><tr><td>怎样确认交付</td><td>报告结果，继续跟进 PR 和评审</td><td>围绕阶段产物与 Gate 完成验收和交接</td></tr></tbody></table>
+<p>从 Router–Worker 与 Subagent 的区别再回头看，Silieco 的 Task 和 SOP 也更接近外层的工作组织。一个 Agent 为某个阶段调用几个子 Agent，属于阶段内部的执行选择；团队仍然需要知道整个任务交给谁、当前在哪个阶段、结果由谁验收。不能仅凭子 Agent 已经返回答案，就认定业务工作完成。</p>
+<p>两者共同重视的是任务归属。Agent 接到工作之后，应当知道自己负责哪件事、做到什么程度、遇到问题找谁；协作系统也应当知道当前由谁推进。这使多个执行者能够同时工作，又能在需要交接时重新接上。</p>
+<p>它们也保留着不同的组织方式。DSH 的 Router 更强调对持续到来的消息进行动态判断；Silieco 的 SOP 更强调可复用的阶段关系、责任分工和验收节点。临时修复任务可能只需要明确归属后直接执行，跨角色的业务工作则可能需要先约定好阶段和交接条件。</p>
+<p>这种互相印证停留在设计思想上，不意味着 Silieco 采用了完全相同的 Router，也不意味着 Super-Agent 已经提供了完整的组织流程。对我而言，最有参考价值的是它把“接住工作”和“完成工作”分给了不同角色，并让任务在这些角色之间保持连续。</p> </main> <aside class="page-toc" aria-label="页面目录" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>页面目录</h2> <ol class="toc-list" data-astro-cid-4sn4zg3r> <li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#router-接住持续到来的工作" data-astro-cid-4sn4zg3r>Router 接住持续到来的工作</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#多个-worker-围绕各自的任务推进" data-astro-cid-4sn4zg3r>多个 Worker 围绕各自的任务推进</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#routerworker-与-agentsubagent-处于不同层次" data-astro-cid-4sn4zg3r>Router–Worker 与 Agent–Subagent 处于不同层次</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#worker-由宿主创建并不挂在-router-的父子会话树下" data-astro-cid-4sn4zg3r>Worker 由宿主创建，并不挂在 Router 的父子会话树下</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#worker-内部仍然可以委派-subagent" data-astro-cid-4sn4zg3r>Worker 内部仍然可以委派 Subagent</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-3" href="#长期运行并非-worker-独有的能力" data-astro-cid-4sn4zg3r>长期运行并非 Worker 独有的能力</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#任务分配之后还要持续跟进" data-astro-cid-4sn4zg3r>任务分配之后，还要持续跟进</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#授权与状态支撑这套分工持续运行" data-astro-cid-4sn4zg3r>授权与状态支撑这套分工持续运行</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#与-silieco-的协作思想互相印证" data-astro-cid-4sn4zg3r>与 Silieco 的协作思想互相印证</a></li> </ol> <a class="toc-back" href="/blog" data-astro-cid-4sn4zg3r><i class="fas fa-arrow-left" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 返回博客</a> </aside> <nav class="article-navigation single" aria-label="相邻文章" data-astro-cid-4sn4zg3r>  <a class="article-nav-link" href="/blog/2026-10-22-pingtask" data-astro-cid-4sn4zg3r> <span class="nav-direction" data-astro-cid-4sn4zg3r>较早文章</span> <span class="nav-title" data-astro-cid-4sn4zg3r>做了个 PingTask，把想做的事 Ping 一下</span> </a> </nav> </div> </article> <div class="selection-share" data-selection-share data-content-selector=".article-content" data-title="理解 DSH Super-Agent 的编排思想" data-author="杨正武" data-section="IMCODERS BLOG" data-url="https://imcoders.cn/blog/2026-11-03-deepseek-superagent-software-factory/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>   </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

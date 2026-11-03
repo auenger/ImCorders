@@ -191,6 +191,23 @@
       "markdownUrl": "https://imcoders.cn/blog/2026-10-22-pingtask/index.md"
     },
     {
+      "id": "blog/2026-11-03-deepseek-superagent-software-factory",
+      "kind": "blog",
+      "title": "理解 DSH Super-Agent 的编排思想",
+      "description": "分析 DSH Super-Agent 的 Router、宿主任务系统和多个 Worker 如何协作，解释它与 Agent–Subagent 委派的区别，并结合 Silieco 讨论持续任务管理、工作归属与交接。",
+      "author": "杨正武",
+      "tags": [
+        "DeepSeek",
+        "Agent 编排",
+        "Harness",
+        "Silieco"
+      ],
+      "publishedAt": "2026-11-03T00:00:00.000Z",
+      "updatedAt": "2026-11-03T00:00:00.000Z",
+      "url": "https://imcoders.cn/blog/2026-11-03-deepseek-superagent-software-factory/",
+      "markdownUrl": "https://imcoders.cn/blog/2026-11-03-deepseek-superagent-software-factory/index.md"
+    },
+    {
       "id": "blog/agent-technical-reflux",
       "kind": "blog",
       "title": "工程师拥抱 Agent，普通人却重新开始开发软件",
