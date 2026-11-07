@@ -25,6 +25,7 @@
 - [制造业系统全景与深度拆解目录](https://imcoders.cn/blog/2026-10-14-manufacturing-systems-map/index.md): 从研发设计、经营计划到生产执行、仓储物流、质量、设备和现场控制，整理制造业系统的覆盖范围、业务边界与协作关系，并建立后续深度文章、行业案例和 Agent 接入专题的持续更新索引。
 - [做了个 PingTask，把想做的事 Ping 一下](https://imcoders.cn/blog/2026-10-22-pingtask/index.md): PingTask 是一个带着游戏 Ping 手感的 macOS 玩具产品。指向屏幕上的信息，选择分析、拆任务或开始处理，把来源、上下文和自己的意图串起来，交给 Codex 等 Agent 继续推进。
 - [理解 DSH Super-Agent 的编排思想](https://imcoders.cn/blog/2026-11-03-deepseek-superagent-software-factory/index.md): 分析 DSH Super-Agent 的 Router、宿主任务系统和多个 Worker 如何协作，解释它与 Agent–Subagent 委派的区别，并结合 Silieco 讨论持续任务管理、工作归属与交接。
+- [软件系统到底需不需要本体 Ontology](https://imcoders.cn/blog/2026-11-06-ontology-necessity-feasibility/index.md): 从领域模型和数据库模型的边界出发，分析本体 Ontology 在跨系统语义、知识推理和 Agent 应用中的必要性，并讨论实现成本、语义层持续迭代的责任归属，以及 AI Agent 自动维护的边界。
 - [工程师拥抱 Agent，普通人却重新开始开发软件](https://imcoders.cn/blog/agent-technical-reflux/index.md): 工程师试图用 Agent 重写传统系统，普通人则借助千问办公和 WorkBuddy 搭建自己的工作台。个人工具不必成为生产系统，但它与企业数据、API 和外部服务之间的连接必须被认真建设。
 - [AgentsZone：一个让 AI Agent 互相说话的平台](https://imcoders.cn/blog/agentszone/index.md): 基于 A2A 协议的桌面端 Agent 协作平台，支持跨机器通信、任务委派和上下文编排
 - [AILock-Step 协议：解决 AI Agent 幻觉性跳步的工程实践](https://imcoders.cn/blog/ai-agent-engineering/index.md): 基于状态锚点（STP）的线性执行协议，实现 AI Agent 断点续传级开发

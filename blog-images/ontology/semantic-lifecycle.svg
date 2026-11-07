@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+<style>text{font-family:"PingFang SC","Hiragino Sans GB","Arial",sans-serif}</style>
+<defs>
+<marker id="247a68" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#247a68"/></marker>
+<marker id="4176a2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#4176a2"/></marker>
+<marker id="c57a38" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#c57a38"/></marker>
+<marker id="647773" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#647773"/></marker>
+</defs>
+<rect x="0" y="0" width="1200" height="760" rx="0" fill="#f8faf7" stroke="#f8faf7" stroke-width="2"/>
+<text x="56" y="53" font-size="16" fill="#247a68" font-weight="600" text-anchor="start">ONTOLOGY / FIELD NOTES</text>
+<text x="1144" y="53" font-size="16" fill="#647773" font-weight="400" text-anchor="end">03</text>
+<text x="56" y="110" font-size="38" fill="#18312e" font-weight="600" text-anchor="start">语义层需要持续维护</text>
+<text x="56" y="151" font-size="21" fill="#647773" font-weight="400" text-anchor="start">Agent 提出与检查，负责人认可定义；反馈进入下一轮。</text>
+<path d="M360 285 L434 285" fill="none" stroke="#247a68" stroke-width="3" marker-end="url(#247a68)"/>
+<path d="M744 285 L818 285" fill="none" stroke="#247a68" stroke-width="3" marker-end="url(#247a68)"/>
+<path d="M976 362 L976 444" fill="none" stroke="#247a68" stroke-width="3" marker-end="url(#247a68)"/>
+<path d="M824 527 L750 527" fill="none" stroke="#247a68" stroke-width="3" marker-end="url(#247a68)"/>
+<path d="M440 527 L366 527" fill="none" stroke="#247a68" stroke-width="3" marker-end="url(#247a68)"/>
+<path d="M208 450 L208 368" fill="none" stroke="#247a68" stroke-width="3" marker-end="url(#247a68)"/>
+<rect x="56" y="208" width="304" height="154" rx="16" fill="white" stroke="#d8e2da" stroke-width="2"/>
+<text x="76" y="238" font-size="17" fill="#247a68" font-weight="600" text-anchor="start">01</text>
+<text x="76" y="275" font-size="27" fill="#18312e" font-weight="600" text-anchor="start">发现变化</text>
+<text x="76" y="309" font-size="18" fill="#647773" font-weight="400" text-anchor="start">文档、数据、业务反馈</text>
+<text x="76" y="340" font-size="17" fill="#247a68" font-weight="400" text-anchor="start">Agent / 业务人员</text>
+<rect x="440" y="208" width="304" height="154" rx="16" fill="white" stroke="#d8e2da" stroke-width="2"/>
+<text x="460" y="238" font-size="17" fill="#247a68" font-weight="600" text-anchor="start">02</text>
+<text x="460" y="275" font-size="27" fill="#18312e" font-weight="600" text-anchor="start">提出候选</text>
+<text x="460" y="309" font-size="18" fill="#647773" font-weight="400" text-anchor="start">附来源、理由和影响</text>
+<text x="460" y="340" font-size="17" fill="#247a68" font-weight="400" text-anchor="start">Agent 辅助</text>
+<rect x="824" y="208" width="304" height="154" rx="16" fill="white" stroke="#d8e2da" stroke-width="2"/>
+<text x="844" y="238" font-size="17" fill="#247a68" font-weight="600" text-anchor="start">03</text>
+<text x="844" y="275" font-size="27" fill="#18312e" font-weight="600" text-anchor="start">检查与确认</text>
+<text x="844" y="309" font-size="18" fill="#647773" font-weight="400" text-anchor="start">测试结果 + 业务认可</text>
+<text x="844" y="340" font-size="17" fill="#247a68" font-weight="400" text-anchor="start">系统检查 / 负责人确认</text>
+<rect x="824" y="450" width="304" height="154" rx="16" fill="white" stroke="#d8e2da" stroke-width="2"/>
+<text x="844" y="480" font-size="17" fill="#247a68" font-weight="600" text-anchor="start">04</text>
+<text x="844" y="517" font-size="27" fill="#18312e" font-weight="600" text-anchor="start">发布版本</text>
+<text x="844" y="551" font-size="18" fill="#647773" font-weight="400" text-anchor="start">生效时间、适用范围</text>
+<text x="844" y="582" font-size="17" fill="#247a68" font-weight="400" text-anchor="start">发布流程</text>
+<rect x="440" y="450" width="304" height="154" rx="16" fill="white" stroke="#d8e2da" stroke-width="2"/>
+<text x="460" y="480" font-size="17" fill="#247a68" font-weight="600" text-anchor="start">05</text>
+<text x="460" y="517" font-size="27" fill="#18312e" font-weight="600" text-anchor="start">观察结果</text>
+<text x="460" y="551" font-size="18" fill="#647773" font-weight="400" text-anchor="start">查询变化、业务反馈</text>
+<text x="460" y="582" font-size="17" fill="#247a68" font-weight="400" text-anchor="start">使用方 / 维护者</text>
+<rect x="56" y="450" width="304" height="154" rx="16" fill="white" stroke="#d8e2da" stroke-width="2"/>
+<text x="76" y="480" font-size="17" fill="#247a68" font-weight="600" text-anchor="start">06</text>
+<text x="76" y="517" font-size="27" fill="#18312e" font-weight="600" text-anchor="start">继续修订</text>
+<text x="76" y="551" font-size="18" fill="#647773" font-weight="400" text-anchor="start">保留证据、历史与回退</text>
+<text x="76" y="582" font-size="17" fill="#247a68" font-weight="400" text-anchor="start">相关领域负责人</text>
+<text x="600" y="660" font-size="21" fill="#647773" font-weight="400" text-anchor="middle">变更通过确认后发布；未通过的候选保留待修订。</text>
+<text x="56" y="724" font-size="17" fill="#647773" font-weight="400" text-anchor="start">概念示意 · 采购场景</text>
+<text x="1144" y="724" font-size="17" fill="#647773" font-weight="400" text-anchor="end">imcoders.cn</text>
+</svg>

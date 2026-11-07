@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+<style>text{font-family:"PingFang SC","Hiragino Sans GB","Arial",sans-serif}</style>
+<defs>
+<marker id="247a68" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#247a68"/></marker>
+<marker id="4176a2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#4176a2"/></marker>
+<marker id="c57a38" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#c57a38"/></marker>
+<marker id="647773" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#647773"/></marker>
+</defs>
+<rect x="0" y="0" width="1200" height="760" rx="0" fill="#f8faf7" stroke="#f8faf7" stroke-width="2"/>
+<text x="56" y="53" font-size="16" fill="#247a68" font-weight="600" text-anchor="start">ONTOLOGY / FIELD NOTES</text>
+<text x="1144" y="53" font-size="16" fill="#647773" font-weight="400" text-anchor="end">02</text>
+<text x="56" y="110" font-size="38" fill="#18312e" font-weight="600" text-anchor="start">数据在变，定义也在变</text>
+<text x="56" y="151" font-size="21" fill="#647773" font-weight="400" text-anchor="start">自动同步事实之外，还需要有人认可业务含义。</text>
+<rect x="56" y="195" width="1088" height="175" rx="16" fill="white" stroke="#d8e2da" stroke-width="2"/>
+<text x="80" y="232" font-size="25" fill="#4176a2" font-weight="600" text-anchor="start">事实更新</text>
+<text x="80" y="264" font-size="18" fill="#647773" font-weight="400" text-anchor="start">既定标准保持不变</text>
+<rect x="350" y="220" width="285" height="110" rx="16" fill="#edf3fa" stroke="#d8e2da" stroke-width="2"/>
+<text x="492" y="260" font-size="25" fill="#4176a2" font-weight="600" text-anchor="middle">新增供应商 A</text>
+<text x="492" y="300" font-size="19" fill="#647773" font-weight="400" text-anchor="middle">来源记录与资质材料</text>
+<path d="M635 275 L766 275" fill="none" stroke="#4176a2" stroke-width="3" marker-end="url(#4176a2)"/>
+<rect x="775" y="220" width="337" height="110" rx="16" fill="#edf3fa" stroke="#d8e2da" stroke-width="2"/>
+<text x="943" y="260" font-size="24" fill="#4176a2" font-weight="600" text-anchor="middle">同步 → 校验 → 入库</text>
+<text x="943" y="300" font-size="19" fill="#647773" font-weight="400" text-anchor="middle">可信来源 · 保留证据</text>
+<rect x="56" y="392" width="1088" height="272" rx="16" fill="white" stroke="#d8e2da" stroke-width="2"/>
+<text x="80" y="434" font-size="25" fill="#c57a38" font-weight="600" text-anchor="start">定义更新</text>
+<text x="80" y="466" font-size="18" fill="#647773" font-weight="400" text-anchor="start">判断标准发生变化</text>
+<rect x="350" y="414" width="285" height="105" rx="16" fill="#fdf4e9" stroke="#d8e2da" stroke-width="2"/>
+<text x="492" y="454" font-size="24" fill="#c57a38" font-weight="600" text-anchor="middle">合格供应商 v1</text>
+<text x="492" y="492" font-size="21" fill="#647773" font-weight="400" text-anchor="middle">资料齐全</text>
+<path d="M635 468 L766 468" fill="none" stroke="#c57a38" stroke-width="3" marker-end="url(#c57a38)"/>
+<rect x="775" y="414" width="337" height="105" rx="16" fill="#fdf4e9" stroke="#d8e2da" stroke-width="2"/>
+<text x="943" y="454" font-size="24" fill="#c57a38" font-weight="600" text-anchor="middle">合格供应商 v2</text>
+<text x="943" y="492" font-size="21" fill="#647773" font-weight="400" text-anchor="middle">资料齐全 + 质量审核</text>
+<text x="350" y="560" font-size="22" fill="#18312e" font-weight="600" text-anchor="start">相关领域负责人确认适用范围</text>
+<rect x="350" y="582" width="242" height="48" rx="16" fill="#f4f6f2" stroke="#d8e2da" stroke-width="2"/>
+<text x="471" y="613" font-size="19" fill="#18312e" font-weight="400" text-anchor="middle">采购 / 下单资格</text>
+<rect x="610" y="582" width="242" height="48" rx="16" fill="#f4f6f2" stroke="#d8e2da" stroke-width="2"/>
+<text x="731" y="613" font-size="19" fill="#18312e" font-weight="400" text-anchor="middle">质量 / 审核标准</text>
+<rect x="870" y="582" width="242" height="48" rx="16" fill="#f4f6f2" stroke="#d8e2da" stroke-width="2"/>
+<text x="991" y="613" font-size="19" fill="#18312e" font-weight="400" text-anchor="middle">财务 / 结算口径</text>
+<text x="56" y="724" font-size="17" fill="#647773" font-weight="400" text-anchor="start">概念示意 · 采购场景</text>
+<text x="1144" y="724" font-size="17" fill="#647773" font-weight="400" text-anchor="end">imcoders.cn</text>
+</svg>

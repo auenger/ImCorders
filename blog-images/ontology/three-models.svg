@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+<style>text{font-family:"PingFang SC","Hiragino Sans GB","Arial",sans-serif}</style>
+<defs>
+<marker id="247a68" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#247a68"/></marker>
+<marker id="4176a2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#4176a2"/></marker>
+<marker id="c57a38" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#c57a38"/></marker>
+<marker id="647773" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#647773"/></marker>
+</defs>
+<rect x="0" y="0" width="1200" height="760" rx="0" fill="#f8faf7" stroke="#f8faf7" stroke-width="2"/>
+<text x="56" y="53" font-size="16" fill="#247a68" font-weight="600" text-anchor="start">ONTOLOGY / FIELD NOTES</text>
+<text x="1144" y="53" font-size="16" fill="#647773" font-weight="400" text-anchor="end">01</text>
+<text x="56" y="110" font-size="38" fill="#18312e" font-weight="600" text-anchor="start">同一业务，三种模型</text>
+<text x="56" y="151" font-size="21" fill="#647773" font-weight="400" text-anchor="start">共享含义、业务行为与数据结构，承担不同的维护责任。</text>
+<rect x="56" y="202" width="320" height="445" rx="16" fill="white" stroke="#d8e2da" stroke-width="2"/>
+<text x="80" y="241" font-size="18" fill="#247a68" font-weight="600" text-anchor="start">01</text>
+<text x="80" y="283" font-size="27" fill="#18312e" font-weight="600" text-anchor="start">本体 Ontology</text>
+<text x="80" y="317" font-size="20" fill="#647773" font-weight="400" text-anchor="start">概念与关系</text>
+<rect x="440" y="202" width="320" height="445" rx="16" fill="white" stroke="#d8e2da" stroke-width="2"/>
+<text x="464" y="241" font-size="18" fill="#4176a2" font-weight="600" text-anchor="start">02</text>
+<text x="464" y="283" font-size="27" fill="#18312e" font-weight="600" text-anchor="start">领域模型</text>
+<text x="464" y="317" font-size="20" fill="#647773" font-weight="400" text-anchor="start">行为与规则</text>
+<rect x="824" y="202" width="320" height="445" rx="16" fill="white" stroke="#d8e2da" stroke-width="2"/>
+<text x="848" y="241" font-size="18" fill="#c57a38" font-weight="600" text-anchor="start">03</text>
+<text x="848" y="283" font-size="27" fill="#18312e" font-weight="600" text-anchor="start">数据库模型</text>
+<text x="848" y="317" font-size="20" fill="#647773" font-weight="400" text-anchor="start">结构与约束</text>
+<path d="M216 401 L216 458" fill="none" stroke="#247a68" stroke-width="3" marker-end="url(#247a68)"/>
+<text x="232" y="435" font-size="18" fill="#647773" font-weight="400" text-anchor="start">子类</text>
+<rect x="130" y="345" width="172" height="56" rx="16" fill="#e8f3ed" stroke="#d8e2da" stroke-width="2"/>
+<text x="216" y="382" font-size="24" fill="#247a68" font-weight="600" text-anchor="middle">供应商</text>
+<rect x="130" y="462" width="172" height="56" rx="16" fill="#e8f3ed" stroke="#d8e2da" stroke-width="2"/>
+<text x="216" y="499" font-size="24" fill="#247a68" font-weight="600" text-anchor="middle">组织</text>
+<text x="80" y="570" font-size="21" fill="#18312e" font-weight="400" text-anchor="start">跨系统解释同一概念</text>
+<text x="80" y="608" font-size="19" fill="#647773" font-weight="400" text-anchor="start">维护定义与映射</text>
+<rect x="480" y="351" width="240" height="58" rx="16" fill="#edf3fa" stroke="#d8e2da" stroke-width="2"/>
+<text x="600" y="389" font-size="24" fill="#4176a2" font-weight="600" text-anchor="middle">采购单</text>
+<path d="M600 409 L600 455" fill="none" stroke="#4176a2" stroke-width="3" marker-end="url(#4176a2)"/>
+<rect x="480" y="460" width="240" height="58" rx="16" fill="#edf3fa" stroke="#d8e2da" stroke-width="2"/>
+<text x="600" y="498" font-size="23" fill="#4176a2" font-weight="600" text-anchor="middle">提交 → 审批</text>
+<text x="464" y="570" font-size="21" fill="#18312e" font-weight="400" text-anchor="start">规定何时允许操作</text>
+<text x="464" y="608" font-size="19" fill="#647773" font-weight="400" text-anchor="start">维护状态与不变式</text>
+<rect x="855" y="350" width="258" height="167" rx="16" fill="#fdf4e9" stroke="#d8e2da" stroke-width="2"/>
+<text x="879" y="386" font-size="22" fill="#c57a38" font-weight="600" text-anchor="start">purchase_orders</text>
+<path d="M856 405 L1112 405" fill="none" stroke="#c57a38" stroke-width="3"/>
+<text x="879" y="440" font-size="20" fill="#18312e" font-weight="400" text-anchor="start">id       supplier_id</text>
+<text x="879" y="480" font-size="20" fill="#18312e" font-weight="400" text-anchor="start">status   created_at</text>
+<text x="848" y="570" font-size="21" fill="#18312e" font-weight="400" text-anchor="start">保存记录并支持查询</text>
+<text x="848" y="608" font-size="19" fill="#647773" font-weight="400" text-anchor="start">维护键、约束与索引</text>
+<text x="56" y="724" font-size="17" fill="#647773" font-weight="400" text-anchor="start">概念示意 · 采购场景</text>
+<text x="1144" y="724" font-size="17" fill="#647773" font-weight="400" text-anchor="end">imcoders.cn</text>
+</svg>

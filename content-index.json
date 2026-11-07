@@ -208,6 +208,25 @@
       "markdownUrl": "https://imcoders.cn/blog/2026-11-03-deepseek-superagent-software-factory/index.md"
     },
     {
+      "id": "blog/2026-11-06-ontology-necessity-feasibility",
+      "kind": "blog",
+      "title": "软件系统到底需不需要本体 Ontology",
+      "description": "从领域模型和数据库模型的边界出发，分析本体 Ontology 在跨系统语义、知识推理和 Agent 应用中的必要性，并讨论实现成本、语义层持续迭代的责任归属，以及 AI Agent 自动维护的边界。",
+      "author": "杨正武",
+      "tags": [
+        "Ontology",
+        "领域模型",
+        "知识图谱",
+        "软件工程",
+        "AI Agent"
+      ],
+      "publishedAt": "2026-11-06T00:00:00.000Z",
+      "updatedAt": "2026-11-07T00:00:00.000Z",
+      "url": "https://imcoders.cn/blog/2026-11-06-ontology-necessity-feasibility/",
+      "image": "/blog-images/ontology/hero.png",
+      "markdownUrl": "https://imcoders.cn/blog/2026-11-06-ontology-necessity-feasibility/index.md"
+    },
+    {
       "id": "blog/agent-technical-reflux",
       "kind": "blog",
       "title": "工程师拥抱 Agent，普通人却重新开始开发软件",
