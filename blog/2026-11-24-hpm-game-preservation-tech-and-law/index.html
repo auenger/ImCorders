@@ -1,0 +1,424 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#111016"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="icon" type="image/png" sizes="32x32" href="/monkey-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/monkey-16x16.png"><link rel="shortcut icon" href="/monket-snow2.ico"><title>HPM 游戏纪念册的工作流与技术方案 - 杨正武</title><meta name="description" content="以 HPM 霍格沃茨纪念册为例，整理从游戏资源归档、配置关联、模型转换到网页运行的工作流，说明角色换装、双人舞会和决斗训练场的实现方式，并讨论解包方案与素材传播的版权边界。"><link rel="canonical" href="https://imcoders.cn/blog/2026-11-24-hpm-game-preservation-tech-and-law/"><link rel="alternate" type="application/rss+xml" title="杨正武 · imcoders RSS" href="/rss.xml"><link rel="describedby" type="text/plain" href="/llms.txt"><link rel="alternate" type="text/markdown" title="Markdown 正文" href="https://imcoders.cn/blog/2026-11-24-hpm-game-preservation-tech-and-law/index.md"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://imcoders.cn/#website","url":"https://imcoders.cn/","name":"杨正武 · imcoders","inLanguage":"zh-CN"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://imcoders.cn/blog/2026-11-24-hpm-game-preservation-tech-and-law/#article","headline":"HPM 游戏纪念册的工作流与技术方案","description":"以 HPM 霍格沃茨纪念册为例，整理从游戏资源归档、配置关联、模型转换到网页运行的工作流，说明角色换装、双人舞会和决斗训练场的实现方式，并讨论解包方案与素材传播的版权边界。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://imcoders.cn/blog/2026-11-24-hpm-game-preservation-tech-and-law/"},"author":{"@type":"Person","@id":"https://imcoders.cn/#person","name":"杨正武","url":"https://imcoders.cn/"},"image":"https://imcoders.cn/blog-images/hpm/hero.webp","datePublished":"2026-11-24T00:00:00.000Z","dateModified":"2026-11-24T00:00:00.000Z","articleSection":"技术博客"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://imcoders.cn/"},{"@type":"ListItem","position":2,"name":"博客","item":"https://imcoders.cn/blog/"},{"@type":"ListItem","position":3,"name":"HPM 游戏纪念册的工作流与技术方案","item":"https://imcoders.cn/blog/2026-11-24-hpm-game-preservation-tech-and-law/"}]}</script><meta property="og:type" content="article"><meta property="article:published_time" content="2026-11-24T00:00:00.000Z"><meta property="article:modified_time" content="2026-11-24T00:00:00.000Z"><meta name="author" content="杨正武"><meta property="og:site_name" content="杨正武 · imcoders"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="HPM 游戏纪念册的工作流与技术方案 - 杨正武"><meta property="og:description" content="以 HPM 霍格沃茨纪念册为例，整理从游戏资源归档、配置关联、模型转换到网页运行的工作流，说明角色换装、双人舞会和决斗训练场的实现方式，并讨论解包方案与素材传播的版权边界。"><meta property="og:url" content="https://imcoders.cn/blog/2026-11-24-hpm-game-preservation-tech-and-law/"><meta property="og:image" content="https://imcoders.cn/blog-images/hpm/hero.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="HPM 游戏纪念册的工作流与技术方案 - 杨正武"><meta name="twitter:description" content="以 HPM 霍格沃茨纪念册为例，整理从游戏资源归档、配置关联、模型转换到网页运行的工作流，说明角色换装、双人舞会和决斗训练场的实现方式，并讨论解包方案与素材传播的版权边界。"><meta name="twitter:image" content="https://imcoders.cn/blog-images/hpm/hero.webp"><meta itemprop="name" content="HPM 游戏纪念册的工作流与技术方案 - 杨正武"><meta itemprop="description" content="以 HPM 霍格沃茨纪念册为例，整理从游戏资源归档、配置关联、模型转换到网页运行的工作流，说明角色换装、双人舞会和决斗训练场的实现方式，并讨论解包方案与素材传播的版权边界。"><meta itemprop="image" content="https://imcoders.cn/blog-images/hpm/hero.webp"><script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script><script>(function(){const signUrl = "/api/wx-sign";
+const shareTitle = "HPM 游戏纪念册的工作流与技术方案 - 杨正武";
+const shareDesc = "以 HPM 霍格沃茨纪念册为例，整理从游戏资源归档、配置关联、模型转换到网页运行的工作流，说明角色换装、双人舞会和决斗训练场的实现方式，并讨论解包方案与素材传播的版权边界。";
+const shareLink = "https://imcoders.cn/blog/2026-11-24-hpm-game-preservation-tech-and-law/";
+const shareImg = "https://imcoders.cn/blog-images/hpm/hero.webp";
+
+      (function () {
+        if (!signUrl || typeof wx === 'undefined' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+        var url = location.href.split('#')[0];
+        fetch(signUrl + '?url=' + encodeURIComponent(url))
+          .then(function (r) {
+            var contentType = r.headers.get('content-type') || '';
+            if (!r.ok || !contentType.includes('application/json')) throw new Error('wx-sign returned a non-JSON response');
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d || !d.signature) return;
+            wx.config({ debug: false, appId: d.appId, timestamp: d.timestamp, nonceStr: d.nonceStr, signature: d.signature, jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData'] });
+            wx.ready(function () {
+              wx.updateAppMessageShareData({ title: shareTitle, desc: shareDesc, link: shareLink, imgUrl: shareImg });
+              wx.updateTimelineShareData({ title: shareTitle, link: shareLink, imgUrl: shareImg });
+            });
+          })
+          .catch(function (error) { console.error('wx-sign failed', error); });
+      })();
+    })();</script><link rel="stylesheet" href="/_astro/_slug_.DXtD3eBH.css">
+<link rel="stylesheet" href="/_astro/_slug_.OrrUGv8Y.css">
+<link rel="stylesheet" href="/_astro/_slug_.DUPo9LDV.css"><script type="module" src="/_astro/hoisted.D20CsQCG.js"></script></head> <body> <nav class="site-nav" aria-label="主导航"> <div class="site-nav-inner"> <a href="/" class="site-brand" aria-label="杨正武个人站首页"> <img src="/monket-snow2.png" alt="">
+杨正武<b>/IMCODERS</b> </a> <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links" aria-label="打开导航菜单"> <span></span><span></span><span></span> </button> <ul class="site-links" id="site-links"> <li><a href="/">首页</a></li> <li><a href="/#projects">作品</a></li> <li><a href="/playbook">Playbook</a></li> <li><a href="/manufacturing/">制造业系统</a></li> <li><a href="/blog" aria-current="page">博客</a></li> <li><a href="/#contact">联系</a></li> </ul> </div> </nav> <main> <script>(function(){const shareText = "以 HPM 霍格沃茨纪念册为例，整理从游戏资源归档、配置关联、模型转换到网页运行的工作流，说明角色换...\n\nhttps://imcoders.cn/blog/2026-11-24-hpm-game-preservation-tech-and-law/";
+const shareUrl = "https://imcoders.cn/blog/2026-11-24-hpm-game-preservation-tech-and-law/";
+const wechatTitle = "HPM 游戏纪念册的工作流与技术方案";
+const wechatDescription = "以 HPM 霍格沃茨纪念册为例，整理从游戏资源归档、配置关联、模型转换到网页运行的工作流，说明角色换装、双人舞会和决斗训练场的实现方式，并讨论解包方案与素材传播的版权边界。";
+const wechatAuthor = "杨正武";
+const wechatDate = "2026年11月24日";
+
+    window.shareArticle = async function () {
+      const button = document.querySelector('button.share-button');
+      try {
+        await navigator.clipboard.writeText(shareText);
+        if (!button) return;
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> 已复制';
+        button.classList.add('copied');
+        window.setTimeout(() => {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+      } catch (error) {
+        console.error('复制失败', error);
+        window.prompt('请复制下面的分享内容', shareText);
+      }
+    };
+
+    const wechatCopiedProperties = [
+      'color', 'background-color', 'font-family', 'font-size', 'font-weight', 'font-style',
+      'line-height', 'letter-spacing', 'text-align', 'text-decoration', 'text-indent',
+      'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
+      'padding-top', 'padding-right', 'padding-bottom', 'padding-left',
+      'border-top', 'border-right', 'border-bottom', 'border-left', 'border-radius',
+      'display', 'vertical-align',
+      'white-space', 'list-style-type', 'border-collapse', 'overflow-wrap', 'word-break'
+    ];
+
+    const canonicalizeWechatUrl = function (value) {
+      if (!value) return value;
+      try {
+        return new URL(value, shareUrl).href;
+      } catch {
+        return value;
+      }
+    };
+
+    window.buildWechatRichText = function () {
+      const article = document.querySelector('.article-content');
+      if (!article) throw new Error('article content not found');
+
+      const clone = article.cloneNode(true);
+      const sourceNodes = [article, ...article.querySelectorAll('*')];
+      const cloneNodes = [clone, ...clone.querySelectorAll('*')];
+
+      sourceNodes.forEach((sourceNode, index) => {
+        const targetNode = cloneNodes[index];
+        if (!(sourceNode instanceof Element) || !(targetNode instanceof Element)) return;
+
+        const computed = getComputedStyle(sourceNode);
+        const inlineStyles = wechatCopiedProperties
+          .map((property) => `${property}:${computed.getPropertyValue(property)};`)
+          .join('');
+
+        targetNode.setAttribute('style', inlineStyles);
+        targetNode.removeAttribute('id');
+        targetNode.removeAttribute('class');
+        [...targetNode.attributes].forEach((attribute) => {
+          if (attribute.name.startsWith('data-') || attribute.name.startsWith('aria-')) {
+            targetNode.removeAttribute(attribute.name);
+          }
+        });
+
+        if (sourceNode instanceof HTMLImageElement && targetNode instanceof HTMLImageElement) {
+          const rawSource = sourceNode.getAttribute('src') || sourceNode.currentSrc || sourceNode.src;
+          targetNode.setAttribute('src', canonicalizeWechatUrl(rawSource));
+          targetNode.removeAttribute('srcset');
+          targetNode.removeAttribute('sizes');
+          targetNode.removeAttribute('loading');
+          targetNode.removeAttribute('decoding');
+          targetNode.setAttribute('style', `${inlineStyles}display:block;width:100%;max-width:100%;height:auto;margin-left:auto;margin-right:auto;`);
+        }
+
+        if (sourceNode instanceof HTMLAnchorElement && targetNode instanceof HTMLAnchorElement) {
+          targetNode.setAttribute('href', canonicalizeWechatUrl(sourceNode.getAttribute('href') || sourceNode.href));
+          targetNode.removeAttribute('target');
+          targetNode.removeAttribute('rel');
+        }
+      });
+
+      clone.querySelectorAll('script, style, iframe, button, form, input, textarea, select').forEach((node) => node.remove());
+
+      // 微信编辑器的内容栏比桌面文章窄。不要保留桌面布局计算出的固定宽高，
+      // 否则图片缩小后父元素仍会占据原高度，文字换行后也可能互相覆盖。
+      clone.querySelectorAll('p').forEach((paragraph) => {
+        const onlyChild = paragraph.children.length === 1 ? paragraph.firstElementChild : null;
+        if (onlyChild instanceof HTMLImageElement && !paragraph.textContent?.trim()) {
+          paragraph.setAttribute('style', 'margin:24px 0 12px;padding:0;line-height:0;');
+        }
+      });
+
+      clone.querySelectorAll('img').forEach((image) => {
+        image.style.display = 'block';
+        image.style.width = '100%';
+        image.style.maxWidth = '100%';
+        image.style.height = 'auto';
+        image.style.marginLeft = 'auto';
+        image.style.marginRight = 'auto';
+      });
+
+      clone.querySelectorAll('pre').forEach((pre) => {
+        pre.style.display = 'block';
+        pre.style.width = 'auto';
+        pre.style.maxWidth = '100%';
+        pre.style.whiteSpace = 'pre-wrap';
+        pre.style.wordBreak = 'break-word';
+        pre.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('pre code').forEach((code) => {
+        code.style.whiteSpace = 'pre-wrap';
+        code.style.wordBreak = 'break-word';
+        code.style.overflowWrap = 'anywhere';
+      });
+
+      clone.querySelectorAll('table').forEach((table) => {
+        table.style.display = 'table';
+        table.style.width = '100%';
+        table.style.maxWidth = '100%';
+        table.style.tableLayout = 'fixed';
+        table.style.borderCollapse = 'collapse';
+      });
+
+      clone.querySelectorAll('th, td').forEach((cell) => {
+        cell.style.minWidth = '0';
+        cell.style.wordBreak = 'break-word';
+        cell.style.overflowWrap = 'anywhere';
+        cell.style.verticalAlign = 'top';
+      });
+
+      const wrapper = document.createElement('section');
+      wrapper.setAttribute('style', 'box-sizing:border-box;width:100%;max-width:100%;margin:0;padding:32px 26px;background-color:#111016;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+
+      const header = document.createElement('header');
+      header.setAttribute('style', 'margin:0 0 34px;padding:0 0 24px;border-bottom:2px solid #e23c3e;');
+
+      const title = document.createElement('h1');
+      title.textContent = wechatTitle;
+      title.setAttribute('style', 'margin:0 0 18px;color:#f1ece2;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:30px;font-weight:800;line-height:1.25;letter-spacing:-0.5px;');
+
+      const description = document.createElement('p');
+      description.textContent = wechatDescription;
+      description.setAttribute('style', 'margin:0 0 16px;color:#a9a3a8;font-size:16px;line-height:1.75;');
+
+      const meta = document.createElement('p');
+      meta.textContent = `${wechatAuthor} · ${wechatDate}`;
+      meta.setAttribute('style', 'margin:0;color:#e23c3e;font-size:13px;font-weight:700;line-height:1.6;letter-spacing:0.5px;');
+
+      header.append(title, description, meta);
+      clone.setAttribute('style', 'width:auto;max-width:100%;color:#cbc5bf;font-family:PingFang SC,Microsoft YaHei,Helvetica Neue,Arial,sans-serif;font-size:16px;line-height:1.75;overflow-wrap:anywhere;word-break:break-word;');
+      wrapper.append(header, clone);
+
+      return {
+        html: wrapper.outerHTML,
+        text: `${wechatTitle}\n\n${wechatDescription}\n\n${wechatAuthor} · ${wechatDate}\n\n${article.innerText}`
+      };
+    };
+
+    const setWechatCopyFeedback = function (button, message, isError = false) {
+      if (!button) return;
+      const original = button.dataset.originalHtml || button.innerHTML;
+      button.dataset.originalHtml = original;
+      button.innerHTML = isError
+        ? `<i class="fas fa-exclamation-circle" aria-hidden="true"></i> ${message}`
+        : `<i class="fas fa-check" aria-hidden="true"></i> ${message}`;
+      button.classList.toggle('copy-error', isError);
+      button.classList.toggle('copied', !isError);
+      window.setTimeout(() => {
+        button.innerHTML = original;
+        button.classList.remove('copied', 'copy-error');
+      }, 2600);
+    };
+
+    window.copyArticleToWechat = async function () {
+      const button = document.querySelector('.wechat-copy-button');
+      try {
+        const payload = window.buildWechatRichText();
+        if (navigator.clipboard?.write && window.ClipboardItem && window.isSecureContext) {
+          await navigator.clipboard.write([new ClipboardItem({
+            'text/html': new Blob([payload.html], { type: 'text/html' }),
+            'text/plain': new Blob([payload.text], { type: 'text/plain' })
+          })]);
+        } else {
+          const holder = document.createElement('div');
+          holder.contentEditable = 'true';
+          holder.style.position = 'fixed';
+          holder.style.left = '-99999px';
+          holder.style.top = '0';
+          holder.innerHTML = payload.html;
+          document.body.appendChild(holder);
+
+          const range = document.createRange();
+          range.selectNodeContents(holder);
+          const selection = window.getSelection();
+          selection?.removeAllRanges();
+          selection?.addRange(range);
+          const copied = document.execCommand('copy');
+          selection?.removeAllRanges();
+          holder.remove();
+          if (!copied) throw new Error('copy command failed');
+        }
+        setWechatCopyFeedback(button, '已复制到公众号');
+      } catch (error) {
+        console.error('复制公众号富文本失败', error);
+        setWechatCopyFeedback(button, '复制失败', true);
+      }
+    };
+  })();</script>  <article class="article-page" data-astro-cid-4sn4zg3r> <header class="article-hero" data-astro-cid-4sn4zg3r> <div class="article-hero-grid" data-astro-cid-4sn4zg3r> <div class="article-kind" data-astro-cid-4sn4zg3r>TECHNICAL ARTICLE</div> <div class="article-heading" data-astro-cid-4sn4zg3r> <h1 class="article-title" data-astro-cid-4sn4zg3r>HPM 游戏纪念册的工作流与技术方案</h1> <p class="article-description" data-astro-cid-4sn4zg3r>以 HPM 霍格沃茨纪念册为例，整理从游戏资源归档、配置关联、模型转换到网页运行的工作流，说明角色换装、双人舞会和决斗训练场的实现方式，并讨论解包方案与素材传播的版权边界。</p> </div> </div> </header> <div class="reader-grid" data-astro-cid-4sn4zg3r> <aside class="article-meta" aria-label="文章信息" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>文章信息</h2> <dl class="meta-list" data-astro-cid-4sn4zg3r> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>发布日期</dt> <dd data-astro-cid-4sn4zg3r><time datetime="2026-11-24T00:00:00.000Z" data-astro-cid-4sn4zg3r>2026年11月24日</time></dd> </div> <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>作者</dt><dd data-astro-cid-4sn4zg3r>杨正武</dd></div>  <div class="meta-row" data-astro-cid-4sn4zg3r><dt data-astro-cid-4sn4zg3r>预计阅读</dt><dd data-astro-cid-4sn4zg3r>11 分钟</dd></div> <div class="meta-row" data-astro-cid-4sn4zg3r> <dt data-astro-cid-4sn4zg3r>标签</dt> <dd class="article-tags" data-astro-cid-4sn4zg3r><span class="article-tag" data-astro-cid-4sn4zg3r>HPM</span><span class="article-tag" data-astro-cid-4sn4zg3r>游戏资源归档</span><span class="article-tag" data-astro-cid-4sn4zg3r>逆向工程</span><span class="article-tag" data-astro-cid-4sn4zg3r>Three.js</span><span class="article-tag" data-astro-cid-4sn4zg3r>知识产权</span></dd> </div> </dl> <div class="article-actions" data-astro-cid-4sn4zg3r> <a class="share-button" href="https://imcoders.cn/blog/2026-11-24-hpm-game-preservation-tech-and-law/index.md" data-astro-cid-4sn4zg3r>阅读 Markdown</a> <button class="wechat-copy-button" type="button" onclick="copyArticleToWechat()" data-astro-cid-4sn4zg3r> <i class="fab fa-weixin" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 复制到公众号
+</button> <button class="share-button" type="button" onclick="shareArticle()" data-astro-cid-4sn4zg3r> <i class="fas fa-share-alt" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 分享文章
+</button> </div> </aside> <main class="article-content" data-astro-cid-4sn4zg3r> <p><a href="https://hpm.pub/">HPM</a> 的中文名是“霍格沃茨纪念册”。它尝试把《哈利波特：魔法觉醒》里熟悉的角色、衣服、魔杖、卡面和场景整理下来，做成可以在浏览器里打开的纪念项目。</p>
+<p>游戏的停运安排，让保存这些内容变成了一件具体的事。官方已宣布计划于 2027 年 3 月 3 日停止运营，写这篇文章时还没有停服。<a href="https://sina.cn/news/detail/5365894483280623.html">官方停运说明</a></p>
+<p>技术上的目标也很明确：资源能查到来源，角色可以换装，场景可以浏览，动作和音乐可以一起播放。本文整理这套工作流，以及从本地实验走向公开展示时需要考虑的版权边界。</p>
+<p><img src="/_content-images/d115e3ccdb762c54d5df-1600.webp" alt="HPM 项目使用的游戏插画，角色置身于带红色蜡封的信件之间" loading="eager" decoding="async" fetchpriority="high" width="1624" height="860" srcset="/_content-images/d115e3ccdb762c54d5df-640.webp 640w, /_content-images/d115e3ccdb762c54d5df-960.webp 960w, /_content-images/d115e3ccdb762c54d5df-1600.webp 1600w" sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1200px) 75vw, 900px"></p>
+<p><em>封面取自 HPM 目录中的游戏插画；下文换装、寝室与舞会图来自项目已有预览。相关游戏美术与角色权利归各自权利人。</em></p>
+<h2 id="从资源包到网页分四步完成">从资源包到网页，分四步完成</h2>
+<p>HPM 的处理过程可以分成资源归档、配置关联、离线转换和网页运行。每一步都留下独立产物，出现问题时可以回到对应环节处理。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>阶段</th><th>主要工作</th><th>输出</th></tr></thead><tbody><tr><td>资源归档</td><td>扫描本地资源包，核对实际存在的内容，保留基础包与更新包来源</td><td>原始文件、条目索引、摘要与失败清单</td></tr><tr><td>配置关联</td><td>沿物品编号、中文名称、资源路径和动作引用建立关系</td><td>可以查询的素材目录与依赖表</td></tr><tr><td>离线转换</td><td>解析贴图、网格、骨骼、动画和音频关系</td><td>GLB、图片、动作数据和浏览器可播放的音频</td></tr><tr><td>网页运行</td><td>加载转换结果，处理装配、播放、输入和状态保存</td><td>卡册、换装、寝室、舞会与决斗训练场</td></tr></tbody></table>
+<p>第一步先确认资源是否存在。客户端的资源清单可能包含尚未下载的内容，安装目录也可能只保留了基础包。因此，“清单里有名字”和“本机已经取得文件”要分别记录。没有匹配到的条目进入待确认清单，不能直接算作归档完成。</p>
+<p>第二步把文件恢复成有含义的素材。魔杖需要关联名称、模型、贴图、挂点和动作；一张卡牌需要关联卡面、故事插画、GIF 和演示视频。文件名只能解决一部分查找问题，配置关系决定了这些内容能否重新组织起来。</p>
+<p>Python 主要负责离线解析与转换。展示层使用 HTML、CSS、JavaScript 和 Three.js，读取已经准备好的静态资源。角色装扮、学院与镜头状态保存在浏览器，刷新后可以恢复。首页烟花共享计数另外使用 Cloudflare Pages Function 与 D1，角色渲染本身不依赖这项服务。</p>
+<p>这种分工让日常预览更轻。修正模型转换时，重新生成对应资源；调整界面时，直接修改网页；修改配置关联时，也不必重新提取所有文件。</p>
+<h2 id="角色还原依赖模型材质和配置共同装配">角色还原依赖模型、材质和配置共同装配</h2>
+<p>人物模型能打开，只是换装实现的起点。一个完整外观包含身体、头部、眼球、眉毛、头发、衣服和配饰，它们分别带有材质、骨骼或变形数据。</p>
+<p><img src="/_content-images/74f9fd4861d1cad89197-1200.webp" alt="HPM 换装镜预览，左侧选择衣服和配饰，中间展示角色，右侧呈现物品配置与搭配操作" loading="lazy" decoding="async" width="1200" height="810" srcset="/_content-images/74f9fd4861d1cad89197-640.webp 640w, /_content-images/74f9fd4861d1cad89197-960.webp 960w, /_content-images/74f9fd4861d1cad89197-1200.webp 1200w" sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1200px) 75vw, 900px"></p>
+<p><em>换装镜把配置中的物品分类、资源关系与角色装配连接起来。图为项目已有预览，界面与效果会随本地版本变化。</em></p>
+<p>换上一件露领礼服，如果身体部件没有同时匹配，颈部就可能出现断层。魔杖位置不对，需要检查手部挂点、绑定姿态和动作。不同配色显示成同一种颜色，则要继续核对材质变体、染色底图与遮罩。</p>
+<p>瞳色和眉色尤其容易出错。有些 RGBA 贴图的通道承担染色遮罩，按普通透明图片处理，可能丢掉后续着色需要的数据。检查时既要看预览，也要看解码后的各通道是否完整。</p>
+<p>HPM 的处理方式是把这些关系保留在可查询的数据中，再由网页按当前搭配装配。配饰可以取消选择，发色和瞳色可以独立调整，切换部件时重新处理对应的材质与绑定关系。</p>
+<p><img src="/_content-images/a879497df65ce9a051da-1400.webp" alt="HPM 四学院寝室预览，同一角色分别出现在四种寝室场景中" loading="lazy" decoding="async" width="1400" height="936" srcset="/_content-images/a879497df65ce9a051da-640.webp 640w, /_content-images/a879497df65ce9a051da-960.webp 960w, /_content-images/a879497df65ce9a051da-1400.webp 1400w" sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1200px) 75vw, 900px"></p>
+<p><em>四学院寝室复用角色装配与浏览器存档，场景模型、布局和材质分别加载。</em></p>
+<p>场景转换还要统一坐标系。模型位置、法线、三角形绕序、节点变换、骨骼和镜头必须使用一致的转换规则。只把模型朝向修正，动画或挂点仍可能出错。</p>
+<p>当前实现已修复一批外观问题，但布料摆动、折射、噪声和部分专用妆造仍与原 App 有差异。转换结果需要记录这些缺口，避免把“文件已转换”误写成“效果已完整还原”。</p>
+<h2 id="舞会与决斗分别需要时间轴和规则运行时">舞会与决斗分别需要时间轴和规则运行时</h2>
+<p>舞会的主要难点是同步。音乐、领舞、跟随、镜头和谱面，需要落在同一条时间轴上。HPM 本地版本已匹配两个舞厅场景与 39 支双人舞曲，双方动作保留共同舞池原点和原始移动轨迹。</p>
+<p><img src="/_content-images/89981ee503441bbd2719-960.webp" alt="HPM 双人舞会预览，两位角色在带星月图案的舞厅中同步起舞" loading="lazy" decoding="async" width="960" height="600" srcset="/_content-images/89981ee503441bbd2719-640.webp 640w, /_content-images/89981ee503441bbd2719-960.webp 960w" sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1200px) 75vw, 900px"></p>
+<p><em>双人动作由同一音频播放时间驱动，暂停和跳转时共同切换姿态。</em></p>
+<p>当前实现使用音频播放时间加配置偏移驱动动作。音乐缓冲时不继续推进舞蹈，拖动进度时两位角色同时切换姿态。相比各自启动计时器，这样更容易保持整曲同步，也方便接入自动运镜和节奏判定。</p>
+<p>节奏试玩先接入《华尔兹：飞翔天际》一星谱面的 61 个点击点。全 Perfect 得分为 20,300，与原配置的单人满分一致。但浏览器判定窗仍是试玩参数，混合判定分数也未逐项校准。满分样例能够检查一条计算路径，不能证明所有判定都与原版一致。</p>
+<p>决斗需要补上的则是运行规则。场景、卡面和施法动画可以转换，伤害、碰撞、召唤、嘲讽和死亡要由网页代码执行。当前训练场采用固定 60 Hz 模拟，把规则计算与画面渲染分开。</p>
+<p>以“石礅出动”为例，配置关系从卡牌延伸到技能、效果、召唤物、角色与属性，最终定位身体、武器、七段动作及相关数值。运行时再安排入场、寻敌、移动、挥击、嘲讽和死亡，并在重置时清理未结算攻击与特效。</p>
+<p>原始配置中的 AI 标识和逻辑编号，还依赖引擎处理器。当前网页采用自己的状态调度、避让与部分特效实现，尚无完整联机、回响和卡组轮转。它适合作为几张卡牌的本地训练与演示环境。</p>
+<p>验证也沿这两个方向展开。舞会检查暂停、跳转、缓冲和后台恢复；决斗检查不同渲染帧率下的模拟结果、死亡取消攻击、重置清理以及多个角色的骨骼是否互相干扰。单看一张截图，发现不了这些问题。</p>
+<h2 id="解包工具先做好索引与来源记录">解包工具先做好索引与来源记录</h2>
+<p>一个够用的解包方案，可以从“扫描、提取、转换、预览”四个阶段开始。先用最小样本打通流程，再扩大处理范围。下面的格式信息来自 HPM 当前样本，其他版本和平台需要重新验证。</p>
+<p>当前资源包头标记为 <code>NXPK</code>。扫描器读取条目数量、索引位置，再从条目中取得文件签名、偏移、存储长度、原始长度和标志位。路径清单来自 <code>resdb</code>，规范化后通过 MurmurHash3 与条目签名建立候选关联。</p>
+<p>路径哈希可能有歧义。候选唯一时恢复原路径，多候选和无法匹配的条目保留包名、签名、偏移与候选列表。基础包、更新包保留各自来源，另外明确覆盖顺序，避免同名文件无声覆盖。</p>
+<p>提取阶段检查索引数量、包内边界和输出大小，拒绝绝对路径与目录穿越。现有处理脚本包含原样读取、zlib 与 LZ4 分支。涉及保护措施的条目应单独审核处理依据，不能把它们统一归为普通解压。</p>
+<p>转换阶段按类型拆开：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>类型</th><th>转换方式</th><th>重点检查</th></tr></thead><tbody><tr><td>纹理</td><td>识别容器和实际编码，解码 ASTC、ETC 等内容</td><td>宽高、透明度、色彩与遮罩通道</td></tr><tr><td>配置</td><td>按分片索引读取内容，解压后解析 MessagePack</td><td>主键、中文名称、资源路径和引用</td></tr><tr><td>模型与动画</td><td>解析网格、骨骼、权重、绑定姿态与动作</td><td>坐标系、法线、骨骼索引与时长</td></tr><tr><td>音频</td><td>沿播放事件、音频 bank 与轨道关系定位，再按需转码</td><td>曲目对应、起点、循环与时长</td></tr></tbody></table>
+<p>原始输入与转换结果分别保存。每份结果记录源包、条目、内容摘要、转换参数和工具版本。这样同一个模型出现错色或动作异常时，可以定位到具体输入，重新生成对应产物。</p>
+<p>下面是整理后的流程伪代码，函数表示模块接口：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> package </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> local_packages:</span></span>
+<span class="line"><span style="color:#E1E4E8">    package_id </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> sha256_file(package)</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> entry </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> scan_index(package):</span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">            check_bounds_and_size_limits(package, entry)</span></span>
+<span class="line"><span style="color:#E1E4E8">            candidates </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> resolve_manifest_paths(entry)</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> requires_protection_review(entry):</span></span>
+<span class="line"><span style="color:#E1E4E8">                record_pending(package_id, entry, candidates)</span></span>
+<span class="line"><span style="color:#F97583">                continue</span></span>
+<span class="line"><span style="color:#E1E4E8">            raw </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> decode_plain_entry_with_limit(package, entry)</span></span>
+<span class="line"><span style="color:#E1E4E8">            check_original_size(raw, entry)</span></span>
+<span class="line"><span style="color:#E1E4E8">            source </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> save_local_original(raw, package_id, entry, candidates)</span></span>
+<span class="line"><span style="color:#E1E4E8">            preview </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> convert_supported_type(source)</span></span>
+<span class="line"><span style="color:#E1E4E8">            record_result(source, preview, sha256_bytes(raw))</span></span>
+<span class="line"><span style="color:#F97583">        except</span><span style="color:#E1E4E8"> DecodeError </span><span style="color:#F97583">as</span><span style="color:#E1E4E8"> error:</span></span>
+<span class="line"><span style="color:#E1E4E8">            record_failure(package_id, entry, </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">(error))</span></span>
+<span class="line"></span></code></pre>
+<p>第一轮可以只选一张卡图、一件衣服、一支魔杖和一段动作。图片核对透明度，模型核对朝向与挂点，动作核对时长。再加入截断包、歧义路径和缺失依赖，确认失败能留在报告里，之后再接音乐与复杂场景。</p>
+<h2 id="版权限制要落实到发布流程">版权限制要落实到发布流程</h2>
+<p>资源取得、格式研究、本地处理和公开传播，需要分别判断。HPM 尚未取得覆盖游戏素材、相关 IP 与音乐使用的书面授权，因此把完整互动实验留在本地，并收缩了公开版本。以下按中国大陆法律讨论相关边界，具体使用仍需结合素材、协议与传播方式判断。</p>
+<p><img src="/_content-images/c10d1e483c58a20adaec-1600.webp" alt="版权限制概念插图，素材纪念册以红色蜡封封存，禁止符号阻止内容向外传播" loading="lazy" decoding="async" width="1672" height="941" srcset="/_content-images/c10d1e483c58a20adaec-640.webp 640w, /_content-images/c10d1e483c58a20adaec-960.webp 960w, /_content-images/c10d1e483c58a20adaec-1600.webp 1600w" sizes="(max-width: 768px) calc(100vw - 32px), (max-width: 1200px) 75vw, 900px"></p>
+<p><em>AI 生成的版权限制概念插图，参考 HPM 游戏插画的纸张质感与配色，不表示已取得游戏素材授权。</em></p>
+<p>模型转成 GLB、贴图转成 WebP，不会因此获得原素材的传播许可。《著作权法》第十条规定复制权、信息网络传播权等权利；第二十四条的个人学习、研究或欣赏情形有适用条件，不能直接推广到公开的完整素材库。<a href="https://www.ncac.gov.cn/xxfb/flfg/flfg_532/202103/t20210309_50530.html">《著作权法》</a></p>
+<p>去掉下载按钮也不足以解决问题。浏览器展示模型、播放音乐时仍会获取文件，图片和 GIF 也仍需核实使用依据。“非商业”“版权归原作者”和权利人联系入口，可以说明项目目的，但不能代替授权。停服同样不会使保护期内的作品自动进入公有领域。<a href="https://www.ncac.gov.cn/xxfb/flfg/flfg_532/202103/t20210309_50530.html">《著作权法》第二十三条、第二十四条、第五十三条</a></p>
+<p>研究软件设计思想和原理有相应法定空间，但它不自动涵盖美术与音乐的公开分发。资源解混淆是否涉及规避受保护的技术措施，也需要结合实际机制判断；反向工程研究例外仍有限制。<a href="https://www.cac.gov.cn/2013-02/08/c_12648744.htm">《计算机软件保护条例》第六条、第十七条</a>、<a href="https://www.ncac.gov.cn/xxfb/flfg/flfg_532/202103/t20210309_50530.html">《著作权法》第四十九条、第五十条</a></p>
+<p>因此，工具输入应限定为来源合法、且对相应分析处理具有授权或明确法律依据的本地样本。字体、官网图标、第三方运行库与解析工具许可也要单独核对，项目自己的许可只能覆盖有权许可的原创部分。</p>
+<p>HPM 将发布边界放进了构建流程：公开构建按文件清单复制页面，过滤素材目录，并检查是否混入模型、压缩包、影音和字体。缺少本地资源时停止构建。本地完整版使用独立入口，只监听 <code>127.0.0.1</code>，按需校验和读取本机资源包。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>内容</th><th>本地完整版</th><th>当前公开精简版</th></tr></thead><tbody><tr><td>首页、卡册、图片与 GIF</td><td>保留</td><td>保留，素材授权仍待核实</td></tr><tr><td>寝室、换装、舞会与决斗</td><td>保留</td><td>不纳入构建</td></tr><tr><td>原始素材包、可编辑模型与影音</td><td>本机保存与使用</td><td>关闭相关分发与播放入口</td></tr></tbody></table>
+<p>撤下页面时，还应检查原文件地址、历史下载入口与 CDN 缓存。页面导航消失，不代表资源已经不可访问；已经被下载的副本，也无法靠改变仓库状态收回。这些措施减少传播范围，不能补上授权，也不能直接证明当前版本已经合规。</p>
+<p>HPM 留下的技术方案，是一套从原始文件、配置关系到网页交互的处理流程。后续可以继续补齐失败样本、转换记录和近似实现说明。公开功能的扩展，则需要明确素材许可，或换用原创及明确授权的内容后再推进。</p> </main> <aside class="page-toc" aria-label="页面目录" data-astro-cid-4sn4zg3r> <h2 class="rail-title" data-astro-cid-4sn4zg3r>页面目录</h2> <ol class="toc-list" data-astro-cid-4sn4zg3r> <li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#从资源包到网页分四步完成" data-astro-cid-4sn4zg3r>从资源包到网页，分四步完成</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#角色还原依赖模型材质和配置共同装配" data-astro-cid-4sn4zg3r>角色还原依赖模型、材质和配置共同装配</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#舞会与决斗分别需要时间轴和规则运行时" data-astro-cid-4sn4zg3r>舞会与决斗分别需要时间轴和规则运行时</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#解包工具先做好索引与来源记录" data-astro-cid-4sn4zg3r>解包工具先做好索引与来源记录</a></li><li data-astro-cid-4sn4zg3r><a class="toc-link depth-2" href="#版权限制要落实到发布流程" data-astro-cid-4sn4zg3r>版权限制要落实到发布流程</a></li> </ol> <a class="toc-back" href="/blog" data-astro-cid-4sn4zg3r><i class="fas fa-arrow-left" aria-hidden="true" data-astro-cid-4sn4zg3r></i> 返回博客</a> </aside> <nav class="article-navigation single" aria-label="相邻文章" data-astro-cid-4sn4zg3r>  <a class="article-nav-link" href="/blog/2026-11-06-ontology-necessity-feasibility" data-astro-cid-4sn4zg3r> <span class="nav-direction" data-astro-cid-4sn4zg3r>较早文章</span> <span class="nav-title" data-astro-cid-4sn4zg3r>软件系统到底需不需要本体 Ontology</span> </a> </nav> </div> </article> <div class="selection-share" data-selection-share data-content-selector=".article-content" data-title="HPM 游戏纪念册的工作流与技术方案" data-author="杨正武" data-section="IMCODERS BLOG" data-url="https://imcoders.cn/blog/2026-11-24-hpm-game-preservation-tech-and-law/" data-logo="/monket-snow2.png" data-astro-cid-zojzfn6i> <div class="selection-share-toolbar" role="toolbar" aria-label="选中文字操作" hidden data-astro-cid-zojzfn6i> <button type="button" data-selection-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制原文</span> </button> <button type="button" data-selection-action="quote" data-astro-cid-zojzfn6i> <i class="fa-solid fa-quote-left" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>复制引用</span> </button> <button type="button" data-selection-action="card" data-astro-cid-zojzfn6i> <i class="fa-regular fa-image" aria-hidden="true" data-astro-cid-zojzfn6i></i> <span data-astro-cid-zojzfn6i>生成卡片</span> </button> </div> <dialog class="share-card-dialog" aria-labelledby="share-card-title" data-astro-cid-zojzfn6i> <div class="share-card-shell" data-astro-cid-zojzfn6i> <header class="share-card-header" data-astro-cid-zojzfn6i> <div data-astro-cid-zojzfn6i> <p class="share-card-kicker" data-astro-cid-zojzfn6i>分享选段</p> <h2 id="share-card-title" data-astro-cid-zojzfn6i>分享卡片预览</h2> </div> <button class="share-card-close" type="button" data-card-close aria-label="关闭分享卡片" data-astro-cid-zojzfn6i> <i class="fa-solid fa-xmark" aria-hidden="true" data-astro-cid-zojzfn6i></i> </button> </header> <div class="share-card-preview" data-astro-cid-zojzfn6i> <canvas width="1080" height="1440" aria-label="选中文字生成的分享卡片" data-astro-cid-zojzfn6i></canvas> </div> <div class="share-card-actions" data-astro-cid-zojzfn6i> <button type="button" data-card-action="copy" data-astro-cid-zojzfn6i> <i class="fa-regular fa-copy" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+复制图片
+</button> <button type="button" data-card-action="download" data-astro-cid-zojzfn6i> <i class="fa-solid fa-arrow-down" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+下载 PNG
+</button> <button class="is-primary" type="button" data-card-action="share" data-astro-cid-zojzfn6i> <i class="fa-solid fa-share-nodes" aria-hidden="true" data-astro-cid-zojzfn6i></i>
+系统分享
+</button> </div> <p class="share-card-hint" data-astro-cid-zojzfn6i>如无法复制图片，可以下载后发送，或在手机上长按保存。</p> </div> </dialog> <div class="selection-share-toast" role="status" aria-live="polite" hidden data-astro-cid-zojzfn6i></div> </div>   </main> <footer class="site-footer"> <div class="container site-footer-inner"> <div> <div class="site-footer-title">BUILD THE <span>HARNESS.</span></div> <div class="site-footer-links"> <a href="https://github.com/auenger" target="_blank" rel="noopener noreferrer">GitHub</a> <a href="mailto:yzw@imcoders.net">Email</a> <a href="/playbook">Playbook</a> <a href="/manufacturing/">制造业系统</a> <a href="/blog">博客</a> <a href="/rss.xml">RSS</a> <a href="/llms.txt">Agent 索引</a> </div> </div> <div class="site-footer-meta">© 2026 杨正武<br>Harness Engineer</div> </div> </footer> <script>
+      const menuButton = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.site-links');
+      const closeMenu = () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        menu?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      menuButton?.addEventListener('click', () => {
+        const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(willOpen));
+        menu?.classList.toggle('is-open', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
+      });
+      menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.matchMedia('(min-width: 769px)').addEventListener('change', closeMenu);
+    </script> </body> </html>

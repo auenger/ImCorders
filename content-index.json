@@ -227,6 +227,25 @@
       "markdownUrl": "https://imcoders.cn/blog/2026-11-06-ontology-necessity-feasibility/index.md"
     },
     {
+      "id": "blog/2026-11-24-hpm-game-preservation-tech-and-law",
+      "kind": "blog",
+      "title": "HPM 游戏纪念册的工作流与技术方案",
+      "description": "以 HPM 霍格沃茨纪念册为例，整理从游戏资源归档、配置关联、模型转换到网页运行的工作流，说明角色换装、双人舞会和决斗训练场的实现方式，并讨论解包方案与素材传播的版权边界。",
+      "author": "杨正武",
+      "tags": [
+        "HPM",
+        "游戏资源归档",
+        "逆向工程",
+        "Three.js",
+        "知识产权"
+      ],
+      "publishedAt": "2026-11-24T00:00:00.000Z",
+      "updatedAt": "2026-11-24T00:00:00.000Z",
+      "url": "https://imcoders.cn/blog/2026-11-24-hpm-game-preservation-tech-and-law/",
+      "image": "/blog-images/hpm/hero.webp",
+      "markdownUrl": "https://imcoders.cn/blog/2026-11-24-hpm-game-preservation-tech-and-law/index.md"
+    },
+    {
       "id": "blog/agent-technical-reflux",
       "kind": "blog",
       "title": "工程师拥抱 Agent，普通人却重新开始开发软件",
